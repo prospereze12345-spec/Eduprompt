@@ -1,0 +1,522 @@
+<div class="container py-5">
+  <h1 class="text-center mb-5">Select a Project Template</h1>
+
+  <div class="row g-4">
+
+    <!-- Essay / Report Template Card -->
+    <div class="col-md-4">
+      <div class="card-template" onclick="showTemplate('essayTemplate')" style="background-color:#28a745; color:white;">
+        <i class="bi bi-file-earmark-text" style="font-size:3rem;"></i>
+        <h5 class="mt-3">Essay / Report Template</h5>
+        <p>Click to expand full editable essay/report layout.</p>
+      </div>
+    </div>
+
+    <!-- Essay / Report Content -->
+    <div id="essayTemplate" class="template-section" style="display:none; background-color:#e8f5e9; padding:2rem; border-radius:12px; margin-top:1rem;">
+      <h1 contenteditable="true" class="editable-content text-center fw-bold text-success" id="essay-title">[ESSAY / REPORT TITLE]</h1>
+      <p class="text-center editable-content" contenteditable="true" id="student-name"><strong>Student:</strong> [STUDENT NAME]</p>
+      <p class="text-center editable-content" contenteditable="true" id="institution"><strong>University:</strong> [UNIVERSITY NAME]</p>
+      <p class="text-center editable-content mb-5" contenteditable="true" id="date"><strong>Date:</strong> [DATE]</p>
+      
+      <div class="section"><div class="section-header text-success"><i class="bi bi-file-richtext"></i><h2>Abstract</h2></div><div class="editable-content" contenteditable="true" id="abstract">[Brief summary of the essay/report in 150–250 words]</div></div>
+      <div class="section"><div class="section-header text-success"><i class="bi bi-list-ul"></i><h2>Table of Contents</h2></div><div class="editable-content" contenteditable="true" id="contents">[List sections and page numbers]</div></div>
+      <div class="section"><div class="section-header text-success"><i class="bi bi-lightbulb"></i><h2>Introduction</h2></div><div class="editable-content" contenteditable="true" id="introduction">[Background, Context, Purpose, and Thesis Statement]</div></div>
+      <div class="section"><div class="section-header text-success"><i class="bi bi-body-text"></i><h2>Main Body / Analysis</h2></div><div class="editable-content" contenteditable="true" id="body">[Present Arguments, Evidence, Examples, and Analysis in Sections/Paragraphs]</div></div>
+      <div class="section"><div class="section-header text-success"><i class="bi bi-chat-dots"></i><h2>Discussion</h2></div><div class="editable-content" contenteditable="true" id="discussion">[Interpret findings, compare perspectives, implications]</div></div>
+      <div class="section"><div class="section-header text-success"><i class="bi bi-check-circle"></i><h2>Conclusion</h2></div><div class="editable-content" contenteditable="true" id="conclusion">[Summarize Key Points and Restate the Main Argument]</div></div>
+      <div class="section"><div class="section-header text-success"><i class="bi bi-lightning-charge"></i><h2>Recommendations</h2></div><div class="editable-content" contenteditable="true" id="recommendations">[Provide Suggestions for Future Work, Research, or Actions]</div></div>
+      <div class="section"><div class="section-header text-success"><i class="bi bi-people"></i><h2>Acknowledgements</h2></div><div class="editable-content" contenteditable="true" id="acknowledgements">[Thank Individuals, Institutions, or Resources]</div></div>
+      <div class="section"><div class="section-header text-success"><i class="bi bi-link-45deg"></i><h2>References</h2></div><div class="editable-content" contenteditable="true" id="references">[Enter Citations / Sources in APA, MLA, or Harvard Style]</div></div>
+      <div class="section"><div class="section-header text-success"><i class="bi bi-file-earmark-plus"></i><h2>Appendices</h2></div><div class="editable-content" contenteditable="true" id="appendices">[Additional Data, Charts, Surveys, or Materials]</div></div>
+    </div>
+
+    <!-- Case Study Template Card -->
+    <div class="col-md-4">
+      <div class="card-template" onclick="showTemplate('caseStudyTemplate')" style="background-color:#6f42c1; color:white;">
+        <i class="bi bi-briefcase" style="font-size:3rem;"></i>
+        <h5 class="mt-3">Case Study Template</h5>
+        <p>Click to expand full editable case study layout.</p>
+      </div>
+    </div>
+
+    <!-- Case Study Content -->
+    <div id="caseStudyTemplate" class="template-section" style="display:none; background-color:#f3e8ff; padding:2rem; border-radius:12px; margin-top:1rem;">
+      <h1 contenteditable="true" class="editable-content text-center fw-bold" style="color:#6f42c1;" id="case-title">[CASE STUDY TITLE]</h1>
+      <p class="text-center editable-content" contenteditable="true" id="author"><strong>Author:</strong> [AUTHOR NAME]</p>
+      <p class="text-center editable-content" contenteditable="true" id="institution"><strong>Organization / Institution:</strong> [INSTITUTION NAME]</p>
+      <p class="text-center editable-content mb-5" contenteditable="true" id="date"><strong>Date:</strong> [DATE]</p>
+
+      <div class="section"><div class="section-header" style="color:#6f42c1;"><i class="bi bi-journal-text"></i><h2>Executive Summary</h2></div><div class="editable-content" contenteditable="true" id="summary">[Provide a concise overview of the case study, problem, solution, and key findings]</div></div>
+      <div class="section"><div class="section-header" style="color:#6f42c1;"><i class="bi bi-exclamation-triangle"></i><h2>Background / Problem</h2></div><div class="editable-content" contenteditable="true" id="background">[Describe context, stakeholders involved, and the main challenge/problem]</div></div>
+      <div class="section"><div class="section-header" style="color:#6f42c1;"><i class="bi bi-tools"></i><h2>Solution / Intervention</h2></div><div class="editable-content" contenteditable="true" id="solution">[Explain steps or strategies implemented to address the problem]</div></div>
+      <div class="section"><div class="section-header" style="color:#6f42c1;"><i class="bi bi-graph-up"></i><h2>Results / Outcomes</h2></div><div class="editable-content" contenteditable="true" id="results">[Present measurable outcomes, achievements, or impact of the solution]</div></div>
+      <div class="section"><div class="section-header" style="color:#6f42c1;"><i class="bi bi-lightbulb"></i><h2>Analysis / Lessons Learned</h2></div><div class="editable-content" contenteditable="true" id="analysis">[Reflect on key insights, what worked, what didn’t, and why. Provide recommendations]</div></div>
+      <div class="section"><div class="section-header" style="color:#6f42c1;"><i class="bi bi-link-45deg"></i><h2>References</h2></div><div class="editable-content" contenteditable="true" id="references">[List all sources, reports, articles, or data cited]</div></div>
+      <div class="section"><div class="section-header" style="color:#6f42c1;"><i class="bi bi-file-earmark-plus"></i><h2>Appendices</h2></div><div class="editable-content" contenteditable="true" id="appendices">[Include charts, raw data, or supporting documents]</div></div>
+    </div>
+
+    <!-- Project Proposal Template Card -->
+    <div class="col-md-4">
+      <div class="card-template" onclick="showTemplate('proposalTemplate')" style="background-color:#ff6f61; color:white;">
+        <i class="bi bi-file-earmark-medical" style="font-size:3rem;"></i>
+        <h5 class="mt-3">Project Proposal Template</h5>
+        <p>Click to expand full editable project proposal layout.</p>
+      </div>
+    </div>
+
+    <!-- Project Proposal Content -->
+    <div id="proposalTemplate" class="template-section" style="display:none; background-color:#fff4f0; padding:2rem; border-radius:12px; margin-top:1rem;">
+      <h1 contenteditable="true" class="editable-content text-center fw-bold" style="color:#ff6f61;" id="proposal-title">[PROJECT PROPOSAL TITLE]</h1>
+      <p class="text-center editable-content" contenteditable="true" id="author"><strong>Author:</strong> [AUTHOR NAME]</p>
+      <p class="text-center editable-content" contenteditable="true" id="institution"><strong>Organization / Institution:</strong> [INSTITUTION NAME]</p>
+      <p class="text-center editable-content mb-5" contenteditable="true" id="date"><strong>Date:</strong> [DATE]</p>
+
+      <div class="section"><div class="section-header" style="color:#ff6f61;"><i class="bi bi-lightbulb"></i><h2>Introduction / Objective</h2></div><div class="editable-content" contenteditable="true" id="objective">[State purpose, goals, and significance of the project]</div></div>
+      <div class="section"><div class="section-header" style="color:#ff6f61;"><i class="bi bi-diagram-3"></i><h2>Project Scope</h2></div><div class="editable-content" contenteditable="true" id="scope">[Define what the project will cover, deliverables, inclusions/exclusions]</div></div>
+      <div class="section"><div class="section-header" style="color:#ff6f61;"><i class="bi bi-gear"></i><h2>Methodology / Approach</h2></div><div class="editable-content" contenteditable="true" id="methodology">[Explain how the project will be carried out step by step]</div></div>
+      <div class="section"><div class="section-header" style="color:#ff6f61;"><i class="bi bi-calendar-check"></i><h2>Timeline / Milestones</h2></div><div class="editable-content" contenteditable="true" id="timeline">[Provide project phases, deadlines, and deliverable dates]</div></div>
+      <div class="section"><div class="section-header" style="color:#ff6f61;"><i class="bi bi-cash-coin"></i><h2>Budget / Resources</h2></div><div class="editable-content" contenteditable="true" id="budget">[Outline required resources, staffing, and estimated costs]</div></div>
+      <div class="section"><div class="section-header" style="color:#ff6f61;"><i class="bi bi-graph-up-arrow"></i><h2>Expected Outcome / Impact</h2></div><div class="editable-content" contenteditable="true" id="outcome">[Describe intended achievements, benefits, and long-term impact]</div></div>
+      <div class="section"><div class="section-header" style="color:#ff6f61;"><i class="bi bi-link-45deg"></i><h2>References</h2></div><div class="editable-content" contenteditable="true" id="references">[List supporting research, studies, or citations]</div></div>
+      <div class="section"><div class="section-header" style="color:#ff6f61;"><i class="bi bi-file-earmark-plus"></i><h2>Appendices</h2></div><div class="editable-content" contenteditable="true" id="appendices">[Include charts, budget breakdowns, or technical notes]</div></div>
+    </div>
+
+    <!-- Study Planner Template Card -->
+    <div class="col-md-4">
+      <div class="card-template" onclick="showTemplate('studyPlannerTemplate')" style="background-color:#008080; color:white;">
+        <i class="bi bi-journal-check" style="font-size:3rem;"></i>
+        <h5 class="mt-3">Study Planner Template</h5>
+        <p>Click to expand full editable study planner layout.</p>
+      </div>
+    </div>
+
+    <!-- Study Planner Content -->
+    <div id="studyPlannerTemplate" class="template-section" style="display:none; background-color:#e6fafa; padding:2rem; border-radius:12px; margin-top:1rem;">
+      <h1 contenteditable="true" class="editable-content text-center fw-bold" style="color:#008080;" id="planner-title">[STUDY PLANNER]</h1>
+      <p class="text-center editable-content" contenteditable="true" id="student-name"><strong>Name:</strong> [STUDENT NAME]</p>
+      <p class="text-center editable-content" contenteditable="true" id="goal"><strong>Goal:</strong> [Target Score / Exam Objective]</p>
+      <p class="text-center editable-content mb-5" contenteditable="true" id="subject-focus"><strong>Subject Focus:</strong> [Subject / Exam]</p>
+
+      <div class="section"><div class="section-header" style="color:#008080;"><i class="bi bi-calendar-week"></i><h2>Weekly / Daily Schedule</h2></div><div class="editable-content" contenteditable="true" id="schedule">[Break down study sessions by day, subject, or time blocks]</div></div>
+      <div class="section"><div class="section-header" style="color:#008080;"><i class="bi bi-list-task"></i><h2>Topics / Tasks</h2></div><div class="editable-content" contenteditable="true" id="tasks">[List specific topics or tasks for each study session]</div></div>
+      <div class="section"><div class="section-header" style="color:#008080;"><i class="bi bi-exclamation-triangle"></i><h2>Priorities / Focus Areas</h2></div><div class="editable-content" contenteditable="true" id="priorities">[Highlight weak areas, must-study sections, or high-value topics]</div></div>
+      <div class="section"><div class="section-header" style="color:#008080;"><i class="bi bi-check2-square"></i><h2>Progress Tracker</h2></div><div class="editable-content" contenteditable="true" id="progress">[Insert checklist or table to track completed tasks]</div></div>
+      <div class="section"><div class="section-header" style="color:#008080;"><i class="bi bi-journal-bookmark"></i><h2>Notes / Resources</h2></div><div class="editable-content" contenteditable="true" id="resources">[Add useful links, reference books, past papers, or online resources]</div></div>
+    </div>
+
+    <!-- Lab Report Template Card -->
+    <div class="col-md-4">
+      <div class="card-template" onclick="showTemplate('labReportTemplate')" style="background-color:#cc0000; color:white;">
+        <i class="bi bi-beaker" style="font-size:3rem;"></i>
+        <h5 class="mt-3">Lab Report Template</h5>
+        <p>Click to expand full editable STEM lab report layout.</p>
+      </div>
+    </div>
+
+    <!-- Lab Report Content -->
+    <div id="labReportTemplate" class="template-section" style="display:none; background-color:#ffeaea; padding:2rem; border-radius:12px; margin-top:1rem;">
+      <h1 contenteditable="true" class="editable-content text-center fw-bold" style="color:#cc0000;" id="lab-title">[LAB REPORT TITLE]</h1>
+      <p class="text-center editable-content" contenteditable="true" id="lab-student"><strong>Student:</strong> [NAME]</p>
+      <p class="text-center editable-content" contenteditable="true" id="lab-date"><strong>Date:</strong> [DD/MM/YYYY]</p>
+      <hr class="my-4">
+      <div class="section"><div class="section-header" style="color:#cc0000;"><i class="bi bi-bullseye"></i><h2>Objective / Aim</h2></div><div class="editable-content" contenteditable="true" id="lab-objective">[State the aim or purpose of the experiment]</div></div>
+      <div class="section"><div class="section-header" style="color:#cc0000;"><i class="bi bi-tools"></i><h2>Materials / Equipment</h2></div><div class="editable-content" contenteditable="true" id="lab-materials">[List materials, chemicals, and equipment used]</div></div>
+      <div class="section"><div class="section-header" style="color:#cc0000;"><i class="bi bi-list-ol"></i><h2>Procedure</h2></div><div class="editable-content" contenteditable="true" id="lab-procedure">[Step-by-step method of carrying out the experiment]</div></div>
+      <div class="section"><div class="section-header" style="color:#cc0000;"><i class="bi bi-table"></i><h2>Observations / Data</h2></div><div class="editable-content" contenteditable="true" id="lab-observations">[Insert tables, charts, or notes of experimental data]</div></div>
+      <div class="section"><div class="section-header" style="color:#cc0000;"><i class="bi bi-bar-chart-line"></i><h2>Results</h2></div><div class="editable-content" contenteditable="true" id="lab-results">[Summarize findings, include graphs and calculations]</div></div>
+      <div class="section"><div class="section-header" style="color:#cc0000;"><i class="bi bi-graph-up"></i><h2>Discussion / Analysis</h2></div><div class="editable-content" contenteditable="true" id="lab-discussion">[Interpret results, discuss errors, lessons learned]</div></div>
+      <div class="section"><div class="section-header" style="color:#cc0000;"><i class="bi bi-check-circle"></i><h2>Conclusion</h2></div><div class="editable-content" contenteditable="true" id="lab-conclusion">[Brief summary of findings and implications]</div></div>
+      <div class="section"><div class="section-header" style="color:#cc0000;"><i class="bi bi-journal-text"></i><h2>References</h2></div><div class="editable-content" contenteditable="true" id="lab-references">[List textbooks, research articles, or sources consulted]</div></div>
+    </div>
+
+    <!-- Research Project Template Card -->
+    <div class="col-md-4">
+      <div class="card-template" onclick="showTemplate('researchProjectTemplate')" style="background-color:#007bff; color:white;">
+        <i class="bi bi-journal-text" style="font-size:3rem;"></i>
+        <h5 class="mt-3">Research Project Template</h5>
+        <p>Click to expand full editable research project layout.</p>
+      </div>
+    </div>
+
+    <!-- Research Project Content -->
+    <div id="researchProjectTemplate" class="template-section" style="display:none; background-color:#e6f0ff; padding:2rem; border-radius:12px; margin-top:1rem;">
+      <h1 contenteditable="true" class="editable-content text-center fw-bold" id="project-title">[PROJECT TITLE]</h1>
+      <p class="text-center editable-content" contenteditable="true" id="student-name"><strong>Student:</strong> [STUDENT NAME]</p>
+      <p class="text-center editable-content" contenteditable="true" id="institution"><strong>Institution:</strong> [INSTITUTION]</p>
+      <p class="text-center editable-content mb-5" contenteditable="true" id="date"><strong>Date:</strong> [DATE]</p>
+      
+      <div class="section"><div class="section-header"><i class="bi bi-journal-text"></i><h2>Abstract & Keywords</h2></div><div class="editable-content" contenteditable="true" id="abstract">[Enter Abstract]</div><div class="editable-content mt-2" contenteditable="true" id="keywords">[Enter Keywords]</div></div>
+      <div class="section"><div class="section-header"><i class="bi bi-lightbulb"></i><h2>Introduction</h2></div><div class="editable-content" contenteditable="true" id="introduction">[Enter Introduction]</div></div>
+      <div class="section"><div class="section-header"><i class="bi bi-book"></i><h2>Literature Review</h2></div><div class="editable-content" contenteditable="true" id="literature">[Enter Literature Review]</div></div>
+      <div class="section"><div class="section-header"><i class="bi bi-tools"></i><h2>Methodology</h2></div><div class="editable-content" contenteditable="true" id="methodology">[Enter Methodology]</div></div>
+      <div class="section"><div class="section-header"><i class="bi bi-bar-chart-line"></i><h2>Results & Analysis</h2></div><div class="editable-content" contenteditable="true" id="results">[Enter Results]</div></div>
+      <div class="section"><div class="section-header"><i class="bi bi-chat-left-text"></i><h2>Discussion</h2></div><div class="editable-content" contenteditable="true" id="discussion">[Enter Discussion]</div></div>
+      <div class="section"><div class="section-header"><i class="bi bi-check-circle"></i><h2>Conclusion</h2></div><div class="editable-content" contenteditable="true" id="conclusion">[Enter Conclusion]</div></div>
+      <div class="section"><div class="section-header"><i class="bi bi-people"></i><h2>Acknowledgements</h2></div><div class="editable-content" contenteditable="true" id="acknowledgements">[Enter Acknowledgements]</div></div>
+      <div class="section"><div class="section-header"><i class="bi bi-link-45deg"></i><h2>References</h2></div><div class="editable-content" contenteditable="true" id="references">[Enter References]</div></div>
+      <div class="section"><div class="section-header"><i class="bi bi-file-earmark-text"></i><h2>Appendices</h2></div><div class="editable-content" contenteditable="true" id="appendices">[Enter Appendices]</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Styles -->
+<style>
+  .text-darkblue { color: #1E3A8A; }
+  .text-gold { color: #B8860B; }
+  .text-black { color: #000; }
+
+  .btn-gold {
+    background-color: #B8860B;
+    border: none;
+  }
+  .btn-gold:hover { background-color: #a0750a; }
+
+  .btn-darkblue {
+    background-color: #1E3A8A;
+    border: none;
+  }
+  .btn-darkblue:hover { background-color: #162c66; }
+
+  .question-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+    cursor: pointer;
+    border-radius: 0.8rem;
+  }
+  .question-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  .solver-box {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  }
+
+  .solver-textarea {
+    height: 300px;
+    resize: none;
+    padding: 1rem;
+    border-radius: 0.8rem;
+  }
+
+  .result-area {
+    background: #f8f9fa;
+    min-height: 300px;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    overflow-y: auto;
+  }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1rem; }
+    .solver-textarea { height: 250px; }
+  }
+</style>
+
+<!-- JavaScript -->
+<script>
+function generateProject() {
+    const prompt = document.getElementById("inputBox").value;
+    
+    fetch("/project-writer/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "X-CSRFToken": getCookie('csrftoken') // Django CSRF token
+        },
+        body: `prompt=${encodeURIComponent(prompt)}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("outputBox").innerText = data.result;
+    });
+}
+
+// Helper to get CSRF token (required for Django POST)
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+        const cookies = document.cookie.split(";");
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
+            if (cookie.startsWith(name + "=")) {
+                cookieValue = decodeURIComponent(cookie.split("=")[1]);
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+  function showTemplate(templateId) {
+    const template = document.getElementById(templateId);
+    template.style.display = (template.style.display === "block") ? "none" : "block";
+    template.scrollIntoView({behavior: "smooth"});
+
+    // Example data for Lab Report
+    const labData = {
+      title: "Electrolysis of Water",
+      student: "James Okafor",
+      date: "21/08/2025",
+      objective: "To demonstrate the decomposition of water into hydrogen and oxygen gases using electrolysis.",
+      materials: "Beaker, electrodes, power supply, distilled water, acid catalyst (H2SO4).",
+      procedure: "1. Fill beaker with distilled water + few drops of H2SO4.\n2. Insert electrodes connected to DC supply.\n3. Switch on power and observe gas collection at electrodes.",
+      observations: "Hydrogen bubbles observed at cathode, oxygen bubbles at anode. Gas volumes measured using test tubes.",
+      results: "Hydrogen volume ≈ 20 ml, Oxygen volume ≈ 10 ml. Ratio ≈ 2:1 as expected.",
+      discussion: "The results confirm the chemical composition of water (H2O). Slight experimental error due to gas leakage during collection.",
+      conclusion: "Electrolysis successfully decomposed water into hydrogen and oxygen gases in the correct ratio.",
+      references: "Chemistry WAEC Practical Guide, Zumdahl Chemistry Textbook."
+    };
+
+    document.getElementById('lab-title').textContent = labData.title;
+    document.getElementById('lab-student').innerHTML = `<strong>Student:</strong> ${labData.student}`;
+    document.getElementById('lab-date').innerHTML = `<strong>Date:</strong> ${labData.date}`;
+    document.getElementById('lab-objective').textContent = labData.objective;
+    document.getElementById('lab-materials').textContent = labData.materials;
+    document.getElementById('lab-procedure').textContent = labData.procedure;
+    document.getElementById('lab-observations').textContent = labData.observations;
+    document.getElementById('lab-results').textContent = labData.results;
+    document.getElementById('lab-discussion').textContent = labData.discussion;
+    document.getElementById('lab-conclusion').textContent = labData.conclusion;
+    document.getElementById('lab-references').textContent = labData.references;
+  }
+// Fill project idea into input box
+function fillQuestion(question) {
+  const inputBox = document.getElementById("userQuestion");
+  const resultArea = document.getElementById("resultArea");
+
+  inputBox.value = question;
+  resultArea.innerHTML = "💡 Idea selected. Click 'Generate' to get the full project.";
+}
+
+// Generate project idea
+async function generateProject() {
+  const q = document.getElementById("userQuestion").value.trim();
+  const result = document.getElementById("resultArea");
+
+  if (!q) {
+    result.innerHTML = "⚠️ Please enter or select a project idea first.";
+    return;
+  }
+
+  result.innerHTML = "⏳ Generating your project...";
+
+  try {
+    const response = await fetch("/generate-project/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question: q })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    result.innerHTML = `<b>Generated Project:</b><br><pre>${data.answer}</pre>`;
+  } catch (err) {
+    console.error(err);
+    result.innerHTML = "❌ Error generating project. Please try again.";
+  }
+}
+
+
+  // Download Result
+  function downloadResult() {
+    let text = document.getElementById("resultArea").innerText;
+    let blob = new Blob([text], { type: "text/plain" });
+    let link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "project_writer.txt";
+    link.click();
+  }
+
+  // Check Plagiarism
+  function checkPlagiarism() {
+    alert("🔎 Checking plagiarism feature coming soon...");
+  }
+
+  function showTemplate(templateId) {
+    const template = document.getElementById(templateId);
+    template.style.display = (template.style.display === "block") ? "none" : "block";
+    template.scrollIntoView({behavior: "smooth"});
+
+    // Example dynamic fill
+    const essayData = {
+      title: "The Impact of Social Media on Student Learning",
+      student: "Mary Johnson",
+      institution: "University of Nigeria, Nsukka",
+      date: "August 21, 2025",
+      abstract: "This report explores the effects of social media usage on student academic performance...",
+      contents: "1. Introduction\n2. Main Body\n3. Discussion\n4. Conclusion\n5. Recommendations\n6. References",
+      introduction: "Social media platforms play a significant role in shaping how students interact, study, and collaborate...",
+      body: "Recent studies show both positive and negative impacts on learning efficiency...",
+      discussion: "The findings highlight the balance between engagement and distraction...",
+      conclusion: "Overall, social media can enhance learning if managed correctly...",
+      recommendations: "Students should adopt digital well-being strategies, and institutions should integrate social media literacy...",
+      acknowledgements: "Special thanks to my supervisor, colleagues, and family...",
+      references: "Doe, J. (2023). Social Media and Education. Oxford University Press.\nSmith, A. (2022). Digital Learning. Harvard Academic Press.",
+      appendices: "Appendix A: Survey Questionnaire\nAppendix B: Data Tables"
+    };
+
+    document.getElementById('essay-title').textContent = essayData.title;
+    document.getElementById('student-name').innerHTML = `<strong>Student:</strong> ${essayData.student}`;
+    document.getElementById('institution').innerHTML = `<strong>University:</strong> ${essayData.institution}`;
+    document.getElementById('date').innerHTML = `<strong>Date:</strong> ${essayData.date}`;
+    document.getElementById('abstract').textContent = essayData.abstract;
+    document.getElementById('contents').textContent = essayData.contents;
+    document.getElementById('introduction').textContent = essayData.introduction;
+    document.getElementById('body').textContent = essayData.body;
+    document.getElementById('discussion').textContent = essayData.discussion;
+    document.getElementById('conclusion').textContent = essayData.conclusion;
+    document.getElementById('recommendations').textContent = essayData.recommendations;
+    document.getElementById('acknowledgements').textContent = essayData.acknowledgements;
+    document.getElementById('references').textContent = essayData.references;
+    document.getElementById('appendices').textContent = essayData.appendices;
+  }
+  function showTemplate(templateId) {
+    const template = document.getElementById(templateId);
+    template.style.display = (template.style.display === "block") ? "none" : "block";
+    template.scrollIntoView({behavior: "smooth"});
+
+    // Example dynamic fill
+    const caseData = {
+      title: "Improving Customer Retention through AI Chatbots",
+      author: "Jane Doe",
+      institution: "Tech Innovators Ltd.",
+      date: "August 21, 2025",
+      summary: "This case study explores how AI chatbots improved customer retention for a telecom company by 35%...",
+      background: "The company faced high customer churn due to poor response times and limited support availability...",
+      solution: "An AI-powered chatbot was deployed across web and mobile platforms to handle FAQs and support requests...",
+      results: "Customer churn reduced by 35%, support response time dropped to under 5 seconds, and satisfaction scores rose...",
+      analysis: "Automation improved efficiency but required ongoing monitoring. Lessons highlight the importance of human oversight...",
+      references: "Smith, A. (2023). Customer Retention Strategies. Harvard Business Review.\nDoe, J. (2024). AI in Customer Service. Tech Journal.",
+      appendices: "Appendix A: Customer Satisfaction Survey Results\nAppendix B: System Performance Metrics"
+    };
+
+    document.getElementById('case-title').textContent = caseData.title;
+    document.getElementById('author').innerHTML = `<strong>Author:</strong> ${caseData.author}`;
+    document.getElementById('institution').innerHTML = `<strong>Organization / Institution:</strong> ${caseData.institution}`;
+    document.getElementById('date').innerHTML = `<strong>Date:</strong> ${caseData.date}`;
+    document.getElementById('summary').textContent = caseData.summary;
+    document.getElementById('background').textContent = caseData.background;
+    document.getElementById('solution').textContent = caseData.solution;
+    document.getElementById('results').textContent = caseData.results;
+    document.getElementById('analysis').textContent = caseData.analysis;
+    document.getElementById('references').textContent = caseData.references;
+    document.getElementById('appendices').textContent = caseData.appendices;
+  }
+
+  function showTemplate(templateId) {
+    const template = document.getElementById(templateId);
+    template.style.display = (template.style.display === "block") ? "none" : "block";
+    template.scrollIntoView({behavior: "smooth"});
+
+    // Example dynamic fill
+    const proposalData = {
+      title: "Community Solar Power Project",
+      author: "David Okafor",
+      institution: "Green Energy Initiative",
+      date: "August 21, 2025",
+      objective: "The project aims to provide affordable, renewable energy to rural communities while reducing dependence on fossil fuels...",
+      scope: "This project will cover solar panel installation, training of local technicians, and maintenance support...",
+      methodology: "The project will follow a phased approach: assessment, procurement, installation, training, and evaluation...",
+      timeline: "Phase 1: Feasibility Study (Q1 2025)\nPhase 2: Pilot Implementation (Q2 2025)\nPhase 3: Expansion (Q3-Q4 2025)",
+      budget: "Estimated cost: $250,000. Resources include solar panels, inverters, batteries, labor, and community training...",
+      outcome: "The project will supply sustainable energy to 500 households, reduce emissions by 40%, and create 100 local jobs...",
+      references: "UNDP (2023). Renewable Energy Projects in Africa.\nWorld Bank (2024). Sustainable Infrastructure Financing.",
+      appendices: "Appendix A: Budget Breakdown\nAppendix B: Technical Specifications"
+    };
+
+    document.getElementById('proposal-title').textContent = proposalData.title;
+    document.getElementById('author').innerHTML = `<strong>Author:</strong> ${proposalData.author}`;
+    document.getElementById('institution').innerHTML = `<strong>Organization / Institution:</strong> ${proposalData.institution}`;
+    document.getElementById('date').innerHTML = `<strong>Date:</strong> ${proposalData.date}`;
+    document.getElementById('objective').textContent = proposalData.objective;
+    document.getElementById('scope').textContent = proposalData.scope;
+    document.getElementById('methodology').textContent = proposalData.methodology;
+    document.getElementById('timeline').textContent = proposalData.timeline;
+    document.getElementById('budget').textContent = proposalData.budget;
+    document.getElementById('outcome').textContent = proposalData.outcome;
+    document.getElementById('references').textContent = proposalData.references;
+    document.getElementById('appendices').textContent = proposalData.appendices;
+  }
+  function showTemplate(templateId) {
+    const template = document.getElementById(templateId);
+    template.style.display = (template.style.display === "block") ? "none" : "block";
+    template.scrollIntoView({behavior: "smooth"});
+
+    // Example dynamic fill
+    const plannerData = {
+      title: "Final Exams Study Planner",
+      studentName: "Chinwe Adeyemi",
+      goal: "Target: A in Mathematics & Physics",
+      subjectFocus: "WAEC & JAMB Preparation",
+      schedule: "Mon-Fri: 2 hrs Math, 2 hrs Physics\nSat: 4 hrs Revision\nSun: Rest / Light Reading",
+      tasks: "Algebra, Trigonometry, Mechanics, Electricity, Calculus",
+      priorities: "Focus on Calculus & Electricity (weak areas)\nRevise past exam questions",
+      progress: "Week 1: ✅ Algebra\nWeek 2: ✅ Trigonometry\nWeek 3: ⬜ Mechanics\nWeek 4: ⬜ Electricity",
+      resources: "Khan Academy, WAEC past papers, 'New General Mathematics' textbook"
+    };
+
+    document.getElementById('planner-title').textContent = plannerData.title;
+    document.getElementById('student-name').innerHTML = `<strong>Name:</strong> ${plannerData.studentName}`;
+    document.getElementById('goal').innerHTML = `<strong>Goal:</strong> ${plannerData.goal}`;
+    document.getElementById('subject-focus').innerHTML = `<strong>Subject Focus:</strong> ${plannerData.subjectFocus}`;
+    document.getElementById('schedule').textContent = plannerData.schedule;
+    document.getElementById('tasks').textContent = plannerData.tasks;
+    document.getElementById('priorities').textContent = plannerData.priorities;
+    document.getElementById('progress').textContent = plannerData.progress;
+    document.getElementById('resources').textContent = plannerData.resources;
+  }
+  function showTemplate(templateId) {
+    const template = document.getElementById(templateId);
+    if (template.style.display === "block") {
+      template.style.display = "none";
+    } else {
+      template.style.display = "block";
+      template.scrollIntoView({behavior: "smooth"});
+    }
+
+    // Example dynamic fill
+    const projectData = {
+      title: "Impact of Renewable Energy on Urban Development",
+      student: "Jane Doe",
+      institution: "Global University",
+      date: "August 21, 2025",
+      abstract: "This study explores the impact of renewable energy adoption on urban infrastructure...",
+      keywords: "Renewable Energy, Urban Planning, Sustainability",
+      introduction: "Urban development has increasingly focused on integrating renewable energy solutions...",
+      literature: "Several studies have investigated renewable energy systems in urban settings...",
+      methodology: "This study employs a mixed-methods approach including surveys, interviews, and data analysis...",
+      results: "Findings indicate cities adopting renewable energy experience reductions in energy costs and emissions...",
+      discussion: "Strategic implementation positively affects urban planning and policy...",
+      conclusion: "Renewable energy adoption is essential for sustainable urban development...",
+      acknowledgements: "Thanks to my advisor and research team for their support...",
+      references: "Smith, J. (2020). Solar energy in cities. Journal of Urban Planning.\nDoe, A. (2019). Sustainable energy solutions.",
+      appendices: "Appendix A: Survey questionnaires, Appendix B: Data tables"
+    };
+
+    document.getElementById('project-title').textContent = projectData.title;
+    document.getElementById('student-name').innerHTML = `<strong>Student:</strong> ${projectData.student}`;
+    document.getElementById('institution').innerHTML = `<strong>Institution:</strong> ${projectData.institution}`;
+    document.getElementById('date').innerHTML = `<strong>Date:</strong> ${projectData.date}`;
+    document.getElementById('abstract').textContent = projectData.abstract;
+    document.getElementById('keywords').textContent = projectData.keywords;
+    document.getElementById('introduction').textContent = projectData.introduction;
+    document.getElementById('literature').textContent = projectData.literature;
+    document.getElementById('methodology').textContent = projectData.methodology;
+    document.getElementById('results').textContent = projectData.results;
+    document.getElementById('discussion').textContent = projectData.discussion;
+    document.getElementById('conclusion').textContent = projectData.conclusion;
+    document.getElementById('acknowledgements').textContent = projectData.acknowledgements;
+    document.getElementById('references').textContent = projectData.references;
+    document.getElementById('appendices').textContent = projectData.appendices;
+  }
+</script>

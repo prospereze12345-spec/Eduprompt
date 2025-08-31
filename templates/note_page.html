@@ -1,0 +1,1142 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Free AI Note Generator | Create Instant Notes Online</title>
+  <meta name="description" content="Create instant, well-organized notes with our free AI-powered note generator. Perfect for students, professionals, and researchers who want to save time.">
+  <meta name="keywords" content="ai note generator, free note maker online, instant notes generator, create notes automatically, online notes creator for students, best ai note generator free">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="{% static 'https://fonts.googleapis.com' %}" rel="preconnect">
+  <link href="{% static 'https://fonts.gstatic.com' %}" rel="preconnect" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="{% static 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap' %}" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css" rel="stylesheet' %}">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+
+
+  <style>
+  .faq-section {
+    text-align: center; /* Center all content */
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    max-width: 700px;
+    margin: 0 auto; /* Center the FAQ box itself */
+    text-align: left; /* Keep answer and question aligned left inside centered block */
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600; /* Make it bold */
+    font-size: 1.1rem;
+  }
+
+  .faq-question h5 {
+    margin: 0;
+    font-weight: 700; /* Bold text */
+  }
+
+  .faq-answer {
+    display: none;
+    padding-top: 10px;
+    color: #444;
+    font-size: 1rem;
+  }
+
+  .faq-item.active .faq-answer {
+    display: block;
+  }
+
+  .faq-toggle {
+    font-size: 1.2rem;
+    color: #666;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.active .faq-toggle {
+    transform: rotate(180deg);
+  }
+
+  /* Remove underline and border line from all links inside navmenu */
+#navmenu a {
+  text-decoration: none !important; /* no underline */
+  border: none !important;           /* no border */
+  box-shadow: none !important;       /* remove any shadow */
+  outline: none !important;          /* remove outline */
+  color: inherit;                    /* keep inherited color */
+  transition: color 0.3s ease;       /* optional smooth hover color */
+}
+
+/* Remove any border or underline on hover/focus */
+#navmenu a:hover,
+#navmenu a:focus {
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #007bff; /* Optional: set your hover color */
+}
+
+/* Remove any border or underline on sitename if any */
+.sitename {
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+/* Base button style */
+.btn-getstarted {
+  background-color: #28a745; /* Bootstrap green or your custom green */
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.3rem;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+/* Remove white line / underline on hover or focus */
+.btn-getstarted:hover,
+.btn-getstarted:focus {
+  background-color: #218838; /* darker green on hover */
+  color: white;
+  text-decoration: none;     /* removes underline */
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-nav .nav-link.dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+  .navbar-nav .nav-link.dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem; /* space between emoji and text */
+  }
+    body {
+      background-color: white !important;
+    }
+  /* Dark blue variables */
+  :root {
+    --eduprompt-blue: #003366; /* Dark blue shade */
+  }
+
+  /* Sitename color */
+  .sitename {
+    color: var(--eduprompt-blue) !important;
+    font-weight: bold;
+  }
+
+  /* Dashboard icon color */
+  .nav-link i.bi-person-fill {
+    color: var(--eduprompt-blue);
+    transition: color 0.3s ease;
+  }
+
+  /* All nav-links hover effect */
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:focus,
+  .dropdown-menu .dropdown-item:hover {
+    color: var(--eduprompt-blue) !important;
+  }
+
+  /* Optional: Get Started button hover stays nice */
+  .btn-success:hover {
+    background-color: var(--eduprompt-blue);
+    border-color: var(--eduprompt-blue);
+  }
+
+  
+  
+</style>
+
+</head>
+
+
+</style>
+
+
+
+
+
+  
+  <!-- =======================================================
+  * Template Name: FlexStart
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Updated: Nov 01 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header fixed-top bg-white shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-light container-xl">
+    
+    <!-- Logo + Sitename -->
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+      <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 50px;">
+      <span class="ms-2 fw-bold sitename">Eduprompt</span>
+    </a>
+
+    <!-- Mobile toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu items -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li><a class="dropdown-item" href="/ai-solver/">{% trans "AI Solver" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/essay/">{% trans "Essay Generator" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/note/">{% trans "Note Generator" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/letter-writer/">{% trans "Letter Writer" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.html">{% trans "Blog" %}</a></li>
+
+        <!-- Tools Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{% trans "Tools" %}</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/project-writer/">{% trans "Project Writer" %}</a></li>
+            <li><a class="dropdown-item" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
+
+        <!-- Dashboard Icon (Only if logged in) -->
+        {% if user.is_authenticated %}
+        <li class="nav-item ms-lg-3">
+          <a class="nav-link" href="/dashboard/">
+            <i class="bi bi-person-fill fs-5"></i>
+          </a>
+        </li>
+        {% endif %}
+
+        <!-- Get Started Button (Only if not logged in) -->
+        {% if not user.is_authenticated %}
+        <li class="nav-item ms-lg-3">
+          <a class="btn btn-success btn-sm" href="/register/">{% trans "Get Started" %}</a>
+        </li>
+        {% endif %}
+
+         <!-- Language Selector -->
+        <select name="language" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 120px; font-size: 0.85rem;">
+    {% for code, name in AFRICAN_LANGUAGES %}
+      <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
+    {% endfor %}
+</select>
+<input type="hidden" name="next" value="{{ request.get_full_path }}">
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  <div class="container vh-100 d-flex flex-column justify-content-center align-items-center text-center px-3">
+  <h1 class="fw-bold typing-animation" style="color: darkblue;">
+    ⚡ Free AI Note Generator – Create Instant Notes Online</p>
+  </h1>
+  <p class="lead text-muted mt-3">
+      Generate clear, concise, and well-structured notes instantly with our AI-powered tool.
+    Perfect for students, lecturers, professionals, and anyone who wants to save time and stay productive
+    </p>
+</div>
+
+
+<!-- Top Header Section -->
+<div class="mb-4 text-center">
+  <!-- Main subtle title -->
+  <div class="fw-bold fs-4 text-indigo mb-2">
+    Customized Note Generator
+  </div>
+
+  <!-- Small subtitle / professional tagline -->
+  <p class="text-muted mb-3">
+    Quickly create well-structured study notes for any subject or topic.
+  </p>
+
+  <!-- Suggested subjects as badges -->
+  <div>
+    <span class="badge bg-light text-dark border me-2">Mathematics</span>
+    <span class="badge bg-light text-dark border me-2">Biology</span>
+    <span class="badge bg-light text-dark border me-2">English</span>
+    <span class="badge bg-light text-dark border me-2">Physics</span>
+    <span class="badge bg-light text-dark border">Computer Science</span>
+    <span class="badge bg-light text-dark border">and many more...</span>
+
+
+  </div>
+</div>
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Note Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .note-card {
+      min-height: 300px;
+      background-color: #e9ecef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: #6c757d;
+      padding: 1.5rem;
+      border-radius: 0.375rem;
+      border: 1px solid #ced4da;
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
+    .note-card.error {
+      background-color: #f8d7da;
+      color: #842029;
+      border-color: #f5c2c7;
+    }
+    .btn-indigo {
+      background-color: blue;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    .btn-indigo:hover:not(:disabled) {
+      background-color: blue;
+      color: white;
+    }
+    
+  
+  </style>
+</head>
+<body>
+
+<div class="container py-5">
+  <!-- Card wrapper -->
+  <div class="card shadow p-4 mx-auto" style="max-width: 1000px; width: 100%;">
+    <div class="row g-4">
+      <!-- Left Column: Inputs + Buttons -->
+      <div class="col-lg-5 col-md-6">
+        <!-- Subject Input -->
+        <div class="mb-3">
+          <label for="subject" class="form-label fw-semibold">Subject</label>
+          <input
+            type="text"
+            class="form-control form-control-lg"
+            id="subject"
+            placeholder="Enter subject"
+            aria-describedby="subjectHelp"
+            required
+          />
+          <div id="subjectHelp" class="form-text">Please enter the subject of your note.</div>
+        </div>
+
+        <!-- Topic Input -->
+        <div class="mb-4">
+          <label for="topic" class="form-label fw-semibold">Topic</label>
+          <input
+            type="text"
+            class="form-control form-control-lg"
+            id="topic"
+            placeholder="Enter topic"
+            aria-describedby="topicHelp"
+            required
+          />
+          <div id="topicHelp" class="form-text">Please enter the topic for the note.</div>
+        </div>
+
+        <!-- Generate & Clear Buttons -->
+        <div class="d-flex gap-3">
+          <button class="btn btn-indigo btn-lg flex-grow-1" id="generateBtn" type="button">
+            Generate
+          </button>
+          <button class="btn btn-outline-secondary btn-lg flex-grow-1" id="clearBtn" type="button">
+            Clear
+          </button>
+        </div>
+      </div>
+
+<!-- Right Column: Answer Box -->
+<div class="col-lg-7 col-md-6">
+  <div
+    id="answer"
+    class="note-card p-3"
+    style="
+      min-height: 400px;
+      border: 1px solid #dee2e6;
+      border-radius: 0.5rem;
+      background-color: #f8f9fa;
+    "
+    role="region"
+    aria-live="polite"
+    aria-atomic="true"
+  >
+    Note will appear here...
+  </div>
+</div>
+
+    </div>
+
+    <!-- Bottom Section: Language, PDF, Plagiarism -->
+    <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 mt-4">
+      <!-- Language Switcher Form -->
+      <form action="{% url 'set_language' %}" method="post" class="d-flex align-items-center" style="max-width: 200px;">
+        {% csrf_token %}
+        <select name="language" onchange="this.form.submit()" class="form-select form-select-sm me-2" style="font-size: 0.8rem;">
+          {% for code, name in AFRICAN_LANGUAGES %}
+            <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
+          {% endfor %}
+        </select>
+        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+      </form>
+
+      <!-- Download PDF Button -->
+      <a href="{% url 'download_note_pdf' %}" class="btn btn-success">
+        Download PDF
+      </a>
+
+<!-- Button Row: Download, Plagiarism, Humanizer -->
+<div style="margin-top:20px; text-align:center; display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+
+  <!-- Plagiarism Checker -->
+  <a href="https://www.quetext.com/plagiarism-checker" 
+     target="_blank" rel="nofollow noopener"
+     class="btn btn-primary" 
+     style="padding:10px 24px; font-size:14px; min-width:150px;">
+    📄 Check Plagiarism
+  </a>
+
+  <!-- Humanizer -->
+  <a href="https://humanize.io/" 
+     target="_blank" rel="nofollow noopener"
+     class="btn btn-success" 
+     style="padding:10px 24px; font-size:14px; min-width:150px;">
+    ✍️ Humanize Text
+  </a>
+
+</div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<script>
+  const generateBtn = document.getElementById("generateBtn");
+  const clearBtn = document.getElementById("clearBtn");
+  const subjectInput = document.getElementById("subject");
+  const topicInput = document.getElementById("topic");
+  const answerBox = document.getElementById("answer");
+
+  // Show error messages
+  function showError(message) {
+    answerBox.textContent = message;
+    answerBox.style.color = "red";
+    answerBox.classList.add("error");
+  }
+
+  // Reset to default state
+  function clearError() {
+    answerBox.textContent = "Note will appear here...";
+    answerBox.style.color = "#6c757d";
+    answerBox.classList.remove("error");
+  }
+
+  // Generate note from backend
+  async function generateNote() {
+    clearError();
+
+    const subject = subjectInput.value.trim();
+    const topic = topicInput.value.trim();
+
+    if (!subject || !topic) {
+      showError("⚠ Please input both subject and topic!");
+      return;
+    }
+
+    generateBtn.disabled = true;
+    generateBtn.textContent = "Generating...";
+
+    try {
+      const response = await fetch("/note/generate/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ subject, topic }),
+      });
+
+      // Read response body as text first
+      const responseText = await response.text();
+
+      let data;
+      try {
+        data = JSON.parse(responseText);
+      } catch (jsonErr) {
+        showError("Server returned invalid JSON:\n" + responseText);
+        return;
+      }
+
+      if (data.note) {
+        answerBox.textContent = data.note;
+        answerBox.style.color = "#212529";
+      } else if (data.error) {
+        showError("Error: " + data.error);
+      } else {
+        showError("Unexpected response from server.");
+        console.error("Server response:", data);
+      }
+    } catch (err) {
+      showError("Network error: " + err.message);
+      console.error("Fetch error:", err);
+    } finally {
+      generateBtn.disabled = false;
+      generateBtn.textContent = "Generate";
+    }
+  }
+
+  // Clear all fields
+  function clearAll() {
+    subjectInput.value = "";
+    topicInput.value = "";
+    clearError();
+  }
+
+  // Attach events
+  generateBtn.addEventListener("click", generateNote);
+  clearBtn.addEventListener("click", clearAll);
+</script>
+
+
+
+
+</div>
+
+
+
+</body>
+</html>
+
+
+
+<div class="container my-5">
+  <h2 class="text-center fw-bold mb-4 text-indigo">
+    <i class="bi bi-info-circle me-2"></i> How It Works
+  </h2>
+  <div class="row g-4 text-center">
+
+    <!-- Step 1 -->
+    <div class="col-md-4">
+      <i class="bi bi-journal-text fs-1 text-primary"></i>
+      <h5 class="mt-3">1. Enter Your Subject</h5>
+      <p class="text-muted small">
+        Type the subject you want to generate notes for, e.g. <em>Mathematics</em> or <em>Biology</em>.
+      </p>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="col-md-4">
+      <i class="bi bi-pencil-square fs-1 text-success"></i>
+      <h5 class="mt-3">2. Enter Your Topic</h5>
+      <p class="text-muted small">
+        Specify a topic under that subject, like <em>Algebra Basics</em> or <em>Cell Structure</em>.
+      </p>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="col-md-4">
+      <i class="bi bi-lightning-charge fs-1 text-warning"></i>
+      <h5 class="mt-3">3. Generate Notes</h5>
+      <p class="text-muted small">
+        Click the <strong>Generate</strong> button and get a structured note instantly in the result box.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="row g-4 text-center mt-4">
+
+    <!-- Step 4 -->
+    <div class="col-md-6">
+      <i class="bi bi-eye fs-1 text-info"></i>
+      <h5 class="mt-3">4. Review Your Note</h5>
+      <p class="text-muted small">
+        Read and refine your note. Copy or save it for your study needs.
+      </p>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="col-md-6">
+      <i class="bi bi-arrow-repeat fs-1 text-danger"></i>
+      <h5 class="mt-3">5. Clear & Start Over</h5>
+      <p class="text-muted small">
+        Use the <strong>Clear</strong> button to reset and create another note anytime.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="container my-5">
+  <h2 class="text-center fw-bold mb-4 text-indigo">
+    <i class="bi bi-star-fill me-2 text-warning"></i> Why You Should Consider Using an AI Note Generator
+  </h2>
+  
+  <div class="row g-4">
+    
+    <div class="col-md-6">
+      <div class="d-flex">
+        <i class="bi bi-clock-history fs-1 text-primary me-3"></i>
+        <div>
+          <h5 class="fw-bold">Save Valuable Study Time</h5>
+          <p class="text-muted small mb-0">
+            AI note generators quickly create structured notes for any subject or topic, allowing students 
+            and professionals to focus on learning instead of spending hours writing by hand.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="d-flex">
+        <i class="bi bi-journal-check fs-1 text-success me-3"></i>
+        <div>
+          <h5 class="fw-bold">Get Organized and Clear Notes</h5>
+          <p class="text-muted small mb-0">
+            Automatically generated notes are concise, structured, and easy to read, helping you retain information better.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="d-flex">
+        <i class="bi bi-lightbulb fs-1 text-warning me-3"></i>
+        <div>
+          <h5 class="fw-bold">Boost Creativity and Understanding</h5>
+          <p class="text-muted small mb-0">
+            AI tools can inspire new ways to organize and summarize information, 
+            helping you understand topics more deeply and remember key points faster.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="d-flex">
+        <i class="bi bi-shield-check fs-1 text-danger me-3"></i>
+        <div>
+          <h5 class="fw-bold">Reliable and Consistent Results</h5>
+          <p class="text-muted small mb-0">
+            Unlike random online summaries, an AI note generator provides accurate, 
+            repeatable results and reduces the risk of missing important details in your notes.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Optional small SEO text for AdSense -->
+  <p class="text-center text-muted small mt-4">
+    Using an AI note generator is a smart, time‑saving solution for students, teachers, and professionals.  
+    It ensures you always have well‑structured, readable, and trustworthy notes for any subject.
+  </p>
+</div>
+
+<!-- Bootstrap 5 JavaScript Bundle (includes Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Who Can Benefit Section (Note Generator) -->
+<section class="py-5" style="background-color: #ffffff; color: #000000;">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color: #003366;">Who Can Benefit from Our AI Note Generator?</h2>
+    <p class="text-center mb-5">
+      Our AI note generator creates clear, structured, and simplified notes that make studying easier. Whether for exams, lectures, or quick revision, it helps learners and educators save time while improving comprehension and retention.
+    </p>
+
+    <!-- Tabs -->
+    <ul class="nav nav-pills justify-content-center mb-4" id="noteTabs" role="tablist">
+      <li class="nav-item">
+        <button class="nav-link active" id="students-note-tab" data-bs-toggle="pill" data-bs-target="#students-note" type="button">
+          <i class="bi bi-mortarboard-fill me-2"></i> Students
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" id="educators-note-tab" data-bs-toggle="pill" data-bs-target="#educators-note" type="button">
+          <i class="bi bi-person-lines-fill me-2"></i> Educators
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" id="parents-note-tab" data-bs-toggle="pill" data-bs-target="#parents-note" type="button">
+          <i class="bi bi-house-fill me-2"></i> Parents
+        </button>
+      </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="noteTabsContent">
+      <!-- Students -->
+      <div class="tab-pane fade show active" id="students-note">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>Students preparing for exams like WAEC, JAMB, SAT, or university courses can get concise study notes with examples and explanations. This makes revision faster, clearer, and more effective.</p>
+        </div>
+      </div>
+      <!-- Educators -->
+      <div class="tab-pane fade" id="educators-note">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>Teachers can generate structured lesson notes instantly. The tool ensures simplified explanations, practical examples, and organized content, saving time in lesson preparation.</p>
+        </div>
+      </div>
+      <!-- Parents -->
+      <div class="tab-pane fade" id="parents-note">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>Parents can use the note generator to support their children’s learning at home. With simplified breakdowns, it helps them explain complex topics more clearly and guide revision sessions effectively.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+   <div class="container my-5" style="max-width: 700px;">
+  <h2 class="text-center fw-bold mb-4 text-indigo">
+    <i class="bi bi-question-circle me-2"></i> Frequently Asked Questions
+  </h2>
+
+  <div class="accordion" id="faqAccordion" role="region" aria-multiselectable="true">
+
+
+    <!-- FAQ Item 1 -->
+    <div class="accordion-item">
+      <h3 class="accordion-header" id="faqHeading1">
+        <button 
+          class="accordion-button collapsed fw-bold" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#faqCollapse1" 
+          aria-expanded="false" 
+          aria-controls="faqCollapse1"
+        >
+          What is an AI note generator and how does it work?
+        </button>
+      </h3>
+      <div 
+        id="faqCollapse1" 
+        class="accordion-collapse collapse" 
+        aria-labelledby="faqHeading1" 
+        data-bs-parent="#faqAccordion"
+      >
+        <div class="accordion-body text-muted">
+          An AI note generator is a smart tool that uses artificial intelligence to create structured and concise study notes based on your input subject and topic. It analyzes your input and generates relevant content instantly, saving you time and effort.
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Item 2 -->
+    <div class="accordion-item">
+      <h3 class="accordion-header" id="faqHeading2">
+        <button 
+          class="accordion-button collapsed fw-bold" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#faqCollapse2" 
+          aria-expanded="false" 
+          aria-controls="faqCollapse2"
+        >
+          Are the generated notes accurate and reliable?
+        </button>
+      </h3>
+      <div 
+        id="faqCollapse2" 
+        class="accordion-collapse collapse" 
+        aria-labelledby="faqHeading2" 
+        data-bs-parent="#faqAccordion"
+      >
+        <div class="accordion-body text-muted">
+          Yes, the AI is designed to provide accurate, concise, and well-structured notes. However, it's always recommended to review the generated content to ensure it meets your specific needs and to supplement it with your own study materials.
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Item 3 -->
+    <div class="accordion-item">
+      <h3 class="accordion-header" id="faqHeading3">
+        <button 
+          class="accordion-button collapsed fw-bold" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#faqCollapse3" 
+          aria-expanded="false" 
+          aria-controls="faqCollapse3"
+        >
+          Is this AI note generator free to use?
+        </button>
+      </h3>
+      <div 
+        id="faqCollapse3" 
+        class="accordion-collapse collapse" 
+        aria-labelledby="faqHeading3" 
+        data-bs-parent="#faqAccordion"
+      >
+        <div class="accordion-body text-muted">
+          Yes, this AI note generator is completely free to use with no hidden fees. You can generate as many notes as you need without any subscription or payment.
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Item 4 -->
+    <div class="accordion-item">
+      <h3 class="accordion-header" id="faqHeading4">
+        <button 
+          class="accordion-button collapsed fw-bold" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#faqCollapse4" 
+          aria-expanded="false" 
+          aria-controls="faqCollapse4"
+        >
+          Can I use the generated notes for academic or professional purposes?
+        </button>
+      </h3>
+      <div 
+        id="faqCollapse4" 
+        class="accordion-collapse collapse" 
+        aria-labelledby="faqHeading4" 
+        data-bs-parent="#faqAccordion"
+      >
+        <div class="accordion-body text-muted">
+          Absolutely. The notes are designed to help you study or prepare for presentations, assignments, and professional meetings. Just remember to review and adapt the notes to fit your specific context.
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Item 5 -->
+    <div class="accordion-item">
+      <h3 class="accordion-header" id="faqHeading5">
+        <button 
+          class="accordion-button collapsed fw-bold" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#faqCollapse5" 
+          aria-expanded="false" 
+          aria-controls="faqCollapse5"
+        >
+          How is my privacy protected while using this tool?
+        </button>
+      </h3>
+      <div 
+        id="faqCollapse5" 
+        class="accordion-collapse collapse" 
+        aria-labelledby="faqHeading5" 
+        data-bs-parent="#faqAccordion"
+      >
+        <div class="accordion-body text-muted">
+          We take your privacy seriously. Your inputs are not stored or shared with third parties. The tool processes your data only temporarily to generate the notes and does not retain any personal information.
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Item 6 -->
+    <div class="accordion-item">
+      <h3 class="accordion-header" id="faqHeading6">
+        <button 
+          class="accordion-button collapsed fw-bold" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#faqCollapse6" 
+          aria-expanded="false" 
+          aria-controls="faqCollapse6"
+        >
+          What subjects and topics can I use with this AI note generator?
+        </button>
+      </h3>
+      <div 
+        id="faqCollapse6" 
+        class="accordion-collapse collapse" 
+        aria-labelledby="faqHeading6" 
+        data-bs-parent="#faqAccordion"
+      >
+        <div class="accordion-body text-muted">
+          The AI note generator supports a wide range of subjects including Mathematics, Science, History, Literature, Computer Science, and more. You can input almost any topic within these subjects to generate relevant notes.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<!-- Note Generator Testimonial Section -->
+<section class="testimonial-section container py-5">
+  <div class="row align-items-center">
+    <!-- Textual Testimonials -->
+    <div class="col-md-6">
+      <h1 class="mb-3">What <strong>users</strong> are <strong>saying about our Note Generator.</strong></h1>
+
+      <div class="testimonial-card mb-3 p-3 border rounded shadow-sm d-flex">
+        <div class="testimonial-number fw-bold me-3" style="color: #003366;">01</div>
+        <div>
+          <i class="bi bi-journal-bookmark text-primary me-2"></i>
+          "The note generator makes studying so much easier. I get simplified summaries that are perfect for last-minute revision."
+        </div>
+      </div>
+
+      <div class="testimonial-card mb-3 p-3 border rounded shadow-sm d-flex">
+        <div class="testimonial-number fw-bold me-3" style="color: #003366;">02</div>
+        <div>
+          <i class="bi bi-person-workspace text-primary me-2"></i>
+          "As a teacher, it helps me prepare lesson notes faster. The explanations are clear and very student-friendly."
+        </div>
+      </div>
+
+      <div class="testimonial-card mb-3 p-3 border rounded shadow-sm d-flex">
+        <div class="testimonial-number fw-bold me-3" style="color: #003366;">03</div>
+        <div>
+          <i class="bi bi-mortarboard text-primary me-2"></i>
+          "I love how it breaks down complex topics into simple points. It makes learning less stressful and more engaging."
+        </div>
+      </div>
+
+      <div class="testimonial-card mb-3 p-3 border rounded shadow-sm d-flex">
+        <div class="testimonial-number fw-bold me-3" style="color: #003366;">04</div>
+        <div>
+          <i class="bi bi-people text-primary me-2"></i>
+          "Even as a parent, I use it to help my kids study. It provides structured notes that I can guide them through easily."
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonial Image -->
+    <div class="col-md-6 testimonial-image text-center">
+      <img src="{% static 'assets/img/full-shot-man-studying-classroom.jpg' %}" class="img-fluid rounded" alt="Student revising with Note Generator">
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<footer id="footer" class="footer">
+
+  <style>
+    /* Remove underline from all <h4> headings */
+    footer h4 {
+      text-decoration: none !important;  /* Remove underline */
+      border-bottom: none !important;    /* Remove any border lines */
+      color: #000;                       /* Ensure text color is black */
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    /* Remove underline from links inside footer-links */
+    footer .footer-links a {
+      text-decoration: none !important;
+      color: #000;
+      transition: color 0.3s ease;
+    }
+    footer .footer-links a:hover {
+      color: green; /* Bootstrap primary color on hover */
+      text-decoration: none;
+    }
+  </style>
+
+
+   <!-- Newsletter Section (keep this as-is above footer) -->
+<div class="footer-newsletter">
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-6">
+        <h4>Join Our Newsletter</h4>
+        <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+        <form action="forms/newsletter.php" method="post" class="php-email-form">
+          <div class="newsletter-form d-flex flex-column flex-sm-row gap-2">
+            <input type="email" name="email" class="form-control" placeholder="Your email address" required>
+            <input type="submit" value="Subscribe" class="btn btn-primary px-4">
+          </div>
+          <div class="loading mt-2">Loading</div>
+          <div class="error-message text-danger mt-2"></div>
+          <div class="sent-message text-success mt-2">Your subscription request has been sent. Thank you!</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Footer -->
+<footer class="footer bg-light pt-5">
+  <div class="container footer-top py-5">
+    <div class="row gy-4">
+      <!-- About -->
+      <div class="col-lg-4 col-md-6 footer-about">
+        <a href="{% url 'index' %}" class="d-flex align-items-center mb-3 text-decoration-none">
+          <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 50px;">
+          <h1 class="ms-3 sitename" style="color: #003366; font-weight: 700; font-size: 1.8rem; user-select: none;">Eduprompt</h1>
+        </a>
+        <p>EduPrompt helps students stay focused, organized, and academically confident — powered by smart, ethical AI support.</p>
+      </div>
+
+      <!-- Useful Links -->
+      <div class="col-lg-2 col-md-3 footer-links">
+        <h4 class="fw-semibold mb-3">Useful Links</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="{% url 'index' %}" class="text-dark text-decoration-none link-hover-underline">Home</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="/about/" class="text-dark text-decoration-none link-hover-underline">About Us</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="/privacy_policy/" class="text-dark text-decoration-none link-hover-underline">Privacy Policy</a>
+          </li>
+          <li>
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="/Terms_and_Condition" class="text-dark text-decoration-none link-hover-underline">Terms &amp; Conditions</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Our Services -->
+      <div class="col-lg-2 col-md-3 footer-links">
+        <h4 class="fw-semibold mb-3">Our Services</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Web Design</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Web Development</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Product Management</a>
+          </li>
+          <li>
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Marketing</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Follow Us -->
+      <div class="col-lg-4 col-md-12">
+        <h4 class="fw-semibold mb-3">Follow Us</h4>
+        <p class="text-muted mb-3">Follow us on all our social media platforms</p>
+        <div class="social-links d-flex gap-3 fs-4">
+          <a href="#" class="text-primary social-hover"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-primary social-hover"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-primary social-hover"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-primary social-hover"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="container text-center py-3 border-top">
+    <p class="mb-0 text-muted small">
+      © <strong class="text-primary sitename">EduPrompt</strong> All Rights Reserved.
+    </p>
+    <p class="mb-0 small">
+      Designed by <a href="https://bootstrapmade.com/" target="_blank" class="text-decoration-none">BootstrapMade</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  /* Hover underline for footer links */
+  .link-hover-underline:hover {
+    text-decoration: underline;
+    color: #003366 !important;
+  }
+
+  /* Social icon hover effect */
+  .social-hover:hover {
+    color: #0056b3 !important;
+  }
+
+  /* Make newsletter inputs full width on mobile */
+  @media (max-width: 576px) {
+    .newsletter-form input[type="email"],
+    .newsletter-form input[type="submit"] {
+      width: 100% !important;
+      margin-bottom: 0.5rem;
+    }
+  }
+</style>
+
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

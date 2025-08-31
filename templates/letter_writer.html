@@ -1,0 +1,1080 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>AI Letter Writer – Create Professional Letters Instantly</title>
+  <meta name="description" content="Generate polished, professional letters in seconds with our AI Letter Writer. Edit, save, and download your letters quickly and hassle-free." />
+  <meta name="keywords" content="AI letter writer online free
+
+best AI letter generator for students
+
+AI cover letter maker for job applications
+
+write professional letters with AI
+
+free AI letter writing tool for businesses
+
+AI-generated letters for official use
+
+online letter creator with AI assistance
+
+AI formal letter writer for students and workers
+
+AI personal letter writing assistant
+
+generate business letters with AI instantly" />
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon" />
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon" />
+
+  <!-- Fonts and Icons -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet" />
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet" />
+
+  <style>
+    body {
+      background-color: white !important;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navbar sitename styling */
+    .sitename {
+      font-family: 'Poppins', sans-serif;
+      text-decoration: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      color: inherit;
+    }
+
+    /* Remove underline and borders from links in navmenu */
+    #navmenu a {
+      text-decoration: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      color: inherit;
+      transition: color 0.3s ease;
+    }
+
+    #navmenu a:hover,
+    #navmenu a:focus {
+      text-decoration: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      color: #007bff; /* Hover color */
+    }
+
+    /* Button style */
+    .btn-getstarted {
+      background-color: #28a745;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 0.3rem;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-getstarted:hover,
+    .btn-getstarted:focus {
+      background-color: #218838;
+      color: white;
+      text-decoration: none;
+      border: none;
+      outline: none;
+      box-shadow: none;
+    }
+
+    /* FAQ Section styling */
+    .faq-section {
+      text-align: center;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .faq-question h5 {
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .faq-answer {
+      display: none;
+      padding-top: 10px;
+      color: #444;
+      font-size: 1rem;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    .faq-toggle {
+      font-size: 1.2rem;
+      color: #666;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-toggle {
+      transform: rotate(180deg);
+    }
+
+    /* Footer links style - no underline */
+    .footer-links a {
+      text-decoration: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      color: inherit;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus {
+      color: #007bff;
+      text-decoration: none !important;
+      border: none !important;
+    }
+
+    /* Container padding after navbar */
+    main.container {
+      padding-top: 100px; /* space after fixed navbar */
+      padding-bottom: 60px; /* space before footer */
+      flex-grow: 1;
+    }
+
+    /* Assignment generator styles */
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    #result {
+      white-space: pre-wrap;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      min-height: 150px;
+      margin-top: 1rem;
+    }
+  /* Dark blue variables */
+  :root {
+    --eduprompt-blue: #003366; /* Dark blue shade */
+  }
+
+  /* Sitename color */
+  .sitename {
+    color: var(--eduprompt-blue) !important;
+    font-weight: bold;
+  }
+
+  /* Dashboard icon color */
+  .nav-link i.bi-person-fill {
+    color: var(--eduprompt-blue);
+    transition: color 0.3s ease;
+  }
+
+  /* All nav-links hover effect */
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:focus,
+  .dropdown-menu .dropdown-item:hover {
+    color: var(--eduprompt-blue) !important;
+  }
+
+  /* Optional: Get Started button hover stays nice */
+  .btn-success:hover {
+    background-color: var(--eduprompt-blue);
+    border-color: var(--eduprompt-blue);
+  }
+  
+
+
+  </style>
+</head>
+
+<header id="header" class="header fixed-top bg-white shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-light container-xl">
+    
+    <!-- Logo + Sitename -->
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+      <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 50px;">
+      <span class="ms-2 fw-bold sitename">Eduprompt</span>
+    </a>
+
+    <!-- Mobile toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu items -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li><a class="dropdown-item" href="/ai-solver/">{% trans "AI Solver" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/essay/">{% trans "Essay Generator" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/note/">{% trans "Note Generator" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/letter-writer/">{% trans "Letter Writer" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.html">{% trans "Blog" %}</a></li>
+
+        <!-- Tools Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{% trans "Tools" %}</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/project-writer/">{% trans "Project Writer" %}</a></li>
+            <li><a class="dropdown-item" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
+
+        <!-- Dashboard Icon (Only if logged in) -->
+        {% if user.is_authenticated %}
+        <li class="nav-item ms-lg-3">
+          <a class="nav-link" href="/dashboard/">
+            <i class="bi bi-person-fill fs-5"></i>
+          </a>
+        </li>
+        {% endif %}
+
+        <!-- Get Started Button (Only if not logged in) -->
+        {% if not user.is_authenticated %}
+        <li class="nav-item ms-lg-3">
+          <a class="btn btn-success btn-sm" href="/register/">{% trans "Get Started" %}</a>
+        </li>
+        {% endif %}
+
+        <!-- Language Selector -->
+        <select name="language" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 120px; font-size: 0.85rem;">
+    {% for code, name in AFRICAN_LANGUAGES %}
+      <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
+    {% endfor %}
+</select>
+<input type="hidden" name="next" value="{{ request.get_full_path }}">
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+<div class="container vh-100 d-flex flex-column justify-content-center align-items-center text-center px-3">
+  <h1 class="fw-bold typing-animation" style="color: darkblue;">
+    AI Letter Writer for Students – Create Perfect Letters in Seconds
+  </h1>
+  <p class="lead" style="color: black; margin-top: 1rem;">
+    Write professional school, scholarship, internship, and job application letters instantly. Our AI-powered letter writer helps students 
+    and graduates craft formal letters that get results – fast, simple, and free to try.
+  </p>
+</div>
+
+<!-- AI Letter Writer Form & Output Side by Side -->
+<div class="container-fluid py-2" style="max-width: 1200px;">
+  <div class="row justify-content-center">
+    
+    <!-- Input Form (Left) -->
+    <div class="col-lg-6 col-md-12">
+      <form id="letterForm" class="p-4 rounded shadow-sm bg-white">
+        {% csrf_token %}
+        
+        <!-- Letter Type -->
+        <div class="mb-4">
+          <label for="letterType" class="form-label fw-semibold">Letter Type</label>
+          <select class="form-select form-select-lg" id="letterType" required>
+            <option value="">Select type...</option>
+            <option>Application Letter (Job/School/Internship)</option>
+            <option>Admission/Enrollment Request</option>
+            <option>Scholarship Request Letter</option>
+            <option>Internship Request Letter</option>
+            <option>Recommendation Request Letter</option>
+            <option>Complaint Letter</option>
+            <option>Apology Letter</option>
+            <option>Permission Letter</option>
+            <option>Leave of Absence Letter</option>
+            <option>Thank You Letter</option>
+            <option>Resignation Letter</option>
+            <option>Cover Letter</option>
+            <option>Sponsorship Request Letter</option>
+            <option>Appeal Letter</option>
+            <option>General Formal Letter</option>
+            <option value="custom">➕ Custom Letter (other)</option>
+          </select>
+        </div>
+
+        <!-- Hidden custom input -->
+        <div class="mb-4" id="customLetterDiv" style="display: none;">
+          <label for="customLetter" class="form-label fw-semibold">Enter Your Letter Type</label>
+          <input type="text" class="form-control form-control-lg" id="customLetter" placeholder="e.g. Letter to Principal for Event Approval">
+        </div>
+
+        <!-- Recipient Name -->
+        <div class="mb-4">
+          <label for="recipientName" class="form-label fw-semibold">
+            Recipient Name <span class="text-muted">(Optional)</span>
+          </label>
+          <input type="text" class="form-control form-control-lg" id="recipientName" placeholder="e.g. Admissions Officer">
+        </div>
+
+        <!-- Recipient Organization -->
+        <div class="mb-4">
+          <label for="recipientOrg" class="form-label fw-semibold">
+            Recipient Organization/School <span class="text-muted">(Optional)</span>
+          </label>
+          <input type="text" class="form-control form-control-lg" id="recipientOrg" placeholder="e.g. University of Lagos">
+        </div>
+
+        <!-- Purpose of Letter -->
+        <div class="mb-4">
+          <label for="letter_text" class="form-label fw-semibold">Purpose of Letter</label>
+          <textarea class="form-control form-control-lg" id="letter_text" rows="4" placeholder="Explain briefly why you are writing this letter..." required></textarea>
+        </div>
+
+        <!-- Tone of Letter -->
+        <div class="mb-4">
+          <label for="tone" class="form-label fw-semibold">Tone of Letter</label>
+          <select class="form-select form-select-lg" id="tone" required>
+            <option value="">Choose tone...</option>
+            <option>Formal & Respectful</option>
+            <option>Persuasive & Convincing</option>
+            <option>Polite but Firm</option>
+            <option>Friendly & Professional</option>
+          </select>
+        </div>
+
+        <!-- Generate Button -->
+        <div class="d-grid mb-4">
+          <button type="submit" class="btn btn-lg text-white fw-bold" style="background-color: #003366;">
+            ✍️ Generate Letter
+          </button>
+        </div>
+      </form>
+    </div>
+
+<!-- Output Box (Right) -->
+<div class="col-lg-6 col-md-12 mb-3">
+  <div id="letterResult" class="p-3 border rounded shadow-sm d-flex flex-column" 
+       style="display: block; background-color: white; height: 100%;">
+       
+    <h5 class="fw-bold">📄 Generated Letter</h5>
+
+    <!-- Textarea -->
+    <textarea id="letterContent" class="form-control mt-2 flex-grow-1" 
+              style="white-space: pre-wrap; overflow-y: auto; 
+                     resize: none; font-family: inherit; font-size: 0.95rem; min-height: 200px;"
+              placeholder="Your generated letter will appear here and after you clcik generate wait for some seconds..."></textarea>
+
+    <!-- Download + Language aligned side by side -->
+    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-stretch gap-2 mt-3">
+
+      <!-- Download Form -->
+      <form id="downloadForm" method="POST" action="{% url 'download_letter_pdf' %}" target="_blank" class="mb-2 mb-sm-0 flex-fill">
+        {% csrf_token %}
+        <input type="hidden" name="letter_text" id="letterTextInput" value="">
+        <button type="submit" class="btn btn-md fw-bold text-white w-100" style="background-color: #003366;">
+          📥 Download as PDF
+        </button>
+      </form>
+
+      <!-- Language Selector -->
+      <form method="post" class="flex-fill">
+        {% csrf_token %}
+        <select name="language" onchange="this.form.submit()" class="form-select form-select-sm w-100">
+          {% for code, name in AFRICAN_LANGUAGES %}
+            <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
+          {% endfor %}
+        </select>
+        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+      </form>
+
+    </div>
+  </div>
+</div>
+
+    
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const letterTypeSelect = document.getElementById("letterType");
+    const customDiv = document.getElementById("customLetterDiv");
+    const customLetterInput = document.getElementById("customLetter");
+    const form = document.getElementById("letterForm");
+    const resultBox = document.getElementById("letterResult");
+    const letterOutput = document.getElementById("letterContent");
+    const downloadInput = document.getElementById("letterTextInput");
+    const downloadForm = document.getElementById("downloadForm");
+
+    // 🔹 Toggle custom letter input
+    letterTypeSelect?.addEventListener("change", () => {
+        if (letterTypeSelect.value === "custom") {
+            customDiv.style.display = "block";
+            customLetterInput.required = true;
+        } else {
+            customDiv.style.display = "none";
+            customLetterInput.required = false;
+        }
+    });
+
+    // 🔹 Handle form submit with OpenRouter
+    form?.addEventListener("submit", async (e) => {
+        e.preventDefault(); // stop page reload
+
+        const letterText = document.getElementById("letter_text").value.trim();
+        const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+
+        if (!letterText) {
+            letterOutput.innerText = "⚠️ Please enter some text to generate the letter.";
+            resultBox.style.display = "block";
+            return;
+        }
+
+        try {
+            const response = await fetch("{% url 'generate_letter' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrfToken
+                },
+                body: JSON.stringify({ letter_text: letterText })
+            });
+
+            const data = await response.json();
+
+            if (data.letter) {
+                letterOutput.value = data.letter; // use value for textarea
+                downloadInput.value = data.letter;
+            } else {
+                letterOutput.value = "❌ " + (data.error || "Unable to generate letter.");
+                downloadInput.value = "";
+            }
+        } catch (err) {
+            console.error("Fetch error:", err);
+            letterOutput.value = "🚨 Server error. Please try again.";
+            downloadInput.value = "";
+        }
+
+        resultBox.style.display = "block";
+    });
+
+    // 🔹 Ensure current edited text is always sent when downloading
+    downloadForm?.addEventListener("submit", () => {
+        downloadInput.value = letterOutput.value; // capture edits
+    });
+});
+</script>
+
+
+
+
+<!-- How to Use Section -->
+<section class="py-5" style="background-color: #ffffff; color: #000;">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color: black;">How to Use Our AI Letter Writer</h2>
+    <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
+      Writing professional letters has never been easier. Follow these simple steps to generate polished, ready-to-send letters in minutes:
+    </p>
+    <div class="row g-4">
+      <!-- Step 1 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
+          <i class="bi bi-card-text" style="font-size: 2.5rem; color: black;"></i>
+          <h5 class="mt-3" style="color: #003366;">Select Letter Type</h5>
+          <p style="color: #555; font-size: 0.95rem;">
+            Choose the type of letter you want to create—application, scholarship request, permission letter, or even a custom letter type.
+          </p>
+        </div>
+      </div>
+      <!-- Step 2 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
+          <i class="bi bi-person-lines-fill" style="font-size: 2.5rem; color: black;"></i>
+          <h5 class="mt-3" style="color: #003366;">Fill in Details</h5>
+          <p style="color: #555; font-size: 0.95rem;">
+            Enter recipient name, organization, purpose, and choose a tone. Some fields are optional for flexibility, while others help tailor your letter professionally.
+          </p>
+        </div>
+      </div>
+      <!-- Step 3 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
+          <i class="bi bi-lightning-charge-fill" style="font-size: 2.5rem; color: black;"></i>
+          <h5 class="mt-3" style="color: #003366;">Generate Letter</h5>
+          <p style="color: #555; font-size: 0.95rem;">
+            Click the <strong>“Generate Letter”</strong> button. The AI will create a professional, well-structured letter based on your inputs instantly.
+          </p>
+        </div>
+      </div>
+      <!-- Step 4 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
+          <i class="bi bi-download" style="font-size: 2.5rem; color: black;"></i>
+          <h5 class="mt-3" style="color: #003366;">Edit & Save</h5>
+          <p style="color: #555; font-size: 0.95rem;">
+            Review your letter, make any final edits, then download it as a PDF to save.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Why Choose Us Section -->
+<section class="py-5" style="background-color: white;">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color: black;">Why Choose Our AI Letter Writer?</h2>
+    <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
+      With so many writing tools online, here’s why thousands of students and professionals trust our AI Letter Writer every day:
+    </p>
+
+    <div class="row g-4">
+      <!-- Point 1 -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
+          <i class="bi bi-lightning-charge-fill" style="font-size: 2.5rem; color: #003366;"></i>
+          <h5 class="mt-3" style="color:black;">Fast & Instant</h5>
+          <p style="color:black;">Generate well-structured letters in seconds, saving you time and effort.</p>
+        </div>
+      </div>
+      <!-- Point 2 -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
+          <i class="bi bi-hand-thumbs-up-fill" style="font-size: 2.5rem; color: #003366;"></i>
+          <h5 class="mt-3" style="color:black;">Easy to Use</h5>
+          <p style="color:black;">No technical skills required. Just select the letter type, fill in details, and generate your letter.</p>
+        </div>
+      </div>
+      <!-- Point 3 -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
+          <i class="bi bi-shield-lock-fill" style="font-size: 2.5rem; color: #003366;"></i>
+          <h5 class="mt-3" style="color:black;">Secure & Private</h5>
+          <p style="color:black;">Your letters are private. We never store, sell, or share your personal content.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 mt-4">
+      <!-- Point 4 -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
+          <i class="bi bi-people-fill" style="font-size: 2.5rem; color: #003366;"></i>
+          <h5 class="mt-3" style="color:black;">For Students & Professionals</h5>
+          <p style="color:black;">Perfect for students, graduates, interns, and anyone needing professional letters quickly.</p>
+        </div>
+      </div>
+      <!-- Point 5 -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
+          <i class="bi bi-award-fill" style="font-size: 2.5rem; color: #003366;"></i>
+          <h5 class="mt-3" style="color:black;">Professional Quality</h5>
+          <p style="color:black;">Our AI ensures proper formatting, tone, and structure for top-quality letters.</p>
+        </div>
+      </div>
+      <!-- Point 6 -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
+          <i class="bi bi-cloud-check-fill" style="font-size: 2.5rem; color: #003366;"></i>
+          <h5 class="mt-3" style="color:black;">Access Anywhere</h5>
+          <p style="color:black;">Use it on desktop, tablet, or mobile. Write letters anytime, anywhere.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Who Can Benefit Section -->
+<section class="py-5" style="background-color: #ffffff; color: #000000;">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color: black;">Who Can Benefit from Our AI Letter Writer?</h2>
+    <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
+      Our AI Letter Writer is more than a text generator — it’s a smart writing assistant that helps you create professional, clear, and effective letters in seconds. Perfect for students, professionals, and creators, it adapts to your unique needs.
+    </p>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs justify-content-center mb-4" id="userTabs" role="tablist" style="border-bottom: 2px solid #003366;">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active d-flex align-items-center" id="students-tab" data-bs-toggle="tab" data-bs-target="#students" type="button" role="tab" aria-controls="students" aria-selected="true" style="color: black;">
+          <i class="bi bi-mortarboard-fill me-2" style="color:#003366;"></i> Students
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link d-flex align-items-center" id="professionals-tab" data-bs-toggle="tab" data-bs-target="#professionals" type="button" role="tab" aria-controls="professionals" aria-selected="false" style="color: black;">
+          <i class="bi bi-briefcase-fill me-2" style="color:#003366;"></i> Professionals
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link d-flex align-items-center" id="creators-tab" data-bs-toggle="tab" data-bs-target="#creators" type="button" role="tab" aria-controls="creators" aria-selected="false" style="color: black;">
+          <i class="bi bi-pencil-fill me-2" style="color:#003366;"></i> Content Creators
+        </button>
+      </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="userTabsContent">
+
+      <!-- Students -->
+      <div class="tab-pane fade show active" id="students" role="tabpanel" aria-labelledby="students-tab">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>
+            Students can generate professional application letters, scholarship requests, permission letters, and more in seconds. The AI Letter Writer ensures every letter is clear, correctly formatted, and persuasive, making your submissions stand out.
+          </p>
+          <p>
+            It also helps you learn proper letter-writing techniques by providing suggestions for tone, style, and structure — empowering you to write confidently and professionally every time.
+          </p>
+        </div>
+      </div>
+
+      <!-- Professionals -->
+      <div class="tab-pane fade" id="professionals" role="tabpanel" aria-labelledby="professionals-tab">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>
+            Professionals can quickly create polished letters for proposals, resignation, recommendation, sponsorship requests, or formal communications. The AI ensures your letters are well-structured, grammatically correct, and convey the intended tone effectively.
+          </p>
+          <p>
+            This saves time, reduces the risk of miscommunication, and projects a credible, authoritative image to clients, colleagues, and stakeholders.
+          </p>
+        </div>
+      </div>
+
+      <!-- Content Creators -->
+      <div class="tab-pane fade" id="creators" role="tabpanel" aria-labelledby="creators-tab">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>
+            Content creators — bloggers, journalists, marketers, and social media managers — can use the AI Letter Writer to produce professional correspondence, pitch letters, and partnership requests that impress recipients and enhance credibility.
+          </p>
+          <p>
+            Beyond grammar, it optimizes tone, clarity, and style for different audiences, helping your communication stand out and achieve maximum impact.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-5" style="background-color: #ffffff;">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color: black;">Frequently Asked Questions</h2>
+    <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
+      Here are the most common questions our users ask before using the AI Letter Writer:
+    </p>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="accordion" id="faqAccordion">
+
+          <!-- FAQ 1 -->
+          <div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
+            <h2 class="accordion-header" id="faq1">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1" style="color:#003366; font-weight:600;">
+                Is the AI Letter Writer free to use?
+              </button>
+            </h2>
+            <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+              <div class="accordion-body" style="color:#555;">
+                Yes! You can generate letters for free. Simply select a letter type, fill in your details, and click generate — no payment required for basic usage.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
+            <h2 class="accordion-header" id="faq2">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2" style="color:#003366; font-weight:600;">
+                What types of letters can I create?
+              </button>
+            </h2>
+            <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
+              <div class="accordion-body" style="color:#555;">
+                You can create application letters, scholarship requests, permission letters, resignation letters, recommendation requests, appeal letters, and even custom letter types — all tailored to your needs.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
+            <h2 class="accordion-header" id="faq3">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3" style="color:#003366; font-weight:600;">
+                Can I use it on my phone or tablet?
+              </button>
+            </h2>
+            <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+              <div class="accordion-body" style="color:#555;">
+                Absolutely! The AI Letter Writer is fully mobile-friendly and works seamlessly on smartphones, tablets, and desktop computers.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
+            <h2 class="accordion-header" id="faq4">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4" style="color:#003366; font-weight:600;">
+                Is my information private and secure?
+              </button>
+            </h2>
+            <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4" data-bs-parent="#faqAccordion">
+              <div class="accordion-body" style="color:#555;">
+                Yes, your privacy is our priority. All inputs are processed securely and in real-time. We do not store, sell, or share your personal information or letters.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
+            <h2 class="accordion-header" id="faq5">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5" style="color:#003366; font-weight:600;">
+                Can it handle long or detailed letters?
+              </button>
+            </h2>
+            <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5" data-bs-parent="#faqAccordion">
+              <div class="accordion-body" style="color:#555;">
+                Yes! You can generate both short and detailed letters. For more complex letters, the tool helps structure content clearly, keeping tone and formatting professional.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
+            <h2 class="accordion-header" id="faq6">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6" style="color:#003366; font-weight:600;">
+                Can I customize the tone of my letter?
+              </button>
+            </h2>
+            <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="faq6" data-bs-parent="#faqAccordion">
+              <div class="accordion-body" style="color:#555;">
+                Yes! You can choose from different tones like Formal & Respectful, Persuasive & Convincing, Polite but Firm, or Friendly & Professional to suit the purpose of your letter.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<!-- Testimonial Section -->
+<section class="testimonial-section container py-5">
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <h1 class="mb-3">What <strong>users</strong> are <strong>saying about our AI Letter Writer.</strong></h1>
+
+      <!-- Testimonial 1 -->
+      <div class="testimonial-card d-flex align-items-start mb-4 shadow-sm p-3" style="border-radius:12px;">
+        <div class="me-3 text-center">
+          <div class="testimonial-number bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">01</div>
+          <i class="bi bi-pencil-square mt-2" style="font-size:1.5rem; color:#003366;"></i>
+        </div>
+        <p class="mb-0" style="color:#444;">
+          "The AI Letter Writer made my scholarship application letters polished and professional. It helped me express my ideas clearly and confidently."
+        </p>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="testimonial-card d-flex align-items-start mb-4 shadow-sm p-3" style="border-radius:12px;">
+        <div class="me-3 text-center">
+          <div class="testimonial-number bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">02</div>
+          <i class="bi bi-mortarboard-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
+        </div>
+        <p class="mb-0" style="color:#444;">
+          "As a student, I use it for permission letters and admission requests. It’s fast, accurate, and saves me so much time while keeping my letters professional."
+        </p>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="testimonial-card d-flex align-items-start mb-4 shadow-sm p-3" style="border-radius:12px;">
+        <div class="me-3 text-center">
+          <div class="testimonial-number bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">03</div>
+          <i class="bi bi-megaphone-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
+        </div>
+        <p class="mb-0" style="color:#444;">
+          "For my internship applications, this tool is a game-changer. My letters are clear, persuasive, and professional — I get noticed every time."
+        </p>
+      </div>
+
+      <!-- Testimonial 4 -->
+      <div class="testimonial-card d-flex align-items-start mb-4 shadow-sm p-3" style="border-radius:12px;">
+        <div class="me-3 text-center">
+          <div class="testimonial-number bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">04</div>
+          <i class="bi bi-envelope-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
+        </div>
+        <p class="mb-0" style="color:#444;">
+          "I use it for professional correspondence like sponsorship requests and recommendation letters. The AI ensures my letters are well-structured, polite, and persuasive."
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-6 testimonial-image text-center">
+      <img src="{% static 'assets/img/stylish-black-girl-fotor-bg-remover-20250827151312.png' %}" alt="Happy user" class="img-fluid rounded">
+    </div>
+  </div>
+</section>
+
+
+
+
+<footer id="footer" class="footer">
+
+  <style>
+    /* Remove underline from all <h4> headings */
+    footer h4 {
+      text-decoration: none !important;  /* Remove underline */
+      border-bottom: none !important;    /* Remove any border lines */
+      color: #000;                       /* Ensure text color is black */
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    /* Remove underline from links inside footer-links */
+    footer .footer-links a {
+      text-decoration: none !important;
+      color: #000;
+      transition: color 0.3s ease;
+    }
+    footer .footer-links a:hover {
+      color: green; /* Bootstrap primary color on hover */
+      text-decoration: none;
+    }
+  </style>
+
+</main>
+
+<footer id="footer" class="footer">
+
+  <style>
+    /* Remove underline from all <h4> headings */
+    footer h4 {
+      text-decoration: none !important;  /* Remove underline */
+      border-bottom: none !important;    /* Remove any border lines */
+      color: #000;                       /* Ensure text color is black */
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    /* Remove underline from links inside footer-links */
+    footer .footer-links a {
+      text-decoration: none !important;
+      color: #000;
+      transition: color 0.3s ease;
+    }
+    footer .footer-links a:hover {
+      color: green; /* Bootstrap primary color on hover */
+      text-decoration: none;
+    }
+  </style>
+
+  
+
+<!-- Newsletter Section (keep this as-is above footer) -->
+<div class="footer-newsletter">
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-6">
+        <h4>Join Our Newsletter</h4>
+        <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+        <form action="forms/newsletter.php" method="post" class="php-email-form">
+          <div class="newsletter-form d-flex flex-column flex-sm-row gap-2">
+            <input type="email" name="email" class="form-control" placeholder="Your email address" required>
+            <input type="submit" value="Subscribe" class="btn btn-primary px-4">
+          </div>
+          <div class="loading mt-2">Loading</div>
+          <div class="error-message text-danger mt-2"></div>
+          <div class="sent-message text-success mt-2">Your subscription request has been sent. Thank you!</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Footer -->
+<footer class="footer bg-light pt-5">
+  <div class="container footer-top py-5">
+    <div class="row gy-4">
+      <!-- About -->
+      <div class="col-lg-4 col-md-6 footer-about">
+        <a href="{% url 'index' %}" class="d-flex align-items-center mb-3 text-decoration-none">
+          <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 50px;">
+          <h1 class="ms-3 sitename" style="color: #003366; font-weight: 700; font-size: 1.8rem; user-select: none;">Eduprompt</h1>
+        </a>
+        <p>EduPrompt helps students stay focused, organized, and academically confident — powered by smart, ethical AI support.</p>
+      </div>
+
+      <!-- Useful Links -->
+      <div class="col-lg-2 col-md-3 footer-links">
+        <h4 class="fw-semibold mb-3">Useful Links</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="{% url 'index' %}" class="text-dark text-decoration-none link-hover-underline">Home</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="/about/" class="text-dark text-decoration-none link-hover-underline">About Us</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="/privacy_policy/" class="text-dark text-decoration-none link-hover-underline">Privacy Policy</a>
+          </li>
+          <li>
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="/Terms_and_Condition" class="text-dark text-decoration-none link-hover-underline">Terms &amp; Conditions</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Our Services -->
+      <div class="col-lg-2 col-md-3 footer-links">
+        <h4 class="fw-semibold mb-3">Our Services</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Web Design</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Web Development</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Product Management</a>
+          </li>
+          <li>
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Marketing</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Follow Us -->
+      <div class="col-lg-4 col-md-12">
+        <h4 class="fw-semibold mb-3">Follow Us</h4>
+        <p class="text-muted mb-3">Follow us on all our social media platforms</p>
+        <div class="social-links d-flex gap-3 fs-4">
+          <a href="#" class="text-primary social-hover"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-primary social-hover"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-primary social-hover"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-primary social-hover"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="container text-center py-3 border-top">
+    <p class="mb-0 text-muted small">
+      © <strong class="text-primary sitename">EduPrompt</strong> All Rights Reserved.
+    </p>
+    <p class="mb-0 small">
+      Designed by <a href="https://bootstrapmade.com/" target="_blank" class="text-decoration-none">BootstrapMade</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  /* Hover underline for footer links */
+  .link-hover-underline:hover {
+    text-decoration: underline;
+    color: #003366 !important;
+  }
+
+  /* Social icon hover effect */
+  .social-hover:hover {
+    color: #0056b3 !important;
+  }
+
+  /* Make newsletter inputs full width on mobile */
+  @media (max-width: 576px) {
+    .newsletter-form input[type="email"],
+    .newsletter-form input[type="submit"] {
+      width: 100% !important;
+      margin-bottom: 0.5rem;
+    }
+  }
+</style>
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

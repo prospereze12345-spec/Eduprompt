@@ -1,0 +1,520 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - FlexStart Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="{% static 'https://fonts.googleapis.com' %}" rel="preconnect">
+  <link href="{% static 'https://fonts.gstatic.com' %}" rel="preconnect" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="{% static 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap' %}" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css" rel="stylesheet' %}">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+
+
+  <style>
+  .faq-section {
+    text-align: center; /* Center all content */
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    max-width: 700px;
+    margin: 0 auto; /* Center the FAQ box itself */
+    text-align: left; /* Keep answer and question aligned left inside centered block */
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600; /* Make it bold */
+    font-size: 1.1rem;
+  }
+
+  .faq-question h5 {
+    margin: 0;
+    font-weight: 700; /* Bold text */
+  }
+
+  .faq-answer {
+    display: none;
+    padding-top: 10px;
+    color: #444;
+    font-size: 1rem;
+  }
+
+  .faq-item.active .faq-answer {
+    display: block;
+  }
+
+  .faq-toggle {
+    font-size: 1.2rem;
+    color: #666;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.active .faq-toggle {
+    transform: rotate(180deg);
+  }
+
+  /* Remove underline and border line from all links inside navmenu */
+#navmenu a {
+  text-decoration: none !important; /* no underline */
+  border: none !important;           /* no border */
+  box-shadow: none !important;       /* remove any shadow */
+  outline: none !important;          /* remove outline */
+  color: inherit;                    /* keep inherited color */
+  transition: color 0.3s ease;       /* optional smooth hover color */
+}
+
+/* Remove any border or underline on hover/focus */
+#navmenu a:hover,
+#navmenu a:focus {
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #007bff; /* Optional: set your hover color */
+}
+
+/* Remove any border or underline on sitename if any */
+.sitename {
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+/* Base button style */
+.btn-getstarted {
+  background-color: #28a745; /* Bootstrap green or your custom green */
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.3rem;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+/* Remove white line / underline on hover or focus */
+.btn-getstarted:hover,
+.btn-getstarted:focus {
+  background-color: #218838; /* darker green on hover */
+  color: white;
+  text-decoration: none;     /* removes underline */
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-nav .nav-link.dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+  .navbar-nav .nav-link.dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem; /* space between emoji and text */
+  }
+  /* Dark blue variables */
+  :root {
+    --eduprompt-blue: #003366; /* Dark blue shade */
+  }
+
+  /* Sitename color */
+  .sitename {
+    color: var(--eduprompt-blue) !important;
+    font-weight: bold;
+  }
+
+  /* Dashboard icon color */
+  .nav-link i.bi-person-fill {
+    color: var(--eduprompt-blue);
+    transition: color 0.3s ease;
+  }
+
+  /* All nav-links hover effect */
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:focus,
+  .dropdown-menu .dropdown-item:hover {
+    color: var(--eduprompt-blue) !important;
+  }
+
+  /* Optional: Get Started button hover stays nice */
+  .btn-success:hover {
+    background-color: var(--eduprompt-blue);
+    border-color: var(--eduprompt-blue);
+  }
+
+
+</style>
+
+
+
+
+
+  
+  <!-- =======================================================
+  * Template Name: FlexStart
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Updated: Nov 01 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+<header id="header" class="header fixed-top bg-white shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-light container-xl">
+    
+    <!-- Logo + Sitename -->
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+    <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height:50px;">
+
+      <span class="ms-2 fw-bold sitename">Eduprompt</span>
+    </a>
+
+    <!-- Mobile toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu items -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li><a class="dropdown-item" href="/ai-solver/">{% trans "AI Solver" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/essay/">{% trans "Essay Generator" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/note/">{% trans "Note Generator" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/letter-writer/">{% trans "Letter Writer" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.html">{% trans "Blog" %}</a></li>
+
+        <!-- Tools Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{% trans "Tools" %}</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/project-writer/">{% trans "Project Writer" %}</a></li>
+            <li><a class="dropdown-item" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
+
+<!-- If user is logged in -->
+{% if user.is_authenticated %}
+    <!-- Dashboard icon -->
+    <li class="nav-item ms-lg-3">
+        <a class="nav-link" href="{% url 'dashboard' %}">
+            <i class="bi bi-person-fill fs-5"></i>
+        </a>
+    </li>
+
+<!-- If user is NOT logged in -->
+{% else %}
+    <!-- Sign up button -->
+    <li class="nav-item ms-lg-3">
+        <a class="btn btn-success btn-sm" href="{% url 'register' %}">{% trans "Get Started" %}</a>
+    </li>
+
+    <!-- Login button -->
+    <li class="nav-item ms-lg-3">
+        <a class="btn btn-success btn-sm" href="{% url 'login' %}">{% trans "Login" %}</a>
+    </li>
+{% endif %}
+
+
+
+        <!-- Language Selector -->
+        <select name="language" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 120px; font-size: 0.85rem;">
+    {% for code, name in AFRICAN_LANGUAGES %}
+      <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
+    {% endfor %}
+</select>
+<input type="hidden" name="next" value="{{ request.get_full_path }}">
+
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+<!-- Bootstrap CSS & Bootstrap Icons CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+
+
+
+<!-- ======= Register Section ======= -->
+<section style="background-color: #eee; padding: 120px 0 80px 0; margin-top: 70px;">
+  <div class="container">
+    <div class="card signup-card shadow">
+      <div class="card-body p-md-5">
+        <div class="row align-items-center">
+
+          <!-- Form Column (LEFT) -->
+          <div class="col-lg-6 order-1">
+            <p class="text-center h1 fw-bold mb-4">{% trans "Sign Up" %}</p>
+
+            <!-- Error / success messages -->
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+              {% endfor %}
+            {% endif %}
+
+            {% for field in form %}
+              {% for error in field.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+              {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+              <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+
+            <form method="post" action="{% url 'register' %}">
+              {% csrf_token %}
+              <div style="display:none;">{{ form.honeypot }}</div>
+
+              <!-- Full Name -->
+              <div class="mb-3">
+                <label class="form-label" for="fullnameInput">{% trans "Full Name" %}</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-white"><i class="fas fa-user"></i></span>
+                  <input type="text" name="full_name" id="fullnameInput" class="form-control"
+                         value="{{ form.full_name.value|default_if_none:'' }}" required>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="mb-3">
+                <label class="form-label" for="emailInput">{% trans "Email" %}</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-white"><i class="fas fa-envelope"></i></span>
+                  <input type="email" name="email" id="emailInput" class="form-control"
+                         value="{{ form.email.value|default_if_none:'' }}" required>
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="mb-3">
+                <label class="form-label" for="phoneInput">{% trans "Phone Number" %}</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-white"><i class="fas fa-phone"></i></span>
+                  <input type="tel" name="number" id="phoneInput" class="form-control"
+                         value="{{ form.number.value|default_if_none:'' }}" required>
+                </div>
+              </div>
+
+              <!-- Password -->
+              <div class="mb-3">
+                <label class="form-label" for="passwordInput">{% trans "Password" %}</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-white"><i class="fas fa-lock"></i></span>
+                  <input type="password" name="password1" id="passwordInput" class="form-control" required>
+                </div>
+              </div>
+
+              <!-- Confirm Password -->
+              <div class="mb-3">
+                <label class="form-label" for="passwordConfirmInput">{% trans "Confirm Password" %}</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-white"><i class="fas fa-lock"></i></span>
+                  <input type="password" name="password2" id="passwordConfirmInput" class="form-control" required>
+                </div>
+              </div>
+
+              <!-- Country (Optional) -->
+              <div class="mb-4">
+                <label class="form-label" for="countryInput">{% trans "Country (Optional)" %}</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-white"><i class="fas fa-globe"></i></span>
+                  <input type="text" name="country" id="countryInput" class="form-control"
+                         value="{{ form.country.value|default_if_none:'' }}">
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-success btn-lg w-100 mb-3">{% trans "Sign Up" %}</button>
+
+              <p class="text-center mb-0 fw-bold">
+                {% trans "Already have an account?" %}
+                <a href="{% url 'login' %}" class="text-primary text-decoration-none">{% trans "Log In" %}</a>
+              </p>
+            </form>
+          </div>
+
+          <!-- Image Column (RIGHT) -->
+          <div class="col-lg-6 order-2 d-flex justify-content-center">
+            <img src="{% static 'assets/img/sign up.PNG' %}" 
+                 class="img-fluid" style="max-height: 500px;" 
+                 alt="Sign up image">
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Vendor JS -->
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
+
+
+<!-- Main Footer -->
+<footer class="footer bg-light pt-5">
+  <div class="container footer-top py-5">
+    <div class="row gy-4">
+      <!-- About -->
+      <div class="col-lg-4 col-md-6 footer-about">
+        <a href="{% url 'index' %}" class="d-flex align-items-center mb-3 text-decoration-none">
+          <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 50px;">
+          <h1 class="ms-3 sitename" style="color: #003366; font-weight: 700; font-size: 1.8rem; user-select: none;">Eduprompt</h1>
+        </a>
+        <p>EduPrompt helps students stay focused, organized, and academically confident — powered by smart, ethical AI support.</p>
+      </div>
+
+      <!-- Useful Links -->
+      <div class="col-lg-2 col-md-3 footer-links">
+        <h4 class="fw-semibold mb-3">Useful Links</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="{% url 'index' %}" class="text-dark text-decoration-none link-hover-underline">Home</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="/about/" class="text-dark text-decoration-none link-hover-underline">About Us</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="/privacy_policy/" class="text-dark text-decoration-none link-hover-underline">Privacy Policy</a>
+          </li>
+          <li>
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="/Terms_and_Condition" class="text-dark text-decoration-none link-hover-underline">Terms &amp; Conditions</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Our Services -->
+      <div class="col-lg-2 col-md-3 footer-links">
+        <h4 class="fw-semibold mb-3">Our Services</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Web Design</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Web Development</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Product Management</a>
+          </li>
+          <li>
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Marketing</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Follow Us -->
+      <div class="col-lg-4 col-md-12">
+        <h4 class="fw-semibold mb-3">Follow Us</h4>
+        <p class="text-muted mb-3">Follow us on all our social media platforms</p>
+        <div class="social-links d-flex gap-3 fs-4">
+          <a href="#" class="text-primary social-hover"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-primary social-hover"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-primary social-hover"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-primary social-hover"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="container text-center py-3 border-top">
+    <p class="mb-0 text-muted small">
+      © <strong class="text-primary sitename">EduPrompt</strong> All Rights Reserved.
+    </p>
+    <p class="mb-0 small">
+      Designed by <a href="https://bootstrapmade.com/" target="_blank" class="text-decoration-none">BootstrapMade</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  /* Hover underline for footer links */
+  .link-hover-underline:hover {
+    text-decoration: underline;
+    color: #003366 !important;
+  }
+
+  /* Social icon hover effect */
+  .social-hover:hover {
+    color: #0056b3 !important;
+  }
+
+  /* Make newsletter inputs full width on mobile */
+  @media (max-width: 576px) {
+    .newsletter-form input[type="email"],
+    .newsletter-form input[type="submit"] {
+      width: 100% !important;
+      margin-bottom: 0.5rem;
+    }
+  }
+</style>
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+
+
+

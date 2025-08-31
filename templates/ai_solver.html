@@ -1,0 +1,1122 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>AI Solver – Free Math, Physics & Chemistry Problem Solver</title>
+  <meta name="description" content="Solve math, physics, and chemistry problems instantly with AI Solver. Free online tool with accurate step-by-step solutions for students and professionals.">
+  <meta name="keywords" content="AI Solver
+
+Math Problem Solver
+
+Physics Solver
+
+Chemistry Solver
+
+Free Online Solver
+
+Step-by-Step Solutions
+
+AI Homework Solver">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" rel="icon">
+  <link href="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="{% static 'https://fonts.googleapis.com' %}" rel="preconnect">
+  <link href="{% static 'https://fonts.gstatic.com' %}" rel="preconnect" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="{% static 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap' %}" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css" rel="stylesheet' %}">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+
+
+  <style>
+  .faq-section {
+    text-align: center; /* Center all content */
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    max-width: 700px;
+    margin: 0 auto; /* Center the FAQ box itself */
+    text-align: left; /* Keep answer and question aligned left inside centered block */
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600; /* Make it bold */
+    font-size: 1.1rem;
+  }
+
+  .faq-question h5 {
+    margin: 0;
+    font-weight: 700; /* Bold text */
+  }
+
+  .faq-answer {
+    display: none;
+    padding-top: 10px;
+    color: #444;
+    font-size: 1rem;
+  }
+
+  .faq-item.active .faq-answer {
+    display: block;
+  }
+
+  .faq-toggle {
+    font-size: 1.2rem;
+    color: #666;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.active .faq-toggle {
+    transform: rotate(180deg);
+  }
+
+  /* Remove underline and border line from all links inside navmenu */
+#navmenu a {
+  text-decoration: none !important; /* no underline */
+  border: none !important;           /* no border */
+  box-shadow: none !important;       /* remove any shadow */
+  outline: none !important;          /* remove outline */
+  color: inherit;                    /* keep inherited color */
+  transition: color 0.3s ease;       /* optional smooth hover color */
+}
+
+/* Remove any border or underline on hover/focus */
+#navmenu a:hover,
+#navmenu a:focus {
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #007bff; /* Optional: set your hover color */
+}
+
+/* Remove any border or underline on sitename if any */
+.sitename {
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+/* Base button style */
+.btn-getstarted {
+  background-color: #28a745; /* Bootstrap green or your custom green */
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.3rem;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+/* Remove white line / underline on hover or focus */
+.btn-getstarted:hover,
+.btn-getstarted:focus {
+  background-color: #218838; /* darker green on hover */
+  color: white;
+  text-decoration: none;     /* removes underline */
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-nav .nav-link.dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+  .navbar-nav .nav-link.dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem; /* space between emoji and text */
+  }
+  /* Dark blue variables */
+  :root {
+    --eduprompt-blue: #003366; /* Dark blue shade */
+  }
+
+  /* Sitename color */
+  .sitename {
+    color: var(--eduprompt-blue) !important;
+    font-weight: bold;
+  }
+
+  /* Dashboard icon color */
+  .nav-link i.bi-person-fill {
+    color: var(--eduprompt-blue);
+    transition: color 0.3s ease;
+  }
+
+  /* All nav-links hover effect */
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:focus,
+  .dropdown-menu .dropdown-item:hover {
+    color: var(--eduprompt-blue) !important;
+  }
+
+  /* Optional: Get Started button hover stays nice */
+  .btn-success:hover {
+    background-color: var(--eduprompt-blue);
+    border-color: var(--eduprompt-blue);
+  }
+
+
+</style>
+
+
+
+
+
+  
+  <!-- =======================================================
+  * Template Name: FlexStart
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Updated: Nov 01 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+<header id="header" class="header fixed-top bg-white shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-light container-xl">
+    
+    <!-- Logo + Sitename -->
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+    <img src="{% static 'assets\img\logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height:50px;">
+
+      <span class="ms-2 fw-bold sitename">Eduprompt</span>
+    </a>
+
+    <!-- Mobile toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu items -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li><a class="dropdown-item" href="/ai-solver/">{% trans "AI Solver" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/essay/">{% trans "Essay Generator" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/note/">{% trans "Note Generator" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/letter-writer/">{% trans "Letter Writer" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.html">{% trans "Blog" %}</a></li>
+
+        <!-- Tools Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{% trans "Tools" %}</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/project-writer/">{% trans "Project Writer" %}</a></li>
+            <li><a class="dropdown-item" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
+
+{% if user.is_authenticated %}
+    <li class="nav-item ms-lg-3">
+        <a class="nav-link" href="{% url 'dashboard' %}">
+            <i class="bi bi-person-fill fs-5"></i>
+        </a>
+    </li>
+{% else %}
+    <li class="nav-item ms-lg-3">
+        <a class="btn btn-success btn-sm" href="{% url 'register' %}">{% trans "Get Started" %}</a>
+    </li>
+    <li class="nav-item ms-lg-3">
+        <a class="btn btn-success btn-sm" href="{% url 'login' %}">{% trans "Login" %}</a>
+    </li>
+{% endif %}
+
+
+
+
+        <!-- Language Selector -->
+        <select name="language" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 120px; font-size: 0.85rem;">
+    {% for code, name in AFRICAN_LANGUAGES %}
+      <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
+    {% endfor %}
+</select>
+<input type="hidden" name="next" value="{{ request.get_full_path }}">
+
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+<!-- Bootstrap CSS & Bootstrap Icons CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+<style>
+  /* Section background white */
+  #contact {
+    background-color: white;
+    color: black;
+    padding: 50px 15px;
+  }
+
+  /* Section Title: Centered */
+  #contact .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  #contact .section-title h2 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #0d3b66; /* dark blue */
+  }
+  #contact .section-title p {
+    font-size: 1.25rem;
+    color: #555;
+  }
+
+  /* Info Items and Form Container background gray */
+  .info-item,
+  .contact-form {
+    background: #f7f7f7;
+    padding: 20px 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.05);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .info-item i {
+    font-size: 2rem;
+    color: #0d3b66; /* dark blue icons */
+    flex-shrink: 0;
+  }
+  .info-item h3 {
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+    color: #0d3b66;
+  }
+  .info-item p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: black;
+  }
+  .info-item img.flag-icon {
+    width: 25px;
+    height: auto;
+    margin-left: 8px;
+    border-radius: 3px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  }
+
+  /* Contact Form inputs */
+  .contact-form input,
+  .contact-form textarea {
+    border: 1.5px solid #0d3b66;
+    border-radius: 6px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+    background-color: white;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: #054a91;
+    box-shadow: 0 0 6px #054a91;
+  }
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  .contact-form button {
+    background-color: #0d3b66;
+    color: white;
+    font-weight: 600;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .contact-form button:hover {
+    background-color: #054a91;
+  }
+
+  /* Success & error messages */
+  .alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-radius: 6px;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #c3e6cb;
+  }
+  .alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-radius: 6px;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #f5c6cb;
+  }
+
+  /* Responsive */
+  @media (max-width: 767px) {
+    #contact .info-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .info-item i {
+      font-size: 2.5rem;
+    }
+
+    #contact {
+  background-color: white;
+  color: black;
+  padding: 80px 15px 50px 15px; /* increased top padding */
+  margin-top: 0;
+}
+
+  }
+</style>
+
+  <main class="main">
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% trans "Bootstrap Center with Animation" %}</title>
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    /* Full height container and flex center */
+    .vh-100 {
+      height: 100vh !important;
+    }
+
+    .typing-animation {
+      overflow: hidden; /* ensures the text is hidden at first */
+      white-space: nowrap;
+      border-right: .15em solid white; /* caret */
+      width: 0;
+      animation: typing 3.5s steps(40, end) forwards, blink-caret .75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      0%, 100% { border-color: transparent }
+      50% { border-color: white }
+    }
+  </style>
+</head>
+<body>
+
+<style>
+  /* Mobile-friendly font sizes and padding */
+  @media (max-width: 400px) {
+    .typing-animation {
+      font-size: 1.3rem !important;
+    }
+    p {
+      font-size: 1.0rem !important;
+      max-width: 90% !important;
+    }
+    .container {
+      padding-top: 150px !important;       /* reduce top padding */
+      padding-bottom: 40px !important;
+      justify-content: flex-start !important; /* remove vertical centering */
+      height: auto !important;            /* allow container to grow */
+    }
+  }
+</style>
+
+
+
+<section style="padding-top: 8rem; padding-bottom: 4rem; background-color: #ffffff;">
+  <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
+
+    <!-- Header -->
+    <div class="mb-5">
+      <h1 class="fw-bold text-darkblue">
+        Solve Any <span class="text-gold">Math, Physics, or Chemistry Problem</span> Instantly with AI
+      </h1>
+      <h2 class="mt-3 text-black fw-normal" style="font-size: 1.25rem; line-height: 1.6;">
+        Learn smarter, not harder. Our AI-powered solver guides you through step-by-step solutions for tricky high-school exercises to advanced university problems. Understand concepts deeply while mastering problem-solving skills—perfect for curious students, exam preparation, and lifelong learners.
+      </h2>
+    </div>
+<div class="mb-5">
+  <h1 class="fw-bold text-darkblue">
+    Default <span class="text-gold"> Problems</span> 
+  </h1>
+  <!-- Default Questions -->
+  <div class="row g-3 justify-content-center mt-5">
+    <div class="col-md-6 col-lg-5">
+      <div class="card question-card p-3 text-center mb-3 default-question" 
+           data-question="A block of mass 5 kg slides down a frictionless incline of height 3 m. Calculate the velocity of the block at the bottom of the incline.">
+        <p class="mb-0">A block of mass 5 kg slides down a frictionless incline of height 3 m. Calculate the velocity of the block at the bottom of the incline.</p>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-5">
+      <div class="card question-card p-3 text-center mb-3 default-question" 
+           data-question="Solve the logarithmic equation log2(x) = 8">
+        <p class="mb-0">Solve the logarithmic equation log₂(x) = 8.</p>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-5">
+      <div class="card question-card p-3 text-center mb-3 default-question" 
+           data-question="Evaluate the integral: ∫0^1 (3x^2 + 2x) dx">
+        <p class="mb-0">Evaluate the integral ∫₀¹ (3x² + 2x) dx.</p>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-5">
+      <div class="card question-card p-3 text-center mb-3 default-question" 
+           data-question="Calculate the pH of a 0.01 M HCl solution at 25°C">
+        <p class="mb-0">Calculate the pH of a 0.01 M HCl solution at 25°C.</p>
+      </div>
+    </div>
+  </div>
+</section>
+  <!-- Custom Solver -->
+<div class="solver-box mx-auto mt-5" style="max-width: 900px;">
+  <div class="row g-4 justify-content-center">
+
+    <!-- Input Section -->
+    <div class="col-md-6 mb-3">
+      <div class="card p-4 shadow-sm">
+        <h5 class="mb-3 fw-bold text-dark">Enter Your Question</h5>
+        <textarea id="userQuestion" class="form-control mb-3 solver-textarea" placeholder="Type or paste  problem here..." style="min-height: 150px;"></textarea>
+        <button class="btn btn-warning w-100 text-white mb-3" onclick="solveCustom()">Solve Question</button>
+
+        <hr>
+
+        <h5 class="mb-3 fw-bold text-dark">Or Upload Image</h5>
+        <input type="file" id="imageInput" class="form-control mb-2" accept="image/*">
+        <button class="btn btn-warning w-100 text-white" id="solveImageBtn">Solve Image</button>
+      </div>
+    </div>
+
+    <!-- Output Section -->
+    <div class="col-md-6 mb-3">
+      <div class="card p-4 shadow-sm">
+        <h5 class="mb-3 fw-bold text-dark">Solution</h5>
+        <div id="resultArea" class="result-area solver-textarea" style="min-height: 320px; border: 1px solid #ccc; border-radius: 8px; padding: 12px; background-color: #f9f9f9;">
+          Results will appear here...
+        </div>
+
+        <form id="downloadForm" method="post" action="{% url 'download_solution_pdf' %}" class="mt-3">
+          {% csrf_token %}
+          <input type="hidden" name="question" id="pdfQuestion">
+          <input type="hidden" name="solution" id="pdfSolution">
+          <button type="submit" class="btn btn-outline-primary w-100">Download Solution</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- JS for Image Upload & PDF -->
+
+
+
+<!-- JS to auto-fill textarea on card click -->
+<script>
+  document.getElementById("solveImageBtn").addEventListener("click", async () => {
+    const fileInput = document.getElementById("imageInput");
+    if(!fileInput.files.length){ alert("Select an image."); return; }
+
+    const formData = new FormData();
+    formData.append("image", fileInput.files[0]);
+
+    const response = await fetch("{% url 'solve_image_api' %}", {
+        method: "POST",
+        body: formData,
+        headers: {'X-CSRFToken': '{{ csrf_token }}'}
+    });
+
+    const data = await response.json();
+    if(data.error){
+        document.getElementById("resultArea").innerText = data.error;
+    } else {
+        document.getElementById("userQuestion").value = data.question;
+        document.getElementById("resultArea").innerText = data.solution;
+    }
+});
+  // Update hidden fields before submitting
+  const downloadForm = document.getElementById("downloadForm");
+  const pdfQuestion = document.getElementById("pdfQuestion");
+  const pdfSolution = document.getElementById("pdfSolution");
+
+  downloadForm.addEventListener("submit", function(e){
+    pdfQuestion.value = document.getElementById("userQuestion").value;
+    pdfSolution.value = document.getElementById("resultArea").innerText;
+  });
+  document.addEventListener("DOMContentLoaded", function() {
+    const textarea = document.getElementById("userQuestion");
+    document.querySelectorAll('.default-question').forEach(card => {
+      card.addEventListener('click', function() {
+        const question = this.getAttribute('data-question');
+        if(textarea){
+          textarea.value = question;
+          textarea.focus(); // optional: focus for user convenience
+        }
+      });
+    });
+  });
+</script>
+
+
+
+<!-- Styles -->
+<style>
+  .text-darkblue { color: #1E3A8A; } /* Dark blue for title */
+  .text-gold { color: #B8860B; }     /* Gold for highlight */
+  .text-black { color: #000; }       /* Black for description */
+
+  .question-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .question-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  .solver-box {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  }
+
+  .solver-textarea {
+    height: 250px;
+    resize: none;
+    padding: 1rem;
+    border-radius: 0.8rem;
+  }
+
+  .result-area {
+    background: #f8f9fa;
+    min-height: 250px;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    overflow-y: auto;
+  }
+
+  @media (max-width: 768px) {
+    section { padding-top: 6rem; }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1rem; }
+  }
+</style>
+
+<!-- JavaScript -->
+<script>
+// Function to send question to server
+function solveCustom() {
+    const question = document.getElementById('userQuestion').value.trim();
+    if (!question) {
+        alert("Please enter a question!");
+        return;
+    }
+
+    const resultArea = document.getElementById('resultArea');
+    resultArea.innerHTML = "Solving...";
+
+    // Get CSRF token
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    fetch("/api/solve/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "X-CSRFToken": csrftoken,
+            "X-Requested-With": "XMLHttpRequest"
+        },
+        body: new URLSearchParams({
+            question: question
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        resultArea.innerHTML = data.steps;
+
+        // Add audio play button
+        if(data.audio_url){
+            let audioHTML = `<audio controls src="${data.audio_url}"></audio>`;
+            resultArea.innerHTML += `<br><br>${audioHTML}`;
+        }
+    })
+    .catch(err => {
+        resultArea.innerHTML = "Error: " + err;
+    });
+}
+
+// Optional: Download solution as PDF
+function downloadResult() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const resultText = document.getElementById('resultArea').innerText;
+    doc.text(resultText, 10, 10);
+    doc.save("solution.pdf");
+}
+
+</script>
+
+
+
+
+<footer id="footer" class="footer">
+
+  <style>
+    /* Remove underline from all <h4> headings */
+    footer h4 {
+      text-decoration: none !important;  /* Remove underline */
+      border-bottom: none !important;    /* Remove any border lines */
+      color: #000;                       /* Ensure text color is black */
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    /* Remove underline from links inside footer-links */
+    footer .footer-links a {
+      text-decoration: none !important;
+      color: #000;
+      transition: color 0.3s ease;
+    }
+    footer .footer-links a:hover {
+      color: #0d6efd; /* Bootstrap primary color on hover */
+      text-decoration: none;
+    }
+  </style>
+<!-- Who Can Benefit Section -->
+<section class="py-5" style="background-color: #ffffff; color: #000000;">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color: #b8860b;">Who Can Benefit from Our AI  Solver?</h2>
+    <p class="text-center mb-5">
+      Our AI-powered solver is designed to assist anyone looking to excel in mathematics,physis and chemistry from students tackling exams to educators creating engaging lessons. With intelligent step-by-step solutions, instant explanations, and problem scanning, users can save time, boost understanding, and achieve outstanding results.
+    </p>
+
+    <!-- Tabs for user types -->
+    <ul class="nav nav-pills justify-content-center mb-4" id="userTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="students-tab" data-bs-toggle="pill" data-bs-target="#students" type="button" role="tab">
+          <i class="bi bi-mortarboard-fill me-2"></i> Students
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="educators-tab" data-bs-toggle="pill" data-bs-target="#educators" type="button" role="tab">
+          <i class="bi bi-person-lines-fill me-2"></i> Educators
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="parents-tab" data-bs-toggle="pill" data-bs-target="#parents" type="button" role="tab">
+          <i class="bi bi-house-fill me-2"></i> Parents
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="lifelong-tab" data-bs-toggle="pill" data-bs-target="#lifelong" type="button" role="tab">
+          <i class="bi bi-lightbulb-fill me-2"></i> Lifelong Learners
+        </button>
+      </li>
+    </ul>
+
+    <!-- Tab content -->
+    <div class="tab-content" id="userTabsContent">
+      <!-- Students -->
+      <div class="tab-pane fade show active" id="students" role="tabpanel">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>
+            Students preparing for exams like WAEC, JAMB, SAT, or any academic level can instantly solve math problems with step-by-step explanations. Our AI ensures faster understanding, helps complete assignments efficiently, and provides additional practice questions to strengthen learning.
+          </p>
+          <p>
+            With our solver, students can focus on mastering concepts, improving problem-solving speed, and gaining confidence in mathematics, making exam preparation more effective and less stressful.
+          </p>
+        </div>
+      </div>
+
+      <!-- Educators -->
+      <div class="tab-pane fade" id="educators" role="tabpanel">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>
+            Teachers and tutors can create high-quality lesson plans, quizzes, and practice materials effortlessly. The AI solver helps demonstrate solutions clearly, saving time while providing accurate examples to enhance classroom learning and student engagement.
+          </p>
+          <p>
+            Educators can also use the platform to track student progress, design personalized exercises, and enrich teaching resources, ensuring a modern and interactive learning experience.
+          </p>
+        </div>
+      </div>
+
+      <!-- Parents -->
+      <div class="tab-pane fade" id="parents" role="tabpanel">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>
+            Parents assisting children with homework can leverage the AI solver to guide them through challenging problems. Instant solutions and explanations help parents support learning effectively, even without advanced math knowledge.
+          </p>
+          <p>
+            This empowers families to foster independent learning, boost confidence in mathematics, and ensure children stay on top of their studies.
+          </p>
+        </div>
+      </div>
+
+      <!-- Lifelong Learners -->
+      <div class="tab-pane fade" id="lifelong" role="tabpanel">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>
+            Lifelong learners exploring STEM or revisiting mathematics can use our AI platform to practice, solve advanced problems, and build strong analytical skills. The solver provides instant feedback and explanations to help learners progress at their own pace.
+          </p>
+          <p>
+            It’s perfect for personal growth, skill development, or preparing for certifications, making math learning accessible and engaging for users of all ages.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Custom CSS for hover effect -->
+<style>
+  .hover-shadow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+  #userTabs .nav-link.active {
+    background-color: #b8860b !important;
+    color: #ffffff !important;
+  }
+  #userTabs .nav-link {
+    color: #b8860b;
+  }
+</style>
+
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+<!-- How It Works / Demo Section -->
+<section class="py-5" style="background-color: #f8f9fa;">
+  <div class="container">
+    <h2 class="text-center mb-5">How It Works</h2>
+    <p class="text-center mb-5">
+      Our platform is designed to simplify learning and problem-solving. Follow these simple steps to experience the power of AI in generating accurate solutions efficiently.
+    </p>
+
+    <div class="row g-4 justify-content-center">
+
+      <!-- Step 1: Input -->
+      <div class="col-md-4">
+        <div class="card h-100 text-center shadow-sm hover-shadow">
+          <div class="card-body">
+            <div class="mb-3">
+              <i class="bi bi-pencil-square" style="font-size: 3rem; color: #0d6efd;"></i>
+            </div>
+            <h5 class="card-title mb-3">Step 1: Input Your Problem</h5>
+            <p class="card-text">
+              Enter your problem manually or scan it using your device camera. Our AI instantly detects the content and prepares it for processing. This flexible input method ensures you can start learning without any technical hurdles.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: AI Solves -->
+      <div class="col-md-4">
+        <div class="card h-100 text-center shadow-sm hover-shadow">
+          <div class="card-body">
+            <div class="mb-3">
+              <i class="bi bi-robot" style="font-size: 3rem; color: #0d6efd;"></i>
+            </div>
+            <h5 class="card-title mb-3">Step 2: AI Solves Step-by-Step</h5>
+            <p class="card-text">
+              Our advanced AI analyzes your problem and generates a step-by-step solution. Each explanation is clear, structured, and easy to follow, helping you understand the concepts behind the answer while building confidence in your learning.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Optional Voice / Download -->
+      <div class="col-md-4">
+        <div class="card h-100 text-center shadow-sm hover-shadow">
+          <div class="card-body">
+            <div class="mb-3">
+              <i class="bi bi-file-earmark-arrow-down" style="font-size: 3rem; color: #0d6efd;"></i>
+            </div>
+            <h5 class="card-title mb-3">Step 3: Voice or Download</h5>
+            <p class="card-text">
+              Listen to an optional voice explanation or download the complete solution in PDF format. This feature allows you to review the solution at your own pace, share it with peers, or save it for future reference.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Custom hover shadow effect -->
+<style>
+  .hover-shadow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hover-shadow:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  }
+</style>
+<!-- AI Solver Testimonial Section -->
+<section class="testimonial-section container py-5">
+  <div class="row align-items-center">
+    <!-- Textual Testimonials -->
+    <div class="col-md-6">
+      <h1 class="mb-3">What <strong>users</strong> are <strong>saying about AI Solver.</strong></h1>
+      <p class="text-muted">(Top Stories)</p>
+
+      <div class="testimonial-card mb-3 p-3 border rounded shadow-sm">
+        <div class="testimonial-number fw-bold mb-2" style="color: #b8860b;">01</div>
+        <p>"AI Solver has transformed how I handle math problems. It’s fast, accurate, and gives clear step-by-step solutions I can trust."</p>
+      </div>
+
+      <div class="testimonial-card mb-3 p-3 border rounded shadow-sm">
+        <div class="testimonial-number fw-bold mb-2" style="color: #b8860b;">02</div>
+        <p>"I love how AI Solver adapts to any topic. It feels like having a professional tutor available 24/7 for every math challenge."</p>
+      </div>
+
+      <div class="testimonial-card mb-3 p-3 border rounded shadow-sm">
+        <div class="testimonial-number fw-bold mb-2" style="color: #b8860b;">03</div>
+        <p>"Using AI Solver has saved me hours of studying. The explanations are easy to follow, human-like, and extremely detailed."</p>
+      </div>
+
+      <div class="testimonial-card mb-3 p-3 border rounded shadow-sm">
+        <div class="testimonial-number fw-bold mb-2" style="color: #b8860b;">04</div>
+        <p>"AI Solver not only solves problems but also helps me understand the logic behind them. It’s my go-to tool for learning and exam prep."</p>
+      </div>
+    </div>
+
+    <!-- Testimonial Image -->
+    <div class="col-md-6 testimonial-image text-center">
+      <img src="{% static 'assets/img/gettyimages-170622518-612x612-fotor-bg-remover-20250823111819.png' %}" class="img-fluid rounded" alt="Happy student using AI Solver">
+    </div>
+  </div>
+</section>
+
+<!-- Custom CSS -->
+<style>
+  .testimonial-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f8f9fa;
+  }
+  .testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(184, 134, 11, 0.3);
+  }
+  .testimonial-number {
+    font-size: 1.5rem;
+  }
+</style>
+
+
+<!-- Newsletter Section (keep this as-is above footer) -->
+<div class="footer-newsletter">
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-6">
+        <h4>Join Our Newsletter</h4>
+        <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+        <form action="forms/newsletter.php" method="post" class="php-email-form">
+          <div class="newsletter-form d-flex flex-column flex-sm-row gap-2">
+            <input type="email" name="email" class="form-control" placeholder="Your email address" required>
+            <input type="submit" value="Subscribe" class="btn btn-primary px-4">
+          </div>
+          <div class="loading mt-2">Loading</div>
+          <div class="error-message text-danger mt-2"></div>
+          <div class="sent-message text-success mt-2">Your subscription request has been sent. Thank you!</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Footer -->
+<footer class="footer bg-light pt-5">
+  <div class="container footer-top py-5">
+    <div class="row gy-4">
+      <!-- About -->
+      <div class="col-lg-4 col-md-6 footer-about text-center">
+  <!-- Section Title -->
+  <h3 style="color: #003366; font-weight: 700; font-size: 1.5rem; margin-bottom: 20px;">
+    About the Founder
+  </h3>
+
+  
+<!-- Circle Image -->
+<div class="mb-3" style="width: 150px; height: 150px; margin: 0 auto; border: 4px solid #003366; border-radius: 50%; overflow: hidden;">
+  <img src="{% static 'assets/img/IMG_2474.JPG' %}" 
+       alt="Founder" 
+       style="width: 100%; height: 100%; object-fit: cover;">
+</div>
+
+
+
+  <!-- Description -->
+  <p style="margin-top: 15px; font-size: 1rem; line-height: 1.6;">
+    EduPrompt was founded by Eze Prosper somtochukwu, a software developer passionate about education technology. 
+    He created this platform to provide students with AI-powered tools that make learning smarter, faster, and more accessible.
+  </p>
+</div>
+
+
+      <!-- Useful Links -->
+      <div class="col-lg-2 col-md-3 footer-links">
+        <h4 class="fw-semibold mb-3">Useful Links</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="{% url 'index' %}" class="text-dark text-decoration-none link-hover-underline">Home</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="/about/" class="text-dark text-decoration-none link-hover-underline">About Us</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="/privacy_policy/" class="text-dark text-decoration-none link-hover-underline">Privacy Policy</a>
+          </li>
+          <li>
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="/Terms_and_Condition" class="text-dark text-decoration-none link-hover-underline">Terms &amp; Conditions</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Our Services -->
+      <div class="col-lg-2 col-md-3 footer-links">
+        <h4 class="fw-semibold mb-3">Our Services</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Web Design</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Web Development</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Product Management</a>
+          </li>
+          <li>
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Marketing</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Follow Us -->
+      <div class="col-lg-4 col-md-12">
+        <h4 class="fw-semibold mb-3">Follow Us</h4>
+        <p class="text-muted mb-3">Follow us on all our social media platforms</p>
+        <div class="social-links d-flex gap-3 fs-4">
+          <a href="#" class="text-primary social-hover"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-primary social-hover"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-primary social-hover"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-primary social-hover"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="container text-center py-3 border-top">
+    <p class="mb-0 text-muted small">
+      © <strong class="text-primary sitename">EduPrompt</strong> All Rights Reserved.
+    </p>
+    <p class="mb-0 small">
+      Designed by <a href="https://bootstrapmade.com/" target="_blank" class="text-decoration-none">BootstrapMade</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  /* Hover underline for footer links */
+  .link-hover-underline:hover {
+    text-decoration: underline;
+    color: #003366 !important;
+  }
+
+  /* Social icon hover effect */
+  .social-hover:hover {
+    color: #0056b3 !important;
+  }
+
+  /* Make newsletter inputs full width on mobile */
+  @media (max-width: 576px) {
+    .newsletter-form input[type="email"],
+    .newsletter-form input[type="submit"] {
+      width: 100% !important;
+      margin-bottom: 0.5rem;
+    }
+  }
+</style>
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+
+
+

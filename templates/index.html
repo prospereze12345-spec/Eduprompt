@@ -1,0 +1,1677 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - FlexStart Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" rel="icon">
+  <link href="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="{% static 'https://fonts.googleapis.com' %}" rel="preconnect">
+  <link href="{% static 'https://fonts.gstatic.com' %}" rel="preconnect" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="{% static 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap' %}" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css" rel="stylesheet' %}">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+
+
+  <style>
+  .faq-section {
+    text-align: center; /* Center all content */
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    max-width: 700px;
+    margin: 0 auto; /* Center the FAQ box itself */
+    text-align: left; /* Keep answer and question aligned left inside centered block */
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600; /* Make it bold */
+    font-size: 1.1rem;
+  }
+
+  .faq-question h5 {
+    margin: 0;
+    font-weight: 700; /* Bold text */
+  }
+
+  .faq-answer {
+    display: none;
+    padding-top: 10px;
+    color: #444;
+    font-size: 1rem;
+  }
+
+  .faq-item.active .faq-answer {
+    display: block;
+  }
+
+  .faq-toggle {
+    font-size: 1.2rem;
+    color: #666;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.active .faq-toggle {
+    transform: rotate(180deg);
+  }
+
+  /* Remove underline and border line from all links inside navmenu */
+#navmenu a {
+  text-decoration: none !important; /* no underline */
+  border: none !important;           /* no border */
+  box-shadow: none !important;       /* remove any shadow */
+  outline: none !important;          /* remove outline */
+  color: inherit;                    /* keep inherited color */
+  transition: color 0.3s ease;       /* optional smooth hover color */
+}
+
+/* Remove any border or underline on hover/focus */
+#navmenu a:hover,
+#navmenu a:focus {
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #007bff; /* Optional: set your hover color */
+}
+
+/* Remove any border or underline on sitename if any */
+.sitename {
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+/* Base button style */
+.btn-getstarted {
+  background-color: #28a745; /* Bootstrap green or your custom green */
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.3rem;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+/* Remove white line / underline on hover or focus */
+.btn-getstarted:hover,
+.btn-getstarted:focus {
+  background-color: #218838; /* darker green on hover */
+  color: white;
+  text-decoration: none;     /* removes underline */
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-nav .nav-link.dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+  .navbar-nav .nav-link.dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem; /* space between emoji and text */
+  }
+  /* Dark blue variables */
+  :root {
+    --eduprompt-blue: #003366; /* Dark blue shade */
+  }
+
+  /* Sitename color */
+  .sitename {
+    color: var(--eduprompt-blue) !important;
+    font-weight: bold;
+  }
+
+  /* Dashboard icon color */
+  .nav-link i.bi-person-fill {
+    color: var(--eduprompt-blue);
+    transition: color 0.3s ease;
+  }
+
+  /* All nav-links hover effect */
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:focus,
+  .dropdown-menu .dropdown-item:hover {
+    color: var(--eduprompt-blue) !important;
+  }
+
+  /* Optional: Get Started button hover stays nice */
+  .btn-success:hover {
+    background-color: var(--eduprompt-blue);
+    border-color: var(--eduprompt-blue);
+  }
+
+
+</style>
+
+
+
+
+
+  
+  <!-- =======================================================
+  * Template Name: FlexStart
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Updated: Nov 01 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+<header id="header" class="header fixed-top bg-white shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-light container-xl">
+    
+    <!-- Logo + Sitename -->
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+    <img src="{% static 'assets\img\logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height:50px;">
+
+      <span class="ms-2 fw-bold sitename">Eduprompt</span>
+    </a>
+
+    <!-- Mobile toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu items -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li><a class="dropdown-item" href="/ai-solver/">{% trans "AI Solver" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/essay/">{% trans "Essay Generator" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/note/">{% trans "Note Generator" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/letter-writer/">{% trans "Letter Writer" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.html">{% trans "Blog" %}</a></li>
+
+        <!-- Tools Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{% trans "Tools" %}</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/project-writer/">{% trans "Project Writer" %}</a></li>
+            <li><a class="dropdown-item" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
+
+{% if user.is_authenticated %}
+    <li class="nav-item ms-lg-3">
+        <a class="nav-link" href="{% url 'dashboard' %}">
+            <i class="bi bi-person-fill fs-5"></i>
+        </a>
+    </li>
+{% else %}
+    <li class="nav-item ms-lg-3">
+        <a class="btn btn-success btn-sm" href="{% url 'register' %}">{% trans "Get Started" %}</a>
+    </li>
+    <li class="nav-item ms-lg-3">
+        <a class="btn btn-success btn-sm" href="{% url 'login' %}">{% trans "Login" %}</a>
+    </li>
+{% endif %}
+
+
+
+
+        <!-- Language Selector -->
+        <select name="language" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 120px; font-size: 0.85rem;">
+    {% for code, name in AFRICAN_LANGUAGES %}
+      <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
+    {% endfor %}
+</select>
+<input type="hidden" name="next" value="{{ request.get_full_path }}">
+
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+<!-- Bootstrap CSS & Bootstrap Icons CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+<style>
+  /* Section background white */
+  #contact {
+    background-color: white;
+    color: black;
+    padding: 50px 15px;
+  }
+
+  /* Section Title: Centered */
+  #contact .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  #contact .section-title h2 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #0d3b66; /* dark blue */
+  }
+  #contact .section-title p {
+    font-size: 1.25rem;
+    color: #555;
+  }
+
+  /* Info Items and Form Container background gray */
+  .info-item,
+  .contact-form {
+    background: #f7f7f7;
+    padding: 20px 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.05);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .info-item i {
+    font-size: 2rem;
+    color: #0d3b66; /* dark blue icons */
+    flex-shrink: 0;
+  }
+  .info-item h3 {
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+    color: #0d3b66;
+  }
+  .info-item p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: black;
+  }
+  .info-item img.flag-icon {
+    width: 25px;
+    height: auto;
+    margin-left: 8px;
+    border-radius: 3px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  }
+
+  /* Contact Form inputs */
+  .contact-form input,
+  .contact-form textarea {
+    border: 1.5px solid #0d3b66;
+    border-radius: 6px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+    background-color: white;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: #054a91;
+    box-shadow: 0 0 6px #054a91;
+  }
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  .contact-form button {
+    background-color: #0d3b66;
+    color: white;
+    font-weight: 600;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .contact-form button:hover {
+    background-color: #054a91;
+  }
+
+  /* Success & error messages */
+  .alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-radius: 6px;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #c3e6cb;
+  }
+  .alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-radius: 6px;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #f5c6cb;
+  }
+
+  /* Responsive */
+  @media (max-width: 767px) {
+    #contact .info-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .info-item i {
+      font-size: 2.5rem;
+    }
+
+    #contact {
+  background-color: white;
+  color: black;
+  padding: 80px 15px 50px 15px; /* increased top padding */
+  margin-top: 0;
+}
+
+  }
+</style>
+
+  <main class="main">
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% trans "Bootstrap Center with Animation" %}</title>
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    /* Full height container and flex center */
+    .vh-100 {
+      height: 100vh !important;
+    }
+
+    .typing-animation {
+      overflow: hidden; /* ensures the text is hidden at first */
+      white-space: nowrap;
+      border-right: .15em solid white; /* caret */
+      width: 0;
+      animation: typing 3.5s steps(40, end) forwards, blink-caret .75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      0%, 100% { border-color: transparent }
+      50% { border-color: white }
+    }
+  </style>
+</head>
+<body>
+
+<style>
+  /* Mobile-friendly font sizes and padding */
+  @media (max-width: 400px) {
+    .typing-animation {
+      font-size: 1.3rem !important;
+    }
+    p {
+      font-size: 1.0rem !important;
+      max-width: 90% !important;
+    }
+    .container {
+      padding-top: 150px !important;       /* reduce top padding */
+      padding-bottom: 40px !important;
+      justify-content: flex-start !important; /* remove vertical centering */
+      height: auto !important;            /* allow container to grow */
+    }
+  }
+</style>
+
+<div class="container d-flex flex-column justify-content-center align-items-center text-center px-3" style="padding-top: 150px; background-color: #ffffff;">
+  
+
+  <a href="/" style="text-decoration: none;">
+  <div class="mb-3 p-2 rounded" style="background-color: #e6f7ff; display: inline-flex; align-items: center; gap: 8px; border: 1px solid #b3e0ff;">
+    <span style="font-weight: bold; color: #2d862d;">New!</span>
+    <span>Empowering Your Business with Expert Website Development. Unlock Your Business Potential Online</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M10.146 4.146a.5.5 0 0 1 .708 0L14 7.293l-.707.707L11 5.707V14.5a.5.5 0 0 1-1 0V5.707L8.707 8l-.708-.707L10.146 4.146z"/>
+    </svg>
+  </div>
+</a>
+
+
+  <!-- Main Header -->
+  <h1 class="fw-bold mt-3">
+    {% trans "Empower Your Learning with Smart AI Tools" %}
+  </h1>
+
+  <!-- Subtext -->
+  <p class="mt-3 mx-auto" style="max-width: 600px; color: black; font-size: 1.5rem; line-height: 1.6;">
+    {% trans "Support your studies with AI tools that help you write, solve problems, and understand lessons—at your own pace and in your language. Built for African students, our platform makes learning easier, flexible, and accessible." %}
+  </p>
+
+  <!-- Call-to-Action Buttons -->
+  <div class="mt-4 d-flex gap-3 flex-wrap justify-content-center">
+  <!-- Go Pro Button -->
+  <a href="#go-pro" class="btn btn-warning btn-lg d-flex align-items-center" style="color: #fff; font-weight: 600;">
+    <i class="fas fa-crown me-2" style="color: gold;"></i> Go Pro
+  </a>
+
+  <!-- Secondary CTA -->
+  <a href="#features" class="btn btn-outline-secondary btn-lg">Explore Features</a>
+</div>
+
+
+</div>
+
+
+
+<!-- Bootstrap JS Bundle (optional if you need Bootstrap JS components) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+<section class="project-animation" style="padding-top: 8rem; padding-bottom: 8rem; background-color: white;">
+  <div class="text-center" style="width: 100vw; margin: 0;">
+    <img src="{% static 'assets/img/Famuhers (1).png' %}" 
+         alt="homepage animation" 
+         class="img-fluid" 
+         style="width: 90%; max-width: 90%; height: auto;">
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- Values Section -->
+<section id="values" class="values section" style="background-color: #ffffff;">
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>{% trans "Our Values" %}</h2>
+    <h6>
+      <p>
+        {% trans "At EduPrompt, students come first. Our AI study assistant is built to help learners grow, understand concepts faster, and feel more confident on their learning journey." %}
+      </p>
+    </h6>
+  </div><!-- End Section Title -->
+
+  <div class="container">
+    <div class="row gy-4">
+
+      <!-- Understanding -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="card h-100 text-center p-3">
+          <h3>{% trans "Clear Understanding" %}</h3>
+          <p>
+            {% trans "We make learning simple. Our AI explains ideas step by step, helping students of all ages grasp concepts easily and confidently." %}
+          </p>
+        </div>
+      </div>
+
+      <!-- Equal Chances -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="card h-100 text-center p-3">
+          <h3>{% trans "Equal Opportunities" %}</h3>
+          <p>
+            {% trans "Every student deserves the chance to succeed. Our AI assistant provides consistent support, no matter where you study or what resources you have." %}
+          </p>
+        </div>
+      </div>
+
+      <!-- Learning at Your Own Speed -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="card h-100 text-center p-3">
+          <h3>{% trans "Learn at Your Own Pace" %}</h3>
+          <p>
+            {% trans "Everyone learns differently. Our AI study assistant adapts to your speed, making learning personalized, comfortable, and effective." %}
+          </p>
+        </div>
+      </div>
+
+      <!-- Fun and Easy Learning -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="card h-100 text-center p-3">
+          <h3>{% trans "Engaging & Enjoyable" %}</h3>
+          <p>
+            {% trans "Learning should be interesting, not stressful. Our AI tools make studying fun, interactive, and easy to follow." %}
+          </p>
+        </div>
+      </div>
+
+      <!-- Respect and Care -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="500">
+        <div class="card h-100 text-center p-3">
+          <h3>{% trans "Respect & Support" %}</h3>
+          <p>
+            {% trans "We value every student. Whether young or adult, our AI assistant ensures a safe, welcoming, and supportive learning experience." %}
+          </p>
+        </div>
+      </div>
+
+      <!-- Growing Together -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="600">
+        <div class="card h-100 text-center p-3">
+          <h3>{% trans "Learning & Growing Together" %}</h3>
+          <p>
+            {% trans "We constantly improve. By listening to feedback and learning from our students, we grow together, step by step, making our AI assistant smarter and more helpful." %}
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section><!-- /Values Section -->
+
+
+<!-- Stats Section -->
+<section id="stats" class="stats section py-5" style="background-color: #ffffff;">
+  <div class="container" data-aos="fade-up">
+
+    <div class="row g-4 text-center">
+
+<!-- Student Success Stats -->
+<div class="col-lg-3 col-md-6 col-sm-12">
+  <div class="stats-item d-flex flex-column align-items-center justify-content-center p-4 rounded-4 shadow-sm" style="background: linear-gradient(135deg, #e0f7fa, #e8f0fe);">
+    <i class="bi bi-mortarboard fs-1 mb-2 text-primary"></i>
+    <span data-purecounter-start="0" data-purecounter-end="1200" data-purecounter-duration="1.5" class="purecounter fs-3 fw-bold text-dark"></span>
+    <p class="text-muted mt-1 text-center">Students Achieving Success</p>
+  </div>
+</div>
+
+
+<!-- Content Generated -->
+<div class="col-lg-3 col-md-6 col-sm-12">
+  <div class="stats-item d-flex flex-column align-items-center justify-content-center p-4 rounded-4 shadow-sm" style="background: linear-gradient(135deg, #fff7ed, #ffe6c9);">
+    <i class="bi bi-file-earmark-text fs-1 mb-2 text-warning"></i>
+    <span data-purecounter-start="0" data-purecounter-end="1520" data-purecounter-duration="1.5" class="purecounter fs-3 fw-bold text-dark"></span>
+    <p class="text-muted mt-1 text-center">Content Generated</p>
+  </div>
+</div>
+
+
+      <!-- Hours of AI Assistance -->
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="stats-item d-flex flex-column align-items-center justify-content-center p-4 rounded-4 shadow-sm" style="background: #e6f7f0;">
+          <i class="bi bi-clock fs-1 mb-2 text-success"></i>
+          <span data-purecounter-start="0" data-purecounter-end="10000 " data-purecounter-duration="1" class="purecounter fs-3 fw-bold text-dark"></span>
+          <p class="text-muted mt-1">Hours of AI Assistance</p>
+        </div>
+      </div>
+
+      <!-- AI Tools Available -->
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="stats-item d-flex flex-column align-items-center justify-content-center p-4 rounded-4 shadow-sm" style="background: #fdf0f5;">
+          <i class="bi bi-robot fs-1 mb-2 text-danger"></i>
+          <span data-purecounter-start="0" data-purecounter-end="6" data-purecounter-duration="1" class="purecounter fs-3 fw-bold text-dark"></span>
+          <p class="text-muted mt-1">AI Tools Available</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Optional Hover / Shadow Effects -->
+<style>
+.stats-item {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.stats-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+@media (max-width: 768px) {
+  .stats-item {
+    padding: 2rem 1rem;
+  }
+}
+</style>
+
+
+    <!-- Features Section -->
+    <section id="features" class="features section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>{% trans "Features" %}</h2>
+        <p>{% trans "Our Features" %}<br></p>
+      </div><!-- End Section Title -->
+
+
+
+
+<!-- Features Section -->
+<section id="features" class="features py-5" style="background-color: #ffffff;">
+  <div class="container" data-aos="fade-up">
+    <div class="row g-4">
+
+      <!-- Note Generator -->
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card text-center p-4 rounded-4 feature-card" style="background: linear-gradient(135deg,#6a11cb,#2575fc); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; position:relative;">
+          <i class="bi bi-journal-text fs-1 mb-3 text-white"></i>
+          <h5 class="fw-bold text-white">Note Generator</h5>
+          <p class="text-light">Create detailed notes from your topics quickly and easily.</p>
+          <a href="/note/" class="feature-arrow fw-bold fs-4 text-white text-decoration-none">→</a>
+        </div>
+      </div>
+
+      <!-- Essay Generator -->
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card text-center p-4 rounded-4 feature-card" style="background: linear-gradient(135deg,#f2994a,#f2c94c); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; position:relative;">
+          <i class="bi bi-pencil-square fs-1 mb-3 text-white"></i>
+          <h5 class="fw-bold text-white">Essay Generator</h5>
+          <p class="text-light">Generate well-structured essays with AI guidance.</p>
+          <a href="/essay/" class="feature-arrow fw-bold fs-4 text-white text-decoration-none">→</a>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card text-center p-4 rounded-4 feature-card" style="background: linear-gradient(135deg,#56ab2f,#a8e063); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; position:relative;">
+          <i class="bi bi-file-earmark-text fs-1 mb-3 text-white"></i>
+          <h5 class="fw-bold text-white">letter writer </h5>
+          <p class="text-light">      Generate professional letters instantly. 
+            Save time and create polished content for any purpose.
+</p>
+          <a href="/letter-writer/" class="feature-arrow fw-bold fs-4 text-white text-decoration-none">→</a>
+        </div>
+      </div>
+
+     
+
+      <!-- Scholarship Finder -->
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card text-center p-4 rounded-4 feature-card" style="background: linear-gradient(135deg,#2c3e50,#4ca1af); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; position:relative;">
+          <i class="bi bi-trophy fs-1 mb-3 text-white"></i>
+          <h5 class="fw-bold text-white">Scholarship Finder</h5>
+          <p class="text-light">Discover scholarships suited to your profile and needs.</p>
+          <a href="/scholarship-finder/" class="feature-arrow fw-bold fs-4 text-white text-decoration-none">→</a>
+        </div>
+      </div>
+
+      <!-- r -->
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card text-center p-4 rounded-4 feature-card" style="background: linear-gradient(135deg,#42275a,#734b6d); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; position:relative;">
+          <i class="bi bi-calculator fs-1 mb-3 text-white"></i>
+          <h5 class="fw-bold text-white">AI Solver</h5>
+          <p class="text-light">Solve equations, formulas, and problems with step-by-step help.</p>
+          <a href="/ai-solver/" class="feature-arrow fw-bold fs-4 text-white text-decoration-none">→</a>
+        </div>
+      </div>
+
+      <!-- Project Writer Pro -->
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card text-center p-4 rounded-4 feature-card feature-pro" style="background: linear-gradient(135deg,#ff416c,#ff4b2b); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; position:relative;">
+          <i class="bi bi-journal-check fs-1 mb-3 text-white"></i>
+          <div class="pro-label position-absolute top-0 end-0 m-2 px-2 py-1 bg-dark text-white rounded">PRO</div>
+          <h5 class="fw-bold text-white">Project Writer</h5>
+          <p class="text-light">Get AI assistance for writing reports and projects efficiently.</p>
+          <a href="/project-writer/" class="feature-arrow fw-bold fs-4 text-white text-decoration-none">→</a>
+        </div>
+      </div>
+
+      <!-- Grammar Checker Pro -->
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card text-center p-4 rounded-4 feature-card feature-pro" style="background: linear-gradient(135deg,#0f2027,#2c5364); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; position:relative; color:white;">
+          <i class="bi bi-pen fs-1 mb-3 text-white"></i>
+          <div class="pro-label position-absolute top-0 end-0 m-2 px-2 py-1 bg-warning text-dark rounded">PRO</div>
+          <h5 class="fw-bold text-white">Grammar Checker</h5>
+          <p class="text-light">Improve your writing by checking grammar, punctuation, and style.</p>
+          <a href="/note-generator/" class="feature-arrow fw-bold fs-4 text-white text-decoration-none">→</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Hover effects -->
+<style>
+.feature-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+.feature-card:hover .feature-arrow {
+  transform: translateX(6px);
+}
+.feature-pro .pro-label {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.feature-pro:hover .pro-label {
+  opacity: 1;
+}
+@media (max-width: 768px) {
+  .feature-card {
+    padding: 3rem 1.5rem;
+  }
+}
+</style>
+
+
+<!-- Alt Features Section -->
+<div class="container section-title" data-aos="fade-up">
+  <h2>{% trans "Why our platform" %}</h2>
+  <p>{% trans "Why Students Choose Us" %}</p>
+</div>
+
+<section id="alt-features" class="alt-features section">
+  <div class="container">
+    <div class="row gy-5">
+
+      <!-- Features List -->
+      <div class="col-xl-7 d-flex order-2 order-xl-1" data-aos="fade-up" data-aos-delay="200">
+        <div class="row align-self-center gy-5">
+
+          <div class="col-md-6 icon-box">
+            <i class="bi bi-cpu"></i>
+            <div>
+              <h4>{% trans "AI-Powered Learning Tools" %}</h4>
+              <p>{% trans "Boost your study efficiency with intelligent tools that simplify note-taking, assignments, and exam prep." %}</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 icon-box">
+            <i class="bi bi-journal-text"></i>
+            <div>
+              <h4>{% trans "Essay & Assignment Writer" %}</h4>
+              <p>{% trans "Generate high-quality, well-structured essays and assignments in minutes with AI assistance." %}</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 icon-box">
+            <i class="bi bi-people"></i>
+            <div>
+              <h4>{% trans "Collaborative Study Assistant" %}</h4>
+              <p>{% trans "Work smarter with features that help you collaborate, organize group projects, and share notes effectively." %}</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 icon-box">
+            <i class="bi bi-translate"></i>
+            <div>
+              <h4>{% trans "Multilingual Support" %}</h4>
+              <p>{% trans "Learn in the language you’re comfortable with — English, Swahili, Igbo, Yoruba, and more." %}</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 icon-box">
+            <i class="bi bi-lightbulb"></i>
+            <div>
+              <h4>{% trans "Homework Assistant" %}</h4>
+              <p>{% trans "Solve problems quickly across subjects with AI guidance, keeping your work original and clear." %}</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 icon-box">
+            <i class="bi bi-shield-check"></i>
+            <div>
+              <h4>{% trans "Plagiarism & Originality Tools" %}</h4>
+              <p>{% trans "Ensure every essay, note, or assignment is original and ready for school submission." %}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="col-xl-5 d-flex align-items-center order-1 order-xl-2" data-aos="fade-up" data-aos-delay="100">
+        <img src="{% static 'assets/img/ai assitant.PNG' %}" class="img-fluid" alt="AI study assistant">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>{% trans "Pricing" %}</h2>
+        <p>{% trans "Check Our Affordable Pricing" %}<br></p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+            <div class="pricing-tem">
+              <h3 style="color: indigo;">{% trans "Weekly Plan" %}</h3>
+              <div class="price"><sup>$</sup>0<span> / week</span></div>
+              <div class="icon">
+                <i class="bi bi-box" style="color:indigo;"></i>
+              </div>
+              <ul>
+                <li>{% trans "Aida dere" %}</li>
+                <li>{% trans "Nec feugiat nisl" %}</li>
+                <li>{% trans "Nulla at volutpat dola" %}</li>
+                <li class="na">{% trans "Pharetra massa" %}</li>
+                <li class="na">{% trans "Massa ultricies mi" %}</li>
+              </ul>
+              <a href="#" class="btn-buy" style="background-color: indigo; color: white;">{% trans "Subscribe" %}</a>
+
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+            <div class="pricing-tem">
+              <h3 style="color: green;">{% trans "Monthly Plan" %}</h3>
+              <div class="price"><sup>$</sup>19<span>{% trans " / mo" %}</span></div>
+              <div class="icon">
+                <i class="bi bi-send" style="color: green;"></i>
+              </div>
+              <ul>
+                <li>{% trans "Aida dere" %}</li>
+                <li>{% trans "Nec feugiat nisl" %}</li>
+                <li>{% trans "Nulla at volutpat dola" %}</li>
+                <li>{% trans "Pharetra massa" %}</li>
+                <li class="na">{% trans "Massa ultricies mi" %}</li>
+              </ul>
+              <a href="#" class="btn-buy" style="background-color: green; color: white;">{% trans "Subscribe" %}</a>
+
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+            <div class="pricing-tem">
+              <h3 style="color: red;">{% trans "Quarterly Plan" %}<br>{% trans "(6 months)" %}</br></h3>
+              <div class="price"><sup>$</sup>{% trans "29" %}<span> {% trans "/ Quarter" %}</span></div>
+              <div class="icon">
+                <i class="bi bi-airplane" style="color: red;"></i>
+              </div>
+              <ul>
+                <li>{% trans "Aida dere" %}</li>
+                <li>{% trans "Nec feugiat nisl" %}</li>
+                <li>{% trans "Nulla at volutpat dola" %}</li>
+                <li>{% trans "Pharetra massa" %}</li>
+                <li>{% trans "Massa ultricies mi" %}</li>
+              </ul>
+              <a href="#" class="btn-buy" style="background-color: red; color: white;">{% trans "Subscribe" %}</a>
+
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+            <div class="pricing-tem">
+              <h3 style="color: goldenrod;">{% trans "Yearly Plan" %}</h3>
+              <div class="price"><sup>$</sup>{% trans "49" %}<span>{% trans " / year" %}</span></div>
+              <div class="icon">
+                <i class="bi bi-rocket" style="color: goldenrod;"></i>
+              </div>
+              <ul>
+                <li>{% trans "Aida dere" %}</li>
+                <li>{% trans "Nec feugiat nisl" %}</li>
+                <li>{% trans "Nulla at volutpat dola" %}</li>
+                <li>{% trans "Pharetra massa" %}</li>
+                <li>{% trans "Massa ultricies mi" %}</li>
+              </ul>
+             <a href="#" class="btn-buy" style="background-color: goldenrod; color: white;">{% trans "Subscribe" %}</a>
+            </div>
+          </div><!-- End Pricing Item -->
+
+        </div><!-- End pricing row -->
+
+      </div>
+
+    </section><!-- /Pricing Section -->
+
+    <!-- Faq Section -->
+
+  
+
+  <style>
+    .faq-answer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s ease;
+      display: block;
+    }
+    .faq-question h5 {
+      font-weight: 600;
+    }
+    .faq-question i {
+      transition: transform 0.3s ease;
+    }
+  </style>
+</section>
+
+<!-- FAQ Section End -->
+
+
+<!-- FAQ Section End -->
+
+
+            </div>
+
+          </div><!-- End Faq Column-->
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+<!-- Who Can Use Section -->
+<section class="py-5" style="background-color: #ffffff; color: #000000;">
+  <div class="container">
+    <h2 class="text-center mb-4">Who Can Benefit from Our AI EdTech Platform?</h2>
+    <p class="text-center mb-5">
+      Our cutting-edge AI-powered EdTech platform is designed to support a wide variety of users, including students, educators, professionals, and researchers. By combining intelligent automation with easy-to-use tools, our platform enables users to save time, enhance productivity, and achieve high-quality outcomes across educational and professional projects.
+    </p>
+
+    <!-- Tabs for user types -->
+    <ul class="nav nav-pills justify-content-center mb-4" id="userTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="students-tab" data-bs-toggle="pill" data-bs-target="#students" type="button" role="tab">
+          <i class="bi bi-mortarboard-fill me-2"></i> Students
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="educators-tab" data-bs-toggle="pill" data-bs-target="#educators" type="button" role="tab">
+          <i class="bi bi-person-lines-fill me-2"></i> Educators
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="professionals-tab" data-bs-toggle="pill" data-bs-target="#professionals" type="button" role="tab">
+          <i class="bi bi-briefcase-fill me-2"></i> Professionals
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="researchers-tab" data-bs-toggle="pill" data-bs-target="#researchers" type="button" role="tab">
+          <i class="bi bi-bar-chart-line-fill me-2"></i> Researchers
+        </button>
+      </li>
+    </ul>
+
+    <!-- Tab content -->
+    <div class="tab-content" id="userTabsContent">
+      <!-- Students -->
+      <div class="tab-pane fade show active" id="students" role="tabpanel">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>
+            Students can leverage our AI-driven tools to generate comprehensive study guides, detailed assignments, and engaging practice materials that enhance learning outcomes. By using our platform, learners can save significant time on repetitive tasks, focus on understanding core concepts, and ensure all content is original and plagiarism-free. The platform also encourages independent study, collaborative learning, and better exam preparation, making it an indispensable resource for academic success at every level.
+          </p>
+          <p>
+            Beyond academic tasks, students can also use our AI to explore creative writing, summarize large volumes of text, and even get guided assistance for research projects. This helps build critical thinking, research skills, and a habit of effective knowledge management, preparing them for higher education and professional challenges.
+          </p>
+        </div>
+      </div>
+
+      <!-- Educators -->
+      <div class="tab-pane fade" id="educators" role="tabpanel">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>
+            Educators can harness our platform to efficiently design lesson plans, develop quizzes, and create high-quality teaching resources tailored to diverse student needs. By automating content creation, teachers save valuable time that can be invested in personalized instruction, student mentorship, and curriculum development. This leads to improved classroom engagement and better learning outcomes for students.
+          </p>
+          <p>
+            Additionally, the platform supports professional development by enabling educators to produce research-backed teaching materials, track student performance, and provide data-driven feedback. Whether for in-person classrooms, online learning, or hybrid models, our tools help educators maintain high educational standards with minimal administrative effort.
+          </p>
+        </div>
+      </div>
+
+      <!-- Professionals -->
+      <div class="tab-pane fade" id="professionals" role="tabpanel">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>
+            Professionals seeking to improve productivity, streamline workflows, or produce high-quality business documents will find immense value in our AI platform. From generating detailed reports and presentations to drafting proposals and strategic plans, the tools ensure content is precise, professional, and impactful. This allows professionals to focus on decision-making, strategy, and innovation while minimizing time spent on routine document creation.
+          </p>
+          <p>
+            The platform also supports skill development, upskilling initiatives, and continuous learning. Professionals can utilize AI-generated summaries, curated learning materials, and interactive guides to stay ahead in their fields and maintain a competitive edge in dynamic industries.
+          </p>
+        </div>
+      </div>
+
+      <!-- Researchers -->
+      <div class="tab-pane fade" id="researchers" role="tabpanel">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>
+            Researchers can streamline complex academic and scientific tasks, such as performing literature reviews, summarizing large datasets, and organizing research notes efficiently. The platform produces well-structured, accurate outputs, reducing manual effort and improving overall productivity. It supports academic writing, publication preparation, and project documentation in both professional and academic contexts.
+          </p>
+          <p>
+            Furthermore, researchers benefit from AI-assisted data analysis, trend identification, and hypothesis development, making it easier to manage multi-disciplinary projects, collaborate with peers, and meet publication deadlines. The platform ensures reliable, high-quality results that contribute to research excellence and innovation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Custom CSS for hover effect -->
+<style>
+  .hover-shadow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+</style>
+
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+<!-- AI Accuracy & Reliability Section -->
+<section class="py-5" style="background-color: #ffffff; color: #0d1b2a;">
+  <div class="container">
+    <h2 class="text-center mb-5" style="color: #0d1b2a;">AI Accuracy & Reliability</h2>
+    <p class="text-center mb-5">
+Our AI-powered EdTech platform is designed to help learners, educators, and researchers achieve accurate and reliable results effortlessly. Whether you’re tackling complex STEM problems, creating engaging educational content, or exploring new concepts, our intelligent assistant provides clear, step-by-step solutions you can trust. Every interaction is secure,
+ giving you confidence that your data remains private while you focus on learning, teaching, and discovery.”    </p>
+
+    <div class="row g-4 text-center">
+      <!-- Accuracy Stats -->
+      <div class="col-md-4">
+        <div class="p-4 bg-light rounded hover-shadow">
+          <i class="bi bi-check-circle-fill display-4 mb-3" style="color: #0d1b2a;"></i>
+          <h4 class="mb-2" style="color: #0d1b2a;">99% Accuracy</h4>
+          <p>
+            Our AI consistently provides accurate solutions and content across subjects and levels, ensuring users can trust the results for learning, teaching, and research.
+          </p>
+        </div>
+      </div>
+
+      <!-- Sample Solutions / Testimonials -->
+      <div class="col-md-4">
+        <div class="p-4 bg-light rounded hover-shadow">
+          <i class="bi bi-journal-check display-4 mb-3" style="color: #0d1b2a;"></i>
+          <h4 class="mb-2" style="color: #0d1b2a;">Verified Results</h4>
+          <p>
+            View sample solutions, educational content, and user testimonials that demonstrate the AI’s reasoning and clarity in delivering high-quality outputs.
+          </p>
+        </div>
+      </div>
+
+      <!-- Security & Privacy -->
+      <div class="col-md-4">
+        <div class="p-4 bg-light rounded hover-shadow">
+          <i class="bi bi-shield-lock-fill display-4 mb-3" style="color: #0d1b2a;"></i>
+          <h4 class="mb-2" style="color: #0d1b2a;">Secure & Private</h4>
+          <p>
+            Your content and data remain private and secure. We never store sensitive information, providing a safe environment for learners, educators, and professionals.
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- Custom CSS -->
+<style>
+  .hover-shadow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(13, 27, 42, 0.15);
+  }
+
+  @media (max-width: 768px) {
+    .display-4 {
+      font-size: 3rem !important;
+    }
+    h4 {
+      font-size: 1.25rem !important;
+    }
+  }
+</style>
+
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section">
+
+      <br></p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 1,
+                  "spaceBetween": 40
+                },
+                "1200": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 1
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper">
+
+           
+
+    
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 40
+                },
+                "480": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 60
+                },
+                "640": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 80
+                },
+                "992": {
+                  "slidesPerView": 6,
+                  "spaceBetween": 120
+                }
+              }
+            }
+          </script>
+
+
+      </div>
+
+    </section><!-- /Clients Section -->
+
+    <!-- Recent Posts Section -->
+    <section id="recent-posts" class="recent-posts section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>{% trans "Recent Posts" %}</h2>
+        <p>{% trans "Recent posts form our Blog" %}</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-5">
+
+          <div class="col-xl-4 col-md-6">
+            <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
+
+              <div class="post-img position-relative overflow-hidden">
+                <img src="{% static 'assets/img/blog/blog-1.jpg' %}" class="img-fluid" alt="">
+                <span class="post-date">{% trans "December 12" %}</span>
+              </div>
+
+              <div class="post-content d-flex flex-column">
+
+                <h3 class="post-title">{% trans "Eum ad dolor et. Autem aut fugiat debitis" %}</h3>
+
+                <div class="meta d-flex align-items-center">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-person"></i> <span class="ps-2">{% trans "Julia Parker" %}</span>
+                  </div>
+                  <span class="px-3 text-black-50">/</span>
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-folder2"></i> <span class="ps-2">{% trans "Politics" %}</span>
+                  </div>
+                </div>
+
+                <hr>
+
+                <a href="blog-details.html" class="readmore stretched-link"><span>{% trans "Read More" %}</span><i class="bi bi-arrow-right"></i></a>
+
+              </div>
+
+            </div>
+          </div><!-- End post item -->
+
+          <div class="col-xl-4 col-md-6">
+            <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="200">
+
+              <div class="post-img position-relative overflow-hidden">
+                <img src="{% static 'assets/img/blog/blog-2.jpg' %}" class="img-fluid" alt="">
+                <span class="post-date">{% trans "July 17" %}</span>
+              </div>
+
+              <div class="post-content d-flex flex-column">
+
+                <h3 class="post-title">{% trans "Et repellendus molestiae qui est sed omnis" %}</h3>
+
+                <div class="meta d-flex align-items-center">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-person"></i> <span class="ps-2">{% trans "Mario Douglas" %}</span>
+                  </div>
+                  <span class="px-3 text-black-50">/</span>
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-folder2"></i> <span class="ps-2">{% trans "Sports" %}</span>
+                  </div>
+                </div>
+
+                <hr>
+
+                <a href="blog-details.html" class="readmore stretched-link"><span>{% trans "Read More" %}</span><i class="bi bi-arrow-right"></i></a>
+
+              </div>
+
+            </div>
+          </div><!-- End post item -->
+
+          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="post-item position-relative h-100">
+
+              <div class="post-img position-relative overflow-hidden">
+                <img src="{% static 'assets/img/blog/blog-3.jpg' %}" class="img-fluid" alt="">
+                <span class="post-date">{% trans "September 05" %}</span>
+              </div>
+
+              <div class="post-content d-flex flex-column">
+
+                <h3 class="post-title">{% trans "Quia assumenda est et veritati tirana ploder" %}</h3>
+
+                <div class="meta d-flex align-items-center">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-person"></i> <span class="ps-2">{% trans "Lisa Hunter" %}</span>
+                  </div>
+                  <span class="px-3 text-black-50">/</span>
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-folder2"></i> <span class="ps-2">{% trans "Economics" %}</span>
+                  </div>
+                </div>
+
+                <hr>
+
+                <a href="blog-details.html" class="readmore stretched-link"><span>{% trans "Read More" %}</span><i class="bi bi-arrow-right"></i></a>
+
+              </div>
+
+            </div>
+          </div><!-- End post item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Recent Posts Section -->
+
+
+<footer id="footer" class="footer">
+
+  <style>
+    /* Remove underline from all <h4> headings */
+    footer h4 {
+      text-decoration: none !important;  /* Remove underline */
+      border-bottom: none !important;    /* Remove any border lines */
+      color: #000;                       /* Ensure text color is black */
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    /* Remove underline from links inside footer-links */
+    footer .footer-links a {
+      text-decoration: none !important;
+      color: #000;
+      transition: color 0.3s ease;
+    }
+    footer .footer-links a:hover {
+      color: #0d6efd; /* Bootstrap primary color on hover */
+      text-decoration: none;
+    }
+  </style>
+  
+    <section id="faq" class="faq section py-5" style="background-color: #f9f9f9;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center" data-aos="fade-up">
+        <div class="section-title mb-4">
+          <h2>F.A.Q</h2>
+          <p>Frequently Asked Questions about <strong>EduPrompt</strong>, your AI study assistant for smarter learning.</p>
+        </div>
+
+        <div class="faq-container text-start">
+
+          <!-- FAQ 1 -->
+          <div class="faq-item border-bottom py-3">
+            <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
+              <h5><strong>What is EduPrompt and how does it help me?</strong></h5>
+              <i class="faq-toggle bi bi-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p><strong>EduPrompt</strong> is an AI-powered learning platform that simplifies studying. It provides clear explanations, note generation, essay and assignment help, and other study tools accessible anytime, anywhere.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item border-bottom py-3">
+            <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
+              <h5><strong>Do you support African languages?</strong></h5>
+              <i class="faq-toggle bi bi-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Yes! EduPrompt supports <strong>Yoruba, Igbo, Hausa, Swahili</strong>, and more, making learning easier in the language you understand best.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item border-bottom py-3">
+            <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
+              <h5><strong>Is EduPrompt free to use?</strong></h5>
+              <i class="faq-toggle bi bi-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+<p>EduPrompt is a <strong>paid platform</strong>, but you can try it for free with our <strong>trial period</strong>. Core study tools are included during the trial, giving you a chance to explore before subscribing.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item border-bottom py-3">
+            <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
+              <h5><strong>Can I learn at my own pace?</strong></h5>
+              <i class="faq-toggle bi bi-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Yes! EduPrompt lets you study <strong>anytime, anywhere</strong>. Pause, replay, or continue according to your own schedule.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item border-bottom py-3">
+            <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
+              <h5><strong>Is EduPrompt mobile-friendly?</strong></h5>
+              <i class="faq-toggle bi bi-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Absolutely! EduPrompt works seamlessly on <strong>phones, tablets, or laptops</strong> with no special apps required.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-item border-bottom py-3">
+            <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
+              <h5><strong>Is it affordable for African students?</strong></h5>
+              <i class="faq-toggle bi bi-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Yes! EduPrompt is designed to be <strong>affordable and accessible</strong> for students across Africa.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 7 -->
+          <div class="faq-item border-bottom py-3">
+            <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
+              <h5><strong>Can EduPrompt generate essays and notes </strong></h5>
+              <i class="faq-toggle bi bi-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Yes! EduPrompt can create <strong>customized essays, letters, and notes</strong> to help you study efficiently and understand topics better.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 8 -->
+
+
+          <!-- FAQ 9 -->
+          <div class="faq-item border-bottom py-3">
+            <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
+              <h5><strong>Is EduPrompt safe and secure?</strong></h5>
+              <i class="faq-toggle bi bi-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>EduPrompt respects your privacy. All <strong>notes and personal data</strong> are stored securely and never shared without your consent.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 10 -->
+          <div class="faq-item border-bottom py-3">
+            <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
+              <h5><strong>Can I use EduPrompt offline?</strong></h5>
+              <i class="faq-toggle bi bi-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Currently, EduPrompt requires internet access, but you can <strong>download generated notes</strong> to study offline anytime.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Toggle -->
+  <script>
+    document.querySelectorAll('.faq-question').forEach((question) => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const icon = question.querySelector('.faq-toggle');
+
+        // Toggle answer visibility
+        if(answer.style.maxHeight && answer.style.maxHeight !== "0px"){
+          answer.style.maxHeight = null;
+          icon.classList.replace('bi-chevron-up','bi-chevron-down');
+        } else {
+          answer.style.maxHeight = answer.scrollHeight + "px";
+          icon.classList.replace('bi-chevron-down','bi-chevron-up');
+        }
+      });
+    });
+  </script>
+<!-- Newsletter Section (keep this as-is above footer) -->
+<div class="footer-newsletter">
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-6">
+        <h4>Join Our Newsletter</h4>
+        <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+        <form action="forms/newsletter.php" method="post" class="php-email-form">
+          <div class="newsletter-form d-flex flex-column flex-sm-row gap-2">
+            <input type="email" name="email" class="form-control" placeholder="Your email address" required>
+            <input type="submit" value="Subscribe" class="btn btn-primary px-4">
+          </div>
+          <div class="loading mt-2">Loading</div>
+          <div class="error-message text-danger mt-2"></div>
+          <div class="sent-message text-success mt-2">Your subscription request has been sent. Thank you!</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Footer -->
+<footer class="footer bg-light pt-5">
+  <div class="container footer-top py-5">
+    <div class="row gy-4">
+      <!-- About -->
+      <div class="col-lg-4 col-md-6 footer-about text-center">
+  <!-- Section Title -->
+  <h3 style="color: #003366; font-weight: 700; font-size: 1.5rem; margin-bottom: 20px;">
+    About the Founder
+  </h3>
+
+  
+<!-- Circle Image -->
+<div class="mb-3" style="width: 150px; height: 150px; margin: 0 auto; border: 4px solid #003366; border-radius: 50%; overflow: hidden;">
+  <img src="{% static 'assets/img/IMG_2474.JPG' %}" 
+       alt="Founder" 
+       style="width: 100%; height: 100%; object-fit: cover;">
+</div>
+
+
+
+  <!-- Description -->
+  <p style="margin-top: 15px; font-size: 1rem; line-height: 1.6;">
+    EduPrompt was founded by Eze Prosper somtochukwu, a software developer passionate about education technology. 
+    He created this platform to provide students with AI-powered tools that make learning smarter, faster, and more accessible.
+  </p>
+</div>
+
+
+      <!-- Useful Links -->
+      <div class="col-lg-2 col-md-3 footer-links">
+        <h4 class="fw-semibold mb-3">Useful Links</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="{% url 'index' %}" class="text-dark text-decoration-none link-hover-underline">Home</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="/about/" class="text-dark text-decoration-none link-hover-underline">About Us</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="/privacy_policy/" class="text-dark text-decoration-none link-hover-underline">Privacy Policy</a>
+          </li>
+          <li>
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="/Terms_and_Condition" class="text-dark text-decoration-none link-hover-underline">Terms &amp; Conditions</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Our Services -->
+      <div class="col-lg-2 col-md-3 footer-links">
+        <h4 class="fw-semibold mb-3">Our Services</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Web Design</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Web Development</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Product Management</a>
+          </li>
+          <li>
+            <i class="bi bi-chevron-right text-primary me-1"></i>
+            <a href="#" class="text-dark text-decoration-none link-hover-underline">Marketing</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Follow Us -->
+      <div class="col-lg-4 col-md-12">
+        <h4 class="fw-semibold mb-3">Follow Us</h4>
+        <p class="text-muted mb-3">Follow us on all our social media platforms</p>
+        <div class="social-links d-flex gap-3 fs-4">
+          <a href="#" class="text-primary social-hover"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-primary social-hover"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-primary social-hover"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-primary social-hover"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="container text-center py-3 border-top">
+    <p class="mb-0 text-muted small">
+      © <strong class="text-primary sitename">EduPrompt</strong> All Rights Reserved.
+    </p>
+    <p class="mb-0 small">
+      Designed by <a href="https://bootstrapmade.com/" target="_blank" class="text-decoration-none">BootstrapMade</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  /* Hover underline for footer links */
+  .link-hover-underline:hover {
+    text-decoration: underline;
+    color: #003366 !important;
+  }
+
+  /* Social icon hover effect */
+  .social-hover:hover {
+    color: #0056b3 !important;
+  }
+
+  /* Make newsletter inputs full width on mobile */
+  @media (max-width: 576px) {
+    .newsletter-form input[type="email"],
+    .newsletter-form input[type="submit"] {
+      width: 100% !important;
+      margin-bottom: 0.5rem;
+    }
+  }
+</style>
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+
+
+
