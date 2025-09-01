@@ -35,6 +35,7 @@ urlpatterns += [
     path('', include('ai_solver.urls')),
     path('', include('project_writer.urls')),
     path('', include('grammar_checker.urls')),
+    path('accounts/', include('allauth.urls')),
 
 
 ] 

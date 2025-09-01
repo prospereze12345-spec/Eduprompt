@@ -229,22 +229,10 @@
 
         <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
 
-        <!-- Dashboard Icon (Only if logged in) -->
-        {% if user.is_authenticated %}
-        <li class="nav-item ms-lg-3">
-          <a class="nav-link" href="/dashboard/">
-            <i class="bi bi-person-fill fs-5"></i>
-          </a>
-        </li>
-        {% endif %}
-
-        <!-- Get Started Button (Only if not logged in) -->
-        {% if not user.is_authenticated %}
-        <li class="nav-item ms-lg-3">
-          <a class="btn btn-success btn-sm" href="/register/">{% trans "Get Started" %}</a>
-        </li>
-
-    <!-- Login button -->
+{% if not user.is_authenticated %}
+    <li class="nav-item ms-lg-3">
+        <a class="btn btn-success btn-sm" href="{% url 'register' %}">{% trans "Get Started" %}</a>
+    </li>
     <li class="nav-item ms-lg-3">
         <a class="btn btn-success btn-sm" href="{% url 'login' %}">{% trans "Login" %}</a>
     </li>

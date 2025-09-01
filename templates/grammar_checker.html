@@ -230,13 +230,7 @@
 
         <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
 
-{% if user.is_authenticated %}
-    <li class="nav-item ms-lg-3">
-        <a class="nav-link" href="{% url 'dashboard' %}">
-            <i class="bi bi-person-fill fs-5"></i>
-        </a>
-    </li>
-{% else %}
+{% if not user.is_authenticated %}
     <li class="nav-item ms-lg-3">
         <a class="btn btn-success btn-sm" href="{% url 'register' %}">{% trans "Get Started" %}</a>
     </li>

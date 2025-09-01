@@ -14,6 +14,17 @@ from pathlib import Path
 import environ
 from dotenv import load_dotenv
 
+import os
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': os.getenv("GOOGLE_CLIENT_ID"),
+            'secret': os.getenv("GOOGLE_CLIENT_SECRET"),
+            'key': ''
+        }
+    }
+}
 
 load_dotenv() 
 
@@ -81,7 +92,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users',
     'Eduprompt',
     'note',
     'letter_writer',
@@ -89,7 +99,12 @@ INSTALLED_APPS = [
     'ai_solver',
     'project_writer',
     'grammar_checker',
-
+     'django.contrib.sites',   
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'users.apps.UsersConfig',
     
 ]
 LANGUAGE_CODE = 'en'  # default language
@@ -112,6 +127,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -202,7 +218,18 @@ LOGIN_URL = 'login'
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-        'OPTIONS': {'min_length': 6},
+        'OPTIONS': {'min_length': 8},
     },
 ]
 
+
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
+
+ACCOUNT_EMAIL_VERIFICATION = "optional"  
+SOCIALACCOUNT_AUTO_SIGNUP = True
+
+SOCIALACCOUNT_EMAIL_VERIFICATION = "none"

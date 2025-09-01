@@ -21,10 +21,5 @@ urlpatterns = [
     path('register/', views.register_view, name='register'),
     path('accounts/logout/', views.logout_view, name='logout'),
 
-    # Dashboard
-    path('dashboard/', views.dashboard_view, name='dashboard'),
-
-    # Other
-    path('get-currency/', views.get_user_currency, name='get_currency'),
-]
+    ]
 

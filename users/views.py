@@ -14,19 +14,23 @@ import requests
 
 
 
+
+
 def register_view(request):
     if request.user.is_authenticated:
-        return redirect('index')  # prevent logged-in users from seeing register
+        return redirect('index')  # Prevent logged-in users from seeing register page
 
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
+            # Save the user only
             user = form.save()
-            login(request, user)  # auto login user
+
+            # Log the user in immediately
+            login(request, user)
             messages.success(request, "Account created successfully. Welcome!")
-            return redirect('index')  # 👈 make sure 'index' exists in urls.py
+            return redirect('index')
         else:
-            # Form not valid, show errors
             messages.error(request, "Please fix the errors below.")
     else:
         form = RegisterForm()
@@ -38,20 +42,20 @@ def register_view(request):
     return render(request, 'register.html', context)
 
 
-
-
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('index')  # Prevent logged-in users from seeing login page
 
     if request.method == 'POST':
         form = LoginForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            messages.success(request, 'Logged in successfully.')
+            messages.success(request, "Logged in successfully.")
             next_url = request.GET.get('next', 'index')
             return redirect(next_url)
+        else:
+            messages.error(request, "Invalid username or password.")
     else:
         form = LoginForm()
 
@@ -60,6 +64,8 @@ def login_view(request):
         'AFRICAN_LANGUAGES': getattr(settings, 'AFRICAN_LANGUAGES', []),
     }
     return render(request, 'login.html', context)
+
+
 
 
 
@@ -109,72 +115,8 @@ def get_currency_symbol(currency_code):
 
 
 
-@login_required
-def dashboard_view(request):
-    user = request.user
-    profile = getattr(user, 'profile', None) 
-
-    country_code = getattr(profile, 'country', 'NG').upper() if profile else 'NG'
-    wallet_balance_usd = getattr(profile, 'wallet_balance', 0.0) if profile else 0.0
-    subscription_plan = getattr(profile, 'subscription_plan', 'Free') if profile else 'Free'
-    subscription_expiry = getattr(profile, 'subscription_expiry', 'N/A') if profile else 'N/A'
-
-    currency_code = settings.DEFAULT_CURRENCY
-    currency_symbol = get_currency_symbol(currency_code)
-    local_balance = round(wallet_balance_usd, 2)
-
-    try:
-        url = f"{settings.EXCHANGE_API_URL}/{settings.EXCHANGE_API_KEY}/latest/USD"
-        response = requests.get(url)
-        response.raise_for_status()
-        data = response.json()
-        conversion_rates = data.get("conversion_rates", {})
-
-        if country_code in conversion_rates:
-            currency_code = country_code
-        else:
-            currency_code = settings.DEFAULT_CURRENCY
-
-        currency_symbol = get_currency_symbol(currency_code)
-        rate = conversion_rates.get(currency_code, 1)
-        local_balance = round(wallet_balance_usd * rate, 2)
-
-    except Exception as e:
-        print("Currency API error:", e)
-        currency_code = settings.DEFAULT_CURRENCY
-        currency_symbol = get_currency_symbol(currency_code)
-        local_balance = round(wallet_balance_usd, 2)
-
-    context = {
-        "user": user,
-        "wallet_balance": f"{currency_symbol}{local_balance}",
-        "subscription_plan": subscription_plan,
-        "subscription_expiry": subscription_expiry,
-    }
-
-    return render(request, "dashboard.html", context)
 
 
 
 
-
-def get_user_currency(request):
-    currency_symbol = "₦"  # default NGN
-
-    try:
-        
-        ip_address = request.META.get('HTTP_X_FORWARDED_FOR', '') or request.META.get('REMOTE_ADDR', '')
-
-        if ip_address:
-            response = requests.get(f"https://ipapi.co/{ip_address}/json/")
-            response.raise_for_status()
-            data = response.json()
-            country_code = data.get("country_code", "NG")  
-
-            currency_symbol = get_currency_symbol(country_code)
-
-    except Exception as e:
-        print("Currency detection error:", e)
-
-    return JsonResponse({'currency_symbol': currency_symbol})
 

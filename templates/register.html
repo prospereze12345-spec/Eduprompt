@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+{% load socialaccount %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -275,7 +276,7 @@
 
 
 
-<!-- ======= Register Section ======= -->
+<<!-- ======= Register Section ======= -->
 <section style="background-color: #eee; padding: 120px 0 80px 0; margin-top: 70px;">
   <div class="container">
     <div class="card signup-card shadow">
@@ -284,7 +285,7 @@
 
           <!-- Form Column (LEFT) -->
           <div class="col-lg-6 order-1">
-            <p class="text-center h1 fw-bold mb-4">{% trans "Sign Up" %}</p>
+            <p class="text-center h2 fw-bold mb-4">{% trans "Sign Up" %}</p>
 
             <!-- Error / success messages -->
             {% if messages %}
@@ -364,8 +365,16 @@
                 </div>
               </div>
 
+              <!-- Sign Up Button -->
               <button type="submit" class="btn btn-success btn-lg w-100 mb-3">{% trans "Sign Up" %}</button>
 
+              <!-- Google Signup Button -->
+              <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger d-flex align-items-center justify-content-center w-100 mb-3">
+                <img src="{% static 'assets/img/svg.jpg' %}" alt="Google" width="20" class="me-2">
+                Continue with Google
+              </a>
+
+              <!-- Already have an account -->
               <p class="text-center mb-0 fw-bold">
                 {% trans "Already have an account?" %}
                 <a href="{% url 'login' %}" class="text-primary text-decoration-none">{% trans "Log In" %}</a>
@@ -385,6 +394,7 @@
     </div>
   </div>
 </section>
+
 
 
 <!-- Vendor JS -->
