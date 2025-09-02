@@ -1221,117 +1221,6 @@ Our AI-powered EdTech platform is designed to help learners, educators, and rese
 
     </section><!-- /Clients Section -->
 
-    <!-- Recent Posts Section -->
-    <section id="recent-posts" class="recent-posts section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>{% trans "Recent Posts" %}</h2>
-        <p>{% trans "Recent posts form our Blog" %}</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-5">
-
-          <div class="col-xl-4 col-md-6">
-            <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
-
-              <div class="post-img position-relative overflow-hidden">
-                <img src="{% static 'assets/img/blog/blog-1.jpg' %}" class="img-fluid" alt="">
-                <span class="post-date">{% trans "December 12" %}</span>
-              </div>
-
-              <div class="post-content d-flex flex-column">
-
-                <h3 class="post-title">{% trans "Eum ad dolor et. Autem aut fugiat debitis" %}</h3>
-
-                <div class="meta d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-person"></i> <span class="ps-2">{% trans "Julia Parker" %}</span>
-                  </div>
-                  <span class="px-3 text-black-50">/</span>
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-folder2"></i> <span class="ps-2">{% trans "Politics" %}</span>
-                  </div>
-                </div>
-
-                <hr>
-
-                <a href="blog-details.html" class="readmore stretched-link"><span>{% trans "Read More" %}</span><i class="bi bi-arrow-right"></i></a>
-
-              </div>
-
-            </div>
-          </div><!-- End post item -->
-
-          <div class="col-xl-4 col-md-6">
-            <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="200">
-
-              <div class="post-img position-relative overflow-hidden">
-                <img src="{% static 'assets/img/blog/blog-2.jpg' %}" class="img-fluid" alt="">
-                <span class="post-date">{% trans "July 17" %}</span>
-              </div>
-
-              <div class="post-content d-flex flex-column">
-
-                <h3 class="post-title">{% trans "Et repellendus molestiae qui est sed omnis" %}</h3>
-
-                <div class="meta d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-person"></i> <span class="ps-2">{% trans "Mario Douglas" %}</span>
-                  </div>
-                  <span class="px-3 text-black-50">/</span>
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-folder2"></i> <span class="ps-2">{% trans "Sports" %}</span>
-                  </div>
-                </div>
-
-                <hr>
-
-                <a href="blog-details.html" class="readmore stretched-link"><span>{% trans "Read More" %}</span><i class="bi bi-arrow-right"></i></a>
-
-              </div>
-
-            </div>
-          </div><!-- End post item -->
-
-          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="post-item position-relative h-100">
-
-              <div class="post-img position-relative overflow-hidden">
-                <img src="{% static 'assets/img/blog/blog-3.jpg' %}" class="img-fluid" alt="">
-                <span class="post-date">{% trans "September 05" %}</span>
-              </div>
-
-              <div class="post-content d-flex flex-column">
-
-                <h3 class="post-title">{% trans "Quia assumenda est et veritati tirana ploder" %}</h3>
-
-                <div class="meta d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-person"></i> <span class="ps-2">{% trans "Lisa Hunter" %}</span>
-                  </div>
-                  <span class="px-3 text-black-50">/</span>
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-folder2"></i> <span class="ps-2">{% trans "Economics" %}</span>
-                  </div>
-                </div>
-
-                <hr>
-
-                <a href="blog-details.html" class="readmore stretched-link"><span>{% trans "Read More" %}</span><i class="bi bi-arrow-right"></i></a>
-
-              </div>
-
-            </div>
-          </div><!-- End post item -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Recent Posts Section -->
 
 
 <footer id="footer" class="footer">
@@ -1358,7 +1247,7 @@ Our AI-powered EdTech platform is designed to help learners, educators, and rese
     }
   </style>
   
-    <section id="faq" class="faq section py-5" style="background-color: #f9f9f9;">
+    <section id="faq" class="faq section py-5" style="background-color: white;">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8 text-center" data-aos="fade-up">
@@ -1494,19 +1383,19 @@ Our AI-powered EdTech platform is designed to help learners, educators, and rese
       });
     });
   </script>
-<!-- Newsletter Section (keep this as-is above footer) -->
+<footer class="footer pt-5" style="background-color: darkblue;">
 <div class="footer-newsletter">
   <div class="container">
     <div class="row justify-content-center text-center">
       <div class="col-lg-6">
-        <h4>Join Our Newsletter</h4>
-        <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+        <h4 style="color: #ffffff;">Join Our Newsletter</h4>
+        <p style="color: #ffffff;">Subscribe to our newsletter and receive the latest news about our products and services!</p>
         <form action="forms/newsletter.php" method="post" class="php-email-form">
           <div class="newsletter-form d-flex flex-column flex-sm-row gap-2">
             <input type="email" name="email" class="form-control" placeholder="Your email address" required>
             <input type="submit" value="Subscribe" class="btn btn-primary px-4">
           </div>
-          <div class="loading mt-2">Loading</div>
+          <div class="loading mt-2" style="color: #ffffff;">Loading</div>
           <div class="error-message text-danger mt-2"></div>
           <div class="sent-message text-success mt-2">Your subscription request has been sent. Thank you!</div>
         </form>
@@ -1515,127 +1404,125 @@ Our AI-powered EdTech platform is designed to help learners, educators, and rese
   </div>
 </div>
 
+
 <!-- Main Footer -->
-<footer class="footer bg-light pt-5">
+<footer class="footer pt-5" style="background-color: darkblue;">
   <div class="container footer-top py-5">
     <div class="row gy-4">
-      <!-- About -->
-      <div class="col-lg-4 col-md-6 footer-about text-center">
+
+<!-- About -->
+<div class="col-lg-3 col-md-6 footer-about text-center">
   <!-- Section Title -->
-  <h3 style="color: #003366; font-weight: 700; font-size: 1.5rem; margin-bottom: 20px;">
+  <h3 style="color: #ffffff; font-weight: 700; font-size: 1.5rem; margin-bottom: 20px;">
     About the Founder
   </h3>
 
-  
-<!-- Circle Image -->
-<div class="mb-3" style="width: 150px; height: 150px; margin: 0 auto; border: 4px solid #003366; border-radius: 50%; overflow: hidden;">
-  <img src="{% static 'assets/img/IMG_2474.JPG' %}" 
-       alt="Founder" 
-       style="width: 100%; height: 100%; object-fit: cover;">
-</div>
-
-
+  <!-- Circle Image -->
+  <div class="mb-3" style="width: 150px; height: 150px; margin: 0 auto; border: 4px solid #003366; border-radius: 50%; overflow: hidden;">
+    <img src="{% static 'assets/img/IMG_2474.JPG' %}" 
+         alt="Founder" 
+         style="width: 100%; height: 100%; object-fit: cover;">
+  </div>
 
   <!-- Description -->
-  <p style="margin-top: 15px; font-size: 1rem; line-height: 1.6;">
+  <p style="margin-top: 15px; font-size: 1rem; line-height: 1.6; color: #ffffff;">
     EduPrompt was founded by Eze Prosper somtochukwu, a software developer passionate about education technology. 
     He created this platform to provide students with AI-powered tools that make learning smarter, faster, and more accessible.
   </p>
 </div>
 
+<!-- Useful Links -->
+<div class="col-lg-2 col-md-3 footer-links">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">Useful Links</h4>
+  <ul class="list-unstyled">
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="{% url 'index' %}" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Home</a>
+    </li>
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">About Us</a>
+    </li>
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Privacy Policy</a>
+    </li>
+    <li>
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Terms and Conditions</a>
+    </li>
+  </ul>
+</div>
 
-      <!-- Useful Links -->
-      <div class="col-lg-2 col-md-3 footer-links">
-        <h4 class="fw-semibold mb-3">Useful Links</h4>
-        <ul class="list-unstyled">
-          <li class="mb-2">
-            <i class="bi bi-chevron-right text-primary me-1"></i>
-            <a href="{% url 'index' %}" class="text-dark text-decoration-none link-hover-underline">Home</a>
-          </li>
-          <li class="mb-2">
-            <i class="bi bi-chevron-right text-primary me-1"></i>
-            <a href="/about/" class="text-dark text-decoration-none link-hover-underline">About Us</a>
-          </li>
-          <li class="mb-2">
-            <i class="bi bi-chevron-right text-primary me-1"></i>
-            <a href="/privacy_policy/" class="text-dark text-decoration-none link-hover-underline">Privacy Policy</a>
-          </li>
-          <li>
-            <i class="bi bi-chevron-right text-primary me-1"></i>
-            <a href="/Terms_and_Condition" class="text-dark text-decoration-none link-hover-underline">Terms &amp; Conditions</a>
-          </li>
-        </ul>
-      </div>
+<!-- Our Services -->
+<div class="col-lg-2 col-md-3 footer-links">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">Our Services</h4>
+  <ul class="list-unstyled">
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="#" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Web Design</a>
+    </li>
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="#" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Flyer Design</a>
+    </li>
+  </ul>
+</div>
 
-      <!-- Our Services -->
-      <div class="col-lg-2 col-md-3 footer-links">
-        <h4 class="fw-semibold mb-3">Our Services</h4>
-        <ul class="list-unstyled">
-          <li class="mb-2">
-            <i class="bi bi-chevron-right text-primary me-1"></i>
-            <a href="#" class="text-dark text-decoration-none link-hover-underline">Web Design</a>
-          </li>
-          <li class="mb-2">
-            <i class="bi bi-chevron-right text-primary me-1"></i>
-            <a href="#" class="text-dark text-decoration-none link-hover-underline">Web Development</a>
-          </li>
-          <li class="mb-2">
-            <i class="bi bi-chevron-right text-primary me-1"></i>
-            <a href="#" class="text-dark text-decoration-none link-hover-underline">Product Management</a>
-          </li>
-          <li>
-            <i class="bi bi-chevron-right text-primary me-1"></i>
-            <a href="#" class="text-dark text-decoration-none link-hover-underline">Marketing</a>
-          </li>
-        </ul>
-      </div>
+<!-- Our Services (second block) -->
+<div class="col-lg-2 col-md-3 footer-links">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">Our Services</h4>
+  <ul class="list-unstyled">
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="#" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Web Design</a>
+    </li>
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="#" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Web Development</a>
+    </li>
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="#" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Product Management</a>
+    </li>
+    <li>
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="#" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Marketing</a>
+    </li>
+  </ul>
+</div>
 
-      <!-- Follow Us -->
-      <div class="col-lg-4 col-md-12">
-        <h4 class="fw-semibold mb-3">Follow Us</h4>
-        <p class="text-muted mb-3">Follow us on all our social media platforms</p>
-        <div class="social-links d-flex gap-3 fs-4">
-          <a href="#" class="text-primary social-hover"><i class="bi bi-twitter"></i></a>
-          <a href="#" class="text-primary social-hover"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="text-primary social-hover"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="text-primary social-hover"><i class="bi bi-linkedin"></i></a>
-        </div>
-      </div>
-    </div>
+<!-- Follow Us -->
+<div class="col-lg-3 col-md-6">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">Follow Us</h4>
+  <p class="mb-3" style="color: #ffffff;">Follow us on all our social media platforms</p>
+  <div class="social-links d-flex gap-3 fs-4">
+    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-twitter"></i></a>
+    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-facebook"></i></a>
+    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-instagram"></i></a>
+    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-linkedin"></i></a>
   </div>
+</div>
 
-  <!-- Copyright -->
-  <div class="container text-center py-3 border-top">
-    <p class="mb-0 text-muted small">
-      © <strong class="text-primary sitename">EduPrompt</strong> All Rights Reserved.
-    </p>
-    <p class="mb-0 small">
-      Designed by <a href="https://bootstrapmade.com/" target="_blank" class="text-decoration-none">BootstrapMade</a>
-    </p>
+
+    </div>
   </div>
 </footer>
 
-<style>
-  /* Hover underline for footer links */
-  .link-hover-underline:hover {
-    text-decoration: underline;
-    color: #003366 !important;
-  }
 
-  /* Social icon hover effect */
-  .social-hover:hover {
-    color: #0056b3 !important;
-  }
+<!-- Copyright -->
+<div class="container text-center py-3 border-top">
+  <p class="mb-0 small" style="color: #ffffff;">
+    © <strong class="sitename" style="color: #ffffff;">EduPrompt</strong> All Rights Reserved.
+  </p>
+  <p class="mb-0 small">
+    Designed by <a href="https://bootstrapmade.com/" target="_blank" class="text-decoration-none" style="color: #ffffff;">BootstrapMade</a>
+  </p>
+</div>
+</footer>
 
-  /* Make newsletter inputs full width on mobile */
-  @media (max-width: 576px) {
-    .newsletter-form input[type="email"],
-    .newsletter-form input[type="submit"] {
-      width: 100% !important;
-      margin-bottom: 0.5rem;
-    }
-  }
-</style>
+
+
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
