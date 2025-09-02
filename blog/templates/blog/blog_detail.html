@@ -1,0 +1,501 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - FlexStart Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" rel="icon">
+  <link href="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="{% static 'https://fonts.googleapis.com' %}" rel="preconnect">
+  <link href="{% static 'https://fonts.gstatic.com' %}" rel="preconnect" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="{% static 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap' %}" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css" rel="stylesheet' %}">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+
+
+  <style>
+  .faq-section {
+    text-align: center; /* Center all content */
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    max-width: 700px;
+    margin: 0 auto; /* Center the FAQ box itself */
+    text-align: left; /* Keep answer and question aligned left inside centered block */
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600; /* Make it bold */
+    font-size: 1.1rem;
+  }
+
+  .faq-question h5 {
+    margin: 0;
+    font-weight: 700; /* Bold text */
+  }
+
+  .faq-answer {
+    display: none;
+    padding-top: 10px;
+    color: #444;
+    font-size: 1rem;
+  }
+
+  .faq-item.active .faq-answer {
+    display: block;
+  }
+
+  .faq-toggle {
+    font-size: 1.2rem;
+    color: #666;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.active .faq-toggle {
+    transform: rotate(180deg);
+  }
+
+  /* Remove underline and border line from all links inside navmenu */
+#navmenu a {
+  text-decoration: none !important; /* no underline */
+  border: none !important;           /* no border */
+  box-shadow: none !important;       /* remove any shadow */
+  outline: none !important;          /* remove outline */
+  color: inherit;                    /* keep inherited color */
+  transition: color 0.3s ease;       /* optional smooth hover color */
+}
+
+/* Remove any border or underline on hover/focus */
+#navmenu a:hover,
+#navmenu a:focus {
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #007bff; /* Optional: set your hover color */
+}
+
+/* Remove any border or underline on sitename if any */
+.sitename {
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+/* Base button style */
+.btn-getstarted {
+  background-color: #28a745; /* Bootstrap green or your custom green */
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.3rem;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+/* Remove white line / underline on hover or focus */
+.btn-getstarted:hover,
+.btn-getstarted:focus {
+  background-color: #218838; /* darker green on hover */
+  color: white;
+  text-decoration: none;     /* removes underline */
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-nav .nav-link.dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+  .navbar-nav .nav-link.dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem; /* space between emoji and text */
+  }
+  /* Dark blue variables */
+  :root {
+    --eduprompt-blue: #003366; /* Dark blue shade */
+  }
+
+  /* Sitename color */
+  .sitename {
+    color: var(--eduprompt-blue) !important;
+    font-weight: bold;
+  }
+
+  /* Dashboard icon color */
+  .nav-link i.bi-person-fill {
+    color: var(--eduprompt-blue);
+    transition: color 0.3s ease;
+  }
+
+  /* All nav-links hover effect */
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:focus,
+  .dropdown-menu .dropdown-item:hover {
+    color: var(--eduprompt-blue) !important;
+  }
+
+  /* Optional: Get Started button hover stays nice */
+  .btn-success:hover {
+    background-color: var(--eduprompt-blue);
+    border-color: var(--eduprompt-blue);
+  }
+
+
+</style>
+
+
+
+
+
+  
+  <!-- =======================================================
+  * Template Name: FlexStart
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Updated: Nov 01 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+<header id="header" class="header fixed-top bg-white shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-light container-xl">
+    
+    <!-- Logo + Sitename -->
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+    <img src="{% static 'assets\img\logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height:50px;">
+
+      <span class="ms-2 fw-bold sitename">Eduprompt</span>
+    </a>
+
+    <!-- Mobile toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu items -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li><a class="dropdown-item" href="/ai-solver/">{% trans "AI Solver" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/essay/">{% trans "Essay Generator" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/note/">{% trans "Note Generator" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/letter-writer/">{% trans "Letter Writer" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/blog/">{% trans "Blog" %}</a></li>
+
+        <!-- Tools Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{% trans "Tools" %}</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/project-writer/">{% trans "Project Writer" %}</a></li>
+            <li><a class="dropdown-item" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
+
+{% if not user.is_authenticated %}
+    <li class="nav-item ms-lg-3">
+        <a class="btn btn-success btn-sm" href="{% url 'register' %}">{% trans "Get Started" %}</a>
+    </li>
+    <li class="nav-item ms-lg-3">
+        <a class="btn btn-success btn-sm" href="{% url 'login' %}">{% trans "Login" %}</a>
+    </li>
+{% endif %}
+
+
+
+
+
+        <!-- Language Selector -->
+        <select name="language" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 120px; font-size: 0.85rem;">
+    {% for code, name in AFRICAN_LANGUAGES %}
+      <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
+    {% endfor %}
+</select>
+<input type="hidden" name="next" value="{{ request.get_full_path }}">
+
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+<!-- Bootstrap CSS & Bootstrap Icons CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+<style>
+  /* Section background white */
+  #contact {
+    background-color: white;
+    color: black;
+    padding: 50px 15px;
+  }
+
+  /* Section Title: Centered */
+  #contact .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  #contact .section-title h2 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #0d3b66; /* dark blue */
+  }
+  #contact .section-title p {
+    font-size: 1.25rem;
+    color: #555;
+  }
+
+  /* Info Items and Form Container background gray */
+  .info-item,
+  .contact-form {
+    background: #f7f7f7;
+    padding: 20px 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.05);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .info-item i {
+    font-size: 2rem;
+    color: #0d3b66; /* dark blue icons */
+    flex-shrink: 0;
+  }
+  .info-item h3 {
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+    color: #0d3b66;
+  }
+  .info-item p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: black;
+  }
+  .info-item img.flag-icon {
+    width: 25px;
+    height: auto;
+    margin-left: 8px;
+    border-radius: 3px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  }
+
+  /* Contact Form inputs */
+  .contact-form input,
+  .contact-form textarea {
+    border: 1.5px solid #0d3b66;
+    border-radius: 6px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+    background-color: white;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: #054a91;
+    box-shadow: 0 0 6px #054a91;
+  }
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  .contact-form button {
+    background-color: #0d3b66;
+    color: white;
+    font-weight: 600;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .contact-form button:hover {
+    background-color: #054a91;
+  }
+
+  /* Success & error messages */
+  .alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-radius: 6px;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #c3e6cb;
+  }
+  .alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-radius: 6px;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #f5c6cb;
+  }
+
+  /* Responsive */
+  @media (max-width: 767px) {
+    #contact .info-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .info-item i {
+      font-size: 2.5rem;
+    }
+
+    #contact {
+  background-color: white;
+  color: black;
+  padding: 80px 15px 50px 15px; /* increased top padding */
+  margin-top: 0;
+}
+
+  }
+</style>
+
+
+<main class="main">
+
+  <!-- Page Title -->
+  <div class="page-title" style="padding: 60px 0; background: #f8f9fa;">
+    <div class="container text-center">
+      <h1 class="display-4 fw-bold">{{ post.title }}</h1>
+    </div>
+  </div>
+
+  {% block content %}
+  <div class="container py-5">
+    <div class="row justify-content-center">
+
+      <!-- Blog Content (Centered & Wide) -->
+      <div class="col-lg-9">
+
+        <!-- Featured Image -->
+        {% if post.featured_image %}
+        <div class="mb-4 text-center">
+          <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="img-fluid rounded">
+        </div>
+        {% endif %}
+
+        <!-- Meta Info -->
+        <div class="mb-4 text-center text-muted">
+          <span class="me-3"><i class="bi bi-person"></i> {{ post.author.get_full_name|default:post.author.username }}</span>
+          <span class="me-3"><i class="bi bi-clock"></i> {{ post.created_at|date:"M d, Y" }}</span>
+        </div>
+
+        <!-- Blog Content -->
+        <article class="blog-post mb-5">
+          <div class="content">
+            {{ post.content.html|safe }}
+          </div>
+        </article>
+
+        <!-- Social Share -->
+        <div class="text-center mb-5">
+          <span class="me-2">Share:</span>
+          <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}" target="_blank" class="btn btn-outline-primary btn-sm me-1">
+            <i class="bi bi-twitter"></i> Twitter
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="btn btn-outline-primary btn-sm me-1">
+            <i class="bi bi-facebook"></i> Facebook
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" target="_blank" class="btn btn-outline-primary btn-sm">
+            <i class="bi bi-linkedin"></i> LinkedIn
+          </a>
+        </div>
+
+        <!-- Author Section -->
+        {% if post.author.profile %}
+        <section class="blog-author mb-5 p-4 bg-light rounded">
+          <div class="d-flex align-items-center flex-wrap">
+            {% if post.author.profile.image %}
+            <img src="{{ post.author.profile.image.url }}" class="rounded-circle me-3 mb-2" alt="{{ post.author.username }}" width="80" height="80">
+            {% endif %}
+            <div>
+              <h5 class="mb-1">{{ post.author.get_full_name|default:post.author.username }}</h5>
+              {% if post.author.profile.bio %}
+              <p class="mb-1">{{ post.author.profile.bio }}</p>
+              {% endif %}
+              <div class="social-links">
+                {% if post.author.profile.twitter %}<a href="{{ post.author.profile.twitter }}" class="me-2"><i class="bi bi-twitter"></i></a>{% endif %}
+                {% if post.author.profile.facebook %}<a href="{{ post.author.profile.facebook }}" class="me-2"><i class="bi bi-facebook"></i></a>{% endif %}
+                {% if post.author.profile.instagram %}<a href="{{ post.author.profile.instagram }}"><i class="bi bi-instagram"></i></a>{% endif %}
+              </div>
+            </div>
+          </div>
+        </section>
+        {% endif %}
+
+        
+<!-- Sidebar -->
+    <div class="col-lg-4">
+      {% if latest_posts %}
+      <div class="mb-4">
+        <h5 class="fw-bold">Latest Posts</h5>
+        <ul class="list-unstyled">
+          {% for latest in latest_posts %}
+          <li class="mb-2">
+            <a href="{% url 'blog:blog_detail' latest.slug %}" class="text-decoration-none">{{ latest.title }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+ 
+      </div>
+
+    </div>
+  </div>
+  {% endblock %}
+
+
+
+
+
+
+</main>

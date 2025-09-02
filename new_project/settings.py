@@ -105,6 +105,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'users.apps.UsersConfig',
+    'blog',
+    'django_quill', 
     
 ]
 LANGUAGE_CODE = 'en'  # default language
@@ -138,7 +140,7 @@ ROOT_URLCONF = 'new_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')], 
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -214,6 +216,7 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 
+CKEDITOR_UPLOAD_PATH = "uploads/"
 LOGIN_URL = 'login'
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -233,3 +236,14 @@ ACCOUNT_EMAIL_VERIFICATION = "optional"
 SOCIALACCOUNT_AUTO_SIGNUP = True
 
 SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
+
+
+
+CKEDITOR_CONFIGS = {
+    "default": {
+        "toolbar": "Full",  # or customize toolbar
+        "height": 300,
+        "width": "100%",
+        "extraPlugins": "uploadimage",  # allow image uploads
+    }
+}

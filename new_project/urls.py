@@ -36,6 +36,8 @@ urlpatterns += [
     path('', include('project_writer.urls')),
     path('', include('grammar_checker.urls')),
     path('accounts/', include('allauth.urls')),
+    path('blog/', include('blog.urls', namespace='blog')), 
+    
 
 
 ] 
