@@ -36,3 +36,8 @@ def privacy_policy(request):
     })
 
 
+def website(request):
+    return render(request, 'website.html',
+ {
+     'AFRICAN_LANGUAGES': settings.AFRICAN_LANGUAGES
+   })

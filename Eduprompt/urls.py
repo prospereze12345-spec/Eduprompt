@@ -7,6 +7,8 @@ urlpatterns = [
     path('about/', views.about, name='about'), 
     path('Terms_and_Condition/', views.Terms_and_Condition, name='Terms_and_Condition'), 
     path('privacy_policy/', views.privacy_policy, name='privacy_policy'), 
+    path("website/", views.website, name="website"),
+
    
 
 ]
