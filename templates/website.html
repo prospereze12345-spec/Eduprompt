@@ -395,88 +395,1133 @@
   }
 </style>
 
-  <main class="main">
 
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{% trans "Bootstrap Center with Animation" %}</title>
-  <!-- Bootstrap CSS CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <style>
-    /* Full height container and flex center */
-    .vh-100 {
-      height: 100vh !important;
-    }
 
-    .typing-animation {
-      overflow: hidden; /* ensures the text is hidden at first */
-      white-space: nowrap;
-      border-right: .15em solid white; /* caret */
-      width: 0;
-      animation: typing 3.5s steps(40, end) forwards, blink-caret .75s step-end infinite;
-    }
 
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
 
-    @keyframes blink-caret {
-      0%, 100% { border-color: transparent }
-      50% { border-color: white }
-    }
-  </style>
-</head>
-<body>
+
+
+
+<!-- Hero Section -->
+<section id="hero" class="hero-section" style="background-color: #ffffff; padding-top: 120px; padding-bottom: 120px;">
+  <div class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-lg-7 text-center text-lg-start" data-aos="fade-up">
+        <h1 class="display-4 fw-bold mb-3">Professional Website Development</h1>
+        <p class="lead mb-4">
+          We create responsive, SEO-friendly websites that help businesses attract more clients and increase online visibility. 
+          Whether you need a custom-coded site or WordPress design, we make your digital presence impactful and professional.
+        </p>
+        <a href="#contact" class="btn btn-primary text-white px-4 py-2" style="background-color: #0a3d62; border: none;">
+  Get Your Website Today
+</a>
+
+      </div>
+      <div class="col-lg-5 text-center" data-aos="fade-left">
+        <img src="{% static 'assets/img/website.PNG' %}" class="img-fluid" alt="Web Design Illustration">
+      </div>
+    </div>
+  </div>
+</section>
 
 <style>
-  /* Mobile-friendly font sizes and padding */
-  @media (max-width: 400px) {
-    .typing-animation {
-      font-size: 1.3rem !important;
+  /* Optional extra spacing from navbar */
+  body {
+    scroll-padding-top: 70px; /* adjusts for fixed navbar */
+  }
+
+  #hero {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  #hero p.lead {
+    line-height: 1.6;
+    font-size: 1.1rem;
+  }
+
+  #hero .btn-primary:hover {
+    background-color: #07294d;
+  }
+</style>
+<!-- Pre-Counter / Stats Section -->
+<section id="stats" class="py-5" style="background-color: #ffffff;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color:#0d3b66;">Our Achievements</h2>
+      <p style="color:#333;">Over 5 years, we’ve helped businesses grow with tailored digital solutions.</p>
+    </div>
+
+    <div class="row text-center g-4">
+
+      <!-- Stat 1 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="p-4 bg-light rounded shadow-sm">
+          <h3 class="counter" data-target="15">0</h3>
+          <p class="mb-0">Custom Websites Delivered</p>
+        </div>
+      </div>
+
+      <!-- Stat 2 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="p-4 bg-light rounded shadow-sm">
+          <h3 class="counter" data-target="13">0</h3>
+          <p class="mb-0">Satisfied Clients Worldwide</p>
+        </div>
+      </div>
+
+      <!-- Stat 3 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="p-4 bg-light rounded shadow-sm">
+          <h3 class="counter" data-target="20">0</h3>
+          <p class="mb-0">Successful Projects Completed</p>
+        </div>
+      </div>
+
+      <!-- Stat 4 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="p-4 bg-light rounded shadow-sm">
+          <h3 class="counter" data-target="5">0</h3>
+          <p class="mb-0">Years of Professional Experience</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Counter Animation Script -->
+<script>
+  const counters = document.querySelectorAll('.counter');
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+      const speed = 200; // smaller = faster
+
+      const increment = target / speed;
+
+      if(count < target) {
+        counter.innerText = Math.ceil(count + increment);
+        setTimeout(updateCount, 20);
+      } else {
+        counter.innerText = target;
+      }
+    };
+    updateCount();
+  });
+</script>
+
+<style>
+  #stats h3 {
+    font-size: 2.5rem;
+    color: #0d3b66;
+    font-weight: bold;
+  }
+
+  #stats p {
+    font-size: 1.1rem;
+    color: #555;
+  }
+
+  #stats .bg-light:hover {
+    transform: translateY(-5px);
+    transition: 0.3s;
+  }
+</style>
+
+
+<!-- Tech Stack Scrolling Section -->
+<section id="tech-stack" class="py-5" style="background-color: #ffffff;">
+  <div class="container">
+    <h2 class="text-center mb-4 fw-bold" style="color:#0d3b66;">
+      Technologies & Tools I Use
+    </h2>
+
+    <div class="slider">
+      <div class="slide-track">
+        <!-- First set -->
+        <img src="{% static 'assets/img/python_5968350.png' %}" alt="Python Programming for Web Development" class="tech-icon">
+        <img src="{% static 'assets/img/bootsrap.png' %}" alt="Bootstrap Responsive Web Design Framework" class="tech-icon">
+        <img src="{% static 'assets/img/wordpress.png' %}" alt="WordPress Website and Blog Development" class="tech-icon">
+        <img src="{% static 'assets/img/django man.png' %}" alt="Django Python Web Framework" class="tech-icon">
+        <img src="{% static 'assets/img/tailwind.png' %}" alt="Tailwind CSS Utility First Framework" class="tech-icon">
+
+        <!-- Spacer for 3-second pause -->
+        <div class="spacer"></div>
+
+        <!-- Repeat set for infinite loop -->
+        <img src="{% static 'assets/img/python_5968350.png' %}" alt="Python Programming for Web Development" class="tech-icon">
+        <img src="{% static 'assets/img/bootsrap.png' %}" alt="Bootstrap Responsive Web Design Framework" class="tech-icon">
+        <img src="{% static 'assets/img/wordpress.png' %}" alt="WordPress Website and Blog Development" class="tech-icon">
+        <img src="{% static 'assets/img/django man.png' %}" alt="Django Python Web Framework" class="tech-icon">
+        <img src="{% static 'assets/img/tailwind.png' %}" alt="Tailwind CSS Utility First Framework" class="tech-icon">
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .slider {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .slide-track {
+    display: flex;
+    align-items: center;
+    animation: scroll 22s linear infinite; /* timing adjusted for pause effect */
+  }
+
+  .tech-icon {
+    height: 60px;
+    width: auto;
+    margin-right: 80px; /* spacing between icons */
+    flex-shrink: 0;
+  }
+
+  /* Spacer div to create the pause effect */
+  .spacer {
+    width: 300px; /* adjust for ~3 seconds empty gap */
+    flex-shrink: 0;
+  }
+
+  @keyframes scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
+
+
+<style>
+  .tech-slider {
+    display: flex;
+    width: max-content;
+    animation: scroll-tech 60s linear infinite; /* slower continuous scroll */
+  }
+
+  .tech-icon {
+    height: 70px;
+    object-fit: contain;
+    transition: transform 0.3s;
+  }
+
+  .tech-icon:hover {
+    transform: scale(1.2);
+  }
+
+  /* Fading edges for white background */
+  .fade-left, .fade-right {
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .fade-left {
+    background: linear-gradient(to right, #ffffff, transparent);
+  }
+
+  .fade-right {
+    background: linear-gradient(to left, #ffffff, transparent);
+  }
+
+  @keyframes scroll-tech {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .tech-icon {
+      height: 50px;
+      margin: 0 15px;
     }
-    p {
-      font-size: 1.0rem !important;
-      max-width: 90% !important;
-    }
-    .container {
-      padding-top: 150px !important;       /* reduce top padding */
-      padding-bottom: 40px !important;
-      justify-content: flex-start !important; /* remove vertical centering */
-      height: auto !important;            /* allow container to grow */
+    .tech-slider {
+      animation-duration: 90s; /* slower on mobile for readability */
     }
   }
 </style>
 
-<div class="container d-flex flex-column justify-content-center align-items-center text-center px-3" style="padding-top: 150px; background-color: #ffffff;">
+
+<section id="why-choose-us" class="py-5" style="background-color: white;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color: black;">Why Choose Us</h2>
+      <p style="color: black;">Solutions designed to solve your business challenges efficiently and professionally</p>
+    </div>
+    <div class="row g-4">
+      <!-- Reason 1 -->
+      <div class="col-md-6 col-lg-4 text-center">
+        <div class="p-4 bg-white rounded shadow h-100">
+          <div class="mb-3">
+            <i class="bi bi-speedometer2 text-primary fs-1"></i>
+          </div>
+          <h5 class="fw-bold">Fast & Efficient Delivery</h5>
+          <p>We understand the value of time. Our streamlined process ensures projects are delivered quickly without compromising quality.</p>
+        </div>
+      </div>
+      <!-- Reason 2 -->
+      <div class="col-md-6 col-lg-4 text-center">
+        <div class="p-4 bg-white rounded shadow h-100">
+          <div class="mb-3">
+            <i class="bi bi-shield-check text-primary fs-1"></i>
+          </div>
+          <h5 class="fw-bold">Reliable & Secure Solutions</h5>
+          <p>Our systems are built with security and reliability in mind, protecting your business and giving you peace of mind.</p>
+        </div>
+      </div>
+      <!-- Reason 3 -->
+      <div class="col-md-6 col-lg-4 text-center">
+        <div class="p-4 bg-white rounded shadow h-100">
+          <div class="mb-3">
+            <i class="bi bi-graph-up text-primary fs-1"></i>
+          </div>
+          <h5 class="fw-bold">SEO & Performance Focused</h5>
+          <p>We design websites and applications optimized for search engines and performance to help your business grow online.</p>
+        </div>
+      </div>
+      <!-- Reason 4 -->
+      <div class="col-md-6 col-lg-4 text-center">
+        <div class="p-4 bg-white rounded shadow h-100">
+          <div class="mb-3">
+            <i class="bi bi-people text-primary fs-1"></i>
+          </div>
+          <h5 class="fw-bold">Dedicated Support</h5>
+          <p>Our team is available to provide guidance, answer questions, and resolve issues promptly to keep your business running smoothly.</p>
+        </div>
+      </div>
+      <!-- Reason 5 -->
+      <div class="col-md-6 col-lg-4 text-center">
+        <div class="p-4 bg-white rounded shadow h-100">
+          <div class="mb-3">
+            <i class="bi bi-lightbulb text-primary fs-1"></i>
+          </div>
+          <h5 class="fw-bold">Innovative Problem Solving</h5>
+          <p>We approach every project creatively, finding smart solutions to complex challenges and helping your business succeed.</p>
+        </div>
+      </div>
+      <!-- Reason 6 -->
+      <div class="col-md-6 col-lg-4 text-center">
+        <div class="p-4 bg-white rounded shadow h-100">
+          <div class="mb-3">
+            <i class="bi bi-award text-primary fs-1"></i>
+          </div>
+          <h5 class="fw-bold">Proven Results</h5>
+          <p>We deliver measurable outcomes that help your business achieve its goals, backed by experience and a track record of success.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Optional: Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 
 
 
+<!-- Our Services Section (Tabbed Version) -->
+<section class="py-5" style="background-color: #ffffff;">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color: black;">Our Services</h2>
+    <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
+      Explore our core services. Click each service to see how it can help your business grow, attract clients, and solve real challenges.
+    </p>
+
+    <!-- Tabs for services -->
+    <ul class="nav nav-pills justify-content-center mb-4" id="servicesTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="custom-tab" data-bs-toggle="pill" data-bs-target="#custom" type="button" role="tab">
+          <i class="bi bi-code-slash me-2" style="color:#000;"></i> Custom Code
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="wordpress-tab" data-bs-toggle="pill" data-bs-target="#wordpress" type="button" role="tab">
+          <i class="bi bi-wordpress me-2" style="color:#000;"></i> WordPress Design
+        </button>
+      </li>
+      
+    </ul>
+
+    <!-- Tab content -->
+    <div class="tab-content" id="servicesTabsContent">
+      <!-- Custom Code -->
+      <div class="tab-pane fade show active" id="custom" role="tabpanel">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <h5 style="color:black;">Custom Website Development</h5>
+          <p style="color:black;">
+            We build fully customized websites from scratch. Perfect for businesses that need unique functionality, high performance, and full control. Custom-coded sites allow you to implement any feature, optimize for speed, and create a one-of-a-kind online presence tailored to your brand.
+          </p>
+          <p style="color:black;">
+            Choosing custom development is ideal if your business requires advanced integrations, a unique design, or specialized features not available in standard platforms.
+          </p>
+        </div>
+      </div>
+
+      <!-- WordPress Design -->
+      <div class="tab-pane fade" id="wordpress" role="tabpanel">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <h5 style="color:black;">WordPress Website Design</h5>
+          <p style="color:black;">
+            We design professional WordPress websites that are easy to manage and update. This is perfect for businesses that want to maintain their site themselves without technical skills. WordPress offers flexibility, pre-built themes, and plugins to deliver a functional and attractive website quickly.
+          </p>
+          <p style="color:black;">
+            WordPress is ideal for blogs, portfolios, small business websites, and anyone who wants a balance of design, functionality, and ease-of-use.
+          </p>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+<!-- Optional: Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<style>
+  .hover-shadow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+  #servicesTabs .nav-link.active {
+    background-color: darkblue !important;
+    color: #ffffff !important;
+  }
+  #servicesTabs .nav-link {
+    color: black;
+  }
+</style>
 
 
 
 
+<!-- Website Development Packages Section -->
+<section class="py-5" style="background-color: #ffffff;">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color: #0d3b66;">Website Development Packages</h2>
+    <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
+      Explore our website packages. Sites marked <strong>Recommended for Custom Code</strong> are best built with full custom development for performance, scalability, and advanced features.
+    </p>
+
+    <div class="row g-4">
+
+      <!-- Sites Recommended for Custom Code -->
+      <div class="col-12">
+        <h4 style="color:#0d3b66;">Recommended for Custom Code</h4>
+      </div>
+
+     <!-- Custom Code E-Commerce Website -->
+<div class="col-md-6 col-lg-4">
+  <div class="card h-100 shadow-sm hover-shadow border-custom">
+    <div class="card-body">
+      <h5 class="card-title">Professional E-Commerce Store</h5>
+      <p class="card-text">
+        Fully custom-built online store with Custom Product Management, Multi-Currency Payment Integration, Coupons & Discounts, Loyalty Programs, Wishlist, Product Filtering, Review & Rating System, Social Login, Advanced Analytics, Fast & Secure Checkout, Mobile & SEO Optimized.
+      </p>
+      <p class="mb-1"><strong>Custom Code Price (Local):</strong> ₦600,000</p>
+      <p><strong>Custom Code Price (International):</strong> $2500</p>
+    </div>
+  </div>
+</div>
 
 
+      <!-- Booking / Appointment -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm hover-shadow border-custom">
+          <div class="card-body">
+            <h5 class="card-title">Booking / Appointment</h5>
+            <p class="card-text">
+              Multi-Service Scheduling, Notifications, User Accounts, Admin Dashboard, Analytics, Calendar Sync, Payment Integration, SMS & Email Reminders, Fast & Secure
+            </p>
+            <p class="mb-1"><strong>Custom Code Price (Local):</strong> ₦300,000</p>
+            <p><strong>Custom Code Price (International):</strong>  $1500</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Healthcare / Telemedicine -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm hover-shadow border-custom">
+          <div class="card-body">
+            <h5 class="card-title">Healthcare / Telemedicine</h5>
+            <p class="card-text">
+              Patient Registration, Appointment Management, Secure Payments, Doctor Dashboard, Video Consultations, Notifications, HIPAA Compliance, Analytics, Custom Reports
+            </p>
+            <p class="mb-1"><strong>Custom Code Price (Local):</strong> ₦350,000</p>
+            <p><strong>Custom Code Price (International):</strong> $3000</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Forum / Community Platform -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm hover-shadow border-custom">
+          <div class="card-body">
+            <h5 class="card-title">Forum / Community Platform</h5>
+            <p class="card-text">
+              User Accounts, Threads & Discussions, Moderation Tools, Notifications, Analytics, Gamification, Social Media Integration, Advanced Security, SEO
+            </p>
+            <p class="mb-1"><strong>Custom Code Price (Local):</strong>  ₦400,000</p>
+            <p><strong>Custom Code Price (International):</strong> $4000</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- WordPress-friendly sites -->
+      <div class="col-12 mt-4">
+        <h4 style="color:#0d3b66;">WordPress-Friendly Sites</h4>
+      </div>
+
+      <!-- Business / Corporate -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm hover-shadow">
+          <div class="card-body">
+            <h5 class="card-title">Business / Corporate</h5>
+            <p class="card-text">
+              Responsive, About Us, Services, Contact Form, Testimonials, SEO Ready, Multi-Language Support, Blog Integration, Newsletter Signup, Fast Loading
+            </p>
+            <p class="mb-1"><strong>WordPress Price (Local):</strong> ₦150,000</p>
+            <p><strong>WordPress Price (International):</strong> $300</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog / News Site -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm hover-shadow">
+          <div class="card-body">
+            <h5 class="card-title">Blog / News Site</h5>
+            <p class="card-text">
+              CMS, Categories, Tags, Comments, SEO Optimization, Analytics, Social Share, Newsletter Integration, Responsive Design
+            </p>
+            <p class="mb-1"><strong>WordPress Price (Local):</strong> ₦120,000</p>
+            <p><strong>WordPress Price (International):</strong>  $200</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio / Personal -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm hover-shadow">
+          <div class="card-body">
+            <h5 class="card-title">Portfolio / Personal</h5>
+            <p class="card-text">
+              Gallery, Project Showcase, About Me, Contact Form, Animations, SEO Optimized, Client Testimonials, Social Media Integration
+            </p>
+            <p class="mb-1"><strong>WordPress Price (Local):</strong> ₦80,000</p>
+            <p><strong>WordPress Price (International):</strong> $120</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Small E-Commerce Store -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm hover-shadow">
+          <div class="card-body">
+            <h5 class="card-title">Small E-Commerce Store</h5>
+            <p class="card-text">
+              WooCommerce, Product Catalog, Payment Integration, Coupons, SEO Friendly, Mobile Optimized, Analytics, Product Reviews
+            </p>
+            <p class="mb-1"><strong>WordPress Price (Local):</strong> ₦250,000</p>
+            <p><strong>WordPress Price (International):</strong> $500</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Landing Page / One-Page -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm hover-shadow">
+          <div class="card-body">
+            <h5 class="card-title">Landing Page / One-Page</h5>
+            <p class="card-text">
+              Custom Design, Hero Section, CTA, Animations, SEO Ready, Fast Loading, Social Media Links, Conversion Tracking
+            </p>
+            <p class="mb-1"><strong>WordPress Price (Local):</strong> ₦100,000 </p>
+            <p><strong>WordPress Price (International):</strong> $150 </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Estate / Property Portal -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm hover-shadow">
+          <div class="card-body">
+            <h5 class="card-title">Real Estate / Property Portal</h5>
+            <p class="card-text">
+              Property Listings, Search Filters, Agent Dashboard, Payment Integration, Analytics, SEO, Map Integration
+            </p>
+            <p class="mb-1"><strong>WordPress Price (Local):</strong> ₦200,000</p>
+            <p><strong>WordPress Price (International):</strong> $300 </p>
+          </div>
+        </div>
+      </div>
+
+      
+
+    </div>
+  </div>
+</section>
+
+<style>
+.hover-shadow {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-shadow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.card-title {
+  color: #0d3b66;
+}
+.card-text, p {
+  color: #333;
+}
+.border-custom {
+  border: 2px solid #0d3b66 !important;
+}
+</style>
+
+<!-- How We Work Section -->
+<section class="py-5" style="background-color:#ffffff;">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color:black;">How We Work</h2>
+    <p class="text-center mb-5" style="font-size:1.1rem; color:#555;">
+      Our process is simple, transparent, and designed to deliver high-quality websites efficiently.
+    </p>
+
+    <div class="row g-4">
+      <!-- Step 1 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm hover-shadow text-center p-3">
+          <div class="mb-3">
+            <i class="bi bi-pencil-square" style="font-size:2rem; color:darkblue;"></i>
+          </div>
+          <h5 class="card-title">1. Submit Your Details</h5>
+          <p class="card-text" style="color:#555;">
+            Fill out our contact form with your requirements, website type, and project details.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm hover-shadow text-center p-3">
+          <div class="mb-3">
+            <i class="bi bi-telephone" style="font-size:2rem; color:darkblue;"></i>
+          </div>
+          <h5 class="card-title">2. We Contact You</h5>
+          <p class="card-text" style="color:#555;">
+            Our team will reach out via your preferred contact method to clarify requirements and advise on the best solution.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm hover-shadow text-center p-3">
+          <div class="mb-3">
+            <i class="bi bi-cash-stack" style="font-size:2rem; color:darkblue;"></i>
+          </div>
+          <h5 class="card-title">3. Payment & Confirmation</h5>
+          <p class="card-text" style="color:#555;">
+            We request a 70% upfront payment to secure your project. Once confirmed, we schedule and begin development.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm hover-shadow text-center p-3">
+          <div class="mb-3">
+            <i class="bi bi-laptop" style="font-size:2rem; color:darkblue;"></i>
+          </div>
+          <h5 class="card-title">4. Project Development</h5>
+          <p class="card-text" style="color:#555;">
+            We develop your website with high-quality code, testing, and client feedback until you’re 100% satisfied.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Optional: Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<style>
+  .hover-shadow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+  .card-title {
+    color: darkblue;
+  }
+</style>
+
+<!-- FAQ Section -->
+<section id="faq" class="faq section py-5" style="background-color: white;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color:#0d3b66;">Frequently Asked Questions</h2>
+      <p style="color: #333;">Everything you need to know about our website development services, pricing, and process.</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="accordion" id="faqAccordion">
+
+          <!-- FAQ 1 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq1-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="false" aria-controls="faq1">
+                1. What types of websites can you build?
+              </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse" aria-labelledby="faq1-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                We build Business Websites, Blogs/News Sites, E-Commerce Stores, Portfolio Websites, Educational Platforms (LMS), Booking Websites, Custom Web Applications, Real Estate Portals, Healthcare Platforms, Forums, and more.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq2-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                2. Can WordPress handle all website types?
+              </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" aria-labelledby="faq2-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                WordPress is perfect for blogs, portfolios, small business websites, and basic e-commerce stores. Complex platforms like marketplaces, custom applications, and large booking systems are best built with Custom Code.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq3-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                3. How long does it take to build a website?
+              </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" aria-labelledby="faq3-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                WordPress sites: 1–3 weeks for basic setups. Custom-coded websites: 4–12 weeks depending on complexity and features required.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq4-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                4. How much does a website cost?
+              </button>
+            </h2>
+            <div id="faq4" class="accordion-collapse collapse" aria-labelledby="faq4-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                WordPress websites: ₦80,000 – ₦300,000 (local), $120 – $600 (international). Custom Code websites: ₦300,000 – ₦1,000,000 depends  (local), $1000 – $5,000 (international). Pricing depends on project requirements and features.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq5-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                5. What payment methods do you accept?
+              </button>
+            </h2>
+            <div id="faq5" class="accordion-collapse collapse" aria-labelledby="faq5-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                We accept <strong>Wire Transfer</strong> and <strong>Bitcoin (USDT)</strong> only for secure transactions.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq6-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6" aria-expanded="false" aria-controls="faq6">
+                6. Do you provide website maintenance?
+              </button>
+            </h2>
+            <div id="faq6" class="accordion-collapse collapse" aria-labelledby="faq6-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Yes! We offer ongoing maintenance and support packages to ensure your website stays secure, updated, and optimized.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 7 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq7-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7" aria-expanded="false" aria-controls="faq7">
+                7. Can I request custom features?
+              </button>
+            </h2>
+            <div id="faq7" class="accordion-collapse collapse" aria-labelledby="faq7-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Absolutely. Custom Code projects allow for advanced and unique features tailored to your business needs. WordPress sites can use plugins but may have limitations.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 8 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq8-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8" aria-expanded="false" aria-controls="faq8">
+                8. Will my website be mobile-friendly?
+              </button>
+            </h2>
+            <div id="faq8" class="accordion-collapse collapse" aria-labelledby="faq8-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Yes! All websites we build are responsive and optimized for mobile, tablet, and desktop devices.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 9 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq9-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9" aria-expanded="false" aria-controls="faq9">
+                9. Who owns the website after completion?
+              </button>
+            </h2>
+            <div id="faq9" class="accordion-collapse collapse" aria-labelledby="faq9-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                You own your website completely once payment is completed. All credentials, files, and source code are handed over to you.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 10 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq10-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10" aria-expanded="false" aria-controls="faq10">
+                10. Can you help me grow my website after launch?
+              </button>
+            </h2>
+            <div id="faq10" class="accordion-collapse collapse" aria-labelledby="faq10-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Yes! We provide guidance on SEO, performance optimization, and additional feature integration to help your website attract more traffic and clients.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 11 -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="faq11-heading">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq11" aria-expanded="false" aria-controls="faq11">
+      11. Where is your office located?
+    </button>
+  </h2>
+  <div id="faq11" class="accordion-collapse collapse" aria-labelledby="faq11-heading" data-bs-parent="#faqAccordion">
+    <div class="accordion-body">
+      We operate fully digitally! In today’s connected world, a physical office isn’t necessary to deliver top-quality services. This allows us to work efficiently, reduce costs, and serve clients globally without limitations. You can reach us anytime via email, WhatsApp.
+    </div>
+  </div>
+</div>
 
 
+        </div> <!-- End Accordion -->
+      </div>
+    </div>
+  </div>
+</section>
 
 
+<!-- Reviews Section -->
+<section id="reviews" class="py-5" style="background-color: #ffffff;">
+  <div class="container">
+    <!-- Section Title -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color:#0d3b66;">What Our Clients Say</h2>
+      <p style="color:#333;">Hear from clients worldwide who trusted us to build their websites and digital solutions.</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+
+      <!-- Review 1 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm p-3">
+          <div class="d-flex align-items-center mb-2">
+            <h6 class="mb-0 fw-bold">John Smith (USA)</h6>
+            <div class="ms-auto text-warning">
+              &#9733;&#9733;&#9733;&#9733;&#9733;
+            </div>
+          </div>
+          <p style="color:#000;">
+            “The team delivered a fully customized e-commerce website for my store. My sales increased in just two weeks. Communication and professionalism were top-notch.”
+          </p>
+        </div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm p-3">
+          <div class="d-flex align-items-center mb-2">
+            <h6 class="mb-0 fw-bold">Fatima Al-Hassan (UAE)</h6>
+            <div class="ms-auto text-warning">
+              &#9733;&#9733;&#9733;&#9733;&#9733;
+            </div>
+          </div>
+          <p style="color:#000;">
+            “Their custom booking system made managing appointments effortless. Automation and reminders saved hours every week. Highly recommended for busy businesses.”
+          </p>
+        </div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm p-3">
+          <div class="d-flex align-items-center mb-2">
+            <h6 class="mb-0 fw-bold">Emma Johnson (UK)</h6>
+            <div class="ms-auto text-warning">
+              &#9733;&#9733;&#9733;&#9733;&#9734;
+            </div>
+          </div>
+          <p style="color:#000;">
+            “The portfolio website they designed for my photography business is stunning. Clients love its ease of navigation, and the fast loading times help retain visitors.”
+          </p>
+        </div>
+      </div>
+
+      <!-- Review 4 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm p-3">
+          <div class="d-flex align-items-center mb-2">
+            <h6 class="mb-0 fw-bold">Chinedu Okafor (Nigeria)</h6>
+            <div class="ms-auto text-warning">
+              &#9733;&#9733;&#9733;&#9733;&#9733;
+            </div>
+          </div>
+          <p style="color:#000;">
+            “They revamped our WordPress blog into a fully optimized news platform. Traffic and engagement increased, and the team guided us through SEO best practices.”
+          </p>
+        </div>
+      </div>
+
+      <!-- Review 5 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm p-3">
+          <div class="d-flex align-items-center mb-2">
+            <h6 class="mb-0 fw-bold">Sofia Martinez (Spain)</h6>
+            <div class="ms-auto text-warning">
+              &#9733;&#9733;&#9733;&#9733;&#9733;
+            </div>
+          </div>
+          <p style="color:#000;">
+            “The custom web application they built for my online tutoring service simplified class scheduling and payments. Their professionalism is unmatched.”
+          </p>
+        </div>
+      </div>
+
+      <!-- Review 6 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm p-3">
+          <div class="d-flex align-items-center mb-2">
+            <h6 class="mb-0 fw-bold">Tunde Adebayo (Nigeria)</h6>
+            <div class="ms-auto text-warning">
+              &#9733;&#9733;&#9733;&#9733;&#9734;
+            </div>
+          </div>
+          <p style="color:#000;">
+            “Fast, professional, and exceeded expectations. The website interface is intuitive, and their guidance on content setup made launching much easier.”
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 
+<!-- Bootstrap 5 Contact Form -->
+<section id="contact" class="py-5" style="background-color: #ffffff;">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color: #0d3b66;">Get in Touch</h2>
+    <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
+      Fill out the form below to discuss your project. We'll get back to you with the best solution for your website needs.
+    </p>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="alert alert-success text-center d-none" role="alert">
+      ✅ Message sent successfully! We will message you within 24 hrs.
+    </div>
+
+    <form id="contactForm">
+      <div class="row g-3">
+        <!-- your fields remain unchanged -->
+
+        <!-- Full Name -->
+        <div class="col-md-6">
+          <label for="fullName" class="form-label">Full Name <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="fullName" placeholder="John Doe" required>
+        </div>
+
+        <!-- Email -->
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
+          <input type="email" class="form-control" id="email" placeholder="email@example.com" required>
+        </div>
+
+        <!-- Phone / WhatsApp -->
+        <div class="col-md-6">
+          <label for="phone" class="form-label">Phone / WhatsApp <span class="text-danger">*</span></label>
+          <input type="tel" class="form-control" id="phone" placeholder="+234 801 234 5678" required>
+        </div>
+
+        <!-- Development Type -->
+        <div class="col-md-6">
+          <label for="developmentType" class="form-label">Development Type <span class="text-danger">*</span></label>
+          <select class="form-select" id="developmentType" required>
+            <option value="" selected disabled>Choose...</option>
+            <option>WordPress</option>
+            <option>Custom Code</option>
+            <option>Not Sure (Advise me)</option>
+          </select>
+        </div>
+
+        <!-- Website Type -->
+        <div class="col-md-6">
+          <label for="websiteType" class="form-label">Website Type <span class="text-danger">*</span></label>
+          <select class="form-select" id="websiteType" required>
+            <option value="" selected disabled>Choose...</option>
+            <option>Business / Corporate</option>
+            <option>Blog / News Site</option>
+            <option>Portfolio / Personal</option>
+            <option>Small E-Commerce Store</option>
+            <option>E-Commerce / Store</option>
+            <option>Marketplace / Multi-Vendor</option>
+            <option>Landing Page / One-Page</option>
+            <option>Real Estate / Property Portal</option>
+            <option>Booking / Appointment</option>
+            <option>Educational / LMS</option>
+            <option>Healthcare / Telemedicine</option>
+            <option>Forum / Community Platform</option>
+            <option>Custom Web Application</option>
+            <option>Non-Profit / NGO Site</option>
+          </select>
+        </div>
+
+        <!-- Client Location -->
+        <div class="col-md-6">
+          <label for="clientLocation" class="form-label">Client Location <span class="text-danger">*</span></label>
+          <select class="form-select" id="clientLocation" required>
+            <option value="" selected disabled>Choose...</option>
+            <option>Nigeria</option>
+            <option>International</option>
+          </select>
+        </div>
+
+        <!-- Project Timeline -->
+        <div class="col-md-6">
+          <label for="timeline" class="form-label">Project Timeline</label>
+          <select class="form-select" id="timeline">
+            <option value="" selected disabled>Select Timeline</option>
+            <option>1–2 weeks</option>
+            <option>1 month</option>
+            <option>Flexible / Not sure</option>
+          </select>
+        </div>
+
+        <!-- Message / Project Details -->
+        <div class="col-12">
+          <label for="message" class="form-label">Message / Project Details</label>
+          <textarea class="form-control" id="message" rows="4" placeholder="Describe your project..."></textarea>
+        </div>
+
+        <!-- Preferred Contact Method -->
+        <div class="col-md-6">
+          <label for="contactMethod" class="form-label">Preferred Contact Method</label>
+          <select class="form-select" id="contactMethod">
+            <option value="" selected disabled>Select Method</option>
+            <option>WhatsApp</option>
+            <option>Phone Call</option>
+            <option>Email</option>
+          </select>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="col-12 text-center">
+          <button type="submit" class="btn btn-primary btn-lg mt-3">Submit Project Request</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- jQuery for AJAX -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  $("#contactForm").submit(function(e) {
+    e.preventDefault();
+
+    $.ajax({
+      type: "POST",
+      url: "/send-message", // backend endpoint
+      data: {
+        fullName: $("#fullName").val(),
+        email: $("#email").val(),
+        phone: $("#phone").val(),
+        developmentType: $("#developmentType").val(),
+        websiteType: $("#websiteType").val(),
+        clientLocation: $("#clientLocation").val(),
+        timeline: $("#timeline").val(),
+        message: $("#message").val(),
+        contactMethod: $("#contactMethod").val(),
+      },
+      success: function() {
+        $("#successMessage").removeClass("d-none"); // show success alert
+        $("#contactForm")[0].reset(); // reset form
+      },
+      error: function() {
+        alert("❌ Failed to send. Please try again.");
+      }
+    });
+  });
+</script>
+
+<style>
+  button.btn-primary:hover {
+    background-color: #083061;
+    border-color: #083061;
+  }
+</style>
 
 
+<!-- Call To Action Section for Website Design -->
+<section id="cta-website" class="py-5" style="background-color: #0d1b4c;">
+  <div class="container text-center text-white">
+    <h2 class="fw-bold mb-3">Build a Website That Works for Your Business</h2>
+<p class="lead mb-4 text-white">
+  Your website is the face of your brand online. I specialize in 
+  <strong>professional website design and development</strong> that is modern, 
+  mobile-friendly, and optimized for performance.  
+  Whether you need a business website, e-commerce store, or portfolio, I create 
+  <strong>custom web solutions</strong> that attract visitors, engage your audience, 
+  and help you grow online.  
+  Let’s transform your ideas into a responsive, fast, and SEO-ready website today.
+</p>
 
+    <a href="#contact" class="btn btn-light btn-lg fw-bold px-5 py-3">
+      Start Your Website Project Now
+    </a>
+  </div>
+</section>
 
-
-
-
-
-
-<footer class="footer pt-5" style="background-color: darkblue;">
+<footer class="footer pt-8" style="background-color: darkblue;">
 <div class="footer-newsletter">
   <div class="container">
     <div class="row justify-content-center text-center">
@@ -557,7 +1602,7 @@
     </li>
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="#" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Flyer Design</a>
+      <a href="/flyer-design/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Flyer Design</a>
     </li>
   </ul>
 </div>
@@ -592,7 +1637,6 @@
     </li>
   </ul>
 </div>
-
 
 <!-- Follow Us -->
 <div class="col-lg-3 col-md-6">
@@ -645,3 +1689,6 @@
 
 
 
+
+
+  

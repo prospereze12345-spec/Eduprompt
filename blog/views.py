@@ -55,12 +55,5 @@ def blog_detail(request, slug):
 
 
 
-from django.shortcuts import render
-from .models import BlogPost  # adjust if your model name is different
 
-def recent_posts_view(request):
-    blog_list = BlogPost.objects.all().order_by('-created_at')[:3]  # latest 6 posts
-    return render(request, 'your_template.html', {
-        'blog_list': blog_list
-    })
 
