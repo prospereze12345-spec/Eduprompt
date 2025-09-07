@@ -1,0 +1,661 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-06 22:20+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Zulu <LL@li.org>\n"
+"Language: zu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
+"Project-Id-Version: EduPrompt 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-06 22:20+0100\n"
+"PO-Revision-Date: 2025-09-06 22:20+0100\n"
+"Last-Translator: Your Name <you@example.com>\n"
+"Language-Team: Zulu <zu@li.org>\n"
+"Language: zu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "F.A.Q"
+msgstr "Iimibuzo Evame Ukubuzwa"
+
+msgid "Frequently Asked Questions about <strong>EduPrompt</strong>, your AI study assistant for smarter learning."
+msgstr "Imibuzo Evame Ukubuzwa mayelana ne-<strong>EduPrompt</strong>, umsizi wakho we-AI wokufunda ngobuhlakani."
+
+msgid "What is EduPrompt and how does it help me?"
+msgstr "Iyini i-EduPrompt futhi ingisiza kanjani?"
+
+msgid "EduPrompt</strong> is an AI-powered learning platform that simplifies studying. It provides clear explanations, note generation, essay and assignment help, and other study tools accessible anytime, anywhere."
+msgstr "I-EduPrompt</strong> iyiplatifomu yokufunda esebenzisa i-AI ehlangabezana nokufunda kalula. Inikeza izincazelo ezicacile, ukukhiqiza amanothi, usizo lwezindatshana nezabelo, kanye namanye amathuluzi okufunda atholakala noma nini, noma kuphi."
+
+msgid "Do you support African languages?"
+msgstr "Ingabe nixhasa izilimi zase-Afrika?"
+
+msgid "Yes! EduPrompt supports <strong>Yoruba, Igbo, Hausa, Swahili</strong>, and more, making learning easier in the language you understand best."
+msgstr "Yebo! I-EduPrompt ixhasa <strong>i-Yoruba, i-Igbo, i-Hausa, i-Swahili</strong>, nezinye, okwenza ukufunda kube lula ngolimi oluqondwa kangcono."
+
+msgid "Is EduPrompt free to use?"
+msgstr "Ingabe i-EduPrompt iyamahhala ukusebenzisa?"
+
+msgid "EduPrompt is a <strong>paid platform</strong>, but you can try it for free with our <strong>trial period</strong>. Core study tools are included during the trial, giving you a chance to explore before subscribing."
+msgstr "I-EduPrompt iyiplatifomu <strong>ekhokhelwayo</strong>, kodwa ungayizama mahhala ngesikhathi sethu <strong>sokuzama</strong>. Amathuluzi okuyisisekelo okufunda afakiwe ngesikhathi sokuzama, akunika ithuba lokuhlola ngaphambi kokubhalisela."
+
+msgid "Can I learn at my own pace?"
+msgstr "Ngingafunda ngokushesha kwami?"
+
+msgid "Yes! EduPrompt lets you study <strong>anytime, anywhere</strong>. Pause, replay, or continue according to your own schedule."
+msgstr "Yebo! I-EduPrompt ikuvumela ukuba ufunde <strong>noma yinini, noma kuphi</strong>. Misa, phinda, noma uqhubeke ngokuhambisana nohlelo lwakho."
+
+msgid "Is EduPrompt mobile-friendly?"
+msgstr "Ingabe i-EduPrompt ilungele amaphaphu?"
+
+msgid "Absolutely! EduPrompt works seamlessly on <strong>phones, tablets, or laptops</strong> with no special apps required."
+msgstr "Nakanjani! I-EduPrompt isebenza kahle ku-<strong>phones, amaphilisi, noma amalaptop</strong> ngaphandle kwezinhlelo zokusebenza ezikhethekile."
+
+msgid "Is it affordable for African students?"
+msgstr "Ingabe iyabiza abafundi base-Afrika?"
+
+msgid "Yes! EduPrompt is designed to be <strong>affordable and accessible</strong> for students across Africa."
+msgstr "Yebo! I-EduPrompt yakhelwe ukuba <strong>ibize kancane futhi ifinyeleleke</strong> kubafundi e-Afrika yonke."
+
+msgid "Can EduPrompt generate essays and notes"
+msgstr "Ingabe i-EduPrompt ingakhiqiza izindatshana namaphuzu?"
+
+msgid "Yes! EduPrompt can create <strong>customized essays, letters, and notes</strong> to help you study efficiently and understand topics better."
+msgstr "Yebo! I-EduPrompt ingakha <strong>izindatshana ezenziwe ngezifiso, izincwadi, namaphuzu</strong> ukukusiza ufunde kahle futhi uqonde izihloko kangcono."
+
+msgid "Is EduPrompt safe and secure?"
+msgstr "Ingabe i-EduPrompt iphephile futhi ivikelekile?"
+
+msgid "EduPrompt respects your privacy. All <strong>notes and personal data</strong> are stored securely and never shared without your consent."
+msgstr "I-EduPrompt ihlonipha ubumfihlo bakho. Yonke <strong>amanothi nedatha yakho siqu</strong> igcinwa ngokuphepha futhi ayithunyelwa ngaphandle kwemvume yakho."
+
+msgid "Can I use EduPrompt offline?"
+msgstr "Ngingayisebenzisa i-EduPrompt ngaphandle kwe-inthanethi?"
+
+msgid "Currently, EduPrompt requires internet access, but you can <strong>download generated notes</strong> to study offline anytime."
+msgstr "Njengamanje, i-EduPrompt idinga ukufinyelela ku-inthanethi, kodwa ungakwazi <strong>ukulanda amanothi akhiqiziwe</strong> ukuze ufunde ngaphandle kwe-inthanethi noma yinini."
+
+#, fuzzy
+msgid "AI Solver"
+msgstr "Isixazululi se-AI"
+
+msgid "Essay Generator"
+msgstr "Umkhiqizi Wamaphepha"
+
+msgid "Note Generator"
+msgstr "Umkhiqizi Wezincwadi"
+
+msgid "Letter Writer"
+msgstr "Umbhali Wezincwadi"
+
+msgid "Blog"
+msgstr "Ibhulogi"
+
+msgid "Tools"
+msgstr "Amathuluzi"
+
+msgid "Project Writer"
+msgstr "Umbhali Wephrojekthi"
+
+msgid "Grammar Checker"
+msgstr "Isihloli Sohlelo Lwamagama"
+
+msgid "Contact"
+msgstr "Xhumana Nathi"
+
+msgid "Get Started"
+msgstr "Qala Manje"
+
+msgid "Login"
+msgstr "Ngena"
+
+msgid "Plagiarism Checker"
+msgstr "Isihloli Sokukopela"
+
+msgid "Bootstrap Center with Animation"
+msgstr "Isikhungo se-Bootstrap Nge-Animeshini"
+
+msgid "AIs Solver"
+msgstr "Izixazululi ze-AI"
+
+msgid "AI Tools Hub – AI Essay, Solver, Grammar, project writer, note, letter & Design Solutions"
+msgstr "I-AI Tools Hub – Umbhali Wamaphepha e-AI, Isixazululi, Isihloli Sohlelo, Umbhali Wephrojekthi, Incwadi, Umbhalo & Izixazululo Zokuklama"
+
+msgid "Explore our suite of AI-powered tools including Essay Generator, Math/Physics/Chemistry Solver, Grammar Checker, letter writer, project writer, Flyer Design, Web Development, and more. Instantly create essays, solve academic problems, check grammar, and design professional digital assets. Trusted by students, professionals, and businesses worldwide."
+msgstr "Hlola ithuluzi lethu elinamandla e-AI elihlanganisa Umkhiqizi Wamaphepha, Isixazululi SeMathematics/Fiziksi/Khemistri, Isihloli Sohlelo Lwamagama, Umbhali Wezincwadi, Umbhali Wephrojekthi, Ukuklama I-Flyer, Ukuthuthukiswa Kwewebhu, nokuningi. Dala amaphepha ngokushesha, uxazulule izinkinga zemfundo, hlola uhlelo lwamagama, futhi wakhe izinsiza zedijithali ezisezingeni eliphezulu. Kuthembeke abafundi, ochwepheshe, namabhizinisi emhlabeni wonke."
+
+msgid "Eduprompt"
+msgstr "EduPrompt"
+
+msgid "New!"
+msgstr "Okusha!"
+
+msgid "Empowering Your Business with Expert Website Development. Unlock Your Business Potential Online"
+msgstr "Nikeza amandla ibhizinisi lakho ngokuthuthukiswa kwewebhusayithi okusezingeni. Vula amathuba ebhizinisi lakho ku-inthanethi"
+
+msgid "Empower Your Learning with Smart AI Tools"
+msgstr "Nikeza amandla ukufunda kwakho ngamathuluzi e-AI ahlakaniphile"
+
+msgid "Support your studies with AI tools that help you write, solve problems, and understand lessons—at your own pace and in your language. Built for African students, our platform makes learning easier, flexible, and accessible."
+msgstr "Sekela izifundo zakho ngamathuluzi e-AI akusiza ukubhala, ukuxazulula izinkinga, nokuqonda izifundo—ngesivinini sakho futhi ngolimi lwakho. Yakhelwe abafundi base-Afrika, ipulatifomu yethu yenza ukufunda kube lula, kushintshashintsha, futhi kufinyeleleke kalula."
+
+msgid "Go Pro"
+msgstr "Yiba Uchwepheshe"
+
+msgid "Explore Features"
+msgstr "Hlola Izici"
+
+msgid "Our Values"
+msgstr "Amanani ethu"
+
+msgid "At EduPrompt, students come first. Our AI study assistant is built to help learners grow, understand concepts faster, and feel more confident on their learning journey."
+msgstr "E-EduPrompt, abafundi bahlala kuqala. Umsizi wethu we-AI wokufunda wakhelwe ukusiza abafundi ukukhula, ukuqonda imiqondo ngokushesha, nokuzethemba ohambweni lwabo lokufunda."
+
+msgid "Clear Understanding"
+msgstr "Ukuqonda Okuhle"
+
+msgid "We make learning simple. Our AI explains ideas step by step, helping students of all ages grasp concepts easily and confidently."
+msgstr "Senza ukufunda kube lula. I-AI yethu ichaza imiqondo isinyathelo ngesinyathelo, isiza abafundi bonke ukuqonda ngokulula nangokuzethemba."
+
+msgid "Equal Opportunities"
+msgstr "Amathuba Alinganayo"
+
+msgid "Every student deserves the chance to succeed. Our AI assistant provides consistent support, no matter where you study or what resources you have."
+msgstr "Wonke umfundi ufanele ithuba lokuphumelela. Umsizi wethu we-AI unikeza ukwesekwa okuqhubekayo, kungakhathaleki lapho ufunda noma izinto onazo."
+
+msgid "Learn at Your Own Pace"
+msgstr "Funda Ngokuvumelana Nesivinini Sakho"
+
+msgid "Everyone learns differently. Our AI study assistant adapts to your speed, making learning personalized, comfortable, and effective."
+msgstr "Wonke umuntu ufunda ngendlela ehlukile. Umsizi wethu we-AI uyazivumelanisa nesivinini sakho, wenza ukufunda kube ngokwakho, kulula, futhi kusebenziseke."
+
+msgid "Engaging & Enjoyable"
+msgstr "Kuzijabulisa Futhi Kuyakhanga"
+
+msgid "Learning should be interesting, not stressful. Our AI tools make studying fun, interactive, and easy to follow."
+msgstr "Ukufunda kufanele kube mnandi, hhayi okucindezelayo. Amathuluzi ethu e-AI enza ukufunda kube mnandi, kube nokusebenzisana, futhi kulandeke kalula."
+
+msgid "Respect & Support"
+msgstr "Inhlonipho Nokwesekwa"
+
+msgid "We value every student. Whether young or adult, our AI assistant ensures a safe, welcoming, and supportive learning experience."
+msgstr "Sibheka bonke abafundi ngenhlonipho. Kungakhathaleki ukuthi bayizingane noma abadala, umsizi wethu we-AI uqinisekisa ukufunda okuphephile, okuvamukelayo, nokusekela."
+
+msgid "Learning & Growing Together"
+msgstr "Sifunda Futhi Sikhula Ndawonye"
+
+msgid "We constantly improve. By listening to feedback and learning from our students, we grow together, step by step, making our AI assistant smarter and more helpful."
+msgstr "Sihlala sithuthukisa. Ngokulalela impendulo nokufunda kubafundi bethu, sikhula ndawonye, isinyathelo ngesinyathelo, senze umsizi wethu we-AI uhlakaniphe futhi usizo oluningi."
+
+msgid "Students Achieving Success"
+msgstr "Abafundi Abaphumelela"
+
+msgid "Content Generated"
+msgstr "Okuqukethwe Okukhiqiziwe"
+
+msgid "Hours of AI Assistance"
+msgstr "Amahora Okusizakala Nge-AI"
+
+msgid "AI Tools Available"
+msgstr "Amathuluzi E-AI Atholakalayo"
+
+msgid "Features"
+msgstr "Izici"
+
+msgid "Our Features"
+msgstr "Izici Zethu"
+
+msgid "Create detailed notes from your topics quickly and easily"
+msgstr "Dala amanothi ane-mininingwane kumaphuzu akho ngokushesha nangokulula"
+
+msgid "Generate well-structured essays with AI guidance"
+msgstr "Khiqiza amaphepha ahlelwe kahle ngokuholwa yi-AI"
+
+msgid "letter writer"
+msgstr "umbhali wezincwadi"
+
+msgid "Generate professional letters instantly."
+msgstr "Khiqiza izincwadi zobuchwepheshe ngokushesha."
+
+msgid "Save time and create polished content for any purpose"
+msgstr "Londoloza isikhathi futhi udale okuqukethwe okuhle nganoma iyiphi injongo"
+
+msgid "Solve equations, formulas, and problems with step-by-step help"
+msgstr "Xazulula izibalo, izifomula, nezinkinga ngosizo lwesinyathelo ngesinyathelo"
+
+msgid "Get AI assistance for writing reports and projects efficiently"
+msgstr "Thola usizo lwe-AI ekubhaleni imibiko namaphrojekthi ngokusebenza kahle"
+
+msgid "Improve your writing by checking grammar, punctuation, and style"
+msgstr "Thuthukisa ukubhala kwakho ngokuhlola uhlelo lwamagama, uphawu, nesitayela"
+
+msgid "Why our platform"
+msgstr "Kungani ipulatifomu yethu"
+
+msgid "Why Students Choose Us"
+msgstr "Kungani Abafundi Bekhetha Thina"
+
+msgid "AI-Powered Learning Tools"
+msgstr "Amathuluzi Okufunda Asekelwe Nge-AI"
+
+msgid "Boost your study efficiency with intelligent tools that simplify note-taking, assignments, and exam prep."
+msgstr "Khulisa ukusebenza kahle kwezifundo zakho ngamathuluzi ahlakaniphile alula ukuthatha amanothi, imisebenzi, nokulungiselela izivivinyo."
+
+msgid "Essay & Assignment Writer"
+msgstr "Umbhali Wamaphepha Nemisebenzi"
+
+msgid "Generate high-quality, well-structured essays and assignments in minutes with AI assistance."
+msgstr "Khiqiza amaphepha nemisebenzi esezingeni eliphezulu, ahlelwe kahle ngemizuzu nje ngosizo lwe-AI."
+
+msgid "Collaborative Study Assistant"
+msgstr "Umsizi Wokufunda Ngokubambisana"
+
+msgid "Work smarter with features that help you collaborate, organize group projects, and share notes effectively."
+msgstr "Sebenza ngokuhlakanipha ngezici ezikusiza ukubambisana, ukuhlela amaphrojekthi eqembu, nokwabelana ngamanothi ngempumelelo."
+
+msgid "Multilingual Support"
+msgstr "Ukusekelwa Kwamalimi Amaningi"
+
+msgid "Learn in the language you’re comfortable with — English, Swahili, Igbo, Yoruba, and more."
+msgstr "Funda ngolimi olukhululekile kuwe — IsiNgisi, iSwahili, i-Igbo, iYoruba, nokuningi."
+
+msgid "Homework Assistant"
+msgstr "Umsizi Wasekhaya"
+
+msgid "Solve problems quickly across subjects with AI guidance, keeping your work original and clear."
+msgstr "Xazulula izinkinga ngokushesha kuzo zonke izifundo ngosizo lwe-AI, ugcine umsebenzi wakho uyingqayizivele futhi ucacile."
+
+msgid "Plagiarism & Originality Tools"
+msgstr "Amathuluzi Okukopela Nokwembula Okuqondile"
+
+msgid "Ensure every essay, note, or assignment is original and ready for school submission."
+msgstr "Qinisekisa ukuthi wonke amaphepha, amanothi, noma imisebenzi iyingqayizivele futhi ilungele ukuthunyelwa esikoleni."
+
+msgid "Pricing"
+msgstr "Amanani"
+
+msgid "Check Our Affordable Pricing"
+msgstr "Bheka Amanani Wethu Asezingeni"
+
+msgid "Weekly Plan"
+msgstr "Uhlelo Lwamaviki"
+
+msgid "Monthly Plan"
+msgstr "Uhlelo Lwenyanga"
+
+msgid " / mo"
+msgstr " / ngenyanga"
+
+msgid "Quarterly Plan"
+msgstr "Uhlelo Lwekota"
+
+msgid "(6 months)"
+msgstr "(izinyanga ezi-6)"
+
+msgid "29"
+msgstr "29"
+
+msgid "/ Quarter"
+msgstr "/ Ikota"
+
+msgid "Yearly Plan"
+msgstr "Uhlelo Lwonyaka"
+
+msgid "49"
+msgstr "49"
+
+msgid " / year"
+msgstr " / ngonyaka"
+
+msgid "Who Can Benefit from Our AI EdTech Platform?"
+msgstr "Ubani Ongazuza Epulatifomu Yethu Ye-AI EdTech?"
+
+
+
+msgid "Professionals"
+msgstr "Ochwepheshe"
+
+msgid "Researchers"
+msgstr "Abacwaningi"
+
+msgid "AI Accuracy & Reliability"
+msgstr "Ukunemba Nokuthembeka Kwe-AI"
+
+msgid "99%% Accuracy"
+msgstr "Ukunemba Okungu-99%"
+
+msgid "Verified Results"
+msgstr "Imiphumela Ehlolwe"
+
+msgid "Secure & Private"
+msgstr "Kuphephile Futhi Kuyimfihlo"
+
+
+
+msgid "Join Our Newsletter"
+msgstr "Joyina Incwadi Yethu Yezindaba"
+
+msgid "Loading"
+msgstr "Ilayisha"
+
+msgid "Your subscription request has been sent. Thank you!"
+msgstr "Isicelo sakho sokubhalisela sithunyelwe. Ngiyabonga!"
+
+msgid "About the Founder"
+msgstr "Mayelana Nomdali"
+
+msgid "EduPrompt was founded by Eze Prosper somtochukwu, a software developer passionate about education technology."
+msgstr "I-EduPrompt yasungulwa ngu-Eze Prosper Somtochukwu, umthuthukisi wohlelo oluthanda ubuchwepheshe bemfundo."
+
+msgid "He created this platform to provide students with AI-powered tools that make learning smarter, faster, and more accessible."
+msgstr "Wadale le pulatifomu ukunikeza abafundi amathuluzi asekelwe yi-AI okwenza ukufunda kube ukuhlakanipha, ngokushesha, futhi kufinyeleleke kalula."
+
+msgid "Useful Links"
+msgstr "Izixhumanisi Eziwusizo"
+
+msgid "Home"
+msgstr "Ikhaya"
+
+msgid "About Us"
+msgstr "Mayelana Nathi"
+
+msgid "Privacy Policy"
+msgstr "Inqubomgomo Yobumfihlo"
+
+msgid "Terms and Conditions"
+msgstr "Imigomo Nemibandela"
+
+msgid "Our Services"
+msgstr "Izinsizakalo Zethu"
+
+msgid "Web Design"
+msgstr "Ukuklama Iwebhusayithi"
+
+msgid "Flyer Design"
+msgstr "Ukuklama Amaflya"
+
+msgid "Our Tools"
+msgstr "Amathuluzi Wethu"
+
+msgid "Essay Writer"
+msgstr "Umbhali Wamaphepha"
+
+msgid "Ai Solver"
+msgstr "Isixazululi se-AI"
+
+msgid "Follow Us"
+msgstr "Silandele"
+
+msgid "Follow us on all our social media platforms"
+msgstr "Silandele kuzo zonke izinkundla zethu zokuxhumana"
+
+msgid "EduPrompt</strong> All Rights Reserved."
+msgstr "EduPrompt</strong> Wonke Amalungelo Agodliwe."
+
+msgid "Scholarship Finder"
+msgstr "Umtholi Wezikweletu Zezifundo"
+
+msgid "Sign Up"
+msgstr "Bhalisela"
+
+msgid "Full Name"
+msgstr "Igama Eligcwele"
+
+msgid "Email"
+msgstr "I-imeyili"
+
+msgid "Phone Number"
+msgstr "Inombolo Yefoni"
+
+msgid "Password"
+msgstr "Iphasiwedi"
+
+msgid "Confirm Password"
+msgstr "Qinisekisa Iphasiwedi"
+
+msgid "Country (Optional)"
+msgstr "Izwe (Uma Kufunwa)"
+
+msgid "Already have an account?"
+msgstr "Usunayo i-akhawunti?"
+
+
+
+
+
+
+#: templates/ai_solver.html:5
+msgid "Math, Physics, or Chemistry Problem"
+msgstr "Inkinga yeMathematics, iFiziksi, noma iKhemistry"
+
+#: templates/ai_solver.html:9
+msgid "Learn smarter, not harder. Our AI-powered solver guides you through step-by-step solutions for tricky high-school exercises to advanced university problems. Understand concepts deeply while mastering problem-solving skills—perfect for curious students, exam preparation, and lifelong learners."
+msgstr "Funda ngokuhlakanipha, hhayi ngokukhathala. Isixazululo sethu esisebenzisa i-AI sikuhola ngezinyathelo ekuqedeni izivivinyo ezinzima ezikoleni zamabanga aphakeme kuya ezinkingeni ezithuthukile zaseyunivesithi. Qonda kahle imiqondo ngenkathi uthuthukisa amakhono okuqeda izinkinga—kufaneleka kahle kubafundi abanentshisekelo, ekulungiseleleni izivivinyo, nakubafundi bempilo yonke."
+
+#: templates/ai_solver.html:16
+msgid "Default"
+msgstr "Okuzenzakalelayo"
+
+#: templates/ai_solver.html:16
+msgid "Problems"
+msgstr "Izingqinamba"
+
+#: templates/ai_solver.html:21
+msgid "A block of mass 5 kg slides down a frictionless incline of height 3 m. Calculate the velocity of the block at the bottom of the incline."
+msgstr "Ibhlogo elinesisindo esingu-5 kg lishibilika phansi kwentaba engenamphikisi enamamitha angu-3 ukuphakama. Bheka ijubane lebhlogo phansi kwentaba."
+
+#: templates/ai_solver.html:28
+msgid "Solve the logarithmic equation log₂(x) = 8."
+msgstr "Xazulula isibalo se-logarithmic log₂(x) = 8."
+
+#: templates/ai_solver.html:35
+msgid "Evaluate the integral ∫₀¹ (3x² + 2x) dx."
+msgstr "Hlola i-integral ∫₀¹ (3x² + 2x) dx."
+
+#: templates/ai_solver.html:42
+msgid "Calculate the pH of a 0.01 M HCl solution at 25°C."
+msgstr "Bala i-pH yesixazululo se-0.01 M HCl ku-25°C."
+
+#: templates/ai_solver.html:55
+msgid "Enter Your Question"
+msgstr "Faka Umbuzo Wakho"
+
+#: templates/ai_solver.html:59
+msgid "Type or paste  problem here..."
+msgstr "Thayipha noma unamathisele inkinga lapha..."
+
+#: templates/ai_solver.html:63
+msgid "Solve Question"
+msgstr "Xazulula Umbuzo"
+
+#: templates/ai_solver.html:67
+msgid "Or Upload Image"
+msgstr "Noma Layisha Isithombe"
+
+#: templates/ai_solver.html:71
+msgid "Solve Image"
+msgstr "Xazulula Isithombe"
+
+#: templates/ai_solver.html:77
+msgid "Solution"
+msgstr "Isixazululo"
+
+#: templates/ai_solver.html:80
+msgid "Results will appear here..."
+msgstr "Imiphumela izovela lapha..."
+
+#: templates/ai_solver.html:85
+msgid "Download Solution"
+msgstr "Landa Isixazululo"
+
+
+#: templates/ai_solver.html:2
+msgid "Who Can Benefit from Our AI  Solver?"
+msgstr "Ubani Ongazuza Ku-Solver yethu ye-AI?"
+
+#: templates/ai_solver.html:4
+msgid "Our AI-powered solver is designed to assist anyone looking to excel in mathematics,physis and chemistry from students tackling exams to educators creating engaging lessons. With intelligent step-by-step solutions, instant explanations, and problem scanning, users can save time, boost understanding, and achieve outstanding results."
+msgstr "I-solver yethu esekwe ku-AI yakhelwe ukusiza noma ubani ofuna ukuphumelela kwezibalo, ifiziksi ne-chemistry, kusukela kubafundi abaphothula izivivinyo kuya kubafundisi abenza izifundo ezijabulisayo. Ngemixazululo ehlakaniphile yesinyathelo ngesinyathelo, incazelo esheshayo, nokuhlola izinkinga, abasebenzisi bangonga isikhathi, bathuthukise ukuqonda, futhi bathole imiphumela emihle kakhulu."
+
+#: templates/ai_solver.html:11
+msgid "Students"
+msgstr "Abafundi"
+
+#: templates/ai_solver.html:16
+msgid "Educators"
+msgstr "Abafundisi"
+
+#: templates/ai_solver.html:21
+msgid "Parents"
+msgstr "Abazali"
+
+#: templates/ai_solver.html:26
+msgid "Lifelong Learners"
+msgstr "Abafundi Bempilo Yonke"
+
+#: templates/ai_solver.html:36
+msgid "Students preparing for exams like WAEC, JAMB, SAT, or any academic level can instantly solve math problems with step-by-step explanations. Our AI ensures faster understanding, helps complete assignments efficiently, and provides additional practice questions to strengthen learning."
+msgstr "Abafundi abalungiselela izivivinyo ezifana ne-WAEC, JAMB, SAT, noma izinga elithile lezifundo bangaxazulula izinkinga zezibalo ngokushesha ngezincazelo zesinyathelo ngesinyathelo. I-AI yethu iqinisekisa ukuqonda okusheshayo, isiza ukuqeda imisebenzi kahle, futhi inikeza imibuzo yokuzijwayeza eyengeziwe ukuqina kokufunda."
+
+#: templates/ai_solver.html:42
+msgid "With our solver, students can focus on mastering concepts, improving problem-solving speed, and gaining confidence in mathematics, making exam preparation more effective and less stressful."
+msgstr "Ngosizo lwe-solver yethu, abafundi bangagxila ekuphatheni izimfundiso, bathuthukise ijubane lokuxazulula izinkinga, futhi bathole ukuzethemba kwezibalo, okwenza ukulungiselela izivivinyo kube ngempumelelo futhi kungabi nesimo sokucindezeleka."
+
+#: templates/ai_solver.html:50
+msgid "Teachers and tutors can create high-quality lesson plans, quizzes, and practice materials effortlessly. The AI solver helps demonstrate solutions clearly, saving time while providing accurate examples to enhance classroom learning and student engagement."
+msgstr "Abafundisi nabafundisi bangadala izinhlelo zesifundo ezisezingeni eliphezulu, imibuzo, nezinto zokuzijwayeza kalula. I-solver ye-AI isiza ukukhombisa izixazululo ngokusobala, igcine isikhathi ngenkathi inikeza izibonelo ezinembile zokuthuthukisa ukufunda ekilasini nokuzibandakanya kwabafundi."
+
+#: templates/ai_solver.html:56
+msgid "Educators can also use the platform to track student progress, design personalized exercises, and enrich teaching resources, ensuring a modern and interactive learning experience."
+msgstr "Abafundisi bangasebenzisa futhi le nsiza ukulandelela intuthuko yabafundi, bakhe izivivinyo ezenzelwe bona, futhi bathuthukise izinsiza zokufundisa, ukuqinisekisa isipiliyoni sokufunda esesimanjemanje nesisebenzisanayo."
+
+#: templates/ai_solver.html:64
+msgid "Parents assisting children with homework can leverage the AI solver to guide them through challenging problems. Instant solutions and explanations help parents support learning effectively, even without advanced math knowledge."
+msgstr "Abazali abasiza izingane ngezifundo bangasebenzisa i-solver ye-AI ukubaqondisa ezinkingeni ezinzima. Izixazululo ezisheshayo nezincazelo zisiza abazali ukweseka ukufunda kahle, ngisho ngaphandle kolwazi oluphambili lwezibalo."
+
+#: templates/ai_solver.html:70
+msgid "This empowers families to foster independent learning, boost confidence in mathematics, and ensure children stay on top of their studies."
+msgstr "Lokhu kunika amandla imindeni ukukhuthaza ukufunda ngokuzimela, kuthuthukise ukuzethemba kwezibalo, futhi kuqinisekise ukuthi izingane zihlala zisesikhathini semfundo yazo."
+
+#: templates/ai_solver.html:78
+msgid "Lifelong learners exploring STEM or revisiting mathematics can use our AI platform to practice, solve advanced problems, and build strong analytical skills. The solver provides instant feedback and explanations to help learners progress at their own pace."
+msgstr "Abafundi bempilo yonke abahlola i-STEM noma abaphinda bafunde izibalo bangasebenzisa ipulatifomu yethu ye-AI ukwenza ukuzijwayeza, baxazulule izinkinga ezithuthukile, futhi bakhe amakhono okuhlaziya anamandla. I-solver inikeza impendulo esheshayo nezincazelo ukusiza abafundi ukuba baphumelele ngesivinini sabo."
+
+#: templates/ai_solver.html:84
+msgid "It’s perfect for personal growth, skill development, or preparing for certifications, making math learning accessible and engaging for users of all ages."
+msgstr "Kufanele ukukhula komuntu siqu, ukuthuthukiswa kwamakhono, noma ukulungiselela izitifiketi, okwenza ukufunda izibalo kufinyeleleke futhi kujabulise abasebenzisi bayo yonke iminyaka."
+
+#: templates/ai_solver.html:92
+msgid "How It Works"
+msgstr "Kusebenza Kanjani"
+
+#: templates/ai_solver.html:94
+msgid "Our platform is designed to simplify learning and problem-solving. Follow these simple steps to experience the power of AI in generating accurate solutions efficiently."
+msgstr "Ipulatifomu yethu yakhelwe ukuhlela ukufunda nokuxazulula izinkinga. Landela lezi zinyathelo ezilula ukuze uzwe amandla e-AI ekukhiqizeni izixazululo ezinembile ngokusebenza kahle."
+
+#: templates/ai_solver.html:100
+msgid "Step 1: Input Your Problem"
+msgstr "Isinyathelo 1: Faka Inkinga Yakho"
+
+#: templates/ai_solver.html:102
+msgid "Enter your problem manually or scan it using your device camera. Our AI instantly detects the content and prepares it for processing. This flexible input method ensures you can start learning without any technical hurdles."
+msgstr "Faka inkinga yakho mathupha noma uyiskenishe usebenzisa ikhamera yesixhobo sakho. I-AI yethu iyayithola ngokuzenzakalelayo futhi ilungiselele ukucutshungulwa. Le ndlela yokufaka eguquguqukayo iqinisekisa ukuthi ungaqala ukufunda ngaphandle kwezithiyo zobuchwepheshe."
+
+#: templates/ai_solver.html:110
+msgid "Step 2: AI Solves Step-by-Step"
+msgstr "Isinyathelo 2: I-AI Ixa Izinyathelo Ngayinye"
+
+#: templates/ai_solver.html:112
+msgid "Our advanced AI analyzes your problem and generates a step-by-step solution. Each explanation is clear, structured, and easy to follow, helping you understand the concepts behind the answer while building confidence in your learning."
+msgstr "I-AI yethu ethuthukisiwe ihlaziya inkinga yakho futhi ikhiqize isixazululo ngesinyathelo ngesinyathelo. Incazelo ngayinye icacile, ihlelekile, futhi kulula ukuyilandela, ikusiza uqonde imiqondo ngemuva kwempendulo ngenkathi wakhe ukuzethemba ekufundeni kwakho."
+
+#: templates/ai_solver.html:120
+msgid "Step 3: Voice or Download"
+msgstr "Isinyathelo 3: Izwi noma Landa"
+
+#: templates/ai_solver.html:122
+msgid "Listen to an optional voice explanation or download the complete solution in PDF format. This feature allows you to review the solution at your own pace, share it with peers, or save it for future reference."
+msgstr "Lalela incazelo yelizwi ongayikhetha noma ulande isixazululo esiphelele ngefomethi ye-PDF. Lesi sici sikuvumela ukubuyekeza isixazululo ngesivinini sakho, ukwabelana nabanye, noma ukusigcina ukubhekisela esikhathini esizayo."
+
+#: templates/ai_solver.html:132
+msgid "What <strong>users</strong> are <strong>saying about AI Solver."
+msgstr "Abasebenzisi <strong>bathi</strong} ngani nge-AI Solver."
+
+#: templates/ai_solver.html:135
+msgid "AI Solver has transformed how I handle math problems. It’s fast, accurate, and gives clear step-by-step solutions I can trust."
+msgstr "I-AI Solver ishintshe indlela engibhekana ngayo nezinkinga zezibalo. Isheshayo, inembile, futhi inikeza izixazululo ezicacile ngesinyathelo ngesinyathelo engingathemba kuzo."
+
+#: templates/ai_solver.html:140
+msgid "I love how AI Solver adapts to any topic. It feels like having a professional tutor available 24/7 for every math challenge."
+msgstr "Ngiyakuthanda ukuthi i-AI Solver iyazivumelanisa nanoma yiziphi izihloko. Kufana nokuba nomfundisi ochwepheshe otholakala 24/7 kunoma iyiphi inselelo yezibalo."
+
+#: templates/ai_solver.html:145
+msgid "Using AI Solver has saved me hours of studying. The explanations are easy to follow, human-like, and extremely detailed."
+msgstr "Ukusebenzisa i-AI Solver kungisindile amahora okufunda. Izincazelo kulula ukuzilandela, ezifana nezomuntu, futhi zinemininingwane kakhulu."
+
+#: templates/ai_solver.html:150
+msgid "AI Solver not only solves problems but also helps me understand the logic behind them. It’s my go-to tool for learning and exam prep."
+msgstr "I-AI Solver ayixazuli izinkinga kuphela kodwa futhi ingisiza ukuqonda ulwazi oluyisisekelo ngemuva kwazo. Iyithuluzi lami eliyinhloko lokufunda nokulungiselela izivivinyo."
+
+
+
+msgid "Our cutting-edge AI-powered EdTech platform is designed to support a wide variety of users, including students, educators, professionals, and researchers. By combining intelligent automation with easy-to-use tools, our platform enables users to save time, enhance productivity, and achieve high-quality outcomes across educational and professional projects."
+msgstr "I-AI EdTech platform yethu esebenzisa ubuchwepheshe obuphambili yakhelwe ukusekela izinhlobo ezahlukahlukene zabasebenzisi, kubandakanya abafundi, othisha, ochwepheshe, kanye nocwaningi. Ngokuhlanganisa ngokuzenzakalela kobuhlakani namathuluzi alula ukusebenzisa, ipulatifomu yethu ivumela abasebenzisi ukuthi bagcine isikhathi, bandise ukusebenza kahle, futhi bathole imiphumela esezingeni eliphezulu emisebenzini yezemfundo neyobungcweti."
+
+
+
+msgid "Students can leverage our AI-driven tools to generate comprehensive study guides, detailed assignments, and engaging practice materials that enhance learning outcomes. By using our platform, learners can save significant time on repetitive tasks, focus on understanding core concepts, and ensure all content is original and plagiarism-free. The platform also encourages independent study, collaborative learning, and better exam preparation, making it an indispensable resource for academic success at every level."
+msgstr "Abafundi bangasebenzisa amathuluzi ethu e-AI ukukhiqiza iziqondiso zokufunda eziphelele, izabelo ezinemininingwane, kanye nezinto zokuzijwayeza ezijabulisayo ezithuthukisa imiphumela yokufunda. Ngokusebenzisa ipulatifomu yethu, abafundi bangonga isikhathi esiningi emisebenzini ephindaphindayo, bagxile ekuqondeni izimiso eziyisisekelo, futhi baqinisekise ukuthi konke okuqukethwe kuyiqala futhi akukhona ukuphathelana."
+
+msgid "Beyond academic tasks, students can also use our AI to explore creative writing, summarize large volumes of text, and even get guided assistance for research projects. This helps build critical thinking, research skills, and a habit of effective knowledge management, preparing them for higher education and professional challenges."
+msgstr "Ngaphandle kwemisebenzi yezemfundo, abafundi bangasebenzisa i-AI yethu ukuhlola ukubhala okukhaliphile, ukuhlanganisa imibhalo eminingi, futhi bathole nosizo oluqondisiwe emikhiqizweni yocwaningo. Lokhu kusiza ekwakheni ukucabanga okuyisisekelo, amakhono ocwaningo, kanye nomkhuba wokuphatha ulwazi ngempumelelo, kubalungiselela ezemfundo ephakeme nezinkinga zobungcweti."
+
+msgid "Educators can harness our platform to efficiently design lesson plans, develop quizzes, and create high-quality teaching resources tailored to diverse student needs. By automating content creation, teachers save valuable time that can be invested in personalized instruction, student mentorship, and curriculum development. This leads to improved classroom engagement and better learning outcomes for students."
+msgstr "Othisha bangasebenzisa ipulatifomu yethu ukuklama izinhlelo zesifundo kahle, bakhe imibuzo yokuhlola, futhi benze izinto zokufundisa ezisezingeni eliphezulu ezihambisana nezidingo zabafundi ezihlukahlukene. Ngokwenza ngokuzenzakalela ukudalwa kokuqukethwe, othisha bagcina isikhathi esibalulekile esingatshalwa ekufundiseni okwenziwe ngokwezifiso, ukuqondisa abafundi, nokuthuthukiswa kohlaka lwesifundo. Lokhu kuholela ekubambisaneni okungcono ekilasini nasekuthuthukiseni imiphumela yokufunda."
+
+msgid "Additionally, the platform supports professional development by enabling educators to produce research-backed teaching materials, track student performance, and provide data-driven feedback. Whether for in-person classrooms, online learning, or hybrid models, our tools help educators maintain high educational standards with minimal administrative effort."
+msgstr "Ngaphezu kwalokho, ipulatifomu isekela ukuthuthukiswa kobungcweti ngokuvumela othisha ukuthi benze izinto zokufundisa ezisekelwe ocwaningweni, balandele ukusebenza kwabafundi, futhi banikeze impendulo esekwe kudatha. Kungakhathaliseki ukuthi ekilasini langempela, ukufunda ku-inthanethi, noma ezinhlelweni ezihlanganisiwe, amathuluzi ethu asiza othisha ukuthi bagcine amazinga aphezulu emfundo ngokunciphisa umzamo wokuphatha."
+
+msgid "Professionals seeking to improve productivity, streamline workflows, or produce high-quality business documents will find immense value in our AI platform. From generating detailed reports and presentations to drafting proposals and strategic plans, the tools ensure content is precise, professional, and impactful. This allows professionals to focus on decision-making, strategy, and innovation while minimizing time spent on routine document creation."
+msgstr "Ochwepheshe abafuna ukuthuthukisa ukusebenza kahle, balungise izinqubo zomsebenzi, noma benze amadokhumenti ebhizinisi asezingeni eliphezulu bazothola inani elikhulu kupulatifomu yethu ye-AI. Kusukela ekukhiqizeni imibiko enemininingwane kanye nezethulo kuya ekubhaleni iziphakamiso nezinhlelo zamasu, amathuluzi aqinisekisa ukuthi okuqukethwe kunembile, kobungcweti, futhi kunomthelela. Lokhu kuvumela ochwepheshe ukuthi bagxile ekwenzeni izinqumo, isu, kanye nobuhlakani besimanje ngenkathi banciphisa isikhathi esisetshenziselwa ukudalwa kwamadokhumenti ajwayelekile."
+
+msgid "The platform also supports skill development, upskilling initiatives, and continuous learning. Professionals can utilize AI-generated summaries, curated learning materials, and interactive guides to stay ahead in their fields and maintain a competitive edge in dynamic industries."
+msgstr "Ipulatifomu futhi isekela ukuthuthukiswa kwamakhono, amaphrojekthi okwandisa amakhono, nokufunda okuqhubekayo. Ochwepheshe bangasebenzisa izifinyezo ezikhiqizwe yi-AI, izinto zokufunda ezikhethiwe, kanye nomhlahlandlela osebenzisanayo ukuze bahlale bephambili emikhakheni yabo futhi bagcine inzuzo yokuncintisana emikhakheni esheshayo."
+
+msgid "Researchers can streamline complex academic and scientific tasks, such as performing literature reviews, summarizing large datasets, and organizing research notes efficiently. The platform produces well-structured, accurate outputs, reducing manual effort and improving overall productivity. It supports academic writing, publication preparation, and project documentation in both professional and academic contexts."
+msgstr "Abacwaningi bangakwazi ukuhlela imisebenzi eyinkimbinkimbi yezemfundo nesayensi, njengokwenza ukubuyekezwa kwezincwadi, ukufingqa amasethi amakhulu wedatha, nokuhlela amanothi ocwaningo kahle. Ipulatifomu ikhiqiza imiphumela ehlelekile, enembile, inciphisa umzamo wesandla futhi ithuthukisa ukusebenza kahle okuphelele. Isekela ukubhala kwezifundo, ukulungiselela izincwadi, kanye nodokhumenti lwamaphrojekthi kokubili emkhakheni wobungcweti nawokufunda."
+
+msgid "Furthermore, researchers benefit from AI-assisted data analysis, trend identification, and hypothesis development, making it easier to manage multi-disciplinary projects, collaborate with peers, and meet publication deadlines. The platform ensures reliable, high-quality results that contribute to research excellence and innovation."
+msgstr "Ngaphezu kwalokho, abacwaningi bathola inzuzo ekuhlaziyweni kwedatha okusekelwe yi-AI, ukukhomba amathrendi, nokuthuthukiswa kwezinhlelo zocwaningo, okwenza kube lula ukuphatha amaphrojekthi amaningi, ukubambisana nabalingani, nokuhlangabezana nezikhathi zokushicilela. Ipulatifomu iqinisekisa imiphumela ethembekile, esezingeni eliphezulu ekunikeleni ebuhleni bocwaningo nasebuhlakani."
+
+
+
+msgid "Our AI-powered EdTech platform is designed to help learners, educators, and researchers achieve accurate and reliable results effortlessly. Whether you’re tackling complex STEM problems, creating engaging educational content, or exploring new concepts, our intelligent assistant provides clear, step-by-step solutions you can trust. Every interaction is secure, giving you confidence that your data remains private while you focus on learning, teaching, and discovery."
+msgstr "I-AI EdTech platform yethu yakhelwe ukusiza abafundi, othisha, nabacwaningi bathole imiphumela enembile nethembekile kalula. Noma ngabe ubhekene nezinkinga eziyinkimbinkimbi ze-STEM, wenza okuqukethwe kwezemfundo okuthokozisayo, noma uhlola imiqondo emisha, umsizi wethu ohlakaniphile unikeza izixazululo ezicacile, ngesinyathelo ngesinyathelo ongathembela kuzo. Yonke imisebenzi iphephile, ikunika ukuzethemba ukuthi idatha yakho ihlala iyimfihlo ngenkathi ugxila ekufundeni, ekufundiseni, nasekutholeni ulwazi."
+
+
+
+msgid "Our AI consistently provides accurate solutions and content across subjects and levels, ensuring users can trust the results for learning, teaching, and research."
+msgstr "I-AI yethu ihlala inikeza izixazululo nezinto ezinembe kakhulu kwizifundo nasezingeni elahlukahlukene, iqinisekisa ukuthi abasebenzisi bangathembela emiphumeleni yokufunda, ukufundisa, nokucwaninga."
+
+
+
+msgid "View sample solutions, educational content, and user testimonials that demonstrate the AI’s reasoning and clarity in delivering high-quality outputs."
+msgstr "Buka izixazululo zesampula, okuqukethwe kwezemfundo, nezibuyekezo zabasebenzisi eziveza ukuqonda kwe-AI nokucaca ekuletheni imiphumela esezingeni eliphezulu."
+
+
+msgid "Your content and data remain private and secure. We never store sensitive information, providing a safe environment for learners, educators, and professionals."
+msgstr "Okuqukethwe nedatha yakho kuhlala kuyimfihlo futhi kuphephile. Asigcini imininingwane ebucayi, sinikeza indawo ephephile kubafundi, othisha, nochwepheshe."

@@ -1,15 +1,33 @@
 {% load static %}
 {% load i18n %}
 
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index - FlexStart Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+
+<!-- SEO Title -->
+<title>{% trans "AI Tools Hub – AI Essay, Solver, Grammar, project writer, note, letter & Design Solutions" %}</title>
+
+<!-- SEO Description -->
+<meta name="description" content="{% trans "Explore our suite of AI-powered tools including Essay Generator, Math/Physics/Chemistry Solver, Grammar Checker, letter writer, project writer, Flyer Design, Web Development, and more. Instantly create essays, solve academic problems, check grammar, and design professional digital assets. Trusted by students, professionals, and businesses worldwide." %}">
+
+
+  <!-- SEO Keywords -->
+  <meta name="keywords" content="AI tools online, free AI essay generator, AI problem solver, math solver online, physics solver, chemistry solver, grammar checker AI, project writer, flyer design services, web development services, AI homework helper, online academic tools, AI design tools, professional web solutions, AI writing assistant, global AI services">
+
+  <!-- Optional hreflang for global SEO -->
+  <link rel="alternate" hreflang="en" href="http://localhost:8000/" />
+  <link rel="alternate" hreflang="en-us" href="http://localhost:8000/" />
+  <link rel="alternate" hreflang="en-gb" href="http://localhost:8000/" />
+  <link rel="alternate" hreflang="en-ca" href="http://localhost:8000/" />
+  <link rel="alternate" hreflang="en-de" href="http://localhost:8000/" />
+  <link rel="alternate" hreflang="en-pl" href="http://localhost:8000/" />
+  <link rel="alternate" hreflang="en-ng" href="http://localhost:8000/" />
+
+</head>
+
 
   <!-- Favicons -->
   <link href="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" rel="icon">
@@ -202,7 +220,7 @@
     <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
     <img src="{% static 'assets\img\logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height:50px;">
 
-      <span class="ms-2 fw-bold sitename">Eduprompt</span>
+      <span class="ms-2 fw-bold sitename">{% trans "Eduprompt" %}</span>
     </a>
 
     <!-- Mobile toggle -->
@@ -243,13 +261,24 @@
 
 
 
-        <!-- Language Selector -->
-        <select name="language" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 120px; font-size: 0.85rem;">
-    {% for code, name in AFRICAN_LANGUAGES %}
-      <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
-    {% endfor %}
-</select>
-<input type="hidden" name="next" value="{{ request.get_full_path }}">
+    
+
+<form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <select name="language" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 120px; font-size: 0.9rem;">
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% for code, name in LANGUAGES %}
+            <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>
+                {{ name }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+
+
+
+
 
       </ul>
     </div>
@@ -455,8 +484,8 @@
 
   <a href="/website/" style="text-decoration: none;">
   <div class="mb-3 p-2 rounded" style="background-color: #e6f7ff; display: inline-flex; align-items: center; gap: 8px; border: 1px solid #b3e0ff;">
-    <span style="font-weight: bold; color: #2d862d;">New!</span>
-    <span>Empowering Your Business with Expert Website Development. Unlock Your Business Potential Online</span>
+    <span style="font-weight: bold; color: #2d862d;">{% trans "New!" %}</span>
+    <span>{% trans "Empowering Your Business with Expert Website Development. Unlock Your Business Potential Online" %}</span>
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
       <path fill-rule="evenodd" d="M10.146 4.146a.5.5 0 0 1 .708 0L14 7.293l-.707.707L11 5.707V14.5a.5.5 0 0 1-1 0V5.707L8.707 8l-.708-.707L10.146 4.146z"/>
     </svg>
@@ -479,11 +508,11 @@
   <div class="mt-4 d-flex gap-3 flex-wrap justify-content-center">
   <!-- Go Pro Button -->
   <a href="#go-pro" class="btn btn-warning btn-lg d-flex align-items-center" style="color: #fff; font-weight: 600;">
-    <i class="fas fa-crown me-2" style="color: gold;"></i> Go Pro
+    <i class="fas fa-crown me-2" style="color: gold;"></i> {% trans "Go Pro" %}
   </a>
 
   <!-- Secondary CTA -->
-  <a href="#features" class="btn btn-outline-secondary btn-lg">Explore Features</a>
+  <a href="#features" class="btn btn-outline-secondary btn-lg">{% trans "Explore Features" %}</a>
 </div>
 
 
@@ -602,7 +631,7 @@
   <div class="stats-item d-flex flex-column align-items-center justify-content-center p-4 rounded-4 shadow-sm" style="background: linear-gradient(135deg, #e0f7fa, #e8f0fe);">
     <i class="bi bi-mortarboard fs-1 mb-2 text-primary"></i>
     <span data-purecounter-start="0" data-purecounter-end="1200" data-purecounter-duration="1.5" class="purecounter fs-3 fw-bold text-dark"></span>
-    <p class="text-muted mt-1 text-center">Students Achieving Success</p>
+    <p class="text-muted mt-1 text-center">{% trans "Students Achieving Success" %}</p>
   </div>
 </div>
 
@@ -612,7 +641,7 @@
   <div class="stats-item d-flex flex-column align-items-center justify-content-center p-4 rounded-4 shadow-sm" style="background: linear-gradient(135deg, #fff7ed, #ffe6c9);">
     <i class="bi bi-file-earmark-text fs-1 mb-2 text-warning"></i>
     <span data-purecounter-start="0" data-purecounter-end="1520" data-purecounter-duration="1.5" class="purecounter fs-3 fw-bold text-dark"></span>
-    <p class="text-muted mt-1 text-center">Content Generated</p>
+    <p class="text-muted mt-1 text-center">{% trans "Content Generated" %}</p>
   </div>
 </div>
 
@@ -622,7 +651,7 @@
         <div class="stats-item d-flex flex-column align-items-center justify-content-center p-4 rounded-4 shadow-sm" style="background: #e6f7f0;">
           <i class="bi bi-clock fs-1 mb-2 text-success"></i>
           <span data-purecounter-start="0" data-purecounter-end="10000 " data-purecounter-duration="1" class="purecounter fs-3 fw-bold text-dark"></span>
-          <p class="text-muted mt-1">Hours of AI Assistance</p>
+          <p class="text-muted mt-1">{% trans "Hours of AI Assistance" %}</p>
         </div>
       </div>
 
@@ -631,7 +660,7 @@
         <div class="stats-item d-flex flex-column align-items-center justify-content-center p-4 rounded-4 shadow-sm" style="background: #fdf0f5;">
           <i class="bi bi-robot fs-1 mb-2 text-danger"></i>
           <span data-purecounter-start="0" data-purecounter-end="6" data-purecounter-duration="1" class="purecounter fs-3 fw-bold text-dark"></span>
-          <p class="text-muted mt-1">AI Tools Available</p>
+          <p class="text-muted mt-1">{% trans "AI Tools Available" %}</p>
         </div>
       </div>
 
@@ -674,8 +703,8 @@
       <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="card text-center p-4 rounded-4 feature-card" style="background: linear-gradient(135deg,#6a11cb,#2575fc); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; position:relative;">
           <i class="bi bi-journal-text fs-1 mb-3 text-white"></i>
-          <h5 class="fw-bold text-white">Note Generator</h5>
-          <p class="text-light">Create detailed notes from your topics quickly and easily.</p>
+          <h5 class="fw-bold text-white">{% trans "Note Generator" %}</h5>
+          <p class="text-light">{% trans "Create detailed notes from your topics quickly and easily" %}.</p>
           <a href="/note/" class="feature-arrow fw-bold fs-4 text-white text-decoration-none">→</a>
         </div>
       </div>
@@ -684,8 +713,8 @@
       <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="card text-center p-4 rounded-4 feature-card" style="background: linear-gradient(135deg,#f2994a,#f2c94c); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; position:relative;">
           <i class="bi bi-pencil-square fs-1 mb-3 text-white"></i>
-          <h5 class="fw-bold text-white">Essay Generator</h5>
-          <p class="text-light">Generate well-structured essays with AI guidance.</p>
+          <h5 class="fw-bold text-white">{% trans "Essay Generator" %}</h5>
+          <p class="text-light">{% trans "Generate well-structured essays with AI guidance" %}.</p>
           <a href="/essay/" class="feature-arrow fw-bold fs-4 text-white text-decoration-none">→</a>
         </div>
       </div>
@@ -693,9 +722,9 @@
       <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="card text-center p-4 rounded-4 feature-card" style="background: linear-gradient(135deg,#56ab2f,#a8e063); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; position:relative;">
           <i class="bi bi-file-earmark-text fs-1 mb-3 text-white"></i>
-          <h5 class="fw-bold text-white">letter writer </h5>
-          <p class="text-light">      Generate professional letters instantly. 
-            Save time and create polished content for any purpose.
+          <h5 class="fw-bold text-white">{% trans "letter writer" %} </h5>
+          <p class="text-light"> {% trans "Generate professional letters instantly."%}"
+           {% trans "Save time and create polished content for any purpose" %}.
 </p>
           <a href="/letter-writer/" class="feature-arrow fw-bold fs-4 text-white text-decoration-none">→</a>
         </div>
@@ -708,8 +737,8 @@
       <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="card text-center p-4 rounded-4 feature-card" style="background: linear-gradient(135deg,#42275a,#734b6d); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; position:relative;">
           <i class="bi bi-calculator fs-1 mb-3 text-white"></i>
-          <h5 class="fw-bold text-white">AI Solver</h5>
-          <p class="text-light">Solve equations, formulas, and problems with step-by-step help.</p>
+          <h5 class="fw-bold text-white">{% trans "AI Solver" %}</h5>
+          <p class="text-light">{% trans "Solve equations, formulas, and problems with step-by-step help" %}.</p>
           <a href="/ai-solver/" class="feature-arrow fw-bold fs-4 text-white text-decoration-none">→</a>
         </div>
       </div>
@@ -718,8 +747,8 @@
       <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="card text-center p-4 rounded-4 feature-card feature-pro" style="background: linear-gradient(135deg,#ff416c,#ff4b2b); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; position:relative;">
           <i class="bi bi-journal-check fs-1 mb-3 text-white"></i>
-          <h5 class="fw-bold text-white">Project Writer</h5>
-          <p class="text-light">Get AI assistance for writing reports and projects efficiently.</p>
+          <h5 class="fw-bold text-white">{% trans "Project Writer" %}</h5>
+          <p class="text-light">{% trans "Get AI assistance for writing reports and projects efficiently" %}.</p>
           <a href="/project-writer/" class="feature-arrow fw-bold fs-4 text-white text-decoration-none">→</a>
         </div>
       </div>
@@ -728,8 +757,8 @@
       <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="card text-center p-4 rounded-4 feature-card feature-pro" style="background: linear-gradient(135deg,#0f2027,#2c5364); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; position:relative; color:white;">
           <i class="bi bi-pen fs-1 mb-3 text-white"></i>
-          <h5 class="fw-bold text-white">Grammar Checker</h5>
-          <p class="text-light">Improve your writing by checking grammar, punctuation, and style.</p>
+          <h5 class="fw-bold text-white">{% trans "Grammar Checker" %}</h5>
+          <p class="text-light">{% trans "Improve your writing by checking grammar, punctuation, and style" %}.</p>
           <a href="/note-generator/" class="feature-arrow fw-bold fs-4 text-white text-decoration-none">→</a>
         </div>
       </div>
@@ -973,31 +1002,31 @@
 <!-- Who Can Use Section -->
 <section class="py-5" style="background-color: #ffffff; color: #000000;">
   <div class="container">
-    <h2 class="text-center mb-4">Who Can Benefit from Our AI EdTech Platform?</h2>
+    <h2 class="text-center mb-4">{% trans "Who Can Benefit from Our AI EdTech Platform?" %}</h2>
     <p class="text-center mb-5">
-      Our cutting-edge AI-powered EdTech platform is designed to support a wide variety of users, including students, educators, professionals, and researchers. By combining intelligent automation with easy-to-use tools, our platform enables users to save time, enhance productivity, and achieve high-quality outcomes across educational and professional projects.
+      {% trans "Our cutting-edge AI-powered EdTech platform is designed to support a wide variety of users, including students, educators, professionals, and researchers. By combining intelligent automation with easy-to-use tools, our platform enables users to save time, enhance productivity, and achieve high-quality outcomes across educational and professional projects." %}
     </p>
 
     <!-- Tabs for user types -->
     <ul class="nav nav-pills justify-content-center mb-4" id="userTabs" role="tablist">
       <li class="nav-item" role="presentation">
         <button class="nav-link active" id="students-tab" data-bs-toggle="pill" data-bs-target="#students" type="button" role="tab">
-          <i class="bi bi-mortarboard-fill me-2"></i> Students
+          <i class="bi bi-mortarboard-fill me-2"></i> {% trans "Students" %}
         </button>
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="educators-tab" data-bs-toggle="pill" data-bs-target="#educators" type="button" role="tab">
-          <i class="bi bi-person-lines-fill me-2"></i> Educators
+          <i class="bi bi-person-lines-fill me-2"></i> {% trans "Educators" %}
         </button>
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="professionals-tab" data-bs-toggle="pill" data-bs-target="#professionals" type="button" role="tab">
-          <i class="bi bi-briefcase-fill me-2"></i> Professionals
+          <i class="bi bi-briefcase-fill me-2"></i> {% trans "Professionals" %}
         </button>
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="researchers-tab" data-bs-toggle="pill" data-bs-target="#researchers" type="button" role="tab">
-          <i class="bi bi-bar-chart-line-fill me-2"></i> Researchers
+          <i class="bi bi-bar-chart-line-fill me-2"></i> {% trans "Researchers" %}
         </button>
       </li>
     </ul>
@@ -1008,10 +1037,10 @@
       <div class="tab-pane fade show active" id="students" role="tabpanel">
         <div class="p-4 mb-3 bg-light rounded hover-shadow">
           <p>
-            Students can leverage our AI-driven tools to generate comprehensive study guides, detailed assignments, and engaging practice materials that enhance learning outcomes. By using our platform, learners can save significant time on repetitive tasks, focus on understanding core concepts, and ensure all content is original and plagiarism-free. The platform also encourages independent study, collaborative learning, and better exam preparation, making it an indispensable resource for academic success at every level.
+           {% trans "Students can leverage our AI-driven tools to generate comprehensive study guides, detailed assignments, and engaging practice materials that enhance learning outcomes. By using our platform, learners can save significant time on repetitive tasks, focus on understanding core concepts, and ensure all content is original and plagiarism-free. The platform also encourages independent study, collaborative learning, and better exam preparation, making it an indispensable resource for academic success at every level." %}"
           </p>
           <p>
-            Beyond academic tasks, students can also use our AI to explore creative writing, summarize large volumes of text, and even get guided assistance for research projects. This helps build critical thinking, research skills, and a habit of effective knowledge management, preparing them for higher education and professional challenges.
+            {% trans "Beyond academic tasks, students can also use our AI to explore creative writing, summarize large volumes of text, and even get guided assistance for research projects. This helps build critical thinking, research skills, and a habit of effective knowledge management, preparing them for higher education and professional challenges." %}
           </p>
         </div>
       </div>
@@ -1020,10 +1049,10 @@
       <div class="tab-pane fade" id="educators" role="tabpanel">
         <div class="p-4 mb-3 bg-light rounded hover-shadow">
           <p>
-            Educators can harness our platform to efficiently design lesson plans, develop quizzes, and create high-quality teaching resources tailored to diverse student needs. By automating content creation, teachers save valuable time that can be invested in personalized instruction, student mentorship, and curriculum development. This leads to improved classroom engagement and better learning outcomes for students.
+            {% trans "Educators can harness our platform to efficiently design lesson plans, develop quizzes, and create high-quality teaching resources tailored to diverse student needs. By automating content creation, teachers save valuable time that can be invested in personalized instruction, student mentorship, and curriculum development. This leads to improved classroom engagement and better learning outcomes for students." %}
           </p>
           <p>
-            Additionally, the platform supports professional development by enabling educators to produce research-backed teaching materials, track student performance, and provide data-driven feedback. Whether for in-person classrooms, online learning, or hybrid models, our tools help educators maintain high educational standards with minimal administrative effort.
+            {% trans "Additionally, the platform supports professional development by enabling educators to produce research-backed teaching materials, track student performance, and provide data-driven feedback. Whether for in-person classrooms, online learning, or hybrid models, our tools help educators maintain high educational standards with minimal administrative effort." %}
           </p>
         </div>
       </div>
@@ -1032,10 +1061,10 @@
       <div class="tab-pane fade" id="professionals" role="tabpanel">
         <div class="p-4 mb-3 bg-light rounded hover-shadow">
           <p>
-            Professionals seeking to improve productivity, streamline workflows, or produce high-quality business documents will find immense value in our AI platform. From generating detailed reports and presentations to drafting proposals and strategic plans, the tools ensure content is precise, professional, and impactful. This allows professionals to focus on decision-making, strategy, and innovation while minimizing time spent on routine document creation.
+            {% trans "Professionals seeking to improve productivity, streamline workflows, or produce high-quality business documents will find immense value in our AI platform. From generating detailed reports and presentations to drafting proposals and strategic plans, the tools ensure content is precise, professional, and impactful. This allows professionals to focus on decision-making, strategy, and innovation while minimizing time spent on routine document creation." %}
           </p>
           <p>
-            The platform also supports skill development, upskilling initiatives, and continuous learning. Professionals can utilize AI-generated summaries, curated learning materials, and interactive guides to stay ahead in their fields and maintain a competitive edge in dynamic industries.
+            {% trans "The platform also supports skill development, upskilling initiatives, and continuous learning. Professionals can utilize AI-generated summaries, curated learning materials, and interactive guides to stay ahead in their fields and maintain a competitive edge in dynamic industries." %}
           </p>
         </div>
       </div>
@@ -1044,10 +1073,10 @@
       <div class="tab-pane fade" id="researchers" role="tabpanel">
         <div class="p-4 mb-3 bg-light rounded hover-shadow">
           <p>
-            Researchers can streamline complex academic and scientific tasks, such as performing literature reviews, summarizing large datasets, and organizing research notes efficiently. The platform produces well-structured, accurate outputs, reducing manual effort and improving overall productivity. It supports academic writing, publication preparation, and project documentation in both professional and academic contexts.
+            {% trans "Researchers can streamline complex academic and scientific tasks, such as performing literature reviews, summarizing large datasets, and organizing research notes efficiently. The platform produces well-structured, accurate outputs, reducing manual effort and improving overall productivity. It supports academic writing, publication preparation, and project documentation in both professional and academic contexts." %}
           </p>
           <p>
-            Furthermore, researchers benefit from AI-assisted data analysis, trend identification, and hypothesis development, making it easier to manage multi-disciplinary projects, collaborate with peers, and meet publication deadlines. The platform ensures reliable, high-quality results that contribute to research excellence and innovation.
+            {% trans "Furthermore, researchers benefit from AI-assisted data analysis, trend identification, and hypothesis development, making it easier to manage multi-disciplinary projects, collaborate with peers, and meet publication deadlines. The platform ensures reliable, high-quality results that contribute to research excellence and innovation." %}
           </p>
         </div>
       </div>
@@ -1073,19 +1102,19 @@
 <!-- AI Accuracy & Reliability Section -->
 <section class="py-5" style="background-color: #ffffff; color: #0d1b2a;">
   <div class="container">
-    <h2 class="text-center mb-5" style="color: #0d1b2a;">AI Accuracy & Reliability</h2>
+    <h2 class="text-center mb-5" style="color: #0d1b2a;">{% trans "AI Accuracy & Reliability" %}</h2>
     <p class="text-center mb-5">
-Our AI-powered EdTech platform is designed to help learners, educators, and researchers achieve accurate and reliable results effortlessly. Whether you’re tackling complex STEM problems, creating engaging educational content, or exploring new concepts, our intelligent assistant provides clear, step-by-step solutions you can trust. Every interaction is secure,
- giving you confidence that your data remains private while you focus on learning, teaching, and discovery.”    </p>
+{% trans "Our AI-powered EdTech platform is designed to help learners, educators, and researchers achieve accurate and reliable results effortlessly. Whether you’re tackling complex STEM problems, creating engaging educational content, or exploring new concepts, our intelligent assistant provides clear, step-by-step solutions you can trust. Every interaction is secure,
+ giving you confidence that your data remains private while you focus on learning, teaching, and discovery.” %}    </p>
 
     <div class="row g-4 text-center">
       <!-- Accuracy Stats -->
       <div class="col-md-4">
         <div class="p-4 bg-light rounded hover-shadow">
           <i class="bi bi-check-circle-fill display-4 mb-3" style="color: #0d1b2a;"></i>
-          <h4 class="mb-2" style="color: #0d1b2a;">99% Accuracy</h4>
+          <h4 class="mb-2" style="color: #0d1b2a;">{% trans "99% Accuracy" %}</h4>
           <p>
-            Our AI consistently provides accurate solutions and content across subjects and levels, ensuring users can trust the results for learning, teaching, and research.
+            {% trans "Our AI consistently provides accurate solutions and content across subjects and levels, ensuring users can trust the results for learning, teaching, and research." %}
           </p>
         </div>
       </div>
@@ -1094,9 +1123,9 @@ Our AI-powered EdTech platform is designed to help learners, educators, and rese
       <div class="col-md-4">
         <div class="p-4 bg-light rounded hover-shadow">
           <i class="bi bi-journal-check display-4 mb-3" style="color: #0d1b2a;"></i>
-          <h4 class="mb-2" style="color: #0d1b2a;">Verified Results</h4>
+          <h4 class="mb-2" style="color: #0d1b2a;">{% trans "Verified Results" %}</h4>
           <p>
-            View sample solutions, educational content, and user testimonials that demonstrate the AI’s reasoning and clarity in delivering high-quality outputs.
+            {% trans "View sample solutions, educational content, and user testimonials that demonstrate the AI’s reasoning and clarity in delivering high-quality outputs." %}
           </p>
         </div>
       </div>
@@ -1105,9 +1134,9 @@ Our AI-powered EdTech platform is designed to help learners, educators, and rese
       <div class="col-md-4">
         <div class="p-4 bg-light rounded hover-shadow">
           <i class="bi bi-shield-lock-fill display-4 mb-3" style="color: #0d1b2a;"></i>
-          <h4 class="mb-2" style="color: #0d1b2a;">Secure & Private</h4>
+          <h4 class="mb-2" style="color: #0d1b2a;">{% trans "Secure & Private" %}</h4>
           <p>
-            Your content and data remain private and secure. We never store sensitive information, providing a safe environment for learners, educators, and professionals.
+            {% trans "Your content and data remain private and secure. We never store sensitive information, providing a safe environment for learners, educators, and professionals." %}
           </p>
         </div>
       </div>
@@ -1248,13 +1277,13 @@ Our AI-powered EdTech platform is designed to help learners, educators, and rese
     }
   </style>
   
-    <section id="faq" class="faq section py-5" style="background-color: white;">
+  <section id="faq" class="faq section py-5" style="background-color: white;">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8 text-center" data-aos="fade-up">
         <div class="section-title mb-4">
-          <h2>F.A.Q</h2>
-          <p>Frequently Asked Questions about <strong>EduPrompt</strong>, your AI study assistant for smarter learning.</p>
+          <h2>{% trans "F.A.Q" %}</h2>
+          <p>{% trans "Frequently Asked Questions about <strong>EduPrompt</strong>, your AI study assistant for smarter learning." %}</p>
         </div>
 
         <div class="faq-container text-start">
@@ -1262,77 +1291,77 @@ Our AI-powered EdTech platform is designed to help learners, educators, and rese
           <!-- FAQ 1 -->
           <div class="faq-item border-bottom py-3">
             <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
-              <h5><strong>What is EduPrompt and how does it help me?</strong></h5>
+              <h5><strong>{% trans "What is EduPrompt and how does it help me?" %}</strong></h5>
               <i class="faq-toggle bi bi-chevron-down"></i>
             </div>
             <div class="faq-answer">
-              <p><strong>EduPrompt</strong> is an AI-powered learning platform that simplifies studying. It provides clear explanations, note generation, essay and assignment help, and other study tools accessible anytime, anywhere.</p>
+              <p><strong>{% trans "EduPrompt</strong> is an AI-powered learning platform that simplifies studying. It provides clear explanations, note generation, essay and assignment help, and other study tools accessible anytime, anywhere." %}</p>
             </div>
           </div>
 
           <!-- FAQ 2 -->
           <div class="faq-item border-bottom py-3">
             <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
-              <h5><strong>Do you support African languages?</strong></h5>
+              <h5><strong>{% trans "Do you support African languages?" %}</strong></h5>
               <i class="faq-toggle bi bi-chevron-down"></i>
             </div>
             <div class="faq-answer">
-              <p>Yes! EduPrompt supports <strong>Yoruba, Igbo, Hausa, Swahili</strong>, and more, making learning easier in the language you understand best.</p>
+              <p>{% trans "Yes! EduPrompt supports <strong>Yoruba, Igbo, Hausa, Swahili</strong>, and more, making learning easier in the language you understand best." %}</p>
             </div>
           </div>
 
           <!-- FAQ 3 -->
           <div class="faq-item border-bottom py-3">
             <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
-              <h5><strong>Is EduPrompt free to use?</strong></h5>
+              <h5><strong>{% trans "Is EduPrompt free to use?" %}</strong></h5>
               <i class="faq-toggle bi bi-chevron-down"></i>
             </div>
             <div class="faq-answer">
-<p>EduPrompt is a <strong>paid platform</strong>, but you can try it for free with our <strong>trial period</strong>. Core study tools are included during the trial, giving you a chance to explore before subscribing.</p>
+<p>{% trans "EduPrompt is a <strong>paid platform</strong>, but you can try it for free with our <strong>trial period</strong>. Core study tools are included during the trial, giving you a chance to explore before subscribing." %}</p>
             </div>
           </div>
 
           <!-- FAQ 4 -->
           <div class="faq-item border-bottom py-3">
             <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
-              <h5><strong>Can I learn at my own pace?</strong></h5>
+              <h5><strong>{% trans "Can I learn at my own pace?" %}</strong></h5>
               <i class="faq-toggle bi bi-chevron-down"></i>
             </div>
             <div class="faq-answer">
-              <p>Yes! EduPrompt lets you study <strong>anytime, anywhere</strong>. Pause, replay, or continue according to your own schedule.</p>
+              <p>{% trans "Yes! EduPrompt lets you study <strong>anytime, anywhere</strong>. Pause, replay, or continue according to your own schedule." %}</p>
             </div>
           </div>
 
           <!-- FAQ 5 -->
           <div class="faq-item border-bottom py-3">
             <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
-              <h5><strong>Is EduPrompt mobile-friendly?</strong></h5>
+              <h5><strong>{% trans "Is EduPrompt mobile-friendly?" %}</strong></h5>
               <i class="faq-toggle bi bi-chevron-down"></i>
             </div>
             <div class="faq-answer">
-              <p>Absolutely! EduPrompt works seamlessly on <strong>phones, tablets, or laptops</strong> with no special apps required.</p>
+              <p>{% trans "Absolutely! EduPrompt works seamlessly on <strong>phones, tablets, or laptops</strong> with no special apps required." %}</p>
             </div>
           </div>
 
           <!-- FAQ 6 -->
           <div class="faq-item border-bottom py-3">
             <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
-              <h5><strong>Is it affordable for African students?</strong></h5>
+              <h5><strong>{% trans "Is it affordable for African students?" %}</strong></h5>
               <i class="faq-toggle bi bi-chevron-down"></i>
             </div>
             <div class="faq-answer">
-              <p>Yes! EduPrompt is designed to be <strong>affordable and accessible</strong> for students across Africa.</p>
+              <p>{% trans "Yes! EduPrompt is designed to be <strong>affordable and accessible</strong> for students across Africa." %}</p>
             </div>
           </div>
 
           <!-- FAQ 7 -->
           <div class="faq-item border-bottom py-3">
             <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
-              <h5><strong>Can EduPrompt generate essays and notes </strong></h5>
+              <h5><strong>{% trans "Can EduPrompt generate essays and notes" %}</strong></h5>
               <i class="faq-toggle bi bi-chevron-down"></i>
             </div>
             <div class="faq-answer">
-              <p>Yes! EduPrompt can create <strong>customized essays, letters, and notes</strong> to help you study efficiently and understand topics better.</p>
+              <p>{% trans "Yes! EduPrompt can create <strong>customized essays, letters, and notes</strong> to help you study efficiently and understand topics better." %}</p>
             </div>
           </div>
 
@@ -1342,22 +1371,22 @@ Our AI-powered EdTech platform is designed to help learners, educators, and rese
           <!-- FAQ 9 -->
           <div class="faq-item border-bottom py-3">
             <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
-              <h5><strong>Is EduPrompt safe and secure?</strong></h5>
+              <h5><strong>{% trans "Is EduPrompt safe and secure?" %}</strong></h5>
               <i class="faq-toggle bi bi-chevron-down"></i>
             </div>
             <div class="faq-answer">
-              <p>EduPrompt respects your privacy. All <strong>notes and personal data</strong> are stored securely and never shared without your consent.</p>
+              <p>{% trans "EduPrompt respects your privacy. All <strong>notes and personal data</strong> are stored securely and never shared without your consent." %}</p>
             </div>
           </div>
 
           <!-- FAQ 10 -->
           <div class="faq-item border-bottom py-3">
             <div class="faq-question d-flex justify-content-between align-items-center" style="cursor:pointer;">
-              <h5><strong>Can I use EduPrompt offline?</strong></h5>
+              <h5><strong>{% trans "Can I use EduPrompt offline?" %}</strong></h5>
               <i class="faq-toggle bi bi-chevron-down"></i>
             </div>
             <div class="faq-answer">
-              <p>Currently, EduPrompt requires internet access, but you can <strong>download generated notes</strong> to study offline anytime.</p>
+              <p>{% trans "Currently, EduPrompt requires internet access, but you can <strong>download generated notes</strong> to study offline anytime." %}</p>
             </div>
           </div>
 
@@ -1389,16 +1418,16 @@ Our AI-powered EdTech platform is designed to help learners, educators, and rese
   <div class="container">
     <div class="row justify-content-center text-center">
       <div class="col-lg-6">
-        <h4 style="color: #ffffff;">Join Our Newsletter</h4>
-        <p style="color: #ffffff;">Subscribe to our newsletter and receive the latest news about our products and services!</p>
+        <h4 style="color: #ffffff;">{% trans "Join Our Newsletter" %}</h4>
+        <p style="color: #ffffff;">{% trans "Subscribe to our newsletter and receive the latest news about our products and services!" %}</p>
         <form action="forms/newsletter.php" method="post" class="php-email-form">
           <div class="newsletter-form d-flex flex-column flex-sm-row gap-2">
             <input type="email" name="email" class="form-control" placeholder="Your email address" required>
             <input type="submit" value="Subscribe" class="btn btn-primary px-4">
           </div>
-          <div class="loading mt-2" style="color: #ffffff;">Loading</div>
+          <div class="loading mt-2" style="color: #ffffff;">{% trans "Loading" %}</div>
           <div class="error-message text-danger mt-2"></div>
-          <div class="sent-message text-success mt-2">Your subscription request has been sent. Thank you!</div>
+          <div class="sent-message text-success mt-2">{% trans "Your subscription request has been sent. Thank you!" %}</div>
         </form>
       </div>
     </div>
@@ -1415,7 +1444,7 @@ Our AI-powered EdTech platform is designed to help learners, educators, and rese
 <div class="col-lg-3 col-md-6 footer-about text-center">
   <!-- Section Title -->
   <h3 style="color: #ffffff; font-weight: 700; font-size: 1.5rem; margin-bottom: 20px;">
-    About the Founder
+   {% trans "About the Founder" %}
   </h3>
 
   <!-- Circle Image -->
@@ -1427,84 +1456,84 @@ Our AI-powered EdTech platform is designed to help learners, educators, and rese
 
   <!-- Description -->
   <p style="margin-top: 15px; font-size: 1rem; line-height: 1.6; color: #ffffff;">
-    EduPrompt was founded by Eze Prosper somtochukwu, a software developer passionate about education technology. 
-    He created this platform to provide students with AI-powered tools that make learning smarter, faster, and more accessible.
+    {% trans "EduPrompt was founded by Eze Prosper somtochukwu, a software developer passionate about education technology." %}
+    {% trans "He created this platform to provide students with AI-powered tools that make learning smarter, faster, and more accessible." %}
   </p>
 </div>
 
 <!-- Useful Links -->
 <div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">Useful Links</h4>
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Useful Links" %}</h4>
   <ul class="list-unstyled">
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="{% url 'index' %}" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Home</a>
+      <a href="{% url 'index' %}" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Home" %}</a>
     </li>
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">About Us</a>
+      <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "About Us" %}</a>
     </li>
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Privacy Policy</a>
+      <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Privacy Policy" %}</a>
     </li>
     <li>
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Terms and Conditions</a>
+      <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Terms and Conditions"  %}</a>
     </li>
   </ul>
 </div>
 
 <!-- Our Services -->
 <div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">Our Services</h4>
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Services" %}</h4>
   <ul class="list-unstyled">
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/website/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Web Design</a>
+      <a href="/website/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Web Design" %}</a>
     </li>
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/flyer-design/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Flyer Design</a>
+      <a href="/flyer-design/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Flyer Design" %}</a>
     </li>
   </ul>
 </div>
 
 <!-- Our Services (second block) -->
 <div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">Our Tools</h4>
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Tools" %}</h4>
   <ul class="list-unstyled">
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/essay/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Essay Writer</a>
+      <a href="/essay/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Essay Writer" %}</a>
     </li>
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/note/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Note Generator</a>
+      <a href="/note/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Note Generator" %}</a>
     </li>
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/project-writer/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Project Writer</a>
+      <a href="/project-writer/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Project Writer" %}</a>
     </li>
     <li>
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/letter-writer/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Letter Writer</a>
+      <a href="/letter-writer/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Letter Writer" %}</a>
     </li>
         <li>
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/ai-solver/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Ai Solver</a>
+      <a href="/ai-solver/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Ai Solver" %}</a>
     </li>
         <li>
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/grammar-checker/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Grammar Checker</a>
+      <a href="/grammar-checker/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>"
     </li>
   </ul>
 </div>
 
 <!-- Follow Us -->
 <div class="col-lg-3 col-md-6">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">Follow Us</h4>
-  <p class="mb-3" style="color: #ffffff;">Follow us on all our social media platforms</p>
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Follow Us" %}</h4>
+  <p class="mb-3" style="color: #ffffff;">{% trans "Follow us on all our social media platforms" %}</p>
   <div class="social-links d-flex gap-3 fs-4">
     <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-twitter"></i></a>
     <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-facebook"></i></a>
@@ -1522,7 +1551,7 @@ Our AI-powered EdTech platform is designed to help learners, educators, and rese
 <!-- Copyright -->
 <div class="container text-center py-3 border-top">
   <p class="mb-0 small" style="color: #ffffff;">
-    © <strong class="sitename" style="color: #ffffff;">EduPrompt</strong> All Rights Reserved.
+    © <strong class="sitename" style="color: #ffffff;">{% trans "EduPrompt</strong> All Rights Reserved." %}
   </p>
   <p class="mb-0 small">
     Designed by <a href="https://bootstrapmade.com/" target="_blank" class="text-decoration-none" style="color: #ffffff;">BootstrapMade</a>

@@ -109,13 +109,23 @@ INSTALLED_APPS = [
     'django_quill', 
     
 ]
-LANGUAGE_CODE = 'en'  # default language
+
+
+from django.utils.translation import gettext_lazy as _
+
+LANGUAGE_CODE = 'en'  
 
 # Add African languages
 AFRICAN_LANGUAGES = [
-    ("en", "English"), ("yo", "Yorùbá"), ("ig", "Igbo"), ("ha", "Hausa"), ("sw", "Swahili"),
-    ("am", "Amharic"), ("rw", "Kinyarwanda"), ("ak", "Akan / Twi"), ("zu", "Zulu"), ("xh", "Xhosa"),
-    ("st", "Sesotho"), ("sn", "Shona"), ("ar", "Arabic (North Africa)"), ("fr", "French (Africa)")
+    ('en', 'English'),
+    ('fr', 'Français'),
+    ('ig', 'Igbo'),
+    ('yo', 'Yorùbá'),
+    ('ha', 'Hausa'),
+    ('sw', 'Swahili'),
+    ('ar', 'Arabic'),
+    ('zu', 'Zulu'),
+    ('tw', 'Twi'),
 ]
 
 LANGUAGES = AFRICAN_LANGUAGES  # for i18n system
@@ -146,6 +156,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -189,7 +200,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-gb'
 
 TIME_ZONE = 'UTC'
 

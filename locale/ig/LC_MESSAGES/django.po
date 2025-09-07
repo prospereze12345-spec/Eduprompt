@@ -1,0 +1,500 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-05 20:35+0100\n"
+"PO-Revision-Date: 2025-09-05 17:56+0100\n"
+"Last-Translator: YOUR NAME <YOUR EMAIL>\n"
+"Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Math, Physics, or Chemistry Problem"
+msgstr "Nsogbu Mkpụrụ Ọgụgụ, Fisiks, ma ọ bụ Kemistri"
+
+msgid "Learn smarter, not harder. Our AI-powered solver guides you through step-by-step solutions for tricky high-school exercises to advanced university problems. Understand concepts deeply while mastering problem-solving skills—perfect for curious students, exam preparation, and lifelong learners."
+msgstr "Mụta amamihe karịa ike. Ngwaọrụ AI anyị na-enyere gị aka site na ngwọta nzọụkwụ-nzọụkwụ maka nsogbu ndị siri ike site na akwụkwọ sekọndrị ruo n'ọkwa mahadum. Ghọta echiche nke ọma mgbe ị na-eme ka nka ịkọrọ nsogbu dị ike—dị mma maka ụmụ akwụkwọ nwere mmasị, mmegharị maka ule, na ndị na-amụ mgbe niile."
+
+msgid "Default"
+msgstr "Ndabara"
+
+msgid "Problems"
+msgstr "Nsogbu"
+
+msgid "A block of mass 5 kg slides down a frictionless incline of height 3 m. Calculate the velocity of the block at the bottom of the incline."
+msgstr "Ụkpụrụ nke nwere ibu 5 kg na-ada n'elu ala na-enweghị ntụtụ nke dị elu 3 m. Gụọ ọsọ nke ụkpụrụ ahụ na ala nke incline."
+
+msgid "Solve the logarithmic equation log₂(x) = 8."
+msgstr "Dozie ihe atụ logarithmic log₂(x) = 8."
+
+msgid "Evaluate the integral ∫₀¹ (3x² + 2x) dx."
+msgstr "Tulee integral ∫₀¹ (3x² + 2x) dx."
+
+msgid "Calculate the pH of a 0.01 M HCl solution at 25°C."
+msgstr "Gụọ pH nke ngwọta 0.01 M HCl na 25°C."
+
+msgid "Enter Your Question"
+msgstr "Tinye Ajụjụ Gị"
+
+msgid "Or Upload Image"
+msgstr "Ma ọ bụ bulite onyonyo"
+
+msgid "Solve Image"
+msgstr "Dozie Onyonyo"
+
+msgid "Solution"
+msgstr "Ngwọta"
+
+msgid "Results will appear here..."
+msgstr "Nsonaazụ ga-apụta ebe a..."
+
+msgid "Download Solution"
+msgstr "Budata Ngwọta"
+
+msgid "Who Can Benefit from Our AI  Solver?"
+msgstr "Ònye nwere ike irite uru site na AI Solver anyị?"
+
+msgid "Our AI-powered solver is designed to assist anyone looking to excel in mathematics,physis and chemistry from students tackling exams to educators creating engaging lessons. With intelligent step-by-step solutions, instant explanations, and problem scanning, users can save time, boost understanding, and achieve outstanding results."
+msgstr "Ngwaọrụ AI anyị bụ nke e mere iji nyere onye ọ bụla chọrọ ịma mma na mgbakọ na mwepụ, fisiks, na kemistri aka—site na ụmụ akwụkwọ na-eme ule ruo n’ọzụzụ ndị nkuzi na-eme ka mmụta dị ụtọ. Site na ngwọta nzọụkwụ-nzọụkwụ mara amamihe, nkọwa ozugbo, na nyocha nsogbu, ndị ọrụ nwere ike chekwaa oge, mee ka nghọta ha sie ike, ma nweta nsonaazụ magburu onwe ha."
+
+
+
+
+
+msgid "Lifelong Learners"
+msgstr "Ụmụ akwụkwọ nke na-amụ mgbe niile"
+
+msgid "Students preparing for exams like WAEC, JAMB, SAT, or any academic level can instantly solve math problems with step-by-step explanations. Our AI ensures faster understanding, helps complete assignments efficiently, and provides additional practice questions to strengthen learning."
+msgstr "Ụmụ akwụkwọ na-emegharị maka ule dị ka WAEC, JAMB, SAT, ma ọ bụ ọkwa ọ bụla nwere ike dozie nsogbu mgbakọ ozugbo site na nkọwa nzọụkwụ-nzọụkwụ. AI anyị na-eme ka nghọta dị ngwa, na-enyere aka ịmecha ọrụ nke ọma, na-enye ajụjụ mgbatị ọzọ iji mee ka ọmụmụ sie ike."
+
+msgid "With our solver, students can focus on mastering concepts, improving problem-solving speed, and gaining confidence in mathematics, making exam preparation more effective and less stressful."
+msgstr "Site na ngwọta anyị, ụmụ akwụkwọ nwere ike ilekwasị anya na ịmụta echiche, ime ka ọsọ ịkọrọ nsogbu dị mma, na inweta ntụkwasị obi na mgbakọ, na-eme ka mmegharị maka ule dị irè ma na-enweghị nrụgide."
+
+msgid "Teachers and tutors can create high-quality lesson plans, quizzes, and practice materials effortlessly. The AI solver helps demonstrate solutions clearly, saving time while providing accurate examples to enhance classroom learning and student engagement."
+msgstr "Nkuzi na ndị nkuzi nwere ike ịmepụta atụmatụ mmụta dị elu, ajụjụ nyocha, na ihe ọmụmụ na-enweghị mgbalị. AI solver na-enyere aka igosi ngwọta nke doro anya, na-echekwa oge ebe na-enye ihe atụ ziri ezi iji mee ka mmụta klas na mmekọrịta ụmụ akwụkwọ sie ike."
+
+msgid "Educators can also use the platform to track student progress, design personalized exercises, and enrich teaching resources, ensuring a modern and interactive learning experience."
+msgstr "Ndị nkuzi nwekwara ike iji ikpo okwu ahụ nyochaa mmepe ụmụ akwụkwọ, chepụta mgbatị nke onwe, ma mee ka ihe ọmụmụ dị iche iche sie ike, na-eme ka ahụmịhe mmụta dị ọcha ma na-emekọrịta."
+
+msgid "Parents assisting children with homework can leverage the AI solver to guide them through challenging problems. Instant solutions and explanations help parents support learning effectively, even without advanced math knowledge."
+msgstr "Ndị nne na nna na-enyere ụmụaka aka na ọrụ ụlọ nwere ike iji AI solver nyere ha aka site n’ịdu ha na nsogbu siri ike. Ngwọta ozugbo na nkọwa na-enyere ndị nne na nna aka ịkwado mmụta nke ọma, ọbụlagodi na ha amaghị mgbakọ elu."
+
+msgid "This empowers families to foster independent learning, boost confidence in mathematics, and ensure children stay on top of their studies."
+msgstr "Nke a na-eme ka ezinụlọ nwee ike ịkwalite mmụta onwe ha, bulie ntụkwasị obi na mgbakọ, ma hụ na ụmụaka nọ n'elu ọmụmụ ha."
+
+msgid "Lifelong learners exploring STEM or revisiting mathematics can use our AI platform to practice, solve advanced problems, and build strong analytical skills. The solver provides instant feedback and explanations to help learners progress at their own pace."
+msgstr "Ụmụ akwụkwọ na-amụ mgbe niile na-enyocha STEM ma ọ bụ na-eleghachi mgbakọ anya nwere ike iji ikpo okwu AI anyị mee mgbatị, dozie nsogbu dị elu, ma wulite nkà nyocha siri ike. Ngwaọrụ ahụ na-enye nzaghachi ozugbo na nkọwa iji nyere ndị na-amụ aka ịga n’ihu n’ụzọ ha onwe ha."
+
+msgid "It’s perfect for personal growth, skill development, or preparing for certifications, making math learning accessible and engaging for users of all ages."
+msgstr "Ọ dị mma maka mmepe onwe onye, mmepe nka, ma ọ bụ mmegharị maka asambodo, na-eme ka mmụta mgbakọ dị mfe ịnweta ma na-adọrọ mmasị maka ndị ọrụ nke afọ niile."
+
+msgid "How It Works"
+msgstr "Olee Otú Ọ Si Arụ Ọrụ"
+
+msgid "Our platform is designed to simplify learning and problem-solving. Follow these simple steps to experience the power of AI in generating accurate solutions efficiently."
+msgstr "Ikpo okwu anyị e mere iji mee ka mmụta na ịkọrọ nsogbu dị mfe. Soro nzọụkwụ ndị a dị mfe iji nweta ike AI na ịmepụta ngwọta ziri ezi nke ọma."
+
+msgid "Step 1: Input Your Problem"
+msgstr "Nzọụkwụ 1: Tinye Nsogbu Gị"
+
+msgid "Enter your problem manually or scan it using your device camera. Our AI instantly detects the content and prepares it for processing. This flexible input method ensures you can start learning without any technical hurdles."
+msgstr "Tinye nsogbu gị aka ma ọ bụ nyochaa ya site na igwefoto ngwaọrụ gị. AI anyị na-achọpụta ọdịnaya ozugbo ma kwadebe ya maka nhazi. Usoro ntinye a na-agbanwe agbanwe na-eme ka ịmalite mmụta enweghị nsogbu teknụzụ."
+
+msgid "Step 2: AI Solves Step-by-Step"
+msgstr "Nzọụkwụ 2: AI Na-dozie Nzọụkwụ-Nzọụkwụ"
+
+msgid "Our advanced AI analyzes your problem and generates a step-by-step solution. Each explanation is clear, structured, and easy to follow, helping you understand the concepts behind the answer while building confidence in your learning."
+msgstr "AI anyị dị elu na-enyocha nsogbu gị ma na-emepụta ngwọta nzọụkwụ-nzọụkwụ. Nkọwa ọ bụla doro anya, hazie ya nke ọma, ma dị mfe ịgbaso, na-enyere gị aka ịghọta echiche dị n'azụ azịza mgbe ị na-ewulite ntụkwasị obi na mmụta gị."
+
+msgid "Step 3: Voice or Download"
+msgstr "Nzọụkwụ 3: Okwu ma ọ bụ Budata"
+
+msgid "Listen to an optional voice explanation or download the complete solution in PDF format. This feature allows you to review the solution at your own pace, share it with peers, or save it for future reference."
+msgstr "Gee ntị na nkọwa olu nhọrọ ma ọ bụ budata ngwọta zuru ezu na usoro PDF. Njirimara a na-enye gị ohere ilele ngwọta n’ụzọ gị, kesaa ya na ndị ibe gị, ma ọ bụ chekwaa maka ntụle n’ọdịnihu."
+
+msgid "What <strong>users</strong> are <strong>saying about AI Solver."
+msgstr "Ihe ndị <strong>ndị ọrụ</strong> na-ekwu gbasara AI Solver."
+
+msgid "AI Solver has transformed how I handle math problems. It’s fast, accurate, and gives clear step-by-step solutions I can trust."
+msgstr "AI Solver agbanweela otu m si elekọta nsogbu mgbakọ. Ọ na-agba ọsọ ngwa ngwa, ziri ezi, ma na-enye ngwọta nzọụkwụ-nzọụkwụ doro anya nke m nwere ike ịtụkwasị obi."
+
+msgid "I love how AI Solver adapts to any topic. It feels like having a professional tutor available 24/7 for every math challenge."
+msgstr "A hụrụ m n’anya otu AI Solver si gbanwee maka isiokwu ọ bụla. Ọ dị ka inwe onye nkuzi ọkachamara dị 24/7 maka nsogbu mgbakọ ọ bụla."
+
+msgid "Using AI Solver has saved me hours of studying. The explanations are easy to follow, human-like, and extremely detailed."
+msgstr "Ijiri AI Solver echekwara m awa nke ọmụmụ. Nkọwa ahụ dị mfe ịgbaso, yiri mmadụ, ma zuru oke nke ukwuu."
+
+msgid "AI Solver not only solves problems but also helps me understand the logic behind them. It’s my go-to tool for learning and exam prep."
+msgstr "AI Solver anaghị edozi nsogbu naanị, kamakwa na-enyere m ịghọta ọgụgụ isi dị n'azụ ha. Ọ bụ ngwa m na-eji mgbe niile maka mmụta na mmegharị maka ule."
+
+msgid "Join Our Newsletter"
+msgstr "Jikọọ na Akwụkwọ Akụkọ Anyị"
+
+msgid "Subscribe to our newsletter and receive the latest news about our products and services!"
+msgstr "Debanye aha na akwụkwọ akụkọ anyị ma nata akụkọ kacha ọhụrụ gbasara ngwaahịa na ọrụ anyị!"
+
+msgid "Loading"
+msgstr "Na-ebudata"
+
+msgid "Your subscription request has been sent. Thank you!"
+msgstr "Arịrịọ gị maka ịdebanye aha ezitere. Daalụ!"
+
+msgid "About the Founder"
+msgstr "Banyere Onye Mmalite"
+
+msgid "EduPrompt was founded by Eze Prosper somtochukwu, a software developer passionate about education technology."
+msgstr "EduPrompt malitere site na Eze Prosper Somtochukwu, onye mmepe sọftụwia nwere mmasị n'ọrụ teknụzụ agụmakwụkwọ."
+
+msgid "He created this platform to provide students with AI-powered tools that make learning smarter, faster, and more accessible."
+msgstr "O kere ikpo okwu a iji nye ụmụ akwụkwọ ngwa AI nke na-eme ka ọmụmụ bụrụ amamihe, ngwa ngwa, ma dị mfe iru."
+
+msgid "Useful Links"
+msgstr "Njikọ Dị Uru"
+
+msgid "Home"
+msgstr "Ụlọ"
+
+msgid "About Us"
+msgstr "Banyere Anyị"
+
+msgid "Privacy Policy"
+msgstr "Ụkpụrụ Nzuzo"
+
+msgid "Terms and Conditions"
+msgstr "Okwu na Okwu Ndụ"
+
+msgid "Our Services"
+msgstr "Ọrụ Anyị"
+
+msgid "Web Design"
+msgstr "Imebe Webụsaịtị"
+
+msgid "Flyer Design"
+msgstr "Imebe Flyers"
+
+msgid "Our Tools"
+msgstr "Ngwaọrụ Anyị"
+
+msgid "Essay Writer"
+msgstr "Onye Na-ede Akwụkwọ"
+
+
+
+msgid "Letter Writer"
+msgstr "Onye Na-ede Akwụkwọ ozi"
+
+msgid "Ai Solver"
+msgstr "Ngwọta AI"
+"sụsụ"
+
+
+
+msgid "EduPrompt</strong> All Rights Reserved."
+msgstr "EduPrompt</strong> A zụrụ ikike niile."
+
+
+
+
+
+
+
+
+msgid "New!"
+msgstr "Ọhụrụ!"
+
+msgid "Empowering Your Business with Expert Website Development. Unlock Your Business Potential Online"
+msgstr "Na-enye azụmahịa gị ike site na mmepe weebụsaịtị ọkachamara. Meghee ikike azụmahịa gị n'ịntanetị"
+
+msgid "Empower Your Learning with Smart AI Tools"
+msgstr "Mee ka ịmụ gị dị ike site na Ngwaọrụ AI Smart"
+
+msgid "Support your studies with AI tools that help you write, solve problems, and understand lessons—at your own pace and in your language. Built for African students, our platform makes learning easier, flexible, and accessible."
+msgstr "Nye nkwado ọmụmụ gị site na ngwa AI nke na-enyere gị ide, dozie nsogbu, ma ghọta ọmụmụ—na ọsọ gị na asụsụ gị. E wuru ya maka ụmụ akwụkwọ Afrịka, ikpo okwu anyị na-eme ka ịmụ dị mfe, dị mfe ime mgbanwe, na nke dịrị onye niile."
+
+msgid "Go Pro"
+msgstr "Gaa Pro"
+
+msgid "Explore Features"
+msgstr "Nyocha Atụmatụ"
+
+msgid "Our Values"
+msgstr "Uru Anyị"
+
+msgid "At EduPrompt, students come first. Our AI study assistant is built to help learners grow, understand concepts faster, and feel more confident on their learning journey."
+msgstr "Na EduPrompt, ụmụ akwụkwọ bụ ndị mbụ. Onye enyemaka ọmụmụ AI anyị wuru iji nyere ndị na-amụta ịmụtakwuo, ghọta echiche ngwa ngwa, ma nwee ntụkwasị obi n’ụzọ ọmụmụ ha."
+
+msgid "Clear Understanding"
+msgstr "Nkọwa Doro Anya"
+
+msgid "We make learning simple. Our AI explains ideas step by step, helping students of all ages grasp concepts easily and confidently."
+msgstr "Anyị na-eme ka ịmụ dị mfe. AI anyị na-akọwa echiche nke nzọụkwụ site na nzọụkwụ, na-enyere ụmụ akwụkwọ niile afọ ịghọta echiche mfe ma nwee ntụkwasị obi."
+
+msgid "Equal Opportunities"
+msgstr "Okwu Ntọala Ọbụbụenyi"
+
+msgid "Every student deserves the chance to succeed. Our AI assistant provides consistent support, no matter where you study or what resources you have."
+msgstr "Onye ọ bụla n’ime ụmụ akwụkwọ kwesịrị ohere ịga nke ọma. Onye enyemaka AI anyị na-enye nkwado dị mfe, n’agbanyeghị ebe ịmụ ma ọ bụ ihe ị nwere."
+
+msgid "Learn at Your Own Pace"
+msgstr "Mụta Na Ọsọ Gị"
+
+msgid "Everyone learns differently. Our AI study assistant adapts to your speed, making learning personalized, comfortable, and effective."
+msgstr "Onye ọ bụla amụta n'ụzọ dị iche. Onye enyemaka ọmụmụ AI anyị na-eme ka ọ dabara ọsọ gị, na-eme ka ịmụ bụrụ nke onwe gị, dịrị gị mma, ma baa uru."
+
+msgid "Engaging & Enjoyable"
+msgstr "Na-adọrọ adọrọ & Na-atọ ụtọ"
+
+msgid "Learning should be interesting, not stressful. Our AI tools make studying fun, interactive, and easy to follow."
+msgstr "Ịmụ kwesịrị ịbụ ihe na-adọrọ mmasị, ọ bụghị ihe na-emetụ ụjọ. Ngwa AI anyị na-eme ka ịmụ dị ụtọ, na-emekọrịta, ma dị mfe iso."
+
+msgid "Respect & Support"
+msgstr "Ntụkwasị Obi & Nkwado"
+
+msgid "We value every student. Whether young or adult, our AI assistant ensures a safe, welcoming, and supportive learning experience."
+msgstr "Anyị na-atụ onye ọ bụla n'uche. Ma nwata ma okenye, onye enyemaka AI anyị na-eme ka ịmụ bụrụ nke nchekwa, nabatara, na nkwado."
+
+msgid "Learning & Growing Together"
+msgstr "Ịmụ & Itoo Ọzọ N'otu"
+
+msgid "We constantly improve. By listening to feedback and learning from our students, we grow together, step by step, making our AI assistant smarter and more helpful."
+msgstr "Anyị na-emeziwanye mgbe niile. Site n’ịge ntị na nzaghachi na ịmụ site n’aka ụmụ akwụkwọ anyị, anyị na-eto ọnụ, nzọụkwụ site na nzọụkwụ, na-eme ka onye enyemaka AI anyị bụrụ onye amamihe ma baa uru."
+
+msgid "Students Achieving Success"
+msgstr "Ụmụ Akwụkwọ Na-eru Ọganihu"
+
+msgid "Content Generated"
+msgstr "E mepụtara ọdịnaya"
+
+msgid "Hours of AI Assistance"
+msgstr "Awụkwọ Ncheta AI"
+
+msgid "AI Tools Available"
+msgstr "Ngwa AI Dị"
+
+msgid "Features"
+msgstr "Atụmatụ"
+
+msgid "Our Features"
+msgstr "Atụmatụ Anyị"
+
+msgid "Note Generator"
+msgstr "Ngwa Mbipụta Ndebanye"
+
+msgid "Create detailed notes from your topics quickly and easily"
+msgstr "Mepụta ndekọ zuru ezu sitere na isiokwu gị ngwa ngwa ma mfe"
+
+msgid "Essay Generator"
+msgstr "Ngwa Mbipụta Akwụkwọ"
+
+msgid "Generate well-structured essays with AI guidance"
+msgstr "Mepụta akwụkwọ nke ọma dị n'otu nhazi site na nduzi AI"
+
+msgid "letter writer"
+msgstr "Onye Na-ede Akwụkwọ"
+
+msgid "Generate professional letters instantly."
+msgstr "Mepụta akwụkwọ ọkachamara ozugbo."
+
+msgid "Save time and create polished content for any purpose"
+msgstr "Chekwaa oge ma mepụta ọdịnaya dị mma maka ebumnuche ọ bụla"
+
+msgid "AI Solver"
+msgstr "Ngwa Ndozi AI"
+
+msgid "Solve equations, formulas, and problems with step-by-step help"
+msgstr "Dozie usoro, usoro, na nsogbu site na enyemaka nzọụkwụ site na nzọụkwụ"
+
+msgid "Project Writer"
+msgstr "Onye Na-ede Orụ"
+
+msgid "Get AI assistance for writing reports and projects efficiently"
+msgstr "Nweta enyemaka AI maka ide akụkọ na ọrụ nke ọma"
+
+msgid "Grammar Checker"
+msgstr "Nyocha Asụsụ"
+
+msgid "Improve your writing by checking grammar, punctuation, and style"
+msgstr "Melite ide gị site na ịlele asụsụ, mkpụrụedemede, na ụdị"
+
+msgid "Why our platform"
+msgstr "Gịnị mere ikpo okwu anyị"
+
+msgid "Why Students Choose Us"
+msgstr "Gịnị Mere Ụmụ Akwụkwọ Ji Họrọ Anyị"
+
+msgid "AI-Powered Learning Tools"
+msgstr "Ngwaọrụ Ịmụ Na-agba AI"
+
+msgid "Boost your study efficiency with intelligent tools that simplify note-taking, assignments, and exam prep."
+msgstr "Mee ka ịmụ dị irè site na ngwa amamihe nke na-eme ka ide ndekọ, ọrụ, na nhazi ule dị mfe."
+
+msgid "Essay & Assignment Writer"
+msgstr "Onye Na-ede Akwụkwọ & Ọrụ"
+
+msgid "Generate high-quality, well-structured essays and assignments in minutes with AI assistance."
+msgstr "Mepụta akwụkwọ na ọrụ dị mma nke ọma n’ime nkeji ole na ole site na enyemaka AI."
+
+msgid "Collaborative Study Assistant"
+msgstr "Onye Enyemaka Ịmụ N'otu"
+
+msgid "Work smarter with features that help you collaborate, organize group projects, and share notes effectively."
+msgstr "Rụọ ọrụ n'ụzọ amamihe site na atụmatụ na-enyere gị ịrụkọ ọrụ ọnụ, hazie ọrụ otu, ma kesaa ndekọ nke ọma."
+
+msgid "Multilingual Support"
+msgstr "Nkwado Asụsụ Dị Ọtụtụ"
+
+msgid "Learn in the language you’re comfortable with — English, Swahili, Igbo, Yoruba, and more."
+msgstr "Mụta n’asụsụ ị na-adị mma na ya — Bekee, Swahili, Igbo, Yoruba, na ndị ọzọ."
+
+msgid "Homework Assistant"
+msgstr "Onye Enyemaka Ọrụ Ụlọ"
+
+msgid "Solve problems quickly across subjects with AI guidance, keeping your work original and clear."
+msgstr "Dozie nsogbu ngwa ngwa n’ebe isiokwu dị iche iche site na nduzi AI, na-eme ka ọrụ gị bụrụ nke mbụ ma doo anya."
+
+msgid "Plagiarism & Originality Tools"
+msgstr "Ngwa Nchedo Mmegharị & Ihu Ọzọ"
+
+msgid "Ensure every essay, note, or assignment is original and ready for school submission."
+msgstr "Gbaa mbọ hụ na akwụkwọ, ndekọ, ma ọ bụ ọrụ ọ bụla bụ nke mbụ ma dị njikere iziga ụlọ akwụkwọ."
+
+msgid "Pricing"
+msgstr "Ọnụahịa"
+
+msgid "Check Our Affordable Pricing"
+msgstr "Lelee Ọnụahịa Dị Mfe Anyị"
+
+msgid "Weekly Plan"
+msgstr "Ụzọ Izu"
+
+msgid "Monthly Plan"
+msgstr "Ụzọ Ọnwa"
+
+msgid "Quarterly Plan"
+msgstr "Ụzọ Ọnwa Atọ"
+
+msgid "(6 months)"
+msgstr "(ọnwa 6)"
+
+msgid "Yearly Plan"
+msgstr "Ụzọ Afọ"
+
+msgid "Subscribe"
+msgstr "Debanye aha"
+
+
+msgid "Professionals"
+msgstr "Ọkachamara"
+
+
+
+
+
+
+
+
+
+#: templates/ai_platform.html:14
+msgid "Students"
+msgstr "Ụmụ akwụkwọ"
+
+
+
+
+
+
+#: templates/ai_platform.html:52
+msgid "Beyond academic tasks, students can also use our AI to explore creative writing, summarize large volumes of text, and even get guided assistance for research projects. This helps build critical thinking, research skills, and a habit of effective knowledge management, preparing them for higher education and professional challenges."
+msgstr "Na mgbakwunye na ọrụ ọmụmụ, ụmụ akwụkwọ nwekwara ike iji AI anyị chọpụta ide ihe okike, mee nchikota nke nnukwu ederede, ma nweta nduzi maka ọrụ nyocha. Nke a na-enyere aka wulite echiche dị omimi, nkà nyocha, na omume nke ịchịkwa ọmụma nke ọma, na-eme ka ha dị njikere maka agụmakwụkwọ dị elu na ihe ịma aka ọkachamara."
+
+#: templates/ai_platform.html:61
+msgid "Educators can harness our platform to efficiently design lesson plans, develop quizzes, and create high-quality teaching resources tailored to diverse student needs. By automating content creation, teachers save valuable time that can be invested in personalized instruction, student mentorship, and curriculum development. This leads to improved classroom engagement and better learning outcomes for students."
+msgstr "Ndị nkuzi nwere ike iji ikpo anyị mee atụmatụ ọmụmụ nke ọma, mepụta ajụjụ nyocha, ma mepụta ihe ọmụmụ dị elu nke dabara mkpa ndị na-amụta dị iche iche. Site n’ịgba ọsọ akpịrịkpa n’ịmepụta ọdịnaya, ndị nkuzi na-echekwa oge bara uru nke nwere ike itinye na nduzi nke onwe onye, nnọchite nke ụmụ akwụkwọ, na mmepe curriculum. Nke a na-ebute mmụta nke ọma n’ụlọ akwụkwọ na nsonaazụ mmụta ka mma."
+
+#: templates/ai_platform.html:69
+msgid "Additionally, the platform supports professional development by enabling educators to produce research-backed teaching materials, track student performance, and provide data-driven feedback. Whether for in-person classrooms, online learning, or hybrid models, our tools help educators maintain high educational standards with minimal administrative effort."
+msgstr "Na mgbakwunye, ikpo ahụ na-akwado mmepe ọkachamara site n’inyere ndị nkuzi aka ịmepụta ihe ọmụmụ dabere na nchọpụta, soro arụmọrụ ụmụ akwụkwọ, ma nye nzaghachi dabere na data. Ma ọ bụ maka klaasị ihu na ihu, mmụta n’ịntanetị, ma ọ bụ ụdị ngwakọta, ngwa anyị na-enyere ndị nkuzi aka ịchekwa ụkpụrụ mmụta dị elu na obere mbọ nchịkwa."
+
+#: templates/ai_platform.html:78
+msgid "Professionals seeking to improve productivity, streamline workflows, or produce high-quality business documents will find immense value in our AI platform. From generating detailed reports and presentations to drafting proposals and strategic plans, the tools ensure content is precise, professional, and impactful. This allows professionals to focus on decision-making, strategy, and innovation while minimizing time spent on routine document creation."
+msgstr "Ndị ọkachamara na-achọ ime ka mmepụta dịkwuo elu, mee ka ọrụ dị mfe, ma ọ bụ mepụta akwụkwọ azụmahịa dị elu ga-ahụ uru dị ukwuu na ikpo AI anyị. Site n’ịmepụta akụkọ zuru ezu na ngosipụta ruo na ịde atụmatụ na atụmatụ ndị dị mkpa, ngwa ahụ na-eme ka ọdịnaya bụrụ nke ziri ezi, ọkachamara, na nke bara uru. Nke a na-enye ndị ọkachamara ohere ilekwasị anya na ịme mkpebi, atụmatụ, na mmepe ọhụrụ mgbe ha na-ebelata oge eji eme akwụkwọ kwa ụbọchị."
+
+#: templates/ai_platform.html:86
+msgid "The platform also supports skill development, upskilling initiatives, and continuous learning. Professionals can utilize AI-generated summaries, curated learning materials, and interactive guides to stay ahead in their fields and maintain a competitive edge in dynamic industries."
+msgstr "Ikpo ahụ na-akwado mmepe nkà, atụmatụ ịkwalite nkà, na mmụta na-aga n’ihu. Ndị ọkachamara nwere ike iji nchikota e kere site na AI, ihe ọmụmụ ahaziri, na nduzi na-emekọrịta iji nọgide n’ihu na ọrụ ha ma chekwaa uru asọmpi n’ụlọ ọrụ na-agbanwe agbanwe."
+
+#: templates/ai_platform.html:95
+msgid "Researchers can streamline complex academic and scientific tasks, such as performing literature reviews, summarizing large datasets, and organizing research notes efficiently. The platform produces well-structured, accurate outputs, reducing manual effort and improving overall productivity. It supports academic writing, publication preparation, and project documentation in both professional and academic contexts."
+msgstr "Ndị nyocha nwere ike ime ka ọrụ mmụta na sayensị dị mgbagwoju anya dị mfe, dịka ime nyocha akwụkwọ, nchikota nnukwu dataset, na hazie ndekọ nyocha nke ọma. Ikpo ahụ na-emepụta nsonaazụ nke ọma, ziri ezi, na-eme ka mbọ aka dị obere ma melite mmepụta n’ozuzu. Ọ na-akwado ide akwụkwọ mmụta, nhazi mbipụta, na ndekọ ọrụ na gburugburu ọkachamara na nke mmụta."
+
+#: templates/ai_platform.html:103
+msgid "Furthermore, researchers benefit from AI-assisted data analysis, trend identification, and hypothesis development, making it easier to manage multi-disciplinary projects, collaborate with peers, and meet publication deadlines. The platform ensures reliable, high-quality results that contribute to research excellence and innovation."
+msgstr "Na mgbakwunye, ndị nyocha na-erite uru site na nyocha data enyere site na AI, ịchọpụta ọdịiche, na mmepe hypotheses, na-eme ka ọ dị mfe ijikwa ọrụ dị iche iche, imekọrịta na ndị ọrụ ibe, ma mezue oge mbipụta. Ikpo ahụ na-enye nsonaazụ a pụrụ ịtụkwasị obi, dị elu nke na-enye aka n’ihe ọmụmụ na mmepe ọhụrụ."
+
+#: templates/ai_platform.html:112
+msgid "AI Accuracy & Reliability"
+msgstr "Ndị AI ziri ezi & ntụkwasị obi"
+
+#: templates/ai_platform.html:114
+msgid "Our AI-powered EdTech platform is designed to help learners, educators, and researchers achieve accurate and reliable results effortlessly. Whether you’re tackling complex STEM problems, creating engaging educational content, or exploring new concepts, our intelligent assistant provides clear, step-by-step solutions you can trust. Every interaction is secure, giving you confidence that your data remains private while you focus on learning, teaching, and discovery."
+msgstr "Ikpo AI EdTech anyị bụ nke e mere iji nyere ndị na-amụta, ndị nkuzi, na ndị nyocha aka nweta nsonaazụ ziri ezi na ntụkwasị obi na-enweghị mgbalị. Ma ị na-edozi nsogbu STEM dị mgbagwoju anya, na-emepụta ọdịnaya mmụta na-atọ ụtọ, ma ọ bụ na-enyocha echiche ọhụrụ, onye enyemaka ọgụgụ isi anyị na-enye ngwọta doro anya, nzọụkwụ site na nzọụkwụ ị nwere ike ịtụkwasị obi. Ọrụ niile dị nchebe, na-eme ka ị nwee ntụkwasị obi na data gị ka nọgide na nzuzo mgbe ị na-elekwasị anya na mmụta, nkuzi, na nchọpụta."
+
+#: templates/ai_platform.html:122
+msgid "99% Accuracy"
+msgstr "Ziri ezi 99%"
+
+#: templates/ai_platform.html:128
+msgid "Verified Results"
+msgstr "Nsonaazụ ekwenyere"
+
+#: templates/ai_platform.html:134
+msgid "Secure & Private"
+msgstr "Nchebe & Nzuzo"
+
+#: templates/ai_platform.html:150
+msgid "F.A.Q"
+msgstr "Ajuju Ajuju"
+
+#: templates/ai_platform.html:152
+msgid "Frequently Asked Questions about <strong>EduPrompt</strong>, your AI study assistant for smarter learning."
+msgstr "Ajụjụ a na-ajụkarị gbasara <strong>EduPrompt</strong>, onye enyemaka mmụta AI gị maka mmụta mara mma."
+
+#: templates/ai_platform.html:157
+msgid "What is EduPrompt and how does it help me?"
+msgstr "Gịnị bụ EduPrompt na olee otu o si enyere m?"
+
+#: templates/ai_platform.html:160
+msgid "EduPrompt is an AI-powered learning platform that simplifies studying. It provides clear explanations, note generation, essay and assignment help, and other study tools accessible anytime, anywhere."
+msgstr "EduPrompt bụ ikpo mmụta AI nke na-eme ka ọmụmụ dị mfe. Ọ na-enye nkọwa doro anya, imepụta ndekọ, enyemaka na edemede na ọrụ, na ngwa mmụta ndị ọzọ dị n’aka mgbe niile."
+
+#: templates/ai_platform.html:167
+msgid "Do you support African languages?"
+msgstr "Ị na-akwado asụsụ Afrịka?"
+
+#: templates/ai_platform.html:170
+msgid "Yes! EduPrompt supports <strong>Yoruba, Igbo, Hausa, Swahili</strong>, and more, making learning easier in the language you understand best."
+msgstr "Ee! EduPrompt na-akwado <strong>Yoruba, Igbo, Hausa, Swahili</strong>, na ndị ọzọ, na-eme ka mmụta dị mfe n’asụsụ ị kacha aghọta."
+
+#: templates/ai_platform.html:177
+msgid "Is EduPrompt free to use?"
+msgstr "EduPrompt bụ n'efu iji?"
+
+#: templates/ai_platform.html:180
+msgid "EduPrompt is a <strong>paid platform</strong>, but you can try it for free with our <strong>trial period</strong>. Core study tools are included during the trial, giving you a chance to explore before subscribing."
+msgstr "EduPrompt bụ <strong>ikpo akwụ ụgwọ</strong>, mana ị nwere ike ịnwale ya n'efu na <strong>oge nnwale</strong>. Ngwa mmụta bụ isi dị n'ime nnwale, na-enye gị ohere ịmata tupu ịdebanye aha."
+
+#: templates/ai_platform.html:187
+msgid "Can I use EduPrompt offline?"
+msgstr "Enwere m ike iji EduPrompt offline?"
+
+#: templates/ai_platform.html:190
+msgid "Currently, EduPrompt requires internet access, but you can <strong>download generated notes</strong> to study offline anytime."
+msgstr "Ugbu a, EduPrompt chọrọ ịntanetị, mana ị nwere ike <strong>budata ndekọ e kere</strong> iji mụta offline mgbe niile."

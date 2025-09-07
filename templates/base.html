@@ -7,10 +7,38 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ post.title }}</title>
-  <meta name="description" content="{{ post.excerpt|default:'' }}">
-  <meta name="keywords" content="{% for tag in post.tags.all %}{{ tag.name }}{% if not forloop.last %}, {% endif %}{% endfor %}">
-  
+
+  <!-- Dynamic Title -->
+  <title>{% if post.title %}{{ post.title }} | Eduprompt{% else %}Eduprompt – AI Tools, Project Writing & More{% endif %}</title>
+
+  <!-- Dynamic Description with Fallback -->
+  <meta name="description" content="{% if post.excerpt %}{{ post.excerpt }}{% else %}Eduprompt provides AI-powered tools, project writing services, and educational solutions to help students, professionals, and researchers worldwide.{% endif %}">
+
+  <!-- Dynamic Keywords from Tags with Fallback -->
+  <meta name="keywords" content="{% if post.tags.all %}{% for tag in post.tags.all %}{{ tag.name }}{% if not forloop.last %}, {% endif %}{% endfor %}{% else %}AI tools, project writing, essay generator, note maker, grammar checker, Eduprompt{% endif %}">
+
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:title" content="{{ post.title|default:'Eduprompt – AI Tools & Project Services' }}">
+  <meta property="og:description" content="{{ post.excerpt|default:'Eduprompt provides AI-powered tools and professional project writing services for students, researchers, and professionals.' }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ request.build_absolute_uri }}">
+  <meta property="og:image" content="{% if post.featured_image %}{{ post.featured_image.url }}{% else %}{% static 'assets/img/default-og.png' %}{% endif %}">
+  <meta property="og:site_name" content="Eduprompt">
+
+  <!-- X (Twitter) Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ post.title|default:'Eduprompt – AI Tools & Project Services' }}">
+  <meta name="twitter:description" content="{{ post.excerpt|default:'Eduprompt provides AI-powered tools and professional project writing services for students, researchers, and professionals.' }}">
+  <meta name="twitter:image" content="{% if post.featured_image %}{{ post.featured_image.url }}{% else %}{% static 'assets/img/default-og.png' %}{% endif %}">
+
+  <!-- TikTok / General Sharing -->
+  <meta name="tiktok:card" content="summary_large_image">
+  <meta name="tiktok:title" content="{{ post.title|default:'Eduprompt – AI Tools & Project Services' }}">
+  <meta name="tiktok:description" content="{{ post.excerpt|default:'Eduprompt provides AI-powered tools and professional project writing services for students, researchers, and professionals.' }}">
+  <meta name="tiktok:image" content="{% if post.featured_image %}{{ post.featured_image.url }}{% else %}{% static 'assets/img/default-og.png' %}{% endif %}">
+
+</head>
+
 
 
   <!-- Favicons -->

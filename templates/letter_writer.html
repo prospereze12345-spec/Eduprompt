@@ -7,27 +7,27 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>AI Letter Writer – Create Professional Letters Instantly</title>
-  <meta name="description" content="Generate polished, professional letters in seconds with our AI Letter Writer. Edit, save, and download your letters quickly and hassle-free." />
-  <meta name="keywords" content="AI letter writer online free
 
-best AI letter generator for students
+  <!-- SEO Title -->
+  <title>AI Letter Writer – Generate Professional Letters Instantly for Free</title>
 
-AI cover letter maker for job applications
+  <!-- SEO Description -->
+  <meta name="description" content="Create polished, professional letters in seconds with our AI Letter Writer. Perfect for job applications, business correspondence, personal letters, and formal communication. Edit, save, and download your letters quickly with AI-powered assistance for accurate, well-structured results.">
 
-write professional letters with AI
+  <!-- SEO Keywords -->
+  <meta name="keywords" content="AI letter writer, online letter generator, free AI letter creator, professional letter writing, AI cover letter maker, business letter generator, personal letter writing assistant, AI formal letter writer, instant letter creator online, generate letters with AI, AI writing tool for letters, job application letter AI, AI correspondence tool">
 
-free AI letter writing tool for businesses
+  <!-- Optional hreflang for global SEO -->
+  <link rel="alternate" hreflang="en" href="http://localhost:8000/ai-letter-writer/" />
+  <link rel="alternate" hreflang="en-us" href="http://localhost:8000/ai-letter-writer/" />
+  <link rel="alternate" hreflang="en-gb" href="http://localhost:8000/ai-letter-writer/" />
+  <link rel="alternate" hreflang="en-ca" href="http://localhost:8000/ai-letter-writer/" />
+  <link rel="alternate" hreflang="en-de" href="http://localhost:8000/ai-letter-writer/" />
+  <link rel="alternate" hreflang="en-pl" href="http://localhost:8000/ai-letter-writer/" />
+  <link rel="alternate" hreflang="en-ng" href="http://localhost:8000/ai-letter-writer/" />
 
-AI-generated letters for official use
+</head>
 
-online letter creator with AI assistance
-
-AI formal letter writer for students and workers
-
-AI personal letter writing assistant
-
-generate business letters with AI instantly" />
 
   <!-- Favicons -->
   <link href="{% static 'assets/img/favicon.png' %}" rel="icon" />
@@ -288,14 +288,19 @@ generate business letters with AI instantly" />
     </li>
 {% endif %}
 
-        <!-- Language Selector -->
-        <select name="language" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 120px; font-size: 0.85rem;">
-    {% for code, name in AFRICAN_LANGUAGES %}
-      <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
-    {% endfor %}
-</select>
-<input type="hidden" name="next" value="{{ request.get_full_path }}">
-      </ul>
+              <form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <select name="language" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 120px; font-size: 0.9rem;">
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% for code, name in LANGUAGES %}
+            <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>
+                {{ name }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+
     </div>
   </nav>
 </header>
@@ -905,16 +910,16 @@ document.addEventListener("DOMContentLoaded", () => {
   <div class="container">
     <div class="row justify-content-center text-center">
       <div class="col-lg-6">
-        <h4 style="color: #ffffff;">Join Our Newsletter</h4>
-        <p style="color: #ffffff;">Subscribe to our newsletter and receive the latest news about our products and services!</p>
+        <h4 style="color: #ffffff;">{% trans "Join Our Newsletter" %}</h4>
+        <p style="color: #ffffff;">{% trans "Subscribe to our newsletter and receive the latest news about our products and services!" %}</p>
         <form action="forms/newsletter.php" method="post" class="php-email-form">
           <div class="newsletter-form d-flex flex-column flex-sm-row gap-2">
             <input type="email" name="email" class="form-control" placeholder="Your email address" required>
             <input type="submit" value="Subscribe" class="btn btn-primary px-4">
           </div>
-          <div class="loading mt-2" style="color: #ffffff;">Loading</div>
+          <div class="loading mt-2" style="color: #ffffff;">{% trans "Loading" %}</div>
           <div class="error-message text-danger mt-2"></div>
-          <div class="sent-message text-success mt-2">Your subscription request has been sent. Thank you!</div>
+          <div class="sent-message text-success mt-2">{% trans "Your subscription request has been sent. Thank you!" %}</div>
         </form>
       </div>
     </div>
@@ -931,7 +936,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="col-lg-3 col-md-6 footer-about text-center">
   <!-- Section Title -->
   <h3 style="color: #ffffff; font-weight: 700; font-size: 1.5rem; margin-bottom: 20px;">
-    About the Founder
+    {% trans "About the Founder" %}
   </h3>
 
   <!-- Circle Image -->
@@ -943,76 +948,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <!-- Description -->
   <p style="margin-top: 15px; font-size: 1rem; line-height: 1.6; color: #ffffff;">
-    EduPrompt was founded by Eze Prosper somtochukwu, a software developer passionate about education technology. 
-    He created this platform to provide students with AI-powered tools that make learning smarter, faster, and more accessible.
+    {% trans "EduPrompt was founded by Eze Prosper somtochukwu, a software developer passionate about education technology." %}
+    {% trans "He created this platform to provide students with AI-powered tools that make learning smarter, faster, and more accessible." %}
   </p>
 </div>
 
 <!-- Useful Links -->
 <div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">Useful Links</h4>
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Useful Links" %}</h4>
   <ul class="list-unstyled">
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="{% url 'index' %}" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Home</a>
+      <a href="{% url 'index' %}" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Home" %}</a>
     </li>
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">About Us</a>
+      <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "About Us" %}</a>
     </li>
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Privacy Policy</a>
+      <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Privacy Policy" %}</a>
     </li>
     <li>
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Terms and Conditions</a>
+      <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Terms and Conditions" %}</a>
     </li>
   </ul>
 </div>
 
 <!-- Our Services -->
 <div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">Our Services</h4>
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Services" %}</h4>
   <ul class="list-unstyled">
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/website/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Web Design</a>
+      <a href="/website/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Web Design" %}</a>
     </li>
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/flyer-design/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Flyer Design</a>
+      <a href="/flyer-design/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Flyer Design" %}</a>
     </li>
   </ul>
 </div>
 
 <!-- Our Services (second block) -->
 <div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">Our Tools</h4>
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Tools" %}</h4>
   <ul class="list-unstyled">
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/essay/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Essay Writer</a>
+      <a href="/essay/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Essay Writer" %}</a>
     </li>
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/note/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Note Generator</a>
+      <a href="/note/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Note Generator" %}</a>
     </li>
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/project-writer/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Project Writer</a>
+      <a href="/project-writer/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Project Writer" %}</a>
     </li>
     <li>
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/letter-writer/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Letter Writer</a>
+      <a href="/letter-writer/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Letter Writer" %}</a>
     </li>
         <li>
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/ai-solver/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Ai Solver</a>
+      <a href="/ai-solver/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Ai Solver" %}</a>
     </li>
         <li>
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/grammar-checker/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Grammar Checker</a>
+      <a href="/grammar-checker/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>
     </li>
   </ul>
 </div>
@@ -1020,8 +1025,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <!-- Follow Us -->
 <div class="col-lg-3 col-md-6">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">Follow Us</h4>
-  <p class="mb-3" style="color: #ffffff;">Follow us on all our social media platforms</p>
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Follow Us" %}</h4>
+  <p class="mb-3" style="color: #ffffff;">{% trans "Follow us on all our social media platforms" %}</p>
   <div class="social-links d-flex gap-3 fs-4">
     <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-twitter"></i></a>
     <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-facebook"></i></a>
@@ -1039,7 +1044,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <!-- Copyright -->
 <div class="container text-center py-3 border-top">
   <p class="mb-0 small" style="color: #ffffff;">
-    © <strong class="sitename" style="color: #ffffff;">EduPrompt</strong> All Rights Reserved.
+    © <strong class="sitename" style="color: #ffffff;">{% trans "EduPrompt</strong> All Rights Reserved." %}
   </p>
   <p class="mb-0 small">
     Designed by <a href="https://bootstrapmade.com/" target="_blank" class="text-decoration-none" style="color: #ffffff;">BootstrapMade</a>

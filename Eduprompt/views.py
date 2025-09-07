@@ -129,3 +129,17 @@ def contact_ajax(request):
             return JsonResponse({'success': True})
         except:
             return JsonResponse({'success': False}, status=500)
+
+
+# views.py
+from django.shortcuts import redirect
+from django.utils import translation
+
+def set_language(request, lang_code):
+    if lang_code in dict(settings.LANGUAGES):
+        request.session[translation.LANGUAGE_SESSION_KEY] = lang_code
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+def languages(request):
+    return {'LANGUAGES': settings.LANGUAGES}

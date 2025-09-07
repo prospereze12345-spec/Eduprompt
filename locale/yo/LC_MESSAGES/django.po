@@ -1,0 +1,778 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-05 22:21+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\blog\templates\blog\blog_detail.html:218
+#: .\blog\templates\blog\blog_list.html:216
+#: .\templates\Terms_and_Condition.html:224 .\templates\about.html:215
+#: .\templates\ai_solver.html:224 .\templates\base.html:246
+#: .\templates\contact.html:213 .\templates\essay_page.html:221
+#: .\templates\flyer_design.html:240 .\templates\index.html:234
+#: .\templates\index.html:751 .\templates\letter_writer.html:265
+#: .\templates\login.html:224 .\templates\note_page.html:244
+#: .\templates\plagiarism_checker.html:217 .\templates\privacy_policy.html:224
+#: .\templates\project_writer.html:234 .\templates\register.html:226
+#: .\templates\study_planner.html:216 .\templates\website.html:231
+msgid "AI Solver"
+msgstr "Olùtúnṣe AI"
+
+#: .\blog\templates\blog\blog_detail.html:219
+#: .\blog\templates\blog\blog_list.html:217
+#: .\templates\Terms_and_Condition.html:225 .\templates\about.html:216
+#: .\templates\ai_solver.html:225 .\templates\base.html:247
+#: .\templates\contact.html:216 .\templates\essay_page.html:222
+#: .\templates\flyer_design.html:241 .\templates\grammar_checker.html:233
+#: .\templates\index.html:235 .\templates\index.html:727
+#: .\templates\letter_writer.html:266 .\templates\login.html:225
+#: .\templates\note_page.html:245 .\templates\plagiarism_checker.html:218
+#: .\templates\privacy_policy.html:225 .\templates\project_writer.html:235
+#: .\templates\register.html:227 .\templates\study_planner.html:217
+#: .\templates\website.html:232
+msgid "Essay Generator"
+msgstr "Olùkọ́wé Ìwé-àkàwé"
+
+#: .\blog\templates\blog\blog_detail.html:220
+#: .\blog\templates\blog\blog_list.html:218
+#: .\templates\Terms_and_Condition.html:226 .\templates\about.html:217
+#: .\templates\ai_solver.html:226 .\templates\base.html:248
+#: .\templates\contact.html:214 .\templates\essay_page.html:223
+#: .\templates\flyer_design.html:242 .\templates\grammar_checker.html:234
+#: .\templates\index.html:236 .\templates\index.html:717
+#: .\templates\index.html:1523 .\templates\letter_writer.html:267
+#: .\templates\login.html:226 .\templates\note_page.html:246
+#: .\templates\plagiarism_checker.html:219 .\templates\privacy_policy.html:226
+#: .\templates\project_writer.html:236 .\templates\register.html:228
+#: .\templates\study_planner.html:218 .\templates\website.html:233
+msgid "Note Generator"
+msgstr "Olùkọ́wé Àkọsílẹ̀"
+
+#: .\blog\templates\blog\blog_detail.html:221
+#: .\blog\templates\blog\blog_list.html:219
+#: .\templates\Terms_and_Condition.html:227 .\templates\about.html:218
+#: .\templates\ai_solver.html:227 .\templates\base.html:249
+#: .\templates\contact.html:215 .\templates\essay_page.html:224
+#: .\templates\flyer_design.html:243 .\templates\grammar_checker.html:235
+#: .\templates\index.html:237 .\templates\index.html:1531
+#: .\templates\letter_writer.html:268 .\templates\login.html:227
+#: .\templates\note_page.html:247 .\templates\plagiarism_checker.html:220
+#: .\templates\privacy_policy.html:227 .\templates\project_writer.html:237
+#: .\templates\register.html:229 .\templates\study_planner.html:219
+
+#: .\blog\templates\blog\blog_detail.html:222
+#: .\blog\templates\blog\blog_list.html:220
+#: .\templates\Terms_and_Condition.html:228 .\templates\about.html:219
+#: .\templates\ai_solver.html:228 .\templates\base.html:250
+#: .\templates\contact.html:217 .\templates\essay_page.html:225
+#: .\templates\flyer_design.html:244 .\templates\grammar_checker.html:236
+#: .\templates\index.html:238 .\templates\letter_writer.html:269
+#: .\templates\login.html:228 .\templates\note_page.html:248
+#: .\templates\plagiarism_checker.html:221 .\templates\privacy_policy.html:228
+#: .\templates\project_writer.html:238 .\templates\register.html:230
+#: .\templates\study_planner.html:220 .\templates\website.html:235
+msgid "Blog"
+msgstr "Búlógù"
+
+#: .\blog\templates\blog\blog_detail.html:226
+#: .\blog\templates\blog\blog_list.html:224
+#: .\templates\Terms_and_Condition.html:232 .\templates\about.html:223
+#: .\templates\ai_solver.html:232 .\templates\base.html:254
+#: .\templates\contact.html:222 .\templates\essay_page.html:229
+#: .\templates\flyer_design.html:248 .\templates\grammar_checker.html:240
+#: .\templates\index.html:242 .\templates\letter_writer.html:273
+#: .\templates\login.html:232 .\templates\note_page.html:252
+#: .\templates\plagiarism_checker.html:225 .\templates\privacy_policy.html:232
+#: .\templates\project_writer.html:242 .\templates\register.html:234
+#: .\templates\study_planner.html:224 .\templates\website.html:239
+msgid "Tools"
+msgstr "Ìròyìn-Ọ̀rọ̀"
+
+#: .\blog\templates\blog\blog_detail.html:228
+#: .\blog\templates\blog\blog_list.html:226
+#: .\templates\Terms_and_Condition.html:235 .\templates\about.html:225
+#: .\templates\ai_solver.html:234 .\templates\base.html:256
+#: .\templates\contact.html:224 .\templates\essay_page.html:231
+#: .\templates\flyer_design.html:250 .\templates\grammar_checker.html:242
+#: .\templates\index.html:244 .\templates\index.html:761
+#: .\templates\index.html:1527 .\templates\letter_writer.html:275
+#: .\templates\login.html:234 .\templates\note_page.html:254
+#: .\templates\plagiarism_checker.html:228 .\templates\privacy_policy.html:234
+#: .\templates\project_writer.html:244 .\templates\register.html:236
+#: .\templates\study_planner.html:228 .\templates\website.html:241
+msgid "Project Writer"
+msgstr "Olùkọ́wé Ìṣẹ́-Ẹ̀kọ́"
+
+#: .\blog\templates\blog\blog_detail.html:229
+#: .\blog\templates\blog\blog_list.html:227
+#: .\templates\Terms_and_Condition.html:236 .\templates\about.html:226
+#: .\templates\ai_solver.html:235 .\templates\base.html:257
+#: .\templates\contact.html:225 .\templates\essay_page.html:232
+#: .\templates\flyer_design.html:251 .\templates\grammar_checker.html:243
+#: .\templates\index.html:245 .\templates\index.html:771
+#: .\templates\index.html:1539 .\templates\letter_writer.html:276
+#: .\templates\login.html:235 .\templates\note_page.html:255
+#: .\templates\plagiarism_checker.html:229 .\templates\privacy_policy.html:235
+#: .\templates\project_writer.html:245 .\templates\register.html:237
+#: .\templates\study_planner.html:229 .\templates\website.html:242
+msgid "Grammar Checker"
+msgstr "Olùṣàyẹwo Gírámà"
+
+#: .\blog\templates\blog\blog_detail.html:233
+#: .\blog\templates\blog\blog_list.html:231
+#: .\templates\Terms_and_Condition.html:240 .\templates\about.html:230
+#: .\templates\ai_solver.html:239 .\templates\base.html:261
+#: .\templates\contact.html:229 .\templates\essay_page.html:236
+#: .\templates\flyer_design.html:255 .\templates\grammar_checker.html:247
+#: .\templates\index.html:249 .\templates\letter_writer.html:280
+#: .\templates\login.html:239 .\templates\note_page.html:259
+#: .\templates\plagiarism_checker.html:233 .\templates\privacy_policy.html:239
+#: .\templates\project_writer.html:250 .\templates\register.html:241
+#: .\templates\study_planner.html:233 .\templates\website.html:246
+msgid "Contact"
+msgstr "Bá a ṣe rí"
+
+#: .\blog\templates\blog\blog_detail.html:237
+#: .\blog\templates\blog\blog_list.html:235
+#: .\templates\Terms_and_Condition.html:245 .\templates\about.html:234
+#: .\templates\ai_solver.html:244 .\templates\base.html:265
+#: .\templates\contact.html:233 .\templates\essay_page.html:240
+#: .\templates\flyer_design.html:259 .\templates\grammar_checker.html:251
+#: .\templates\index.html:253 .\templates\letter_writer.html:284
+#: .\templates\login.html:243 .\templates\note_page.html:263
+#: .\templates\plagiarism_checker.html:247 .\templates\privacy_policy.html:243
+#: .\templates\project_writer.html:254 .\templates\register.html:256
+#: .\templates\study_planner.html:247 .\templates\website.html:250
+msgid "Get Started"
+msgstr "Bẹrẹ"
+
+#: .\blog\templates\blog\blog_detail.html:240
+#: .\blog\templates\blog\blog_list.html:238
+#: .\templates\Terms_and_Condition.html:248 .\templates\about.html:237
+#: .\templates\ai_solver.html:247 .\templates\base.html:268
+#: .\templates\contact.html:236 .\templates\essay_page.html:243
+#: .\templates\flyer_design.html:262 .\templates\grammar_checker.html:254
+#: .\templates\index.html:256 .\templates\letter_writer.html:287
+#: .\templates\login.html:246 .\templates\note_page.html:266
+#: .\templates\privacy_policy.html:246 .\templates\project_writer.html:257
+#: .\templates\register.html:261 .\templates\website.html:253
+msgid "Login"
+msgstr "Wọlé"
+
+#: .\templates\Terms_and_Condition.html:234
+msgid "Plagiarism Checker"
+msgstr "Olùṣàyẹwo Ìtàkọ́ṣe"
+
+#: .\templates\ai_solver.html:412 .\templates\base.html:434
+#: .\templates\grammar_checker.html:419 .\templates\index.html:444
+#: .\templates\project_writer.html:425 .\templates\study_planner.html:408
+msgid "Bootstrap Center with Animation"
+msgstr "Aarin Bootstrap pẹ̀lú Àniméṣọ̀n"
+
+
+#: .\templates\grammar_checker.html:232
+msgid "AIs Solver"
+msgstr "Olùṣàkóso AI"
+
+#: .\templates\index.html:11
+msgid "AI Tools Hub – AI Essay, Solver, Grammar, project writer, note, letter & Design Solutions"
+msgstr "Ile-iṣẹ Awọn irinṣẹ AI – Àpilẹkọ AI, Olùṣàkóso, Ayẹwo Gírámà, Onkọwe iṣẹ akanṣe, Akọsilẹ, lẹta & Awọn Solusan Apẹrẹ"
+
+#: .\templates\index.html:14
+msgid "Explore our suite of AI-powered tools including Essay Generator, Math/Physics/Chemistry Solver, Grammar Checker, letter writer, project writer, Flyer Design, Web Development, and more. Instantly create essays, solve academic problems, check grammar, and design professional digital assets. Trusted by students, professionals, and businesses worldwide."
+msgstr "Ṣawari gbogbo awọn irinṣẹ ti AI nṣiṣẹ pẹlu rẹ, pẹlu Ẹlẹda Àpilẹkọ, Olùṣàkóso Math/Physics/Chemistry, Ayẹwo Gírámà, onkọwe lẹta, onkọwe iṣẹ akanṣe, Apẹrẹ Flyer, Idagbasoke Wẹẹbu, ati diẹ sii. Ṣẹda àpilẹkọ lẹsẹkẹsẹ, yanju awọn iṣoro ẹkọ, ṣayẹwo gírámà, ati ṣe apẹrẹ awọn ohun-ini oni-nọmba ọjọgbọn. Gbẹkẹle nipasẹ awọn akẹkọ, awọn amọja, ati awọn ile-iṣẹ kakiri agbaye."
+
+#: .\templates\index.html:223
+msgid "Eduprompt"
+msgstr "Eduprompt"
+
+#: .\templates\index.html:481
+msgid "New!"
+msgstr "Tuntun!"
+
+#: .\templates\index.html:482
+msgid ""
+"Empowering Your Business with Expert Website Development. Unlock Your "
+"Business Potential Online"
+msgstr ""
+"Fífún agbára sí ìṣòwò rẹ̀ pẹ̀lú ìdàgbàsókè wẹẹ̀bù amọ̀ja. Ṣí ìmúlò "
+"agbára ìṣòwò rẹ lórí ayélujára"
+
+#: .\templates\index.html:493
+msgid "Empower Your Learning with Smart AI Tools"
+msgstr "Fún ìkẹ́kọ̀ọ́ rẹ ní agbára pẹ̀lú irinṣẹ́ AI ọlọ́gbọ́n"
+
+#: .\templates\index.html:498
+msgid ""
+"Support your studies with AI tools that help you write, solve problems, and "
+"understand lessons—at your own pace and in your language. Built for African "
+"students, our platform makes learning easier, flexible, and accessible."
+msgstr ""
+"Ṣe àtìlẹ́yìn fún ìkẹ́kọ̀ọ́ rẹ pẹ̀lú irinṣẹ́ AI tí ń ràn ọ́ lọ́wọ́ láti kọ, yanjú "
+"ìṣòro, àti lóye ẹ̀kọ́—ní ìyára tirẹ àti ní èdè tirẹ. Ti a kọ fún "
+"àwọn akẹ́kọ̀ọ́ Áfíríkà, pẹpẹ wa ń jẹ́ kó rọrùn, rọ́gbọkánlẹ̀, àti rọrùn láti wọlé sí."
+
+#: .\templates\index.html:505
+msgid "Go Pro"
+msgstr "Lọ sí Pro"
+
+#: .\templates\index.html:509
+#, fuzzy
+#| msgid "Our Features"
+msgid "Explore Features"
+msgstr "Ṣàwárí Awọn Ẹya"
+
+#: .\templates\index.html:541
+msgid "Our Values"
+msgstr "Àwọn Iye Wa"
+
+#: .\templates\index.html:544
+msgid ""
+"At EduPrompt, students come first. Our AI study assistant is built to help "
+"learners grow, understand concepts faster, and feel more confident on their "
+"learning journey."
+msgstr ""
+"Ni EduPrompt, àwọn akẹ́kọ̀ọ́ ni àkọ́kọ́. Iranlọwọ́ ìkẹ́kọ̀ọ́ AI wa ni a kọ "
+"síṣe láti ràn àwọn olùkọ́ni lọ́wọ́ kí wọ́n lè dàgbà, lóye àwọn kónsẹ́pù kíákíá síi, "
+"kí wọ́n sì ní ìgboyà ní irin-àjò ìkẹ́kọ̀ọ́ wọn."
+
+#: .\templates\index.html:555
+msgid "Clear Understanding"
+msgstr "Ìmòye Kedere"
+
+#: .\templates\index.html:557
+msgid ""
+"We make learning simple. Our AI explains ideas step by step, helping "
+"students of all ages grasp concepts easily and confidently."
+msgstr ""
+"A ń jẹ́ kí ìkẹ́kọ̀ọ́ rọrùn. AI wa ń ṣàlàyé àwọn ìmọ̀ràn ní ìgbésẹ̀-nípa-ìgbésẹ̀, "
+"ń ràn àwọn akẹ́kọ̀ọ́ ní gbogbo ọdún-ori lọ́wọ́ kí wọ́n lè lóye ní rọrùn àti ní ìgboyà."
+
+#: .\templates\index.html:565
+msgid "Equal Opportunities"
+msgstr "Ààyè Dọ́gba"
+
+#: .\templates\index.html:567
+msgid ""
+"Every student deserves the chance to succeed. Our AI assistant provides "
+"consistent support, no matter where you study or what resources you have."
+msgstr ""
+"Gbogbo akẹ́kọ̀ọ́ yẹ kí ó ní ànfààní láti ṣàṣeyọrí. Iranlọwọ́ AI wa ń pèsè "
+"àtìlẹ́yìn tó dọ́gba, láìka ibo ni o ti ń kẹ́kọ̀ọ́ tàbí irú àwọn orísun wo ni o ní."
+
+#: .\templates\index.html:575
+msgid "Learn at Your Own Pace"
+msgstr "Kẹ́kọ̀ọ́ Ní Ìyára Tirẹ"
+
+#: .\templates\index.html:577
+msgid ""
+"Everyone learns differently. Our AI study assistant adapts to your speed, "
+"making learning personalized, comfortable, and effective."
+msgstr ""
+"Gbogbo ènìyàn kì í kọ́ ẹ̀kọ́ ní ọ̀nà kan naa. Iranlọwọ́ ìkẹ́kọ̀ọ́ AI wa ń fara mọ́ "
+"ìyára rẹ, kí ìkẹ́kọ̀ọ́ jẹ́ ti ara ẹni, ní ìtùnú, tí ó sì munadoko."
+
+#: .\templates\index.html:585
+msgid "Engaging & Enjoyable"
+msgstr "Tó ń fa ìfamọra & Tó dùn"
+
+#: .\templates\index.html:587
+msgid ""
+"Learning should be interesting, not stressful. Our AI tools make studying "
+"fun, interactive, and easy to follow."
+msgstr ""
+"Ìkẹ́kọ̀ọ́ yẹ kí ó jẹ́ ohun ìfẹ́, kì í ṣe ohun ìfarapa. Àwọn irinṣẹ́ AI wa "
+"ń jẹ́ kí kíkẹ́kọ̀ọ́ dùn, ní ìbáṣepọ̀, tí ó sì rọrùn láti tẹ̀lé."
+
+#: .\templates\index.html:595
+msgid "Respect & Support"
+msgstr "Ìbọ̀wọ̀ & Àtìlẹ́yìn"
+
+#: .\templates\index.html:597
+msgid ""
+"We value every student. Whether young or adult, our AI assistant ensures a "
+"safe, welcoming, and supportive learning experience."
+msgstr ""
+"A bọ̀wọ̀ fún gbogbo akẹ́kọ̀ọ́. Bó jẹ́ ọmọde tàbí àgbà, iranlọwọ́ AI wa "
+"ń jẹ́ kó ní ìrírí ìkẹ́kọ̀ọ́ tó ní ààbò, tó kíyèsi, tí ó sì ní àtìlẹ́yìn."
+
+#: .\templates\index.html:605
+msgid "Learning & Growing Together"
+msgstr "Kíkẹ́kọ̀ọ́ & Ìdàgbàsókè Papọ̀"
+msgid ""
+"We constantly improve. By listening to feedback and learning from our "
+"students, we grow together, step by step, making our AI assistant smarter "
+"and more helpful."
+msgstr ""
+"A ń túbọ̀ ṣe àtúnṣe nígbà gbogbo. Nípa gbígbọ́ ìfèsì àti kíkẹ́kọ̀ọ́ lọ́wọ́ "
+"àwọn akẹ́kọ̀ọ́ wa, a ń dàgbà pọ̀, ìgbésẹ̀ ní ìgbésẹ̀, kí olùrànlọ́wọ́ AI wa "
+"le túbọ̀ di ọlọ́gbọ́n síi, tí ó sì wúlò ju tẹ́lẹ̀ lọ."
+
+#: .\templates\index.html:628
+msgid "Students Achieving Success"
+msgstr "Àwọn Akẹ́kọ̀ọ́ Tí ń Ṣàṣeyọrí"
+
+#: .\templates\index.html:638
+msgid "Content Generated"
+msgstr "Àkóónú Tí A Ṣẹ̀dá"
+
+#: .\templates\index.html:648
+msgid "Hours of AI Assistance"
+msgstr "Àwọn Wákàtí Iranlọwọ́ AI"
+
+#: .\templates\index.html:657
+msgid "AI Tools Available"
+msgstr "Àwọn Irinṣẹ́ AI Tó Wà"
+
+#: .\templates\index.html:687
+msgid "Features"
+msgstr "Àwọn Ẹya"
+
+#: .\templates\index.html:688
+msgid "Our Features"
+msgstr "Àwọn Ẹya Wa"
+
+#: .\templates\index.html:701
+msgid "Create detailed notes from your topics quickly and easily"
+msgstr "Ṣẹ̀dá akọsilẹ̀ alálẹ̀kún láti inú àwọn kókó rẹ ní kíákíá àti rọrùn"
+
+#: .\templates\index.html:711
+msgid "Generate well-structured essays with AI guidance"
+msgstr "Ṣẹ̀dá àpilẹ̀kọ tó ní ìlànà dáadáa pẹ̀lú ìtọ́nisọ́nà AI"
+
+#: .\templates\index.html:719
+msgid "Letter Writer"
+msgstr "Onkọ̀wé Lẹ́tà"
+
+#: .\templates\index.html:720
+msgid "Generate professional letters instantly."
+msgstr "Ṣẹ̀dá lẹ́tà amọ̀ja lẹ́sẹ̀kẹsẹ̀."
+
+#: .\templates\index.html:721
+msgid "Save time and create polished content for any purpose"
+msgstr "Fipamọ́ àsìkò, kí o sì ṣẹ̀dá àkóónú tó dán mọ́rán fún gbogbo ìdí"
+
+#: .\templates\index.html:735
+msgid "Solve equations, formulas, and problems with step-by-step help"
+msgstr "Yaǹjú ìṣirò, fọ́ọ̀mùlà, àti ìṣòro pẹ̀lú ìrànlọ́wọ́ ìgbésẹ̀-nípa-ìgbésẹ̀"
+
+
+msgid "AI-Powered Learning Tools"
+msgstr "Àwọn Irinṣẹ́ Ìkẹ́kọ̀ọ́ tí AI ń Ṣe Amúlò"
+
+msgid "Boost your study efficiency with intelligent tools that simplify note-taking, assignments, and exam prep."
+msgstr "Ṣe àfikún agbára ìkẹ́kọ̀ọ́ rẹ pẹ̀lú àwọn irinṣẹ́ ọlọ́gbọ́n tí ń jẹ́ kí kíkó àkọsílẹ̀, iṣẹ́ ilé, àti ìmúrí sí ìdánwò rọrùn."
+
+msgid "Essay & Assignment Writer"
+msgstr "Onkọ̀wé Ìwé-ẹ̀sùn àti Ìṣẹ́ Ilé"
+
+msgid "Generate high-quality, well-structured essays and assignments in minutes with AI assistance."
+msgstr "Ṣẹ̀dá àwọn ìwé-ẹ̀sùn àti iṣẹ́ ilé tó dáa, tó ní ìlànà dáadáa nínú ìṣéjú díẹ̀ pẹ̀lú iranlọwọ́ AI."
+
+msgid "Collaborative Study Assistant"
+msgstr "Iranlọwọ́ Ìkẹ́kọ̀ọ́ Pẹ̀lú Ìfowosowọ́pọ̀"
+
+msgid "Work smarter with features that help you collaborate, organize group projects, and share notes effectively."
+msgstr "Ṣiṣẹ́ ní ọgbọ́n pẹ̀lú àwọn ànfààní tó ń ràn ọ́ lọ́wọ́ láti ṣiṣẹ́ pọ̀, ṣe àtúnṣe iṣẹ́ ẹgbẹ́, àti pín àwọn akọsilẹ̀ ní kíkún."
+
+msgid "Multilingual Support"
+msgstr "Àtìlẹ́yìn Èdè Ọ̀pọ̀"
+
+msgid "Learn in the language you’re comfortable with — English, Swahili, Igbo, Yoruba, and more."
+msgstr "Kẹ́kọ̀ọ́ ní èdè tí o bá ń láàyè sí — Gẹ̀ẹ́sì, Swahili, Ìgbò, Yòrùbá, àti míì síi."
+
+msgid "Homework Assistant"
+msgstr "Iranlọwọ́ Ìṣẹ́ Ilé"
+
+msgid "Solve problems quickly across subjects with AI guidance, keeping your work original and clear."
+msgstr "Yaǹjú àwọn ìṣòro lọ́ra kánkán nínú gbogbo kókó pẹ̀lú ìtọ́nisọ́nà AI, kí iṣẹ́ rẹ sì jẹ́ àṣàlàyé àti mímúlò."
+
+msgid "Plagiarism & Originality Tools"
+msgstr "Àwọn Irinṣẹ́ Lákọ̀pamọ́ àti Ìmúlò Gidi"
+
+msgid "Ensure every essay, note, or assignment is original and ready for school submission."
+msgstr "Ṣe àbójútó pé gbogbo ìwé-ẹ̀sùn, akọsilẹ̀, tàbí iṣẹ́ ilé jẹ́ àdáni, tí ó sì ṣetán fún fífi sí ilé ẹ̀kọ́."
+
+msgid "Get AI assistance for writing reports and projects efficiently"
+msgstr "Gba iranlọwọ́ AI fún ìkọ̀wé àrọ́kọ àti àwọn iṣẹ́ agbese ní kíkún dáadáa"
+
+
+
+msgid "Improve your writing by checking grammar, punctuation, and style"
+msgstr "Ṣàtúnṣe ìkọ̀wé rẹ nípa ṣíṣàyẹ̀wò girama, àmi ìfọ̀rọ̀wánilẹ́nuwò, àti àṣà ìkọ̀wé"
+
+
+msgid "Who Can Benefit from Our AI EdTech Platform?"
+msgstr "Tani le ní anfaani lati inu Syeed AI EdTech wa?"
+
+msgid "Our cutting-edge AI-powered EdTech platform is designed to support a wide variety of users, including students, educators, professionals, and researchers. By combining intelligent automation with easy-to-use tools, our platform enables users to save time, enhance productivity, and achieve high-quality outcomes across educational and professional projects."
+msgstr "Syeed AI EdTech wa to ti ni ilọsiwaju jẹ́ fún ìdájọ́pọ̀ awọn oníṣèpọ̀ lọ́pọ̀, pẹlu awọn akẹ́kọ̀ọ́, olùkọ́, amọ̀ṣẹ́, àti àwọn onímọ̀. Pẹlu apapọ ìmúlò ọlọ́gbọ́n àti irinṣẹ́ tó rọrùn láti lo, syeed wa ń jẹ́ kí àwọn oníṣèpọ̀ fipamọ́ àkókò, mu iṣẹ́ pọ si, àti ṣàṣeyọrí abajade to dáa jùlọ ní gbogbo iṣẹ́ ẹ̀kọ́ àti amọ̀ṣẹ́."
+
+
+
+msgid "Professionals"
+msgstr "Àwọn Amọ̀ṣẹ́"
+
+msgid "Researchers"
+msgstr "Àwọn Onímọ̀"
+
+msgid "Students can leverage our AI-driven tools to generate comprehensive study guides, detailed assignments, and engaging practice materials that enhance learning outcomes. By using our platform, learners can save significant time on repetitive tasks, focus on understanding core concepts, and ensure all content is original and plagiarism-free. The platform also encourages independent study, collaborative learning, and better exam preparation, making it an indispensable resource for academic success at every level."
+msgstr "Àwọn akẹ́kọ̀ọ́ lè lo irinṣẹ́ AI wa láti dá àwọn ìtòsọ́nà ẹ̀kọ́ tó péye, àwọn iṣẹ́ àṣàyàn tó jinlẹ̀, àti àwọn ohun elo ìdánwò tó ní ìmọ̀ràn, tó ń mu àbájáde ẹ̀kọ́ pọ si. Nípasẹ̀ lílo syeed wa, àwọn akẹ́kọ̀ọ́ lè fipamọ́ àkókò púpọ̀ lórí iṣẹ́ tó ń tún ṣe, dojú kọ ìmọ̀ ìtẹ̀sí nínú àkòrí pàtàkì, àti rí i pé gbogbo akoonu jẹ́ àtọ́ka àti láì jẹ́ pé a jiṣẹ̀ láìtọ́."
+
+msgid "Beyond academic tasks, students can also use our AI to explore creative writing, summarize large volumes of text, and even get guided assistance for research projects. This helps build critical thinking, research skills, and a habit of effective knowledge management, preparing them for higher education and professional challenges."
+msgstr "Ní àfikún sí iṣẹ́ ẹ̀kọ́, àwọn akẹ́kọ̀ọ́ tún lè lo AI wa láti ṣàwárí ìkọ̀wé aláṣàájú, ṣe akopọ́ ìwé tó pọ̀, àti gba ìtọ́sọ́nà fún iṣẹ́ ìwádìí. Èyí ń ṣe agbára ìrònú jinlẹ̀, ọgbọn ìwádìí, àti ìṣe ìṣàkóso ìmọ̀ tó péye, tó ń pèsè ìmúlò fún ẹ̀kọ́ gíga àti ìṣòro amọ̀ṣẹ́."
+
+msgid "Educators can harness our platform to efficiently design lesson plans, develop quizzes, and create high-quality teaching resources tailored to diverse student needs. By automating content creation, teachers save valuable time that can be invested in personalized instruction, student mentorship, and curriculum development. This leads to improved classroom engagement and better learning outcomes for students."
+msgstr "Àwọn olùkọ́ lè lo syeed wa láti dá àwọn ètò ẹ̀kọ́ pọ, ṣe àṣàyàn ìdánwò, àti dá àwọn ohun elo ìkọ́ ẹ̀kọ́ tó péye fún àwọn aini akẹ́kọ̀ọ́ oníṣòro. Nípasẹ̀ ìmúlò àtọka aifọwọ́si, olùkọ́ fipamọ́ àkókò tó lágbára fún ìtọ́sọ́nà pàtàkì, ìmọ̀ràn fún akẹ́kọ̀ọ́, àti ìdàgbàsókè ètò ẹ̀kọ́. Èyí ń yọrí sí ìfarahàn tó pọ si ní kíláàsì àti àbájáde ẹ̀kọ́ tó dára."
+
+msgid "Additionally, the platform supports professional development by enabling educators to produce research-backed teaching materials, track student performance, and provide data-driven feedback. Whether for in-person classrooms, online learning, or hybrid models, our tools help educators maintain high educational standards with minimal administrative effort."
+msgstr "Ní àfikún, syeed náà ń ṣe àtìlẹyìn ìdàgbàsókè amọ̀ṣẹ́ nípa fífi olùkọ́ láàyè láti dá ohun elo ìkọ́ ẹ̀kọ́ tó da lori ìwádìí, tọ́pa iṣẹ́ akẹ́kọ̀ọ́, àti fún ìdáhùn tó dá lori data. Bó tilẹ̀ jẹ́ fún kíláàsì ní ojú, ẹ̀kọ́ lori ayelujara, tàbí apapọ, irinṣẹ́ wa ń ran olùkọ́ lọ́wọ́ láti pa àṣà ẹ̀kọ́ gíga mọ́ pẹ̀lú iṣẹ́ àṣẹ tó kéré."
+
+msgid "Professionals seeking to improve productivity, streamline workflows, or produce high-quality business documents will find immense value in our AI platform. From generating detailed reports and presentations to drafting proposals and strategic plans, the tools ensure content is precise, professional, and impactful. This allows professionals to focus on decision-making, strategy, and innovation while minimizing time spent on routine document creation."
+msgstr "Àwọn amọ̀ṣẹ́ tó ń wá láti mu iṣẹ́ pọ si, ṣe iṣẹ́ pọ́n dáradára, tàbí dá àwọn ìwé iṣẹ́ amọ̀ṣẹ́ tó péye, yóò rí iye ńlá nínú syeed AI wa. Láti ṣe àtòjọ àrọ̀kọ tó jinlẹ̀ àti ìfarahàn, sí ṣe àtòjọ àfọwọ́kọ àtòrun àti ètò ọgbọn, irinṣẹ́ náà ń dájú pé akoonu jẹ́ pẹlẹbẹ, amọ̀ṣẹ́, àti ní ipa. Èyí ń jẹ́ kí àwọn amọ̀ṣẹ́ dojú kọ ipinnu, ètò ọgbọn, àti ìmúlò tuntun nígbà tí wọ́n ń dín àkókò tó lo lori àtòjọ àrọ̀kọ aládàáṣiṣẹ́ kù."
+
+msgid "The platform also supports skill development, upskilling initiatives, and continuous learning. Professionals can utilize AI-generated summaries, curated learning materials, and interactive guides to stay ahead in their fields and maintain a competitive edge in dynamic industries."
+msgstr "Syeed náà tún ṣe àtìlẹyìn ìdàgbàsókè ọgbọn, ìmúlò amọ̀ṣẹ́ tuntun, àti ẹ̀kọ́ tó ń tẹ̀síwájú. Àwọn amọ̀ṣẹ́ lè lo akopọ́ AI, ohun elo ẹ̀kọ́ tó ṣàyẹ̀wò, àti ìtòsọ́nà ìbáṣiṣẹ́pọ̀ láti wa ni ìmúṣẹ́ ní ọjà wọn àti pa àjàkẹ́jẹ amúgbára mọ́ ní ọjà tó ń yípadà."
+
+msgid "Researchers can streamline complex academic and scientific tasks, such as performing literature reviews, summarizing large datasets, and organizing research notes efficiently. The platform produces well-structured, accurate outputs, reducing manual effort and improving overall productivity. It supports academic writing, publication preparation, and project documentation in both professional and academic contexts."
+msgstr "Àwọn onímọ̀ lè ṣe àtúnṣe iṣẹ́ ẹ̀kọ́ àti sáyẹ́nsì tó nira, gẹ́gẹ́ bí ṣe àyẹ̀wò ìwé ìmọ̀, ṣe akopọ́ data tó pọ̀, àti ṣètò akọsilẹ̀ ìwádìí ní pẹ̀lú àyípadà. Syeed náà ń dájú pé àbájáde jẹ́ tó dára, tọ́ka, dín ìsapamọ́ ọwọ́, àti mu iṣẹ́ pọ si. Ó ṣe àtìlẹyìn ìkọ̀wé ẹ̀kọ́, ìmúlò ìtẹ̀jáde, àti ìdàkọsílẹ̀ iṣẹ́ agbese ní àfihàn amọ̀ṣẹ́ àti ẹ̀kọ́."
+
+msgid "Furthermore, researchers benefit from AI-assisted data analysis, trend identification, and hypothesis development, making it easier to manage multi-disciplinary projects, collaborate with peers, and meet publication deadlines. The platform ensures reliable, high-quality results that contribute to research excellence and innovation."
+msgstr "Ní àfikún, àwọn onímọ̀ ní anfaani láti ìtúpalẹ̀ data pẹ̀lú AI, ìdánimọ̀ àfihàn àwùjọ, àti ìdàgbàsókè ìmọ̀ràn, tó ń jẹ́ kí iṣakoso iṣẹ́ agbese ọ̀pọ̀-ṣáyẹ́nsì rọrùn, ṣiṣẹ́ pọ̀ pẹlu ẹlẹgbẹ́, àti dé àkókò ìtẹ̀jáde. Syeed náà ń dájú pé abajade jẹ́ tó dájú, tó péye, tó sì ń ṣe àfikún sí àṣeyọrí ìwádìí àti ìmúlò tuntun."
+
+msgid "AI Accuracy & Reliability"
+msgstr "Ìtọ́kasí & Ìdánilójú AI"
+
+msgid "Our AI-powered EdTech platform is designed to help learners, educators, and researchers achieve accurate and reliable results effortlessly. Whether you’re tackling complex STEM problems, creating engaging educational content, or exploring new concepts, our intelligent assistant provides clear, step-by-step solutions you can trust. Every interaction is secure, giving you confidence that your data remains private while you focus on learning, teaching, and discovery."
+msgstr "Syeed AI EdTech wa jẹ́ fún ìrànlọ́wọ́ àwọn akẹ́kọ̀ọ́, olùkọ́, àti onímọ̀ láti ṣàṣeyọrí abajade tó tọ́ àti tó dájú láì nira. Bó ṣe ń ṣiṣẹ́ lori ìṣòro STEM tó nira, dá akoonu ẹ̀kọ́ tó ní ìmọ̀ràn, tàbí ṣàwárí àkòrí tuntun, ìrànlọ́wọ́ ọlọ́gbọ́n wa ń pèsè ìtòsọ́nà kedere, ìgbésẹ̀-lẹ́yìn-ìgbésẹ̀ tí o lè fi gbẹ́kẹ̀lé. Gbogbo ìbáṣepọ̀ jẹ́ àìfọ́hùnṣọ́nà, tó ń fún ọ ní ìdánilójú pé data rẹ wà ní ìpamọ́ nígbà tí o ń fojú kọ ẹ̀kọ́, ìkọ́, àti ìmúlò tuntun."
+
+msgid "99% Accuracy"
+msgstr "Ìtọ́kasí 99%"
+
+msgid "Our AI consistently provides accurate solutions and content across subjects and levels, ensuring users can trust the results for learning, teaching, and research."
+msgstr "AI wa ń pèsè ìtòsọ́nà tó tọ́ àti akoonu tó péye ní gbogbo ẹ̀ka àti ipele, tó ń jẹ́ kí àwọn oníṣèpọ̀ lè fi gbẹ́kẹ̀lé abajade fún ẹ̀kọ́, ìkọ́, àti ìwádìí."
+
+msgid "Verified Results"
+msgstr "Àbájáde Tó Fọwọ́sowọ́pò"
+
+msgid "View sample solutions, educational content, and user testimonials that demonstrate the AI’s reasoning and clarity in delivering high-quality outputs."
+msgstr "Wo àpẹẹrẹ ìtòsọ́nà, akoonu ẹ̀kọ́, àti ìmọ̀ràn àwọn oníṣèpọ̀ tó fi hàn ìmọ̀ AI àti kedere ní fífi abajade tó péye ranṣẹ́."
+
+msgid "Secure & Private"
+msgstr "Ààbò & Ìpamọ́"
+
+msgid "Your content and data remain private and secure. We never store sensitive information, providing a safe environment for learners, educators, and professionals."
+msgstr "Akọ́kọ́ àti data rẹ wà ní ìpamọ́ àti ààbò. A kò ní fipamọ́ ìmọ̀ tó ṣòro, tó ń pèsè àyíká tó dáàbò bo fún àwọn akẹ́kọ̀ọ́, olùkọ́, àti amọ̀ṣẹ́."
+
+
+msgid "F.A.Q"
+msgstr "Àwọn Ìbéèrè Tó Wọ́pọ̀ (F.A.Q)"
+
+msgid "Frequently Asked Questions about <strong>EduPrompt</strong>, your AI study assistant for smarter learning."
+msgstr "Àwọn ìbéèrè tó wọ́pọ̀ nípa <strong>EduPrompt</strong>, olùrànlọ́wọ́ ẹ̀kọ́ AI rẹ fún ìmọ̀ tó lágbára síi."
+
+msgid "What is EduPrompt and how does it help me?"
+msgstr "Kí ni EduPrompt àti báwo ni ó ṣe ràn mí lọ́wọ́?"
+
+msgid "<strong>EduPrompt</strong> is an AI-powered learning platform that simplifies studying. It provides clear explanations, note generation, essay and assignment help, and other study tools accessible anytime, anywhere."
+msgstr "<strong>EduPrompt</strong> jẹ́ syeed ẹ̀kọ́ tó ní AI tó ń jẹ́ kí ìkọ́ ẹ̀kọ́ rọrùn. Ó ń pèsè ìtúmọ̀ kedere, ìtọ́kasí àkọsílẹ̀, ìrànlọ́wọ́ fún ìkọ̀wé àti iṣẹ́-ṣàṣàyàn, àti àwọn irinṣẹ́ ẹ̀kọ́ míì tó wúlò nígbà gbogbo, níbi gbogbo."
+
+msgid "Do you support African languages?"
+msgstr "Ṣé ẹ ń ṣe àtìlẹyìn fún àwọn èdè Áfíríkà?"
+
+msgid "Yes! EduPrompt supports <strong>Yoruba, Igbo, Hausa, Swahili</strong>, and more, making learning easier in the language you understand best."
+msgstr "Bẹ́ẹ̀ ni! EduPrompt ń ṣe àtìlẹyìn fún <strong>Yorùbá, Ìgbò, Hausa, Swahili</strong>, àti àwọn míì, tó ń jẹ́ kí ẹ̀kọ́ rọrùn nínú èdè tí o mọ̀ dáadáa jùlọ."
+
+msgid "Is EduPrompt free to use?"
+msgstr "Ṣé EduPrompt jẹ́ ọ̀fẹ́ láti lo?"
+
+msgid "EduPrompt is a <strong>paid platform</strong>, but you can try it for free with our <strong>trial period</strong>. Core study tools are included during the trial, giving you a chance to explore before subscribing."
+msgstr "EduPrompt jẹ́ <strong>syeed tó sanwo</strong>, ṣùgbọ́n o lè gbìmọ̀ láti lo fún ọ̀fẹ́ pẹ̀lú <strong>àkókò ìdánwò</strong> wa. Àwọn irinṣẹ́ pataki fún ẹ̀kọ́ wà lára ìdánwò náà, tó ń fún ọ ní àǹfààní láti ṣàwárí kí o tó forúkọ sílẹ̀."
+
+msgid "Can I learn at my own pace?"
+msgstr "Ṣé mo lè kọ́ ẹ̀kọ́ ní ìyara tí mo fẹ́?"
+
+msgid "Yes! EduPrompt lets you study <strong>anytime, anywhere</strong>. Pause, replay, or continue according to your own schedule."
+msgstr "Bẹ́ẹ̀ ni! EduPrompt jẹ́ kí o lè kọ́ ẹ̀kọ́ <strong>nígbà gbogbo, níbi gbogbo</strong>. Dákẹ́, tún ṣe, tàbí tẹ̀síwájú gẹ́gẹ́ bí ètò rẹ."
+
+msgid "Is EduPrompt mobile-friendly?"
+msgstr "Ṣé EduPrompt dara fún foonu alágbèéká?"
+
+msgid "Absolutely! EduPrompt works seamlessly on <strong>phones, tablets, or laptops</strong> with no special apps required."
+msgstr "Dájúdájú! EduPrompt ń ṣiṣẹ́ pẹlẹpẹlẹ lórí <strong>fóònù, tábìlètì, tàbí kọ̀ǹpútà alágbèéká</strong> láì nífẹ̀ẹ́ fún àwọn àpèsè àtọkànwá."
+
+msgid "Is it affordable for African students?"
+msgstr "Ṣé ó wúlò fún àwọn akẹ́kọ̀ọ́ Áfíríkà ní iye tó tọ́?"
+
+msgid "Yes! EduPrompt is designed to be <strong>affordable and accessible</strong> for students across Africa."
+msgstr "Bẹ́ẹ̀ ni! EduPrompt jẹ́ fún <strong>ìye tó tọ́ àti rọọrun láti lo</strong> fún àwọn akẹ́kọ̀ọ́ káàkiri Áfíríkà."
+
+msgid "Can EduPrompt generate essays and notes"
+msgstr "Ṣé EduPrompt lè dá àwọn ìkọ̀wé àti àkọsílẹ̀ ṣẹ́?"
+
+msgid "Yes! EduPrompt can create <strong>customized essays, letters, and notes</strong> to help you study efficiently and understand topics better."
+msgstr "Bẹ́ẹ̀ ni! EduPrompt lè dá <strong>ìkọ̀wé, lẹ́tà, àti àkọsílẹ̀ àtọkànwá</strong> ṣẹ́ láti ràn ọ lọ́wọ́ kí o kọ́ ẹ̀kọ́ dáadáa àti mọ àkòrí dájú."
+
+msgid "Is EduPrompt safe and secure?"
+msgstr "Ṣé EduPrompt jẹ́ ààbò àti dájú?"
+
+msgid "EduPrompt respects your privacy. All <strong>notes and personal data</strong> are stored securely and never shared without your consent."
+msgstr "EduPrompt ń bọ́wọ̀ fún ìpamọ́ rẹ. Gbogbo <strong>àkọsílẹ̀ àti data tirẹ</strong> wà ní ààbò, a kò sì ní pin láì ní ìmọ̀ rẹ."
+
+msgid "Can I use EduPrompt offline?"
+msgstr "Ṣé mo lè lo EduPrompt láì ní ìnítanẹẹti?"
+
+msgid "Currently, EduPrompt requires internet access, but you can <strong>download generated notes</strong> to study offline anytime."
+msgstr "Ní báyìí, EduPrompt ń bẹ̀rẹ̀ fún ìnítanẹẹti, ṣùgbọ́n o lè <strong>gbasilẹ àwọn àkọsílẹ̀ tí a dá</strong> láti kọ́ ẹ̀kọ́ láìsí ìnítanẹẹti nígbà gbogbo."
+
+
+msgid "Join Our Newsletter"
+msgstr "Darapọ̀ mọ́ Àtẹ̀jáde Ìròyìn Wa"
+
+msgid "Subscribe to our newsletter and receive the latest news about our products and services!"
+msgstr "Forúkọ sí àtẹ̀jáde ìròyìn wa kí o sì gba àwọn ìròyìn tuntun nípa àwọn ọja àti iṣẹ́ wa!"
+
+msgid "Loading"
+msgstr "Ní ikojọpọ̀"
+
+msgid "Your subscription request has been sent. Thank you!"
+msgstr "Ìbéèrè ìforúkọsílẹ̀ rẹ ti ránṣẹ́. Ẹ ṣé!"
+
+msgid "About the Founder"
+msgstr "Nípa Olùdásílẹ̀"
+
+msgid "EduPrompt was founded by Eze Prosper somtochukwu, a software developer passionate about education technology."
+msgstr "EduPrompt dá sílẹ̀ nípasẹ̀ Eze Prosper Somtochukwu, olùdá sọfitiwia tó nífẹ̀ẹ́ sí ẹ̀kọ́ àti imọ̀ ẹ̀rọ ẹ̀kọ́."
+
+msgid "He created this platform to provide students with AI-powered tools that make learning smarter, faster, and more accessible."
+msgstr "Ó dá syeed yìí láti fún àwọn akẹ́kọ̀ọ́ ní àwọn irinṣẹ́ tó ní AI tó jẹ́ kí ẹ̀kọ́ rọrùn, yarayara, àti rọrùn láti wọlé sí."
+
+msgid "Useful Links"
+msgstr "Àwọn Ìjápọ̀ Tó Wúlò"
+
+msgid "Home"
+msgstr "Ìbẹ̀rẹ̀"
+
+msgid "About Us"
+msgstr "Nípa Wa"
+
+msgid "Privacy Policy"
+msgstr "Ìlànà Ìpamọ́"
+
+msgid "Terms and Conditions"
+msgstr "Àwọn Òfin àti Ìpinnu"
+
+msgid "Our Services"
+msgstr "Àwọn Ìṣẹ́ Wa"
+
+msgid "Web Design"
+msgstr "Apẹrẹ Wẹẹbù"
+
+msgid "Flyer Design"
+msgstr "Apẹrẹ Fàìlà"
+
+msgid "Our Tools"
+msgstr "Àwọn Irinṣẹ́ Wa"
+
+msgid "Essay Writer"
+msgstr "Olùkọ́wé Ìkọ̀wé"
+
+
+
+msgid "Follow Us"
+msgstr "Tẹ̀lé Wa"
+
+msgid "Follow us on all our social media platforms"
+msgstr "Tẹ̀lé wa lórí gbogbo àwọn pẹpẹ ìbáṣepọ̀ wa"
+
+msgid "EduPrompt</strong> All Rights Reserved."
+msgstr "EduPrompt</strong> Gbogbo Àṣẹ Ti Fipamọ́."
+
+msgid "Designed by <a href=\"https://bootstrapmade.com/\" target=\"_blank\">BootstrapMade</a>"
+msgstr "Ṣètò pẹ̀lú <a href=\"https://bootstrapmade.com/\" target=\"_blank\">BootstrapMade</a>"
+
+#: templates/ai_solver.html:5
+msgid "Math, Physics, or Chemistry Problem"
+msgstr "Iṣoro Mathimatiki, Fisiksi, tabi Kemistri"
+
+#: templates/ai_solver.html:9
+msgid "Learn smarter, not harder. Our AI-powered solver guides you through step-by-step solutions for tricky high-school exercises to advanced university problems. Understand concepts deeply while mastering problem-solving skills—perfect for curious students, exam preparation, and lifelong learners."
+msgstr "Kọ ẹkọ ní ọlọgbọn, kì í ṣe ní líle. Olùṣàtúnṣe wa tí AI ṣe agbára n tọ ọ́ láti ṣẹ́gun ìpinnu ìṣòro ní ìpele-lọ́pọ̀ fun àwọn iṣẹ́lẹ̀ ile-ẹ̀kọ́ gíga tí ó nira sí àwọn ìṣòro yunifásítì tó ti gíga. Yé àkọ́kọ́ ní jinlẹ̀ nígbà tí o ń ṣàkóso ọgbọ́n ìṣòro—péye fún àwọn akẹ́kọ̀ọ́ tò nífẹ̀ẹ́, ìmọ̀ ìdánwò, àti àwọn tó ń kọ́ ẹ̀kọ́ láàyè."
+
+#: templates/ai_solver.html:16
+msgid "Default"
+msgstr "Aiyipada"
+
+#: templates/ai_solver.html:16
+msgid "Problems"
+msgstr "Awọn iṣoro"
+
+#: templates/ai_solver.html:21
+msgid "A block of mass 5 kg slides down a frictionless incline of height 3 m. Calculate the velocity of the block at the bottom of the incline."
+msgstr "Apá kan tí ó ní ìwọ̀n 5 kg ń rìn sẹhin lori pẹ̀lú àìfọwọ́sọ́nà tí ó ga méta mita. Ṣàkíyèsí iyara apá náà ní isalẹ pẹ̀lú àìfọwọ́sọ́nà."
+
+#: templates/ai_solver.html:28
+msgid "Solve the logarithmic equation log₂(x) = 8."
+msgstr "Yanju iṣiro logarithmic log₂(x) = 8."
+
+#: templates/ai_solver.html:35
+msgid "Evaluate the integral ∫₀¹ (3x² + 2x) dx."
+msgstr "Ṣàyẹ̀wò iṣọpọ ∫₀¹ (3x² + 2x) dx."
+
+#: templates/ai_solver.html:42
+msgid "Calculate the pH of a 0.01 M HCl solution at 25°C."
+msgstr "Ṣàkíyèsí pH ti ojutu 0.01 M HCl ní 25°C."
+
+#: templates/ai_solver.html:55
+msgid "Enter Your Question"
+msgstr "Tẹ̀ ìbéèrè Rẹ"
+
+#: templates/ai_solver.html:59
+msgid "Type or paste  problem here..."
+msgstr "Tẹ̀ tàbí lẹ́ẹ̀kọ̀ọ́ iṣoro síbí..."
+
+#: templates/ai_solver.html:63
+msgid "Solve Question"
+msgstr "Yanju Ìbéèrè"
+
+#: templates/ai_solver.html:67
+msgid "Or Upload Image"
+msgstr "Tàbí Gbe Aworan Sílẹ̀"
+
+#: templates/ai_solver.html:71
+msgid "Solve Image"
+msgstr "Yanju Aworan"
+
+#: templates/ai_solver.html:77
+msgid "Solution"
+msgstr "Ìtúnṣe"
+
+#: templates/ai_solver.html:80
+msgid "Results will appear here..."
+msgstr "Àbájáde yóò hàn níbí..."
+
+#: templates/ai_solver.html:85
+msgid "Download Solution"
+msgstr "Gba Ìtúnṣe Látàrí"
+
+
+#: templates/ai_solver.html:2
+msgid "Who Can Benefit from Our AI  Solver?"
+msgstr "Tani Le Ni Anfaani Lati Olùṣàbájá AI Wa?"
+
+#: templates/ai_solver.html:4
+msgid "Our AI-powered solver is designed to assist anyone looking to excel in mathematics,physis and chemistry from students tackling exams to educators creating engaging lessons. With intelligent step-by-step solutions, instant explanations, and problem scanning, users can save time, boost understanding, and achieve outstanding results."
+msgstr "Olùṣàbájá wa ti a ṣe pẹlu AI jẹ apẹrẹ lati ran ẹnikẹni lọwọ ti o fẹ ṣaṣeyọri ninu iṣiro, fisiksi ati kemistri, lati ọdọ awọn akẹkọ ti n ṣe ayẹwo si awọn olukọ ti n ṣẹda ẹkọ ti o ni idunnu. Pẹlu awọn ojutu igbesẹ-nipasẹ-igbesẹ ọlọgbọn, awọn alaye lẹsẹkẹsẹ, ati ayewo iṣoro, awọn olumulo le fi akoko pamọ, mu oye wọn pọ si, ati ṣaṣeyọri awọn abajade to gaju."
+
+#: templates/ai_solver.html:11
+msgid "Students"
+msgstr "Awọn Akẹkọ"
+
+#: templates/ai_solver.html:16
+msgid "Educators"
+msgstr "Awọn Olukọ"
+
+#: templates/ai_solver.html:21
+msgid "Parents"
+msgstr "Awọn Obi"
+
+#: templates/ai_solver.html:26
+msgid "Lifelong Learners"
+msgstr "Awọn Akẹkọ Aiye Gbogbo"
+
+#: templates/ai_solver.html:36
+msgid "Students preparing for exams like WAEC, JAMB, SAT, or any academic level can instantly solve math problems with step-by-step explanations. Our AI ensures faster understanding, helps complete assignments efficiently, and provides additional practice questions to strengthen learning."
+msgstr "Awọn akẹkọ ti n ṣe igbimọ fun awọn idanwo bii WAEC, JAMB, SAT, tabi ipele ẹkọ eyikeyi le yanju awọn iṣoro iṣiro lẹsẹkẹsẹ pẹlu awọn alaye igbesẹ-nipasẹ-igbesẹ. AI wa n ṣe idaniloju oye yiyara, ran lọwọ lati pari awọn iṣẹ ile ni imunadoko, ati pese awọn ibeere adaṣe afikun lati mu ẹkọ lagbara."
+
+#: templates/ai_solver.html:42
+msgid "With our solver, students can focus on mastering concepts, improving problem-solving speed, and gaining confidence in mathematics, making exam preparation more effective and less stressful."
+msgstr "Pẹlu olùṣàbájá wa, awọn akẹkọ le dojukọ lori amọja awọn imọran, mu iyara ipinnu iṣoro dara, ati gba igboya ninu iṣiro, ṣiṣe igbaradi idanwo munadoko ati laisi wahala pupọ."
+
+#: templates/ai_solver.html:50
+msgid "Teachers and tutors can create high-quality lesson plans, quizzes, and practice materials effortlessly. The AI solver helps demonstrate solutions clearly, saving time while providing accurate examples to enhance classroom learning and student engagement."
+msgstr "Awọn olukọ ati awọn olukọni le ṣẹda awọn eto ẹkọ to gaju, awọn idanwo kekere, ati awọn ohun elo adaṣe laisi iṣoro. Olùṣàbájá AI n ṣe iranlọwọ lati fi awọn ojutu han ni kedere, fipamọ akoko nigba ti o n pese awọn apẹẹrẹ deede lati mu ẹkọ ile-iwe dara ati ifaramọ awọn akẹkọ pọ si."
+
+#: templates/ai_solver.html:56
+msgid "Educators can also use the platform to track student progress, design personalized exercises, and enrich teaching resources, ensuring a modern and interactive learning experience."
+msgstr "Awọn olukọ tun le lo pẹpẹ lati tọpa ilọsiwaju awọn akẹkọ, ṣe apẹrẹ awọn adaṣe ti ara ẹni, ati ṣe ọlọrọ awọn orisun ẹkọ, ni idaniloju iriri ẹkọ ti ode oni ati ibaraenisepo."
+
+#: templates/ai_solver.html:64
+msgid "Parents assisting children with homework can leverage the AI solver to guide them through challenging problems. Instant solutions and explanations help parents support learning effectively, even without advanced math knowledge."
+msgstr "Awọn obi ti n ran awọn ọmọ wọn lọwọ pẹlu iṣẹ ile le lo olùṣàbájá AI lati dari wọn nipasẹ awọn iṣoro nira. Awọn ojutu lẹsẹkẹsẹ ati awọn alaye n ṣe iranlọwọ fun awọn obi lati ṣe atilẹyin ẹkọ ni imunadoko, paapaa laisi imọ iṣiro to ti ni ilọsiwaju."
+
+#: templates/ai_solver.html:70
+msgid "This empowers families to foster independent learning, boost confidence in mathematics, and ensure children stay on top of their studies."
+msgstr "Eyi n fun awọn idile ni agbara lati ṣe igbega ẹkọ ominira, mu igboya ninu iṣiro pọ si, ati rii daju pe awọn ọmọ wọn wa lori oke ẹkọ wọn."
+
+#: templates/ai_solver.html:78
+msgid "Lifelong learners exploring STEM or revisiting mathematics can use our AI platform to practice, solve advanced problems, and build strong analytical skills. The solver provides instant feedback and explanations to help learners progress at their own pace."
+msgstr "Awọn akẹkọ aye gbogbo ti n ṣawari STEM tabi tun n ṣe iṣiro le lo pẹpẹ AI wa lati ṣe adaṣe, yanju awọn iṣoro to ti ni ilọsiwaju, ati kọ awọn ọgbọn itupalẹ to lagbara. Olùṣàbájá n pese esi lẹsẹkẹsẹ ati awọn alaye lati ṣe iranlọwọ fun awọn akẹkọ lati ni ilọsiwaju ni iyara tiwọn."
+
+#: templates/ai_solver.html:84
+msgid "It’s perfect for personal growth, skill development, or preparing for certifications, making math learning accessible and engaging for users of all ages."
+msgstr "O pe fun idagbasoke ara ẹni, idagbasoke ọgbọn, tabi igbaradi fun awọn iwe-ẹri, ṣiṣe ẹkọ iṣiro wiwọle ati ifamọra fun awọn olumulo ti gbogbo ọjọ-ori."
+
+#: templates/ai_solver.html:92
+msgid "How It Works"
+msgstr "Bawo Ni O Ṣe Nṣiṣẹ"
+
+#: templates/ai_solver.html:94
+msgid "Our platform is designed to simplify learning and problem-solving. Follow these simple steps to experience the power of AI in generating accurate solutions efficiently."
+msgstr "Pẹpẹ wa jẹ apẹrẹ lati ṣe ẹkọ ati ipinnu iṣoro rọrun. Tẹle awọn igbesẹ rọrun wọnyi lati ni iriri agbara AI ninu sisọ awọn ojutu deede ni imunadoko."
+
+#: templates/ai_solver.html:100
+msgid "Step 1: Input Your Problem"
+msgstr "Igbesẹ 1: Fọwọsi Iṣoro Rẹ"
+
+#: templates/ai_solver.html:102
+msgid "Enter your problem manually or scan it using your device camera. Our AI instantly detects the content and prepares it for processing. This flexible input method ensures you can start learning without any technical hurdles."
+msgstr "Fọwọsi iṣoro rẹ pẹlu ọwọ tabi ṣe ayẹwo rẹ nipa lilo kamẹra ẹrọ rẹ. AI wa ṣe idanimọ lẹsẹkẹsẹ akoonu naa ati mura silẹ fun sisẹ. Ọna ifọwọsi ti o rọ yii rii daju pe o le bẹrẹ ẹkọ laisi eyikeyi idiwọ imọ-ẹrọ."
+
+#: templates/ai_solver.html:110
+msgid "Step 2: AI Solves Step-by-Step"
+msgstr "Igbesẹ 2: AI Yanju Igbesẹ-nipasẹ-Igbesẹ"
+
+#: templates/ai_solver.html:112
+msgid "Our advanced AI analyzes your problem and generates a step-by-step solution. Each explanation is clear, structured, and easy to follow, helping you understand the concepts behind the answer while building confidence in your learning."
+msgstr "AI ilọsiwaju wa n ṣe itupalẹ iṣoro rẹ ati ṣẹda ojutu igbesẹ-nipasẹ-igbesẹ. Gbogbo alaye jẹ kedere, ti a ṣeto, ati rọrun lati tẹle, n ṣe iranlọwọ fun ọ lati ni oye awọn imọran lẹhin idahun lakoko ti o kọ igboya ninu ẹkọ rẹ."
+
+#: templates/ai_solver.html:120
+msgid "Step 3: Voice or Download"
+msgstr "Igbesẹ 3: Ohùn tabi Gba Lati ayelujara"
+
+#: templates/ai_solver.html:122
+msgid "Listen to an optional voice explanation or download the complete solution in PDF format. This feature allows you to review the solution at your own pace, share it with peers, or save it for future reference."
+msgstr "Gbọ alaye ohùn aṣayan tabi gba ojutu pipe ni ọna kika PDF. Iṣẹ yii gba ọ laaye lati ṣe atunyẹwo ojutu ni iyara tirẹ, pin pẹlu awọn ẹlẹgbẹ, tabi fipamọ fun itọkasi iwaju."
+
+#: templates/ai_solver.html:132
+msgid "What <strong>users</strong> are <strong>saying about AI Solver."
+msgstr "Awọn olumulo <strong>n sọ</strong> nipa AI Solver."
+
+#: templates/ai_solver.html:135
+msgid "AI Solver has transformed how I handle math problems. It’s fast, accurate, and gives clear step-by-step solutions I can trust."
+msgstr "AI Solver ti yi ọna ti mo ṣe n ṣakoso awọn iṣoro iṣiro pada. O yara, pe, ati pese awọn ojutu kedere igbesẹ-nipasẹ-igbesẹ ti mo le gbẹkẹle."
+
+#: templates/ai_solver.html:140
+msgid "I love how AI Solver adapts to any topic. It feels like having a professional tutor available 24/7 for every math challenge."
+msgstr "Mo nifẹ bi AI Solver ṣe ṣe deede si eyikeyi koko-ọrọ. O dabi nini olukọ ọjọgbọn ti o wa 24/7 fun gbogbo iṣoro iṣiro."
+
+#: templates/ai_solver.html:145
+msgid "Using AI Solver has saved me hours of studying. The explanations are easy to follow, human-like, and extremely detailed."
+msgstr "Lilo AI Solver ti fi awọn wakati pupọ ti kika pamọ fun mi. Awọn alaye rọrun lati tẹle, dabi eniyan, ati alaye pupọ."
+
+#: templates/ai_solver.html:150
+msgid "AI Solver not only solves problems but also helps me understand the logic behind them. It’s my go-to tool for learning and exam prep."
+msgstr "AI Solver kii ṣe yanju awọn iṣoro nikan ṣugbọn tun ṣe iranlọwọ fun mi lati ni oye ilana lẹhin wọn. O jẹ irinṣẹ ti Mo lo nigbagbogbo fun ẹkọ ati igbaradi idanwo."

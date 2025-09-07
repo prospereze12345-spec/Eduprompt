@@ -1,0 +1,1228 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-05 20:35+0100\n"
+"PO-Revision-Date: 2025-09-05 17:56+0100\n"
+"Last-Translator: YOUR NAME <YOUR EMAIL>\n"
+"Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\blog\templates\blog\blog_detail.html:218
+#: .\blog\templates\blog\blog_list.html:216
+#: .\templates\Terms_and_Condition.html:224 .\templates\about.html:215
+#: .\templates\ai_solver.html:224 .\templates\base.html:246
+#: .\templates\contact.html:213 .\templates\essay_page.html:221
+#: .\templates\flyer_design.html:240 .\templates\index.html:235
+#: .\templates\index.html:734 .\templates\letter_writer.html:265
+#: .\templates\login.html:224 .\templates\note_page.html:244
+#: .\templates\plagiarism_checker.html:217 .\templates\privacy_policy.html:224
+#: .\templates\project_writer.html:234 .\templates\register.html:226
+#: .\templates\study_planner.html:216 .\templates\website.html:231
+msgid "AI Solver"
+msgstr "Solveur IA"
+
+#: .\blog\templates\blog\blog_detail.html:219
+#: .\blog\templates\blog\blog_list.html:217
+#: .\templates\Terms_and_Condition.html:225 .\templates\about.html:216
+#: .\templates\ai_solver.html:225 .\templates\base.html:247
+#: .\templates\contact.html:216 .\templates\essay_page.html:222
+#: .\templates\flyer_design.html:241 .\templates\grammar_checker.html:233
+#: .\templates\index.html:236 .\templates\index.html:710
+#: .\templates\letter_writer.html:266 .\templates\login.html:225
+#: .\templates\note_page.html:245 .\templates\plagiarism_checker.html:218
+#: .\templates\privacy_policy.html:225 .\templates\project_writer.html:235
+#: .\templates\register.html:227 .\templates\study_planner.html:217
+#: .\templates\website.html:232
+msgid "Essay Generator"
+msgstr "Générateur de dissertations"
+
+#: .\blog\templates\blog\blog_detail.html:220
+#: .\blog\templates\blog\blog_list.html:218
+#: .\templates\Terms_and_Condition.html:226 .\templates\about.html:217
+#: .\templates\ai_solver.html:226 .\templates\base.html:248
+#: .\templates\contact.html:214 .\templates\essay_page.html:223
+#: .\templates\flyer_design.html:242 .\templates\grammar_checker.html:234
+#: .\templates\index.html:237 .\templates\index.html:700
+#: .\templates\index.html:1506 .\templates\letter_writer.html:267
+#: .\templates\login.html:226 .\templates\note_page.html:246
+#: .\templates\plagiarism_checker.html:219 .\templates\privacy_policy.html:226
+#: .\templates\project_writer.html:236 .\templates\register.html:228
+#: .\templates\study_planner.html:218 .\templates\website.html:233
+msgid "Note Generator"
+msgstr "Générateur de notes"
+
+#: .\blog\templates\blog\blog_detail.html:221
+#: .\blog\templates\blog\blog_list.html:219
+#: .\templates\Terms_and_Condition.html:227 .\templates\about.html:218
+#: .\templates\ai_solver.html:227 .\templates\base.html:249
+#: .\templates\contact.html:215 .\templates\essay_page.html:224
+#: .\templates\flyer_design.html:243 .\templates\grammar_checker.html:235
+#: .\templates\index.html:238 .\templates\index.html:1514
+#: .\templates\letter_writer.html:268 .\templates\login.html:227
+#: .\templates\note_page.html:247 .\templates\plagiarism_checker.html:220
+#: .\templates\privacy_policy.html:227 .\templates\project_writer.html:237
+#: .\templates\register.html:229 .\templates\study_planner.html:219
+#: .\templates\website.html:234
+msgid "Letter Writer"
+msgstr "Rédacteur de lettres"
+
+#: .\blog\templates\blog\blog_detail.html:222
+#: .\blog\templates\blog\blog_list.html:220
+#: .\templates\Terms_and_Condition.html:228 .\templates\about.html:219
+#: .\templates\ai_solver.html:228 .\templates\base.html:250
+#: .\templates\contact.html:217 .\templates\essay_page.html:225
+#: .\templates\flyer_design.html:244 .\templates\grammar_checker.html:236
+#: .\templates\index.html:239 .\templates\letter_writer.html:269
+#: .\templates\login.html:228 .\templates\note_page.html:248
+#: .\templates\plagiarism_checker.html:221 .\templates\privacy_policy.html:228
+#: .\templates\project_writer.html:238 .\templates\register.html:230
+#: .\templates\study_planner.html:220 .\templates\website.html:235
+msgid "Blog"
+msgstr "Blog"
+
+#: .\blog\templates\blog\blog_detail.html:226
+#: .\blog\templates\blog\blog_list.html:224
+#: .\templates\Terms_and_Condition.html:232 .\templates\about.html:223
+#: .\templates\ai_solver.html:232 .\templates\base.html:254
+#: .\templates\contact.html:222 .\templates\essay_page.html:229
+#: .\templates\flyer_design.html:248 .\templates\grammar_checker.html:240
+#: .\templates\index.html:243 .\templates\letter_writer.html:273
+#: .\templates\login.html:232 .\templates\note_page.html:252
+#: .\templates\plagiarism_checker.html:225 .\templates\privacy_policy.html:232
+#: .\templates\project_writer.html:242 .\templates\register.html:234
+#: .\templates\study_planner.html:224 .\templates\website.html:239
+msgid "Tools"
+msgstr "Outils"
+
+#: .\blog\templates\blog\blog_detail.html:228
+#: .\blog\templates\blog\blog_list.html:226
+#: .\templates\Terms_and_Condition.html:235 .\templates\about.html:225
+#: .\templates\ai_solver.html:234 .\templates\base.html:256
+#: .\templates\contact.html:224 .\templates\essay_page.html:231
+#: .\templates\flyer_design.html:250 .\templates\grammar_checker.html:242
+#: .\templates\index.html:245 .\templates\index.html:744
+#: .\templates\index.html:1510 .\templates\letter_writer.html:275
+#: .\templates\login.html:234 .\templates\note_page.html:254
+#: .\templates\plagiarism_checker.html:228 .\templates\privacy_policy.html:234
+#: .\templates\project_writer.html:244 .\templates\register.html:236
+#: .\templates\study_planner.html:228 .\templates\website.html:241
+msgid "Project Writer"
+msgstr "Rédacteur de projets"
+
+#: .\blog\templates\blog\blog_detail.html:229
+#: .\blog\templates\blog\blog_list.html:227
+#: .\templates\Terms_and_Condition.html:236 .\templates\about.html:226
+#: .\templates\ai_solver.html:235 .\templates\base.html:257
+#: .\templates\contact.html:225 .\templates\essay_page.html:232
+#: .\templates\flyer_design.html:251 .\templates\grammar_checker.html:243
+#: .\templates\index.html:246 .\templates\index.html:754
+#: .\templates\index.html:1522 .\templates\letter_writer.html:276
+#: .\templates\login.html:235 .\templates\note_page.html:255
+#: .\templates\plagiarism_checker.html:229 .\templates\privacy_policy.html:235
+#: .\templates\project_writer.html:245 .\templates\register.html:237
+#: .\templates\study_planner.html:229 .\templates\website.html:242
+msgid "Grammar Checker"
+msgstr "Correcteur grammatical"
+
+#: .\blog\templates\blog\blog_detail.html:233
+#: .\blog\templates\blog\blog_list.html:231
+#: .\templates\Terms_and_Condition.html:240 .\templates\about.html:230
+#: .\templates\ai_solver.html:239 .\templates\base.html:261
+#: .\templates\contact.html:229 .\templates\essay_page.html:236
+#: .\templates\flyer_design.html:255 .\templates\grammar_checker.html:247
+#: .\templates\index.html:250 .\templates\letter_writer.html:280
+#: .\templates\login.html:239 .\templates\note_page.html:259
+#: .\templates\plagiarism_checker.html:233 .\templates\privacy_policy.html:239
+#: .\templates\project_writer.html:250 .\templates\register.html:241
+#: .\templates\study_planner.html:233 .\templates\website.html:246
+msgid "Contact"
+msgstr "Contactez"
+
+#: .\blog\templates\blog\blog_detail.html:237
+#: .\blog\templates\blog\blog_list.html:235
+#: .\templates\Terms_and_Condition.html:245 .\templates\about.html:234
+#: .\templates\ai_solver.html:244 .\templates\base.html:265
+#: .\templates\contact.html:233 .\templates\essay_page.html:240
+#: .\templates\flyer_design.html:259 .\templates\grammar_checker.html:251
+#: .\templates\index.html:254 .\templates\letter_writer.html:284
+#: .\templates\login.html:243 .\templates\note_page.html:263
+#: .\templates\plagiarism_checker.html:247 .\templates\privacy_policy.html:243
+#: .\templates\project_writer.html:254 .\templates\register.html:256
+#: .\templates\study_planner.html:247 .\templates\website.html:250
+msgid "Get Started"
+msgstr "Commencer"
+
+#: .\blog\templates\blog\blog_detail.html:240
+#: .\blog\templates\blog\blog_list.html:238
+#: .\templates\Terms_and_Condition.html:248 .\templates\about.html:237
+#: .\templates\ai_solver.html:247 .\templates\base.html:268
+#: .\templates\contact.html:236 .\templates\essay_page.html:243
+#: .\templates\flyer_design.html:262 .\templates\grammar_checker.html:254
+#: .\templates\index.html:257 .\templates\letter_writer.html:287
+#: .\templates\login.html:246 .\templates\note_page.html:266
+#: .\templates\privacy_policy.html:246 .\templates\project_writer.html:257
+#: .\templates\register.html:261 .\templates\website.html:253
+msgid "Login"
+msgstr "Connexion"
+
+#: .\templates\Terms_and_Condition.html:234
+msgid "Plagiarism Checker"
+msgstr "Vérificateur de plagiat"
+
+#: .\templates\ai_solver.html:412 .\templates\base.html:434
+#: .\templates\grammar_checker.html:419 .\templates\index.html:427
+#: .\templates\project_writer.html:425 .\templates\study_planner.html:408
+msgid "Bootstrap Center with Animation"
+msgstr "Centre Bootstrap avec animation"
+
+#: .\templates\grammar_checker.html:232
+msgid "AIs Solver"
+msgstr "Solveur IA"
+
+#: .\templates\index.html:12
+msgid ""
+"AI Tools Hub – AI Essay, Solver, Grammar, project writer, note, letter & "
+"Design Solutions"
+msgstr ""
+"Hub d'outils IA – Essai IA, Solveur, Grammaire, rédacteur de projet, note, "
+"lettre & Solutions de conception"
+
+#: .\templates\index.html:15
+msgid ""
+"Explore our suite of AI-powered tools including Essay Generator, Math/"
+"Physics/Chemistry Solver, Grammar Checker, letter writer, project writer, "
+"Flyer Design, Web Development, and more. Instantly create essays, solve "
+"academic problems, check grammar, and design professional digital assets. "
+"Trusted by students, professionals, and businesses worldwide."
+msgstr ""
+"Découvrez notre suite d'outils propulsés par l'IA, y compris Générateur "
+"d'essais, Solveur de Mathématiques/Physique/Chimie, Correcteur de grammaire, "
+"rédacteur de lettres, rédacteur de projets, Conception de Flyers, "
+"Développement Web et plus encore. Créez instantanément des essais, résolvez "
+"des problèmes académiques, vérifiez la grammaire et concevez des supports "
+"numériques professionnels. Fiable pour les étudiants, les professionnels et "
+"les entreprises dans le monde entier."
+
+#: .\templates\index.html:224
+msgid "Eduprompt"
+msgstr "Eduprompt"
+
+#: .\templates\index.html:481
+msgid "New!"
+msgstr "Nouveau !"
+
+#: .\templates\index.html:482
+msgid ""
+"Empowering Your Business with Expert Website Development. Unlock Your "
+"Business Potential Online"
+msgstr ""
+"Donnez de la puissance à votre entreprise grâce à un développement web "
+"expert. Débloquez le potentiel de votre entreprise en ligne"
+
+#: .\templates\index.html:493
+msgid "Empower Your Learning with Smart AI Tools"
+msgstr "Renforcez votre apprentissage avec des outils IA intelligents"
+
+#: .\templates\index.html:498
+msgid ""
+"Support your studies with AI tools that help you write, solve problems, and "
+"understand lessons—at your own pace and in your language. Built for African "
+"students, our platform makes learning easier, flexible, and accessible."
+msgstr ""
+"Soutenez vos études avec des outils IA qui vous aident à écrire, résoudre "
+"des problèmes et comprendre les leçons—à votre rythme et dans votre langue. "
+"Conçue pour les étudiants africains, notre plateforme rend l'apprentissage "
+"plus facile, flexible et accessible."
+
+#: .\templates\index.html:505
+msgid "Go Pro"
+msgstr "Passez Pro"
+
+#: .\templates\index.html:509
+#, fuzzy
+#| msgid "Our Features"
+msgid "Explore Features"
+msgstr "Découvrez les fonctionnalités"
+
+#: .\templates\index.html:541
+msgid "Our Values"
+msgstr "Nos valeurs"
+
+#: .\templates\index.html:544
+msgid ""
+"At EduPrompt, students come first. Our AI study assistant is built to help "
+"learners grow, understand concepts faster, and feel more confident on their "
+"learning journey."
+msgstr ""
+"Chez EduPrompt, les étudiants passent avant tout. Notre assistant d’étude IA "
+"est conçu pour aider les apprenants à progresser, comprendre les concepts "
+"plus rapidement et se sentir plus confiants dans leur parcours "
+"d’apprentissage."
+
+#: .\templates\index.html:555
+msgid "Clear Understanding"
+msgstr "Compréhension claire"
+
+#: .\templates\index.html:557
+msgid ""
+"We make learning simple. Our AI explains ideas step by step, helping "
+"students of all ages grasp concepts easily and confidently."
+msgstr ""
+"Nous rendons l’apprentissage simple. Notre IA explique les idées étape par "
+"étape, aidant les étudiants de tout âge à comprendre facilement et avec "
+"assurance."
+
+#: .\templates\index.html:565
+msgid "Equal Opportunities"
+msgstr "Égalité des chances"
+
+#: .\templates\index.html:567
+msgid ""
+"Every student deserves the chance to succeed. Our AI assistant provides "
+"consistent support, no matter where you study or what resources you have."
+msgstr ""
+"Chaque étudiant mérite la chance de réussir. Notre assistant IA fournit un "
+"soutien constant, peu importe où vous étudiez ou quelles ressources vous "
+"avez."
+
+#: .\templates\index.html:575
+msgid "Learn at Your Own Pace"
+msgstr "Apprenez à votre rythme"
+
+#: .\templates\index.html:577
+msgid ""
+"Everyone learns differently. Our AI study assistant adapts to your speed, "
+"making learning personalized, comfortable, and effective."
+msgstr ""
+"Chacun apprend différemment. Notre assistant d’étude IA s’adapte à votre "
+"rythme, rendant l’apprentissage personnalisé, confortable et efficace."
+
+#: .\templates\index.html:585
+msgid "Engaging & Enjoyable"
+msgstr "Attrayant et agréable"
+
+#: .\templates\index.html:587
+msgid ""
+"Learning should be interesting, not stressful. Our AI tools make studying "
+"fun, interactive, and easy to follow."
+msgstr ""
+"L’apprentissage doit être intéressant, pas stressant. Nos outils IA rendent "
+"l’étude amusante, interactive et facile à suivre."
+
+#: .\templates\index.html:595
+msgid "Respect & Support"
+msgstr "Respect et soutien"
+
+#: .\templates\index.html:597
+msgid ""
+"We value every student. Whether young or adult, our AI assistant ensures a "
+"safe, welcoming, and supportive learning experience."
+msgstr ""
+"Nous valorisons chaque étudiant. Qu’il soit jeune ou adulte, notre assistant "
+"IA garantit une expérience d’apprentissage sûre, accueillante et "
+"bienveillante."
+
+#: .\templates\index.html:605
+msgid "Learning & Growing Together"
+msgstr "Apprendre et grandir ensemble"
+
+#: .\templates\index.html:607
+msgid ""
+"We constantly improve. By listening to feedback and learning from our "
+"students, we grow together, step by step, making our AI assistant smarter "
+"and more helpful."
+msgstr ""
+"Nous nous améliorons constamment. En écoutant les retours et en apprenant de "
+"nos étudiants, nous grandissons ensemble, étape par étape, rendant notre "
+"assistant IA plus intelligent et plus utile."
+
+#: .\templates\index.html:628
+msgid "Students Achieving Success"
+msgstr "Étudiants qui réussissent"
+
+#: .\templates\index.html:638
+msgid "Content Generated"
+msgstr "Contenu généré"
+
+#: .\templates\index.html:648
+msgid "Hours of AI Assistance"
+msgstr "Heures d'assistance IA"
+
+#: .\templates\index.html:657
+msgid "AI Tools Available"
+msgstr "Outils IA disponibles"
+
+#: .\templates\index.html:687
+#, fuzzy
+#| msgid "Our Features"
+msgid "Features"
+msgstr "Découvrez les fonctionnalités"
+
+#: .\templates\index.html:688
+#, fuzzy
+#| msgid "Our Values"
+msgid "Our Features"
+msgstr "Nos valeurs"
+
+#: .\templates\index.html:701
+msgid "Create detailed notes from your topics quickly and easily"
+msgstr ""
+"Créez rapidement et facilement des notes détaillées à partir de vos sujets"
+
+#: .\templates\index.html:711
+msgid "Generate well-structured essays with AI guidance"
+msgstr "Générez des dissertations bien structurées avec l'aide de l'IA"
+
+#: .\templates\index.html:719
+#, fuzzy
+#| msgid "Letter Writer"
+msgid "letter writer"
+msgstr "Rédacteur de lettres"
+
+#: .\templates\index.html:720
+msgid "Generate professional letters instantly."
+msgstr "Générez instantanément des lettres professionnelles."
+
+#: .\templates\index.html:721
+msgid "Save time and create polished content for any purpose"
+msgstr "Gagnez du temps et créez du contenu soigné pour tout usage"
+
+#: .\templates\index.html:735
+msgid "Solve equations, formulas, and problems with step-by-step help"
+msgstr ""
+"Résolvez des équations, des formules et des problèmes avec une aide étape "
+"par étape"
+
+#: .\templates\index.html:745
+msgid "Get AI assistance for writing reports and projects efficiently"
+msgstr ""
+"Obtenez une assistance IA pour rédiger efficacement des rapports et projets"
+
+#: .\templates\index.html:755
+msgid "Improve your writing by checking grammar, punctuation, and style"
+msgstr ""
+"Améliorez votre écriture en vérifiant la grammaire, la ponctuation et le "
+"style"
+
+#: .\templates\index.html:790
+msgid "Why our platform"
+msgstr "Pourquoi notre plateforme"
+
+#: .\templates\index.html:791
+msgid "Why Students Choose Us"
+msgstr "Pourquoi les étudiants nous choisissent"
+
+#: .\templates\index.html:805
+msgid "AI-Powered Learning Tools"
+msgstr "Outils d’apprentissage alimentés par l’IA"
+
+#: .\templates\index.html:806
+msgid ""
+"Boost your study efficiency with intelligent tools that simplify note-"
+"taking, assignments, and exam prep."
+msgstr ""
+"Améliorez votre efficacité d’étude avec des outils intelligents qui "
+"simplifient la prise de notes, les devoirs et la préparation aux examens."
+
+#: .\templates\index.html:813
+msgid "Essay & Assignment Writer"
+msgstr "Rédacteur de dissertations et de devoirs"
+
+#: .\templates\index.html:814
+msgid ""
+"Generate high-quality, well-structured essays and assignments in minutes "
+"with AI assistance."
+msgstr ""
+"Générez en quelques minutes des dissertations et devoirs de haute qualité et "
+"bien structurés avec l’aide de l’IA."
+
+#: .\templates\index.html:821
+msgid "Collaborative Study Assistant"
+msgstr "Assistant d’étude collaboratif"
+
+#: .\templates\index.html:822
+msgid ""
+"Work smarter with features that help you collaborate, organize group "
+"projects, and share notes effectively."
+msgstr ""
+"Travaillez plus intelligemment grâce à des fonctionnalités qui vous aident à "
+"collaborer, organiser des projets de groupe et partager efficacement des "
+"notes."
+
+#: .\templates\index.html:829
+msgid "Multilingual Support"
+msgstr "Support multilingue"
+
+#: .\templates\index.html:830
+msgid ""
+"Learn in the language you’re comfortable with — English, Swahili, Igbo, "
+"Yoruba, and more."
+msgstr ""
+"Apprenez dans la langue qui vous met à l’aise — anglais, swahili, igbo, "
+"yoruba et bien d’autres."
+
+#: .\templates\index.html:837
+msgid "Homework Assistant"
+msgstr "Assistant pour les devoirs"
+
+#: .\templates\index.html:838
+msgid ""
+"Solve problems quickly across subjects with AI guidance, keeping your work "
+"original and clear."
+msgstr ""
+"Résolvez rapidement des problèmes dans différentes matières avec l’aide de "
+"l’IA, en gardant vos travaux originaux et clairs."
+
+#: .\templates\index.html:845
+msgid "Plagiarism & Originality Tools"
+msgstr "Outils de plagiat et d’originalité"
+
+#: .\templates\index.html:846
+msgid ""
+"Ensure every essay, note, or assignment is original and ready for school "
+"submission."
+msgstr ""
+"Assurez-vous que chaque dissertation, note ou devoir est original et prêt à "
+"être soumis à l’école."
+
+#: .\templates\index.html:870
+msgid "Pricing"
+msgstr ""
+
+#: .\templates\index.html:871
+msgid "Check Our Affordable Pricing"
+msgstr ""
+
+#: .\templates\index.html:880
+msgid "Weekly Plan"
+msgstr ""
+
+#: .\templates\index.html:886 .\templates\index.html:905
+#: .\templates\index.html:924 .\templates\index.html:943
+msgid "Aida dere"
+msgstr ""
+
+#: .\templates\index.html:887 .\templates\index.html:906
+#: .\templates\index.html:925 .\templates\index.html:944
+msgid "Nec feugiat nisl"
+msgstr ""
+
+#: .\templates\index.html:888 .\templates\index.html:907
+#: .\templates\index.html:926 .\templates\index.html:945
+msgid "Nulla at volutpat dola"
+msgstr ""
+
+#: .\templates\index.html:889 .\templates\index.html:908
+#: .\templates\index.html:927 .\templates\index.html:946
+msgid "Pharetra massa"
+msgstr ""
+
+#: .\templates\index.html:890 .\templates\index.html:909
+#: .\templates\index.html:928 .\templates\index.html:947
+msgid "Massa ultricies mi"
+msgstr ""
+
+#: .\templates\index.html:892 .\templates\index.html:911
+#: .\templates\index.html:930 .\templates\index.html:949
+msgid "Subscribe"
+msgstr ""
+
+#: .\templates\index.html:899
+msgid "Monthly Plan"
+msgstr ""
+
+#: .\templates\index.html:900
+msgid " / mo"
+msgstr ""
+
+#: .\templates\index.html:918
+msgid "Quarterly Plan"
+msgstr ""
+
+#: .\templates\index.html:918
+msgid "(6 months)"
+msgstr ""
+
+#: .\templates\index.html:919
+msgid "29"
+msgstr ""
+
+#: .\templates\index.html:919
+msgid "/ Quarter"
+msgstr ""
+
+#: .\templates\index.html:937
+msgid "Yearly Plan"
+msgstr ""
+
+#: .\templates\index.html:938
+msgid "49"
+msgstr ""
+
+#: .\templates\index.html:938
+msgid " / year"
+msgstr ""
+
+#: .\templates\index.html:999
+msgid "Who Can Benefit from Our AI EdTech Platform?"
+msgstr "Qui peut bénéficier de notre plateforme EdTech IA ?"
+
+#: .\templates\index.html:1001
+msgid ""
+"Our cutting-edge AI-powered EdTech platform is designed to support a wide "
+"variety of users, including students, educators, professionals, and "
+"researchers. By combining intelligent automation with easy-to-use tools, our "
+"platform enables users to save time, enhance productivity, and achieve high-"
+"quality outcomes across educational and professional projects."
+msgstr ""
+"Notre plateforme EdTech de pointe, propulsée par l'IA, est conçue pour "
+"soutenir une grande variété d'utilisateurs, y compris les étudiants, les "
+"enseignants, les professionnels et les chercheurs. En combinant "
+"l'automatisation intelligente avec des outils faciles à utiliser, notre "
+"plateforme permet aux utilisateurs de gagner du temps, d'améliorer la "
+"productivité et d'obtenir des résultats de haute qualité dans les projets "
+"éducatifs et professionnels."
+
+
+#: .\templates\index.html:1018
+msgid "Professionals"
+msgstr "Professionnels"
+
+#: .\templates\index.html:1023
+msgid "Researchers"
+msgstr "Chercheurs"
+
+#: .\templates\index.html:1034
+msgid ""
+"Students can leverage our AI-driven tools to generate comprehensive study "
+"guides, detailed assignments, and engaging practice materials that enhance "
+"learning outcomes. By using our platform, learners can save significant time "
+"on repetitive tasks, focus on understanding core concepts, and ensure all "
+"content is original and plagiarism-free. The platform also encourages "
+"independent study, collaborative learning, and better exam preparation, "
+"making it an indispensable resource for academic success at every level."
+msgstr ""
+"Les étudiants peuvent exploiter nos outils propulsés par l'IA pour générer "
+"des guides d'étude complets, des devoirs détaillés et des supports pratiques "
+"engageants qui améliorent les résultats d'apprentissage. En utilisant notre "
+"plateforme, les apprenants gagnent du temps sur les tâches répétitives, se "
+"concentrent sur les concepts clés et s'assurent que le contenu est original "
+"et sans plagiat. La plateforme encourage également l'étude autonome, "
+"l'apprentissage collaboratif et une meilleure préparation aux examens, en "
+"faisant une ressource indispensable à la réussite académique."
+
+#: .\templates\index.html:1037
+msgid ""
+"Beyond academic tasks, students can also use our AI to explore creative "
+"writing, summarize large volumes of text, and even get guided assistance for "
+"research projects. This helps build critical thinking, research skills, and "
+"a habit of effective knowledge management, preparing them for higher "
+"education and professional challenges."
+msgstr ""
+"Au-delà des tâches académiques, les étudiants peuvent aussi utiliser notre "
+"IA pour explorer l'écriture créative, résumer de grands volumes de texte et "
+"même obtenir une assistance guidée pour leurs projets de recherche. Cela "
+"aide à développer la pensée critique, les compétences en recherche et une "
+"habitude de gestion efficace des connaissances, les préparant à "
+"l'enseignement supérieur et aux défis professionnels."
+
+#: .\templates\index.html:1046
+msgid ""
+"Educators can harness our platform to efficiently design lesson plans, "
+"develop quizzes, and create high-quality teaching resources tailored to "
+"diverse student needs. By automating content creation, teachers save "
+"valuable time that can be invested in personalized instruction, student "
+"mentorship, and curriculum development. This leads to improved classroom "
+"engagement and better learning outcomes for students."
+msgstr ""
+"Les enseignants peuvent exploiter notre plateforme pour concevoir "
+"efficacement des plans de cours, développer des quiz et créer des ressources "
+"pédagogiques de haute qualité adaptées aux divers besoins des étudiants. En "
+"automatisant la création de contenu, les enseignants gagnent un temps "
+"précieux qu'ils peuvent investir dans l'enseignement personnalisé, le "
+"mentorat et le développement du programme. Cela améliore l'engagement en "
+"classe et les résultats d'apprentissage des étudiants."
+
+#: .\templates\index.html:1049
+msgid ""
+"Additionally, the platform supports professional development by enabling "
+"educators to produce research-backed teaching materials, track student "
+"performance, and provide data-driven feedback. Whether for in-person "
+"classrooms, online learning, or hybrid models, our tools help educators "
+"maintain high educational standards with minimal administrative effort."
+msgstr ""
+"De plus, la plateforme soutient le développement professionnel en permettant "
+"aux enseignants de produire des supports pédagogiques basés sur la "
+"recherche, de suivre les performances des étudiants et de fournir des "
+"retours basés sur les données. Que ce soit en classe présentielle, en "
+"apprentissage en ligne ou en modèle hybride, nos outils aident les "
+"enseignants à maintenir des standards éducatifs élevés avec un minimum "
+"d'effort administratif."
+
+#: .\templates\index.html:1058
+msgid ""
+"Professionals seeking to improve productivity, streamline workflows, or "
+"produce high-quality business documents will find immense value in our AI "
+"platform. From generating detailed reports and presentations to drafting "
+"proposals and strategic plans, the tools ensure content is precise, "
+"professional, and impactful. This allows professionals to focus on decision-"
+"making, strategy, and innovation while minimizing time spent on routine "
+"document creation."
+msgstr ""
+"Les professionnels qui cherchent à améliorer leur productivité, rationaliser "
+"leurs flux de travail ou produire des documents professionnels de haute "
+"qualité trouveront une immense valeur dans notre plateforme IA. De la "
+"création de rapports détaillés et présentations à la rédaction de "
+"propositions et plans stratégiques, nos outils garantissent un contenu "
+"précis, professionnel et percutant. Cela leur permet de se concentrer sur la "
+"prise de décision, la stratégie et l'innovation tout en réduisant le temps "
+"consacré aux tâches routinières."
+
+#: .\templates\index.html:1061
+msgid ""
+"The platform also supports skill development, upskilling initiatives, and "
+"continuous learning. Professionals can utilize AI-generated summaries, "
+"curated learning materials, and interactive guides to stay ahead in their "
+"fields and maintain a competitive edge in dynamic industries."
+msgstr ""
+"La plateforme soutient également le développement des compétences, les "
+"initiatives de perfectionnement et l'apprentissage continu. Les "
+"professionnels peuvent utiliser des résumés générés par l'IA, des supports "
+"pédagogiques sélectionnés et des guides interactifs pour rester en avance "
+"dans leur domaine et maintenir un avantage compétitif dans des industries "
+"dynamiques."
+
+#: .\templates\index.html:1070
+msgid ""
+"Researchers can streamline complex academic and scientific tasks, such as "
+"performing literature reviews, summarizing large datasets, and organizing "
+"research notes efficiently. The platform produces well-structured, accurate "
+"outputs, reducing manual effort and improving overall productivity. It "
+"supports academic writing, publication preparation, and project "
+"documentation in both professional and academic contexts."
+msgstr ""
+"Les chercheurs peuvent rationaliser des tâches académiques et scientifiques "
+"complexes, telles que les revues de littérature, le résumé de grands "
+"ensembles de données et l'organisation efficace de notes de recherche. La "
+"plateforme produit des résultats bien structurés et précis, réduisant "
+"l'effort manuel et améliorant la productivité globale. Elle soutient la "
+"rédaction académique, la préparation à la publication et la documentation de "
+"projets tant dans un contexte professionnel qu'académique."
+
+#: .\templates\index.html:1073
+msgid ""
+"Furthermore, researchers benefit from AI-assisted data analysis, trend "
+"identification, and hypothesis development, making it easier to manage multi-"
+"disciplinary projects, collaborate with peers, and meet publication "
+"deadlines. The platform ensures reliable, high-quality results that "
+"contribute to research excellence and innovation."
+msgstr ""
+"De plus, les chercheurs bénéficient de l'analyse de données assistée par "
+"l'IA, de l'identification des tendances et du développement d'hypothèses, ce "
+"qui facilite la gestion de projets multidisciplinaires, la collaboration "
+"avec des pairs et le respect des délais de publication. La plateforme "
+"garantit des résultats fiables et de haute qualité qui contribuent à "
+"l'excellence et à l'innovation en recherche."
+
+#: .\templates\index.html:1099
+msgid "AI Accuracy & Reliability"
+msgstr "Précision et fiabilité de l'IA"
+
+#: .\templates\index.html:1109
+#, python-format
+msgid "99%% Accuracy"
+msgstr "Précision 99%%"
+
+#: .\templates\index.html:1111
+msgid ""
+"Our AI consistently provides accurate solutions and content across subjects "
+"and levels, ensuring users can trust the results for learning, teaching, and "
+"research."
+msgstr ""
+"Notre IA fournit constamment des solutions et du contenu précis dans tous "
+"les sujets et à tous les niveaux, garantissant aux utilisateurs des "
+"résultats fiables pour l'apprentissage, l'enseignement et la recherche."
+
+#: .\templates\index.html:1120
+msgid "Verified Results"
+msgstr "Résultats vérifiés"
+
+#: .\templates\index.html:1122
+msgid ""
+"View sample solutions, educational content, and user testimonials that "
+"demonstrate the AI’s reasoning and clarity in delivering high-quality "
+"outputs."
+msgstr ""
+"Consultez des exemples de solutions, des contenus éducatifs et des "
+"témoignages d'utilisateurs qui démontrent le raisonnement de l'IA et sa "
+"clarté dans la production de résultats de haute qualité."
+
+#: .\templates\index.html:1131
+msgid "Secure & Private"
+msgstr "Sécurisé & Privé"
+
+#: .\templates\index.html:1133
+msgid ""
+"Your content and data remain private and secure. We never store sensitive "
+"information, providing a safe environment for learners, educators, and "
+"professionals."
+msgstr ""
+"Votre contenu et vos données restent privés et sécurisés. Nous ne stockons "
+"jamais d'informations sensibles, offrant un environnement sûr aux "
+"apprenants, enseignants et professionnels."
+
+#: .\templates\index.html:1279
+msgid "F.A.Q"
+msgstr "F.A.Q"
+
+#: .\templates\index.html:1280
+msgid ""
+"Frequently Asked Questions about <strong>EduPrompt</strong>, your AI study "
+"assistant for smarter learning."
+msgstr ""
+"Questions fréquemment posées sur <strong>EduPrompt</strong>, votre assistant "
+"d'étude IA pour un apprentissage plus intelligent."
+
+#: .\templates\index.html:1288
+msgid "What is EduPrompt and how does it help me?"
+msgstr "Qu'est-ce qu'EduPrompt et comment m'aide-t-il ?"
+
+#: .\templates\index.html:1292
+msgid ""
+"EduPrompt</strong> is an AI-powered learning platform that simplifies "
+"studying. It provides clear explanations, note generation, essay and "
+"assignment help, and other study tools accessible anytime, anywhere."
+msgstr ""
+"EduPrompt</strong> est une plateforme d'apprentissage propulsée par l'IA qui "
+"simplifie les études. Elle fournit des explications claires, la génération "
+"de notes, une aide pour les essais et devoirs, et d'autres outils d'étude "
+"accessibles à tout moment, partout."
+
+#: .\templates\index.html:1299
+msgid "Do you support African languages?"
+msgstr "Prenez-vous en charge les langues africaines ?"
+
+#: .\templates\index.html:1303
+msgid ""
+"Yes! EduPrompt supports <strong>Yoruba, Igbo, Hausa, Swahili</strong>, and "
+"more, making learning easier in the language you understand best."
+msgstr ""
+"Oui ! EduPrompt prend en charge le <strong>yoruba, l’igbo, le haoussa, le "
+"swahili</strong> et plus encore, facilitant l’apprentissage dans la langue "
+"que vous comprenez le mieux."
+
+#: .\templates\index.html:1310
+msgid "Is EduPrompt free to use?"
+msgstr "EduPrompt est-il gratuit à utiliser ?"
+
+#: .\templates\index.html:1314
+msgid ""
+"EduPrompt is a <strong>paid platform</strong>, but you can try it for free "
+"with our <strong>trial period</strong>. Core study tools are included during "
+"the trial, giving you a chance to explore before subscribing."
+msgstr ""
+"EduPrompt est une <strong>plateforme payante</strong>, mais vous pouvez "
+"l’essayer gratuitement pendant notre <strong>période d’essai</strong>. Les "
+"principaux outils d’étude sont inclus pendant l’essai, vous donnant "
+"l’occasion d’explorer avant de vous abonner."
+
+#: .\templates\index.html:1321
+msgid "Can I learn at my own pace?"
+msgstr "Puis-je apprendre à mon propre rythme ?"
+
+#: .\templates\index.html:1325
+msgid ""
+"Yes! EduPrompt lets you study <strong>anytime, anywhere</strong>. Pause, "
+"replay, or continue according to your own schedule."
+msgstr ""
+"Oui ! EduPrompt vous permet d’étudier <strong>n’importe quand, n’importe où</"
+"strong>. Mettez en pause, rejouez ou continuez selon votre propre emploi du "
+"temps."
+
+#: .\templates\index.html:1332
+msgid "Is EduPrompt mobile-friendly?"
+msgstr "EduPrompt est-il adapté aux mobiles ?"
+
+#: .\templates\index.html:1336
+msgid ""
+"Absolutely! EduPrompt works seamlessly on <strong>phones, tablets, or "
+"laptops</strong> with no special apps required."
+msgstr ""
+"Absolument ! EduPrompt fonctionne parfaitement sur <strong>téléphones, "
+"tablettes ou ordinateurs portables</strong> sans qu’aucune application "
+"spéciale ne soit nécessaire."
+
+#: .\templates\index.html:1343
+msgid "Is it affordable for African students?"
+msgstr "Est-ce abordable pour les étudiants africains ?"
+
+#: .\templates\index.html:1347
+msgid ""
+"Yes! EduPrompt is designed to be <strong>affordable and accessible</strong> "
+"for students across Africa."
+msgstr ""
+"Oui ! EduPrompt est conçu pour être <strong>abordable et accessible</strong> "
+"pour les étudiants partout en Afrique."
+
+#: .\templates\index.html:1354
+msgid "Can EduPrompt generate essays and notes"
+msgstr "EduPrompt peut-il générer des dissertations et des notes ?"
+
+#: .\templates\index.html:1358
+msgid ""
+"Yes! EduPrompt can create <strong>customized essays, letters, and notes</"
+"strong> to help you study efficiently and understand topics better."
+msgstr ""
+"Oui ! EduPrompt peut créer des <strong>dissertations, lettres et notes "
+"personnalisées</strong> pour vous aider à étudier efficacement et mieux "
+"comprendre vos sujets."
+
+#: .\templates\index.html:1368
+msgid "Is EduPrompt safe and secure?"
+msgstr "EduPrompt est-il sûr et sécurisé ?"
+
+#: .\templates\index.html:1372
+msgid ""
+"EduPrompt respects your privacy. All <strong>notes and personal data</"
+"strong> are stored securely and never shared without your consent."
+msgstr ""
+"EduPrompt respecte votre vie privée. Toutes les <strong>notes et données "
+"personnelles</strong> sont stockées en toute sécurité et ne sont jamais "
+"partagées sans votre consentement."
+
+#: .\templates\index.html:1379
+msgid "Can I use EduPrompt offline?"
+msgstr "Puis-je utiliser EduPrompt hors ligne ?"
+
+#: .\templates\index.html:1383
+msgid ""
+"Currently, EduPrompt requires internet access, but you can <strong>download "
+"generated notes</strong> to study offline anytime."
+msgstr ""
+"Actuellement, EduPrompt nécessite un accès Internet, mais vous pouvez "
+"<strong>télécharger les notes générées</strong> pour les étudier hors ligne "
+"à tout moment."
+
+#: .\templates\index.html:1415
+msgid "Join Our Newsletter"
+msgstr "Rejoignez notre newsletter"
+
+#: .\templates\index.html:1416
+msgid ""
+"Subscribe to our newsletter and receive the latest news about our products "
+"and services!"
+msgstr ""
+"Abonnez-vous à notre newsletter et recevez les dernières nouvelles sur nos "
+"produits et services !"
+
+#: .\templates\index.html:1422
+msgid "Loading"
+msgstr "Chargement"
+
+#: .\templates\index.html:1424
+msgid "Your subscription request has been sent. Thank you!"
+msgstr "Votre demande d’abonnement a été envoyée. Merci !"
+
+#: .\templates\index.html:1441
+msgid "About the Founder"
+msgstr "À propos du fondateur"
+
+#: .\templates\index.html:1453
+msgid ""
+"EduPrompt was founded by Eze Prosper somtochukwu, a software developer "
+"passionate about education technology."
+msgstr ""
+"EduPrompt a été fondé par Eze Prosper Somtochukwu, un développeur passionné "
+"par les technologies éducatives."
+
+#: .\templates\index.html:1454
+msgid ""
+"He created this platform to provide students with AI-powered tools that make "
+"learning smarter, faster, and more accessible."
+msgstr ""
+"Il a créé cette plateforme pour offrir aux étudiants des outils alimentés "
+"par l’IA qui rendent l’apprentissage plus intelligent, plus rapide et plus "
+"accessible."
+
+#: .\templates\index.html:1460
+msgid "Useful Links"
+msgstr "Liens utiles"
+
+#: .\templates\index.html:1464
+msgid "Home"
+msgstr "Accueil"
+
+#: .\templates\index.html:1468
+msgid "About Us"
+msgstr "À propos de nous"
+
+#: .\templates\index.html:1472
+msgid "Privacy Policy"
+msgstr "Politique de confidentialité"
+
+#: .\templates\index.html:1476
+msgid "Terms and Conditions"
+msgstr "Termes et conditions"
+
+#: .\templates\index.html:1483
+msgid "Our Services"
+msgstr "Nos services"
+
+#: .\templates\index.html:1487
+msgid "Web Design"
+msgstr "Conception de sites web"
+
+#: .\templates\index.html:1491
+msgid "Flyer Design"
+msgstr "Conception de flyers"
+
+#: .\templates\index.html:1498
+msgid "Our Tools"
+msgstr "Nos outils"
+
+#: .\templates\index.html:1502
+msgid "Essay Writer"
+msgstr "Rédacteur de dissertations"
+
+#: .\templates\index.html:1518
+msgid "Ai Solver"
+msgstr "Solveur IA"
+
+#: .\templates\index.html:1529
+msgid "Follow Us"
+msgstr "Suivez-nous"
+
+#: .\templates\index.html:1530
+msgid "Follow us on all our social media platforms"
+msgstr "Suivez-nous sur toutes nos plateformes sociales"
+
+#: .\templates\index.html:1548
+msgid "EduPrompt</strong> All Rights Reserved."
+msgstr "EduPrompt</strong> Tous droits réservés."
+
+#: .\templates\plagiarism_checker.html:227 .\templates\study_planner.html:226
+msgid "Scholarship Finder"
+msgstr "Chercheur de bourses"
+
+#: .\templates\register.html:297 .\templates\register.html:378
+msgid "Sign Up"
+msgstr "S’inscrire"
+
+#: .\templates\register.html:321
+msgid "Full Name"
+msgstr "Nom complet"
+
+#: .\templates\register.html:331
+msgid "Email"
+msgstr "E-mail"
+
+#: .\templates\register.html:341
+msgid "Phone Number"
+msgstr "Numéro de téléphone"
+
+#: .\templates\register.html:351
+msgid "Password"
+msgstr "Mot de passe"
+
+#: .\templates\register.html:360
+msgid "Confirm Password"
+msgstr "Confirmer le mot de passe"
+
+#: .\templates\register.html:369
+msgid "Country (Optional)"
+msgstr "Pays (optionnel)"
+
+#: .\templates\register.html:388
+msgid "Already have an account?"
+msgstr "Vous avez déjà un compte ?"
+
+#: .\templates\register.html:389
+msgid "Log In"
+msgstr "Connexion"
+
+#: .\templates\study_planner.html:227
+msgid "Study Planner"
+msgstr "Planificateur d’études"
+
+
+#: templates/ai_solver.html:5
+msgid "Math, Physics, or Chemistry Problem"
+msgstr "Problème de Mathématiques, Physique ou Chimie"
+
+#: templates/ai_solver.html:9
+msgid "Learn smarter, not harder. Our AI-powered solver guides you through step-by-step solutions for tricky high-school exercises to advanced university problems. Understand concepts deeply while mastering problem-solving skills—perfect for curious students, exam preparation, and lifelong learners."
+msgstr "Apprenez plus intelligemment, pas plus difficilement. Notre solveur alimenté par l'IA vous guide étape par étape pour résoudre des exercices complexes du lycée aux problèmes universitaires avancés. Comprenez les concepts en profondeur tout en maîtrisant les compétences en résolution de problèmes — parfait pour les étudiants curieux, la préparation aux examens et les apprenants à vie."
+
+#: templates/ai_solver.html:16
+msgid "Default"
+msgstr "Par défaut"
+
+#: templates/ai_solver.html:16
+msgid "Problems"
+msgstr "Problèmes"
+
+#: templates/ai_solver.html:21
+msgid "A block of mass 5 kg slides down a frictionless incline of height 3 m. Calculate the velocity of the block at the bottom of the incline."
+msgstr "Un bloc de masse 5 kg glisse sur une pente sans friction de 3 m de hauteur. Calculez la vitesse du bloc au bas de la pente."
+
+#: templates/ai_solver.html:28
+msgid "Solve the logarithmic equation log₂(x) = 8."
+msgstr "Résolvez l'équation logarithmique log₂(x) = 8."
+
+#: templates/ai_solver.html:35
+msgid "Evaluate the integral ∫₀¹ (3x² + 2x) dx."
+msgstr "Évaluez l'intégrale ∫₀¹ (3x² + 2x) dx."
+
+#: templates/ai_solver.html:42
+msgid "Calculate the pH of a 0.01 M HCl solution at 25°C."
+msgstr "Calculez le pH d'une solution 0,01 M de HCl à 25°C."
+
+#: templates/ai_solver.html:55
+msgid "Enter Your Question"
+msgstr "Entrez votre question"
+
+#: templates/ai_solver.html:59
+msgid "Type or paste  problem here..."
+msgstr "Tapez ou collez le problème ici..."
+
+#: templates/ai_solver.html:63
+msgid "Solve Question"
+msgstr "Résoudre la question"
+
+#: templates/ai_solver.html:67
+msgid "Or Upload Image"
+msgstr "Ou téléchargez une image"
+
+#: templates/ai_solver.html:71
+msgid "Solve Image"
+msgstr "Résoudre l'image"
+
+#: templates/ai_solver.html:77
+msgid "Solution"
+msgstr "Solution"
+
+#: templates/ai_solver.html:80
+msgid "Results will appear here..."
+msgstr "Les résultats apparaîtront ici..."
+
+#: templates/ai_solver.html:85
+msgid "Download Solution"
+msgstr "Télécharger la solution"
+
+#: templates/ai_solver.html:2
+msgid "Who Can Benefit from Our AI  Solver?"
+msgstr "Qui peut bénéficier de notre solveur IA ?"
+
+#: templates/ai_solver.html:4
+msgid "Our AI-powered solver is designed to assist anyone looking to excel in mathematics,physis and chemistry from students tackling exams to educators creating engaging lessons. With intelligent step-by-step solutions, instant explanations, and problem scanning, users can save time, boost understanding, and achieve outstanding results."
+msgstr "Notre solveur propulsé par l’IA est conçu pour aider toute personne souhaitant exceller en mathématiques, physique et chimie, des étudiants passant des examens aux enseignants créant des cours interactifs. Avec des solutions intelligentes étape par étape, des explications instantanées et la numérisation des problèmes, les utilisateurs peuvent gagner du temps, améliorer leur compréhension et obtenir des résultats exceptionnels."
+
+#: templates/ai_solver.html:11
+msgid "Students"
+msgstr "Étudiants"
+
+#: templates/ai_solver.html:16
+msgid "Educators"
+msgstr "Enseignants"
+
+#: templates/ai_solver.html:21
+msgid "Parents"
+msgstr "Parents"
+
+#: templates/ai_solver.html:26
+msgid "Lifelong Learners"
+msgstr "Apprenants tout au long de la vie"
+
+#: templates/ai_solver.html:36
+msgid "Students preparing for exams like WAEC, JAMB, SAT, or any academic level can instantly solve math problems with step-by-step explanations. Our AI ensures faster understanding, helps complete assignments efficiently, and provides additional practice questions to strengthen learning."
+msgstr "Les étudiants préparant des examens comme le WAEC, JAMB, SAT, ou tout niveau académique peuvent résoudre instantanément des problèmes de mathématiques avec des explications étape par étape. Notre IA assure une compréhension plus rapide, aide à terminer les devoirs efficacement et fournit des questions supplémentaires pour renforcer l’apprentissage."
+
+#: templates/ai_solver.html:42
+msgid "With our solver, students can focus on mastering concepts, improving problem-solving speed, and gaining confidence in mathematics, making exam preparation more effective and less stressful."
+msgstr "Avec notre solveur, les étudiants peuvent se concentrer sur la maîtrise des concepts, améliorer la rapidité de résolution de problèmes et gagner en confiance en mathématiques, rendant la préparation aux examens plus efficace et moins stressante."
+
+#: templates/ai_solver.html:50
+msgid "Teachers and tutors can create high-quality lesson plans, quizzes, and practice materials effortlessly. The AI solver helps demonstrate solutions clearly, saving time while providing accurate examples to enhance classroom learning and student engagement."
+msgstr "Les enseignants et tuteurs peuvent créer des plans de cours, des quiz et du matériel pratique de haute qualité sans effort. Le solveur IA aide à démontrer les solutions clairement, économisant du temps tout en fournissant des exemples précis pour améliorer l’apprentissage en classe et l’engagement des étudiants."
+
+#: templates/ai_solver.html:56
+msgid "Educators can also use the platform to track student progress, design personalized exercises, and enrich teaching resources, ensuring a modern and interactive learning experience."
+msgstr "Les enseignants peuvent également utiliser la plateforme pour suivre les progrès des étudiants, concevoir des exercices personnalisés et enrichir les ressources pédagogiques, garantissant une expérience d’apprentissage moderne et interactive."
+
+#: templates/ai_solver.html:64
+msgid "Parents assisting children with homework can leverage the AI solver to guide them through challenging problems. Instant solutions and explanations help parents support learning effectively, even without advanced math knowledge."
+msgstr "Les parents aidant leurs enfants avec les devoirs peuvent utiliser le solveur IA pour les guider à travers des problèmes difficiles. Les solutions et explications instantanées aident les parents à soutenir efficacement l’apprentissage, même sans connaissances avancées en mathématiques."
+
+#: templates/ai_solver.html:70
+msgid "This empowers families to foster independent learning, boost confidence in mathematics, and ensure children stay on top of their studies."
+msgstr "Cela permet aux familles de favoriser l’apprentissage autonome, d’accroître la confiance en mathématiques et de garantir que les enfants restent au top de leurs études."
+
+#: templates/ai_solver.html:78
+msgid "Lifelong learners exploring STEM or revisiting mathematics can use our AI platform to practice, solve advanced problems, and build strong analytical skills. The solver provides instant feedback and explanations to help learners progress at their own pace."
+msgstr "Les apprenants tout au long de la vie explorant les STEM ou révisant les mathématiques peuvent utiliser notre plateforme IA pour s’exercer, résoudre des problèmes avancés et développer de solides compétences analytiques. Le solveur fournit un retour et des explications instantanés pour aider les apprenants à progresser à leur rythme."
+
+#: templates/ai_solver.html:84
+msgid "It’s perfect for personal growth, skill development, or preparing for certifications, making math learning accessible and engaging for users of all ages."
+msgstr "C’est parfait pour la croissance personnelle, le développement des compétences ou la préparation aux certifications, rendant l’apprentissage des mathématiques accessible et engageant pour les utilisateurs de tous âges."
+
+#: templates/ai_solver.html:92
+msgid "How It Works"
+msgstr "Comment ça fonctionne"
+
+#: templates/ai_solver.html:94
+msgid "Our platform is designed to simplify learning and problem-solving. Follow these simple steps to experience the power of AI in generating accurate solutions efficiently."
+msgstr "Notre plateforme est conçue pour simplifier l’apprentissage et la résolution de problèmes. Suivez ces étapes simples pour expérimenter la puissance de l’IA dans la génération efficace de solutions précises."
+
+#: templates/ai_solver.html:100
+msgid "Step 1: Input Your Problem"
+msgstr "Étape 1 : Entrez votre problème"
+
+#: templates/ai_solver.html:102
+msgid "Enter your problem manually or scan it using your device camera. Our AI instantly detects the content and prepares it for processing. This flexible input method ensures you can start learning without any technical hurdles."
+msgstr "Entrez votre problème manuellement ou scannez-le avec l’appareil photo de votre appareil. Notre IA détecte instantanément le contenu et le prépare pour le traitement. Cette méthode d’entrée flexible vous permet de commencer à apprendre sans obstacles techniques."
+
+#: templates/ai_solver.html:110
+msgid "Step 2: AI Solves Step-by-Step"
+msgstr "Étape 2 : L’IA résout étape par étape"
+
+#: templates/ai_solver.html:112
+msgid "Our advanced AI analyzes your problem and generates a step-by-step solution. Each explanation is clear, structured, and easy to follow, helping you understand the concepts behind the answer while building confidence in your learning."
+msgstr "Notre IA avancée analyse votre problème et génère une solution étape par étape. Chaque explication est claire, structurée et facile à suivre, vous aidant à comprendre les concepts derrière la réponse tout en renforçant votre confiance."
+
+#: templates/ai_solver.html:120
+msgid "Step 3: Voice or Download"
+msgstr "Étape 3 : Voix ou téléchargement"
+
+#: templates/ai_solver.html:122
+msgid "Listen to an optional voice explanation or download the complete solution in PDF format. This feature allows you to review the solution at your own pace, share it with peers, or save it for future reference."
+msgstr "Écoutez une explication vocale optionnelle ou téléchargez la solution complète au format PDF. Cette fonctionnalité vous permet de revoir la solution à votre rythme, de la partager avec des pairs ou de la conserver pour référence future."
+
+#: templates/ai_solver.html:132
+msgid "What <strong>users</strong> are <strong>saying about AI Solver."
+msgstr "Ce que <strong>les utilisateurs</strong> disent de <strong>AI Solver."
+
+#: templates/ai_solver.html:135
+msgid "AI Solver has transformed how I handle math problems. It’s fast, accurate, and gives clear step-by-step solutions I can trust."
+msgstr "AI Solver a transformé ma façon de résoudre les problèmes de mathématiques. C’est rapide, précis et fournit des solutions étape par étape claires auxquelles je peux faire confiance."
+
+#: templates/ai_solver.html:140
+msgid "I love how AI Solver adapts to any topic. It feels like having a professional tutor available 24/7 for every math challenge."
+msgstr "J’adore la façon dont AI Solver s’adapte à n’importe quel sujet. On a l’impression d’avoir un tuteur professionnel disponible 24h/24 pour chaque défi en mathématiques."
+
+#: templates/ai_solver.html:145
+msgid "Using AI Solver has saved me hours of studying. The explanations are easy to follow, human-like, and extremely detailed."
+msgstr "Utiliser AI Solver m’a fait gagner des heures d’étude. Les explications sont faciles à suivre, humaines et extrêmement détaillées."
+
+#: templates/ai_solver.html:150
+msgid "AI Solver not only solves problems but also helps me understand the logic behind them. It’s my go-to tool for learning and exam prep."
+msgstr "AI Solver ne se contente pas de résoudre des problèmes, il m’aide aussi à comprendre la logique derrière eux. C’est mon outil incontournable pour apprendre et préparer les examens."

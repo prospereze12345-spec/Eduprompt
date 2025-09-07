@@ -1,0 +1,683 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-06 22:20+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Twi <LL@li.org>\n"
+"Language: tw\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\blog\templates\blog\blog_detail.html:218
+#: .\blog\templates\blog\blog_list.html:216
+#: .\templates\Terms_and_Condition.html:224 .\templates\about.html:215
+#: .\templates\ai_solver.html:224 .\templates\base.html:246
+#: .\templates\contact.html:213 .\templates\essay_page.html:221
+#: .\templates\flyer_design.html:240 .\templates\index.html:234
+#: .\templates\index.html:740 .\templates\letter_writer.html:265
+#: .\templates\login.html:224 .\templates\note_page.html:244
+#: .\templates\plagiarism_checker.html:217 .\templates\privacy_policy.html:224
+#: .\templates\project_writer.html:234 .\templates\register.html:226
+#: .\templates\study_planner.html:216 .\templates\website.html:231
+
+
+#: .\blog\templates\blog\blog_detail.html:219
+#: .\blog\templates\blog\blog_list.html:217
+#: .\templates\Terms_and_Condition.html:225 .\templates\about.html:216
+#: .\templates\ai_solver.html:225 .\templates\base.html:247
+#: .\templates\contact.html:216 .\templates\essay_page.html:222
+#: .\templates\flyer_design.html:241 .\templates\grammar_checker.html:233
+#: .\templates\index.html:235 .\templates\index.html:716
+#: .\templates\letter_writer.html:266 .\templates\login.html:225
+#: .\templates\note_page.html:245 .\templates\plagiarism_checker.html:218
+#: .\templates\privacy_policy.html:225 .\templates\project_writer.html:235
+#: .\templates\register.html:227 .\templates\study_planner.html:217
+#: .\templates\website.html:232
+msgid "Essay Generator"
+msgstr "Nsɛmfua Nwoma Bɔfo"
+
+#: .\blog\templates\blog\blog_detail.html:220
+#: .\blog\templates\blog\blog_list.html:218
+#: .\templates\Terms_and_Condition.html:226 .\templates\about.html:217
+#: .\templates\ai_solver.html:226 .\templates\base.html:248
+#: .\templates\contact.html:214 .\templates\essay_page.html:223
+#: .\templates\flyer_design.html:242 .\templates\grammar_checker.html:234
+#: .\templates\index.html:236 .\templates\index.html:706
+#: .\templates\index.html:1512 .\templates\letter_writer.html:267
+#: .\templates\login.html:226 .\templates\note_page.html:246
+#: .\templates\plagiarism_checker.html:219 .\templates\privacy_policy.html:226
+#: .\templates\project_writer.html:236 .\templates\register.html:228
+#: .\templates\study_planner.html:218 .\templates\website.html:233
+
+
+#: .\blog\templates\blog\blog_detail.html:221
+#: .\blog\templates\blog\blog_list.html:219
+#: .\templates\Terms_and_Condition.html:227 .\templates\about.html:218
+#: .\templates\ai_solver.html:227 .\templates\base.html:249
+#: .\templates\contact.html:215 .\templates\essay_page.html:224
+#: .\templates\flyer_design.html:243 .\templates\grammar_checker.html:235
+#: .\templates\index.html:237 .\templates\index.html:1520
+#: .\templates\letter_writer.html:268 .\templates\login.html:227
+#: .\templates\note_page.html:247 .\templates\plagiarism_checker.html:220
+#: .\templates\privacy_policy.html:227 .\templates\project_writer.html:237
+#: .\templates\register.html:229 .\templates\study_planner.html:219
+#: .\templates\website.html:234
+
+#: .\blog\templates\blog\blog_detail.html:222
+#: .\blog\templates\blog\blog_list.html:220
+#: .\templates\Terms_and_Condition.html:228 .\templates\about.html:219
+#: .\templates\ai_solver.html:228 .\templates\base.html:250
+#: .\templates\contact.html:217 .\templates\essay_page.html:225
+#: .\templates\flyer_design.html:244 .\templates\grammar_checker.html:236
+#: .\templates\index.html:238 .\templates\index.html:1530
+#: .\templates\letter_writer.html:269 .\templates\login.html:228
+#: .\templates\note_page.html:248 .\templates\plagiarism_checker.html:221
+#: .\templates\privacy_policy.html:228 .\templates\project_writer.html:238
+#: .\templates\register.html:230 .\templates\study_planner.html:220
+#: .\templates\website.html:235
+msgid "Grammar Checker"
+msgstr "Kasafua Hwɛfo"
+
+#: .\blog\templates\blog\blog_detail.html:223
+#: .\blog\templates\blog\blog_list.html:221
+#: .\templates\Terms_and_Condition.html:229 .\templates\about.html:220
+#: .\templates\ai_solver.html:229 .\templates\base.html:251
+#: .\templates\contact.html:218 .\templates\essay_page.html:226
+#: .\templates\flyer_design.html:245 .\templates\grammar_checker.html:237
+#: .\templates\index.html:239 .\templates\index.html:1540
+#: .\templates\letter_writer.html:270 .\templates\login.html:229
+#: .\templates\note_page.html:249 .\templates\plagiarism_checker.html:222
+#: .\templates\privacy_policy.html:229 .\templates\project_writer.html:239
+#: .\templates\register.html:231 .\templates\study_planner.html:221
+#: .\templates\website.html:236
+msgid "Plagiarism Checker"
+msgstr "Nsɛmfua Didipɔn Hwɛfo"
+
+#: .\blog\templates\blog\blog_detail.html:224
+#: .\blog\templates\blog\blog_list.html:222
+#: .\templates\Terms_and_Condition.html:230 .\templates\about.html:221
+#: .\templates\ai_solver.html:230 .\templates\base.html:252
+#: .\templates\contact.html:219 .\templates\essay_page.html:227
+#: .\templates\flyer_design.html:246 .\templates\grammar_checker.html:238
+#: .\templates\index.html:240 .\templates\index.html:1550
+#: .\templates\letter_writer.html:271 .\templates\login.html:230
+#: .\templates\note_page.html:250 .\templates\plagiarism_checker.html:223
+#: .\templates\privacy_policy.html:230 .\templates\project_writer.html:240
+#: .\templates\register.html:232 .\templates\study_planner.html:222
+#: .\templates\website.html:237
+msgid "Project Writer"
+msgstr "Adwuma Kyerɛwfo"
+
+#: .\blog\templates\blog\blog_detail.html:225
+#: .\blog\templates\blog\blog_list.html:223
+#: .\templates\Terms_and_Condition.html:231 .\templates\about.html:222
+#: .\templates\ai_solver.html:231 .\templates\base.html:253
+#: .\templates\contact.html:220 .\templates\essay_page.html:228
+#: .\templates\flyer_design.html:247 .\templates\grammar_checker.html:239
+#: .\templates\index.html:241 .\templates\index.html:1560
+#: .\templates\letter_writer.html:272 .\templates\login.html:231
+#: .\templates\note_page.html:251 .\templates\plagiarism_checker.html:224
+#: .\templates\privacy_policy.html:231 .\templates\project_writer.html:241
+#: .\templates\register.html:233 .\templates\study_planner.html:223
+#: .\templates\website.html:238
+
+
+#: .\blog\templates\blog\blog_detail.html:226
+#: .\blog\templates\blog\blog_list.html:224
+#: .\templates\Terms_and_Condition.html:232 .\templates\about.html:223
+#: .\templates\ai_solver.html:232 .\templates\base.html:254
+#: .\templates\contact.html:221 .\templates\essay_page.html:229
+#: .\templates\flyer_design.html:248 .\templates\grammar_checker.html:240
+#: .\templates\index.html:242 .\templates\index.html:1570
+#: .\templates\letter_writer.html:273 .\templates\login.html:232
+#: .\templates\note_page.html:252 .\templates\plagiarism_checker.html:225
+#: .\templates\privacy_policy.html:232 .\templates\project_writer.html:242
+#: .\templates\register.html:234 .\templates\study_planner.html:224
+#: .\templates\website.html:239
+
+#: .\blog\templates\blog\blog_detail.html:227
+#: .\blog\templates\blog\blog_list.html:225
+#: .\templates\Terms_and_Condition.html:233 .\templates\about.html:224
+#: .\templates\ai_solver.html:233 .\templates\base.html:255
+#: .\templates\contact.html:222 .\templates\essay_page.html:230
+#: .\templates\flyer_design.html:249 .\templates\grammar_checker.html:241
+#: .\templates\index.html:243 .\templates\index.html:1580
+#: .\templates\letter_writer.html:274 .\templates\login.html:233
+#: .\templates\note_page.html:253 .\templates\plagiarism_checker.html:226
+#: .\templates\privacy_policy.html:233 .\templates\project_writer.html:243
+#: .\templates\register.html:235 .\templates\study_planner.html:225
+#: .\templates\website.html:240
+msgid "Note Generator"
+msgstr "Nsɛm Nwoma Soafo"
+
+#: .\blog\templates\blog\blog_detail.html:228
+#: .\blog\templates\blog\blog_list.html:226
+#: .\templates\Terms_and_Condition.html:234 .\templates\about.html:225
+#: .\templates\ai_solver.html:234 .\templates\base.html:256
+#: .\templates\contact.html:223 .\templates\essay_page.html:231
+#: .\templates\flyer_design.html:250 .\templates\grammar_checker.html:242
+#: .\templates\index.html:244 .\templates\index.html:1590
+#: .\templates\letter_writer.html:275 .\templates\login.html:234
+#: .\templates\note_page.html:254 .\templates\plagiarism_checker.html:227
+#: .\templates\privacy_policy.html:234 .\templates\project_writer.html:244
+#: .\templates\register.html:236 .\templates\study_planner.html:226
+#: .\templates\website.html:241
+msgid "AI Solver"
+msgstr "AI Asɛmsohwe Soafo"
+
+#: .\blog\templates\blog\blog_detail.html:229
+#: .\blog\templates\blog\blog_list.html:227
+#: .\templates\Terms_and_Condition.html:235 .\templates\about.html:226
+#: .\templates\ai_solver.html:235 .\templates\base.html:257
+#: .\templates\contact.html:224 .\templates\essay_page.html:232
+#: .\templates\flyer_design.html:251 .\templates\grammar_checker.html:243
+#: .\templates\index.html:245 .\templates\index.html:1600
+#: .\templates\letter_writer.html:276 .\templates\login.html:235
+#: .\templates\note_page.html:255 .\templates\plagiarism_checker.html:228
+#: .\templates\privacy_policy.html:235 .\templates\project_writer.html:245
+#: .\templates\register.html:237 .\templates\study_planner.html:227
+#: .\templates\website.html:242
+msgid "Website Builder"
+msgstr "Wɛbsaet Siadeɛfo"
+
+#: .\blog\templates\blog\blog_detail.html:230
+#: .\blog\templates\blog\blog_list.html:228
+#: .\templates\Terms_and_Condition.html:236 .\templates\about.html:227
+#: .\templates\ai_solver.html:236 .\templates\base.html:258
+#: .\templates\contact.html:225 .\templates\essay_page.html:233
+#: .\templates\flyer_design.html:252 .\templates\grammar_checker.html:244
+#: .\templates\index.html:246 .\templates\index.html:1610
+#: .\templates\letter_writer.html:277 .\templates\login.html:236
+#: .\templates\note_page.html:256 .\templates\plagiarism_checker.html:229
+#: .\templates\privacy_policy.html:236 .\templates\project_writer.html:246
+#: .\templates\register.html:238 .\templates\study_planner.html:228
+#: .\templates\website.html:243
+
+#: .\blog\templates\blog\blog_detail.html:231
+#: .\blog\templates\blog\blog_list.html:229
+#: .\templates\Terms_and_Condition.html:237 .\templates\about.html:228
+#: .\templates\ai_solver.html:237 .\templates\base.html:259
+#: .\templates\contact.html:226 .\templates\essay_page.html:234
+#: .\templates\flyer_design.html:253 .\templates\grammar_checker.html:245
+#: .\templates\index.html:247 .\templates\index.html:1620
+#: .\templates\letter_writer.html:278 .\templates\login.html:237
+#: .\templates\note_page.html:257 .\templates\plagiarism_checker.html:230
+#: .\templates\privacy_policy.html:237 .\templates\project_writer.html:247
+#: .\templates\register.html:239 .\templates\study_planner.html:229
+#: .\templates\website.html:244
+msgid "Letter Writer"
+msgstr "Mmerɛw Kyerɛwfo"
+
+#: templates/faq.html:5
+msgid "F.A.Q"
+msgstr "Nsɛmmisa a wɔbisa ho mmere"
+
+#: templates/faq.html:6
+msgid "Frequently Asked Questions about <strong>EduPrompt</strong>, your AI study assistant for smarter learning."
+msgstr "Nsɛmmisa a ɛda hɔ ho nsɛm fa <strong>EduPrompt</strong> ho, wo AI sukuu boafo a ɛboa wo ma wosua adeɛ yie."
+
+#: templates/faq.html:12
+msgid "What is EduPrompt and how does it help me?"
+msgstr "Dɛn ne EduPrompt na ɛboa me sɛn?"
+
+#: templates/faq.html:13
+msgid "EduPrompt</strong> is an AI-powered learning platform that simplifies studying. It provides clear explanations, note generation, essay and assignment help, and other study tools accessible anytime, anywhere."
+msgstr "EduPrompt</strong> yɛ AI tumi wɔ sukuu nsɛm sukuu platform a ɛma sukuu adeɛ yɛ mmerɛ. Ɛma nsɛm kɔkɔɔ, kyerɛw nkyerɛaseɛ, nsɛm krataa ne adwuma boa, ne nsɛm foforɔ a wubetumi de sua adeɛ da biara, baabiara."
+
+#: templates/faq.html:22
+msgid "Do you support African languages?"
+msgstr "Mo boa African kasa so anaa?"
+
+#: templates/faq.html:23
+msgid "Yes! EduPrompt supports <strong>Yoruba, Igbo, Hausa, Swahili</strong>, and more, making learning easier in the language you understand best."
+msgstr "Aane! EduPrompt boa <strong>Yoruba, Igbo, Hausa, Swahili</strong> ne kasa foforɔ, ma sukuu adeɛ yɛ mmerɛ wɔ kasa a wode te aseɛ."
+
+#: templates/faq.html:32
+msgid "Is EduPrompt free to use?"
+msgstr "EduPrompt yɛ kwan a ɛho nhia sika anaa?"
+
+#: templates/faq.html:33
+msgid "EduPrompt is a <strong>paid platform</strong>, but you can try it for free with our <strong>trial period</strong>. Core study tools are included during the trial, giving you a chance to explore before subscribing."
+msgstr "EduPrompt yɛ <strong>platform a wopɛ sika so</strong>, nanso wubetumi asua no kwa wɔ <strong>trial bere</strong> mu. Nkyerɛaseɛ ne sukuu adeɛ a ɛho hia nyinaa wɔ trial no mu, ma wo kwan sɛ wubetumi asua ansa na wopɛ sɛ wode bɔ mu."
+
+#: templates/faq.html:42
+msgid "Can I learn at my own pace?"
+msgstr "Mɛtumi asua wɔ me nananom nhyira mu anaa?"
+
+#: templates/faq.html:43
+msgid "Yes! EduPrompt lets you study <strong>anytime, anywhere</strong>. Pause, replay, or continue according to your own schedule."
+msgstr "Aane! EduPrompt ma wutumi sua <strong>bere biara, baabiara</strong>. Gyae kakra, san yɛ bio, anaa kɔ so sɛnea wo bere te."
+
+#: templates/faq.html:52
+msgid "Is EduPrompt mobile-friendly?"
+msgstr "EduPrompt yɛ fone anaa tablet nwanwa anaa?"
+
+#: templates/faq.html:53
+msgid "Absolutely! EduPrompt works seamlessly on <strong>phones, tablets, or laptops</strong> with no special apps required."
+msgstr "Ampa! EduPrompt yɛ adwuma yie wɔ <strong>fone, tablet, anaa laptop</strong> so a ɛnnhia apps foforɔ biara."
+
+#: templates/faq.html:62
+msgid "Is it affordable for African students?"
+msgstr "Ɛyɛ sika kakra ma African asuafo anaa?"
+
+#: templates/faq.html:63
+msgid "Yes! EduPrompt is designed to be <strong>affordable and accessible</strong> for students across Africa."
+msgstr "Aane! EduPrompt yɛ deɛ wɔahyɛ ma sɛ ɛyɛ <strong>sika kakra na wubetumi akɔ so de</strong> ma asuafo wɔ Africa nyinaa."
+
+#: templates/faq.html:72
+msgid "Can EduPrompt generate essays and notes"
+msgstr "EduPrompt betumi akyerɛw nsɛm ne nkyerɛaseɛ anaa?"
+
+#: templates/faq.html:73
+msgid "Yes! EduPrompt can create <strong>customized essays, letters, and notes</strong> to help you study efficiently and understand topics better."
+msgstr "Aane! EduPrompt betumi abɔ <strong>nsɛm a wopɛ, krataa, ne nkyerɛaseɛ</strong> a ɛboa wo sua yie na wute nsɛm ase yie."
+
+#: templates/faq.html:82
+msgid "Is EduPrompt safe and secure?"
+msgstr "EduPrompt yɛ den na ɛho yɛ hare anaa?"
+
+#: templates/faq.html:83
+msgid "EduPrompt respects your privacy. All <strong>notes and personal data</strong> are stored securely and never shared without your consent."
+msgstr "EduPrompt bɔ wo ho ban. Nkyerɛaseɛ ne nsɛm a ɛfa wo ho <strong>biara</strong> yɛ den, na wonntaa mfa mma obiara a woannyi ho kwan."
+
+#: templates/faq.html:92
+msgid "Can I use EduPrompt offline?"
+msgstr "Mɛtumi de EduPrompt di dwuma offline anaa?"
+
+#: templates/faq.html:93
+msgid "Currently, EduPrompt requires internet access, but you can <strong>download generated notes</strong> to study offline anytime."
+msgstr "Seesei, EduPrompt hia internet, nanso wubetumi <strong>download nkyerɛaseɛ a wɔayɛ</strong> de sua offline bere biara."
+
+
+#: templates/ai_solver.html:2
+msgid "Who Can Benefit from Our AI  Solver?"
+msgstr "Hena na Obetumi Afa Mfaso Fi Yɛn AI Solver No Mu?"
+
+#: templates/ai_solver.html:4
+msgid "Our AI-powered solver is designed to assist anyone looking to excel in mathematics,physis and chemistry from students tackling exams to educators creating engaging lessons. With intelligent step-by-step solutions, instant explanations, and problem scanning, users can save time, boost understanding, and achieve outstanding results."
+msgstr "Yɛn AI solver no yɛ de boa obiara a pɛ sɛ ɔyɛ papa wɔ adwumayɛ, fisiks ne kemistri mu, fi sukuufo a retoto nsɛmmisa kɔsi akyerɛkyerɛfo a retoto adesua a ɛyɛ mfaso. Teteɛ, mmara-mu nkyerɛkyerɛ, ne nsɛm-hwehwɛ boa ma ɛboa sɛ wopɛ bere, te aseɛ yiye, na nya nkɔso papa."
+
+
+#: templates/ai_solver.html:21
+msgid "Parents"
+msgstr "Awofo"
+
+#: templates/ai_solver.html:26
+msgid "Lifelong Learners"
+msgstr "Akwankyerɛfo a Wɔre Sua Wiase Nyinaa"
+
+#: templates/ai_solver.html:36
+msgid "Students preparing for exams like WAEC, JAMB, SAT, or any academic level can instantly solve math problems with step-by-step explanations. Our AI ensures faster understanding, helps complete assignments efficiently, and provides additional practice questions to strengthen learning."
+msgstr "Asuafo a wɔre siesie wɔn ho ama nsɛmmisa te sɛ WAEC, JAMB, SAT, anaa ɔsom foforɔ biara betumi atu nsɛm no so ntɛm de mmara-mu nkyerɛkyerɛ. Yɛn AI ma te aseɛ ntɛm, boa ma adwuma yɛ yie, na ma nsɛm foforɔ a ɛboa sua ade."
+
+#: templates/ai_solver.html:42
+msgid "With our solver, students can focus on mastering concepts, improving problem-solving speed, and gaining confidence in mathematics, making exam preparation more effective and less stressful."
+msgstr "Fa yɛn solver no yɛ adwuma a, asuafo betumi de adwene hyɛ adwuma so, kɔ so ntɛm wɔ nsɛm ho, na nya gyidi wɔ adwumayɛ mu, ma nsiesieɛ ho yɛ mfaso na ɛnni stress."
+
+#: templates/ai_solver.html:50
+msgid "Teachers and tutors can create high-quality lesson plans, quizzes, and practice materials effortlessly. The AI solver helps demonstrate solutions clearly, saving time while providing accurate examples to enhance classroom learning and student engagement."
+msgstr "Akyerɛkyerɛfo ne mpanyinfo betumi ayɛ adesua ho nhyehyɛe, nsɛmmisa, ne nsɛm a ɛboa sua ade a ɛyɛ papa. AI solver no kyerɛ sɛnea ɛyɛ, boaboa bere ano, na ma mmɛyɛ nhyehyɛe a ɛboa sua ade wɔ sukuu mu."
+
+#: templates/ai_solver.html:56
+msgid "Educators can also use the platform to track student progress, design personalized exercises, and enrich teaching resources, ensuring a modern and interactive learning experience."
+msgstr "Akyerɛkyerɛfo nso betumi de platform no ahwehwɛ asuafo nkɔso, yɛ nsɛm a ɛfata wɔn ho, na ka akyerɛkyerɛ nsɛm ho, ma nkɔso a ɛyɛ nkɔsoɔ ne interaktiv."
+
+#: templates/ai_solver.html:64
+msgid "Parents assisting children with homework can leverage the AI solver to guide them through challenging problems. Instant solutions and explanations help parents support learning effectively, even without advanced math knowledge."
+msgstr "Awofo a wɔboa mma wɔn ho nsɛm betumi de AI solver no akyerɛ mma wɔn akɔ nsɛm a ɛyɛ den mu. Mmara-mu nkyerɛkyerɛ no boa awofo ma ɛboa sua ade yiye, sɛ wonni nimdeɛ foforɔ wɔ adwumayɛ ho."
+
+#: templates/ai_solver.html:70
+msgid "This empowers families to foster independent learning, boost confidence in mathematics, and ensure children stay on top of their studies."
+msgstr "Eyi ma abusua no tumi hyɛ mma wɔn ho so, ma gyidi wɔ adwumayɛ mu, na ma mma no so wɔ wɔn sukuu nsɛm so."
+
+#: templates/ai_solver.html:78
+msgid "Lifelong learners exploring STEM or revisiting mathematics can use our AI platform to practice, solve advanced problems, and build strong analytical skills. The solver provides instant feedback and explanations to help learners progress at their own pace."
+msgstr "Akwankyerɛfo a wɔre sua STEM anaa resan sua adwumayɛ betumi de AI platform yɛ adwuma, tua nsɛm a ɛyɛ den, na hyɛ adwene so. Solver no ma mmuaeɛ ntɛm ne nkyerɛkyerɛ a ɛboa ma akwankyerɛfo nkɔ so wɔ wɔn ankasa tempo."
+
+#: templates/ai_solver.html:84
+msgid "It’s perfect for personal growth, skill development, or preparing for certifications, making math learning accessible and engaging for users of all ages."
+msgstr "Ɛyɛ papa ma nnipa ara, nsɛm sua ho nkɔso, anaa siesie ho ma nsɛmma nhoma, ma adwumayɛ sua no yɛ mfaso na ɛyɛ anigye ma obiara."
+
+#: templates/ai_solver.html:92
+msgid "How It Works"
+msgstr "Ɛyɛ Dɛn Na Ɛyɛ Adwuma"
+
+#: templates/ai_solver.html:94
+msgid "Our platform is designed to simplify learning and problem-solving. Follow these simple steps to experience the power of AI in generating accurate solutions efficiently."
+msgstr "Platform yɛde boa ma sua ade ne nsɛm sua no mu. Di mmara yi mu de hu AI tumi ma mmuaeɛ a ɛyɛ nokware ntɛm."
+
+#: templates/ai_solver.html:100
+msgid "Step 1: Input Your Problem"
+msgstr "Step 1: Hyɛ Wo Nsɛm Mu"
+
+#: templates/ai_solver.html:102
+msgid "Enter your problem manually or scan it using your device camera. Our AI instantly detects the content and prepares it for processing. This flexible input method ensures you can start learning without any technical hurdles."
+msgstr "Hyɛ nsɛm no mu nkoaa anaa fa kamera no scan. AI no hwehwɛ nsɛm no ntɛm na yɛ no ready. Eyi boa ma wo tumi sua ade a ennni ɔhaw biara."
+
+#: templates/ai_solver.html:110
+msgid "Step 2: AI Solves Step-by-Step"
+msgstr "Step 2: AI Yɛ Nsɛm No Mataki-Mataki"
+
+#: templates/ai_solver.html:112
+msgid "Our advanced AI analyzes your problem and generates a step-by-step solution. Each explanation is clear, structured, and easy to follow, helping you understand the concepts behind the answer while building confidence in your learning."
+msgstr "AI a ɛyɛ advanced hwehwɛ nsɛm no na yɛ solution mataki-mataki. Nkyerɛkyerɛ no yɛ clear, arranged, na ɛyɛ easy de follow, ma wo te ade yiye na nya gyidi wɔ wo sua mu."
+
+#: templates/ai_solver.html:120
+msgid "Step 3: Voice or Download"
+msgstr "Step 3: Tɛlɛfoɔ anaa Download"
+
+#: templates/ai_solver.html:122
+msgid "Listen to an optional voice explanation or download the complete solution in PDF format. This feature allows you to review the solution at your own pace, share it with peers, or save it for future reference."
+msgstr "Tie optional voice explanation anaa download solution no PDF. Eyi ma wotumi review solution wo tempo, share kyerɛ friends, anaa save ma future use."
+
+#: templates/ai_solver.html:132
+msgid "What <strong>users</strong> are <strong>saying about AI Solver."
+msgstr "Deɛ <strong>users</strong> ka fa <strong>AI Solver</strong> ho."
+
+#: templates/ai_solver.html:135
+msgid "AI Solver has transformed how I handle math problems. It’s fast, accurate, and gives clear step-by-step solutions I can trust."
+msgstr "AI Solver asesa sɛnea mete math problems. ɛyɛ ntɛm, accurate, na ma clear step-by-step solutions a me tumi trust."
+
+#: templates/ai_solver.html:140
+msgid "I love how AI Solver adapts to any topic. It feels like having a professional tutor available 24/7 for every math challenge."
+msgstr "Mepɛ sɛnea AI Solver adapts kɔ topic biara. ɛte sɛ sɛ wokura professional tutor a ɛda hɔ 24/7 ma math challenge biara."
+
+#: templates/ai_solver.html:145
+msgid "Using AI Solver has saved me hours of studying. The explanations are easy to follow, human-like, and extremely detailed."
+msgstr "Susu AI Solver ama manya time pa wɔ studying. Nkyerɛkyerɛ no yɛ easy follow, human-like, na very detailed."
+
+#: templates/ai_solver.html:150
+msgid "AI Solver not only solves problems but also helps me understand the logic behind them. It’s my go-to tool for learning and exam prep."
+msgstr "AI Solver nko ara ɛnyɛ de solve problems, na ɛboa ma mete logic a ɛwɔ akyi no. ɛyɛ me tool a me de yɛ learning ne exam prep."
+
+msgid "Math, Physics, or Chemistry Problem"
+msgstr "Adwumayɛ, Fisiks, anaa Kemistri Nsɛm"
+
+msgid "Learn smarter, not harder. Our AI-powered solver guides you through step-by-step solutions for tricky high-school exercises to advanced university problems. Understand concepts deeply while mastering problem-solving skills—perfect for curious students, exam preparation, and lifelong learners."
+msgstr "Sua ade nyansa mu, ɛnyɛ den. Yɛn AI solver no bɔ wo ho ban ma wo nya mmara-mu nkyerɛkyerɛ wɔ nsɛm a ɛyɛ den wɔ sukuu ne university mu. Te adwene ase pa, na nya problem-solving skills—ɛyɛ papa ma asuafo a wɔpɛ sɛ wɔte ade, nsiesie ho, ne wɔn a wɔwɔ sukuu nkɔso a wɔn ani gye ho."
+
+msgid "Default"
+msgstr "Default"
+
+msgid "Problems"
+msgstr "Nsɛm"
+
+msgid "A block of mass 5 kg slides down a frictionless incline of height 3 m. Calculate the velocity of the block at the bottom of the incline."
+msgstr "Block bi a ne ho yɛ 5 kg retɔ fam wɔ incline a ɛnni friction a ne tenten yɛ 3 m. Kɔ so kan block no ntɛm wɔ fam no so."
+
+msgid "Solve the logarithmic equation log₂(x) = 8."
+msgstr "Tua logarithmic equation log₂(x) = 8."
+
+msgid "Evaluate the integral ∫₀¹ (3x² + 2x) dx."
+msgstr "Kɔ so hwehwɛ integral ∫₀¹ (3x² + 2x) dx."
+
+msgid "Calculate the pH of a 0.01 M HCl solution at 25°C."
+msgstr "Kɔ so kyerɛ pH a ɛwɔ 0.01 M HCl solution wɔ 25°C."
+
+msgid "Enter Your Question"
+msgstr "Hyɛ Wo Nsɛm Mu"
+
+msgid "Or Upload Image"
+msgstr "Anaa Fa Mfonini"
+
+msgid "Solve Image"
+msgstr "Tua Mfonini No"
+
+msgid "Solution"
+msgstr "Mmuaeɛ"
+
+msgid "Results will appear here..."
+msgstr "Mmuaeɛ bɛda ha..."
+
+msgid "Download Solution"
+msgstr "Download Mmuaeɛ"
+
+
+
+msgid "AI Tools Hub – AI Essay, Solver, Grammar, project writer, note, letter & Design Solutions"
+msgstr "AI Nkɔmɔdeɛ Fie – AI Nsɛm Nwoma, Asɛmsohwe, Kasasɛm Hwɛ, Adwumadie Kyerɛwfo, Nsɛm Nwoma, Mmerɛw Kyerɛwfo & Nhyehyɛɛ Nsɛmma"
+
+msgid "Explore our suite of AI-powered tools including Essay Generator, Math/Physics/Chemistry Solver, Grammar Checker, letter writer, project writer, Flyer Design, Web Development, and more. Instantly create essays, solve academic problems, check grammar, and design professional digital assets. Trusted by students, professionals, and businesses worldwide."
+msgstr "Sɔ hwɛ yɛn AI nkɔmɔdeɛ a ɛboa w’asua adeɛ, te sɛ Nsɛm Nwoma Kyerɛwfo, Adwumadie Soafo wɔ Mfonini/Anibueɛ/Kemistri, Kasasɛm Hwɛfo, Mmerɛw Kyerɛwfo, Adwumadie Kyerɛwfo, Flyer Nhyehyɛɛ, Wɛbsaet Siadeɛfo, ne nkɔmɔdeɛ foforɔ. Tumi kyerɛw nsɛm, sua nsɛm, hwɛ kasasɛm, na hyɛ nhyehyɛɛ digital adeɛ ase. Asuafo, adwumayɛfo, ne nkitahodie gyina hɔ yɛn ho adanseɛ."
+
+msgid "Eduprompt"
+msgstr "Eduprompt"
+
+msgid "New!"
+msgstr "Foforɔ!"
+
+msgid "Empowering Your Business with Expert Website Development. Unlock Your Business Potential Online"
+msgstr "Ma wo Adwumadie tumi wɔ Wɛbsaet Siadeɛ. Bue wo Adwumadie tumi wɔ Intanɛt so"
+
+msgid "Empower Your Learning with Smart AI Tools"
+msgstr "Ma wo sukuu adesua tumi wɔ Nyansa AI Nkɔmɔdeɛ so"
+
+msgid "Support your studies with AI tools that help you write, solve problems, and understand lessons—at your own pace and in your language. Built for African students, our platform makes learning easier, flexible, and accessible."
+msgstr "Boa wo sukuu adesua wɔ AI nkɔmɔdeɛ a ɛboa wo kyerɛw, sua nsɛm, na te asɛm ase—wɔ wo ho ntɛm ne w’asɛmfua mu. Ɛyɛ ma Afrika asuafo, yɛn platfɔɔm ma sukuu adesua yɛ mmerɛ, ho yɛ fɛ, na obiara betumi de."
+
+msgid "Go Pro"
+msgstr "Kɔ Pro"
+
+msgid "Explore Features"
+msgstr "Sɔ hwɛ Nsɛmma"
+
+msgid "Our Values"
+msgstr "Yɛn Nkyerɛkyerɛ"
+
+msgid "At EduPrompt, students come first. Our AI study assistant is built to help learners grow, understand concepts faster, and feel more confident on their learning journey."
+msgstr "Wɔ EduPrompt, asuafo di kan. Yɛn AI sukuu boafo yɛ de boa asuafo ma wɔ ntena ase, te nsɛm ase ntɛm, na nya gyidi wɔ wɔn sukuu kwan so."
+
+msgid "Clear Understanding"
+msgstr "Te Asɛm Pa"
+
+msgid "We make learning simple. Our AI explains ideas step by step, helping students of all ages grasp concepts easily and confidently."
+msgstr "Yɛma sukuu adesua yɛ mmerɛ. Yɛn AI kyerɛ nsɛm kakra kakra, ma asuafo nyinaa te nsɛm ase na wɔnya gyidi."
+
+msgid "Equal Opportunities"
+msgstr "Nkɔsoɔ Bɔkɔɔ"
+
+msgid "Every student deserves the chance to succeed. Our AI assistant provides consistent support, no matter where you study or what resources you have."
+msgstr "Asuafo biara wɔ hokwan sɛ ɔbɛyɛ yiye. Yɛn AI boafo ma nsɔhwɛ baako pɛ, ɛnnɛ w’asua fie anaa wɔ wo ho."
+
+msgid "Learn at Your Own Pace"
+msgstr "Sua W’ankasa Ntɛm So"
+
+msgid "Everyone learns differently. Our AI study assistant adapts to your speed, making learning personalized, comfortable, and effective."
+msgstr "Obiara sua ɔkwan bi so. Yɛn AI boafo bɔ wo ntɛm ho ban, ma sukuu adesua yɛ w’ankasa, mmerɛ, na yɛ yiye."
+
+msgid "Engaging & Enjoyable"
+msgstr "Ɛyɛ Anigye ne Mmere Pa"
+
+msgid "Learning should be interesting, not stressful. Our AI tools make studying fun, interactive, and easy to follow."
+msgstr "Sukuu adesua ɛsɛ sɛ ɛyɛ anigye, ɛnyɛ haw. Yɛn AI nkɔmɔdeɛ ma sukuu yɛ anigye, bɔ mu, na ɛyɛ mmerɛ kyerɛ."
+
+msgid "Respect & Support"
+msgstr "Di Animuonyam & Boa"
+
+msgid "We value every student. Whether young or adult, our AI assistant ensures a safe, welcoming, and supportive learning experience."
+msgstr "Yɛdi asuafo nyinaa animuonyam. Nkɔsoɔ nyinaa, AI boafo yɛ ɔkwan a ɛho yɛ den, ɛyɛ dɔ, na ɛboa wɔ sukuu adesua mu."
+
+msgid "Learning & Growing Together"
+msgstr "Sua ne Sɔre Ka Ho"
+
+msgid "We constantly improve. By listening to feedback and learning from our students, we grow together, step by step, making our AI assistant smarter and more helpful."
+msgstr "Yɛda so yɛ nkɔsoɔ. Sɛ yɛte asuafo adwene na yɛnya nsɛm fi wɔn ho, yɛbɛsɔre ka ho, kakra kakra, ma AI boafo yɛ nyansa na ɛboa paa."
+
+msgid "Students Achieving Success"
+msgstr "Asuafo a Wɔyɛ Yiye"
+
+msgid "Content Generated"
+msgstr "Nsɛm a Wɔahyɛ"
+
+msgid "Hours of AI Assistance"
+msgstr "AI Boa Ahorow"
+
+msgid "AI Tools Available"
+msgstr "AI Nkɔmɔdeɛ a Wɔwɔ Hɔ"
+
+msgid "Features"
+msgstr "Nsɛmma"
+
+msgid "Our Features"
+msgstr "Yɛn Nsɛmma"
+
+msgid "Create detailed notes from your topics quickly and easily"
+msgstr "Bɔ nsɛm a ɛyɛ den ho nhoma fi w’asɛm nsɛm ntɛm na mmerɛ so"
+
+msgid "Generate well-structured essays with AI guidance"
+msgstr "Kyerɛ nsɛm nwoma a ɛyɛ pɛ na AI bɔ wo ho ban"
+
+msgid "letter writer"
+msgstr "Mmerɛw Kyerɛwfo"
+
+msgid "Generate professional letters instantly."
+msgstr "Tumi kyerɛw mmerɛw a ɛyɛ adwumayɛ pa ntɛm"
+
+msgid "Save time and create polished content for any purpose"
+msgstr "Sie bere na kyerɛ nsɛm a ɛyɛ pɛ ma biribiara ho"
+
+msgid "Solve equations, formulas, and problems with step-by-step help"
+msgstr "Yi nsɛmfua, fomula, ne asɛm a ɛyɛ den fi mu nkɔmɔ kakra kakra so"
+
+msgid "Get AI assistance for writing reports and projects efficiently"
+msgstr "Fa AI boa wo kyerɛw adwumadie ne rapɔt yiye"
+
+msgid "Improve your writing by checking grammar, punctuation, and style"
+msgstr "Bɔ wo kyerɛw ho ban sɛ wopɛ, hwɛ kasasɛm, punctuation, ne style"
+
+msgid "Who Can Benefit from Our AI EdTech Platform?"
+msgstr "Hena Na Obetumi Afa Yɛn AI EdTech Platfɔɔm Ho Mfasoɔ?"
+
+msgid "Our cutting-edge AI-powered EdTech platform is designed to support a wide variety of users, including students, educators, professionals, and researchers. By combining intelligent automation with easy-to-use tools, our platform enables users to save time, enhance productivity, and achieve high-quality outcomes across educational and professional projects."
+msgstr "Yɛn AI EdTech platfɔɔm a ɛyɛ foforɔ no boa nnipa bebree — asuafo, akyerɛkyerɛfo, adwumayɛfo, ne nsɛmma nhwehwɛmufo. Ɛfa adwene nyansa ne nkɔmɔdeɛ a ɛyɛ mmerɛ so ma wosua nkɔso, yɛ adwuma yiye, na nya mfasoɔ wɔ sukuu ne adwumadie nyinaa mu."
+
+msgid "Students"
+msgstr "Asuafo"
+
+msgid "Educators"
+msgstr "Akyerɛkyerɛfo"
+
+msgid "Professionals"
+msgstr "Adwumayɛfo"
+
+msgid "Researchers"
+msgstr "Nsɛmma Nhwehwɛmufo"
+
+msgid "Students can leverage our AI-driven tools to generate comprehensive study guides, detailed assignments, and engaging practice materials that enhance learning outcomes. By using our platform, learners can save significant time on repetitive tasks, focus on understanding core concepts, and ensure all content is original and plagiarism-free. The platform also encourages independent study, collaborative learning, and better exam preparation, making it an indispensable resource for academic success at every level."
+msgstr "Asuafo betumi de AI nkɔmɔdeɛ yɛ adwuma sɛ wɔbɛbɔ nhoma a ɛyɛ pɔtee, adwumadie a ɛyɛ den, ne nsɛm a ɛyɛ anigye a ɛma sukuu adesua yɛ yiye. Sɛ wɔde platfɔɔm no di dwuma a, asuafo betumi asie bere pii wɔ nsɛm a wɔde yɛ dɔɔso mu, hwɛ nsɛm titiriw ase, na ma nsɛm nyinaa yɛ foforɔ na ɛnyɛ plagiarism. Platfɔɔm no kɔ so ma asuafo sua wɔ wɔn ankasa, ka ho yɛ sukuu adesua, na yɛ nhyehyɛɛ nsɛhwɛ yiye."
+
+msgid "Beyond academic tasks, students can also use our AI to explore creative writing, summarize large volumes of text, and even get guided assistance for research projects. This helps build critical thinking, research skills, and a habit of effective knowledge management, preparing them for higher education and professional challenges."
+msgstr "Ka ho sukuu adesua, asuafo betumi de AI yɛ adwuma kyerɛw nsɛm a ɛyɛ foforɔ, kyekyɛ nsɛm a ɛdɔɔso, na nya mmoa wɔ nsɛmma nhwehwɛmu adwuma mu. Eyi boa ma wobenya adwene titiriw, nsɛmma nhwehwɛmu nimdeɛ, ne adesua nhyehyɛɛ a ɛyɛ yiye, ma wosua wɔ sukuu mpɛn so ne adwumayɛ mu nkɔso."
+
+msgid "AI Accuracy & Reliability"
+msgstr "AI Nokwaredi ne Gyidie"
+
+msgid "99%% Accuracy"
+msgstr "Nokwaredi 99%%"
+
+msgid "Our AI consistently provides accurate solutions and content across subjects and levels, ensuring users can trust the results for learning, teaching, and research."
+msgstr "Yɛn AI da so ma nsɛm a ɛyɛ nokware wɔ asɛm nyinaa ne mpɛn nyinaa mu, ma wosuafo betumi gyidi nsɛm no ho wɔ sukuu, kyerɛkyerɛ, ne nhwehwɛmu mu."
+
+msgid "Verified Results"
+msgstr "Nsɛm A Wɔahwɛ Pɔtee"
+
+msgid "View sample solutions, educational content, and user testimonials that demonstrate the AI’s reasoning and clarity in delivering high-quality outputs."
+msgstr "Hwɛ nsɛm a wɔahyɛ mu, sukuu nsɛm, ne asuafo adanseɛ a ɛkyerɛ AI adwene ne nsɛm a ɛyɛ pɛ wɔ nsɛm a ɛyɛ yiye mu."
+
+msgid "Secure & Private"
+msgstr "Ɔhɔho ne Ahobammɔ"
+
+msgid "Your content and data remain private and secure. We never store sensitive information, providing a safe environment for learners, educators, and professionals."
+msgstr "Wo nsɛm ne data yɛ ahobammɔ na ɔhɔho. Yɛnkyerɛ nsɛm a ɛyɛ den koraa, ma asuafo, akyerɛkyerɛfo, ne adwumayɛfo nya ɔhɔho a ɛyɛ den."
+
+msgid "About the Founder"
+msgstr "Fa Founder Ho Asɛm"
+
+msgid "EduPrompt was founded by Eze Prosper somtochukwu, a software developer passionate about education technology."
+msgstr "EduPrompt fii ase wɔ Eze Prosper Somtochukwu, software developer a ɔdɔ education technology."
+
+msgid "He created this platform to provide students with AI-powered tools that make learning smarter, faster, and more accessible."
+msgstr "Ɔbɔɔ platfɔɔm yi sɛ ɔbɛma asuafo anya AI nkɔmɔdeɛ a ɛma adesua yɛ nyansa, ntɛm, na ɛyɛ mmerɛ."
+
+msgid "Useful Links"
+msgstr "Nsɛm a Wɔde Boa"
+
+msgid "Home"
+msgstr "Fie"
+
+msgid "About Us"
+msgstr "Fa Yɛn Ho"
+
+msgid "Privacy Policy"
+msgstr "Ahobammɔ Ho Mmara"
+
+msgid "Terms and Conditions"
+msgstr "Mmara ne Nhyɛɛmu"
+
+msgid "Our Services"
+msgstr "Yɛn Adwuma"
+
+msgid "Web Design"
+msgstr "Web Design"
+
+msgid "Flyer Design"
+msgstr "Flyer Design"
+
+msgid "Our Tools"
+msgstr "Yɛn Nkɔmɔdeɛ"
+
+msgid "Essay Writer"
+msgstr "Essay Kyerɛwfo"
+
+msgid "Ai Solver"
+msgstr "AI Solver"
+
+msgid "Follow Us"
+msgstr "Di Yɛn Akyi"
+
+msgid "Follow us on all our social media platforms"
+msgstr "Di yɛn akyi wɔ social media platforms nyinaa so"
+
+msgid "EduPrompt</strong> All Rights Reserved."
+msgstr "EduPrompt</strong> Ahyɛde Nyinaa Wɔ Hɔ"
+
+msgid "Scholarship Finder"
+msgstr "Scholarship Hwehwɛfo"
+
+msgid "Sign Up"
+msgstr "Kɔ Mu"
+
+msgid "Full Name"
+msgstr "Din Nyinaa"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Phone Number"
+msgstr "Fɔn Nɔma"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Confirm Password"
+msgstr "Potee Password"
+
+msgid "Country (Optional)"
+msgstr "Ɔman (Optional)"
+
+msgid "Already have an account?"
+msgstr "Wopɛ akawnt dada?"
+
+msgid "Log In"
+msgstr "Kɔ Mu"
+
+msgid "Study Planner"
+msgstr "Adesua Nhyehyɛɛ"
