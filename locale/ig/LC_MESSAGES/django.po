@@ -96,8 +96,7 @@ msgstr "Ụmụ akwụkwọ na-amụ mgbe niile na-enyocha STEM ma ọ bụ na-e
 msgid "It’s perfect for personal growth, skill development, or preparing for certifications, making math learning accessible and engaging for users of all ages."
 msgstr "Ọ dị mma maka mmepe onwe onye, mmepe nka, ma ọ bụ mmegharị maka asambodo, na-eme ka mmụta mgbakọ dị mfe ịnweta ma na-adọrọ mmasị maka ndị ọrụ nke afọ niile."
 
-msgid "How It Works"
-msgstr "Olee Otú Ọ Si Arụ Ọrụ"
+
 
 msgid "Our platform is designed to simplify learning and problem-solving. Follow these simple steps to experience the power of AI in generating accurate solutions efficiently."
 msgstr "Ikpo okwu anyị e mere iji mee ka mmụta na ịkọrọ nsogbu dị mfe. Soro nzọụkwụ ndị a dị mfe iji nweta ike AI na ịmepụta ngwọta ziri ezi nke ọma."
@@ -183,8 +182,6 @@ msgstr "Imebe Flyers"
 msgid "Our Tools"
 msgstr "Ngwaọrụ Anyị"
 
-msgid "Essay Writer"
-msgstr "Onye Na-ede Akwụkwọ"
 
 
 
@@ -391,20 +388,11 @@ msgid "Subscribe"
 msgstr "Debanye aha"
 
 
-msgid "Professionals"
-msgstr "Ọkachamara"
 
 
 
 
 
-
-
-
-
-#: templates/ai_platform.html:14
-msgid "Students"
-msgstr "Ụmụ akwụkwọ"
 
 
 
@@ -498,3 +486,314 @@ msgstr "Enwere m ike iji EduPrompt offline?"
 #: templates/ai_platform.html:190
 msgid "Currently, EduPrompt requires internet access, but you can <strong>download generated notes</strong> to study offline anytime."
 msgstr "Ugbu a, EduPrompt chọrọ ịntanetị, mana ị nwere ike <strong>budata ndekọ e kere</strong> iji mụta offline mgbe niile."
+
+
+
+
+#: templates
+msgid "Free AI Essay Generator<p>Write Professional Essays Instantly"
+msgstr "Ngwaọrụ AI N’efu Maka Ide Ese<p>Dee Ese Ọkachamara Ozugbo"
+
+#: templates
+msgid "Generate high-quality essays on any topic in seconds with our free AI-powered essay generator."
+msgstr "Mepụta ese dị elu n’otu isiokwu ọ bụla n’ime sekọnd ole na ole site n’iji igwe AI anyị n’efu."
+
+#: templates
+msgid "Perfect for students, researchers, and content creators looking for structured, plagiarism-free content."
+msgstr "Ọ kacha mma maka ụmụakwụkwọ, ndị na-eme nnyocha, na ndị na-emepụta ọdịnaya na-achọ ọdịnaya kwụ ọtọ nke enweghị izu ohi."
+
+#: templates
+msgid "Start Generating Essays Instantly"
+msgstr "Bido Mepụta Ese Ozugbo"
+
+#: templates
+msgid "Try our free AI Essay Generator and create professional essays in seconds."
+msgstr "Nwale Ngwaọrụ Ese AI N’efu anyị ma mee ese ọkachamara n’ime sekọnd ole na ole."
+
+#: templates
+msgid "Generate Your Essay Now"
+msgstr "Mee Ese Gị Ugbu a"
+
+#: templates
+msgid "Essay Writer"
+msgstr "Onye Na-ede Ese"
+
+#: templates
+msgid "Essay Type Selector"
+msgstr "Ngwa Nhọrọ Ụdị Ese"
+
+#: templates
+msgid "Choose Your Essay Type"
+msgstr "Họrọ Ụdị Ese Gị"
+
+#: templates
+msgid "Narrativ"
+msgstr "Akụkọ"
+
+#: templates
+msgid "Descriptive"
+msgstr "Nkọwa"
+
+#: templates
+msgid "Expository"
+msgstr "Nkọwa zuru ezu"
+
+#: templates
+msgid "Persuasive"
+msgstr "Ikpalite Obi"
+
+#: templates
+msgid "Analytical"
+msgstr "Nnyocha"
+
+#: templates
+msgid "*Note: Select an essay type to customize the style and tone of your AI-generated essay."
+msgstr "*Rịba ama: Họrọ ụdị ese iji hazie ụdị na olu nke ese AI gị."
+
+#: templates
+msgid "Enter Your Essay Topic"
+msgstr "Tinye Isiokwu Ese Gị"
+
+#: templates
+msgid "Generate Essay"
+msgstr "Mee Ese"
+
+#: templates
+msgid "AI-Generated Essay"
+msgstr "Ese AI Mere"
+
+#: templates
+msgid "Your essay will appear here..."
+msgstr "Ese gị ga-apụta ebe a..."
+
+#: templates
+msgid "📥 Download PDF"
+msgstr "📥 Budata PDF"
+
+#: templates
+msgid "How It Works"
+msgstr "Otu O Si Arụ Ọrụ"
+
+#: templates
+msgid "1. Enter Your Topic"
+msgstr "1. Tinye Isiokwu Gị"
+
+#: templates
+msgid "Type in your essay prompt or topic in the input box."
+msgstr "Tinye ajụjụ ma ọ bụ isiokwu ese gị na igbe ntinye."
+
+#: templates
+msgid "2. AI Generates Content"
+msgstr "2. AI Na-emeputa Odịnaya"
+
+#: templates
+msgid "Our AI creates a unique, structured essay in seconds."
+msgstr "AI anyị na-emepụta ese pụrụ iche nke e guzobere n'ime sekọnd ole na ole."
+
+#: templates
+msgid "3. Review & Edit"
+msgstr "3. Lelee & Dezie"
+
+#: templates
+msgid "Refine the essay and use it for your projects or assignments."
+msgstr "Mee ka ese ahụ ka mma ma jiri ya maka ọrụ gị ma ọ bụ ihe e nyere gị."
+
+#: templates
+msgid "Why You Should Consider Using an AI Essay Generator"
+msgstr "Ihe Mere Ị Ga-eji Chee Maka Iji Ngwaọrụ Ese AI"
+
+#: templates
+msgid "Discover how our AI-powered essay generator can save time, improve your writing,"
+msgstr "Chọpụta otú ngwa AI anyị si arụ ọrụ nwere ike ịzọpụta oge, melite ide gị,"
+
+#: templates
+msgid "and help you create high-quality essays effortlessly."
+msgstr "na-enyere gị aka imepụta ese dị elu n’enweghị mgbalị."
+
+#: templates
+msgid "Save Time and Effort"
+msgstr "Zọpụta Oge na Mgbalị"
+
+#: templates
+msgid "Instantly generate essays without spending hours researching and writing."
+msgstr "Mee ese ozugbo na-enweghị itinye ọtụtụ awa n’ime nnyocha na ide."
+
+#: templates
+msgid "Boost Productivity"
+msgstr "Bulie Mmepụta"
+
+#: templates
+msgid "Focus on editing and creativity while AI handles the first draft for you."
+msgstr "Lezie anya n’idezi na imepụta ihe mgbe AI na-elekọta mbipụta mbụ maka gị."
+
+#: templates
+msgid "Improve Writing Skills"
+msgstr "Melite Nkà Ide"
+
+#: templates
+msgid "Learn essay structure and formatting by studying AI-generated drafts."
+msgstr "Mụta usoro na nhazi ese site n’ịmụ drafts AI mere."
+
+#: templates
+msgid "Plagiarism-Free Drafts"
+msgstr "Drafts Enweghị Izu Ohi"
+
+#: templates
+msgid "Generate unique essays that are perfect as a starting point for your work."
+msgstr "Mee ese pụrụ iche nke dabara adaba maka mmalite ọrụ gị."
+
+#: templates
+msgid "Available 24/7"
+msgstr "Dịrị 24/7"
+
+#: templates
+msgid "Access the essay generator anytime, anywhere, without delays."
+msgstr "Nweta igwe ese ahụ n’oge ọ bụla, ebe ọ bụla, na-enweghị igbu oge."
+
+#: templates
+msgid "Perfect for All Users"
+msgstr "Dabara Maka Ndị Ọ bụla"
+
+#: templates
+msgid "Students, bloggers, and researchers can all benefit from AI-powered essays."
+msgstr "Ụmụakwụkwọ, ndị na-ede blọgụ, na ndị na-eme nnyocha niile nwere ike nweta uru site n’ese AI."
+
+#: templates
+msgid "Who Can Benefit from Our AI Essay Generator?"
+msgstr "Ònye Ga-enweta Uru Site na Ngwaọrụ Ese AI Anyị?"
+
+#: templates
+msgid "Our AI-powered essay generator is designed for learners, professionals, and educators who need high-quality essays, reports, or academic writing. With clear, well-structured content, instant topic coverage, and proper formatting, it saves time while ensuring originality and clarity."
+msgstr "Ngwa AI anyị bụ nke e mere maka ụmụakwụkwọ, ndị ọkachamara, na ndị nkuzi chọrọ ese dị elu, akụkọ, ma ọ bụ ederede agụmakwụkwọ. Site na ọdịnaya doro anya nke e guzobere nke ọma, mkpuchi isiokwu ozugbo, na nhazi kwekọrọ, ọ na-azọpụta oge ebe ọ na-eme ka ịdị ọhụrụ na ịdị ọcha dịrị."
+
+#: templates
+msgid "Students"
+msgstr "Ụmụakwụkwọ"
+
+#: templates
+msgid " Educators"
+msgstr " Ndị Nkuzi"
+
+#: templates
+msgid "Professionals"
+msgstr "Ndị Ọkachamara"
+
+#: templates
+msgid "Students at all levels can instantly generate essays for assignments, term papers, and projects. With clear arguments, structured paragraphs, and plagiarism-free writing, our tool makes essay writing easier and more effective."
+msgstr "Ụmụakwụkwọ n’ọkwa niile nwere ike ozugbo imepụta ese maka ọrụ ụlọ, akwụkwọ oge, na oru. Site na okwu doro anya, paragraf kwụ ọtọ, na ide na-enweghị izu ohi, ngwa anyị na-eme ka ide ese dị mfe ma baa uru."
+
+#: templates
+msgid "Teachers and tutors can use the essay generator to create sample essays, model answers, or practice prompts for students. It saves preparation time while ensuring engaging and high-quality teaching materials."
+msgstr "Ndị nkuzi na ndị na-akụzi nwere ike iji igwe ese ahụ mee ihe atụ ese, azịza nlereanya, ma ọ bụ ajụjụ omume maka ụmụakwụkwọ. Ọ na-azọpụta oge nhazi mgbe ọ na-eme ka ihe ọmụmụ bụrụ ihe na-adọrọ mmasị ma dị elu."
+
+#: templates
+msgid "Professionals needing reports, proposals, or formal write-ups can rely on the generator for well-written drafts. It’s ideal for business communication, research summaries, and professional documentation."
+msgstr "Ndị ọkachamara chọrọ akụkọ, aro, ma ọ bụ ederede iwu nwere ike ịdabere na igwe ahụ maka drafts e dere nke ọma. Ọ dabara adaba maka nkwukọrịta azụmahịa, nchịkọta nyocha, na akwụkwọ ọkachamara."
+
+#: templates
+msgid "Frequently Asked Questions"
+msgstr "Ajụjụ a na-ajụkarị"
+
+#: templates
+msgid "Everything you need to know about our AI Essay Generator and why it stands out in Africa and beyond."
+msgstr "Ihe niile ị ga-amarịrị banyere Ngwa Ese AI anyị na ihe kpatara o ji pụta ìhè n’Africa na ụwa dum."
+
+#: templates
+msgid " 1. What makes this AI Essay Generator unique?"
+msgstr "1. Gịnị mere Ngwa Ese AI a ji bụrụ pụrụ iche?"
+
+#: templates
+msgid "Our platform is designed with students, researchers, and content creators in mind."
+msgstr "E mere ikpo okwu anyị n’uche ụmụakwụkwọ, ndị na-eme nnyocha, na ndị na-emepụta ọdịnaya."
+
+#: templates
+msgid "Unlike generic tools, it supports African languages like <strong> Igbo,Hausa, Yoruba, Swahili, and Zulu"
+msgstr "N’adịghị ka ngwa nkịtị, ọ na-akwado asụsụ Afrịka dịka <strong> Igbo, Hausa, Yoruba, Swahili, na Zulu"
+
+#: templates
+msgid "making it ideal for diverse users across Africa and the world."
+msgstr "na-eme ka ọ dabara adaba maka ndị ọrụ dị iche iche n’Africa na ụwa dum."
+
+#: templates
+msgid " 2. Is the AI-generated essay plagiarism-free?"
+msgstr "2. Ese AI kere a nwere izu ohi?"
+
+#: templates
+msgid "Yes, our AI generates unique essays for every prompt. "
+msgstr "Ee, AI anyị na-emeputa ese pụrụ iche maka ajụjụ ọ bụla. "
+
+#: templates
+msgid "While we recommend reviewing and editing the draft for personal touches,"
+msgstr "N’agbanyeghị na anyị na-akwado ka e lelee ma dezie drafts iji tinye mmetụ onwe,"
+
+#: templates
+msgid "the content is <strong>100% original and plagiarism-free"
+msgstr "odịnaya ahụ bụ <strong>100% nke mbụ na-enweghị izu ohi"
+
+#: templates
+msgid "3. Can I use this tool for school assignments or research?"
+msgstr "3. Enwere m ike iji ngwa a maka ọrụ ụlọ akwụkwọ ma ọ bụ nnyocha?"
+
+#: templates
+msgid "Absolutely! Our AI Essay Generator is perfect for <strong>assignments, research projects,"
+msgstr "N'ezie! Ngwa Ese AI anyị zuru oke maka <strong>ọrụ ụlọ, ọrụ nnyocha,"
+
+#: templates
+msgid "academic essays, and even blog content"
+msgstr "ese agụmakwụkwọ, ọbụna ọdịnaya blọgụ"
+
+#: templates
+msgid "It saves you hours of writing and helps you start with a high-quality draft."
+msgstr "Ọ na-azọpụta gị awa ole na ole nke ide ma na-enyere gị aka ịmalite site na draft dị elu."
+
+#: templates
+msgid "Does the AI support multiple African languages?"
+msgstr "Ngwa AI ahụ na-akwado ọtụtụ asụsụ Afrịka?"
+
+#: templates
+msgid "Yes! This is where our MVP truly stands out."
+msgstr "Ee! Nke a bụ ebe MVP anyị pụtara ìhè n’ezie."
+
+#: templates
+msgid "We offer support for <strong>Hausa, Yoruba, Igbo, Swahili, Zulu, and Amharic"
+msgstr "Anyị na-enye nkwado maka <strong> Hausa, Yoruba, Igbo, Swahili, Zulu, na Amharic"
+
+#: templates
+msgid "Students and professionals across Africa can finally generate essays in their preferred languages."
+msgstr "Ụmụakwụkwọ na ndị ọkachamara n’Africa nwere ike n’ikpeazụ imepụta ese n’asụsụ ha họọrọ."
+
+#: templates
+msgid " 5. Is the AI Essay Generator free to use?"
+msgstr "5. Ngwa Ese AI ahụ n’efu iji?"
+
+#: templates
+msgid "Yes! Our basic AI essay generation is <strong>completely free"
+msgstr "Ee! Ngwa Ese AI anyị bụ <strong>n’efu kpamkpam"
+
+#: templates
+msgid "Premium features such as advanced research assistance and long-form essays"
+msgstr "Njirimara kacha elu dịka enyemaka nnyocha omimi na ese ogologo"
+
+#: templates
+msgid "will be available in the future for users who need more customization."
+msgstr "ga-adị na ọdịnihu maka ndị ọrụ chọrọ nhazi ọzọ."
+
+#: templates
+msgid "What <strong>users</strong> are <strong>saying about our Essay Generator."
+msgstr "Ihe ndị <strong>ọrụ</strong> na-ekwu gbasara Ngwa Ese anyị."
+
+#: templates
+msgid "The essay generator saved me hours on assignments. It creates well-structured essays that I can use as inspiration and reference."
+msgstr "Ngwa ese ahụ zọpụtara m ọtụtụ awa n’ọrụ ụlọ. Ọ na-emeputa ese e guzobere nke ọma nke m nwere ike iji dịka mkpali na ntụaka."
+
+#: templates
+msgid "I was struggling with academic writing, but now I can generate clear, plagiarism-free essays in minutes. A real game changer for me."
+msgstr "E nwere nsogbu m nwere na ide ederede agụmakwụkwọ, mana ugbu a, enwere m ike imeputa ese doro anya nke na-enweghị izu ohi n'ime nkeji ole na ole. Ọ bụ mgbanwe eziokwu maka m."
+
+#: templates
+msgid "This tool gives me confidence when writing research papers. The arguments are solid and the content flows naturally."
+msgstr "Ngwa a na-enye m ntụkwasị obi mgbe m na-ede akwụkwọ nnyocha. Ihe ngosi ahụ siri ike ma ọdịnaya na-agba ọsọ nke ọma."
+
+#: templates
+msgid "As a professional, I use it for quick reports and drafts. It saves me time and helps me stay productive at work."
+msgstr "Dịka ọkachamara, ana m eji ya maka akụkọ ngwa ngwa na drafts. Ọ na-azọpụta m oge ma na-enyere m aka ịdị mmepụta n’ọrụ."

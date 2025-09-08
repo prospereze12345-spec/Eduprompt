@@ -423,8 +423,7 @@ msgstr "Syeed AI EdTech wa to ti ni ilọsiwaju jẹ́ fún ìdájọ́pọ̀ aw
 
 
 
-msgid "Professionals"
-msgstr "Àwọn Amọ̀ṣẹ́"
+
 
 msgid "Researchers"
 msgstr "Àwọn Onímọ̀"
@@ -587,8 +586,6 @@ msgstr "Apẹrẹ Fàìlà"
 msgid "Our Tools"
 msgstr "Àwọn Irinṣẹ́ Wa"
 
-msgid "Essay Writer"
-msgstr "Olùkọ́wé Ìkọ̀wé"
 
 
 
@@ -677,13 +674,7 @@ msgstr "Tani Le Ni Anfaani Lati Olùṣàbájá AI Wa?"
 msgid "Our AI-powered solver is designed to assist anyone looking to excel in mathematics,physis and chemistry from students tackling exams to educators creating engaging lessons. With intelligent step-by-step solutions, instant explanations, and problem scanning, users can save time, boost understanding, and achieve outstanding results."
 msgstr "Olùṣàbájá wa ti a ṣe pẹlu AI jẹ apẹrẹ lati ran ẹnikẹni lọwọ ti o fẹ ṣaṣeyọri ninu iṣiro, fisiksi ati kemistri, lati ọdọ awọn akẹkọ ti n ṣe ayẹwo si awọn olukọ ti n ṣẹda ẹkọ ti o ni idunnu. Pẹlu awọn ojutu igbesẹ-nipasẹ-igbesẹ ọlọgbọn, awọn alaye lẹsẹkẹsẹ, ati ayewo iṣoro, awọn olumulo le fi akoko pamọ, mu oye wọn pọ si, ati ṣaṣeyọri awọn abajade to gaju."
 
-#: templates/ai_solver.html:11
-msgid "Students"
-msgstr "Awọn Akẹkọ"
 
-#: templates/ai_solver.html:16
-msgid "Educators"
-msgstr "Awọn Olukọ"
 
 #: templates/ai_solver.html:21
 msgid "Parents"
@@ -725,9 +716,7 @@ msgstr "Awọn akẹkọ aye gbogbo ti n ṣawari STEM tabi tun n ṣe iṣiro l
 msgid "It’s perfect for personal growth, skill development, or preparing for certifications, making math learning accessible and engaging for users of all ages."
 msgstr "O pe fun idagbasoke ara ẹni, idagbasoke ọgbọn, tabi igbaradi fun awọn iwe-ẹri, ṣiṣe ẹkọ iṣiro wiwọle ati ifamọra fun awọn olumulo ti gbogbo ọjọ-ori."
 
-#: templates/ai_solver.html:92
-msgid "How It Works"
-msgstr "Bawo Ni O Ṣe Nṣiṣẹ"
+
 
 #: templates/ai_solver.html:94
 msgid "Our platform is designed to simplify learning and problem-solving. Follow these simple steps to experience the power of AI in generating accurate solutions efficiently."
@@ -776,3 +765,317 @@ msgstr "Lilo AI Solver ti fi awọn wakati pupọ ti kika pamọ fun mi. Awọn 
 #: templates/ai_solver.html:150
 msgid "AI Solver not only solves problems but also helps me understand the logic behind them. It’s my go-to tool for learning and exam prep."
 msgstr "AI Solver kii ṣe yanju awọn iṣoro nikan ṣugbọn tun ṣe iranlọwọ fun mi lati ni oye ilana lẹhin wọn. O jẹ irinṣẹ ti Mo lo nigbagbogbo fun ẹkọ ati igbaradi idanwo."
+
+
+
+
+
+
+
+#: templates
+msgid "Free AI Essay Generator<p>Write Professional Essays Instantly"
+msgstr "Ẹrọ Ṣiṣẹda Aroko AI Ọfẹ<p>Kọ Awọn Aroko Amọ̀ja Lẹsẹkẹsẹ"
+
+#: templates
+msgid "Generate high-quality essays on any topic in seconds with our free AI-powered essay generator."
+msgstr "Ṣẹda awọn aroko didara ga lori koko-ọrọ kankan ni iṣẹju-aaya pẹlu ẹrọ aroko AI ọfẹ wa."
+
+#: templates
+msgid "Perfect for students, researchers, and content creators looking for structured, plagiarism-free content."
+msgstr "O dara fun awọn akẹ́kọ̀ọ́, awọn oniwadi, ati awọn onkọwe akoonu ti n wa akoonu ti a ṣeto daradara, laisi ijale."
+
+#: templates
+msgid "Start Generating Essays Instantly"
+msgstr "Bẹrẹ Ṣiṣẹda Awọn Aroko Lẹsẹkẹsẹ"
+
+#: templates
+msgid "Try our free AI Essay Generator and create professional essays in seconds."
+msgstr "Gbiyanju Ẹrọ Aroko AI Ọfẹ wa ki o ṣẹda awọn aroko amọ̀ja ni iṣẹju-aaya."
+
+#: templates
+msgid "Generate Your Essay Now"
+msgstr "Ṣẹda Aroko Rẹ Bayi"
+
+#: templates
+msgid "Essay Writer"
+msgstr "Onkọwe Aroko"
+
+#: templates
+msgid "Essay Type Selector"
+msgstr "Aṣayan Iru Aroko"
+
+#: templates
+msgid "Choose Your Essay Type"
+msgstr "Yan Iru Aroko Rẹ"
+
+#: templates
+msgid "Narrativ"
+msgstr "Itan"
+
+#: templates
+msgid "Descriptive"
+msgstr "Apejuwe"
+
+#: templates
+msgid "Expository"
+msgstr "Alaye"
+
+#: templates
+msgid "Persuasive"
+msgstr "Idaniloju"
+
+#: templates
+msgid "Analytical"
+msgstr "Itupalẹ"
+
+#: templates
+msgid "*Note: Select an essay type to customize the style and tone of your AI-generated essay."
+msgstr "*Akiyesi: Yan iru aroko lati ṣe adani ara ati ohun ti aroko AI rẹ ṣẹda."
+
+#: templates
+msgid "Enter Your Essay Topic"
+msgstr "Tẹ Koko-ọrọ Aroko Rẹ"
+
+#: templates
+msgid "Generate Essay"
+msgstr "Ṣẹda Aroko"
+
+#: templates
+msgid "AI-Generated Essay"
+msgstr "Aroko ti AI Ṣẹda"
+
+#: templates
+msgid "Your essay will appear here..."
+msgstr "Aroko rẹ yoo han nibi..."
+
+#: templates
+msgid "📥 Download PDF"
+msgstr "📥 Ṣe igbasilẹ PDF"
+
+#: templates
+msgid "How It Works"
+msgstr "Bawo Ni O Ṣe Nṣiṣẹ"
+
+#: templates
+msgid "1. Enter Your Topic"
+msgstr "1. Tẹ Koko-ọrọ Rẹ"
+
+#: templates
+msgid "Type in your essay prompt or topic in the input box."
+msgstr "Tẹ koko-ọrọ tabi ibeere aroko rẹ sinu apoti."
+
+#: templates
+msgid "2. AI Generates Content"
+msgstr "2. AI Ṣẹda Akoonu"
+
+#: templates
+msgid "Our AI creates a unique, structured essay in seconds."
+msgstr "AI wa ṣẹda aroko alailẹgbẹ ti a ṣeto daradara ni iṣẹju-aaya."
+
+#: templates
+msgid "3. Review & Edit"
+msgstr "3. Atunwo & Ṣatunkọ"
+
+#: templates
+msgid "Refine the essay and use it for your projects or assignments."
+msgstr "Ṣatunṣe aroko naa ki o lo fun iṣẹ́ tabi iṣẹ́-ile rẹ."
+
+#: templates
+msgid "Why You Should Consider Using an AI Essay Generator"
+msgstr "Idi Ti O Fi Ṣe Pataki Lati Lo Ẹrọ Aroko AI"
+
+#: templates
+msgid "Discover how our AI-powered essay generator can save time, improve your writing,"
+msgstr "Ṣawari bi ẹrọ aroko AI wa ṣe le fi akoko pamọ, mu kikọ rẹ dara,"
+
+#: templates
+msgid "and help you create high-quality essays effortlessly."
+msgstr "ati ṣe iranlọwọ fun ọ lati ṣẹda awọn aroko didara ga laisi wahala."
+
+#: templates
+msgid "Save Time and Effort"
+msgstr "Fi Akoko ati Aago Pamọ"
+
+#: templates
+msgid "Instantly generate essays without spending hours researching and writing."
+msgstr "Ṣẹda aroko lẹsẹkẹsẹ laisi lilo awọn wakati lori iwadi ati kikọ."
+
+#: templates
+msgid "Boost Productivity"
+msgstr "Mu Ṣiṣẹ pọ si"
+
+#: templates
+msgid "Focus on editing and creativity while AI handles the first draft for you."
+msgstr "Fojusi lori atunṣe ati ẹda lakoko ti AI n mu akọsilẹ akọkọ ṣiṣẹ fun ọ."
+
+#: templates
+msgid "Improve Writing Skills"
+msgstr "Mu Ọgbọn Kikọ Dara Si"
+
+#: templates
+msgid "Learn essay structure and formatting by studying AI-generated drafts."
+msgstr "Kọ ẹkọ eto ati ọna aroko nipa kika awọn akọsilẹ ti AI ṣẹda."
+
+#: templates
+msgid "Plagiarism-Free Drafts"
+msgstr "Awọn Akọsilẹ Laisi Ijale"
+
+#: templates
+msgid "Generate unique essays that are perfect as a starting point for your work."
+msgstr "Ṣẹda awọn aroko alailẹgbẹ ti o dara fun ibẹrẹ iṣẹ rẹ."
+
+#: templates
+msgid "Available 24/7"
+msgstr "Wa Ni 24/7"
+
+#: templates
+msgid "Access the essay generator anytime, anywhere, without delays."
+msgstr "Gba ẹrọ aroko nigbakugba, nibikibi, laisi idaduro."
+
+#: templates
+msgid "Perfect for All Users"
+msgstr "O dara fun Gbogbo Awọn olumulo"
+
+#: templates
+msgid "Students, bloggers, and researchers can all benefit from AI-powered essays."
+msgstr "Awọn akẹ́kọ̀ọ́, awọn onkọwe bulọọgi, ati awọn oniwadi gbogbo le jèrè ninu awọn aroko AI."
+
+#: templates
+msgid "Who Can Benefit from Our AI Essay Generator?"
+msgstr "Tani Le Jèrè Lati Ẹrọ Aroko AI Wa?"
+
+#: templates
+msgid "Our AI-powered essay generator is designed for learners, professionals, and educators who need high-quality essays, reports, or academic writing. With clear, well-structured content, instant topic coverage, and proper formatting, it saves time while ensuring originality and clarity."
+msgstr "Ẹrọ aroko AI wa ni apẹrẹ fun awọn akẹ́kọ̀ọ́, awọn amọ̀ja, ati awọn olukọ ti o nilo awọn aroko didara ga, awọn iroyin, tabi kikọ ile-ẹkọ. Pẹlu akoonu kedere ati ti a ṣeto daradara, pẹlu agbegbe koko lẹsẹkẹsẹ ati ọna kika deede, o fi akoko pamọ ati jẹrisi atilẹba ati kedere."
+
+#: templates
+msgid "Students"
+msgstr "Awọn akẹ́kọ̀ọ́"
+
+#: templates
+msgid " Educators"
+msgstr " Awọn olukọ"
+
+#: templates
+msgid "Professionals"
+msgstr "Awọn amọ̀ja"
+
+#: templates
+msgid "Students at all levels can instantly generate essays for assignments, term papers, and projects. With clear arguments, structured paragraphs, and plagiarism-free writing, our tool makes essay writing easier and more effective."
+msgstr "Awọn akẹ́kọ̀ọ́ ni gbogbo ipele le ṣẹda aroko lẹsẹkẹsẹ fun awọn iṣẹ́-ile, awọn iwe akoko, ati awọn iṣẹ́ akanṣe. Pẹlu awọn ariyanjiyan kedere, awọn gbolohun ọrọ ti a ṣeto daradara, ati kikọ laisi ijale, irinṣẹ wa mu kikọ aroko rọrùn ati munadoko."
+
+#: templates
+msgid "Teachers and tutors can use the essay generator to create sample essays, model answers, or practice prompts for students. It saves preparation time while ensuring engaging and high-quality teaching materials."
+msgstr "Awọn olukọ ati awọn olukọni le lo ẹrọ aroko lati ṣẹda awọn aroko apẹẹrẹ, awọn idahun awoṣe, tabi awọn ibeere adaṣe fun awọn akẹ́kọ̀ọ́. O fi akoko igbaradi pamọ lakoko ti o n funni ni awọn ohun elo ikẹ́kọ̀ didara ga."
+
+#: templates
+msgid "Professionals needing reports, proposals, or formal write-ups can rely on the generator for well-written drafts. It’s ideal for business communication, research summaries, and professional documentation."
+msgstr "Awọn amọ̀ja ti o nilo awọn iroyin, awọn ipese, tabi awọn akọsilẹ osise le gbẹ́kẹ̀le ẹrọ fun awọn akọsilẹ ti a kọ daradara. O dara fun ibaraẹnisọrọ iṣowo, awọn akopọ iwadi, ati awọn iwe aṣẹ amọ̀ja."
+
+#: templates
+msgid "Frequently Asked Questions"
+msgstr "Awọn ibeere ti a ma n beere nigbagbogbo"
+
+#: templates
+msgid "Everything you need to know about our AI Essay Generator and why it stands out in Africa and beyond."
+msgstr "Gbogbo ohun ti o nilo lati mọ nipa Ẹrọ Aroko AI wa ati idi ti o fi duro jade ni Afirika ati ju bẹẹ lọ."
+
+#: templates
+msgid " 1. What makes this AI Essay Generator unique?"
+msgstr "1. Kini o mu ki Ẹrọ Aroko AI yii jẹ alailẹgbẹ?"
+
+#: templates
+msgid "Our platform is designed with students, researchers, and content creators in mind."
+msgstr "Syeed wa ni apẹrẹ pẹlu awọn akẹ́kọ̀ọ́, awọn oniwadi, ati awọn onkọwe akoonu ni lokan."
+
+#: templates
+msgid "Unlike generic tools, it supports African languages like <strong> Igbo,Hausa, Yoruba, Swahili, and Zulu"
+msgstr "Ko dabi awọn irinṣẹ lasan, o ṣe atilẹyin awọn ede Afirika bii <strong> Igbo, Hausa, Yoruba, Swahili, ati Zulu"
+
+#: templates
+msgid "making it ideal for diverse users across Africa and the world."
+msgstr "eyi ti o jẹ ki o pe fun awọn olumulo orisirisi kọja Afirika ati agbaye."
+
+#: templates
+msgid " 2. Is the AI-generated essay plagiarism-free?"
+msgstr "2. Ṣe aroko ti AI ṣẹda jẹ laisi ijale?"
+
+#: templates
+msgid "Yes, our AI generates unique essays for every prompt. "
+msgstr "Bẹẹni, AI wa ṣẹda awọn aroko alailẹgbẹ fun gbogbo ibeere. "
+
+#: templates
+msgid "While we recommend reviewing and editing the draft for personal touches,"
+msgstr "Lakoko ti a ṣeduro atunwo ati atunṣe akọsilẹ fun ifọwọkan ẹni kọọkan,"
+
+#: templates
+msgid "the content is <strong>100% original and plagiarism-free"
+msgstr "akoonu naa jẹ <strong>100% atilẹba ati laisi ijale"
+
+#: templates
+msgid "3. Can I use this tool for school assignments or research?"
+msgstr "3. Ṣe MO le lo irinṣẹ yii fun awọn iṣẹ́-ile tabi iwadi?"
+
+#: templates
+msgid "Absolutely! Our AI Essay Generator is perfect for <strong>assignments, research projects,"
+msgstr "Dájúdájú! Ẹrọ Aroko AI wa dara fun <strong>awọn iṣẹ́-ile, awọn iṣẹ́ iwadi,"
+
+#: templates
+msgid "academic essays, and even blog content"
+msgstr "awọn aroko ile-ẹkọ, ati paapaa akoonu bulọọgi"
+
+#: templates
+msgid "It saves you hours of writing and helps you start with a high-quality draft."
+msgstr "O fi awọn wakati kikọ pamọ fun ọ ati ṣe iranlọwọ fun ọ lati bẹrẹ pẹlu akọsilẹ didara ga."
+
+#: templates
+msgid "Does the AI support multiple African languages?"
+msgstr "Ṣe AI naa ṣe atilẹyin ọpọlọpọ awọn ede Afirika?"
+
+#: templates
+msgid "Yes! This is where our MVP truly stands out."
+msgstr "Bẹẹni! Eyi ni ibi ti MVP wa duro jade gaan."
+
+#: templates
+msgid "We offer support for <strong>Hausa, Yoruba, Igbo, Swahili, Zulu, and Amharic"
+msgstr "A nfunni ni atilẹyin fun <strong> Hausa, Yoruba, Igbo, Swahili, Zulu, ati Amharic"
+
+#: templates
+msgid "Students and professionals across Africa can finally generate essays in their preferred languages."
+msgstr "Awọn akẹ́kọ̀ọ́ ati awọn amọ̀ja kọja Afirika le nikẹhin ṣẹda aroko ni awọn ede ayanfẹ wọn."
+
+#: templates
+msgid " 5. Is the AI Essay Generator free to use?"
+msgstr "5. Ṣe Ẹrọ Aroko AI jẹ ọfẹ lati lo?"
+
+#: templates
+msgid "Yes! Our basic AI essay generation is <strong>completely free"
+msgstr "Bẹẹni! Ṣiṣẹda aroko AI ipilẹ wa jẹ <strong>ọfẹ patapata"
+
+#: templates
+msgid "Premium features such as advanced research assistance and long-form essays"
+msgstr "Awọn ẹya premium bii iranlọwọ iwadi ilọsiwaju ati awọn aroko gigun"
+
+#: templates
+msgid "will be available in the future for users who need more customization."
+msgstr "yoo wa ni ọjọ iwaju fun awọn olumulo ti o nilo adani diẹ sii."
+
+#: templates
+msgid "What <strong>users</strong> are <strong>saying about our Essay Generator."
+msgstr "Ohun ti <strong>awọn olumulo</strong> n sọ nipa Ẹrọ Aroko wa."
+
+#: templates
+msgid "The essay generator saved me hours on assignments. It creates well-structured essays that I can use as inspiration and reference."
+msgstr "Ẹrọ aroko fi awọn wakati pamọ fun mi lori awọn iṣẹ́-ile. O ṣẹda awọn aroko ti a ṣeto daradara ti MO le lo gẹgẹ bi awokose ati itọkasi."
+
+#: templates
+msgid "I was struggling with academic writing, but now I can generate clear, plagiarism-free essays in minutes. A real game changer for me."
+msgstr "Mo n ja pẹlu kikọ ile-ẹkọ, ṣugbọn bayi MO le ṣẹda awọn aroko kedere ati laisi ijale ni iṣẹju diẹ. Iyipada gidi fun mi."
+
+#: templates
+msgid "This tool gives me confidence when writing research papers. The arguments are solid and the content flows naturally."
+msgstr "Irinṣẹ yii fun mi ni igboya nigba kikọ awọn iwe iwadi. Awọn ariyanjiyan lagbara ati pe akoonu nṣàn laisiyonu."
+
+#: templates
+msgid "As a professional, I use it for quick reports and drafts. It saves me time and helps me stay productive at work."
+msgstr "Gẹgẹbi amọ̀ja, Mo lo o fun awọn iroyin kiakia ati awọn akọsilẹ. O fi akoko pamọ fun mi ati ṣe iranlọwọ fun mi lati ni iṣelọpọ ni iṣẹ́."

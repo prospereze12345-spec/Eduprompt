@@ -310,6 +310,228 @@ msgstr "Yɛn AI solver no yɛ de boa obiara a pɛ sɛ ɔyɛ papa wɔ adwumayɛ, 
 msgid "Parents"
 msgstr "Awofo"
 
+
+
+
+
+
+
+
+msgid "Free AI Essay Generator<p>Write Professional Essays Instantly"
+msgstr "Anokwa AI Nsɛm Nwoma Bɔfo<p>Kyere Nsɛm Nwoma A Ɛyɛ Profeshɔnal Ntɛm ara"
+
+msgid "Generate high-quality essays on any topic in seconds with our free AI-powered essay generator."
+msgstr "Bɔ nsɛm nwoma a ɛyɛ high-quality wɔ asɛm biara ho wɔ sekondi mu de yɛn free AI-powered nsɛm nwoma bɔfo no."
+
+msgid "Perfect for students, researchers, and content creators looking for structured, plagiarism-free content."
+msgstr "Ɛfata ma sukuufo, nsɛmnhwehwɛfo, ne content creators a wɔpɛ nsɛm a ɛyɛ krataa, ɛnni plagiarism ho."
+
+msgid "Start Generating Essays Instantly"
+msgstr "Hyɛ ase bɔ Nsɛm Nwoma Ntɛm ara"
+
+msgid "Try our free AI Essay Generator and create professional essays in seconds."
+msgstr "Sɔ yɛn free AI Nsɛm Nwoma Bɔfo no na bɔ nsɛm nwoma a ɛyɛ profeshɔnal wɔ sekondi mu."
+
+msgid "Generate Your Essay Now"
+msgstr "Bɔ Wo Nsɛm Nwoma Seesei"
+
+ 
+
+msgid "Essay Type Selector"
+msgstr "Nsɛm Nwoma Nhyehyɛe Ho Pɛsɛmenkomenya"
+
+msgid "Choose Your Essay Type"
+msgstr "Paw Wo Nsɛm Nwoma Nhyehyɛe"
+
+msgid "Narrativ"
+msgstr "Anansesɛm"
+
+msgid "Descriptive"
+msgstr "Nkyerɛase"
+
+msgid "Expository"
+msgstr "Nsɛmkyerɛmu"
+
+msgid "Persuasive"
+msgstr "Hyɛ Nsia"
+
+msgid "Analytical"
+msgstr "Nsusuw Ho"
+
+msgid "*Note: Select an essay type to customize the style and tone of your AI-generated essay."
+msgstr "*Kae: Paw nsɛm nwoma nhyehyɛe de sesa style ne tone a AI bɔ no."
+
+msgid "Generate Essay"
+msgstr "Bɔ Nsɛm Nwoma"
+
+msgid "AI-Generated Essay"
+msgstr "AI Bɔɔ Nsɛm Nwoma"
+
+msgid "Your essay will appear here..."
+msgstr "Wo nsɛm nwoma bɛda ha..."
+
+msgid "📥 Download PDF"
+msgstr "📥 Fa PDF no Si W'ankasa"
+
+
+
+msgid "1. Enter Your Topic"
+msgstr "1. Kyerɛw Wo Asɛm No"
+
+msgid "Type in your essay prompt or topic in the input box."
+msgstr "Kyerɛ wo nsɛm nwoma asɛm anaa topic no wɔ input box no mu."
+
+msgid "2. AI Generates Content"
+msgstr "2. AI Bɔ Content"
+
+msgid "Our AI creates a unique, structured essay in seconds."
+msgstr "Yɛn AI bɔ nsɛm nwoma a ɛyɛ unique na ɛda ho adi wɔ sekondi mu."
+
+msgid "3. Review & Edit"
+msgstr "3. Hwɛ na Sesa"
+
+msgid "Refine the essay and use it for your projects or assignments."
+msgstr "Sesa nsɛm nwoma no na fa yɛ wo projects anaa assignments."
+
+msgid "Why You Should Consider Using an AI Essay Generator"
+msgstr "Adɛn nti na ɛsɛ sɛ wosusu AI Nsɛm Nwoma Bɔfo ho?"
+
+msgid "Discover how our AI-powered essay generator can save time, improve your writing,"
+msgstr "Hu sɛnea yɛn AI-powered nsɛm nwoma bɔfo betumi agye bere na ama wo kyerɛw adeɛ ayɛ yiye,"
+
+msgid "and help you create high-quality essays effortlessly."
+msgstr "na aboa wo ama wo bɔ nsɛm nwoma a ɛyɛ high-quality a ɛnyɛ den."
+
+msgid "Save Time and Effort"
+msgstr "Sie Bere ne Mmerɛ"
+
+msgid "Instantly generate essays without spending hours researching and writing."
+msgstr "Bɔ nsɛm nwoma ntɛm ara a ɛnkyɛ bere pii wɔ nsɛnhwehwɛ ne kyerɛw ho."
+
+msgid "Boost Productivity"
+msgstr "Ka Productivity So"
+
+msgid "Focus on editing and creativity while AI handles the first draft for you."
+msgstr "Di dwuma wɔ editing ne creativity so bere a AI yɛ first draft no ma wo."
+
+msgid "Improve Writing Skills"
+msgstr "Ka Kyerɛw Nwoma Ho Nimdeɛ So"
+
+msgid "Learn essay structure and formatting by studying AI-generated drafts."
+msgstr "Sua nsɛm nwoma nhyehyɛe ne formatting fi AI bɔɔ drafts no mu."
+
+msgid "Plagiarism-Free Drafts"
+msgstr "Drafts a Ɛnni Plagiarism Ho"
+
+msgid "Available 24/7"
+msgstr "Wɔ hɔ daa"
+
+msgid "Access the essay generator anytime, anywhere, without delays."
+msgstr "Tumi de nsɛm nwoma bɔfo no di dwuma bere biara, beae biara, a ɛnni anɔpa-kɔ-anɔpa."
+
+msgid "Perfect for All Users"
+msgstr "Ɛfata Ma Obiara"
+
+msgid "Students, bloggers, and researchers can all benefit from AI-powered essays."
+msgstr "Sukufo, bloggers, ne nsɛmnhwehwɛfo nyinaa betumi anya mfaso fi AI-powered nsɛm nwoma ho."
+
+msgid "Who Can Benefit from Our AI Essay Generator?"
+msgstr "Hena na ɔbɛnya mfaso fi yɛn AI Nsɛm Nwoma Bɔfo ho?"
+
+msgid "Our AI-powered essay generator is designed for learners, professionals, and educators who need high-quality essays, reports, or academic writing. With clear, well-structured content, instant topic coverage, and proper formatting, it saves time while ensuring originality and clarity."
+msgstr "Yɛn AI-powered nsɛm nwoma bɔfo no yɛ de ma sukuufo, professionals, ne educators a wɔhwehwɛ nsɛm nwoma a ɛyɛ high-quality, reports anaa academic kyerɛw adeɛ. Wɔ content a ɛda ho adi na ɛyɛ structured, topic coverage ntɛm, ne formatting a ɛyɛ pɛ, ɛkyekyere bere na ɛyɛ original na ɛda ho adi."
+
+
+msgid "Students at all levels can instantly generate essays for assignments, term papers, and projects. With clear arguments, structured paragraphs, and plagiarism-free writing, our tool makes essay writing easier and more effective."
+msgstr "Sukuufo wɔ levels nyinaa betumi bɔ nsɛm nwoma ntɛm ara ma assignments, term papers, ne projects. Wɔ clear arguments, structured paragraphs, ne plagiarism-free writing, yɛn tool ma nsɛm nwoma kyerɛw yɛ mmerɛ na ɛyɛ effective."
+
+msgid "Teachers and tutors can use the essay generator to create sample essays, model answers, or practice prompts for students. It saves preparation time while ensuring engaging and high-quality teaching materials."
+msgstr "Teachers ne tutors betumi de nsɛm nwoma bɔfo no yɛ sample essays, model answers, anaa practice prompts ma sukuufo. Ɛkyekyere preparation bere na ɛyɛ engaging na ɛyɛ high-quality teaching materials."
+
+msgid "Professionals needing reports, proposals, or formal write-ups can rely on the generator for well-written drafts. It’s ideal for business communication, research summaries, and professional documentation."
+msgstr "Professionals a wɔhwehwɛ reports, proposals, anaa formal write-ups betumi de nsɛm nwoma bɔfo no yɛ well-written drafts. Ɛfata ma business communication, research summaries, ne professional documentation."
+
+msgid "Frequently Asked Questions"
+msgstr "Nsɛm a Wɔbisa Ho Nsɛmmisa"
+
+msgid "Everything you need to know about our AI Essay Generator and why it stands out in Africa and beyond."
+msgstr "Biribiara a ɛsɛ sɛ wuhu fa yɛn AI Nsɛm Nwoma Bɔfo ho ne adɛn nti na ɛyɛ special wɔ Africa ne akyirikyiri."
+
+msgid " 1. What makes this AI Essay Generator unique?"
+msgstr "1. Dɛn na ma AI Nsɛm Nwoma Bɔfo yi yɛ unique?"
+
+msgid "Our platform is designed with students, researchers, and content creators in mind."
+msgstr "Yɛn platform no yɛ de ma sukuufo, researchers, ne content creators."
+
+msgid "Unlike generic tools, it supports African languages like <strong> Igbo,Hausa, Yoruba, Swahili, and Zulu"
+msgstr "Ɛnyɛ sɛ generic tools, ɛboa African languages te sɛ <strong> Igbo, Hausa, Yoruba, Swahili, ne Zulu"
+
+msgid "making it ideal for diverse users across Africa and the world."
+msgstr "ma ɛyɛ ideal ma diverse users wɔ Africa ne wiase nyinaa."
+
+msgid " 2. Is the AI-generated essay plagiarism-free?"
+msgstr "2. Nsɛm nwoma a AI bɔ no yɛ plagiarism-free?"
+
+msgid "Yes, our AI generates unique essays for every prompt. "
+msgstr "Aane, yɛn AI bɔ nsɛm nwoma a ɛyɛ unique ma prompt biara."
+
+msgid "While we recommend reviewing and editing the draft for personal touches,"
+msgstr "Ɛwom sɛ yɛkyerɛ sɛ wopɛ review ne edit draft no ma personal touches,"
+
+msgid "the content is <strong>100% original and plagiarism-free"
+msgstr "content no yɛ <strong>100% original na ɛyɛ plagiarism-free"
+
+msgid "3. Can I use this tool for school assignments or research?"
+msgstr "3. Metumi de tool yi yɛ sukuu assignments anaa research?"
+
+msgid "Absolutely! Our AI Essay Generator is perfect for <strong>assignments, research projects,"
+msgstr "Ampa! Yɛn AI Nsɛm Nwoma Bɔfo no yɛ perfect ma <strong>assignments, research projects,"
+
+msgid "academic essays, and even blog content"
+msgstr "academic essays, ne blog content nso"
+
+msgid "It saves you hours of writing and helps you start with a high-quality draft."
+msgstr "Ɛkyekyere wo writing hours na ɛboa wo hyɛ ase de high-quality draft."
+
+msgid "Does the AI support multiple African languages?"
+msgstr "Ɛyɛ sɛ AI no boa multiple African languages?"
+
+msgid "Yes! This is where our MVP truly stands out."
+msgstr "Aane! Ɛha na yɛn MVP pɛ yɛ adwuma paa."
+
+msgid "We offer support for <strong>Hausa, Yoruba, Igbo, Swahili, Zulu, and Amharic"
+msgstr "Yɛboa <strong>Hausa, Yoruba, Igbo, Swahili, Zulu, ne Amharic"
+
+msgid "Students and professionals across Africa can finally generate essays in their preferred languages."
+msgstr "Sukuufo ne professionals wɔ Africa nyinaa betumi abɔ nsɛm nwoma wɔ wɔn preferred languages."
+
+msgid " 5. Is the AI Essay Generator free to use?"
+msgstr "5. AI Nsɛm Nwoma Bɔfo no yɛ free de yɛ adwuma?"
+
+msgid "Yes! Our basic AI essay generation is <strong>completely free"
+msgstr "Aane! Yɛn basic AI essay generation yɛ <strong>completely free"
+
+msgid "Premium features such as advanced research assistance and long-form essays"
+msgstr "Premium features te sɛ advanced research assistance ne long-form essays"
+
+msgid "will be available in the future for users who need more customization."
+msgstr "bɛyɛ available wɔ future ma users a wɔhwehwɛ more customization."
+
+msgid "What <strong>users</strong> are <strong>saying about our Essay Generator."
+msgstr "Dɛn na <strong>users</strong> ka fa yɛn Nsɛm Nwoma Bɔfo ho?"
+
+msgid "The essay generator saved me hours on assignments. It creates well-structured essays that I can use as inspiration and reference."
+msgstr "Nsɛm Nwoma Bɔfo no sie me hours wɔ assignments ho. Ɛbɔ well-structured essays a metumi de yɛ inspiration ne reference."
+
+msgid "I was struggling with academic writing, but now I can generate clear, plagiarism-free essays in minutes. A real game changer for me."
+msgstr "Meda academic writing ho akyinkyin, nanso seesei metumi abɔ clear, plagiarism-free essays wɔ minutes mu. Eye game changer paa ma me."
+
+msgid "This tool gives me confidence when writing research papers. The arguments are solid and the content flows naturally."
+msgstr "Tool yi ma me confidence bere a merekyerɛw research papers. Arguments no yɛ solid na content no flow naturally."
+
+msgid "As a professional, I use it for quick reports and drafts. It saves me time and helps me stay productive at work."
+msgstr "Sɛ professional a, me de di dwuma ma quick reports ne drafts. Ɛkyekyere me time na ɛboa me ma meyɛ productive wɔ adwuma."
+
 #: templates/ai_solver.html:26
 msgid "Lifelong Learners"
 msgstr "Akwankyerɛfo a Wɔre Sua Wiase Nyinaa"

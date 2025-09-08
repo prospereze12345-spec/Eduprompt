@@ -360,9 +360,7 @@ msgstr "Wa Zai Amfana da Dandalinmu na AI EdTech?"
 
 
 
-#: .\templates\index.html:1024
-msgid "Professionals"
-msgstr "Masana"
+
 
 #: .\templates\index.html:1029
 msgid "Researchers"
@@ -489,10 +487,6 @@ msgid ""
 "strong> to help you study efficiently and understand topics better."
 msgstr "Eh! EduPrompt zai iya ƙirƙirar <strong>inshora, wasiku, da bayanai na musamman</strong> don taimaka maka koyo cikin inganci da fahimtar batutuwa sosai."
 
-#: .\templates\index.html:1374
-msgid "Is EduPrompt safe and secure?"
-msgstr "Shin EduPrompt lafiya kuma amintacce ne?"
-
 #: .\templates\index.html:1378
 msgid ""
 "EduPrompt respects your privacy. All <strong>notes and personal data</"
@@ -578,10 +572,6 @@ msgstr "Zane Faya-faya"
 #: .\templates\index.html:1504
 msgid "Our Tools"
 msgstr "Kayan Aikinmu"
-
-#: .\templates\index.html:1508
-msgid "Essay Writer"
-msgstr "Mai Rubuta Insha"
 
 #: .\templates\index.html:1524
 msgid "Ai Solver"
@@ -892,9 +882,6 @@ msgstr "Wa Zai Amfana Daga Mai Warware Matsalolin AI Namu?"
 msgid "Our AI-powered solver is designed to assist anyone looking to excel in mathematics,physis and chemistry from students tackling exams to educators creating engaging lessons. With intelligent step-by-step solutions, instant explanations, and problem scanning, users can save time, boost understanding, and achieve outstanding results."
 msgstr "Mai warware matsalolinmu da AI ke tallafawa an tsara shi don taimaka wa kowa da ke son yin fice a lissafi, ilimin halitta da kimiya, daga ɗalibai masu shirin jarrabawa zuwa malamai masu ƙirƙirar darussa masu jan hankali. Tare da mafita mai hankali mataki-mataki, bayani nan take, da binciken matsaloli, masu amfani za su iya adana lokaci, haɓaka fahimta, kuma su sami sakamako mai kyau sosai."
 
-#: templates/ai_solver.html:11
-msgid "Students"
-msgstr "Dalibai"
 
 #: templates/ai_solver.html:16
 msgid "Educators"
@@ -904,9 +891,6 @@ msgstr "Malamai"
 msgid "Parents"
 msgstr "Iyaye"
 
-#: templates/ai_solver.html:26
-msgid "Lifelong Learners"
-msgstr "Masu Koyo Har Rayuwa"
 
 #: templates/ai_solver.html:36
 msgid "Students preparing for exams like WAEC, JAMB, SAT, or any academic level can instantly solve math problems with step-by-step explanations. Our AI ensures faster understanding, helps complete assignments efficiently, and provides additional practice questions to strengthen learning."
@@ -940,13 +924,7 @@ msgstr "Masu koyo har rayuwa da ke bincika STEM ko sake nazarin lissafi za su iy
 msgid "It’s perfect for personal growth, skill development, or preparing for certifications, making math learning accessible and engaging for users of all ages."
 msgstr "Yana da kyau ga haɓakar mutum, haɓaka ƙwarewa, ko shirin takaddun shaida, yana sanya koyo lissafi ya zama mai sauƙi da jan hankali ga masu amfani na kowanne zamani."
 
-#: templates/ai_solver.html:92
-msgid "How It Works"
-msgstr "Yadda Yake Aiki"
 
-#: templates/ai_solver.html:94
-msgid "Our platform is designed to simplify learning and problem-solving. Follow these simple steps to experience the power of AI in generating accurate solutions efficiently."
-msgstr "An tsara dandamalinmu don sauƙaƙe koyo da warware matsaloli. Bi waɗannan matakai masu sauƙi don jin ƙarfin AI wajen samar da mafita masu dacewa cikin inganci."
 
 #: templates/ai_solver.html:100
 msgid "Step 1: Input Your Problem"
@@ -991,3 +969,315 @@ msgstr "Amfani da AI Solver ya ceci awanni na karatu. Bayanan suna da sauƙin bi
 #: templates/ai_solver.html:150
 msgid "AI Solver not only solves problems but also helps me understand the logic behind them. It’s my go-to tool for learning and exam prep."
 msgstr "AI Solver ba wai kawai yana warware matsaloli ba, har ma yana taimaka min fahimtar tsarin da ke bayan su. Shine kayan aiki na na farko don koyo da shirin jarrabawa."
+
+
+
+
+
+#: templates
+msgid "Free AI Essay Generator<p>Write Professional Essays Instantly"
+msgstr "Ƙirƙirar Maƙala ta AI Kyauta<p>Rubuta Maƙaloli na Ƙwararru Nan take"
+
+#: templates
+msgid "Generate high-quality essays on any topic in seconds with our free AI-powered essay generator."
+msgstr "Ƙirƙiri maƙaloli masu inganci akan kowanne batu a cikin daƙiƙa tare da injin maƙala na AI kyauta."
+
+#: templates
+msgid "Perfect for students, researchers, and content creators looking for structured, plagiarism-free content."
+msgstr "Ya dace da ɗalibai, masu bincike, da masu ƙirƙirar abun ciki masu neman rubutun tsari da marar sata."
+
+#: templates
+msgid "Start Generating Essays Instantly"
+msgstr "Fara Ƙirƙirar Maƙaloli Nan take"
+
+#: templates
+msgid "Try our free AI Essay Generator and create professional essays in seconds."
+msgstr "Gwada injin maƙala ta AI kyauta kuma ƙirƙiri maƙaloli na ƙwararru a cikin daƙiƙa."
+
+#: templates
+msgid "Generate Your Essay Now"
+msgstr "Ƙirƙiri Maƙalarka Yanzu"
+
+#: templates
+msgid "Essay Writer"
+msgstr "Mai Rubuta Maƙala"
+
+#: templates
+msgid "Essay Type Selector"
+msgstr "Zaɓin Nau'in Maƙala"
+
+#: templates
+msgid "Choose Your Essay Type"
+msgstr "Zaɓi Nau'in Maƙalarka"
+
+#: templates
+msgid "Narrativ"
+msgstr "Labari"
+
+#: templates
+msgid "Descriptive"
+msgstr "Bayani"
+
+#: templates
+msgid "Expository"
+msgstr "Bayyana"
+
+#: templates
+msgid "Persuasive"
+msgstr "Tursasa"
+
+#: templates
+msgid "Analytical"
+msgstr "Nazari"
+
+#: templates
+msgid "*Note: Select an essay type to customize the style and tone of your AI-generated essay."
+msgstr "*Lura: Zaɓi nau'in maƙala domin daidaita salo da yanayin rubutun AI naka."
+
+#: templates
+msgid "Enter Your Essay Topic"
+msgstr "Shigar da Batun Maƙalarka"
+
+#: templates
+msgid "Generate Essay"
+msgstr "Ƙirƙiri Maƙala"
+
+#: templates
+msgid "AI-Generated Essay"
+msgstr "Maƙala da AI Ta Ƙirƙira"
+
+#: templates
+msgid "Your essay will appear here..."
+msgstr "Maƙalarka za ta bayyana a nan..."
+
+#: templates
+msgid "📥 Download PDF"
+msgstr "📥 Sauke PDF"
+
+#: templates
+msgid "How It Works"
+msgstr "Yadda Yake Aiki"
+
+#: templates
+msgid "1. Enter Your Topic"
+msgstr "1. Shigar da Batunka"
+
+#: templates
+msgid "Type in your essay prompt or topic in the input box."
+msgstr "Rubuta batun maƙalarka a cikin akwatin shigarwa."
+
+#: templates
+msgid "2. AI Generates Content"
+msgstr "2. AI Na Ƙirƙirar Abun ciki"
+
+#: templates
+msgid "Our AI creates a unique, structured essay in seconds."
+msgstr "AI ɗinmu yana ƙirƙirar maƙala ta musamman da tsari a cikin daƙiƙa."
+
+#: templates
+msgid "3. Review & Edit"
+msgstr "3. Duba & Gyara"
+
+#: templates
+msgid "Refine the essay and use it for your projects or assignments."
+msgstr "Gyara maƙalar ka kuma yi amfani da ita wajen ayyukan ka ko aikin makaranta."
+
+#: templates
+msgid "Why You Should Consider Using an AI Essay Generator"
+msgstr "Dalilin Da Ya Kamata Ka Yi La'akari da Amfani da Injin Maƙala na AI"
+
+#: templates
+msgid "Discover how our AI-powered essay generator can save time, improve your writing,"
+msgstr "Gano yadda injin maƙala na AI ɗinmu zai iya adana lokaci, ya inganta rubutunka,"
+
+#: templates
+msgid "and help you create high-quality essays effortlessly."
+msgstr "kuma ya taimaka maka ka ƙirƙiri maƙaloli masu inganci cikin sauƙi."
+
+#: templates
+msgid "Save Time and Effort"
+msgstr "Ajiye Lokaci da Ƙoƙari"
+
+#: templates
+msgid "Instantly generate essays without spending hours researching and writing."
+msgstr "Ƙirƙiri maƙaloli nan take ba tare da kashe sa'o'i wajen bincike da rubutu ba."
+
+#: templates
+msgid "Boost Productivity"
+msgstr "Ƙara Ƙwarin Aiki"
+
+#: templates
+msgid "Focus on editing and creativity while AI handles the first draft for you."
+msgstr "Mai da hankali kan gyara da ƙirƙira yayin da AI ke sarrafa rubutun farko maka."
+
+#: templates
+msgid "Improve Writing Skills"
+msgstr "Inganta Ƙwarewar Rubutu"
+
+#: templates
+msgid "Learn essay structure and formatting by studying AI-generated drafts."
+msgstr "Koyi tsarin maƙala da salo ta hanyar nazarin rubutun da AI ta ƙirƙira."
+
+#: templates
+msgid "Plagiarism-Free Drafts"
+msgstr "Rubutun Marar Sata"
+
+#: templates
+msgid "Generate unique essays that are perfect as a starting point for your work."
+msgstr "Ƙirƙiri maƙaloli na musamman da suka dace da zama matakin farko na aikin ka."
+
+#: templates
+msgid "Available 24/7"
+msgstr "Akwai 24/7"
+
+#: templates
+msgid "Access the essay generator anytime, anywhere, without delays."
+msgstr "Samun injin maƙala a kowane lokaci, a kowane wuri, ba tare da jinkiri ba."
+
+#: templates
+msgid "Perfect for All Users"
+msgstr "Ya dace da Duk Masu Amfani"
+
+#: templates
+msgid "Students, bloggers, and researchers can all benefit from AI-powered essays."
+msgstr "Ɗalibai, masu rubutun ra'ayi, da masu bincike duk na iya amfana daga maƙalolin AI."
+
+#: templates
+msgid "Who Can Benefit from Our AI Essay Generator?"
+msgstr "Wa Zai Amfana daga Injin Maƙala na AI ɗinmu?"
+
+#: templates
+msgid "Our AI-powered essay generator is designed for learners, professionals, and educators who need high-quality essays, reports, or academic writing. With clear, well-structured content, instant topic coverage, and proper formatting, it saves time while ensuring originality and clarity."
+msgstr "Injin maƙala na AI ɗinmu an tsara shi domin ɗalibai, ƙwararru, da malamai masu buƙatar maƙaloli masu inganci, rahotanni, ko rubutun ilimi. Tare da abun ciki mai tsari da bayyananne, ɗaukar batu nan take, da salo na gaskiya, yana adana lokaci yayin tabbatar da asalinsu da fahimta."
+
+#: templates
+msgid "Students"
+msgstr "Ɗalibai"
+
+#: templates
+msgid " Educators"
+msgstr " Malamai"
+
+#: templates
+msgid "Professionals"
+msgstr "Ƙwararru"
+
+#: templates
+msgid "Students at all levels can instantly generate essays for assignments, term papers, and projects. With clear arguments, structured paragraphs, and plagiarism-free writing, our tool makes essay writing easier and more effective."
+msgstr "Ɗalibai a duk matakai na iya ƙirƙirar maƙaloli nan take don ayyuka, rubutun zangon karatu, da ayyukan makaranta. Tare da hujjoji masu kyau, sakin layi masu tsari, da rubutun marar sata, kayan aikinmu yana sauƙaƙa rubuta maƙala kuma yana inganta shi."
+
+#: templates
+msgid "Teachers and tutors can use the essay generator to create sample essays, model answers, or practice prompts for students. It saves preparation time while ensuring engaging and high-quality teaching materials."
+msgstr "Malamai da masu koyarwa na iya amfani da injin maƙala don ƙirƙirar misalan maƙaloli, amsoshin gwaji, ko tambayoyin horo ga ɗalibai. Yana adana lokaci na shiri yayin tabbatar da kayan koyarwa masu jan hankali da inganci."
+
+#: templates
+msgid "Professionals needing reports, proposals, or formal write-ups can rely on the generator for well-written drafts. It’s ideal for business communication, research summaries, and professional documentation."
+msgstr "Ƙwararru da ke buƙatar rahotanni, shawarwari, ko rubutun aiki na hukuma za su iya dogaro da injin don samun rubutun da aka tsara sosai. Ya dace da sadarwa ta kasuwanci, taƙaitattun bincike, da takardun ƙwararru."
+
+#: templates
+msgid "Frequently Asked Questions"
+msgstr "Tambayoyi da Aka Fi Yawan Yi"
+
+#: templates
+msgid "Everything you need to know about our AI Essay Generator and why it stands out in Africa and beyond."
+msgstr "Duk abin da kake buƙatar sani game da Injin Maƙala na AI ɗinmu da dalilin da yasa yake ficewa a Afirka da waje."
+
+#: templates
+msgid " 1. What makes this AI Essay Generator unique?"
+msgstr "1. Me yasa wannan Injin Maƙala na AI ya bambanta?"
+
+#: templates
+msgid "Our platform is designed with students, researchers, and content creators in mind."
+msgstr "An tsara dandamalinmu da ɗalibai, masu bincike, da masu ƙirƙirar abun ciki a zuciya."
+
+#: templates
+msgid "Unlike generic tools, it supports African languages like <strong> Igbo,Hausa, Yoruba, Swahili, and Zulu"
+msgstr "Ba kamar kayan aikin gama gari ba, yana tallafawa harsunan Afirka irin su <strong> Igbo, Hausa, Yoruba, Swahili, da Zulu"
+
+#: templates
+msgid "making it ideal for diverse users across Africa and the world."
+msgstr "yana mai da shi ya dace da masu amfani daban-daban a fadin Afirka da duniya."
+
+#: templates
+msgid " 2. Is the AI-generated essay plagiarism-free?"
+msgstr "2. Shin maƙalar da AI ta ƙirƙira ba ta da sata?"
+
+#: templates
+msgid "Yes, our AI generates unique essays for every prompt. "
+msgstr "Eh, AI ɗinmu yana ƙirƙirar maƙaloli na musamman ga kowanne tambaya. "
+
+#: templates
+msgid "While we recommend reviewing and editing the draft for personal touches,"
+msgstr "Duk da yake muna ba da shawarar duba da gyara rubutun don daidaitawa da kanka,"
+
+#: templates
+msgid "the content is <strong>100% original and plagiarism-free"
+msgstr "abun cikin yana da <strong>100% na asali kuma ba shi da sata"
+
+#: templates
+msgid "3. Can I use this tool for school assignments or research?"
+msgstr "3. Zan iya amfani da wannan kayan aiki don ayyukan makaranta ko bincike?"
+
+#: templates
+msgid "Absolutely! Our AI Essay Generator is perfect for <strong>assignments, research projects,"
+msgstr "Tabbas! Injin Maƙala na AI ɗinmu ya dace da <strong> ayyukan makaranta, ayyukan bincike,"
+
+#: templates
+msgid "academic essays, and even blog content"
+msgstr "maƙaloli na ilimi, har ma da rubutun yanar gizo"
+
+#: templates
+msgid "It saves you hours of writing and helps you start with a high-quality draft."
+msgstr "Yana adana maka sa'o'in rubutu kuma yana taimaka maka ka fara da rubutu mai inganci."
+
+#: templates
+msgid "Does the AI support multiple African languages?"
+msgstr "Shin AI tana goyon bayan harsunan Afirka da dama?"
+
+#: templates
+msgid "Yes! This is where our MVP truly stands out."
+msgstr "Eh! Wannan shi ne inda MVP ɗinmu ya fice sosai."
+
+#: templates
+msgid "We offer support for <strong>Hausa, Yoruba, Igbo, Swahili, Zulu, and Amharic"
+msgstr "Muna bayar da tallafi ga <strong> Hausa, Yoruba, Igbo, Swahili, Zulu, da Amharic"
+
+#: templates
+msgid "Students and professionals across Africa can finally generate essays in their preferred languages."
+msgstr "Ɗalibai da ƙwararru a fadin Afirka za su iya ƙirƙirar maƙaloli a cikin harsunan da suka fi so."
+
+#: templates
+msgid " 5. Is the AI Essay Generator free to use?"
+msgstr "5. Shin Injin Maƙala na AI kyauta ne?"
+
+#: templates
+msgid "Yes! Our basic AI essay generation is <strong>completely free"
+msgstr "Eh! Ƙirƙirar maƙala ta AI ta asali tana da <strong> kyauta gaba ɗaya"
+
+#: templates
+msgid "Premium features such as advanced research assistance and long-form essays"
+msgstr "Siffofin biyan kuɗi kamar taimakon bincike na ci gaba da maƙaloli masu tsawo"
+
+#: templates
+msgid "will be available in the future for users who need more customization."
+msgstr "za su kasance a nan gaba ga masu amfani da ke buƙatar ƙarin zaɓuɓɓukan musamman."
+
+#: templates
+msgid "What <strong>users</strong> are <strong>saying about our Essay Generator."
+msgstr "Abin da <strong> masu amfani </strong> suke <strong> faɗa game da Injin Maƙala ɗinmu."
+
+#: templates
+msgid "The essay generator saved me hours on assignments. It creates well-structured essays that I can use as inspiration and reference."
+msgstr "Injin maƙala ya ceci sa'o'i na a kan ayyuka. Yana ƙirƙirar maƙaloli masu tsari sosai da zan iya amfani da su a matsayin ƙarfafa da tunani."
+
+#: templates
+msgid "I was struggling with academic writing, but now I can generate clear, plagiarism-free essays in minutes. A real game changer for me."
+msgstr "Na kasance ina fama da rubutun ilimi, amma yanzu zan iya ƙirƙirar maƙaloli masu kyau da ba su da sata a cikin mintuna. Wani babban sauyi ne a gare ni."
+
+#: templates
+msgid "This tool gives me confidence when writing research papers. The arguments are solid and the content flows naturally."
+msgstr "Wannan kayan aikin yana bani kwarin gwiwa yayin rubuta takardun bincike. Hujjojin suna da ƙarfi kuma abun cikin yana gudana cikin sauƙi."
+
+#: templates
+msgid "As a professional, I use it for quick reports and drafts. It saves me time and helps me stay productive at work."
+msgstr "A matsayina na ƙwararre, ina amfani da shi wajen rahotanni da rubuce-rubuce masu sauri. Yana adana min lokaci kuma yana taimaka min in kasance mai aiki a wurin aiki."

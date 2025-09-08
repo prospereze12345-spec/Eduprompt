@@ -570,6 +570,300 @@ msgstr ""
 
 
 
+
+
+#: templates
+msgid "Free AI Essay Generator<p>Write Professional Essays Instantly"
+msgstr "Kizalishaji cha Insha cha AI Bure<p>Andika Insha za Kitaalamu Mara Moja"
+
+#: templates
+msgid "Generate high-quality essays on any topic in seconds with our free AI-powered essay generator."
+msgstr "Tengeneza insha bora juu ya mada yoyote kwa sekunde chache kwa kutumia kizalishaji chetu cha insha kinachoendeshwa na AI bure."
+
+#: templates
+msgid "Perfect for students, researchers, and content creators looking for structured, plagiarism-free content."
+msgstr "Bora kwa wanafunzi, watafiti, na waandishi wa maudhui wanaotafuta maudhui yaliyopangwa na yasiyo na wizi wa maandiko."
+
+#: templates
+msgid "Start Generating Essays Instantly"
+msgstr "Anza Kutengeneza Insha Mara Moja"
+
+#: templates
+msgid "Try our free AI Essay Generator and create professional essays in seconds."
+msgstr "Jaribu Kizalishaji chetu cha Insha cha AI bure na tengeneza insha za kitaalamu kwa sekunde chache."
+
+#: templates
+msgid "Generate Your Essay Now"
+msgstr "Tengeneza Insha Yako Sasa"
+
+
+
+#: templates
+msgid "Essay Type Selector"
+msgstr "Kichagua Aina ya Insha"
+
+#: templates
+msgid "Choose Your Essay Type"
+msgstr "Chagua Aina ya Insha Yako"
+
+#: templates
+msgid "Narrativ"
+msgstr "Hadithi"
+
+#: templates
+msgid "Descriptive"
+msgstr "Maelezo"
+
+#: templates
+msgid "Expository"
+msgstr "Ufafanuzi"
+
+#: templates
+msgid "Persuasive"
+msgstr "Kushawishi"
+
+#: templates
+msgid "Analytical"
+msgstr "Uchanganuzi"
+
+#: templates
+msgid "*Note: Select an essay type to customize the style and tone of your AI-generated essay."
+msgstr "*Kumbuka: Chagua aina ya insha ili kubinafsisha mtindo na sauti ya insha yako iliyozalishwa na AI."
+
+#: templates
+msgid "Enter Your Essay Topic"
+msgstr "Weka Mada ya Insha Yako"
+
+#: templates
+msgid "Generate Essay"
+msgstr "Tengeneza Insha"
+
+#: templates
+msgid "AI-Generated Essay"
+msgstr "Insha Iliyotengenezwa na AI"
+
+#: templates
+msgid "Your essay will appear here..."
+msgstr "Insha yako itaonekana hapa..."
+
+#: templates
+msgid "📥 Download PDF"
+msgstr "📥 Pakua PDF"
+
+
+
+
+#: templates
+msgid "Type in your essay prompt or topic in the input box."
+msgstr "Andika swali au mada ya insha yako kwenye kisanduku cha kuingiza."
+
+#: templates
+msgid "2. AI Generates Content"
+msgstr "2. AI Inazalisha Maudhui"
+
+#: templates
+msgid "Our AI creates a unique, structured essay in seconds."
+msgstr "AI yetu hutengeneza insha ya kipekee na iliyopangwa kwa sekunde chache."
+
+#: templates
+msgid "3. Review & Edit"
+msgstr "3. Kagua & Hariri"
+
+#: templates
+msgid "Refine the essay and use it for your projects or assignments."
+msgstr "Boreshwa insha na uitumie kwa miradi au kazi zako."
+
+#: templates
+msgid "Why You Should Consider Using an AI Essay Generator"
+msgstr "Kwa Nini Unapaswa Kuzingatia Kutumia Kizalishaji cha Insha cha AI"
+
+#: templates
+msgid "Discover how our AI-powered essay generator can save time, improve your writing,"
+msgstr "Gundua jinsi kizalishaji chetu cha insha kinachoendeshwa na AI kinaweza kuokoa muda, kuboresha uandishi wako,"
+
+#: templates
+msgid "and help you create high-quality essays effortlessly."
+msgstr "na kukusaidia kuunda insha bora bila shida."
+
+#: templates
+msgid "Save Time and Effort"
+msgstr "Okoa Muda na Bidii"
+
+#: templates
+msgid "Instantly generate essays without spending hours researching and writing."
+msgstr "Tengeneza insha papo hapo bila kutumia masaa mengi kutafiti na kuandika."
+
+#: templates
+msgid "Boost Productivity"
+msgstr "Ongeza Uzalishaji"
+
+#: templates
+msgid "Focus on editing and creativity while AI handles the first draft for you."
+msgstr "Jikita katika kuhariri na ubunifu huku AI ikishughulikia rasimu ya kwanza kwako."
+
+#: templates
+msgid "Improve Writing Skills"
+msgstr "Boresha Ujuzi wa Uandishi"
+
+#: templates
+msgid "Learn essay structure and formatting by studying AI-generated drafts."
+msgstr "Jifunze muundo na mpangilio wa insha kwa kusoma rasimu zilizotengenezwa na AI."
+
+#: templates
+msgid "Plagiarism-Free Drafts"
+msgstr "Rasimu Zisizo na Wizi wa Maandiko"
+
+#: templates
+msgid "Generate unique essays that are perfect as a starting point for your work."
+msgstr "Tengeneza insha za kipekee ambazo ni bora kama sehemu ya kuanzia kwa kazi yako."
+
+#: templates
+msgid "Available 24/7"
+msgstr "Inapatikana Saa 24/7"
+
+#: templates
+msgid "Access the essay generator anytime, anywhere, without delays."
+msgstr "Fikia kizalishaji cha insha wakati wowote, popote, bila ucheleweshaji."
+
+#: templates
+msgid "Perfect for All Users"
+msgstr "Bora kwa Watumiaji Wote"
+
+#: templates
+msgid "Students, bloggers, and researchers can all benefit from AI-powered essays."
+msgstr "Wanafunzi, wanablogu, na watafiti wote wanaweza kufaidika na insha zilizozalishwa na AI."
+
+#: templates
+msgid "Who Can Benefit from Our AI Essay Generator?"
+msgstr "Nani Anaweza Kufaidika na Kizalishaji chetu cha Insha cha AI?"
+
+#: templates
+msgid "Our AI-powered essay generator is designed for learners, professionals, and educators who need high-quality essays, reports, or academic writing. With clear, well-structured content, instant topic coverage, and proper formatting, it saves time while ensuring originality and clarity."
+msgstr "Kizalishaji chetu cha insha kinachoendeshwa na AI kimeundwa kwa ajili ya wanafunzi, wataalamu, na walimu wanaohitaji insha, ripoti, au maandiko ya kitaaluma yenye ubora wa juu. Kwa maudhui yaliyo wazi na yaliyopangwa vizuri, mada kufunikwa papo hapo, na mpangilio sahihi, huokoa muda huku kikihakikisha ubunifu na uwazi."
+
+
+
+#: templates
+msgid " Educators"
+msgstr " Walimu"
+
+
+
+
+#: templates
+msgid "Teachers and tutors can use the essay generator to create sample essays, model answers, or practice prompts for students. It saves preparation time while ensuring engaging and high-quality teaching materials."
+msgstr "Walimu na wakufunzi wanaweza kutumia kizalishaji cha insha kuunda insha za mfano, majibu ya mfano, au maswali ya mazoezi kwa wanafunzi. Huokoa muda wa maandalizi huku kikihakikisha nyenzo za ufundishaji zenye mvuto na ubora."
+
+#: templates
+msgid "Professionals needing reports, proposals, or formal write-ups can rely on the generator for well-written drafts. It’s ideal for business communication, research summaries, and professional documentation."
+msgstr "Wataalamu wanaohitaji ripoti, mapendekezo, au maandiko rasmi wanaweza kutegemea kizalishaji kwa rasimu zilizoandikwa vizuri. Ni bora kwa mawasiliano ya kibiashara, muhtasari wa utafiti, na hati za kitaalamu."
+
+#: templates
+msgid "Frequently Asked Questions"
+msgstr "Maswali Yanayoulizwa Mara kwa Mara"
+
+
+#: templates
+msgid " 1. What makes this AI Essay Generator unique?"
+msgstr "1. Ni nini kinachofanya Kizalishaji hiki cha Insha cha AI kuwa cha kipekee?"
+
+#: templates
+msgid "Our platform is designed with students, researchers, and content creators in mind."
+msgstr "Jukwaa letu limeundwa kwa kuzingatia wanafunzi, watafiti, na waandishi wa maudhui."
+
+#: templates
+msgid "Unlike generic tools, it supports African languages like <strong> Igbo,Hausa, Yoruba, Swahili, and Zulu"
+msgstr "Tofauti na zana za kawaida, inasaidia lugha za Kiafrika kama <strong> Kigbo, Kihausa, Kiyoruba, Kiswahili, na Kizulu"
+
+#: templates
+msgid "making it ideal for diverse users across Africa and the world."
+msgstr "ikifanya iwe bora kwa watumiaji mbalimbali barani Afrika na duniani."
+
+#: templates
+msgid " 2. Is the AI-generated essay plagiarism-free?"
+msgstr "2. Je, insha iliyozalishwa na AI haina wizi wa maandiko?"
+
+#: templates
+msgid "Yes, our AI generates unique essays for every prompt. "
+msgstr "Ndiyo, AI yetu huzalisha insha za kipekee kwa kila swali. "
+
+#: templates
+msgid "While we recommend reviewing and editing the draft for personal touches,"
+msgstr "Ingawa tunapendekeza kukagua na kuhariri rasimu kwa marekebisho binafsi,"
+
+#: templates
+msgid "the content is <strong>100% original and plagiarism-free"
+msgstr "maudhui ni <strong>100% ya asili na hayana wizi wa maandiko"
+
+#: templates
+msgid "3. Can I use this tool for school assignments or research?"
+msgstr "3. Je, naweza kutumia chombo hiki kwa kazi za shule au utafiti?"
+
+#: templates
+msgid "Absolutely! Our AI Essay Generator is perfect for <strong>assignments, research projects,"
+msgstr "Kabisa! Kizalishaji chetu cha Insha cha AI ni bora kwa <strong>kazi za shule, miradi ya utafiti,"
+
+#: templates
+msgid "academic essays, and even blog content"
+msgstr "insha za kitaaluma, na hata maudhui ya blogu"
+
+#: templates
+msgid "It saves you hours of writing and helps you start with a high-quality draft."
+msgstr "Hukuokoa masaa ya kuandika na hukusaidia kuanza na rasimu bora."
+
+#: templates
+msgid "Does the AI support multiple African languages?"
+msgstr "Je, AI inasaidia lugha nyingi za Kiafrika?"
+
+#: templates
+msgid "Yes! This is where our MVP truly stands out."
+msgstr "Ndiyo! Hapa ndipo MVP yetu inajitokeza kweli."
+
+#: templates
+msgid "We offer support for <strong>Hausa, Yoruba, Igbo, Swahili, Zulu, and Amharic"
+msgstr "Tunatoa msaada kwa <strong> Kihausa, Kiyoruba, Kigbo, Kiswahili, Kizulu, na Kiamhari"
+
+#: templates
+msgid "Students and professionals across Africa can finally generate essays in their preferred languages."
+msgstr "Wanafunzi na wataalamu barani Afrika hatimaye wanaweza kutengeneza insha kwa lugha wanazopendelea."
+
+#: templates
+msgid " 5. Is the AI Essay Generator free to use?"
+msgstr "5. Je, Kizalishaji cha Insha cha AI ni bure kutumia?"
+
+#: templates
+msgid "Yes! Our basic AI essay generation is <strong>completely free"
+msgstr "Ndiyo! Uzalishaji wa insha wa AI wa msingi ni <strong>bure kabisa"
+
+#: templates
+msgid "Premium features such as advanced research assistance and long-form essays"
+msgstr "Vipengele vya malipo kama vile usaidizi wa utafiti wa hali ya juu na insha ndefu"
+
+#: templates
+msgid "will be available in the future for users who need more customization."
+msgstr "vitapatikana siku zijazo kwa watumiaji wanaohitaji ubinafsishaji zaidi."
+
+#: templates
+msgid "What <strong>users</strong> are <strong>saying about our Essay Generator."
+msgstr "Kile ambacho <strong>watumiaji</strong> wanasema kuhusu Kizalishaji chetu cha Insha."
+
+#: templates
+msgid "The essay generator saved me hours on assignments. It creates well-structured essays that I can use as inspiration and reference."
+msgstr "Kizalishaji cha insha kimeokoa masaa yangu kwenye kazi za shule. Kinaunda insha zilizopangwa vizuri ambazo naweza kutumia kama msukumo na marejeo."
+
+#: templates
+msgid "I was struggling with academic writing, but now I can generate clear, plagiarism-free essays in minutes. A real game changer for me."
+msgstr "Nilikuwa na matatizo na uandishi wa kitaaluma, lakini sasa naweza kutengeneza insha zilizo wazi na zisizo na wizi kwa dakika chache. Mabadiliko makubwa kwangu."
+
+#: templates
+msgid "This tool gives me confidence when writing research papers. The arguments are solid and the content flows naturally."
+msgstr "Chombo hiki kinanipa ujasiri ninapoandika makala za utafiti. Hoja ni thabiti na maudhui yanatiririka vizuri."
+
+#: templates
+msgid "As a professional, I use it for quick reports and drafts. It saves me time and helps me stay productive at work."
+msgstr "Kama mtaalamu, natumia kwa ripoti na rasimu za haraka. Hukuokoa muda na hunisaidia kuwa na tija kazini."
+
+
 #: .\templates\index.html:1024
 msgid "Professionals"
 msgstr "Wataalamu"

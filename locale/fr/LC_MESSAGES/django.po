@@ -7,15 +7,311 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-05 20:35+0100\n"
-"PO-Revision-Date: 2025-09-05 17:56+0100\n"
-"Last-Translator: YOUR NAME <YOUR EMAIL>\n"
-"Language-Team: French <fr@li.org>\n"
+"POT-Creation-Date: 2025-09-08 00:00+0000\n"
+"PO-Revision-Date: 2025-09-08 00:00+0000\n"
+"Language-Team: French\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: templates
+msgid "Free AI Essay Generator<p>Write Professional Essays Instantly"
+msgstr "Générateur d’Essais IA Gratuit<p>Rédigez des Essais Professionnels Instantanément"
+
+#: templates
+msgid "Generate high-quality essays on any topic in seconds with our free AI-powered essay generator."
+msgstr "Générez des essais de haute qualité sur n’importe quel sujet en quelques secondes avec notre générateur d’essais gratuit alimenté par l’IA."
+
+#: templates
+msgid "Perfect for students, researchers, and content creators looking for structured, plagiarism-free content."
+msgstr "Parfait pour les étudiants, les chercheurs et les créateurs de contenu recherchant un contenu structuré et sans plagiat."
+
+#: templates
+msgid "Start Generating Essays Instantly"
+msgstr "Commencez à Générer des Essais Instantanément"
+
+#: templates
+msgid "Try our free AI Essay Generator and create professional essays in seconds."
+msgstr "Essayez notre Générateur d’Essais IA gratuit et créez des essais professionnels en quelques secondes."
+
+#: templates
+msgid "Generate Your Essay Now"
+msgstr "Générez Votre Essai Maintenant"
+
+
+
+#: templates
+msgid "Essay Type Selector"
+msgstr "Sélecteur de Type d’Essai"
+
+#: templates
+msgid "Choose Your Essay Type"
+msgstr "Choisissez Votre Type d’Essai"
+
+#: templates
+msgid "Narrativ"
+msgstr "Narratif"
+
+#: templates
+msgid "Descriptive"
+msgstr "Descriptif"
+
+#: templates
+msgid "Expository"
+msgstr "Expositif"
+
+#: templates
+msgid "Persuasive"
+msgstr "Persuasif"
+
+#: templates
+msgid "Analytical"
+msgstr "Analytique"
+
+#: templates
+msgid "*Note: Select an essay type to customize the style and tone of your AI-generated essay."
+msgstr "*Remarque : Sélectionnez un type d’essai pour personnaliser le style et le ton de votre essai généré par l’IA."
+
+#: templates
+msgid "Enter Your Essay Topic"
+msgstr "Entrez le Sujet de Votre Essai"
+
+#: templates
+msgid "Generate Essay"
+msgstr "Générer l’Essai"
+
+#: templates
+msgid "AI-Generated Essay"
+msgstr "Essai Généré par l’IA"
+
+#: templates
+msgid "Your essay will appear here..."
+msgstr "Votre essai apparaîtra ici..."
+
+#: templates
+msgid "📥 Download PDF"
+msgstr "📥 Télécharger le PDF"
+
+
+
+
+
+#: templates
+msgid "Type in your essay prompt or topic in the input box."
+msgstr "Saisissez votre sujet ou question d’essai dans la boîte de saisie."
+
+#: templates
+msgid "2. AI Generates Content"
+msgstr "2. L’IA Génère le Contenu"
+
+#: templates
+msgid "Our AI creates a unique, structured essay in seconds."
+msgstr "Notre IA crée un essai unique et structuré en quelques secondes."
+
+#: templates
+msgid "3. Review & Edit"
+msgstr "3. Relisez & Modifiez"
+
+#: templates
+msgid "Refine the essay and use it for your projects or assignments."
+msgstr "Affinez l’essai et utilisez-le pour vos projets ou devoirs."
+
+#: templates
+msgid "Why You Should Consider Using an AI Essay Generator"
+msgstr "Pourquoi Vous Devriez Envisager d’Utiliser un Générateur d’Essais IA"
+
+#: templates
+msgid "Discover how our AI-powered essay generator can save time, improve your writing,"
+msgstr "Découvrez comment notre générateur d’essais alimenté par l’IA peut vous faire gagner du temps, améliorer votre écriture,"
+
+#: templates
+msgid "and help you create high-quality essays effortlessly."
+msgstr "et vous aider à créer des essais de haute qualité sans effort."
+
+#: templates
+msgid "Save Time and Effort"
+msgstr "Gagnez du Temps et des Efforts"
+
+#: templates
+msgid "Instantly generate essays without spending hours researching and writing."
+msgstr "Générez instantanément des essais sans passer des heures à rechercher et à écrire."
+
+#: templates
+msgid "Boost Productivity"
+msgstr "Augmentez la Productivité"
+
+#: templates
+msgid "Focus on editing and creativity while AI handles the first draft for you."
+msgstr "Concentrez-vous sur l’édition et la créativité pendant que l’IA s’occupe du premier brouillon pour vous."
+
+#: templates
+msgid "Improve Writing Skills"
+msgstr "Améliorez vos Compétences en Écriture"
+
+#: templates
+msgid "Learn essay structure and formatting by studying AI-generated drafts."
+msgstr "Apprenez la structure et la mise en forme des essais en étudiant les brouillons générés par l’IA."
+
+#: templates
+msgid "Plagiarism-Free Drafts"
+msgstr "Brouillons Sans Plagiat"
+
+#: templates
+msgid "Generate unique essays that are perfect as a starting point for your work."
+msgstr "Générez des essais uniques parfaits comme point de départ pour votre travail."
+
+#: templates
+msgid "Available 24/7"
+msgstr "Disponible 24/7"
+
+#: templates
+msgid "Access the essay generator anytime, anywhere, without delays."
+msgstr "Accédez au générateur d’essais à tout moment, où que vous soyez, sans délai."
+
+#: templates
+msgid "Perfect for All Users"
+msgstr "Parfait pour Tous les Utilisateurs"
+
+#: templates
+msgid "Students, bloggers, and researchers can all benefit from AI-powered essays."
+msgstr "Les étudiants, les blogueurs et les chercheurs peuvent tous bénéficier des essais générés par l’IA."
+
+#: templates
+msgid "Who Can Benefit from Our AI Essay Generator?"
+msgstr "Qui Peut Bénéficier de Notre Générateur d’Essais IA ?"
+
+#: templates
+msgid "Our AI-powered essay generator is designed for learners, professionals, and educators who need high-quality essays, reports, or academic writing. With clear, well-structured content, instant topic coverage, and proper formatting, it saves time while ensuring originality and clarity."
+msgstr "Notre générateur d’essais alimenté par l’IA est conçu pour les apprenants, les professionnels et les enseignants qui ont besoin d’essais, de rapports ou d’écrits académiques de haute qualité. Avec un contenu clair et bien structuré, une couverture immédiate des sujets et une mise en forme appropriée, il fait gagner du temps tout en garantissant l’originalité et la clarté."
+
+
+#: templates
+msgid " Educators"
+msgstr " Enseignants"
+
+#: templates
+msgid "Students at all levels can instantly generate essays for assignments, term papers, and projects. With clear arguments, structured paragraphs, and plagiarism-free writing, our tool makes essay writing easier and more effective."
+msgstr "Les étudiants de tous niveaux peuvent générer instantanément des essais pour les devoirs, les mémoires et les projets. Avec des arguments clairs, des paragraphes structurés et une écriture sans plagiat, notre outil rend la rédaction d’essais plus facile et plus efficace."
+
+#: templates
+msgid "Teachers and tutors can use the essay generator to create sample essays, model answers, or practice prompts for students. It saves preparation time while ensuring engaging and high-quality teaching materials."
+msgstr "Les enseignants et tuteurs peuvent utiliser le générateur d’essais pour créer des essais modèles, des réponses types ou des sujets d’entraînement pour les étudiants. Cela permet de gagner du temps de préparation tout en garantissant des supports pédagogiques attrayants et de qualité."
+
+#: templates
+msgid "Professionals needing reports, proposals, or formal write-ups can rely on the generator for well-written drafts. It’s ideal for business communication, research summaries, and professional documentation."
+msgstr "Les professionnels ayant besoin de rapports, de propositions ou de textes formels peuvent compter sur le générateur pour des brouillons bien rédigés. C’est idéal pour la communication professionnelle, les résumés de recherche et la documentation professionnelle."
+
+#: templates
+msgid "Frequently Asked Questions"
+msgstr "Questions Fréquemment Posées"
+
+#: templates
+msgid "Everything you need to know about our AI Essay Generator and why it stands out in Africa and beyond."
+msgstr "Tout ce que vous devez savoir sur notre Générateur d’Essais IA et pourquoi il se distingue en Afrique et ailleurs."
+
+#: templates
+msgid " 1. What makes this AI Essay Generator unique?"
+msgstr "1. Qu’est-ce qui rend ce Générateur d’Essais IA unique ?"
+
+#: templates
+msgid "Our platform is designed with students, researchers, and content creators in mind."
+msgstr "Notre plateforme est conçue pour les étudiants, les chercheurs et les créateurs de contenu."
+
+#: templates
+msgid "Unlike generic tools, it supports African languages like <strong> Igbo,Hausa, Yoruba, Swahili, and Zulu"
+msgstr "Contrairement aux outils génériques, il prend en charge les langues africaines comme <strong> l’igbo, le haoussa, le yoruba, le swahili et le zoulou"
+
+#: templates
+msgid "making it ideal for diverse users across Africa and the world."
+msgstr "ce qui le rend idéal pour des utilisateurs variés à travers l’Afrique et le monde."
+
+#: templates
+msgid " 2. Is the AI-generated essay plagiarism-free?"
+msgstr "2. L’essai généré par l’IA est-il sans plagiat ?"
+
+#: templates
+msgid "Yes, our AI generates unique essays for every prompt. "
+msgstr "Oui, notre IA génère des essais uniques pour chaque sujet. "
+
+#: templates
+msgid "While we recommend reviewing and editing the draft for personal touches,"
+msgstr "Bien que nous recommandions de relire et de modifier le brouillon pour y apporter des touches personnelles,"
+
+#: templates
+msgid "the content is <strong>100% original and plagiarism-free"
+msgstr "le contenu est <strong>100 % original et sans plagiat"
+
+#: templates
+msgid "3. Can I use this tool for school assignments or research?"
+msgstr "3. Puis-je utiliser cet outil pour les devoirs ou la recherche ?"
+
+#: templates
+msgid "Absolutely! Our AI Essay Generator is perfect for <strong>assignments, research projects,"
+msgstr "Absolument ! Notre Générateur d’Essais IA est parfait pour les <strong>devoirs, les projets de recherche,"
+
+#: templates
+msgid "academic essays, and even blog content"
+msgstr "les essais académiques, et même le contenu de blog"
+
+#: templates
+msgid "It saves you hours of writing and helps you start with a high-quality draft."
+msgstr "Il vous fait gagner des heures d’écriture et vous aide à démarrer avec un brouillon de haute qualité."
+
+#: templates
+msgid "Does the AI support multiple African languages?"
+msgstr "L’IA prend-elle en charge plusieurs langues africaines ?"
+
+#: templates
+msgid "Yes! This is where our MVP truly stands out."
+msgstr "Oui ! C’est là que notre MVP se distingue réellement."
+
+#: templates
+msgid "We offer support for <strong>Hausa, Yoruba, Igbo, Swahili, Zulu, and Amharic"
+msgstr "Nous offrons un support pour <strong> le haoussa, le yoruba, l’igbo, le swahili, le zoulou et l’amharique"
+
+#: templates
+msgid "Students and professionals across Africa can finally generate essays in their preferred languages."
+msgstr "Les étudiants et professionnels à travers l’Afrique peuvent enfin générer des essais dans leurs langues préférées."
+
+#: templates
+msgid " 5. Is the AI Essay Generator free to use?"
+msgstr "5. Le Générateur d’Essais IA est-il gratuit à utiliser ?"
+
+#: templates
+msgid "Yes! Our basic AI essay generation is <strong>completely free"
+msgstr "Oui ! Notre génération d’essais IA de base est <strong>complètement gratuite"
+
+#: templates
+msgid "Premium features such as advanced research assistance and long-form essays"
+msgstr "Les fonctionnalités premium telles que l’assistance avancée à la recherche et les essais longs"
+
+#: templates
+msgid "will be available in the future for users who need more customization."
+msgstr "seront disponibles à l’avenir pour les utilisateurs qui ont besoin de plus de personnalisation."
+
+#: templates
+msgid "What <strong>users</strong> are <strong>saying about our Essay Generator."
+msgstr "Ce que les <strong>utilisateurs</strong> disent de notre Générateur d’Essais."
+
+#: templates
+msgid "The essay generator saved me hours on assignments. It creates well-structured essays that I can use as inspiration and reference."
+msgstr "Le générateur d’essais m’a fait gagner des heures sur mes devoirs. Il crée des essais bien structurés que je peux utiliser comme source d’inspiration et de référence."
+
+#: templates
+msgid "I was struggling with academic writing, but now I can generate clear, plagiarism-free essays in minutes. A real game changer for me."
+msgstr "J’avais du mal avec l’écriture académique, mais maintenant je peux générer des essais clairs et sans plagiat en quelques minutes. Un vrai changement pour moi."
+
+#: templates
+msgid "This tool gives me confidence when writing research papers. The arguments are solid and the content flows naturally."
+msgstr "Cet outil me donne confiance lorsque j’écris des articles de recherche. Les arguments sont solides et le contenu s’enchaîne naturellement."
+
+#: templates
+msgid "As a professional, I use it for quick reports and drafts. It saves me time and helps me stay productive at work."
+msgstr "En tant que professionnel, je l’utilise pour des rapports rapides et des brouillons. Cela me fait gagner du temps et m’aide à rester productif au travail."
+
+
+
 
 #: .\blog\templates\blog\blog_detail.html:218
 #: .\blog\templates\blog\blog_list.html:216
