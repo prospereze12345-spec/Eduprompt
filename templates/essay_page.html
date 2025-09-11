@@ -10,7 +10,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <!-- SEO Title -->
-  <title>{ trans "AI Essay Generator – Create High-Quality Essays Instantly for Free" %}</title>
+  <title>AI Essay Generator – Create High-Quality Essays Instantly for Free</title>
 
   <!-- SEO Description -->
   <meta name="description" content="Generate structured, high-quality essays instantly with our free AI-powered essay generator. Perfect for students, researchers, and content creators seeking plagiarism-free, well-formatted essays. Write, learn, and improve your writing with AI assistance.">
@@ -244,18 +244,7 @@
     </li>
 {% endif %}
 
-        <form action="{% url 'set_language' %}" method="post">
-    {% csrf_token %}
-    <select name="language" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 120px; font-size: 0.9rem;">
-        {% get_current_language as LANGUAGE_CODE %}
-        {% get_available_languages as LANGUAGES %}
-        {% for code, name in LANGUAGES %}
-            <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>
-                {{ name }}
-            </option>
-        {% endfor %}
-    </select>
-</form>
+       
       </ul>
     </div>
   </nav>
@@ -439,18 +428,19 @@
 
 <div class="container vh-100 d-flex flex-column justify-content-center align-items-center text-center px-3">
   <h1 class="fw-bold typing-animation" style="color: darkblue;">
-    {% trans "Free AI Essay Generator<p>Write Professional Essays Instantly" %}</p>
+    {% trans "AI Essay Generator for Professional Writing" %}
   </h1>
   <p class="lead text-muted mt-3">
-      {% trans "Generate high-quality essays on any topic in seconds with our free AI-powered essay generator." %}
-      {% trans "Perfect for students, researchers, and content creators looking for structured, plagiarism-free content." %}
-    </p>
+    {% trans "Easily generate well-structured, high-quality essays on any topic. Our AI-powered essay generator provides polished content ready for academic, research, or professional use." %}
+    {% trans "This service is designed for students, researchers, and content creators who value accuracy, readability, and reliability." %}
+  </p>
 </div>
+
 
 <div class="container text-center my-5" style="background-color: white;">
             <div class="p-5 rounded shadow-sm" style="background-color: blue; color: white;">
                 <h2 class="fw-bold">{% trans "Start Generating Essays Instantly" %}</h2>
-                <p class="mb-4">{% trans "Try our free AI Essay Generator and create professional essays in seconds." %}</p>
+                <p class="mb-4">{% trans "Try our  AI Essay Generator and create professional essays in seconds." %}</p>
                 <a href="/essay/" class="btn btn-light btn-lg fw-bold">{% trans "Generate Your Essay Now" %}</a>
             </div>
             </div>
@@ -561,26 +551,79 @@
 
 
 
-    <!-- Right Column: AI-Generated Essay Output -->
-    <div class="col-md-6 p-4 d-flex flex-column">
-      <h5 class="fw-bold mb-3">{% trans "AI-Generated Essay" %}</h5>
-      <div id="essayOutput" 
-          class="border bg-light rounded p-3 flex-grow-1 overflow-auto" 
-          style="white-space: pre-wrap; height: 500px; overflow-y: auto;">
-          {% trans "Your essay will appear here..." %}
-      </div>
+<div class="col-md-6 p-4 d-flex flex-column">
+  <h5 class="fw-bold mb-3">AI-Generated Essay (Editable)</h5>
 
-      <!-- Language Switcher Form -->
-      <form action="{% url 'set_language' %}" method="post" class="d-flex align-items-center ms-auto" style="max-width: 150px;">
-        {% csrf_token %}
-        <select name="language" onchange="this.form.submit()" class="form-select form-select-sm" style="font-size: 0.8rem;">
-          {% for code, name in AFRICAN_LANGUAGES %}
-            <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
-          {% endfor %}
-        </select>
-        <input type="hidden" name="next" value="{{ request.get_full_path }}">
-      </form>
+  <!-- Editable Essay Output -->
+  <textarea id="essayOutput"
+            class="border bg-light rounded p-3 flex-grow-1"
+            style="white-space: pre-wrap; height: 500px; overflow-y: auto; resize: vertical;"
+            placeholder="Your essay will appear here..."
+            spellcheck="true"></textarea>
+</div>
 
+
+
+<script>
+  // Get elements
+  const dropdown = document.getElementById("langDropdown");
+  const essayOutput = document.getElementById("essayOutput");
+
+  // URL for translation
+  const translateUrl = "{% url 'translate_text' %}";
+
+  // CSRF helper
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      document.cookie.split(";").forEach(c => {
+        const cookie = c.trim();
+        if (cookie.startsWith(name + "=")) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        }
+      });
+    }
+    return cookieValue;
+  }
+
+  // Event listener
+  dropdown.addEventListener("change", async function () {
+    const target = this.value;
+    const text = essayOutput.innerText.trim();
+    if (!target || !text) return;
+
+    essayOutput.innerText = "Translating...";
+
+    try {
+      const res = await fetch(translateUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": getCookie("csrftoken"),
+        },
+        body: JSON.stringify({ text, target }),
+      });
+
+      const data = await res.json();
+      essayOutput.innerText = data.success ? data.content : "Error: " + (data.error || "Unknown error");
+    } catch (err) {
+      essayOutput.innerText = "Failed: " + err;
+    }
+  });
+</script>
+
+
+
+
+
+    </select>
+  </div>
+</div>
+
+
+
+
+      
      
 <!-- Button Row: Download, Plagiarism, Humanizer -->
 <div style="margin-top:20px; text-align:center; display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
@@ -611,26 +654,50 @@
 
 
 <script>
-// Generate Essay
+// Get CSRF token from cookies
+function getCookie(name) {
+    const cookies = document.cookie ? document.cookie.split(';') : [];
+    for (let cookie of cookies) {
+        cookie = cookie.trim();
+        if (cookie.startsWith(name + '=')) {
+            return decodeURIComponent(cookie.substring(name.length + 1));
+        }
+    }
+    return null;
+}
+
+// Generate essay
 async function generateEssay() {
-    const topic = document.getElementById("promptInput").value.trim();
-    const essayType = document.getElementById("selectedEssayType").value || "expository";
+    const topicInput = document.getElementById("promptInput");
+    const essayTypeSelect = document.getElementById("selectedEssayType");
     const outputDiv = document.getElementById("essayOutput");
 
-    outputDiv.textContent = "⏳ Generating essay...";
-    outputDiv.className = "border bg-light rounded p-3 flex-grow-1 overflow-auto";
+    if (!topicInput || !outputDiv) return;
+
+    const topic = topicInput.value.trim();
+    const essayType = essayTypeSelect ? essayTypeSelect.value : "expository";
 
     if (!topic) {
         outputDiv.textContent = "⚠ Please enter a topic first!";
-        outputDiv.classList.add("text-danger");
+        outputDiv.className = "text-danger border bg-light rounded p-3";
         return;
     }
 
+    // Show loading
+    outputDiv.textContent = "⏳ Generating essay...";
+    outputDiv.className = "border bg-light rounded p-3 flex-grow-1 overflow-auto text-muted";
+
     try {
         const csrfToken = getCookie('csrftoken');
-        const payload = { prompt: topic, essay_type: essayType, language_code: "{{ LANGUAGE_CODE }}" };
+        const payload = {
+            topic: topic,
+            type: essayType
+        };
 
-        const response = await fetch("{% url 'essay_generate' %}", {
+        // Use your Django URL for essay generation
+        const url = "{% url 'essay_generate' %}";
+
+        const response = await fetch(url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -642,52 +709,48 @@ async function generateEssay() {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
         const data = await response.json();
-        if (data.success) {
-            outputDiv.textContent = data.content;
+
+        if (data.essay) {
+            outputDiv.textContent = data.essay;
+            outputDiv.className = "border bg-light rounded p-3 flex-grow-1 overflow-auto";
+            outputDiv.scrollIntoView({ behavior: "smooth" });
         } else {
             outputDiv.textContent = data.error || "❌ Failed to generate essay!";
-            outputDiv.classList.add("text-danger");
+            outputDiv.className = "text-danger border bg-light rounded p-3";
         }
 
     } catch (err) {
-        console.error(err);
+        console.error("Essay generation error:", err);
         outputDiv.textContent = "❌ Something went wrong. Please try again!";
-        outputDiv.classList.add("text-danger");
+        outputDiv.className = "text-danger border bg-light rounded p-3";
     }
 }
 
 function downloadEssayPDF() {
-    const essayOutput = document.getElementById("essayOutput");
-    if (!essayOutput) {
+    // Get the essay textarea
+    const outputTextarea = document.getElementById("essayOutput");
+    if (!outputTextarea) {
         alert("⚠ Essay output element not found!");
         return;
     }
 
-    const essayText = essayOutput.innerText.trim();
-
-    // Prevent download if empty or placeholder
-    if (!essayText || essayText.includes("AI Solver Solution") || essayText.includes("No solution available")) {
+    const essayText = outputTextarea.value.trim(); // <-- use .value for textarea
+    if (!essayText) {
         alert("⚠ Please generate an essay first!");
         return;
     }
 
-    // Create a form to POST the essay
+    // Create a temporary form to POST to Django download view
     const form = document.createElement("form");
     form.method = "POST";
     form.action = "{% url 'download_essay_pdf' %}";
     form.target = "_blank";
 
     // CSRF token
-    const csrfToken = getCookie("csrftoken");
-    if (!csrfToken) {
-        alert("⚠ CSRF token not found!");
-        return;
-    }
-
     const csrfInput = document.createElement("input");
     csrfInput.type = "hidden";
     csrfInput.name = "csrfmiddlewaretoken";
-    csrfInput.value = csrfToken;
+    csrfInput.value = getCookie("csrftoken"); // make sure getCookie() exists
     form.appendChild(csrfInput);
 
     // Essay content
@@ -701,45 +764,63 @@ function downloadEssayPDF() {
     form.submit();
     form.remove();
 }
-
-// Utility function to get CSRF cookie
-function getCookie(name) {
-    const cookies = document.cookie ? document.cookie.split(';') : [];
-    for (let cookie of cookies) {
-        cookie = cookie.trim();
-        if (cookie.startsWith(name + '=')) {
-            return decodeURIComponent(cookie.substring(name.length + 1));
-        }
-    }
-    return null;
-}
-
 </script>
+
+
 
 
 </body>
 </html>
 
 <div class="container my-5">
-  <h2 class="text-center fw-bold mb-4">{% trans "How It Works" %}</h2>
-  <div class="row g-4 text-center">
-    <div class="col-md-4">
-      <i class="bi bi-pencil-square fs-1 text-primary"></i>
-      <h5 class="mt-3">{% trans "1. Enter Your Topic" %}</h5>
-      <p class="text-muted small">{% trans "Type in your essay prompt or topic in the input box." %}</p>
+  <h2 class="text-center fw-bold mb-5">{% trans "How It Works" %}</h2>
+
+  <div class="row g-4">
+    <!-- Step 1 -->
+    <div class="col-12 col-md-4">
+      <div class="card h-100 bg-white shadow-lg border-0 p-3 hover-scale">
+        <div class="card-body text-center">
+          <i class="bi bi-pencil-square fs-1 text-primary mb-3"></i>
+          <h5 class="card-title fw-bold mb-3">{% trans "1. Enter Your Topic" %}</h5>
+          <p class="card-text text-muted">{% trans "Type your essay prompt or topic in the input box. Be specific to get the best results." %}</p>
+        </div>
+      </div>
     </div>
-    <div class="col-md-4">
-      <i class="bi bi-cpu fs-1 text-success"></i>
-      <h5 class="mt-3">{% trans "2. AI Generates Content" %}</h5>
-      <p class="text-muted small">{% trans "Our AI creates a unique, structured essay in seconds." %}</p>
+
+    <!-- Step 2 -->
+    <div class="col-12 col-md-4">
+      <div class="card h-100 bg-white shadow-lg border-0 p-3 hover-scale">
+        <div class="card-body text-center">
+          <i class="bi bi-cpu fs-1 text-success mb-3"></i>
+          <h5 class="card-title fw-bold mb-3">{% trans "2. AI Generates Content" %}</h5>
+          <p class="card-text text-muted">{% trans "Our AI instantly creates a unique, structured essay tailored to your topic." %}</p>
+        </div>
+      </div>
     </div>
-    <div class="col-md-4">
-      <i class="bi bi-check-circle fs-1 text-warning"></i>
-      <h5 class="mt-3">{% trans "3. Review & Edit" %}</h5>
-      <p class="text-muted small">{% trans "Refine the essay and use it for your projects or assignments." %}</p>
+
+    <!-- Step 3 -->
+    <div class="col-12 col-md-4">
+      <div class="card h-100 bg-white shadow-lg border-0 p-3 hover-scale">
+        <div class="card-body text-center">
+          <i class="bi bi-check-circle fs-1 text-warning mb-3"></i>
+          <h5 class="card-title fw-bold mb-3">{% trans "3. Review & Edit" %}</h5>
+          <p class="card-text text-muted">{% trans "Refine your essay to your preference and use it confidently for assignments or projects." %}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- Hover effect for cards -->
+<style>
+.hover-scale {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.hover-scale:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+</style>
 
 
 
@@ -748,92 +829,101 @@ function getCookie(name) {
   <div class="text-center mb-5">
     <h2 class="fw-bold">{% trans "Why You Should Consider Using an AI Essay Generator" %}</h2>
     <p class="text-muted fs-5">
-      {% trans "Discover how our AI-powered essay generator can save time, improve your writing," %}
-      {% trans "and help you create high-quality essays effortlessly." %}
+      {% trans "Experience how our AI-powered essay generator helps you save time, improve your writing, and produce high-quality, easy-to-read essays effortlessly. All essays are automatically polished for grammar and readability, ensuring human-like flow and clarity without additional cost." %}
     </p>
   </div>
 
   <div class="row g-4">
     <!-- Reason 1 -->
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm border-0 text-center p-4">
+    <div class="col-12 col-md-4">
+      <div class="card h-100 shadow-sm border-0 text-center p-4 bg-white hover-scale">
         <div class="mb-3 text-primary fs-1">
           <i class="bi bi-alarm"></i>
         </div>
         <h5 class="fw-semibold">{% trans "Save Time and Effort" %}</h5>
         <p class="text-muted small">
-          {% trans "Instantly generate essays without spending hours researching and writing." %}
+          {% trans "Generate complete essays instantly without spending hours on research and writing. Perfect for students and professionals alike." %}
         </p>
       </div>
     </div>
 
     <!-- Reason 2 -->
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm border-0 text-center p-4">
+    <div class="col-12 col-md-4">
+      <div class="card h-100 shadow-sm border-0 text-center p-4 bg-white hover-scale">
         <div class="mb-3 text-success fs-1">
           <i class="bi bi-lightning-charge-fill"></i>
         </div>
         <h5 class="fw-semibold">{% trans "Boost Productivity" %}</h5>
         <p class="text-muted small">
-          {% trans "Focus on editing and creativity while AI handles the first draft for you." %}
+          {% trans "Focus on refining and personalizing your content while AI handles the initial draft, allowing you to accomplish more in less time." %}
         </p>
       </div>
     </div>
 
     <!-- Reason 3 -->
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm border-0 text-center p-4">
+    <div class="col-12 col-md-4">
+      <div class="card h-100 shadow-sm border-0 text-center p-4 bg-white hover-scale">
         <div class="mb-3 text-warning fs-1">
           <i class="bi bi-book-half"></i>
         </div>
         <h5 class="fw-semibold">{% trans "Improve Writing Skills" %}</h5>
         <p class="text-muted small">
-          {% trans "Learn essay structure and formatting by studying AI-generated drafts." %}
+          {% trans "Study AI-generated essays to understand structure, coherence, and smooth transitions. Learn how professional-level content is crafted effortlessly." %}
         </p>
       </div>
     </div>
 
     <!-- Reason 4 -->
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm border-0 text-center p-4">
+    <div class="col-12 col-md-4">
+      <div class="card h-100 shadow-sm border-0 text-center p-4 bg-white hover-scale">
         <div class="mb-3 text-danger fs-1">
           <i class="bi bi-shield-check"></i>
         </div>
-        <h5 class="fw-semibold">{% trans "Plagiarism-Free Drafts" %}</h5>
+        <h5 class="fw-semibold">{% trans "Free Grammar Polishing" %}</h5>
         <p class="text-muted small">
-          Generate unique essays that are perfect as a starting point for your work.
+          {% trans "Every essay is automatically polished using our integrated grammar tool, ensuring content is easy to read and flows naturally without extra effort." %}
         </p>
       </div>
     </div>
 
     <!-- Reason 5 -->
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm border-0 text-center p-4">
+    <div class="col-12 col-md-4">
+      <div class="card h-100 shadow-sm border-0 text-center p-4 bg-white hover-scale">
         <div class="mb-3 text-info fs-1">
-          <i class="bi bi-cloudy"></i>
+          <i class="bi bi-clock-history"></i>
         </div>
-        <h5 class="fw-semibold">{% trans "Available 24/7" %}</h5>
+        <h5 class="fw-semibold">{% trans "Access Anytime, Anywhere" %}</h5>
         <p class="text-muted small">
-          {% trans "Access the essay generator anytime, anywhere, without delays." %}
+          {% trans "Our AI essay generator is available 24/7 online. Generate, review, and edit your essays at your convenience from any device." %}
         </p>
       </div>
     </div>
 
     <!-- Reason 6 -->
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm border-0 text-center p-4">
+    <div class="col-12 col-md-4">
+      <div class="card h-100 shadow-sm border-0 text-center p-4 bg-white hover-scale">
         <div class="mb-3 text-secondary fs-1">
           <i class="bi bi-people-fill"></i>
         </div>
-        <h5 class="fw-semibold">{% trans "Perfect for All Users" %}</h5>
+        <h5 class="fw-semibold">{% trans "Perfect for Everyone" %}</h5>
         <p class="text-muted small">
-          {% trans "Students, bloggers, and researchers can all benefit from AI-powered essays." %}
+          {% trans "Whether you're a student, blogger, researcher, or professional, our AI-generated essays provide a solid foundation to customize, learn, and improve your work." %}
         </p>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Hover effect for cards -->
+<style>
+.hover-scale {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.hover-scale:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+</style>
 
 
 <!-- Who Can Benefit Section (Essay Generator) -->

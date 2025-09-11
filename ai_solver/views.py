@@ -9,8 +9,6 @@ from gtts import gTTS
 import os
 from django.conf import settings
 import re
-
-
 import os
 import re
 import requests
@@ -18,72 +16,71 @@ from gtts import gTTS
 from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from django.core.cache import cache
 
-# --- Helper function ---
-def solve_with_openrouter(question, max_tokens=300):
-    """Use OpenRouter GPT for step-by-step solutions safely with free-tier limits."""
+# ----------------------------
+# OpenRouter solver
+# ----------------------------
+def solve_with_openrouter(question, max_tokens=200):
     try:
         url = "https://openrouter.ai/api/v1/chat/completions"
         headers = {"Authorization": f"Bearer {settings.OPENROUTER_API_KEY}"}
-
         payload = {
             "model": "gpt-4o-mini",
             "messages": [
                 {
                     "role": "system",
                     "content": (
-                        "You are a professional tutor. "
-                        "Explain solutions step by step in clear, simple paragraphs. "
-                        "Format like:\n"
-                        "Step 1: Explain the first step.\n"
-                        "Step 2: Explain the next step.\n"
-                        "Continue until complete. "
-                        "Do NOT use #, *, or markdown formatting. Plain text only."
+                        "You are a professional tutor. Provide concise 3-5 step solutions. "
+                        "Plain text only, no markdown or special symbols."
                     ),
                 },
                 {"role": "user", "content": question},
             ],
             "max_tokens": max_tokens,
-            "temperature": 0.7,
+            "temperature": 0.5,
         }
 
-        res = requests.post(url, json=payload, headers=headers, timeout=20)
-        res_json = res.json()
-
-        if res.status_code == 402:
-            print("⚠️ OpenRouter error: Free credits exceeded or request too large.")
-            return "⚠️ OpenRouter free credits exceeded. Reduce question size or upgrade plan."
-
-        if "error" in res_json:
-            print("⚠️ OpenRouter error:", res_json["error"])
-            return None
-
-        answer = res_json.get("choices", [{}])[0].get("message", {}).get("content", "").strip()
-        if not answer:
-            return None
-
-        # Ensure each step starts on a new line
-        organized_answer = re.sub(r"(Step \d+:)", r"\n\1", answer).strip()
-        return organized_answer
+        res = requests.post(url, json=payload, headers=headers, timeout=15)
+        res.raise_for_status()
+        data = res.json()
+        answer = data.get("choices", [{}])[0].get("message", {}).get("content", "").strip()
+        return answer or None
 
     except Exception as e:
-        print("⚠️ OpenRouter exception:", e)
+        print("⚠ OpenRouter failed:", e)
         return None
 
-# --- Main Django View ---
+# ----------------------------
+# Main Django view (matches URLs)
+# ----------------------------
+@csrf_exempt
 def ai_solver(request):
+    """
+    POST: solves a user question via OpenRouter and returns steps + audio
+    GET: renders the ai_solver page
+    """
     if request.method == "POST" and request.headers.get("x-requested-with") == "XMLHttpRequest":
         question = request.POST.get("question", "").strip()
+        user_id = request.POST.get("user_id", "guest")  # simple user tracking
         response = {"steps": "", "audio_url": ""}
 
         if not question:
-            response["steps"] = "Please enter a question."
+            response["steps"] = "⚠ Please enter a question."
             return JsonResponse(response)
 
+        # Rate limit: 2 requests/day per user
+        cache_key = f"ai_solver_requests:{user_id}"
+        request_count = cache.get(cache_key, 0)
+        if request_count >= 2:
+            response["steps"] = "⚠ Daily limit reached. Try again tomorrow."
+            return JsonResponse(response)
+        cache.set(cache_key, request_count + 1, timeout=86400)  # 24h
+
         try:
-            # --- Clean math expressions ---
-            expr = question
-            expr = expr.replace("^", "**")
+            # Clean math expressions
+            expr = question.replace("^", "**")
             expr = re.sub(r"∫", "integrate", expr)
             expr = re.sub(r"d/dx", "derivative(", expr, flags=re.I)
             expr = re.sub(r"log₂\((.*?)\)", r"log(\1,2)", expr)
@@ -94,39 +91,39 @@ def ai_solver(request):
             if "=" in expr:
                 expr = f"solve {expr}"
 
-            # --- Solve with OpenRouter ---
-            steps = solve_with_openrouter(expr, max_tokens=300)
+            # Solve with OpenRouter
+            steps = solve_with_openrouter(expr)
             if not steps:
-                steps = "⚠️ Sorry, no detailed solution could be generated at the moment."
+                steps = "⚠ Could not generate a solution at this time."
 
-            # --- Generate Audio ---
-            audio_filename = "solution_ajax.mp3"
+            # Generate audio
+            audio_filename = f"tts_{abs(hash(question))}.mp3"
             audio_path = os.path.join(settings.MEDIA_ROOT, audio_filename)
             os.makedirs(settings.MEDIA_ROOT, exist_ok=True)
-
-            tts = gTTS(text=steps, lang="en")
-            tts.save(audio_path)
+            try:
+                tts = gTTS(text=steps, lang="en")
+                tts.save(audio_path)
+                response["audio_url"] = os.path.join(settings.MEDIA_URL, audio_filename)
+            except Exception as e:
+                print("⚠ gTTS failed:", e)
+                response["audio_url"] = ""
 
             response["steps"] = steps
-            response["audio_url"] = os.path.join(settings.MEDIA_URL, audio_filename)
 
         except Exception as e:
             response["steps"] = f"⚠️ Error: {e}"
 
         return JsonResponse(response)
 
-    # GET request
-    return render(request, "ai_solver.html", {
-        "AFRICAN_LANGUAGES": getattr(settings, "AFRICAN_LANGUAGES", []),
-    })
+    # GET request → render page
+    return render(request, "ai_solver.html")
 
-    
+
+# ----------------------------
+# Image OCR + Solve endpoint
+# ----------------------------
 @csrf_exempt
 def solve_image_api(request):
-    """
-    Accepts an uploaded image, extracts text using OCR.Space API, 
-    and solves the extracted question with OpenRouter AI.
-    """
     if request.method == "POST":
         uploaded_file = request.FILES.get("image")
         if not uploaded_file:
@@ -146,6 +143,8 @@ def solve_image_api(request):
 
         # Solve extracted text with OpenRouter
         solution = solve_with_openrouter(text)
+        if not solution:
+            solution = "⚠ Could not generate a solution at this time."
 
         return JsonResponse({
             "question": text,
@@ -153,7 +152,6 @@ def solve_image_api(request):
         })
 
     return JsonResponse({"error": "Invalid request."}, status=400)
-
 
 @csrf_exempt
 def download_solution_pdf(request):

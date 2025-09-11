@@ -273,13 +273,7 @@
 
 
 
-        <!-- Language Selector -->
-        <select name="language" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 120px; font-size: 0.85rem;">
-    {% for code, name in AFRICAN_LANGUAGES %}
-      <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
-    {% endfor %}
-</select>
-<input type="hidden" name="next" value="{{ request.get_full_path }}">
+        
 
       </ul>
     </div>

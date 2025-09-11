@@ -16,6 +16,13 @@ from dotenv import load_dotenv
 
 import os
 
+
+
+load_dotenv()
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+HF_TOKEN = os.getenv("HF_TOKEN")
+
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
@@ -26,9 +33,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-load_dotenv() 
-
-OPENROUTER_API = os.environ.get("OPENROUTER_API")
+ZHIPU_API_KEY = os.getenv("ZHIPU_API_KEY")
 
 
 
@@ -49,7 +54,6 @@ DEFAULT_CURRENCY = "NGN"
 
 # LanguageTool API endpoint
 LANGUAGETOOL_API = "http://localhost:8010/v2/check"
-HF_API_KEY= os.getenv("HF_API_KEY")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -111,24 +115,9 @@ INSTALLED_APPS = [
 ]
 
 
-from django.utils.translation import gettext_lazy as _
 
-LANGUAGE_CODE = 'en'  
 
 # Add African languages
-AFRICAN_LANGUAGES = [
-    ('en', 'English'),
-    ('fr', 'Français'),
-    ('ig', 'Igbo'),
-    ('yo', 'Yorùbá'),
-    ('ha', 'Hausa'),
-    ('sw', 'Swahili'),
-    ('ar', 'Arabic'),
-    ('zu', 'Zulu'),
-    ('tw', 'Twi'),
-]
-
-LANGUAGES = AFRICAN_LANGUAGES  # for i18n system
 
 LOCALE_PATHS = [
     BASE_DIR / 'locale',  # where translation files will be stored

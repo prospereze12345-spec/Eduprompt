@@ -8,41 +8,27 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html', {
-        'AFRICAN_LANGUAGES': settings.AFRICAN_LANGUAGES
-    })
+    return render(request, 'index.html')
 
 
 def contact(request):
-    return render(request, 'contact.html', {
-        'AFRICAN_LANGUAGES': settings.AFRICAN_LANGUAGES
-    })
+    return render(request, 'contact.html')
 
 
 def about(request):
-    return render(request, 'about.html', {
-        'AFRICAN_LANGUAGES': settings.AFRICAN_LANGUAGES
-    })
+    return render(request, 'about.html')
 
 
 def Terms_and_Condition(request):
-    return render(request, 'Terms_and_Condition.html' ,{
-        'AFRICAN_LANGUAGES': settings.AFRICAN_LANGUAGES
-    })
+    return render(request, 'Terms_and_Condition.html' )
 
 
 def privacy_policy(request):
-    return render(request, 'privacy_policy.html',
- {
-        'AFRICAN_LANGUAGES': settings.AFRICAN_LANGUAGES
-    })
+    return render(request, 'privacy_policy.html')
 
 
 def website(request):
-    return render(request, 'website.html',
- {
-     'AFRICAN_LANGUAGES': settings.AFRICAN_LANGUAGES
-   })
+    return render(request, 'website.html')
 
 
 @csrf_exempt  # disable CSRF only for AJAX test; better to use CSRF token later
@@ -131,15 +117,3 @@ def contact_ajax(request):
             return JsonResponse({'success': False}, status=500)
 
 
-# views.py
-from django.shortcuts import redirect
-from django.utils import translation
-
-def set_language(request, lang_code):
-    if lang_code in dict(settings.LANGUAGES):
-        request.session[translation.LANGUAGE_SESSION_KEY] = lang_code
-    return redirect(request.META.get('HTTP_REFERER', '/'))
-
-
-def languages(request):
-    return {'LANGUAGES': settings.LANGUAGES}

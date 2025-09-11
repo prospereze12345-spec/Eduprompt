@@ -13,9 +13,7 @@ from reportlab.lib.enums import TA_CENTER
 
 def note_page(request):
     """Render the note generator page"""
-    return render(request, "note_page.html", {
-        "AFRICAN_LANGUAGES": getattr(settings, "AFRICAN_LANGUAGES", [])
-    })
+    return render(request, "note_page.html")
 
 
 
@@ -86,7 +84,7 @@ def generate_note(request):
                 {"role": "system", "content": "You are a professional study assistant and educator."},
                 {"role": "user", "content": prompt}
             ],
-            "max_tokens": 2000,
+            "max_tokens": 1000,
             "temperature": 0.7
         }
 

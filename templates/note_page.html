@@ -289,11 +289,11 @@
 
   <div class="container vh-100 d-flex flex-column justify-content-center align-items-center text-center px-3">
   <h1 class="fw-bold typing-animation" style="color: darkblue;">
-    ⚡ Free AI Note Generator – Create Instant Notes Online</p>
+    {% trans "⚡ Free AI Note Generator – Create Instant Notes Online" %}</p>
   </h1>
   <p class="lead text-muted mt-3">
-      Generate clear, concise, and well-structured notes instantly with our AI-powered tool.
-    Perfect for students, lecturers, professionals, and anyone who wants to save time and stay productive
+      {% trans "Generate clear, concise, and well-structured notes instantly with our AI-powered tool." %}
+    {% trans "Perfect for students, lecturers, professionals, and anyone who wants to save time and stay productive" %}
     </p>
 </div>
 
@@ -302,22 +302,22 @@
 <div class="mb-4 text-center">
   <!-- Main subtle title -->
   <div class="fw-bold fs-4 text-indigo mb-2">
-    Customized Note Generator
+    {% trans "Customized Note Generator" %}
   </div>
 
   <!-- Small subtitle / professional tagline -->
   <p class="text-muted mb-3">
-    Quickly create well-structured study notes for any subject or topic.
+    {% trans "Quickly create well-structured study notes for any subject or topic." %}
   </p>
 
   <!-- Suggested subjects as badges -->
   <div>
-    <span class="badge bg-light text-dark border me-2">Mathematics</span>
-    <span class="badge bg-light text-dark border me-2">Biology</span>
-    <span class="badge bg-light text-dark border me-2">English</span>
-    <span class="badge bg-light text-dark border me-2">Physics</span>
-    <span class="badge bg-light text-dark border">Computer Science</span>
-    <span class="badge bg-light text-dark border">and many more...</span>
+    <span class="badge bg-light text-dark border me-2">{% trans "Mathematics" %}</span>
+    <span class="badge bg-light text-dark border me-2">{% trans "Biology" %}</span>
+    <span class="badge bg-light text-dark border me-2">{% trans "English" %}</span>
+    <span class="badge bg-light text-dark border me-2">{% trans "Physics" %}</span>
+    <span class="badge bg-light text-dark border">{% trans "Computer Science" %}</span>
+    <span class="badge bg-light text-dark border">{% trans "and many more..." %}</span>
 
 
   </div>
@@ -325,11 +325,10 @@
 
 
 
-<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Note Generator</title>
+  <title>{% trans "Note Generator" %}</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     body {
@@ -378,7 +377,7 @@
       <div class="col-lg-5 col-md-6">
         <!-- Subject Input -->
         <div class="mb-3">
-          <label for="subject" class="form-label fw-semibold">Subject</label>
+          <label for="subject" class="form-label fw-semibold">{% trans "Subject" %}</label>
           <input
             type="text"
             class="form-control form-control-lg"
@@ -387,12 +386,12 @@
             aria-describedby="subjectHelp"
             required
           />
-          <div id="subjectHelp" class="form-text">Please enter the subject of your note.</div>
+          <div id="subjectHelp" class="form-text">{% trans "Please enter the subject of your note." %}</div>
         </div>
 
         <!-- Topic Input -->
         <div class="mb-4">
-          <label for="topic" class="form-label fw-semibold">Topic</label>
+          <label for="topic" class="form-label fw-semibold">{% trans "Topic" %}</label>
           <input
             type="text"
             class="form-control form-control-lg"
@@ -401,7 +400,7 @@
             aria-describedby="topicHelp"
             required
           />
-          <div id="topicHelp" class="form-text">Please enter the topic for the note.</div>
+          <div id="topicHelp" class="form-text">{% trans "Please enter the topic for the note." %}</div>
         </div>
 
         <!-- Generate & Clear Buttons -->
@@ -430,7 +429,7 @@
     aria-live="polite"
     aria-atomic="true"
   >
-    Note will appear here...
+    {% trans "Note will appear here..." %}
   </div>
 </div>
 
@@ -451,27 +450,13 @@
 
       <!-- Download PDF Button -->
       <a href="{% url 'download_note_pdf' %}" class="btn btn-success">
-        Download PDF
+        {% trans "Download PDF" %}
       </a>
 
 <!-- Button Row: Download, Plagiarism, Humanizer -->
 <div style="margin-top:20px; text-align:center; display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
 
-  <!-- Plagiarism Checker -->
-  <a href="https://www.quetext.com/plagiarism-checker" 
-     target="_blank" rel="nofollow noopener"
-     class="btn btn-primary" 
-     style="padding:10px 24px; font-size:14px; min-width:150px;">
-    📄 Check Plagiarism
-  </a>
-
-  <!-- Humanizer -->
-  <a href="https://humanize.io/" 
-     target="_blank" rel="nofollow noopener"
-     class="btn btn-success" 
-     style="padding:10px 24px; font-size:14px; min-width:150px;">
-    ✍️ Humanize Text
-  </a>
+  
 
 </div>
     </div>
@@ -581,34 +566,34 @@
 
 <div class="container my-5">
   <h2 class="text-center fw-bold mb-4 text-indigo">
-    <i class="bi bi-info-circle me-2"></i> How It Works
+    <i class="bi bi-info-circle me-2"></i> {% trans "How It Works" %}
   </h2>
   <div class="row g-4 text-center">
 
     <!-- Step 1 -->
     <div class="col-md-4">
       <i class="bi bi-journal-text fs-1 text-primary"></i>
-      <h5 class="mt-3">1. Enter Your Subject</h5>
+      <h5 class="mt-3">{% trans "1. Enter Your Subject" %}</h5>
       <p class="text-muted small">
-        Type the subject you want to generate notes for, e.g. <em>Mathematics</em> or <em>Biology</em>.
+        {% trans "Type the subject you want to generate notes for, e.g. <em>Mathematics</em> or <em>Biology" %}</em>.
       </p>
     </div>
 
     <!-- Step 2 -->
     <div class="col-md-4">
       <i class="bi bi-pencil-square fs-1 text-success"></i>
-      <h5 class="mt-3">2. Enter Your Topic</h5>
+      <h5 class="mt-3">{% trans "2. Enter Your Topic" %}</h5>
       <p class="text-muted small">
-        Specify a topic under that subject, like <em>Algebra Basics</em> or <em>Cell Structure</em>.
+        {% trans "Specify a topic under that subject, like <em>Algebra Basics</em> or <em>Cell Structure" %}</em>.
       </p>
     </div>
 
     <!-- Step 3 -->
     <div class="col-md-4">
       <i class="bi bi-lightning-charge fs-1 text-warning"></i>
-      <h5 class="mt-3">3. Generate Notes</h5>
+      <h5 class="mt-3">{% trans "3. Generate Notes" %}</h5>
       <p class="text-muted small">
-        Click the <strong>Generate</strong> button and get a structured note instantly in the result box.
+       {% trans " Click the <strong>Generate</strong> button and get a structured note instantly in the result box." %}
       </p>
     </div>
 
@@ -619,18 +604,18 @@
     <!-- Step 4 -->
     <div class="col-md-6">
       <i class="bi bi-eye fs-1 text-info"></i>
-      <h5 class="mt-3">4. Review Your Note</h5>
+      <h5 class="mt-3">{% trans "4. Review Your Note" %}</h5>
       <p class="text-muted small">
-        Read and refine your note. Copy or save it for your study needs.
+        {% trans "Read and refine your note. Copy or save it for your study needs." %}
       </p>
     </div>
 
     <!-- Step 5 -->
     <div class="col-md-6">
       <i class="bi bi-arrow-repeat fs-1 text-danger"></i>
-      <h5 class="mt-3">5. Clear & Start Over</h5>
+      <h5 class="mt-3">{% trans "5. Clear & Start Over" %}</h5>
       <p class="text-muted small">
-        Use the <strong>Clear</strong> button to reset and create another note anytime.
+       {% trans " Use the <strong>Clear</strong> button to reset and create another note anytime." %}
       </p>
     </div>
 
@@ -640,7 +625,7 @@
 
 <div class="container my-5">
   <h2 class="text-center fw-bold mb-4 text-indigo">
-    <i class="bi bi-star-fill me-2 text-warning"></i> Why You Should Consider Using an AI Note Generator
+    <i class="bi bi-star-fill me-2 text-warning"></i> {% trans "Why You Should Consider Using an AI Note Generator" %}
   </h2>
   
   <div class="row g-4">
@@ -649,10 +634,10 @@
       <div class="d-flex">
         <i class="bi bi-clock-history fs-1 text-primary me-3"></i>
         <div>
-          <h5 class="fw-bold">Save Valuable Study Time</h5>
+          <h5 class="fw-bold">{% trans "Save Valuable Study Time" %}</h5>
           <p class="text-muted small mb-0">
-            AI note generators quickly create structured notes for any subject or topic, allowing students 
-            and professionals to focus on learning instead of spending hours writing by hand.
+            {% trans "AI note generators quickly create structured notes for any subject or topic, allowing students" %}
+            {% trans "and professionals to focus on learning instead of spending hours writing by hand." %}
           </p>
         </div>
       </div>
@@ -662,9 +647,9 @@
       <div class="d-flex">
         <i class="bi bi-journal-check fs-1 text-success me-3"></i>
         <div>
-          <h5 class="fw-bold">Get Organized and Clear Notes</h5>
+          <h5 class="fw-bold">{% trans "Get Organized and Clear Notes" %}</h5>
           <p class="text-muted small mb-0">
-            Automatically generated notes are concise, structured, and easy to read, helping you retain information better.
+            {% trans "Automatically generated notes are concise, structured, and easy to read, helping you retain information better." %}
           </p>
         </div>
       </div>
@@ -674,10 +659,10 @@
       <div class="d-flex">
         <i class="bi bi-lightbulb fs-1 text-warning me-3"></i>
         <div>
-          <h5 class="fw-bold">Boost Creativity and Understanding</h5>
+          <h5 class="fw-bold">{% trans "Boost Creativity and Understanding" %}</h5>
           <p class="text-muted small mb-0">
-            AI tools can inspire new ways to organize and summarize information, 
-            helping you understand topics more deeply and remember key points faster.
+            {% trans "AI tools can inspire new ways to organize and summarize information," %}"
+            {% trans "helping you understand topics more deeply and remember key points faster." %}
           </p>
         </div>
       </div>
@@ -687,10 +672,10 @@
       <div class="d-flex">
         <i class="bi bi-shield-check fs-1 text-danger me-3"></i>
         <div>
-          <h5 class="fw-bold">Reliable and Consistent Results</h5>
+          <h5 class="fw-bold">{% trans "Reliable and Consistent Results" %}</h5>
           <p class="text-muted small mb-0">
-            Unlike random online summaries, an AI note generator provides accurate, 
-            repeatable results and reduces the risk of missing important details in your notes.
+            {% trans "Unlike random online summaries, an AI note generator provides accurate," %}
+            {% trans "repeatable results and reduces the risk of missing important details in your notes." %}
           </p>
         </div>
       </div>
@@ -700,8 +685,8 @@
 
   <!-- Optional small SEO text for AdSense -->
   <p class="text-center text-muted small mt-4">
-    Using an AI note generator is a smart, time‑saving solution for students, teachers, and professionals.  
-    It ensures you always have well‑structured, readable, and trustworthy notes for any subject.
+    {% trans "Using an AI note generator is a smart, time‑saving solution for students, teachers, and professionals." %} 
+    {% trans "It ensures you always have well‑structured, readable, and trustworthy notes for any subject." %}
   </p>
 </div>
 
@@ -711,26 +696,26 @@
 <!-- Who Can Benefit Section (Note Generator) -->
 <section class="py-5" style="background-color: #ffffff; color: #000000;">
   <div class="container">
-    <h2 class="text-center mb-4" style="color: #003366;">Who Can Benefit from Our AI Note Generator?</h2>
+    <h2 class="text-center mb-4" style="color: #003366;">{% trans "Who Can Benefit from Our AI Note Generator?" %}</h2>
     <p class="text-center mb-5">
-      Our AI note generator creates clear, structured, and simplified notes that make studying easier. Whether for exams, lectures, or quick revision, it helps learners and educators save time while improving comprehension and retention.
+     {% trans " Our AI note generator creates clear, structured, and simplified notes that make studying easier. Whether for exams, lectures, or quick revision, it helps learners and educators save time while improving comprehension and retention." %}
     </p>
 
     <!-- Tabs -->
     <ul class="nav nav-pills justify-content-center mb-4" id="noteTabs" role="tablist">
       <li class="nav-item">
         <button class="nav-link active" id="students-note-tab" data-bs-toggle="pill" data-bs-target="#students-note" type="button">
-          <i class="bi bi-mortarboard-fill me-2"></i> Students
+          <i class="bi bi-mortarboard-fill me-2"></i> {% trans "Students" %}
         </button>
       </li>
       <li class="nav-item">
         <button class="nav-link" id="educators-note-tab" data-bs-toggle="pill" data-bs-target="#educators-note" type="button">
-          <i class="bi bi-person-lines-fill me-2"></i> Educators
+          <i class="bi bi-person-lines-fill me-2"></i> {% trans "Educators" %}
         </button>
       </li>
       <li class="nav-item">
         <button class="nav-link" id="parents-note-tab" data-bs-toggle="pill" data-bs-target="#parents-note" type="button">
-          <i class="bi bi-house-fill me-2"></i> Parents
+          <i class="bi bi-house-fill me-2"></i> {% trans "Parents" %}
         </button>
       </li>
     </ul>
@@ -740,19 +725,19 @@
       <!-- Students -->
       <div class="tab-pane fade show active" id="students-note">
         <div class="p-4 mb-3 bg-light rounded hover-shadow">
-          <p>Students preparing for exams like WAEC, JAMB, SAT, or university courses can get concise study notes with examples and explanations. This makes revision faster, clearer, and more effective.</p>
+          <p>{% trans "Students preparing for exams like WAEC, JAMB, SAT, or university courses can get concise study notes with examples and explanations. This makes revision faster, clearer, and more effective." %}</p>
         </div>
       </div>
       <!-- Educators -->
       <div class="tab-pane fade" id="educators-note">
         <div class="p-4 mb-3 bg-light rounded hover-shadow">
-          <p>Teachers can generate structured lesson notes instantly. The tool ensures simplified explanations, practical examples, and organized content, saving time in lesson preparation.</p>
+          <p>{% trans "Teachers can generate structured lesson notes instantly. The tool ensures simplified explanations, practical examples, and organized content, saving time in lesson preparation." %}</p>
         </div>
       </div>
       <!-- Parents -->
       <div class="tab-pane fade" id="parents-note">
         <div class="p-4 mb-3 bg-light rounded hover-shadow">
-          <p>Parents can use the note generator to support their children’s learning at home. With simplified breakdowns, it helps them explain complex topics more clearly and guide revision sessions effectively.</p>
+          <p>{% trans "Parents can use the note generator to support their children’s learning at home. With simplified breakdowns, it helps them explain complex topics more clearly and guide revision sessions effectively." %}</p>
         </div>
       </div>
     </div>
@@ -761,7 +746,7 @@
 
    <div class="container my-5" style="max-width: 700px;">
   <h2 class="text-center fw-bold mb-4 text-indigo">
-    <i class="bi bi-question-circle me-2"></i> Frequently Asked Questions
+    <i class="bi bi-question-circle me-2"></i> {% trans "Frequently Asked Questions" %}
   </h2>
 
   <div class="accordion" id="faqAccordion" role="region" aria-multiselectable="true">
@@ -778,7 +763,7 @@
           aria-expanded="false" 
           aria-controls="faqCollapse1"
         >
-          What is an AI note generator and how does it work?
+          {% trans "What is an AI note generator and how does it work?" %}
         </button>
       </h3>
       <div 
@@ -788,7 +773,7 @@
         data-bs-parent="#faqAccordion"
       >
         <div class="accordion-body text-muted">
-          An AI note generator is a smart tool that uses artificial intelligence to create structured and concise study notes based on your input subject and topic. It analyzes your input and generates relevant content instantly, saving you time and effort.
+          {% trans "An AI note generator is a smart tool that uses artificial intelligence to create structured and concise study notes based on your input subject and topic. It analyzes your input and generates relevant content instantly, saving you time and effort." %}
         </div>
       </div>
     </div>
@@ -804,7 +789,7 @@
           aria-expanded="false" 
           aria-controls="faqCollapse2"
         >
-          Are the generated notes accurate and reliable?
+          {% trans "Are the generated notes accurate and reliable?" %}
         </button>
       </h3>
       <div 
@@ -814,7 +799,7 @@
         data-bs-parent="#faqAccordion"
       >
         <div class="accordion-body text-muted">
-          Yes, the AI is designed to provide accurate, concise, and well-structured notes. However, it's always recommended to review the generated content to ensure it meets your specific needs and to supplement it with your own study materials.
+          {% trans "Yes, the AI is designed to provide accurate, concise, and well-structured notes. However, it's always recommended to review the generated content to ensure it meets your specific needs and to supplement it with your own study materials." %}
         </div>
       </div>
     </div>
@@ -830,7 +815,7 @@
           aria-expanded="false" 
           aria-controls="faqCollapse3"
         >
-          Is this AI note generator free to use?
+          {% trans "Is this AI note generator free to use?" %}
         </button>
       </h3>
       <div 
@@ -840,7 +825,7 @@
         data-bs-parent="#faqAccordion"
       >
         <div class="accordion-body text-muted">
-          Yes, this AI note generator is completely free to use with no hidden fees. You can generate as many notes as you need without any subscription or payment.
+          {% trans "Yes, this AI note generator is completely free to use with no hidden fees. You can generate as many notes as you need without any subscription or payment." %}
         </div>
       </div>
     </div>
@@ -856,7 +841,7 @@
           aria-expanded="false" 
           aria-controls="faqCollapse4"
         >
-          Can I use the generated notes for academic or professional purposes?
+          {% trans "Can I use the generated notes for academic or professional purposes?" %}
         </button>
       </h3>
       <div 
@@ -866,7 +851,7 @@
         data-bs-parent="#faqAccordion"
       >
         <div class="accordion-body text-muted">
-          Absolutely. The notes are designed to help you study or prepare for presentations, assignments, and professional meetings. Just remember to review and adapt the notes to fit your specific context.
+          {% trans "Absolutely. The notes are designed to help you study or prepare for presentations, assignments, and professional meetings. Just remember to review and adapt the notes to fit your specific context." %}
         </div>
       </div>
     </div>
@@ -882,7 +867,7 @@
           aria-expanded="false" 
           aria-controls="faqCollapse5"
         >
-          How is my privacy protected while using this tool?
+          {% trans "How is my privacy protected while using this tool?" %}
         </button>
       </h3>
       <div 
@@ -892,7 +877,7 @@
         data-bs-parent="#faqAccordion"
       >
         <div class="accordion-body text-muted">
-          We take your privacy seriously. Your inputs are not stored or shared with third parties. The tool processes your data only temporarily to generate the notes and does not retain any personal information.
+          {% trans "We take your privacy seriously. Your inputs are not stored or shared with third parties. The tool processes your data only temporarily to generate the notes and does not retain any personal information." %}
         </div>
       </div>
     </div>
@@ -908,7 +893,7 @@
           aria-expanded="false" 
           aria-controls="faqCollapse6"
         >
-          What subjects and topics can I use with this AI note generator?
+          {% trans "What subjects and topics can I use with this AI note generator?" %}
         </button>
       </h3>
       <div 
@@ -918,7 +903,7 @@
         data-bs-parent="#faqAccordion"
       >
         <div class="accordion-body text-muted">
-          The AI note generator supports a wide range of subjects including Mathematics, Science, History, Literature, Computer Science, and more. You can input almost any topic within these subjects to generate relevant notes.
+          {% trans "The AI note generator supports a wide range of subjects including Mathematics, Science, History, Literature, Computer Science, and more. You can input almost any topic within these subjects to generate relevant notes." %}
         </div>
       </div>
     </div>
@@ -935,13 +920,13 @@
   <div class="row align-items-center">
     <!-- Textual Testimonials -->
     <div class="col-md-6">
-      <h1 class="mb-3">What <strong>users</strong> are <strong>saying about our Note Generator.</strong></h1>
+      <h1 class="mb-3">{% trans "What <strong>users</strong> are <strong>saying about our Note Generator." %}</strong></h1>
 
       <div class="testimonial-card mb-3 p-3 border rounded shadow-sm d-flex">
         <div class="testimonial-number fw-bold me-3" style="color: #003366;">01</div>
         <div>
           <i class="bi bi-journal-bookmark text-primary me-2"></i>
-          "The note generator makes studying so much easier. I get simplified summaries that are perfect for last-minute revision."
+          {% trans "The note generator makes studying so much easier. I get simplified summaries that are perfect for last-minute revision." %}
         </div>
       </div>
 
@@ -949,7 +934,7 @@
         <div class="testimonial-number fw-bold me-3" style="color: #003366;">02</div>
         <div>
           <i class="bi bi-person-workspace text-primary me-2"></i>
-          "As a teacher, it helps me prepare lesson notes faster. The explanations are clear and very student-friendly."
+          {% trans "As a teacher, it helps me prepare lesson notes faster. The explanations are clear and very student-friendly." %}
         </div>
       </div>
 
@@ -957,7 +942,7 @@
         <div class="testimonial-number fw-bold me-3" style="color: #003366;">03</div>
         <div>
           <i class="bi bi-mortarboard text-primary me-2"></i>
-          "I love how it breaks down complex topics into simple points. It makes learning less stressful and more engaging."
+         {% trans " I love how it breaks down complex topics into simple points. It makes learning less stressful and more engaging." %}
         </div>
       </div>
 
@@ -965,7 +950,7 @@
         <div class="testimonial-number fw-bold me-3" style="color: #003366;">04</div>
         <div>
           <i class="bi bi-people text-primary me-2"></i>
-          "Even as a parent, I use it to help my kids study. It provides structured notes that I can guide them through easily."
+          {% trans "Even as a parent, I use it to help my kids study. It provides structured notes that I can guide them through easily." %}
         </div>
       </div>
     </div>

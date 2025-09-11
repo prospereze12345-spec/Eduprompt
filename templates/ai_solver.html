@@ -553,152 +553,140 @@
 
 <!-- JS for Image Upload & PDF -->
 
-
-
 <!-- JS to auto-fill textarea on card click -->
 <script>
-  document.getElementById("solveImageBtn").addEventListener("click", async () => {
-    const fileInput = document.getElementById("imageInput");
-    if(!fileInput.files.length){ alert("Select an image."); return; }
+document.addEventListener("DOMContentLoaded", function() {
+    const textarea = document.getElementById("userQuestion");
 
-    const formData = new FormData();
-    formData.append("image", fileInput.files[0]);
-
-    const response = await fetch("{% url 'solve_image_api' %}", {
-        method: "POST",
-        body: formData,
-        headers: {'X-CSRFToken': '{{ csrf_token }}'}
+    // Fill textarea when default question card is clicked
+    document.querySelectorAll('.default-question').forEach(card => {
+        card.addEventListener('click', function() {
+            const question = this.getAttribute('data-question');
+            if(textarea){
+                textarea.value = question;
+                textarea.focus();
+            }
+        });
     });
 
-    const data = await response.json();
-    if(data.error){
-        document.getElementById("resultArea").innerText = data.error;
-    } else {
-        document.getElementById("userQuestion").value = data.question;
-        document.getElementById("resultArea").innerText = data.solution;
+    // Handle image upload
+    const solveImageBtn = document.getElementById("solveImageBtn");
+    if(solveImageBtn){
+        solveImageBtn.addEventListener("click", async () => {
+            const fileInput = document.getElementById("imageInput");
+            if(!fileInput.files.length){ 
+                alert("Select an image."); 
+                return; 
+            }
+
+            const formData = new FormData();
+            formData.append("image", fileInput.files[0]);
+
+            try {
+                const response = await fetch("{% url 'solve_image_api' %}", {
+                    method: "POST",
+                    body: formData,
+                    headers: {'X-CSRFToken': '{{ csrf_token }}'}
+                });
+
+                const data = await response.json();
+                if(data.error){
+                    document.getElementById("resultArea").innerText = data.error;
+                } else {
+                    document.getElementById("userQuestion").value = data.question;
+                    document.getElementById("resultArea").innerHTML = `<pre>${data.solution}</pre>`;
+                }
+            } catch(err){
+                console.error("Image solve error:", err);
+                document.getElementById("resultArea").innerText = "⚠ Something went wrong with image OCR.";
+            }
+        });
+    }
+
+    // Optional: handle download form if exists
+    const downloadForm = document.getElementById("downloadForm");
+    if(downloadForm){
+        const pdfQuestion = document.getElementById("pdfQuestion");
+        const pdfSolution = document.getElementById("pdfSolution");
+
+        downloadForm.addEventListener("submit", function(e){
+            pdfQuestion.value = textarea.value;
+            pdfSolution.value = document.getElementById("resultArea").innerText;
+        });
     }
 });
-  // Update hidden fields before submitting
-  const downloadForm = document.getElementById("downloadForm");
-  const pdfQuestion = document.getElementById("pdfQuestion");
-  const pdfSolution = document.getElementById("pdfSolution");
 
-  downloadForm.addEventListener("submit", function(e){
-    pdfQuestion.value = document.getElementById("userQuestion").value;
-    pdfSolution.value = document.getElementById("resultArea").innerText;
-  });
-  document.addEventListener("DOMContentLoaded", function() {
-    const textarea = document.getElementById("userQuestion");
-    document.querySelectorAll('.default-question').forEach(card => {
-      card.addEventListener('click', function() {
-        const question = this.getAttribute('data-question');
-        if(textarea){
-          textarea.value = question;
-          textarea.focus(); // optional: focus for user convenience
-        }
-      });
-    });
-  });
-</script>
-
-
-
-<!-- Styles -->
-<style>
-  .text-darkblue { color: #1E3A8A; } /* Dark blue for title */
-  .text-gold { color: #B8860B; }     /* Gold for highlight */
-  .text-black { color: #000; }       /* Black for description */
-
-  .question-card {
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s;
-    cursor: pointer;
-  }
-  .question-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  }
-
-  .solver-box {
-    background: white;
-    border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  }
-
-  .solver-textarea {
-    height: 250px;
-    resize: none;
-    padding: 1rem;
-    border-radius: 0.8rem;
-  }
-
-  .result-area {
-    background: #f8f9fa;
-    min-height: 250px;
-    padding: 1rem;
-    border-radius: 0.8rem;
-    overflow-y: auto;
-  }
-
-  @media (max-width: 768px) {
-    section { padding-top: 6rem; }
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1rem; }
-  }
-</style>
-
-<!-- JavaScript -->
-<script>
+// ---------------------------
 // Function to send question to server
-function solveCustom() {
-    const question = document.getElementById('userQuestion').value.trim();
+// ---------------------------
+async function solveCustom() {
+    const questionInput = document.getElementById('userQuestion');
+    const resultArea = document.getElementById('resultArea');
+    const question = questionInput.value.trim();
+
     if (!question) {
-        alert("Please enter a question!");
+        alert("⚠ Please enter a question!");
         return;
     }
 
-    const resultArea = document.getElementById('resultArea');
-    resultArea.innerHTML = "Solving...";
+    // Show loading state
+    resultArea.innerHTML = "⏳ Solving your question...";
 
-    // Get CSRF token
-    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    try {
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-    fetch("/api/solve/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "X-CSRFToken": csrftoken,
-            "X-Requested-With": "XMLHttpRequest"
-        },
-        body: new URLSearchParams({
-            question: question
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        resultArea.innerHTML = data.steps;
+        const response = await fetch("/api/solve/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRFToken": csrftoken,
+                "X-Requested-With": "XMLHttpRequest"
+            },
+            body: new URLSearchParams({ question: question })
+        });
 
-        // Add audio play button
-        if(data.audio_url){
-            let audioHTML = `<audio controls src="${data.audio_url}"></audio>`;
-            resultArea.innerHTML += `<br><br>${audioHTML}`;
+        const data = await response.json();
+
+        if (data.steps) {
+            // Show step-by-step answer
+            let html = `<pre>${data.steps}</pre>`;
+
+            // Append audio if available
+            if (data.audio_url) {
+                html += `<br><br><audio controls src="${data.audio_url}"></audio>`;
+            }
+
+            resultArea.innerHTML = html;
+        } else {
+            resultArea.innerHTML = "⚠ Error: " + (data.error || "Could not generate solution.");
         }
-    })
-    .catch(err => {
-        resultArea.innerHTML = "Error: " + err;
-    });
+
+    } catch (err) {
+        console.error("Error fetching solution:", err);
+        resultArea.innerHTML = "⚠ Something went wrong. Please try again.";
+    }
 }
 
+// ---------------------------
 // Optional: Download solution as PDF
+// ---------------------------
 function downloadResult() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
-    const resultText = document.getElementById('resultArea').innerText;
+
+    const resultArea = document.getElementById('resultArea');
+    const resultText = resultArea.innerText.trim();
+
+    if (!resultText) {
+        alert("⚠ No solution to download. Generate a solution first!");
+        return;
+    }
+
     doc.text(resultText, 10, 10);
     doc.save("solution.pdf");
 }
-
 </script>
+
 
 
 

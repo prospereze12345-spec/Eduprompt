@@ -14,62 +14,78 @@ from io import BytesIO
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_CENTER
+import json, requests
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
 
 def essay_page(request):
-    return render(request, 'essay_page.html', {
-        'AFRICAN_LANGUAGES': settings.AFRICAN_LANGUAGES
-    })
+    return render(request, 'essay_page.html')
 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from .utils.essay_generator import generate_polished_essay
+import json
 
+import json
+import traceback
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from .utils.essay_generator import generate_polished_essay
 
-OPENROUTER_KEY = os.getenv("OPENROUTER_API_KEY")
-
-
+@csrf_exempt  # allows POST requests without CSRF token
 def essay_generate(request):
-    """Generates essay via OpenRouter and returns JSON."""
-    if request.method != "POST":
-        return JsonResponse({"success": False, "error": "Invalid request method."})
-
-    try:
-        data = json.loads(request.body)
-        prompt = data.get("prompt", "").strip()
-        essay_type = data.get("essay_type", "expository")
-        language_code = data.get("language_code", "en")
-    except:
-        prompt = request.POST.get("prompt", "").strip()
-        essay_type = request.POST.get("essay_type", "expository")
-        language_code = request.POST.get("language_code", "en")
-
-    if not prompt:
-        return JsonResponse({"success": False, "error": "No topic provided."})
-
-    full_prompt = f"Write a {essay_type} essay in {language_code} about: {prompt}"
-
-    try:
-        headers = {
-            "Authorization": f"Bearer {OPENROUTER_KEY}",
-            "Content-Type": "application/json"
+    """
+    Generate a highly human-like essay based on topic and type selected by user.
+    Accepts both GET and POST requests:
+        - topic: string, essay topic
+        - type: string, essay type (expository, narrative, descriptive, persuasive, analytical)
+    Returns JSON:
+        {
+            "topic": "...",
+            "type": "...",
+            "essay": "..."
         }
-        payload = {
-            "model": "mistralai/mistral-7b-instruct",
-            "messages": [
-                {"role": "system", "content": "You are an academic essay writer."},
-                {"role": "user", "content": full_prompt}
-            ],
-            "max_tokens": 800
-        }
+    """
+    try:
+        # === Extract topic and essay_type ===
+        if request.method == "GET":
+            topic = request.GET.get("topic", "The role of technology in education").strip()
+            essay_type = request.GET.get("type", "expository").strip().lower()
+        elif request.method == "POST":
+            try:
+                data = json.loads(request.body)
+            except json.JSONDecodeError:
+                return JsonResponse({"error": "Invalid JSON payload"}, status=400)
 
-        r = requests.post("https://openrouter.ai/api/v1/chat/completions", json=payload, headers=headers)
-        r.raise_for_status()
-        result = r.json()
-        essay_text = result["choices"][0]["message"]["content"].strip()
+            topic = data.get("topic", "The role of technology in education").strip()
+            essay_type = data.get("type", "expository").strip().lower()
+        else:
+            return JsonResponse({"error": "Unsupported HTTP method"}, status=405)
 
-        return JsonResponse({"success": True, "content": essay_text})
+        # === Validate essay type ===
+        valid_types = ["expository", "narrative", "descriptive", "persuasive", "analytical"]
+        if essay_type not in valid_types:
+            essay_type = "expository"
+
+        # === Generate essay using helper ===
+        essay = generate_polished_essay(topic, essay_type)
+
+        # Ensure response is clean and human-like
+        if not essay or len(essay.strip()) == 0:
+            essay = "Sorry, unable to generate essay at this time. Please try again."
+
+        # === Return JSON response ===
+        return JsonResponse({
+            "success": True,
+            "topic": topic,
+            "type": essay_type,
+            "essay": essay
+        })
 
     except Exception as e:
-        return JsonResponse({"success": False, "error": str(e)})
-
-
+        # Log detailed traceback for debugging
+        traceback.print_exc()
+        return JsonResponse({"success": False, "error": str(e)}, status=500)
 
 
 @csrf_exempt
@@ -123,3 +139,20 @@ def download_essay_pdf(request):
     return response
 
 
+
+
+
+LIBRETRANSLATE_URL = "https://libretranslate.com"
+
+@require_POST
+def translate_text(request):
+    data = json.loads(request.body)
+    text = data.get("text", "")
+    target = data.get("target", "")
+    if not text or not target:
+        return JsonResponse({"success": False, "error": "Missing text or target"}, status=400)
+
+    payload = {"q": text, "source": "auto", "target": target}
+    r = requests.post(f"{LIBRETRANSLATE_URL}/translate", data=payload, timeout=10)
+    result = r.json()
+    return JsonResponse({"success": True, "content": result.get("translatedText", "")})

@@ -170,9 +170,7 @@ def project_writer(request):
     """
     Renders the project writer page.
     """
-    return render(request, "project_writer.html", {
-        "AFRICAN_LANGUAGES": getattr(settings, "AFRICAN_LANGUAGES", [])
-    })
+    return render(request, "project_writer.html")
 
 
 

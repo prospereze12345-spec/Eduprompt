@@ -17,9 +17,7 @@ from reportlab.lib.units import inch
 
 
 def letter_writer(request):
-    return render(request, "letter_writer.html", {
-        "AFRICAN_LANGUAGES": getattr(settings, "AFRICAN_LANGUAGES", []),
-    })
+    return render(request, "letter_writer.html")
 
 
 

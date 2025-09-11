@@ -22,13 +22,13 @@ def blog_list(request):
     tags = Tag.objects.all()
 
     context = {
-        'page_obj': page_obj,
-        'latest_posts': latest_posts,
-        'tags': tags,
-        'AFRICAN_LANGUAGES': getattr(settings, 'AFRICAN_LANGUAGES', []),
-    }
-    
+    'page_obj': page_obj,
+    'latest_posts': latest_posts,
+    'tags': tags,
+}
+
     return render(request, 'blog/blog_list.html', context)
+
 
 
 
@@ -47,11 +47,12 @@ def blog_detail(request, slug):
     read_time = math.ceil(word_count / 200) 
 
     context = {
-        'post': post,
-        'AFRICAN_LANGUAGES': getattr(settings, 'AFRICAN_LANGUAGES', []),
-    }
-
+    'post': post,
+ }
+ 
     return render(request, "blog/blog_detail.html", context)
+
+
 
 
 
