@@ -98,7 +98,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Eduprompt',
     'note',
-    'letter_writer',
+    'quiz_generator',
     'essay',
     'ai_solver',
     'project_writer',

@@ -207,7 +207,7 @@
       <span class="ms-2 fw-bold sitename">Eduprompt</span>
     </a>
 
-    <!-- Mobile toggle -->
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -215,22 +215,13 @@
     <!-- Menu items -->
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li><a class="dropdown-item" href="/ai-solver/">{% trans "AI Solver" %}</a></li>
+        <li><a class="nav-item"><a class="nav-link" href="/ai-solver/">{% trans "AI Solver" %}</a></li>
         <li class="nav-item"><a class="nav-link" href="/essay/">{% trans "Essay Generator" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/note/">{% trans "Note Generator" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/letter-writer/">{% trans "Letter Writer" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/quiz/">{% trans "Quiz Generator" %}</a></li>
         <li class="nav-item"><a class="nav-link" href="/blog/">{% trans "Blog" %}</a></li>
-
-        <!-- Tools Dropdown -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{% trans "Tools" %}</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/project-writer/">{% trans "Project Writer" %}</a></li>
-            <li><a class="dropdown-item" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
-          </ul>
-        </li>
-
-        <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
+       <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
+      </ul>
 
 {% if not user.is_authenticated %}
     <li class="nav-item ms-lg-3">
@@ -490,3 +481,138 @@
 
 
 </main>
+
+<!-- Main Footer -->
+<footer class="footer pt-5" style="background-color: darkblue;">
+  <div class="container footer-top py-5">
+    <div class="row gy-4">
+
+<div class="col-lg-3 col-md-6 footer-about text-center text-lg-start">
+  <!-- Logo -->
+  <div class="mb-3">
+    <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" 
+         alt="EduPrompt Logo" 
+         style="max-width: 140px; height: auto;">
+  </div>
+
+  <!-- Short Tagline -->
+  <p style="font-size: 0.95rem; line-height: 1.6; color: #ffffff;">
+    {% trans "Smarter learning. Faster results. AI-powered tools for students and teachers." %}
+  </p>
+</div>
+
+
+<!-- Useful Links -->
+<div class="col-lg-2 col-md-3 footer-links">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Useful Links" %}</h4>
+  <ul class="list-unstyled">
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="{% url 'index' %}" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Home" %}</a>
+    </li>
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "About Us" %}</a>
+    </li>
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Privacy Policy" %}</a>
+    </li>
+    <li>
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Terms and Conditions" %}</a>
+    </li>
+  </ul>
+</div>
+
+<!-- Our Services -->
+<div class="col-lg-2 col-md-3 footer-links">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Services" %}</h4>
+  <ul class="list-unstyled">
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/website/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Web Design" %}</a>
+    </li>
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/flyer-design/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Flyer Design" %}</a>
+    </li>
+  </ul>
+</div>
+
+<!-- Our Services (second block) -->
+<div class="col-lg-2 col-md-3 footer-links">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Tools" %}</h4>
+  <ul class="list-unstyled">
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/essay/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Essay Writer" %}</a>
+    </li>
+ 
+    
+    <li>
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/quiz/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Quiz Generator" %}</a>
+    </li>
+        <li>
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/ai-solver/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Ai Solver" %}</a>
+    </li>
+        <li>
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/grammar-checker/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>
+    </li>
+  </ul>
+</div>
+
+
+<!-- Follow Us -->
+<div class="col-lg-3 col-md-6">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Follow Us" %}</h4>
+  <p class="mb-3" style="color: #ffffff;">{% trans "Follow us on all our social media platforms" %}</p>
+  <div class="social-links d-flex gap-3 fs-4">
+    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-twitter"></i></a>
+    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-facebook"></i></a>
+    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-instagram"></i></a>
+    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-linkedin"></i></a>
+  </div>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+<!-- Footer -->
+<footer style="background-color: #001a4d; color: #ffffff; padding: 15px 0; text-align: center; border-top: 1px solid darkblue">
+  <p style="margin: 0; font-size: 0.9rem;">
+    © {% now "Y" %} <strong>EduPrompt</strong>. All Rights Reserved.
+  </p>
+</footer>
+
+
+
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+
+
+
+
+
+

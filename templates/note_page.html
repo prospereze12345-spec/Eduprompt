@@ -267,18 +267,6 @@
     </li>
 {% endif %}
 
-         <form action="{% url 'set_language' %}" method="post">
-    {% csrf_token %}
-    <select name="language" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 120px; font-size: 0.9rem;">
-        {% get_current_language as LANGUAGE_CODE %}
-        {% get_available_languages as LANGUAGES %}
-        {% for code, name in LANGUAGES %}
-            <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>
-                {{ name }}
-            </option>
-        {% endfor %}
-    </select>
-</form>
       </ul>
     </div>
   </nav>
@@ -373,8 +361,10 @@
   <!-- Card wrapper -->
   <div class="card shadow p-4 mx-auto" style="max-width: 1000px; width: 100%;">
     <div class="row g-4">
+
       <!-- Left Column: Inputs + Buttons -->
-      <div class="col-lg-5 col-md-6">
+      <div class="col-lg-5 col-md-6 d-flex flex-column">
+        
         <!-- Subject Input -->
         <div class="mb-3">
           <label for="subject" class="form-label fw-semibold">{% trans "Subject" %}</label>
@@ -386,11 +376,13 @@
             aria-describedby="subjectHelp"
             required
           />
-          <div id="subjectHelp" class="form-text">{% trans "Please enter the subject of your note." %}</div>
+          <div id="subjectHelp" class="form-text">
+            {% trans "Please enter the subject of your note." %}
+          </div>
         </div>
 
         <!-- Topic Input -->
-        <div class="mb-4">
+        <div class="mb-3">
           <label for="topic" class="form-label fw-semibold">{% trans "Topic" %}</label>
           <input
             type="text"
@@ -400,30 +392,36 @@
             aria-describedby="topicHelp"
             required
           />
-          <div id="topicHelp" class="form-text">{% trans "Please enter the topic for the note." %}</div>
+          <div id="topicHelp" class="form-text">
+            {% trans "Please enter the topic for the note." %}
+          </div>
         </div>
 
         <!-- Generate & Clear Buttons -->
-        <div class="d-flex gap-3">
-          <button class="btn btn-indigo btn-lg flex-grow-1" id="generateBtn" type="button">
-            Generate
+        <div class="d-flex gap-2 mb-3">
+          <button class="btn btn-indigo flex-grow-1" id="generateBtn" type="button">
+            {% trans "Generate" %}
           </button>
-          <button class="btn btn-outline-secondary btn-lg flex-grow-1" id="clearBtn" type="button">
-            Clear
+          <button class="btn btn-outline-secondary flex-grow-1" id="clearBtn" type="button">
+            {% trans "Clear" %}
           </button>
         </div>
       </div>
 
-<!-- Right Column: Answer Box -->
-<div class="col-lg-7 col-md-6">
+      <!-- Right Column: Answer Box + Download -->
+<div class="col-lg-7 col-md-6 d-flex flex-column">
+  <!-- Answer Box -->
   <div
     id="answer"
-    class="note-card p-3"
+    class="note-card p-3 mb-3 flex-grow-1"
     style="
       min-height: 400px;
       border: 1px solid #dee2e6;
       border-radius: 0.5rem;
       background-color: #f8f9fa;
+      white-space: pre-wrap;
+      word-break: break-word;
+      padding-right: 12px;
     "
     role="region"
     aria-live="polite"
@@ -431,34 +429,14 @@
   >
     {% trans "Note will appear here..." %}
   </div>
+
+  <!-- Download Button -->
+  <a href="{% url 'download_note_pdf' %}" class="btn btn-success align-self-start">
+    {% trans "Download PDF" %}
+  </a>
 </div>
 
-    </div>
 
-    <!-- Bottom Section: Language, PDF, Plagiarism -->
-    <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 mt-4">
-      <!-- Language Switcher Form -->
-      <form action="{% url 'set_language' %}" method="post" class="d-flex align-items-center" style="max-width: 200px;">
-        {% csrf_token %}
-        <select name="language" onchange="this.form.submit()" class="form-select form-select-sm me-2" style="font-size: 0.8rem;">
-          {% for code, name in AFRICAN_LANGUAGES %}
-            <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
-          {% endfor %}
-        </select>
-        <input type="hidden" name="next" value="{{ request.get_full_path }}">
-      </form>
-
-      <!-- Download PDF Button -->
-      <a href="{% url 'download_note_pdf' %}" class="btn btn-success">
-        {% trans "Download PDF" %}
-      </a>
-
-<!-- Button Row: Download, Plagiarism, Humanizer -->
-<div style="margin-top:20px; text-align:center; display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
-
-  
-
-</div>
     </div>
   </div>
 </div>
@@ -469,27 +447,53 @@
 
 
 <script>
+document.addEventListener("DOMContentLoaded", () => {
   const generateBtn = document.getElementById("generateBtn");
   const clearBtn = document.getElementById("clearBtn");
   const subjectInput = document.getElementById("subject");
   const topicInput = document.getElementById("topic");
   const answerBox = document.getElementById("answer");
 
+  // ---------------------------
   // Show error messages
+  // ---------------------------
   function showError(message) {
     answerBox.textContent = message;
     answerBox.style.color = "red";
     answerBox.classList.add("error");
+    answerBox.style.overflowY = "auto";
   }
 
+  // ---------------------------
   // Reset to default state
+  // ---------------------------
   function clearError() {
     answerBox.textContent = "Note will appear here...";
-    answerBox.style.color = "#6c757d";
+    answerBox.style.color = "#212529";
     answerBox.classList.remove("error");
+    answerBox.style.overflowY = "auto";
+    answerBox.style.whiteSpace = "pre-wrap"; // preserve paragraphs
   }
 
-  // Generate note from backend
+  // ---------------------------
+  // CSRF helper for Django
+  // ---------------------------
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      document.cookie.split(";").forEach(cookie => {
+        const c = cookie.trim();
+        if (c.startsWith(name + "=")) {
+          cookieValue = decodeURIComponent(c.substring(name.length + 1));
+        }
+      });
+    }
+    return cookieValue;
+  }
+
+  // ---------------------------
+  // Generate note
+  // ---------------------------
   async function generateNote() {
     clearError();
 
@@ -507,24 +511,22 @@
     try {
       const response = await fetch("/note/generate/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ subject, topic }),
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": getCookie("csrftoken")
+        },
+        body: JSON.stringify({ subject, topic })
       });
 
-      // Read response body as text first
-      const responseText = await response.text();
+      if (!response.ok) throw new Error(`Server returned ${response.status}`);
 
-      let data;
-      try {
-        data = JSON.parse(responseText);
-      } catch (jsonErr) {
-        showError("Server returned invalid JSON:\n" + responseText);
-        return;
-      }
+      const data = await response.json();
 
-      if (data.note) {
+      if (data.success && data.note) {
         answerBox.textContent = data.note;
         answerBox.style.color = "#212529";
+        answerBox.style.overflowY = "auto";
+        answerBox.style.whiteSpace = "pre-wrap"; // keep paragraphs
       } else if (data.error) {
         showError("Error: " + data.error);
       } else {
@@ -540,19 +542,22 @@
     }
   }
 
+  // ---------------------------
   // Clear all fields
+  // ---------------------------
   function clearAll() {
     subjectInput.value = "";
     topicInput.value = "";
     clearError();
   }
 
+  // ---------------------------
   // Attach events
+  // ---------------------------
   generateBtn.addEventListener("click", generateNote);
   clearBtn.addEventListener("click", clearAll);
+});
 </script>
-
-
 
 
 </div>

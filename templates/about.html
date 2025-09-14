@@ -204,49 +204,36 @@
       <span class="ms-2 fw-bold sitename">Eduprompt</span>
     </a>
 
-    <!-- Mobile toggle -->
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <span class="navbar-toggler-icon"></span>
+</button>
 
-    <!-- Menu items -->
-    <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li><a class="dropdown-item" href="/ai-solver/">{% trans "AI Solver" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/essay/">{% trans "Essay Generator" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/note/">{% trans "Note Generator" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/letter-writer/">{% trans "Letter Writer" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/blog/">{% trans "Blog" %}</a></li>
+<!-- Menu items -->
+<div class="collapse navbar-collapse" id="mainNavbar">
+  <ul class="navbar-nav ms-auto align-items-lg-center">
+    <li class="nav-item"><a class="nav-link" href="/ai-solver/">{% trans "AI Solver" %}</a></li>
+    <li class="nav-item"><a class="nav-link" href="/essay/">{% trans "Essay Generator" %}</a></li>
+    <li class="nav-item"><a class="nav-link" href="/quiz/">{% trans "Quiz Generator" %}</a></li>
+    <li class="nav-item"><a class="nav-link" href="/blog/">{% trans "Blog" %}</a></li>
+    <li class="nav-item"><a class="nav-link" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
+    <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
 
-        <!-- Tools Dropdown -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{% trans "Tools" %}</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/project-writer/">{% trans "Project Writer" %}</a></li>
-            <li><a class="dropdown-item" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
-          </ul>
-        </li>
-
-        <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
-
-        {% if not user.is_authenticated %}
-    <li class="nav-item ms-lg-3">
+    {% if not user.is_authenticated %}
+      <li class="nav-item ms-lg-3">
         <a class="btn btn-success btn-sm" href="{% url 'register' %}">{% trans "Get Started" %}</a>
-    </li>
-    <li class="nav-item ms-lg-3">
+      </li>
+      <li class="nav-item ms-lg-3">
         <a class="btn btn-success btn-sm" href="{% url 'login' %}">{% trans "Login" %}</a>
-    </li>
-{% endif %}
+      </li>
+    {% endif %}
+  </ul>
+</div>
 
 
 
-        <!-- Language Selector -->
-        <select name="language" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 120px; font-size: 0.85rem;">
-    {% for code, name in AFRICAN_LANGUAGES %}
-      <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
-    {% endfor %}
-</select>
-<input type="hidden" name="next" value="{{ request.get_full_path }}">
+
+       
       </ul>
     </div>
   </nav>
@@ -268,7 +255,7 @@
             Our mission is simple: <em>to make learning smarter, faster, and more accessible for everyone.</em>
           </p>
           <p class="mt-3 mb-0">
-            We provide a suite of intelligent tools — including a note generator, essay writer, assignment helper, math solver, grammar checker, project writer, and study planner — all created to support students at every stage of their academic journey. 
+            We provide a suite of intelligent tools — including essay writer, math solver, grammar checker, — all created to support students at every stage of their academic journey. 
             Whether you are preparing for exams, working on projects, or planning your study schedule, <strong>EduPrompt</strong> is here to make the process easier, more effective, and personalized to your needs.
           </p>
           <p class="mt-3">
@@ -331,7 +318,7 @@
 </div>
 
 
-<div class="container mt-5 text-center">
+<div class="container mt-5 mb-5 text-center">
   <div class="row justify-content-center">
     <div class="col-lg-8">
       <h1 class="typed-text mb-4">Our Commitment to Trust & Quality</h1>
@@ -389,6 +376,7 @@
 
 
 
+
 <!-- Hover effect styling -->
 <style>
   .commitment-box {
@@ -402,26 +390,6 @@
 </style>
 
 
-<footer class="footer pt-5" style="background-color: darkblue;">
-<div class="footer-newsletter">
-  <div class="container">
-    <div class="row justify-content-center text-center">
-      <div class="col-lg-6">
-        <h4 style="color: #ffffff;">Join Our Newsletter</h4>
-        <p style="color: #ffffff;">Subscribe to our newsletter and receive the latest news about our products and services!</p>
-        <form action="forms/newsletter.php" method="post" class="php-email-form">
-          <div class="newsletter-form d-flex flex-column flex-sm-row gap-2">
-            <input type="email" name="email" class="form-control" placeholder="Your email address" required>
-            <input type="submit" value="Subscribe" class="btn btn-primary px-4">
-          </div>
-          <div class="loading mt-2" style="color: #ffffff;">Loading</div>
-          <div class="error-message text-danger mt-2"></div>
-          <div class="sent-message text-success mt-2">Your subscription request has been sent. Thank you!</div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <!-- Main Footer -->
@@ -429,92 +397,80 @@
   <div class="container footer-top py-5">
     <div class="row gy-4">
 
-<!-- About -->
-<div class="col-lg-3 col-md-6 footer-about text-center">
-  <!-- Section Title -->
-  <h3 style="color: #ffffff; font-weight: 700; font-size: 1.5rem; margin-bottom: 20px;">
-    About the Founder
-  </h3>
-
-  <!-- Circle Image -->
-  <div class="mb-3" style="width: 150px; height: 150px; margin: 0 auto; border: 4px solid white; border-radius: 50%; overflow: hidden;">
-    <img src="{% static 'assets/img/IMG_2474.JPG' %}" 
-         alt="Founder" 
-         style="width: 100%; height: 100%; object-fit: cover;">
+<div class="col-lg-3 col-md-6 footer-about text-center text-lg-start">
+  <!-- Logo -->
+  <div class="mb-3">
+    <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" 
+         alt="EduPrompt Logo" 
+         style="max-width: 140px; height: auto;">
   </div>
 
-  <!-- Description -->
-  <p style="margin-top: 15px; font-size: 1rem; line-height: 1.6; color: #ffffff;">
-    EduPrompt was founded by Eze Prosper somtochukwu, a software developer passionate about education technology. 
-    He created this platform to provide students with AI-powered tools that make learning smarter, faster, and more accessible.
+  <!-- Short Tagline -->
+  <p style="font-size: 0.95rem; line-height: 1.6; color: #ffffff;">
+    {% trans "Smarter learning. Faster results. AI-powered tools for students and teachers." %}
   </p>
 </div>
 
+
 <!-- Useful Links -->
 <div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">Useful Links</h4>
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Useful Links" %}</h4>
   <ul class="list-unstyled">
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="{% url 'index' %}" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Home</a>
+      <a href="{% url 'index' %}" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Home" %}</a>
     </li>
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">About Us</a>
+      <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "About Us" %}</a>
     </li>
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Privacy Policy</a>
+      <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Privacy Policy" %}</a>
     </li>
     <li>
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Terms and Conditions</a>
+      <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Terms and Conditions" %}</a>
     </li>
   </ul>
 </div>
 
 <!-- Our Services -->
 <div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">Our Services</h4>
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Services" %}</h4>
   <ul class="list-unstyled">
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/website/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Web Design</a>
+      <a href="/website/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Web Design" %}</a>
     </li>
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/flyer-design/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Flyer Design</a>
+      <a href="/flyer-design/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Flyer Design" %}</a>
     </li>
   </ul>
 </div>
 
 <!-- Our Services (second block) -->
 <div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">Our Tools</h4>
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Tools" %}</h4>
   <ul class="list-unstyled">
     <li class="mb-2">
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/essay/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Essay Writer</a>
+      <a href="/essay/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Essay Writer" %}</a>
     </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/note/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Note Generator</a>
-    </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/project-writer/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Project Writer</a>
-    </li>
+ 
+    
     <li>
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/letter-writer/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Letter Writer</a>
+      <a href="/quiz/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Quiz Generator" %}</a>
     </li>
         <li>
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/ai-solver/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Ai Solver</a>
+      <a href="/ai-solver/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Ai Solver" %}</a>
     </li>
         <li>
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/grammar-checker/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">Grammar Checker</a>
+      <a href="/grammar-checker/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>
     </li>
   </ul>
 </div>
@@ -522,8 +478,8 @@
 
 <!-- Follow Us -->
 <div class="col-lg-3 col-md-6">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">Follow Us</h4>
-  <p class="mb-3" style="color: #ffffff;">Follow us on all our social media platforms</p>
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Follow Us" %}</h4>
+  <p class="mb-3" style="color: #ffffff;">{% trans "Follow us on all our social media platforms" %}</p>
   <div class="social-links d-flex gap-3 fs-4">
     <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-twitter"></i></a>
     <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-facebook"></i></a>
@@ -537,17 +493,13 @@
   </div>
 </footer>
 
-
-<!-- Copyright -->
-<div class="container text-center py-3 border-top">
-  <p class="mb-0 small" style="color: #ffffff;">
-    © <strong class="sitename" style="color: #ffffff;">EduPrompt</strong> All Rights Reserved.
+<!-- Footer -->
+<footer style="background-color: #001a4d; color: #ffffff; padding: 15px 0; text-align: center; border-top: 1px solid darkblue">
+  <p style="margin: 0; font-size: 0.9rem;">
+    © {% now "Y" %} <strong>EduPrompt</strong>. All Rights Reserved.
   </p>
-  <p class="mb-0 small">
-    Designed by <a href="https://bootstrapmade.com/" target="_blank" class="text-decoration-none" style="color: #ffffff;">BootstrapMade</a>
-  </p>
-</div>
 </footer>
+
 
 
 
@@ -566,6 +518,9 @@
 
   <!-- Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+
 
 
 

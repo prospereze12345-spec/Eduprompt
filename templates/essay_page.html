@@ -210,39 +210,31 @@
       <span class="ms-2 fw-bold sitename">Eduprompt</span>
     </a>
 
-    <!-- Mobile toggle -->
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <span class="navbar-toggler-icon"></span>
+</button>
 
-    <!-- Menu items -->
-    <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li><a class="dropdown-item" href="/ai-solver/">{% trans "AI Solver" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/essay/">{% trans "Essay Generator" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/note/">{% trans "Note Generator" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/letter-writer/">{% trans "Letter Writer" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/blog/">{% trans "Blog" %}</a></li>
+<!-- Menu items -->
+<div class="collapse navbar-collapse" id="mainNavbar">
+  <ul class="navbar-nav ms-auto align-items-lg-center">
+    <li class="nav-item"><a class="nav-link" href="/ai-solver/">{% trans "AI Solver" %}</a></li>
+    <li class="nav-item"><a class="nav-link" href="/essay/">{% trans "Essay Generator" %}</a></li>
+    <li class="nav-item"><a class="nav-link" href="/quiz/">{% trans "Quiz Generator" %}</a></li>
+    <li class="nav-item"><a class="nav-link" href="/blog/">{% trans "Blog" %}</a></li>
+    <li class="nav-item"><a class="nav-link" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
+    <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
 
-        <!-- Tools Dropdown -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{% trans "Tools" %}</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/project-writer/">{% trans "Project Writer" %}</a></li>
-            <li><a class="dropdown-item" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
-          </ul>
-        </li>
-
-        <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
-
-{% if not user.is_authenticated %}
-    <li class="nav-item ms-lg-3">
+    {% if not user.is_authenticated %}
+      <li class="nav-item ms-lg-3">
         <a class="btn btn-success btn-sm" href="{% url 'register' %}">{% trans "Get Started" %}</a>
-    </li>
-    <li class="nav-item ms-lg-3">
+      </li>
+      <li class="nav-item ms-lg-3">
         <a class="btn btn-success btn-sm" href="{% url 'login' %}">{% trans "Login" %}</a>
-    </li>
-{% endif %}
+      </li>
+    {% endif %}
+  </ul>
+</div>
 
        
       </ul>
@@ -1152,26 +1144,6 @@ function downloadEssayPDF() {
 
   
 
-<footer class="footer pt-5" style="background-color: darkblue;">
-<div class="footer-newsletter">
-  <div class="container">
-    <div class="row justify-content-center text-center">
-      <div class="col-lg-6">
-        <h4 style="color: #ffffff;">{% trans "Join Our Newsletter" %}</h4>
-        <p style="color: #ffffff;">{% trans "Subscribe to our newsletter and receive the latest news about our products and services!" %}</p>
-        <form action="forms/newsletter.php" method="post" class="php-email-form">
-          <div class="newsletter-form d-flex flex-column flex-sm-row gap-2">
-            <input type="email" name="email" class="form-control" placeholder="Your email address" required>
-            <input type="submit" value="Subscribe" class="btn btn-primary px-4">
-          </div>
-          <div class="loading mt-2" style="color: #ffffff;">{% trans "Loading" %}</div>
-          <div class="error-message text-danger mt-2"></div>
-          <div class="sent-message text-success mt-2">{% trans "Your subscription request has been sent. Thank you!" %}</div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <!-- Main Footer -->
@@ -1179,26 +1151,20 @@ function downloadEssayPDF() {
   <div class="container footer-top py-5">
     <div class="row gy-4">
 
-<!-- About -->
-<div class="col-lg-3 col-md-6 footer-about text-center">
-  <!-- Section Title -->
-  <h3 style="color: #ffffff; font-weight: 700; font-size: 1.5rem; margin-bottom: 20px;">
-    {% trans "About the Founder" %}
-  </h3>
-
-  <!-- Circle Image -->
-  <div class="mb-3" style="width: 150px; height: 150px; margin: 0 auto; border: 4px solid white; border-radius: 50%; overflow: hidden;">
-    <img src="{% static 'assets/img/IMG_2474.JPG' %}" 
-         alt="Founder" 
-         style="width: 100%; height: 100%; object-fit: cover;">
+<div class="col-lg-3 col-md-6 footer-about text-center text-lg-start">
+  <!-- Logo -->
+  <div class="mb-3">
+    <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" 
+         alt="EduPrompt Logo" 
+         style="max-width: 140px; height: auto;">
   </div>
 
-  <!-- Description -->
-  <p style="margin-top: 15px; font-size: 1rem; line-height: 1.6; color: #ffffff;">
-    {% trans "EduPrompt was founded by Eze Prosper somtochukwu, a software developer passionate about education technology." %}
-    {% trans "He created this platform to provide students with AI-powered tools that make learning smarter, faster, and more accessible." %}
+  <!-- Short Tagline -->
+  <p style="font-size: 0.95rem; line-height: 1.6; color: #ffffff;">
+    {% trans "Smarter learning. Faster results. AI-powered tools for students and teachers." %}
   </p>
 </div>
+
 
 <!-- Useful Links -->
 <div class="col-lg-2 col-md-3 footer-links">
@@ -1246,17 +1212,11 @@ function downloadEssayPDF() {
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
       <a href="/essay/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Essay Writer" %}</a>
     </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/note/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Note Generator" %}</a>
-    </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/project-writer/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Project Writer" %}</a>
-    </li>
+ 
+    
     <li>
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/letter-writer/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Letter Writer" %}</a>
+      <a href="/quiz/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Quiz Generator" %}</a>
     </li>
         <li>
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
@@ -1287,17 +1247,13 @@ function downloadEssayPDF() {
   </div>
 </footer>
 
-
-<!-- Copyright -->
-<div class="container text-center py-3 border-top">
-  <p class="mb-0 small" style="color: #ffffff;">
-    © <strong class="sitename" style="color: #ffffff;">{% trans "EduPrompt</strong> All Rights Reserved." %}
+<!-- Footer -->
+<footer style="background-color: #001a4d; color: #ffffff; padding: 15px 0; text-align: center; border-top: 1px solid darkblue">
+  <p style="margin: 0; font-size: 0.9rem;">
+    © {% now "Y" %} <strong>EduPrompt</strong>. All Rights Reserved.
   </p>
-  <p class="mb-0 small">
-    Designed by <a href="https://bootstrapmade.com/" target="_blank" class="text-decoration-none" style="color: #ffffff;">BootstrapMade</a>
-  </p>
-</div>
 </footer>
+
 
 
 
@@ -1316,6 +1272,11 @@ function downloadEssayPDF() {
 
   <!-- Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+
+
+
 
 
 

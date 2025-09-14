@@ -9,23 +9,55 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
   <!-- SEO Title -->
-  <title>AI Letter Writer – Generate Professional Letters Instantly for Free</title>
+  <title>AI Quiz Generator – Create Custom Quizzes Instantly for Students & Teachers</title>
 
   <!-- SEO Description -->
-  <meta name="description" content="Create polished, professional letters in seconds with our AI Letter Writer. Perfect for job applications, business correspondence, personal letters, and formal communication. Edit, save, and download your letters quickly with AI-powered assistance for accurate, well-structured results.">
+  <meta name="description" content="Generate professional quizzes instantly with our AI Quiz Generator. Perfect for students, teachers, trainers, and educators. Create multiple-choice, true/false, short-answer, or mixed quizzes in seconds from notes or uploaded study material. Optimize learning, save time, and download quizzes as PDF.">
 
   <!-- SEO Keywords -->
-  <meta name="keywords" content="AI letter writer, online letter generator, free AI letter creator, professional letter writing, AI cover letter maker, business letter generator, personal letter writing assistant, AI formal letter writer, instant letter creator online, generate letters with AI, AI writing tool for letters, job application letter AI, AI correspondence tool">
+  <meta name="keywords" content="AI quiz generator, online quiz maker, free AI quiz creator, student quiz generator, teacher quiz tool, automated quiz generator, create quizzes online, AI multiple-choice quiz, AI true/false quiz, AI short answer quiz, educational quiz generator, training quiz maker, instant quiz creation, quiz PDF download, AI quiz assistant">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="http://localhost:8000/ai-quiz-generator/" />
 
   <!-- Optional hreflang for global SEO -->
-  <link rel="alternate" hreflang="en" href="http://localhost:8000/ai-letter-writer/" />
-  <link rel="alternate" hreflang="en-us" href="http://localhost:8000/ai-letter-writer/" />
-  <link rel="alternate" hreflang="en-gb" href="http://localhost:8000/ai-letter-writer/" />
-  <link rel="alternate" hreflang="en-ca" href="http://localhost:8000/ai-letter-writer/" />
-  <link rel="alternate" hreflang="en-de" href="http://localhost:8000/ai-letter-writer/" />
-  <link rel="alternate" hreflang="en-pl" href="http://localhost:8000/ai-letter-writer/" />
-  <link rel="alternate" hreflang="en-ng" href="http://localhost:8000/ai-letter-writer/" />
+  <link rel="alternate" hreflang="en" href="http://localhost:8000/ai-quiz-generator/" />
+  <link rel="alternate" hreflang="en-us" href="http://localhost:8000/ai-quiz-generator/" />
+  <link rel="alternate" hreflang="en-gb" href="http://localhost:8000/ai-quiz-generator/" />
+  <link rel="alternate" hreflang="en-ca" href="http://localhost:8000/ai-quiz-generator/" />
+  <link rel="alternate" hreflang="en-de" href="http://localhost:8000/ai-quiz-generator/" />
+  <link rel="alternate" hreflang="en-pl" href="http://localhost:8000/ai-quiz-generator/" />
+  <link rel="alternate" hreflang="en-ng" href="http://localhost:8000/ai-quiz-generator/" />
 
+  <!-- Open Graph / Social Media Meta -->
+  <meta property="og:title" content="AI Quiz Generator – Create Custom Quizzes Instantly" />
+  <meta property="og:description" content="Create quizzes quickly from notes or uploaded study material. Generate MCQs, True/False, Short Answer, or Mixed quizzes in seconds. Perfect for students, teachers, and training sessions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://localhost:8000/ai-quiz-generator/" />
+  <meta property="og:image" content="http://localhost:8000/static/assets/img/ai-quiz-generator-preview.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Quiz Generator – Create Custom Quizzes Instantly" />
+  <meta name="twitter:description" content="Generate professional quizzes in seconds from notes or uploaded material. MCQs, True/False, Short Answer, and Mixed quizzes made easy." />
+  <meta name="twitter:image" content="http://localhost:8000/static/assets/img/ai-quiz-generator-preview.png" />
+
+  <!-- Structured Data JSON-LD for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AI Quiz Generator",
+    "url": "http://localhost:8000/ai-quiz-generator/",
+    "description": "Generate professional quizzes instantly from study notes or uploaded materials. Perfect for students, teachers, and trainers.",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "All",
+    "image": "http://localhost:8000/static/assets/img/ai-quiz-generator-preview.png"
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon" />
 </head>
 
 
@@ -254,52 +286,32 @@
       <span class="ms-2 fw-bold sitename">Eduprompt</span>
     </a>
 
-    <!-- Mobile toggle -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <!-- Menu items -->
-    <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li><a class="dropdown-item" href="/ai-solver/">{% trans "AI Solver" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/essay/">{% trans "Essay Generator" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/note/">{% trans "Note Generator" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/letter-writer/">{% trans "Letter Writer" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/blog/">{% trans "Blog" %}</a></li>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+  <span class="navbar-toggler-icon"></span>
+</button>
 
-        <!-- Tools Dropdown -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{% trans "Tools" %}</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/project-writer/">{% trans "Project Writer" %}</a></li>
-            <li><a class="dropdown-item" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
-          </ul>
-        </li>
+<!-- Menu items -->
+<div class="collapse navbar-collapse" id="mainNavbar">
+  <ul class="navbar-nav ms-auto align-items-lg-center">
+    <li class="nav-item"><a class="nav-link" href="/ai-solver/">{% trans "AI Solver" %}</a></li>
+    <li class="nav-item"><a class="nav-link" href="/essay/">{% trans "Essay Generator" %}</a></li>
+    <li class="nav-item"><a class="nav-link" href="/quiz/">{% trans "Quiz Generator" %}</a></li>
+    <li class="nav-item"><a class="nav-link" href="/blog/">{% trans "Blog" %}</a></li>
+    <li class="nav-item"><a class="nav-link" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
+    <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
 
-        <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
-
-{% if not user.is_authenticated %}
-    <li class="nav-item ms-lg-3">
+    {% if not user.is_authenticated %}
+      <li class="nav-item ms-lg-3">
         <a class="btn btn-success btn-sm" href="{% url 'register' %}">{% trans "Get Started" %}</a>
-    </li>
-    <li class="nav-item ms-lg-3">
+      </li>
+      <li class="nav-item ms-lg-3">
         <a class="btn btn-success btn-sm" href="{% url 'login' %}">{% trans "Login" %}</a>
-    </li>
-{% endif %}
+      </li>
+    {% endif %}
+  </ul>
+</div>
 
-              <form action="{% url 'set_language' %}" method="post">
-    {% csrf_token %}
-    <select name="language" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 120px; font-size: 0.9rem;">
-        {% get_current_language as LANGUAGE_CODE %}
-        {% get_available_languages as LANGUAGES %}
-        {% for code, name in LANGUAGES %}
-            <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>
-                {{ name }}
-            </option>
-        {% endfor %}
-    </select>
-</form>
 
     </div>
   </nav>
@@ -308,135 +320,106 @@
 
 <div class="container vh-100 d-flex flex-column justify-content-center align-items-center text-center px-3">
   <h1 class="fw-bold typing-animation" style="color: darkblue;">
-    AI Letter Writer for Students – Create Perfect Letters in Seconds
+    AI Quiz Generator – Create Practice Questions for Students and Teachers
   </h1>
   <p class="lead" style="color: black; margin-top: 1rem;">
-    Write professional school, scholarship, internship, and job application letters instantly. Our AI-powered letter writer helps students 
-    and graduates craft formal letters that get results – fast, simple, and free to try.
+    Generate quizzes, practice tests, and study questions instantly with our AI-powered quiz generator. 
+    Perfect for students preparing for exams and teachers creating classroom materials. 
+    Simple, accurate, and free to use anytime.
   </p>
 </div>
 
-<!-- AI Letter Writer Form & Output Side by Side -->
+<!-- AI Quiz Generator Form & Output Side by Side -->
 <div class="container-fluid py-2" style="max-width: 1200px;">
   <div class="row justify-content-center">
-    
+
     <!-- Input Form (Left) -->
     <div class="col-lg-6 col-md-12">
-      <form id="letterForm" class="p-4 rounded shadow-sm bg-white">
+      <form id="quizForm" class="p-4 rounded shadow-sm bg-white h-100 d-flex flex-column">
         {% csrf_token %}
-        
-        <!-- Letter Type -->
-        <div class="mb-4">
-          <label for="letterType" class="form-label fw-semibold">Letter Type</label>
-          <select class="form-select form-select-lg" id="letterType" required>
-            <option value="">Select type...</option>
-            <option>Application Letter (Job/School/Internship)</option>
-            <option>Admission/Enrollment Request</option>
-            <option>Scholarship Request Letter</option>
-            <option>Internship Request Letter</option>
-            <option>Recommendation Request Letter</option>
-            <option>Complaint Letter</option>
-            <option>Apology Letter</option>
-            <option>Permission Letter</option>
-            <option>Leave of Absence Letter</option>
-            <option>Thank You Letter</option>
-            <option>Resignation Letter</option>
-            <option>Cover Letter</option>
-            <option>Sponsorship Request Letter</option>
-            <option>Appeal Letter</option>
-            <option>General Formal Letter</option>
-            <option value="custom">➕ Custom Letter (other)</option>
-          </select>
+
+        <!-- Quiz Source -->
+        <div class="mb-3 flex-grow-1">
+          <label for="quizSource" class="form-label fw-semibold">Paste Study Material</label>
+          <textarea class="form-control" id="quizSource" rows="14"
+                    placeholder="Paste your notes, textbook content, or study material here..." required></textarea>
         </div>
 
-        <!-- Hidden custom input -->
-        <div class="mb-4" id="customLetterDiv" style="display: none;">
-          <label for="customLetter" class="form-label fw-semibold">Enter Your Letter Type</label>
-          <input type="text" class="form-control form-control-lg" id="customLetter" placeholder="e.g. Letter to Principal for Event Approval">
-        </div>
+        <!-- Small Controls -->
+        <div class="row g-2 mb-3">
+          <!-- File Upload -->
+          <div class="col-md-4">
+            <label for="fileUpload" class="form-label small fw-semibold">Upload (Optional)</label>
+            <input type="file" class="form-control form-control-sm" id="fileUpload" accept=".txt,.pdf,.doc,.docx">
+          </div>
 
-        <!-- Recipient Name -->
-        <div class="mb-4">
-          <label for="recipientName" class="form-label fw-semibold">
-            Recipient Name <span class="text-muted">(Optional)</span>
-          </label>
-          <input type="text" class="form-control form-control-lg" id="recipientName" placeholder="e.g. Admissions Officer">
-        </div>
+          <!-- Quiz Type -->
+          <div class="col-md-4">
+            <label for="quizType" class="form-label small fw-semibold">Type</label>
+            <select class="form-select form-select-sm" id="quizType" required>
+              <option value="">Select...</option>
+              <option value="mcq">MCQ</option>
+              <option value="truefalse">True/False</option>
+              <option value="shortanswer">Short Answer</option>
+              <option value="mixed">Mixed</option>
+            </select>
+          </div>
 
-        <!-- Recipient Organization -->
-        <div class="mb-4">
-          <label for="recipientOrg" class="form-label fw-semibold">
-            Recipient Organization/School <span class="text-muted">(Optional)</span>
-          </label>
-          <input type="text" class="form-control form-control-lg" id="recipientOrg" placeholder="e.g. University of Lagos">
-        </div>
-
-        <!-- Purpose of Letter -->
-        <div class="mb-4">
-          <label for="letter_text" class="form-label fw-semibold">Purpose of Letter</label>
-          <textarea class="form-control form-control-lg" id="letter_text" rows="4" placeholder="Explain briefly why you are writing this letter..." required></textarea>
-        </div>
-
-        <!-- Tone of Letter -->
-        <div class="mb-4">
-          <label for="tone" class="form-label fw-semibold">Tone of Letter</label>
-          <select class="form-select form-select-lg" id="tone" required>
-            <option value="">Choose tone...</option>
-            <option>Formal & Respectful</option>
-            <option>Persuasive & Convincing</option>
-            <option>Polite but Firm</option>
-            <option>Friendly & Professional</option>
-          </select>
+          <!-- Difficulty Level -->
+          <div class="col-md-4">
+            <label for="difficulty" class="form-label small fw-semibold">Difficulty</label>
+            <select class="form-select form-select-sm" id="difficulty" required>
+              <option value="">Level...</option>
+              <option>Easy</option>
+              <option>Medium</option>
+              <option>Hard</option>
+            </select>
+          </div>
         </div>
 
         <!-- Generate Button -->
-        <div class="d-grid mb-4">
+        <div class="d-grid">
           <button type="submit" class="btn btn-lg text-white fw-bold" style="background-color: #003366;">
-            ✍️ Generate Letter
+            Generate Quiz
           </button>
         </div>
       </form>
     </div>
 
-<!-- Output Box (Right) -->
-<div class="col-lg-6 col-md-12 mb-3">
-  <div id="letterResult" class="p-3 border rounded shadow-sm d-flex flex-column" 
-       style="display: block; background-color: white; height: 100%;">
-       
-    <h5 class="fw-bold">📄 Generated Letter</h5>
+    <!-- Output Box (Right) -->
+    <div class="col-lg-6 col-md-12 mb-3">
+      <div id="quizResult" class="p-4 border rounded shadow-sm d-flex flex-column bg-white h-100">
+        <h5 class="fw-bold">Generated Quiz</h5>
 
-    <!-- Textarea -->
-    <textarea id="letterContent" class="form-control mt-2 flex-grow-1" 
-              style="white-space: pre-wrap; overflow-y: auto; 
-                     resize: none; font-family: inherit; font-size: 0.95rem; min-height: 200px;"
-              placeholder="Your generated letter will appear here and after you clcik generate wait for some seconds..."></textarea>
+        <!-- Quiz Output -->
+        <textarea id="quizContent" class="form-control mt-2 flex-grow-1"
+                  style="white-space: pre-wrap; overflow-y: auto; resize: none;
+                         font-family: inherit; font-size: 0.95rem; min-height: 400px;"
+                  placeholder="Your AI-generated quiz will appear here after processing..."></textarea>
 
-    <!-- Download + Language aligned side by side -->
-    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-stretch gap-2 mt-3">
+        <!-- Download + Copy Options -->
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-stretch gap-2 mt-3">
 
-      <!-- Download Form -->
-      <form id="downloadForm" method="POST" action="{% url 'download_letter_pdf' %}" target="_blank" class="mb-2 mb-sm-0 flex-fill">
-        {% csrf_token %}
-        <input type="hidden" name="letter_text" id="letterTextInput" value="">
-        <button type="submit" class="btn btn-md fw-bold text-white w-100" style="background-color: #003366;">
-          📥 Download as PDF
-        </button>
-      </form>
+          <!-- Download Form -->
+          <form id="downloadForm" method="POST" action="{% url 'download_quiz_pdf' %}" target="_blank" class="mb-2 mb-sm-0 flex-fill">
+            {% csrf_token %}
+            <input type="hidden" name="quiz_text" id="quizTextInput" value="">
+            <button type="submit" class="btn btn-md fw-bold text-white w-100" style="background-color: #003366;">
+              Download as PDF
+            </button>
+          </form>
 
-      <!-- Language Selector -->
-      <form method="post" class="flex-fill">
-        {% csrf_token %}
-        <select name="language" onchange="this.form.submit()" class="form-select form-select-sm w-100">
-          {% for code, name in AFRICAN_LANGUAGES %}
-            <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
-          {% endfor %}
-        </select>
-        <input type="hidden" name="next" value="{{ request.get_full_path }}">
-      </form>
-
+          <!-- Copy to Clipboard -->
+          <button type="button" id="copyQuizBtn" class="btn btn-md fw-bold text-dark border w-100">
+            Copy Quiz
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+
 
     
 
@@ -453,102 +436,141 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    const letterTypeSelect = document.getElementById("letterType");
-    const customDiv = document.getElementById("customLetterDiv");
-    const customLetterInput = document.getElementById("customLetter");
-    const form = document.getElementById("letterForm");
-    const resultBox = document.getElementById("letterResult");
-    const letterOutput = document.getElementById("letterContent");
-    const downloadInput = document.getElementById("letterTextInput");
+    const form = document.getElementById("quizForm");
+    const quizSource = document.getElementById("quizSource");
+    const fileUpload = document.getElementById("fileUpload");
+    const quizType = document.getElementById("quizType");
+    const difficulty = document.getElementById("difficulty");
+
+    const resultBox = document.getElementById("quizResult");
+    const quizOutput = document.getElementById("quizContent");
+    const downloadInput = document.getElementById("quizTextInput");
     const downloadForm = document.getElementById("downloadForm");
+    const copyBtn = document.getElementById("copyQuizBtn");
 
-    // 🔹 Toggle custom letter input
-    letterTypeSelect?.addEventListener("change", () => {
-        if (letterTypeSelect.value === "custom") {
-            customDiv.style.display = "block";
-            customLetterInput.required = true;
-        } else {
-            customDiv.style.display = "none";
-            customLetterInput.required = false;
-        }
-    });
+    // 🔹 Convert uploaded file to text
+    async function readFileContent(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = e => resolve(e.target.result);
+            reader.onerror = e => reject(e);
+            reader.readAsText(file);
+        });
+    }
 
-    // 🔹 Handle form submit with OpenRouter
+    // 🔹 Handle form submit (generate quiz)
     form?.addEventListener("submit", async (e) => {
-        e.preventDefault(); // stop page reload
+        e.preventDefault();
 
-        const letterText = document.getElementById("letter_text").value.trim();
+        let quizText = quizSource.value.trim();
         const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
 
-        if (!letterText) {
-            letterOutput.innerText = "⚠️ Please enter some text to generate the letter.";
+        // If file uploaded, read it and append to quizText
+        if (fileUpload.files.length > 0) {
+            try {
+                const fileContent = await readFileContent(fileUpload.files[0]);
+                quizText += "\n\n" + fileContent;
+            } catch (err) {
+                console.error("File read error:", err);
+                quizOutput.value = "❌ Error reading uploaded file.";
+                return;
+            }
+        }
+
+        if (!quizText) {
+            quizOutput.value = "⚠️ Please provide study material or upload a file.";
+            resultBox.style.display = "block";
+            return;
+        }
+
+        if (!quizType.value || !difficulty.value) {
+            quizOutput.value = "⚠️ Please select quiz type and difficulty level.";
             resultBox.style.display = "block";
             return;
         }
 
         try {
-            const response = await fetch("{% url 'generate_letter' %}", {
+            const response = await fetch("{% url 'generate_quiz' %}", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "X-CSRFToken": csrfToken
                 },
-                body: JSON.stringify({ letter_text: letterText })
+                body: JSON.stringify({
+                    quiz_text: quizText,
+                    quiz_type: quizType.value,
+                    difficulty: difficulty.value
+                })
             });
 
             const data = await response.json();
 
-            if (data.letter) {
-                letterOutput.value = data.letter; // use value for textarea
-                downloadInput.value = data.letter;
+            if (data.quiz) {
+                quizOutput.value = data.quiz;
+                downloadInput.value = data.quiz;
             } else {
-                letterOutput.value = "❌ " + (data.error || "Unable to generate letter.");
+                quizOutput.value = "❌ " + (data.error || "Unable to generate quiz.");
                 downloadInput.value = "";
             }
         } catch (err) {
             console.error("Fetch error:", err);
-            letterOutput.value = "🚨 Server error. Please try again.";
+            quizOutput.value = "🚨 Server error. Please try again.";
             downloadInput.value = "";
         }
 
         resultBox.style.display = "block";
     });
 
-    // 🔹 Ensure current edited text is always sent when downloading
+    // 🔹 Keep edits before downloading
     downloadForm?.addEventListener("submit", () => {
-        downloadInput.value = letterOutput.value; // capture edits
+        downloadInput.value = quizOutput.value;
+    });
+
+    // 🔹 Copy to clipboard
+    copyBtn?.addEventListener("click", async () => {
+        if (!quizOutput.value.trim()) {
+            alert("⚠️ No quiz to copy yet.");
+            return;
+        }
+        try {
+            await navigator.clipboard.writeText(quizOutput.value);
+            copyBtn.innerText = "Copied!";
+            setTimeout(() => copyBtn.innerText = "Copy Quiz", 2000);
+        } catch (err) {
+            console.error("Clipboard error:", err);
+            alert("❌ Failed to copy. Please copy manually.");
+        }
     });
 });
 </script>
 
 
 
-
 <!-- How to Use Section -->
 <section class="py-5" style="background-color: #ffffff; color: #000;">
   <div class="container">
-    <h2 class="text-center mb-4" style="color: black;">How to Use Our AI Letter Writer</h2>
+    <h2 class="text-center mb-4" style="color: black;">How to Use Our AI Quiz Generator</h2>
     <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
-      Writing professional letters has never been easier. Follow these simple steps to generate polished, ready-to-send letters in minutes:
+      Generating quizzes has never been easier. Follow these simple steps to create ready-to-use quizzes in minutes:
     </p>
     <div class="row g-4">
       <!-- Step 1 -->
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
-          <i class="bi bi-card-text" style="font-size: 2.5rem; color: black;"></i>
-          <h5 class="mt-3" style="color: #003366;">Select Letter Type</h5>
+          <i class="bi bi-file-earmark-text" style="font-size: 2.5rem; color: black;"></i>
+          <h5 class="mt-3" style="color: #003366;">Paste Notes or Upload File</h5>
           <p style="color: #555; font-size: 0.95rem;">
-            Choose the type of letter you want to create—application, scholarship request, permission letter, or even a custom letter type.
+            Simply paste your study material or upload a file (PDF, Word, TXT) containing your notes. No need to select subjects.
           </p>
         </div>
       </div>
       <!-- Step 2 -->
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
-          <i class="bi bi-person-lines-fill" style="font-size: 2.5rem; color: black;"></i>
-          <h5 class="mt-3" style="color: #003366;">Fill in Details</h5>
+          <i class="bi bi-sliders" style="font-size: 2.5rem; color: black;"></i>
+          <h5 class="mt-3" style="color: #003366;">Choose Quiz Type & Difficulty</h5>
           <p style="color: #555; font-size: 0.95rem;">
-            Enter recipient name, organization, purpose, and choose a tone. Some fields are optional for flexibility, while others help tailor your letter professionally.
+            Select the type of quiz (MCQ, True/False, Short Answer, or Mixed) and the difficulty level (Easy, Medium, Hard) that suits your learning or teaching goal.
           </p>
         </div>
       </div>
@@ -556,9 +578,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-lightning-charge-fill" style="font-size: 2.5rem; color: black;"></i>
-          <h5 class="mt-3" style="color: #003366;">Generate Letter</h5>
+          <h5 class="mt-3" style="color: #003366;">Generate Quiz</h5>
           <p style="color: #555; font-size: 0.95rem;">
-            Click the <strong>“Generate Letter”</strong> button. The AI will create a professional, well-structured letter based on your inputs instantly.
+            Click the <strong>“Generate Quiz”</strong> button. Our AI instantly creates a professional quiz based on your notes.
           </p>
         </div>
       </div>
@@ -566,9 +588,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-download" style="font-size: 2.5rem; color: black;"></i>
-          <h5 class="mt-3" style="color: #003366;">Edit & Save</h5>
+          <h5 class="mt-3" style="color: #003366;">Review & Download</h5>
           <p style="color: #555; font-size: 0.95rem;">
-            Review your letter, make any final edits, then download it as a PDF to save.
+            Review your quiz, make any edits if needed, then download it as a PDF or copy it for immediate use.
           </p>
         </div>
       </div>
@@ -581,9 +603,11 @@ document.addEventListener("DOMContentLoaded", () => {
 <!-- Why Choose Us Section -->
 <section class="py-5" style="background-color: white;">
   <div class="container">
-    <h2 class="text-center mb-4" style="color: black;">Why Choose Our AI Letter Writer?</h2>
+    <h2 class="text-center mb-4" style="color: black;">Why Choose Our AI Quiz Generator?</h2>
     <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
-      With so many writing tools online, here’s why thousands of students and professionals trust our AI Letter Writer every day:
+      In a world where learning and assessment are essential, our AI Quiz Generator is built to empower 
+      <strong>students</strong>, <strong>teachers</strong>, and <strong>professionals</strong> with tools that save time, 
+      improve knowledge, and boost results. Here’s why thousands are switching to our platform:
     </p>
 
     <div class="row g-4">
@@ -592,23 +616,32 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-lightning-charge-fill" style="font-size: 2.5rem; color: #003366;"></i>
           <h5 class="mt-3" style="color:black;">Fast & Instant</h5>
-          <p style="color:black;">Generate well-structured letters in seconds, saving you time and effort.</p>
+          <p style="color:black;">
+            Create quizzes in seconds instead of hours. Whether for class tests, exam prep, or training sessions, 
+            our AI eliminates the stress of manual question-setting.
+          </p>
         </div>
       </div>
       <!-- Point 2 -->
       <div class="col-md-4">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
-          <i class="bi bi-hand-thumbs-up-fill" style="font-size: 2.5rem; color: #003366;"></i>
-          <h5 class="mt-3" style="color:black;">Easy to Use</h5>
-          <p style="color:black;">No technical skills required. Just select the letter type, fill in details, and generate your letter.</p>
+          <i class="bi bi-magic" style="font-size: 2.5rem; color: #003366;"></i>
+          <h5 class="mt-3" style="color:black;">Smarter Learning</h5>
+          <p style="color:black;">
+            Students get personalized quizzes tailored to their level, while teachers and trainers 
+            get ready-made assessments that actually boost understanding.
+          </p>
         </div>
       </div>
       <!-- Point 3 -->
       <div class="col-md-4">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
-          <i class="bi bi-shield-lock-fill" style="font-size: 2.5rem; color: #003366;"></i>
-          <h5 class="mt-3" style="color:black;">Secure & Private</h5>
-          <p style="color:black;">Your letters are private. We never store, sell, or share your personal content.</p>
+          <i class="bi bi-shield-check" style="font-size: 2.5rem; color: #003366;"></i>
+          <h5 class="mt-3" style="color:black;">Accurate & Reliable</h5>
+          <p style="color:black;">
+            Each quiz is generated with correct answers and explanations, ensuring quality and 
+            eliminating errors that come with rushed manual work.
+          </p>
         </div>
       </div>
     </div>
@@ -618,8 +651,11 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="col-md-4">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-people-fill" style="font-size: 2.5rem; color: #003366;"></i>
-          <h5 class="mt-3" style="color:black;">For Students & Professionals</h5>
-          <p style="color:black;">Perfect for students, graduates, interns, and anyone needing professional letters quickly.</p>
+          <h5 class="mt-3" style="color:black;">For Students & Educators</h5>
+          <p style="color:black;">
+            Perfect for exam prep (WAEC, JAMB, university tests), daily classwork, 
+            and professional training — serving both learners and teachers effectively.
+          </p>
         </div>
       </div>
       <!-- Point 5 -->
@@ -627,7 +663,10 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-award-fill" style="font-size: 2.5rem; color: #003366;"></i>
           <h5 class="mt-3" style="color:black;">Professional Quality</h5>
-          <p style="color:black;">Our AI ensures proper formatting, tone, and structure for top-quality letters.</p>
+          <p style="color:black;">
+            AI ensures clear, structured, and exam-ready questions with diverse formats (MCQs, 
+            short answers, theory) — no more generic or weak quizzes.
+          </p>
         </div>
       </div>
       <!-- Point 6 -->
@@ -635,19 +674,23 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-cloud-check-fill" style="font-size: 2.5rem; color: #003366;"></i>
           <h5 class="mt-3" style="color:black;">Access Anywhere</h5>
-          <p style="color:black;">Use it on desktop, tablet, or mobile. Write letters anytime, anywhere.</p>
+          <p style="color:black;">
+            Use it on any device — phone, tablet, or computer. Generate, edit, and download 
+            quizzes anytime, anywhere, even on the go.
+          </p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+
 <!-- Who Can Benefit Section -->
 <section class="py-5" style="background-color: #ffffff; color: #000000;">
   <div class="container">
-    <h2 class="text-center mb-4" style="color: black;">Who Can Benefit from Our AI Letter Writer?</h2>
+    <h2 class="text-center mb-4" style="color: black;">Who Can Benefit from Our AI Quiz Generator?</h2>
     <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
-      Our AI Letter Writer is more than a text generator — it’s a smart writing assistant that helps you create professional, clear, and effective letters in seconds. Perfect for students, professionals, and creators, it adapts to your unique needs.
+      Our AI Quiz Generator is more than a question creator — it’s a smart learning and assessment assistant that helps you generate professional, accurate, and engaging quizzes in seconds. Perfect for students, teachers, and training professionals, it adapts to your unique needs.
     </p>
 
     <!-- Tabs -->
@@ -658,13 +701,13 @@ document.addEventListener("DOMContentLoaded", () => {
         </button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link d-flex align-items-center" id="professionals-tab" data-bs-toggle="tab" data-bs-target="#professionals" type="button" role="tab" aria-controls="professionals" aria-selected="false" style="color: black;">
-          <i class="bi bi-briefcase-fill me-2" style="color:#003366;"></i> Professionals
+        <button class="nav-link d-flex align-items-center" id="teachers-tab" data-bs-toggle="tab" data-bs-target="#teachers" type="button" role="tab" aria-controls="teachers" aria-selected="false" style="color: black;">
+          <i class="bi bi-person-lines-fill me-2" style="color:#003366;"></i> Teachers & Educators
         </button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link d-flex align-items-center" id="creators-tab" data-bs-toggle="tab" data-bs-target="#creators" type="button" role="tab" aria-controls="creators" aria-selected="false" style="color: black;">
-          <i class="bi bi-pencil-fill me-2" style="color:#003366;"></i> Content Creators
+        <button class="nav-link d-flex align-items-center" id="professionals-tab" data-bs-toggle="tab" data-bs-target="#professionals" type="button" role="tab" aria-controls="professionals" aria-selected="false" style="color: black;">
+          <i class="bi bi-briefcase-fill me-2" style="color:#003366;"></i> Training & Professionals
         </button>
       </li>
     </ul>
@@ -676,34 +719,34 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="tab-pane fade show active" id="students" role="tabpanel" aria-labelledby="students-tab">
         <div class="p-4 mb-3 bg-light rounded hover-shadow">
           <p>
-            Students can generate professional application letters, scholarship requests, permission letters, and more in seconds. The AI Letter Writer ensures every letter is clear, correctly formatted, and persuasive, making your submissions stand out.
+            Students can quickly generate quizzes from their notes or textbooks, saving hours of manual question creation. The AI produces well-structured, diverse questions — multiple choice, true/false, or short answer — suitable for self-assessment or classroom practice.
           </p>
           <p>
-            It also helps you learn proper letter-writing techniques by providing suggestions for tone, style, and structure — empowering you to write confidently and professionally every time.
+            This tool also enhances learning by reinforcing key concepts and providing a ready-to-use study resource for exams, assignments, and revision sessions.
           </p>
         </div>
       </div>
 
-      <!-- Professionals -->
+      <!-- Teachers & Educators -->
+      <div class="tab-pane fade" id="teachers" role="tabpanel" aria-labelledby="teachers-tab">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>
+            Teachers and educators can create professional quizzes effortlessly for assignments, tests, or interactive classroom activities. By pasting lesson notes or uploading course material, AI generates questions tailored to the required difficulty level and format.
+          </p>
+          <p>
+            This not only saves time but also ensures balanced coverage of topics, helping educators provide high-quality assessments that engage students effectively.
+          </p>
+        </div>
+      </div>
+
+      <!-- Training & Professionals -->
       <div class="tab-pane fade" id="professionals" role="tabpanel" aria-labelledby="professionals-tab">
         <div class="p-4 mb-3 bg-light rounded hover-shadow">
           <p>
-            Professionals can quickly create polished letters for proposals, resignation, recommendation, sponsorship requests, or formal communications. The AI ensures your letters are well-structured, grammatically correct, and convey the intended tone effectively.
+            Trainers, corporate educators, and HR professionals can use the AI Quiz Generator to quickly produce training assessments, knowledge checks, or certification quizzes. Simply provide content or guidelines, and the AI delivers structured, professional-quality questions instantly.
           </p>
           <p>
-            This saves time, reduces the risk of miscommunication, and projects a credible, authoritative image to clients, colleagues, and stakeholders.
-          </p>
-        </div>
-      </div>
-
-      <!-- Content Creators -->
-      <div class="tab-pane fade" id="creators" role="tabpanel" aria-labelledby="creators-tab">
-        <div class="p-4 mb-3 bg-light rounded hover-shadow">
-          <p>
-            Content creators — bloggers, journalists, marketers, and social media managers — can use the AI Letter Writer to produce professional correspondence, pitch letters, and partnership requests that impress recipients and enhance credibility.
-          </p>
-          <p>
-            Beyond grammar, it optimizes tone, clarity, and style for different audiences, helping your communication stand out and achieve maximum impact.
+            This helps reduce preparation time, improves learner engagement, and ensures consistent evaluation standards across teams or training programs.
           </p>
         </div>
       </div>
@@ -717,7 +760,7 @@ document.addEventListener("DOMContentLoaded", () => {
   <div class="container">
     <h2 class="text-center mb-4" style="color: black;">Frequently Asked Questions</h2>
     <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
-      Here are the most common questions our users ask before using the AI Letter Writer:
+      Here are the most common questions our users ask about the AI Quiz Generator:
     </p>
 
     <div class="row justify-content-center">
@@ -728,12 +771,12 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
             <h2 class="accordion-header" id="faq1">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1" style="color:#003366; font-weight:600;">
-                Is the AI Letter Writer free to use?
+                Is the AI Quiz Generator free to use?
               </button>
             </h2>
             <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
               <div class="accordion-body" style="color:#555;">
-                Yes! You can generate letters for free. Simply select a letter type, fill in your details, and click generate — no payment required for basic usage.
+                Yes! You can generate quizzes for free. Simply paste your study material, select difficulty and quiz type, then click generate — no payment required for basic usage.
               </div>
             </div>
           </div>
@@ -742,12 +785,12 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
             <h2 class="accordion-header" id="faq2">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2" style="color:#003366; font-weight:600;">
-                What types of letters can I create?
+                Can I generate quizzes from uploaded files or images?
               </button>
             </h2>
             <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
               <div class="accordion-body" style="color:#555;">
-                You can create application letters, scholarship requests, permission letters, resignation letters, recommendation requests, appeal letters, and even custom letter types — all tailored to your needs.
+                Absolutely! The AI can process uploaded documents or images containing study material and generate accurate, professional quizzes in seconds.
               </div>
             </div>
           </div>
@@ -756,12 +799,12 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
             <h2 class="accordion-header" id="faq3">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3" style="color:#003366; font-weight:600;">
-                Can I use it on my phone or tablet?
+                What types of quizzes can I create?
               </button>
             </h2>
             <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
               <div class="accordion-body" style="color:#555;">
-                Absolutely! The AI Letter Writer is fully mobile-friendly and works seamlessly on smartphones, tablets, and desktop computers.
+                You can create Multiple Choice Questions (MCQs), True/False quizzes, Short Answer questions, or mixed-format quizzes tailored to your needs and difficulty level.
               </div>
             </div>
           </div>
@@ -770,12 +813,12 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
             <h2 class="accordion-header" id="faq4">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4" style="color:#003366; font-weight:600;">
-                Is my information private and secure?
+                Can I use it on my phone, tablet, or computer?
               </button>
             </h2>
             <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4" data-bs-parent="#faqAccordion">
               <div class="accordion-body" style="color:#555;">
-                Yes, your privacy is our priority. All inputs are processed securely and in real-time. We do not store, sell, or share your personal information or letters.
+                Yes! The AI Quiz Generator is fully responsive and works seamlessly on desktops, tablets, and smartphones for on-the-go quiz creation.
               </div>
             </div>
           </div>
@@ -784,12 +827,12 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
             <h2 class="accordion-header" id="faq5">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5" style="color:#003366; font-weight:600;">
-                Can it handle long or detailed letters?
+                Can I generate quizzes from long or detailed notes?
               </button>
             </h2>
             <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5" data-bs-parent="#faqAccordion">
               <div class="accordion-body" style="color:#555;">
-                Yes! You can generate both short and detailed letters. For more complex letters, the tool helps structure content clearly, keeping tone and formatting professional.
+                Absolutely! The AI can handle detailed notes or extensive study material and produce structured quizzes covering all key points, saving you hours of manual work.
               </div>
             </div>
           </div>
@@ -798,12 +841,12 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
             <h2 class="accordion-header" id="faq6">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6" style="color:#003366; font-weight:600;">
-                Can I customize the tone of my letter?
+                How does it help students and teachers improve learning?
               </button>
             </h2>
             <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="faq6" data-bs-parent="#faqAccordion">
               <div class="accordion-body" style="color:#555;">
-                Yes! You can choose from different tones like Formal & Respectful, Persuasive & Convincing, Polite but Firm, or Friendly & Professional to suit the purpose of your letter.
+                Students can practice with high-quality quizzes to reinforce knowledge, while teachers can save time creating assessments and ensure questions are balanced, accurate, and aligned with learning objectives.
               </div>
             </div>
           </div>
@@ -819,20 +862,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+
 <!-- Testimonial Section -->
 <section class="testimonial-section container py-5">
   <div class="row align-items-center">
     <div class="col-md-6">
-      <h1 class="mb-3">What <strong>users</strong> are <strong>saying about our AI Letter Writer.</strong></h1>
+      <h1 class="mb-3">What <strong>users</strong> are <strong>saying about our AI Quiz Generator.</strong></h1>
 
       <!-- Testimonial 1 -->
       <div class="testimonial-card d-flex align-items-start mb-4 shadow-sm p-3" style="border-radius:12px;">
         <div class="me-3 text-center">
           <div class="testimonial-number bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">01</div>
-          <i class="bi bi-pencil-square mt-2" style="font-size:1.5rem; color:#003366;"></i>
+          <i class="bi bi-mortarboard-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
         </div>
         <p class="mb-0" style="color:#444;">
-          "The AI Letter Writer made my scholarship application letters polished and professional. It helped me express my ideas clearly and confidently."
+          "As a student, I can generate quizzes from my lecture notes in seconds. It helps me study smarter and saves me hours of creating practice questions manually."
         </p>
       </div>
 
@@ -840,10 +884,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="testimonial-card d-flex align-items-start mb-4 shadow-sm p-3" style="border-radius:12px;">
         <div class="me-3 text-center">
           <div class="testimonial-number bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">02</div>
-          <i class="bi bi-mortarboard-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
+          <i class="bi bi-pencil-square mt-2" style="font-size:1.5rem; color:#003366;"></i>
         </div>
         <p class="mb-0" style="color:#444;">
-          "As a student, I use it for permission letters and admission requests. It’s fast, accurate, and saves me so much time while keeping my letters professional."
+          "I’m a teacher, and this tool makes creating tests and quizzes incredibly fast. I can customize difficulty and type, making assessments more effective for my students."
         </p>
       </div>
 
@@ -851,10 +895,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="testimonial-card d-flex align-items-start mb-4 shadow-sm p-3" style="border-radius:12px;">
         <div class="me-3 text-center">
           <div class="testimonial-number bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">03</div>
-          <i class="bi bi-megaphone-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
+          <i class="bi bi-people-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
         </div>
         <p class="mb-0" style="color:#444;">
-          "For my internship applications, this tool is a game-changer. My letters are clear, persuasive, and professional — I get noticed every time."
+          "For training and workshops, I use the AI Quiz Generator to quickly make interactive quizzes for participants. It’s intuitive, accurate, and saves me a lot of preparation time."
         </p>
       </div>
 
@@ -862,10 +906,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="testimonial-card d-flex align-items-start mb-4 shadow-sm p-3" style="border-radius:12px;">
         <div class="me-3 text-center">
           <div class="testimonial-number bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">04</div>
-          <i class="bi bi-envelope-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
+          <i class="bi bi-award-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
         </div>
         <p class="mb-0" style="color:#444;">
-          "I use it for professional correspondence like sponsorship requests and recommendation letters. The AI ensures my letters are well-structured, polite, and persuasive."
+          "I love that I can generate different types of quizzes—MCQs, True/False, or short answers—from my uploaded notes. The output is always organized and ready to use."
         </p>
       </div>
     </div>
@@ -905,53 +949,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </main>
 
-<footer class="footer pt-5" style="background-color: darkblue;">
-<div class="footer-newsletter">
-  <div class="container">
-    <div class="row justify-content-center text-center">
-      <div class="col-lg-6">
-        <h4 style="color: #ffffff;">{% trans "Join Our Newsletter" %}</h4>
-        <p style="color: #ffffff;">{% trans "Subscribe to our newsletter and receive the latest news about our products and services!" %}</p>
-        <form action="forms/newsletter.php" method="post" class="php-email-form">
-          <div class="newsletter-form d-flex flex-column flex-sm-row gap-2">
-            <input type="email" name="email" class="form-control" placeholder="Your email address" required>
-            <input type="submit" value="Subscribe" class="btn btn-primary px-4">
-          </div>
-          <div class="loading mt-2" style="color: #ffffff;">{% trans "Loading" %}</div>
-          <div class="error-message text-danger mt-2"></div>
-          <div class="sent-message text-success mt-2">{% trans "Your subscription request has been sent. Thank you!" %}</div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 <!-- Main Footer -->
 <footer class="footer pt-5" style="background-color: darkblue;">
   <div class="container footer-top py-5">
     <div class="row gy-4">
 
-<!-- About -->
-<div class="col-lg-3 col-md-6 footer-about text-center">
-  <!-- Section Title -->
-  <h3 style="color: #ffffff; font-weight: 700; font-size: 1.5rem; margin-bottom: 20px;">
-    {% trans "About the Founder" %}
-  </h3>
-
-  <!-- Circle Image -->
-  <div class="mb-3" style="width: 150px; height: 150px; margin: 0 auto; border: 4px solid white; border-radius: 50%; overflow: hidden;">
-    <img src="{% static 'assets/img/IMG_2474.JPG' %}" 
-         alt="Founder" 
-         style="width: 100%; height: 100%; object-fit: cover;">
+<div class="col-lg-3 col-md-6 footer-about text-center text-lg-start">
+  <!-- Logo -->
+  <div class="mb-3">
+    <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" 
+         alt="EduPrompt Logo" 
+         style="max-width: 140px; height: auto;">
   </div>
 
-  <!-- Description -->
-  <p style="margin-top: 15px; font-size: 1rem; line-height: 1.6; color: #ffffff;">
-    {% trans "EduPrompt was founded by Eze Prosper somtochukwu, a software developer passionate about education technology." %}
-    {% trans "He created this platform to provide students with AI-powered tools that make learning smarter, faster, and more accessible." %}
+  <!-- Short Tagline -->
+  <p style="font-size: 0.95rem; line-height: 1.6; color: #ffffff;">
+    {% trans "Smarter learning. Faster results. AI-powered tools for students and teachers." %}
   </p>
 </div>
+
 
 <!-- Useful Links -->
 <div class="col-lg-2 col-md-3 footer-links">
@@ -999,17 +1016,11 @@ document.addEventListener("DOMContentLoaded", () => {
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
       <a href="/essay/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Essay Writer" %}</a>
     </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/note/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Note Generator" %}</a>
-    </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/project-writer/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Project Writer" %}</a>
-    </li>
+ 
+    
     <li>
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/letter-writer/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Letter Writer" %}</a>
+      <a href="/quiz/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Quiz Generator" %}</a>
     </li>
         <li>
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
@@ -1040,17 +1051,13 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 </footer>
 
-
-<!-- Copyright -->
-<div class="container text-center py-3 border-top">
-  <p class="mb-0 small" style="color: #ffffff;">
-    © <strong class="sitename" style="color: #ffffff;">{% trans "EduPrompt</strong> All Rights Reserved." %}
+<!-- Footer -->
+<footer style="background-color: #001a4d; color: #ffffff; padding: 15px 0; text-align: center; border-top: 1px solid darkblue">
+  <p style="margin: 0; font-size: 0.9rem;">
+    © {% now "Y" %} <strong>EduPrompt</strong>. All Rights Reserved.
   </p>
-  <p class="mb-0 small">
-    Designed by <a href="https://bootstrapmade.com/" target="_blank" class="text-decoration-none" style="color: #ffffff;">BootstrapMade</a>
-  </p>
-</div>
 </footer>
+
 
 
 
@@ -1069,6 +1076,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <!-- Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+
 
 
 
