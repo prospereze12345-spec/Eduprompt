@@ -377,6 +377,27 @@
           </div>
         </div>
 
+        <!-- Extra Controls: Question Count + Language -->
+        <div class="row g-2 mb-3">
+          <!-- Number of Questions -->
+          
+
+          <!-- Language Selection -->
+          <div class="col-md-6">
+            <label for="language" class="form-label small fw-semibold">Language</label>
+            <select class="form-select form-select-sm" id="language" required>
+              <option value="english" selected>English</option>
+              <option value="french">French</option>
+              <option value="igbo">Igbo</option>
+              <option value="yoruba">Yoruba</option>
+              <option value="hausa">Hausa</option>
+              <option value="swahili">Swahili</option>
+              <option value="zulu">Zulu</option>
+               <option value="arabic">Arabic</option>
+            </select>
+          </div>
+        </div>
+
         <!-- Generate Button -->
         <div class="d-grid">
           <button type="submit" class="btn btn-lg text-white fw-bold" style="background-color: #003366;">
@@ -421,16 +442,12 @@
 
 
 
-    
-
-
         </div>
       </div>
     </div>
 
   </div>
 </div>
-
 
 
 
@@ -441,6 +458,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const fileUpload = document.getElementById("fileUpload");
     const quizType = document.getElementById("quizType");
     const difficulty = document.getElementById("difficulty");
+    const language = document.getElementById("language"); 
+    const maxQuestions = document.getElementById("maxQuestions"); // 🔢 dropdown
 
     const resultBox = document.getElementById("quizResult");
     const quizOutput = document.getElementById("quizContent");
@@ -448,24 +467,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const downloadForm = document.getElementById("downloadForm");
     const copyBtn = document.getElementById("copyQuizBtn");
 
-    // 🔹 Convert uploaded file to text
-    async function readFileContent(file) {
-        return new Promise((resolve, reject) => {
+    // ✅ Helper: read file content
+    const readFileContent = (file) =>
+        new Promise((resolve, reject) => {
             const reader = new FileReader();
-            reader.onload = e => resolve(e.target.result);
-            reader.onerror = e => reject(e);
+            reader.onload = (e) => resolve(e.target.result);
+            reader.onerror = (err) => reject(err);
             reader.readAsText(file);
         });
-    }
 
-    // 🔹 Handle form submit (generate quiz)
+    // ✅ Generate quiz
     form?.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         let quizText = quizSource.value.trim();
-        const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+        const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]")?.value;
 
-        // If file uploaded, read it and append to quizText
+        // If file uploaded → append content
         if (fileUpload.files.length > 0) {
             try {
                 const fileContent = await readFileContent(fileUpload.files[0]);
@@ -473,43 +491,44 @@ document.addEventListener("DOMContentLoaded", () => {
             } catch (err) {
                 console.error("File read error:", err);
                 quizOutput.value = "❌ Error reading uploaded file.";
+                resultBox.style.display = "block";
                 return;
             }
         }
 
         if (!quizText) {
-            quizOutput.value = "⚠️ Please provide study material or upload a file.";
+            quizOutput.value = "⚠️ Please enter study material or upload a file.";
             resultBox.style.display = "block";
             return;
         }
 
-        if (!quizType.value || !difficulty.value) {
-            quizOutput.value = "⚠️ Please select quiz type and difficulty level.";
-            resultBox.style.display = "block";
-            return;
-        }
+        // 🔢 Parse max_questions safely
+        const numQuestions = parseInt(maxQuestions?.value) || 10;
 
         try {
-            const response = await fetch("{% url 'generate_quiz' %}", {
+            const response = await fetch("/quiz/generate/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-CSRFToken": csrfToken
+                    ...(csrfToken ? { "X-CSRFToken": csrfToken } : {})
                 },
                 body: JSON.stringify({
                     quiz_text: quizText,
-                    quiz_type: quizType.value,
-                    difficulty: difficulty.value
+                    quiz_type: quizType?.value || "mixed",
+                    difficulty: difficulty?.value || "medium",
+                    language: language?.value || "English",
+                    max_questions: numQuestions
                 })
             });
 
-            const data = await response.json();
+            const data = await response.json().catch(() => ({}));
 
-            if (data.quiz) {
+            if (response.ok && data.quiz) {
                 quizOutput.value = data.quiz;
                 downloadInput.value = data.quiz;
             } else {
-                quizOutput.value = "❌ " + (data.error || "Unable to generate quiz.");
+                const backendError = data.error || data.detail || "Quiz generation failed.";
+                quizOutput.value = "❌ " + backendError;
                 downloadInput.value = "";
             }
         } catch (err) {
@@ -521,21 +540,22 @@ document.addEventListener("DOMContentLoaded", () => {
         resultBox.style.display = "block";
     });
 
-    // 🔹 Keep edits before downloading
+    // ✅ Keep edits when downloading
     downloadForm?.addEventListener("submit", () => {
         downloadInput.value = quizOutput.value;
     });
 
-    // 🔹 Copy to clipboard
+    // ✅ Copy to clipboard
     copyBtn?.addEventListener("click", async () => {
-        if (!quizOutput.value.trim()) {
-            alert("⚠️ No quiz to copy yet.");
+        const text = quizOutput.value.trim();
+        if (!text) {
+            alert("⚠️ No quiz available to copy.");
             return;
         }
         try {
-            await navigator.clipboard.writeText(quizOutput.value);
+            await navigator.clipboard.writeText(text);
             copyBtn.innerText = "Copied!";
-            setTimeout(() => copyBtn.innerText = "Copy Quiz", 2000);
+            setTimeout(() => (copyBtn.innerText = "Copy Quiz"), 2000);
         } catch (err) {
             console.error("Clipboard error:", err);
             alert("❌ Failed to copy. Please copy manually.");
@@ -543,6 +563,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 </script>
+
 
 
 
@@ -565,26 +586,37 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
       <!-- Step 2 -->
+
+      <!-- Step 3 -->
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-sliders" style="font-size: 2.5rem; color: black;"></i>
-          <h5 class="mt-3" style="color: #003366;">Choose Quiz Type & Difficulty</h5>
+          <h5 class="mt-3" style="color: #003366;">Pick Quiz Type & Difficulty</h5>
           <p style="color: #555; font-size: 0.95rem;">
-            Select the type of quiz (MCQ, True/False, Short Answer, or Mixed) and the difficulty level (Easy, Medium, Hard) that suits your learning or teaching goal.
+            Choose the type of quiz (MCQ, True/False, Short Answer, or Mixed) and set the difficulty (Easy, Medium, Hard) that suits your learning or teaching goals.
           </p>
         </div>
       </div>
-      <!-- Step 3 -->
+            <div class="col-md-3 col-sm-6">
+        <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
+          <i class="bi bi-translate" style="font-size: 2.5rem; color: black;"></i>
+          <h5 class="mt-3" style="color: #003366;">Choose Language</h5>
+          <p style="color: #555; font-size: 0.95rem;">
+            Select your preferred language (English, French, Swahili, Yoruba,Igbo etc.) so quizzes are generated in the language you or your students understand best.
+          </p>
+        </div>
+      </div>
+      <!-- Step 4 -->
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-lightning-charge-fill" style="font-size: 2.5rem; color: black;"></i>
           <h5 class="mt-3" style="color: #003366;">Generate Quiz</h5>
           <p style="color: #555; font-size: 0.95rem;">
-            Click the <strong>“Generate Quiz”</strong> button. Our AI instantly creates a professional quiz based on your notes.
+            Click the <strong>“Generate Quiz”</strong> button. Our AI instantly creates a professional quiz in your chosen language.
           </p>
         </div>
       </div>
-      <!-- Step 4 -->
+      <!-- Step 5 -->
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-download" style="font-size: 2.5rem; color: black;"></i>
@@ -597,8 +629,6 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   </div>
 </section>
-
-
 
 <!-- Why Choose Us Section -->
 <section class="py-5" style="background-color: white;">
@@ -625,22 +655,22 @@ document.addEventListener("DOMContentLoaded", () => {
       <!-- Point 2 -->
       <div class="col-md-4">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
-          <i class="bi bi-magic" style="font-size: 2.5rem; color: #003366;"></i>
-          <h5 class="mt-3" style="color:black;">Smarter Learning</h5>
+          <i class="bi bi-translate" style="font-size: 2.5rem; color: #003366;"></i>
+          <h5 class="mt-3" style="color:black;">Multi-Language Support</h5>
           <p style="color:black;">
-            Students get personalized quizzes tailored to their level, while teachers and trainers 
-            get ready-made assessments that actually boost understanding.
+            Generate quizzes in <strong>English, French, Yoruba, Hausa, Igbo, Swahili</strong> and more — 
+            making it perfect for African and global learners.
           </p>
         </div>
       </div>
-      <!-- Point 3 -->
+      <!-- Point 3 (NEW) -->
       <div class="col-md-4">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
-          <i class="bi bi-shield-check" style="font-size: 2.5rem; color: #003366;"></i>
-          <h5 class="mt-3" style="color:black;">Accurate & Reliable</h5>
+          <i class="bi bi-journal-check" style="font-size: 2.5rem; color: #003366;"></i>
+          <h5 class="mt-3" style="color:black;">Exam-Ready Preparation</h5>
           <p style="color:black;">
-            Each quiz is generated with correct answers and explanations, ensuring quality and 
-            eliminating errors that come with rushed manual work.
+            Tailored for <strong>WAEC, JAMB, NECO, university tests</strong> and even professional certifications — 
+            quizzes match the format of real exams, helping learners build confidence.
           </p>
         </div>
       </div>
@@ -683,7 +713,6 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   </div>
 </section>
-
 
 <!-- Who Can Benefit Section -->
 <section class="py-5" style="background-color: #ffffff; color: #000000;">

@@ -7,30 +7,21 @@ import io
 import requests
 from gtts import gTTS
 import os
-from django.conf import settings
 import re
-import os
-import re
-import requests
-from gtts import gTTS
 from django.conf import settings
-from django.http import JsonResponse
-from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
-from django.core.cache import cache
-
-
 
 from .utils.ai_solver import solve_with_zhipu
+
 
 @csrf_exempt
 def ai_solver(request):
     """
     GET  → Render solver page
-    POST → Solve a question via Zhipu and return steps + audio
+    POST → Solve a question via Zhipu and return steps + audio (multi-language)
     """
     if request.method == "POST" and request.headers.get("x-requested-with") == "XMLHttpRequest":
         question = request.POST.get("question", "").strip()
+        language = request.POST.get("language", "English")  # match the utils argument
         response = {"steps": "", "audio_url": ""}
 
         if not question:
@@ -50,18 +41,18 @@ def ai_solver(request):
             if "=" in expr:
                 expr = f"solve {expr}"
 
-            # --- Solve with Zhipu helper ---
-            steps = solve_with_zhipu(expr, max_words=200, mode="explain")
+            # --- Solve with Zhipu (in selected language) ---
+            steps = solve_with_zhipu(expr, max_words=200, mode="explain", language=language)
             if not steps:
-                steps = "⚠ Could not generate a solution at this time."
+                steps = f"⚠ Could not generate a solution at this time ({language})."
 
-            # --- Generate audio ---
-            audio_filename = f"tts_{abs(hash(question))}.mp3"
+            # --- Generate audio in selected language ---
+            audio_filename = f"tts_{abs(hash(question + language))}.mp3"
             audio_path = os.path.join(settings.MEDIA_ROOT, audio_filename)
             os.makedirs(settings.MEDIA_ROOT, exist_ok=True)
 
             try:
-                tts = gTTS(text=steps, lang="en")
+                tts = gTTS(text=steps, lang=language)
                 tts.save(audio_path)
                 response["audio_url"] = os.path.join(settings.MEDIA_URL, audio_filename)
             except Exception as tts_error:
@@ -79,9 +70,6 @@ def ai_solver(request):
     return render(request, "ai_solver.html")
 
 
-# ---------------------------
-# Image OCR + Solve View
-# ---------------------------
 @csrf_exempt
 def solve_image_api(request):
     """
@@ -89,6 +77,8 @@ def solve_image_api(request):
     """
     if request.method == "POST":
         uploaded_file = request.FILES.get("image")
+        language = request.POST.get("language", "English")  # match utils
+
         if not uploaded_file:
             return JsonResponse({"error": "No image uploaded."}, status=400)
 
@@ -101,14 +91,17 @@ def solve_image_api(request):
                 timeout=30
             )
             result = ocr_res.json()
-            text = result["ParsedResults"][0]["ParsedText"].strip()
+            parsed = result.get("ParsedResults")
+            if not parsed or not parsed[0].get("ParsedText"):
+                return JsonResponse({"error": "OCR could not extract any text."}, status=500)
+            text = parsed[0]["ParsedText"].strip()
         except Exception as e:
             return JsonResponse({"error": f"OCR API failed: {e}"}, status=500)
 
-        # Solve with Zhipu helper
-        solution = solve_with_zhipu(text, max_words=200, mode="explain")
+        # Solve with Zhipu helper in chosen language
+        solution = solve_with_zhipu(text, max_words=200, mode="explain", language=language)
         if not solution:
-            solution = "⚠ Could not generate a solution at this time."
+            solution = f"⚠ Could not generate a solution at this time ({language})."
 
         return JsonResponse({
             "question": text,
@@ -116,6 +109,7 @@ def solve_image_api(request):
         })
 
     return JsonResponse({"error": "Invalid request."}, status=400)
+
 
 @csrf_exempt
 def download_solution_pdf(request):
@@ -136,7 +130,6 @@ def download_solution_pdf(request):
         text = p.beginText()
         text.setTextOrigin(margin, y)
         text.setFont("Helvetica", 12)
-        line_height = 14
 
         # Title
         text.setFont("Helvetica-Bold", 16)
@@ -150,16 +143,19 @@ def download_solution_pdf(request):
             text.textLine("Question:")
             text.setFont("Helvetica", 12)
             for line in question.splitlines():
+                max_chars = 90
+                while len(line) > max_chars:
+                    text.textLine(line[:max_chars])
+                    line = line[max_chars:]
                 text.textLine(line)
-            text.textLine("")  # blank line
+            text.textLine("")
 
         # Solution
         text.setFont("Helvetica-Bold", 14)
         text.textLine("Solution:")
         text.setFont("Helvetica", 12)
         for line in solution.splitlines():
-            # If line is too long, wrap it manually
-            max_chars = 90  # adjust as needed
+            max_chars = 90
             while len(line) > max_chars:
                 text.textLine(line[:max_chars])
                 line = line[max_chars:]

@@ -5,7 +5,7 @@ import requests
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, Http404, HttpResponse
 from django.utils.translation import get_language
-import io,json
+import io, json
 from reportlab.lib.units import cm
 from django.http import HttpResponse
 from reportlab.lib.pagesizes import A4
@@ -25,68 +25,87 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .utils.essay_generator import generate_polished_essay
 import json
+import logging
 
-import json
-import traceback
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from .utils.essay_generator import generate_polished_essay
+# Configure logger
+logger = logging.getLogger(__name__)
 
-@csrf_exempt  # allows POST requests without CSRF token
+@csrf_exempt
 def essay_generate(request):
     """
-    Generate a highly human-like essay based on topic and type selected by user.
-    Accepts both GET and POST requests:
-        - topic: string, essay topic
-        - type: string, essay type (expository, narrative, descriptive, persuasive, analytical)
-    Returns JSON:
-        {
-            "topic": "...",
-            "type": "...",
-            "essay": "..."
-        }
+    Generate a human-like essay.
+    Accepts JSON payload or GET parameters:
+        - topic / topic (mandatory)
+        - type / essayType (optional, defaults to 'expository')
+        - lang / language (mandatory)
+    Word count and citations are fixed in utils (800 words, 3 citations).
     """
     try:
-        # === Extract topic and essay_type ===
+        # --- Extract parameters ---
         if request.method == "GET":
-            topic = request.GET.get("topic", "The role of technology in education").strip()
-            essay_type = request.GET.get("type", "expository").strip().lower()
+            topic = (request.GET.get("topic") or "").strip()
+            essay_type = (request.GET.get("type") or request.GET.get("essayType") or "expository").strip().lower()
+            lang = (request.GET.get("lang") or request.GET.get("language") or "").strip().lower()
         elif request.method == "POST":
             try:
-                data = json.loads(request.body)
+                data = json.loads(request.body.decode("utf-8"))
             except json.JSONDecodeError:
-                return JsonResponse({"error": "Invalid JSON payload"}, status=400)
+                return JsonResponse({"success": False, "error": "Invalid JSON payload"}, status=400)
 
-            topic = data.get("topic", "The role of technology in education").strip()
-            essay_type = data.get("type", "expository").strip().lower()
+            topic = str(data.get("topic") or "").strip()
+            essay_type = str(data.get("type") or data.get("essayType") or "expository").strip().lower()
+            lang = str(data.get("lang") or data.get("language") or "").strip().lower()
         else:
-            return JsonResponse({"error": "Unsupported HTTP method"}, status=405)
+            return JsonResponse({"success": False, "error": "Unsupported HTTP method"}, status=405)
 
-        # === Validate essay type ===
+        # --- Validate inputs ---
+        if not topic:
+            return JsonResponse({"success": False, "error": "Missing essay topic"}, status=400)
+        if not lang:
+            return JsonResponse({"success": False, "error": "Please select a language"}, status=400)
+
         valid_types = ["expository", "narrative", "descriptive", "persuasive", "analytical"]
         if essay_type not in valid_types:
-            essay_type = "expository"
+            essay_type = "expository"  # fallback
 
-        # === Generate essay using helper ===
-        essay = generate_polished_essay(topic, essay_type)
+        valid_langs = ["en", "yo", "ig", "ha", "ar", "zu", "sw", "fr"]
+        if lang not in valid_langs:
+            return JsonResponse({"success": False, "error": f"Invalid language '{lang}'"}, status=400)
 
-        # Ensure response is clean and human-like
-        if not essay or len(essay.strip()) == 0:
-            essay = "Sorry, unable to generate essay at this time. Please try again."
+        # --- Generate essay safely ---
+        try:
+            essay = generate_polished_essay(topic, essay_type, lang)
+        except Exception as gen_err:
+            logger.error(f"Essay generation error: {gen_err}", exc_info=True)
+            return JsonResponse({
+                "success": False,
+                "error": "Essay generation failed. Please try again later."
+            }, status=500)
 
-        # === Return JSON response ===
+        if not essay.strip():
+            return JsonResponse({
+                "success": False,
+                "error": "Generated essay is empty. Please try again."
+            }, status=500)
+
+        # --- Return essay JSON ---
         return JsonResponse({
             "success": True,
             "topic": topic,
             "type": essay_type,
-            "essay": essay
+            "lang": lang,
+            "words": 800,      # fixed
+            "citations": 3,    # fixed
+            "essay": essay,
         })
 
     except Exception as e:
-        # Log detailed traceback for debugging
-        traceback.print_exc()
-        return JsonResponse({"success": False, "error": str(e)}, status=500)
-
+        # Catch-all for unexpected errors
+        logger.error(f"Unexpected error in essay_generate view: {e}", exc_info=True)
+        return JsonResponse({
+            "success": False,
+            "error": "An unexpected error occurred. Please try again."
+        }, status=500)
 
 @csrf_exempt
 def download_essay_pdf(request):
@@ -137,9 +156,6 @@ def download_essay_pdf(request):
     response = HttpResponse(buffer, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="essay.pdf"'
     return response
-
-
-
 
 
 LIBRETRANSLATE_URL = "https://libretranslate.com"

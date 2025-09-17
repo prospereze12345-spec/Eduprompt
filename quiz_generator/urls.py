@@ -1,9 +1,9 @@
 # urls.py
 from django.urls import path
-from .views import quiz_generator, generate_quiz, download_quiz_pdf
-
+from .import views
 urlpatterns = [
-    path("quiz/", quiz_generator, name="quiz_generator"),
-    path("quiz/generate/", generate_quiz, name="generate_quiz"),
-    path("quiz/download/", download_quiz_pdf, name="download_quiz_pdf"),
+        path("quiz/", views.quiz_generator, name="quiz_generator"),
+        path("quiz/generate/", views.generate_quiz, name="generate_quiz"),
+        path("quiz/download/", views.download_quiz_pdf, name="download_quiz_pdf"),
+
 ]

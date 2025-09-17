@@ -524,110 +524,78 @@
 </html>
 
 
-<!-- Two Columns -->
-<div class="row g-0" style="min-height: 500px;">
+<!-- Two Columns: Input Left, Output Right -->
+<div class="row g-3" style="min-height: 500px;">
 
-<!-- Two Columns -->
-<div class="row g-0" style="min-height: 500px;">
+  <!-- Left Column: Prompt Input -->
+  <div class="col-12 col-md-6 d-flex flex-column p-3 border-end">
+    <h5 class="fw-bold mb-3">Enter Your Essay Topic</h5>
+    
+    <!-- Topic Input -->
+    <textarea id="promptInput" class="form-control flex-grow-1 mb-3" 
+              placeholder="Type your essay question or topic here..." rows="8"></textarea>
 
-   <!-- Left Column: Prompt Input -->
-    <div class="col-md-6 p-4 d-flex flex-column border-end">
-      <h5 class="fw-bold mb-3">Enter Your Essay Topic</h5>
-      <textarea id="promptInput" class="form-control flex-grow-1 mb-3" 
-                placeholder="Type your essay question or topic here..."></textarea>
+    <!-- Essay Settings -->
+    <div class="row mb-3 g-2">
+      <!-- Language Dropdown -->
+      <div class="col-12">
+        <label class="fw-semibold small">Language <span class="text-danger">*</span></label>
+        <select id="essayLang" class="form-select" required>
+          <option value="" disabled selected>Select language</option>
+          <option value="en">English</option>
+          <option value="yo">Yoruba</option>
+          <option value="ig">Igbo</option>
+          <option value="ha">Hausa</option>
+          <option value="ar">Arabic</option>
+          <option value="zu">Zulu</option>
+          <option value="sw">Swahili</option>
+          <option value="fr">French</option>
+        </select>
+      </div>
 
+      <!-- Fixed Essay Length -->
+      <div class="col-6 col-md-6 mt-2">
+        <label class="fw-semibold small">Essay Length</label>
+        <div class="form-control bg-light">800 words</div>
+        <input type="hidden" id="essayLength" value="800">
+      </div>
 
-
-      <button onclick="generateEssay()" class="btn btn-primary w-100 mt-auto">{% trans "Generate Essay" %}</button>
+      <!-- Fixed Citations -->
+      <div class="col-6 col-md-6 mt-2">
+        <label class="fw-semibold small">Citations</label>
+        <div class="form-control bg-light">3 citations</div>
+        <input type="hidden" id="essayCitations" value="3">
+      </div>
     </div>
 
-
-
-<div class="col-md-6 p-4 d-flex flex-column">
-  <h5 class="fw-bold mb-3">AI-Generated Essay (Editable)</h5>
-
-  <!-- Editable Essay Output -->
-  <textarea id="essayOutput"
-            class="border bg-light rounded p-3 flex-grow-1"
-            style="white-space: pre-wrap; height: 500px; overflow-y: auto; resize: vertical;"
-            placeholder="Your essay will appear here..."
-            spellcheck="true"></textarea>
-</div>
-
-
-
-<script>
-  // Get elements
-  const dropdown = document.getElementById("langDropdown");
-  const essayOutput = document.getElementById("essayOutput");
-
-  // URL for translation
-  const translateUrl = "{% url 'translate_text' %}";
-
-  // CSRF helper
-  function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== "") {
-      document.cookie.split(";").forEach(c => {
-        const cookie = c.trim();
-        if (cookie.startsWith(name + "=")) {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        }
-      });
-    }
-    return cookieValue;
-  }
-
-  // Event listener
-  dropdown.addEventListener("change", async function () {
-    const target = this.value;
-    const text = essayOutput.innerText.trim();
-    if (!target || !text) return;
-
-    essayOutput.innerText = "Translating...";
-
-    try {
-      const res = await fetch(translateUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRFToken": getCookie("csrftoken"),
-        },
-        body: JSON.stringify({ text, target }),
-      });
-
-      const data = await res.json();
-      essayOutput.innerText = data.success ? data.content : "Error: " + (data.error || "Unknown error");
-    } catch (err) {
-      essayOutput.innerText = "Failed: " + err;
-    }
-  });
-</script>
-
-
-
-
-
-    </select>
+    <!-- Generate Button -->
+    <button onclick="generateEssay()" class="btn btn-primary w-100 mt-auto">
+      {% trans "Generate Essay" %}
+    </button>
   </div>
+
+  <!-- Right Column: Essay Output -->
+  <div class="col-12 col-md-6 d-flex flex-column p-3">
+    <h5 class="fw-bold mb-3">AI-Generated Essay (Editable)</h5>
+
+    <textarea id="essayOutput"
+              class="border bg-light rounded p-3 flex-grow-1 mb-3"
+              style="white-space: pre-wrap; overflow-y: auto; resize: vertical;"
+              placeholder="Your essay will appear here..."
+              spellcheck="true"></textarea>
+
+    <!-- Download Button Under Output -->
+    <div class="d-flex justify-content-start mt-2">
+      <button onclick="downloadEssayPDF()" 
+              class="btn btn-success"
+              style="padding:10px 24px; font-size:14px;">
+        {% trans "📥 Download PDF" %}
+      </button>
+    </div>
+  </div>
+
 </div>
 
-
-
-
-      
-     
-<!-- Button Row: Download, Plagiarism, Humanizer -->
-<div style="margin-top:20px; text-align:center; display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
-
-  <!-- Download PDF -->
-  <button onclick="downloadEssayPDF()" 
-          class="btn btn-success" 
-          style="padding:10px 24px; font-size:14px; min-width:150px;">
-    {% trans "📥 Download PDF" %}
-  </button>
-
-</div>
 
 
 
@@ -643,7 +611,6 @@
 
 <!-- Bootstrap & AJAX -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 
 <script>
 // Get CSRF token from cookies
@@ -662,31 +629,36 @@ function getCookie(name) {
 async function generateEssay() {
     const topicInput = document.getElementById("promptInput");
     const essayTypeSelect = document.getElementById("selectedEssayType");
-    const outputDiv = document.getElementById("essayOutput");
+    const langSelect = document.getElementById("essayLang");  // updated ID to match HTML
+    const outputTextarea = document.getElementById("essayOutput");
 
-    if (!topicInput || !outputDiv) return;
+    if (!topicInput || !outputTextarea || !langSelect) return;
 
     const topic = topicInput.value.trim();
     const essayType = essayTypeSelect ? essayTypeSelect.value : "expository";
+    const lang = langSelect.value;
 
+    // Validation
     if (!topic) {
-        outputDiv.textContent = "⚠ Please enter a topic first!";
-        outputDiv.className = "text-danger border bg-light rounded p-3";
+        outputTextarea.value = "⚠ Please enter a topic first!";
+        outputTextarea.className = "text-danger border bg-light rounded p-3";
         return;
     }
 
-    // Show loading
-    outputDiv.textContent = "⏳ Generating essay...";
-    outputDiv.className = "border bg-light rounded p-3 flex-grow-1 overflow-auto text-muted";
+    if (!lang) {
+        outputTextarea.value = "⚠ Please select a language!";
+        outputTextarea.className = "text-danger border bg-light rounded p-3";
+        return;
+    }
+
+    // Show loading state
+    outputTextarea.value = "⏳ Generating essay...";
+    outputTextarea.className = "border bg-light rounded p-3 flex-grow-1 overflow-auto text-muted";
 
     try {
         const csrfToken = getCookie('csrftoken');
-        const payload = {
-            topic: topic,
-            type: essayType
-        };
+        const payload = { topic: topic, type: essayType, lang: lang };
 
-        // Use your Django URL for essay generation
         const url = "{% url 'essay_generate' %}";
 
         const response = await fetch(url, {
@@ -698,54 +670,53 @@ async function generateEssay() {
             body: JSON.stringify(payload)
         });
 
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
         const data = await response.json();
 
+        if (!response.ok) {
+            throw new Error(data.error || `HTTP ${response.status}`);
+        }
+
         if (data.essay) {
-            outputDiv.textContent = data.essay;
-            outputDiv.className = "border bg-light rounded p-3 flex-grow-1 overflow-auto";
-            outputDiv.scrollIntoView({ behavior: "smooth" });
+            outputTextarea.value = data.essay;
+            outputTextarea.className = "border bg-light rounded p-3 flex-grow-1 overflow-auto";
+            outputTextarea.scrollIntoView({ behavior: "smooth" });
         } else {
-            outputDiv.textContent = data.error || "❌ Failed to generate essay!";
-            outputDiv.className = "text-danger border bg-light rounded p-3";
+            outputTextarea.value = data.error || "❌ Failed to generate essay!";
+            outputTextarea.className = "text-danger border bg-light rounded p-3";
         }
 
     } catch (err) {
         console.error("Essay generation error:", err);
-        outputDiv.textContent = "❌ Something went wrong. Please try again!";
-        outputDiv.className = "text-danger border bg-light rounded p-3";
+        outputTextarea.value = "❌ Something went wrong. Please try again!";
+        outputTextarea.className = "text-danger border bg-light rounded p-3";
     }
 }
 
+// Download essay as PDF
 function downloadEssayPDF() {
-    // Get the essay textarea
     const outputTextarea = document.getElementById("essayOutput");
     if (!outputTextarea) {
         alert("⚠ Essay output element not found!");
         return;
     }
 
-    const essayText = outputTextarea.value.trim(); // <-- use .value for textarea
+    const essayText = outputTextarea.value.trim();
     if (!essayText) {
         alert("⚠ Please generate an essay first!");
         return;
     }
 
-    // Create a temporary form to POST to Django download view
     const form = document.createElement("form");
     form.method = "POST";
     form.action = "{% url 'download_essay_pdf' %}";
     form.target = "_blank";
 
-    // CSRF token
     const csrfInput = document.createElement("input");
     csrfInput.type = "hidden";
     csrfInput.name = "csrfmiddlewaretoken";
-    csrfInput.value = getCookie("csrftoken"); // make sure getCookie() exists
+    csrfInput.value = getCookie("csrftoken");
     form.appendChild(csrfInput);
 
-    // Essay content
     const contentInput = document.createElement("input");
     contentInput.type = "hidden";
     contentInput.name = "content";
