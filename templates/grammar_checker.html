@@ -474,41 +474,106 @@
 </section>
 
 
-
-<section class="py-4" style="background-color:#f9fafc; font-family:'Segoe UI', sans-serif;">
+<section class="py-4" style="background-color:white; font-family:'Segoe UI', sans-serif;">
   <div class="container">
     <div class="row g-3">
       
       <div class="col-lg-7 col-md-12">
-              <!-- Language Switcher Form -->
-      <form action="{% url 'set_language' %}" method="post" class="d-flex align-items-center ms-auto" style="max-width: 150px;">
-        {% csrf_token %}
-        <select name="language" onchange="this.form.submit()" class="form-select form-select-sm" style="font-size: 0.8rem;">
-          {% for code, name in AFRICAN_LANGUAGES %}
-            <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
-          {% endfor %}
-        </select>
-        <input type="hidden" name="next" value="{{ request.get_full_path }}">
-      </form>
-        <div class="editor-box mb-3 p-3" style="background:#fff; border:2px solid #e0e0e0; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-          <textarea id="userText" class="form-control border-0" rows="12" placeholder="Type or paste your text here..."></textarea>
+  <div class="editor-box mb-3 p-3" style="background:#fff; border:2px solid #e0e0e0; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+    <textarea id="userText" class="form-control border-0" rows="12" placeholder="Type or paste your text here..."></textarea>
+    
+    <!-- Free Limit Notice -->
+    <p class="text-muted small mt-2" style="font-weight:500; color:#444 !important;">
+      ✅ Check up to <span style="color:darkgoldenrod; font-weight:600;">2,000 words</span> for free
+    </p>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center flex-wrap">
+    <div class="mb-2">
+      <button class="btn btn-light btn-sm">Upload</button>
+      <button class="btn btn-light btn-sm">Google Drive</button>
+    </div>
+
+    <div class="stats mb-2" id="textStats" style="font-size:0.9rem; color:#666;">
+      Words: 0 | Characters: 0
+    </div>
+
+    <!-- Go Pro Link beside Check Grammar -->
+<button id="checkBtn" class="btn btn-sm" 
+        style="background:#b8860b; color:#fff; border-radius:8px; padding:8px 18px; border:none;">
+  Check Grammar
+</button>
+<a href="#" data-bs-toggle="modal" data-bs-target="#proModal" 
+   class="ms-2 text-decoration-none" 
+   style="font-size:0.9rem; color:#0d6efd; font-weight:500;">
+   🚀 Go Pro
+</a>
+
+<!-- Pro Plan Modal -->
+<div class="modal fade" id="proModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg rounded-4">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Upgrade to Pro</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p class="text-muted mb-4">Get full access to grammar checking for longer texts.</p>
+
+        <!-- Pricing Naira -->
+        <div id="pricing-naira" class="pricing-card d-none">
+          <h5>Pro Plan</h5>
+          <p class="text-muted"><s>₦4,500</s></p>
+          <h3 style="color:darkgoldenrod;">₦3,500 <span class="badge bg-success">Save 22%</span></h3>
+          <ul class="list-unstyled small text-start mt-3">
+            <li>✔ Check grammar for up to 15,000+ words per month</li>
+            <li>✔ Supports African languages</li>
+            <li>✔ Spelling & punctuation corrections</li>
+          </ul>
+          <button class="btn btn-primary w-100 mt-3 rounded-pill">Pay Now</button>
         </div>
-        <div class="d-flex justify-content-between align-items-center flex-wrap">
-          <div class="mb-2">
-            <button class="btn btn-light btn-sm">Upload</button>
-            <button class="btn btn-light btn-sm">Google Drive</button>
-          </div>
 
-
-          <div class="stats mb-2" id="textStats" style="font-size:0.9rem; color:#666;">
-            Words: 0 | Characters: 0
-          </div>
-          <!-- Dark Gold Check Grammar Button -->
-          <button id="checkBtn" class="btn btn-sm" style="background:#b8860b; color:#fff; border-radius:8px; padding:8px 18px; border:none;">
-            Check Grammar
-          </button>
+        <!-- Pricing Dollar -->
+        <div id="pricing-dollar" class="pricing-card d-none">
+          <h5>Pro Plan</h5>
+          <p class="text-muted"><s>$8</s></p>
+          <h3 style="color:darkgoldenrod;">$6 <span class="badge bg-success">Save 25%</span></h3>
+          <ul class="list-unstyled small text-start mt-3">
+            <li>✔ Check grammar for up to 15,000+ words per month</li>
+            <li>✔ Supports African languages</li>
+            <li>✔ Spelling & punctuation corrections</li>
+          </ul>
+          <button class="btn btn-primary w-100 mt-3 rounded-pill">Pay Now</button>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Script to detect location -->
+<script>
+fetch("https://ipapi.co/json/")
+  .then(res => res.json())
+  .then(data => {
+    if (["127.0.0.1", "localhost"].includes(window.location.hostname)) {
+      data.country_code = "NG";
+    }
+    if (data.country_code === "NG") {
+      document.getElementById("pricing-naira").classList.remove("d-none");
+    } else {
+      document.getElementById("pricing-dollar").classList.remove("d-none");
+    }
+  })
+  .catch(() => {
+    document.getElementById("pricing-dollar").classList.remove("d-none");
+  });
+</script>
+
+  </div>
+</div>
+
+
+
 
       <!-- Right Side Suggestions -->
       <div class="col-lg-5 col-md-12">
@@ -531,12 +596,44 @@
   </div>
 </section>
 
+
 <script>
+const textarea = document.getElementById('userText');
+const stats = document.getElementById('textStats');
+const checkBtn = document.getElementById('checkBtn');
+
+const WORD_LIMIT_FREE = 2000;
+
+textarea.addEventListener('input', () => {
+  const text = textarea.value;
+  const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+  const charCount = text.length;
+  
+  stats.textContent = `Words: ${wordCount} | Characters: ${charCount}`;
+
+  // Disable button if exceeding free limit
+  if (wordCount > WORD_LIMIT_FREE) {
+    checkBtn.disabled = true;
+    checkBtn.style.background = '#ccc';
+    checkBtn.textContent = 'Upgrade to Pro for 15k+ words';
+  } else {
+    checkBtn.disabled = false;
+    checkBtn.style.background = '#b8860b';
+    checkBtn.textContent = 'Check Grammar';
+  }
+});
+
+// Optional: Clicking Check Grammar triggers an alert
+checkBtn.addEventListener('click', () => {
+  if (!checkBtn.disabled) {
+    alert('Grammar check in progress...');
+    // Here you can integrate your grammar check API
+  }
+});
+
 const textArea = document.getElementById("userText");
-const stats = document.getElementById("textStats");
 const suggestionList = document.getElementById("suggestionList");
 const suggestionCount = document.getElementById("suggestionCount");
-const checkBtn = document.getElementById("checkBtn");
 const correctAllBtn = document.getElementById("correctAll");
 
 // Live word/character stats
@@ -574,12 +671,12 @@ checkBtn.addEventListener("click", () => {
   .then(res => res.json())
   .then(data => {
     if (data.error) {
-      suggestionList.innerHTML = `<p class="text-danger">${data.error}</p>`;
-      return;
+      sugges;
     }
 
     const matches = data.matches || [];
-    suggestionCount.innerText = matches.length;
+    suggestiotionList.innerHTML = `<p class="text-danger">${data.error}</p>`;
+      returnnCount.innerText = matches.length;
 
     if (matches.length === 0 && !data.corrected_text) {
       suggestionList.innerHTML = `<p class="text-muted">No issues found ✅ (Source: ${data.source || "lt"})</p>`;

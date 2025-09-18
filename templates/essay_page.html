@@ -552,26 +552,33 @@
           <option value="fr">French</option>
         </select>
       </div>
-
-      <!-- Fixed Essay Length -->
-      <div class="col-6 col-md-6 mt-2">
-        <label class="fw-semibold small">Essay Length</label>
-        <div class="form-control bg-light">800 words</div>
-        <input type="hidden" id="essayLength" value="800">
-      </div>
-
-      <!-- Fixed Citations -->
-      <div class="col-6 col-md-6 mt-2">
-        <label class="fw-semibold small">Citations</label>
-        <div class="form-control bg-light">3 citations</div>
-        <input type="hidden" id="essayCitations" value="3">
-      </div>
     </div>
 
     <!-- Generate Button -->
     <button onclick="generateEssay()" class="btn btn-primary w-100 mt-auto">
       {% trans "Generate Essay" %}
     </button>
+
+    <!-- Go Pro Upgrade Banner -->
+    <div class="mt-3">
+      <div class="d-flex align-items-center justify-content-between p-2 rounded-3 shadow-sm" 
+           style="background-color: #FFD700; color: #000;">
+
+        <!-- Icon & Text -->
+        <div class="d-flex align-items-center">
+          <i class="fas fa-crown fa-lg me-2" style="color: #000;"></i>
+          <div>
+            <h6 class="mb-0 fw-bold small">Go Pro</h6>
+<small class="text-dark">Go Pro for unlimited use & faster results</small>
+          </div>
+        </div>
+
+        <!-- Button -->
+        <a href="#pricing-naira" class="btn btn-dark btn-sm rounded-pill fw-semibold">
+          Upgrade
+        </a>
+      </div>
+    </div>
   </div>
 
   <!-- Right Column: Essay Output -->
@@ -595,6 +602,7 @@
   </div>
 
 </div>
+
 
 
 
@@ -741,47 +749,52 @@ function downloadEssayPDF() {
   <div class="row g-4">
     <!-- Step 1 -->
     <div class="col-12 col-md-4">
-      <div class="card h-100 bg-white shadow-lg border-0 p-3 hover-scale">
+      <div class="card h-100 bg-light border-0 p-3 hover-scale">
         <div class="card-body text-center">
           <i class="bi bi-pencil-square fs-1 text-primary mb-3"></i>
-          <h5 class="card-title fw-bold mb-3">{% trans "1. Enter Your Topic" %}</h5>
-          <p class="card-text text-muted">{% trans "Type your essay prompt or topic in the input box. Be specific to get the best results." %}</p>
+          <h5 class="card-title fw-bold mb-2">{% trans "1. Enter Your Topic" %}</h5>
+          <p class="card-text text-muted small">
+            {% trans "Provide your essay topic or question. Be clear and specific to get the best results." %}
+          </p>
         </div>
       </div>
     </div>
 
     <!-- Step 2 -->
     <div class="col-12 col-md-4">
-      <div class="card h-100 bg-white shadow-lg border-0 p-3 hover-scale">
+      <div class="card h-100 bg-light border-0 p-3 hover-scale">
         <div class="card-body text-center">
           <i class="bi bi-cpu fs-1 text-success mb-3"></i>
-          <h5 class="card-title fw-bold mb-3">{% trans "2. AI Generates Content" %}</h5>
-          <p class="card-text text-muted">{% trans "Our AI instantly creates a unique, structured essay tailored to your topic." %}</p>
+          <h5 class="card-title fw-bold mb-2">{% trans "2. AI Generates Essay" %}</h5>
+          <p class="card-text text-muted small">
+            {% trans "Our AI writes a complete essay with up to 800 words, 3 citations, and full support for African & global languages." %}
+          </p>
         </div>
       </div>
     </div>
 
     <!-- Step 3 -->
     <div class="col-12 col-md-4">
-      <div class="card h-100 bg-white shadow-lg border-0 p-3 hover-scale">
+      <div class="card h-100 bg-light border-0 p-3 hover-scale">
         <div class="card-body text-center">
-          <i class="bi bi-check-circle fs-1 text-warning mb-3"></i>
-          <h5 class="card-title fw-bold mb-3">{% trans "3. Review & Edit" %}</h5>
-          <p class="card-text text-muted">{% trans "Refine your essay to your preference and use it confidently for assignments or projects." %}</p>
+          <i class="bi bi-check2-circle fs-1 text-warning mb-3"></i>
+          <h5 class="card-title fw-bold mb-2">{% trans "3. Review & Download" %}</h5>
+          <p class="card-text text-muted small">
+            {% trans "Edit if needed, then download your essay instantly in PDF for assignments, research, or projects." %}
+          </p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Hover effect for cards -->
+<!-- Hover effect -->
 <style>
 .hover-scale {
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.25s ease;
 }
 .hover-scale:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
 }
 </style>
 
@@ -790,101 +803,100 @@ function downloadEssayPDF() {
 
 <div class="container my-5">
   <div class="text-center mb-5">
-    <h2 class="fw-bold">{% trans "Why You Should Consider Using an AI Essay Generator" %}</h2>
+    <h2 class="fw-bold">{% trans "Why Choose Our AI Essay Generator" %}</h2>
     <p class="text-muted fs-5">
-      {% trans "Experience how our AI-powered essay generator helps you save time, improve your writing, and produce high-quality, easy-to-read essays effortlessly. All essays are automatically polished for grammar and readability, ensuring human-like flow and clarity without additional cost." %}
+      {% trans "Write smarter, not harder. Our AI generates professional essays with up to 800 words, 3 citations, grammar polishing, and full support for African and global languages — all ready in seconds." %}
     </p>
   </div>
 
   <div class="row g-4">
     <!-- Reason 1 -->
     <div class="col-12 col-md-4">
-      <div class="card h-100 shadow-sm border-0 text-center p-4 bg-white hover-scale">
+      <div class="card h-100 border-0 text-center p-4 bg-light hover-scale">
         <div class="mb-3 text-primary fs-1">
           <i class="bi bi-alarm"></i>
         </div>
-        <h5 class="fw-semibold">{% trans "Save Time and Effort" %}</h5>
+        <h5 class="fw-semibold">{% trans "Save Time" %}</h5>
         <p class="text-muted small">
-          {% trans "Generate complete essays instantly without spending hours on research and writing. Perfect for students and professionals alike." %}
+          {% trans "Generate full-length essays instantly without spending hours on research or drafting." %}
         </p>
       </div>
     </div>
 
     <!-- Reason 2 -->
     <div class="col-12 col-md-4">
-      <div class="card h-100 shadow-sm border-0 text-center p-4 bg-white hover-scale">
+      <div class="card h-100 border-0 text-center p-4 bg-light hover-scale">
         <div class="mb-3 text-success fs-1">
           <i class="bi bi-lightning-charge-fill"></i>
         </div>
         <h5 class="fw-semibold">{% trans "Boost Productivity" %}</h5>
         <p class="text-muted small">
-          {% trans "Focus on refining and personalizing your content while AI handles the initial draft, allowing you to accomplish more in less time." %}
+          {% trans "Let AI handle the first draft so you can focus on refining and customizing the final work." %}
         </p>
       </div>
     </div>
 
     <!-- Reason 3 -->
     <div class="col-12 col-md-4">
-      <div class="card h-100 shadow-sm border-0 text-center p-4 bg-white hover-scale">
+      <div class="card h-100 border-0 text-center p-4 bg-light hover-scale">
         <div class="mb-3 text-warning fs-1">
-          <i class="bi bi-book-half"></i>
+          <i class="bi bi-translate"></i>
         </div>
-        <h5 class="fw-semibold">{% trans "Improve Writing Skills" %}</h5>
+        <h5 class="fw-semibold">{% trans "African Language Support" %}</h5>
         <p class="text-muted small">
-          {% trans "Study AI-generated essays to understand structure, coherence, and smooth transitions. Learn how professional-level content is crafted effortlessly." %}
+          {% trans "Write essays in Yoruba, Igbo, Hausa, Swahili, Zulu, Arabic, French, and more — truly multilingual." %}
         </p>
       </div>
     </div>
 
     <!-- Reason 4 -->
     <div class="col-12 col-md-4">
-      <div class="card h-100 shadow-sm border-0 text-center p-4 bg-white hover-scale">
+      <div class="card h-100 border-0 text-center p-4 bg-light hover-scale">
         <div class="mb-3 text-danger fs-1">
           <i class="bi bi-shield-check"></i>
         </div>
-        <h5 class="fw-semibold">{% trans "Free Grammar Polishing" %}</h5>
+        <h5 class="fw-semibold">{% trans "Grammar Polished" %}</h5>
         <p class="text-muted small">
-          {% trans "Every essay is automatically polished using our integrated grammar tool, ensuring content is easy to read and flows naturally without extra effort." %}
+          {% trans "Essays are automatically corrected for grammar and flow, so your work always reads naturally." %}
         </p>
       </div>
     </div>
 
     <!-- Reason 5 -->
     <div class="col-12 col-md-4">
-      <div class="card h-100 shadow-sm border-0 text-center p-4 bg-white hover-scale">
+      <div class="card h-100 border-0 text-center p-4 bg-light hover-scale">
         <div class="mb-3 text-info fs-1">
-          <i class="bi bi-clock-history"></i>
+          <i class="bi bi-file-earmark-pdf"></i>
         </div>
-        <h5 class="fw-semibold">{% trans "Access Anytime, Anywhere" %}</h5>
+        <h5 class="fw-semibold">{% trans "Instant PDF Download" %}</h5>
         <p class="text-muted small">
-          {% trans "Our AI essay generator is available 24/7 online. Generate, review, and edit your essays at your convenience from any device." %}
+          {% trans "Download your essay as a ready-to-submit PDF in just one click." %}
         </p>
       </div>
     </div>
 
     <!-- Reason 6 -->
     <div class="col-12 col-md-4">
-      <div class="card h-100 shadow-sm border-0 text-center p-4 bg-white hover-scale">
+      <div class="card h-100 border-0 text-center p-4 bg-light hover-scale">
         <div class="mb-3 text-secondary fs-1">
           <i class="bi bi-people-fill"></i>
         </div>
-        <h5 class="fw-semibold">{% trans "Perfect for Everyone" %}</h5>
+        <h5 class="fw-semibold">{% trans "For Everyone" %}</h5>
         <p class="text-muted small">
-          {% trans "Whether you're a student, blogger, researcher, or professional, our AI-generated essays provide a solid foundation to customize, learn, and improve your work." %}
+          {% trans "Whether you're a student, researcher, or professional, our essays give you a reliable foundation to build on." %}
         </p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Hover effect for cards -->
+<!-- Hover effect -->
 <style>
 .hover-scale {
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.25s ease;
 }
 .hover-scale:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
 }
 </style>
 
@@ -1011,26 +1023,57 @@ function downloadEssayPDF() {
             <div class="accordion-body">
               {% trans "Yes! This is where our MVP truly stands out." %}
               {% trans "We offer support for <strong>Hausa, Yoruba, Igbo, Swahili, Zulu, and Amharic" %}</strong>. 
-              {% trans "Students and professionals across Africa can finally generate essays in their preferred languages.
+              "Students and professionals across Africa can finally generate essays in their preferred languages.
             </div>
           </div>
         </div>
 
-        <!-- FAQ 5 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="faqHeading5">
-            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
-             {% trans " 5. Is the AI Essay Generator free to use?" %}
-            </button>
-          </h2>
-          <div id="faq5" class="accordion-collapse collapse" aria-labelledby="faqHeading5" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              {% trans "Yes! Our basic AI essay generation is <strong>completely free" %}</strong>. 
-              {% trans "Premium features such as advanced research assistance and long-form essays" %} 
-              {% trans "will be available in the future for users who need more customization." %}
-            </div>
-          </div>
-        </div>
+       <!-- FAQ 5 -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="faqHeading5">
+    <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+      {% trans "5. Is the AI Essay Generator free to use?" %}
+    </button>
+  </h2>
+  <div id="faq5" class="accordion-collapse collapse" aria-labelledby="faqHeading5" data-bs-parent="#faqAccordion">
+    <div class="accordion-body">
+      {% trans "No, our AI Essay Generator is not completely free to use." %} 
+      {% trans "However, we do offer a free trial so you can test the tool and experience its features before subscribing." %} 
+      {% trans "To continue using the service after the trial, you will need to choose one of our affordable premium plans." %}
+    </div>
+  </div>
+</div>
+
+<!-- FAQ 6 -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="faqHeading6">
+    <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq6" aria-expanded="false" aria-controls="faq6">
+      {% trans "6. Why are the essays grammar error-free?" %}
+    </button>
+  </h2>
+  <div id="faq6" class="accordion-collapse collapse" aria-labelledby="faqHeading6" data-bs-parent="#faqAccordion">
+    <div class="accordion-body">
+      {% trans "Our AI is trained on high-quality academic and professional text, which allows it to generate essays with correct grammar and natural flow." %}
+      {% trans "We also include built-in grammar checks to ensure your content remains polished and professional." %}
+    </div>
+  </div>
+</div>
+
+<!-- FAQ 7 -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="faqHeading7">
+    <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq7" aria-expanded="false" aria-controls="faq7">
+      {% trans "7. Why should I choose your AI Essay Writer?" %}
+    </button>
+  </h2>
+  <div id="faq7" class="accordion-collapse collapse" aria-labelledby="faqHeading7" data-bs-parent="#faqAccordion">
+    <div class="accordion-body">
+      {% trans "Our AI Essay Writer is designed specifically for students, researchers, and professionals who need fast, reliable, and plagiarism-free essays." %}
+      {% trans "Unlike generic tools, we provide citation support, multilingual options, and high accuracy to give you essays that meet academic and professional standards." %}
+    </div>
+  </div>
+</div>
+
 
       </div>
     </div>
@@ -1082,11 +1125,149 @@ function downloadEssayPDF() {
     </div>
   </div>
 </section>
+<section id="pricing-naira" class="pricing-section py-5" style="background-color:#f9f9f9; display:none;">
+  <div class="container text-center">
+    <h2 class="mb-4">Simple and Affordable Pricing</h2>
+    <p class="mb-5 text-muted">Perfect plans for your essay generation needs</p>
+
+    <div class="row justify-content-center g-4">
+
+      <!-- Basic Plan -->
+      <div class="col-md-4">
+        <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
+          <h5 class="card-title mb-3">Basic</h5>
+          <p class="mb-2 text-muted"><s>₦2,500</s></p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦1,800</p>
+          <span class="badge bg-success mb-4">Save 28%</span>
+          <ul class="list-unstyled text-start mb-4">
+            <li>✔ 5 Requests | 30 days</li>
+            <li>✔ 800-word essays</li>
+            <li>✔ Up to 3 citations</li>
+            <li>✔ Any language</li>
+          </ul>
+          <a href="#" class="btn btn-primary w-100 rounded-pill">Subscribe Now</a>
+        </div>
+      </div>
+
+      <!-- Standard Plan -->
+      <div class="col-md-4">
+        <div class="card h-100 p-4 shadow border-primary border-2 rounded-3 position-relative">
+          <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3">Most Popular</span>
+          <h5 class="card-title mb-3">Standard</h5>
+          <p class="mb-2 text-muted"><s>₦7,000</s></p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦5,000</p>
+          <span class="badge bg-success mb-4">Save 29%</span>
+          <ul class="list-unstyled text-start mb-4">
+            <li>✔ 15 Requests | 30 days</li>
+            <li>✔ 800-word essays</li>
+            <li>✔ Up to 3 citations</li>
+            <li>✔ Multilingual support</li>
+          </ul>
+          <a href="#" class="btn btn-primary w-100 rounded-pill">Subscribe Now</a>
+        </div>
+      </div>
+
+      <!-- Unlimited Plan -->
+      <div class="col-md-4">
+        <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
+          <h5 class="card-title mb-3">Unlimited</h5>
+          <p class="mb-2 text-muted"><s>₦20,000</s></p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦17,000</p>
+          <span class="badge bg-success mb-4">Save 20%</span>
+          <ul class="list-unstyled text-start mb-4">
+            <li>✔ Unlimited Requests | 30 days</li>
+            <li>✔ 800-word essays</li>
+            <li>✔ Up to 3 citations</li>
+            <li>✔ Multilingual support</li>
+            <li>✔ Best value for heavy users</li>
+          </ul>
+          <a href="#" class="btn btn-primary w-100 rounded-pill">Subscribe Now</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 
+<section id="pricing-dollar" class="pricing-section py-5" style="background-color:#f9f9f9; display:none;">
+  <div class="container text-center">
+    <h2 class="mb-4">Simple and Affordable Pricing</h2>
+    <p class="mb-5 text-muted">Perfect plans for your essay generation needs</p>
 
+    <div class="row justify-content-center g-4">
 
+      <!-- Basic Plan -->
+      <div class="col-md-4">
+        <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
+          <h5 class="card-title mb-3">Basic</h5>
+          <p class="price mb-4" style="font-size:2rem; font-weight:bold;">$4</p>
+          <ul class="list-unstyled text-start mb-4">
+            <li>✔ 5 Requests | 30 days</li>
+            <li>✔ 800-word essays</li>
+            <li>✔ Up to 3 citations</li>
+            <li>✔ Any language</li>
+          </ul>
+          <a href="#" class="btn btn-primary w-100 rounded-pill">Subscribe Now</a>
+        </div>
+      </div>
 
+      <!-- Standard Plan -->
+      <div class="col-md-4">
+        <div class="card h-100 p-4 shadow border-primary border-2 rounded-3 position-relative">
+          <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3">Most Popular</span>
+          <h5 class="card-title mb-3">Standard</h5>
+          <p class="price mb-4" style="font-size:2rem; font-weight:bold;">$10</p>
+          <ul class="list-unstyled text-start mb-4">
+            <li>✔ 15 Requests | 30 days</li>
+            <li>✔ 800-word essays</li>
+            <li>✔ Up to 3 citations</li>
+            <li>✔ Multilingual support</li>
+          </ul>
+          <a href="#" class="btn btn-primary w-100 rounded-pill">Subscribe Now</a>
+        </div>
+      </div>
+
+      <!-- Unlimited Plan -->
+      <div class="col-md-4">
+        <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
+          <h5 class="card-title mb-3">Unlimited</h5>
+          <p class="price mb-4" style="font-size:2rem; font-weight:bold;">$25</p>
+          <ul class="list-unstyled text-start mb-4">
+            <li>✔ Unlimited Requests | 30 days</li>
+            <li>✔ 800-word essays</li>
+            <li>✔ Up to 3 citations</li>
+            <li>✔ Multilingual support</li>
+            <li>✔ Best value for heavy users</li>
+          </ul>
+          <a href="#" class="btn btn-primary w-100 rounded-pill">Subscribe Now</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+fetch("https://ipapi.co/json/")
+  .then(res => res.json())
+  .then(data => {
+    // force NG when testing locally
+    if (["127.0.0.1", "localhost"].includes(window.location.hostname)) {
+      data.country_code = "NG";
+    }
+
+    if (data.country_code === "NG") {
+      document.getElementById("pricing-naira").style.display = "block";
+    } else {
+      document.getElementById("pricing-dollar").style.display = "block";
+    }
+  })
+  .catch(() => {
+    document.getElementById("pricing-dollar").style.display = "block";
+  });
+
+</script>
 
 
 <footer id="footer" class="footer">

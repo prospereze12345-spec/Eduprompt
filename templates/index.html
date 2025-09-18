@@ -773,102 +773,135 @@
   </div>
 </section>
 
+<section class="py-5" style="background-color:#f9f9f9; font-family:'Segoe UI', sans-serif;">
+  <div class="container">
+    <h2 class="text-center mb-2 fw-bold">All-in-One Bundle Pricing</h2>
+    <p class="text-center text-muted mb-5">Access <strong>Essay Generator, AI Solver & Quiz Maker</strong> in one plan — with <span class="text-primary">Multilingual African Language Support</span>.</p>
 
+    <!-- Currency Tabs -->
+    <ul class="nav nav-pills justify-content-center mb-4" id="currencyTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="naira-tab" data-bs-toggle="pill" data-bs-target="#naira" type="button" role="tab">₦ Naira</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="dollar-tab" data-bs-toggle="pill" data-bs-target="#dollar" type="button" role="tab">$ Dollar</button>
+      </li>
+    </ul>
 
+    <div class="tab-content" id="currencyTabContent">
+      
+      <!-- Naira Pricing -->
+      <div class="tab-pane fade show active" id="naira" role="tabpanel">
+        <div class="row g-4">
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>{% trans "Pricing" %}</h2>
-        <p>{% trans "Check Our Affordable Pricing" %}<br></p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-            <div class="pricing-tem">
-              <h3 style="color: indigo;">{% trans "Weekly Plan" %}</h3>
-              <div class="price"><sup>$</sup>0<span> / week</span></div>
-              <div class="icon">
-                <i class="bi bi-box" style="color:indigo;"></i>
-              </div>
-              <ul>
-                <li>{% trans "Aida dere" %}</li>
-                <li>{% trans "Nec feugiat nisl" %}</li>
-                <li>{% trans "Nulla at volutpat dola" %}</li>
-                <li class="na">{% trans "Pharetra massa" %}</li>
-                <li class="na">{% trans "Massa ultricies mi" %}</li>
+          <!-- Starter -->
+          <div class="col-md-4">
+            <div class="card pricing-card text-center p-4 border-0 shadow-sm rounded-4 h-100">
+              <h5 class="fw-semibold">Starter</h5>
+              <h3 class="text-primary fw-bold">₦4,500</h3>
+              <p class="text-muted">20 Requests</p>
+              <ul class="list-unstyled small mb-4">
+                <li>✔ All 3 Tools (Essay, AI Solver, Quiz)</li>
+                <li>✔ Multilingual African Support</li>
+                <li>✔ Basic Email Support</li>
               </ul>
-              <a href="#" class="btn-buy" style="background-color: indigo; color: white;">{% trans "Subscribe" %}</a>
-
+              <a href="#" class="btn btn-outline-primary w-100">Choose Starter</a>
             </div>
-          </div><!-- End Pricing Item -->
-
-          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-            <div class="pricing-tem">
-              <h3 style="color: green;">{% trans "Monthly Plan" %}</h3>
-              <div class="price"><sup>$</sup>19<span>{% trans " / mo" %}</span></div>
-              <div class="icon">
-                <i class="bi bi-send" style="color: green;"></i>
-              </div>
-              <ul>
-                <li>{% trans "Aida dere" %}</li>
-                <li>{% trans "Nec feugiat nisl" %}</li>
-                <li>{% trans "Nulla at volutpat dola" %}</li>
-                <li>{% trans "Pharetra massa" %}</li>
-                <li class="na">{% trans "Massa ultricies mi" %}</li>
+          </div>
+          
+          <!-- Pro (Most Popular) -->
+          <div class="col-md-4">
+            <div class="card pricing-card text-center p-4 border-primary border-2 shadow-lg rounded-4 position-relative h-100">
+              <span class="badge bg-primary position-absolute top-0 start-50 translate-middle-x mt-2">Most Popular</span>
+              <span class="badge bg-danger position-absolute top-0 end-0 m-3">Save 40%</span>
+              <h5 class="fw-semibold mt-3">Pro</h5>
+              <h3 class="text-primary fw-bold">₦9,000</h3>
+              <p class="text-muted">50 Requests</p>
+              <ul class="list-unstyled small mb-4">
+                <li>✔ Unlimited African Language Options</li>
+                <li>✔ Priority Email Support</li>
+                <li>✔ Early Access to New Features</li>
               </ul>
-              <a href="#" class="btn-buy" style="background-color: green; color: white;">{% trans "Subscribe" %}</a>
-
+              <a href="#" class="btn btn-primary w-100">Choose Pro</a>
             </div>
-          </div><!-- End Pricing Item -->
-
-          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
-            <div class="pricing-tem">
-              <h3 style="color: red;">{% trans "Quarterly Plan" %}<br>{% trans "(6 months)" %}</br></h3>
-              <div class="price"><sup>$</sup>{% trans "29" %}<span> {% trans "/ Quarter" %}</span></div>
-              <div class="icon">
-                <i class="bi bi-airplane" style="color: red;"></i>
-              </div>
-              <ul>
-                <li>{% trans "Aida dere" %}</li>
-                <li>{% trans "Nec feugiat nisl" %}</li>
-                <li>{% trans "Nulla at volutpat dola" %}</li>
-                <li>{% trans "Pharetra massa" %}</li>
-                <li>{% trans "Massa ultricies mi" %}</li>
+          </div>
+          
+          <!-- Unlimited -->
+          <div class="col-md-4">
+            <div class="card pricing-card text-center p-4 border-0 shadow-sm rounded-4 h-100">
+              <h5 class="fw-semibold">Unlimited</h5>
+              <h3 class="text-primary fw-bold">₦18,000</h3>
+              <p class="text-muted">Unlimited Requests</p>
+              <ul class="list-unstyled small mb-4">
+                <li>✔ Everything in Pro</li>
+                <li>✔ Dedicated Priority Support</li>
+                <li>✔ Perfect for Tutors & Researchers</li>
               </ul>
-              <a href="#" class="btn-buy" style="background-color: red; color: white;">{% trans "Subscribe" %}</a>
-
+              <a href="#" class="btn btn-outline-primary w-100">Choose Unlimited</a>
             </div>
-          </div><!-- End Pricing Item -->
+          </div>
 
-          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="400">
-            <div class="pricing-tem">
-              <h3 style="color: goldenrod;">{% trans "Yearly Plan" %}</h3>
-              <div class="price"><sup>$</sup>{% trans "49" %}<span>{% trans " / year" %}</span></div>
-              <div class="icon">
-                <i class="bi bi-rocket" style="color: goldenrod;"></i>
-              </div>
-              <ul>
-                <li>{% trans "Aida dere" %}</li>
-                <li>{% trans "Nec feugiat nisl" %}</li>
-                <li>{% trans "Nulla at volutpat dola" %}</li>
-                <li>{% trans "Pharetra massa" %}</li>
-                <li>{% trans "Massa ultricies mi" %}</li>
-              </ul>
-             <a href="#" class="btn-buy" style="background-color: goldenrod; color: white;">{% trans "Subscribe" %}</a>
-            </div>
-          </div><!-- End Pricing Item -->
-
-        </div><!-- End pricing row -->
-
+        </div>
       </div>
 
-    </section><!-- /Pricing Section -->
+      <!-- Dollar Pricing -->
+      <div class="tab-pane fade" id="dollar" role="tabpanel">
+        <div class="row g-4">
+
+          <!-- Starter -->
+          <div class="col-md-4">
+            <div class="card pricing-card text-center p-4 border-0 shadow-sm rounded-4 h-100">
+              <h5 class="fw-semibold">Starter</h5>
+              <h3 class="text-primary fw-bold">$12</h3>
+              <p class="text-muted">20 Requests</p>
+              <ul class="list-unstyled small mb-4">
+                <li>✔ All 3 Tools (Essay, AI Solver, Quiz)</li>
+                <li>✔ Multilingual African Support</li>
+                <li>✔ Basic Email Support</li>
+              </ul>
+              <a href="#" class="btn btn-outline-primary w-100">Choose Starter</a>
+            </div>
+          </div>
+          
+          <!-- Pro (Most Popular) -->
+          <div class="col-md-4">
+            <div class="card pricing-card text-center p-4 border-primary border-2 shadow-lg rounded-4 position-relative h-100">
+              <span class="badge bg-primary position-absolute top-0 start-50 translate-middle-x mt-2">Most Popular</span>
+              <span class="badge bg-danger position-absolute top-0 end-0 m-3">Save 40%</span>
+              <h5 class="fw-semibold mt-3">Pro</h5>
+              <h3 class="text-primary fw-bold">$25</h3>
+              <p class="text-muted">50 Requests</p>
+              <ul class="list-unstyled small mb-4">
+                <li>✔ Unlimited African Language Options</li>
+                <li>✔ Priority Email Support</li>
+                <li>✔ Early Access to New Features</li>
+              </ul>
+              <a href="#" class="btn btn-primary w-100">Choose Pro</a>
+            </div>
+          </div>
+          
+          <!-- Unlimited -->
+          <div class="col-md-4">
+            <div class="card pricing-card text-center p-4 border-0 shadow-sm rounded-4 h-100">
+              <h5 class="fw-semibold">Unlimited</h5>
+              <h3 class="text-primary fw-bold">$50</h3>
+              <p class="text-muted">Unlimited Requests</p>
+              <ul class="list-unstyled small mb-4">
+                <li>✔ Everything in Pro</li>
+                <li>✔ Dedicated Priority Support</li>
+                <li>✔ Perfect for Tutors & Researchers</li>
+              </ul>
+              <a href="#" class="btn btn-outline-primary w-100">Choose Unlimited</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
     <!-- Faq Section -->
 
