@@ -1,122 +1,42 @@
-# Eduprompt/views.py
-from django.shortcuts import render, redirect
+# users/views.py
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-from django.contrib import messages
-from .forms import RegisterForm, LoginForm
-from .models import Profile
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
-from django.urls import reverse_lazy
-from django.conf import settings
 from django.http import JsonResponse
-from django.contrib.auth.decorators import login_required
-import requests
+from django.views.decorators.http import require_POST
+from threading import Timer
+from .utils import send_welcome_email
 
+@require_POST
+def ajax_signup(request):
+    email = request.POST.get('email')
+    password1 = request.POST.get('password1')
+    password2 = request.POST.get('password2')
 
+    if not all([email, password1, password2]):
+        return JsonResponse({'user_authenticated': False, 'errors': 'All fields are required.'})
 
+    if password1 != password2:
+        return JsonResponse({'user_authenticated': False, 'errors': 'Passwords do not match.'})
 
+    if User.objects.filter(email=email).exists():
+        return JsonResponse({'user_authenticated': False, 'errors': 'Email already registered.'})
 
-def register_view(request):
-    if request.user.is_authenticated:
-        return redirect('index')  # Prevent logged-in users from seeing register page
+    user = User.objects.create_user(username=email, email=email, password=password1)
+    login(request, user)
 
-    if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            # Save the user only
-            user = form.save()
+    # Send welcome email after 3 seconds
+    Timer(3.0, send_welcome_email, args=[user]).start()
 
-            # Log the user in immediately
-            login(request, user)
-            messages.success(request, "Account created successfully. Welcome!")
-            return redirect('index')
-        else:
-            messages.error(request, "Please fix the errors below.")
-    else:
-        form = RegisterForm()
+    return JsonResponse({'user_authenticated': True})
 
-    context = {
-        'form': form,
-        'AFRICAN_LANGUAGES': getattr(settings, 'AFRICAN_LANGUAGES', []),
-    }
-    return render(request, 'register.html', context)
+@require_POST
+def ajax_login(request):
+    email = request.POST.get('email')
+    password = request.POST.get('password')
 
-
-def login_view(request):
-    if request.user.is_authenticated:
-        return redirect('index')  # Prevent logged-in users from seeing login page
-
-    if request.method == 'POST':
-        form = LoginForm(request, data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            messages.success(request, "Logged in successfully.")
-            next_url = request.GET.get('next', 'index')
-            return redirect(next_url)
-        else:
-            messages.error(request, "Invalid username or password.")
-    else:
-        form = LoginForm()
-
-    context = {
-        'form': form,
-        'AFRICAN_LANGUAGES': getattr(settings, 'AFRICAN_LANGUAGES', []),
-    }
-    return render(request, 'login.html', context)
-
-
-
-
-
-def logout_view(request):
-    logout(request)
-    messages.success(request, "Logged out successfully.")
-    return redirect('index')
-
-
-
-class UserPasswordResetView(PasswordResetView):
-    template_name = 'users/password_reset.html'
-    email_template_name = 'users/password_reset_email.html'
-    subject_template_name = 'users/password_reset_subject.txt'
-    success_url = reverse_lazy('password_reset_done')
-
-
-class UserPasswordResetDoneView(PasswordResetDoneView):
-    template_name = 'users/password_reset_done.html'
-
-
-class UserPasswordResetConfirmView(PasswordResetConfirmView):
-    template_name = 'users/password_reset_confirm.html'
-    success_url = reverse_lazy('password_reset_complete')
-
-
-class UserPasswordResetCompleteView(PasswordResetCompleteView):
-    template_name = 'users/password_reset_complete.html'
-
-
-
-CURRENCY_SYMBOLS = {
-    "NGN": "₦", "GHS": "₵", "KES": "KSh", "UGX": "USh", "TZS": "TSh",
-    "MWK": "MK", "LSL": "L", "BIF": "FBu", "DJF": "Fdj", "GNF": "FG",
-    "KMF": "CF", "MGA": "Ar", "RWF": "FRw", "ZAR": "R", "USD": "$",
-    "EUR": "€", "GBP": "£", "AUD": "$", "CAD": "$", "JPY": "¥",
-    "INR": "₹", "CNY": "¥", "MXN": "$", "BRL": "R$", "CHF": "CHF",
-    "SEK": "kr", "NOK": "kr", "DKK": "kr", "PLN": "zł", "TRY": "₺",
-    "RUB": "₽", "KRW": "₩", "MYR": "RM", "THB": "฿", "PHP": "₱",
-    "IDR": "Rp", "AED": "د.إ", "SAR": "ر.س", "EGP": "ج.م", "ILS": "₪",
-    "COP": "$", "ARS": "$", "CLP": "$", "PEN": "S/"
-}
-
-
-def get_currency_symbol(currency_code):
-    return CURRENCY_SYMBOLS.get(currency_code, "₦")
-
-
-
-
-
-
-
+    user = authenticate(request, username=email, password=password)
+    if user is not None:
+        login(request, user)
+        return JsonResponse({'user_authenticated': True})
+    return JsonResponse({'user_authenticated': False, 'errors': 'Invalid credentials.'})
 

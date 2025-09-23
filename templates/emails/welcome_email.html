@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body { 
+        font-family: 'Segoe UI', Arial, sans-serif; 
+        background: #ffffff; 
+        padding: 20px; 
+        color: #000000; 
+        margin: 0;
+      }
+      .container { 
+        max-width: 600px; 
+        margin: auto; 
+        background: #ffffff; 
+        padding: 30px; 
+        border-radius: 12px; 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+      }
+      .logo { text-align: center; margin-bottom: 25px; }
+      .logo img { width: 100px; height: auto; }
+      h2 { color: #1e40af; font-size: 24px; margin-bottom: 15px; text-align: center; }
+      p { line-height: 1.6; font-size: 15px; margin-bottom: 15px; }
+      ul { padding-left: 20px; }
+      li { margin-bottom: 10px; font-size: 15px; }
+      .highlight { font-weight: 600; color: #1e40af; }
+      .footer { margin-top: 35px; font-size: 12px; color: #6b7280; text-align: center; line-height: 1.4; }
+      .footer a { color: #1e40af; text-decoration: none; }
+      @media screen and (max-width: 480px) {
+        .container { padding: 20px; }
+        h2 { font-size: 20px; }
+        li { font-size: 14px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Welcome Icon">
+      </div>
+
+      <h2>Welcome to <span class="highlight">EduPrompt</span>!</h2>
+
+      <p>Hi {{ user.email }},</p>
+      <p>We’re thrilled to have you join the <span class="highlight">EduPrompt</span> community! You now have access to our 4 MVP tools:</p>
+
+      <ul>
+        <li>🧠 <strong>AI Solver</strong> – Solve Math, Physics, and Chemistry problems, even in African languages.</li>
+        <li>✍️ <strong>AI Essay Generator</strong> – Generate high-quality essays in multiple African languages.</li>
+        <li>📝 <strong>Quiz Generator</strong> – Create quizzes for practice or self-assessment.</li>
+        <li>🔍 <strong>Grammar Checker</strong> – Improve your writing and ensure accuracy in African languages.</li>
+      </ul>
+
+      <p>Note: Unlimited access requires a subscription or approval for advanced use. Start exploring now and see how <span class="highlight">EduPrompt</span> can make learning smarter!</p>
+
+      <div class="footer">
+        &copy; {{ current_year }} EduPrompt. All rights reserved.<br>
+        Making learning smarter, one student at a time.<br>
+        <a href="https://yourdomain.com">Visit our website</a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,5 +1,7 @@
 {% load static %}
 {% load i18n %}
+{% load socialaccount %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -235,16 +237,166 @@
     <li class="nav-item"><a class="nav-link" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
     <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
 
-    {% if not user.is_authenticated %}
-      <li class="nav-item ms-lg-3">
-        <a class="btn btn-success btn-sm" href="{% url 'register' %}">{% trans "Get Started" %}</a>
-      </li>
-      <li class="nav-item ms-lg-3">
-        <a class="btn btn-success btn-sm" href="{% url 'login' %}">{% trans "Login" %}</a>
-      </li>
-    {% endif %}
-  </ul>
+<!-- Trigger Buttons -->
+{% if not user.is_authenticated %}
+  <li class="nav-item ms-lg-3">
+    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#registerModal">
+      {% trans "Get Started" %}
+    </button>
+  </li>
+  <li class="nav-item ms-lg-3">
+    <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+      {% trans "Login" %}
+    </button>
+  </li>
+{% endif %}
+
+<!-- Message Container -->
+<div id="auth-messages" class="position-fixed top-0 end-0 p-3" style="z-index:1055;"></div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" data-bs-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">{% trans "Login" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <form id="loginForm" method="post" action="{% url 'ajax_login' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="{% trans 'Email' %}" required>
+          </div>
+          <div class="mb-3 position-relative">
+            <input type="password" name="password" class="form-control" placeholder="{% trans 'Password' %}" required>
+            <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 toggle-password">
+              👁
+            </button>
+          </div>
+          <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Login" %}</button>
+        </form>
+        <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center">
+          <img src="{% static 'assets/img/svg.jpg' %}" alt="Google" width="20" class="me-2">
+          {% trans "Continue with Google" %}
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" data-bs-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">{% trans "Register" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <form id="signupForm" method="post" action="{% url 'ajax_signup' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="{% trans 'Email' %}" required>
+          </div>
+          <div class="mb-3 position-relative">
+            <input type="password" name="password1" class="form-control" placeholder="{% trans 'Password' %}" required>
+            <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 toggle-password">
+              👁
+            </button>
+          </div>
+          <div class="mb-3 position-relative">
+            <input type="password" name="password2" class="form-control" placeholder="{% trans 'Confirm Password' %}" required>
+            <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 toggle-password">
+              👁
+            </button>
+          </div>
+          <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Create Account" %}</button>
+        </form>
+        <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center">
+          <img src="{% static 'assets/img/svg.jpg' %}" alt="Google" width="20" class="me-2">
+          {% trans "Continue with Google" %}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AJAX + Password Toggle Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+
+  function getCSRFToken() {
+    return document.querySelector('[name=csrfmiddlewaretoken]').value;
+  }
+
+  function showMessage(msg, type="success") {
+    $("#auth-messages").html(
+      `<div class="alert alert-${type} alert-dismissible fade show" role="alert">
+         ${msg}
+         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+       </div>`
+    );
+  }
+
+  // Login AJAX
+  $("#loginForm").submit(function(e){
+    e.preventDefault();
+    $.ajax({
+      url: $(this).attr('action'),
+      method: "POST",
+      data: $(this).serialize(),
+      headers: {'X-CSRFToken': getCSRFToken()},
+      success: function(data){
+        if(data.user_authenticated) {
+          showMessage("Login successful!");
+          $("#loginModal").modal('hide');
+          window.location.href = "{% url 'index' %}";
+        } else {
+          showMessage(data.errors || "Login failed.", "danger");
+        }
+      },
+      error: function(xhr){
+        showMessage("Login failed. Check inputs.", "danger");
+      }
+    });
+  });
+
+  // Signup AJAX
+  $("#signupForm").submit(function(e){
+    e.preventDefault();
+    $.ajax({
+      url: $(this).attr('action'),
+      method: "POST",
+      data: $(this).serialize(),
+      headers: {'X-CSRFToken': getCSRFToken()},
+      success: function(data){
+        if(data.user_authenticated) {
+          showMessage("Signup successful!");
+          $("#registerModal").modal('hide');
+          window.location.href = "{% url 'index' %}";
+        } else {
+          showMessage(data.errors || "Signup failed.", "danger");
+        }
+      },
+      error: function(xhr){
+        showMessage("Signup failed. Check inputs.", "danger");
+      }
+    });
+  });
+
+  // Password toggle
+  $(".toggle-password").click(function(){
+    const input = $(this).siblings("input");
+    const type = input.attr("type") === "password" ? "text" : "password";
+    input.attr("type", type);
+    $(this).text(type === "password" ? "👁" : "👁‍🗨"); // clean toggle icon
+  });
+
+});
+</script>
+
 
 
 
@@ -815,158 +967,664 @@
       <div class="col-12">
         <h4 style="color:#0d3b66;">Recommended for Custom Code</h4>
       </div>
+<!-- AI-Powered E-Commerce Website -->
+<div id="naira-ecommerce" class="d-none d-lg-block">
+  <div class="row g-4 justify-content-center">
 
-     <!-- Custom Code E-Commerce Website -->
-<div class="col-md-6 col-lg-4">
-  <div class="card h-100 shadow-sm hover-shadow border-custom">
-    <div class="card-body">
-      <h5 class="card-title">Professional E-Commerce Store</h5>
-      <p class="card-text">
-        Fully custom-built online store with Custom Product Management, Multi-Currency Payment Integration, Coupons & Discounts, Loyalty Programs, Wishlist, Product Filtering, Review & Rating System, Social Login, Advanced Analytics, Fast & Secure Checkout, Mobile & SEO Optimized.
-      </p>
-      <p class="mb-1"><strong>Custom Code Price (Local):</strong> ₦600,000</p>
-      <p><strong>Custom Code Price (International):</strong> $2500</p>
+    <!-- AI-Powered Store -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">AI-Powered E-Commerce Store</h5>
+          <p class="text-muted mb-3">
+            Next-gen online store with <strong>AI Style Recommender</strong>, 
+            <strong>Instant Price Estimator</strong>, <strong>AI Chatbot Assistant</strong>, 
+            <strong>Smart Inventory Suggestions</strong>, and <strong>AI Sales Insights</strong>.
+          </p>
+          <h3 class="text-success mb-3">₦2,500,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>🛒 Custom Product Management</li>
+            <li>🌍 Multi-Currency Payments</li>
+            <li>🎁 Coupons & Loyalty Programs</li>
+            <li>❤️ Wishlist, Reviews & Ratings</li>
+            <li>🔐 Fast & Secure Checkout</li>
+            <li>📈 Advanced Analytics & AI Sales Insights</li>
+            <li>🤖 AI Chatbot Assistant for Customer Support</li>
+            <li>⚡ Smart Inventory Suggestions</li>
+            <li>📱 Mobile & SEO Optimized</li>
+            <li>🔑 Social Login</li>
+            <li>🖼️ Dynamic Product Recommendations</li>
+            <li>📊 AI-Driven Marketing Insights</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
     </div>
+
+    <!-- Professional Custom Store -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Professional E-Commerce Store</h5>
+          <p class="text-muted mb-3">
+            Fully custom-built online store with multi-currency payment integration, coupons, loyalty programs, reviews & ratings, product filtering, and analytics.
+          </p>
+          <h3 class="text-success mb-3">₦600,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Custom Product Management</li>
+            <li>✅ Multi-Currency Payments</li>
+            <li>✅ Coupons & Discounts</li>
+            <li>✅ Wishlist & Product Reviews</li>
+            <li>✅ Fast & Secure Checkout</li>
+            <li>✅ Analytics & Reporting</li>
+            <li>✅ Mobile & SEO Optimized</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking / Appointment -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Booking / Appointment</h5>
+          <p class="text-muted mb-3">
+            Multi-service scheduling, notifications, admin dashboard, analytics, calendar sync, payment integration, SMS & email reminders.
+          </p>
+          <h3 class="text-success mb-3">₦400,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Multi-Service Scheduling</li>
+            <li>✅ Notifications & User Accounts</li>
+            <li>✅ Admin Dashboard & Analytics</li>
+            <li>✅ Calendar Sync & Payment Integration</li>
+            <li>✅ SMS & Email Reminders</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Healthcare / Telemedicine -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Healthcare / Telemedicine</h5>
+          <p class="text-muted mb-3">
+            Patient registration, appointment management, secure payments, doctor dashboard, video consultations, notifications, analytics.
+          </p>
+          <h3 class="text-success mb-3">₦500,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Patient Registration & Appointment Management</li>
+            <li>✅ Secure Payments</li>
+            <li>✅ Doctor Dashboard & Video Consultations</li>
+            <li>✅ Notifications & Analytics</li>
+            <li>✅ HIPAA Compliance & Custom Reports</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forum / Community Platform -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Forum / Community Platform</h5>
+          <p class="text-muted mb-3">
+            User accounts, threads & discussions, moderation tools, notifications, analytics, gamification, social media integration, advanced security.
+          </p>
+          <h3 class="text-success mb-3">₦550,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ User Accounts & Threads</li>
+            <li>✅ Moderation Tools & Notifications</li>
+            <li>✅ Analytics & Gamification</li>
+            <li>✅ Social Media Integration & Security</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Dollar Table (International users) -->
+<div id="dollar-ecommerce" class="d-none">
+  <div class="row g-4 justify-content-center">
+
+    <!-- AI-Powered Store -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">AI-Powered E-Commerce Store</h5>
+          <p class="text-muted mb-3">
+            Next-gen online store with <strong>AI Style Recommender</strong>, 
+            <strong>Instant Price Estimator</strong>, <strong>AI Chatbot Assistant</strong>, 
+            <strong>Smart Inventory Suggestions</strong>, and <strong>AI Sales Insights</strong>.
+          </p>
+          <h3 class="text-success mb-3">$6,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>🛒 Custom Product Management</li>
+            <li>🌍 Multi-Currency Payments</li>
+            <li>🎁 Coupons & Loyalty Programs</li>
+            <li>❤️ Wishlist, Reviews & Ratings</li>
+            <li>🔐 Fast & Secure Checkout</li>
+            <li>📈 Advanced Analytics & AI Sales Insights</li>
+            <li>🤖 AI Chatbot Assistant</li>
+            <li>⚡ Smart Inventory Suggestions</li>
+            <li>📱 Mobile & SEO Optimized</li>
+            <li>🔑 Social Login</li>
+            <li>🖼️ Dynamic Product Recommendations</li>
+            <li>📊 AI-Driven Marketing Insights</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Professional Custom Store -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Professional E-Commerce Store</h5>
+          <p class="text-muted mb-3">
+            Fully custom-built online store with multi-currency payment integration, coupons, loyalty programs, reviews & ratings, product filtering, and analytics.
+          </p>
+          <h3 class="text-success mb-3">$1,500</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Custom Product Management</li>
+            <li>✅ Multi-Currency Payments</li>
+            <li>✅ Coupons & Discounts</li>
+            <li>✅ Wishlist & Product Reviews</li>
+            <li>✅ Fast & Secure Checkout</li>
+            <li>✅ Analytics & Reporting</li>
+            <li>✅ Mobile & SEO Optimized</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking / Appointment -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Booking / Appointment</h5>
+          <p class="text-muted mb-3">
+            Multi-service scheduling, notifications, admin dashboard, analytics, calendar sync, payment integration, SMS & email reminders.
+          </p>
+          <h3 class="text-success mb-3">$1,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Multi-Service Scheduling</li>
+            <li>✅ Notifications & User Accounts</li>
+            <li>✅ Admin Dashboard & Analytics</li>
+            <li>✅ Calendar Sync & Payment Integration</li>
+            <li>✅ SMS & Email Reminders</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Healthcare / Telemedicine -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Healthcare / Telemedicine</h5>
+          <p class="text-muted mb-3">
+            Patient registration, appointment management, secure payments, doctor dashboard, video consultations, notifications, analytics.
+          </p>
+          <h3 class="text-success mb-3">$3,500</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Patient Registration & Appointment Management</li>
+            <li>✅ Secure Payments</li>
+            <li>✅ Doctor Dashboard & Video Consultations</li>
+            <li>✅ Notifications & Analytics</li>
+            <li>✅ HIPAA Compliance & Custom Reports</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forum / Community Platform -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Forum / Community Platform</h5>
+          <p class="text-muted mb-3">
+            User accounts, threads & discussions, moderation tools, notifications, analytics, gamification, social media integration, advanced security.
+          </p>
+          <h3 class="text-success mb-3">$4,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ User Accounts & Threads</li>
+            <li>✅ Moderation Tools & Notifications</li>
+            <li>✅ Analytics & Gamification</li>
+            <li>✅ Social Media Integration & Security</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- WordPress-Friendly Sites -->
+<div class="col-12 mt-4">
+  <h4 style="color:#0d3b66;">WordPress-Friendly Sites</h4>
+  <p class="text-muted">Professional WordPress websites built by senior developers with modern features, responsive design, and premium support.</p>
+</div>
+
+<!-- Naira Table (NG users) -->
+<div id="naira-wordpress" class="d-none d-lg-block">
+  <div class="row g-4 justify-content-center">
+
+    <!-- Business / Corporate -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Business / Corporate</h5>
+          <p class="text-muted mb-3">Professional company website with CMS & SEO</p>
+          <h3 class="text-success mb-3">₦350,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Responsive Design</li>
+            <li>✅ About Us, Services, Contact Form</li>
+            <li>✅ Testimonials & Blog Integration</li>
+            <li>✅ Newsletter Signup</li>
+            <li>✅ SEO Ready & Fast Loading</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog / News Site -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Blog / News Site</h5>
+          <p class="text-muted mb-3">Engaging content-driven website with CMS</p>
+          <h3 class="text-success mb-3">₦250,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Categories, Tags & Comments</li>
+            <li>✅ SEO Optimization</li>
+            <li>✅ Analytics & Social Share</li>
+            <li>✅ Newsletter Integration</li>
+            <li>✅ Responsive Design</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio / Personal -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Portfolio / Personal</h5>
+          <p class="text-muted mb-3">Showcase your work or personal brand</p>
+          <h3 class="text-success mb-3">₦180,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Gallery & Project Showcase</li>
+            <li>✅ About Me & Contact Form</li>
+            <li>✅ Animations & SEO Optimized</li>
+            <li>✅ Client Testimonials & Social Integration</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Small E-Commerce Store -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Small E-Commerce Store</h5>
+          <p class="text-muted mb-3">WooCommerce store with payment & product catalog</p>
+          <h3 class="text-success mb-3">₦450,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Product Catalog & Payment Integration</li>
+            <li>✅ Coupons & Promotions</li>
+            <li>✅ Mobile Optimized</li>
+            <li>✅ Product Reviews & Analytics</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Landing Page / One-Page -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Landing Page / One-Page</h5>
+          <p class="text-muted mb-3">High-converting single-page website</p>
+          <h3 class="text-success mb-3">₦220,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Custom Design & Hero Section</li>
+            <li>✅ CTA & Animations</li>
+            <li>✅ SEO Ready & Fast Loading</li>
+            <li>✅ Social Media Links & Conversion Tracking</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real Estate / Property Portal -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Real Estate / Property Portal</h5>
+          <p class="text-muted mb-3">Property listings & agent management</p>
+          <h3 class="text-success mb-3">₦500,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Property Listings & Search Filters</li>
+            <li>✅ Agent Dashboard & Payment Integration</li>
+            <li>✅ Analytics & SEO</li>
+            <li>✅ Map Integration</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Dollar Table (International users) -->
+<div id="dollar-wordpress" class="d-none">
+  <div class="row g-4 justify-content-center">
+
+    <!-- Business / Corporate -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Business / Corporate</h5>
+          <p class="text-muted mb-3">Professional company website with CMS & SEO</p>
+          <h3 class="text-success mb-3">$700</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Responsive Design</li>
+            <li>✅ About Us, Services, Contact Form</li>
+            <li>✅ Testimonials & Blog Integration</li>
+            <li>✅ Newsletter Signup</li>
+            <li>✅ SEO Ready & Fast Loading</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog / News Site -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Blog / News Site</h5>
+          <p class="text-muted mb-3">Engaging content-driven website with CMS</p>
+          <h3 class="text-success mb-3">$500</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Categories, Tags & Comments</li>
+            <li>✅ SEO Optimization</li>
+            <li>✅ Analytics & Social Share</li>
+            <li>✅ Newsletter Integration</li>
+            <li>✅ Responsive Design</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio / Personal -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Portfolio / Personal</h5>
+          <p class="text-muted mb-3">Showcase your work or personal brand</p>
+          <h3 class="text-success mb-3">$350</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Gallery & Project Showcase</li>
+            <li>✅ About Me & Contact Form</li>
+            <li>✅ Animations & SEO Optimized</li>
+            <li>✅ Client Testimonials & Social Integration</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Small E-Commerce Store -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Small E-Commerce Store</h5>
+          <p class="text-muted mb-3">WooCommerce store with payment & product catalog</p>
+          <h3 class="text-success mb-3">$900</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Product Catalog & Payment Integration</li>
+            <li>✅ Coupons & Promotions</li>
+            <li>✅ Mobile Optimized</li>
+            <li>✅ Product Reviews & Analytics</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Landing Page / One-Page -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Landing Page / One-Page</h5>
+          <p class="text-muted mb-3">High-converting single-page website</p>
+          <h3 class="text-success mb-3">$450</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Custom Design & Hero Section</li>
+            <li>✅ CTA & Animations</li>
+            <li>✅ SEO Ready & Fast Loading</li>
+            <li>✅ Social Media Links & Conversion Tracking</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real Estate / Property Portal -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Real Estate / Property Portal</h5>
+          <p class="text-muted mb-3">Property listings & agent management</p>
+          <h3 class="text-success mb-3">$800</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Property Listings & Search Filters</li>
+            <li>✅ Agent Dashboard & Payment Integration</li>
+            <li>✅ Analytics & SEO</li>
+            <li>✅ Map Integration</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
 
-      <!-- Booking / Appointment -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm hover-shadow border-custom">
-          <div class="card-body">
-            <h5 class="card-title">Booking / Appointment</h5>
-            <p class="card-text">
-              Multi-Service Scheduling, Notifications, User Accounts, Admin Dashboard, Analytics, Calendar Sync, Payment Integration, SMS & Email Reminders, Fast & Secure
-            </p>
-            <p class="mb-1"><strong>Custom Code Price (Local):</strong> ₦300,000</p>
-            <p><strong>Custom Code Price (International):</strong>  $1500</p>
-          </div>
-        </div>
-      </div>
+<!-- Script to detect location and show correct currency -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Use Intl API to get user's timezone as a simple location proxy
+    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-      <!-- Healthcare / Telemedicine -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm hover-shadow border-custom">
-          <div class="card-body">
-            <h5 class="card-title">Healthcare / Telemedicine</h5>
-            <p class="card-text">
-              Patient Registration, Appointment Management, Secure Payments, Doctor Dashboard, Video Consultations, Notifications, HIPAA Compliance, Analytics, Custom Reports
-            </p>
-            <p class="mb-1"><strong>Custom Code Price (Local):</strong> ₦350,000</p>
-            <p><strong>Custom Code Price (International):</strong> $3000</p>
-          </div>
-        </div>
-      </div>
+    // Elements for Naira and Dollar pricing
+    const nairaElements = document.getElementById("naira-wordpress");
+    const dollarElements = document.getElementById("dollar-wordpress");
 
-      <!-- Forum / Community Platform -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm hover-shadow border-custom">
-          <div class="card-body">
-            <h5 class="card-title">Forum / Community Platform</h5>
-            <p class="card-text">
-              User Accounts, Threads & Discussions, Moderation Tools, Notifications, Analytics, Gamification, Social Media Integration, Advanced Security, SEO
-            </p>
-            <p class="mb-1"><strong>Custom Code Price (Local):</strong>  ₦400,000</p>
-            <p><strong>Custom Code Price (International):</strong> $4000</p>
-          </div>
-        </div>
-      </div>
+    // Check if the user is in Nigeria / Africa
+    if (userTimeZone.includes("Africa") || userTimeZone.includes("Nigeria")) {
+        if (nairaElements) nairaElements.classList.remove("d-none");
+        if (dollarElements) dollarElements.classList.add("d-none");
+    } else {
+        if (dollarElements) dollarElements.classList.remove("d-none");
+        if (nairaElements) nairaElements.classList.add("d-none");
+    }
+});
+</script>
 
-      <!-- WordPress-friendly sites -->
-      <div class="col-12 mt-4">
-        <h4 style="color:#0d3b66;">WordPress-Friendly Sites</h4>
-      </div>
-
-      <!-- Business / Corporate -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm hover-shadow">
-          <div class="card-body">
-            <h5 class="card-title">Business / Corporate</h5>
-            <p class="card-text">
-              Responsive, About Us, Services, Contact Form, Testimonials, SEO Ready, Multi-Language Support, Blog Integration, Newsletter Signup, Fast Loading
-            </p>
-            <p class="mb-1"><strong>WordPress Price (Local):</strong> ₦150,000</p>
-            <p><strong>WordPress Price (International):</strong> $300</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Blog / News Site -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm hover-shadow">
-          <div class="card-body">
-            <h5 class="card-title">Blog / News Site</h5>
-            <p class="card-text">
-              CMS, Categories, Tags, Comments, SEO Optimization, Analytics, Social Share, Newsletter Integration, Responsive Design
-            </p>
-            <p class="mb-1"><strong>WordPress Price (Local):</strong> ₦120,000</p>
-            <p><strong>WordPress Price (International):</strong>  $200</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Portfolio / Personal -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm hover-shadow">
-          <div class="card-body">
-            <h5 class="card-title">Portfolio / Personal</h5>
-            <p class="card-text">
-              Gallery, Project Showcase, About Me, Contact Form, Animations, SEO Optimized, Client Testimonials, Social Media Integration
-            </p>
-            <p class="mb-1"><strong>WordPress Price (Local):</strong> ₦80,000</p>
-            <p><strong>WordPress Price (International):</strong> $120</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Small E-Commerce Store -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm hover-shadow">
-          <div class="card-body">
-            <h5 class="card-title">Small E-Commerce Store</h5>
-            <p class="card-text">
-              WooCommerce, Product Catalog, Payment Integration, Coupons, SEO Friendly, Mobile Optimized, Analytics, Product Reviews
-            </p>
-            <p class="mb-1"><strong>WordPress Price (Local):</strong> ₦250,000</p>
-            <p><strong>WordPress Price (International):</strong> $500</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Landing Page / One-Page -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm hover-shadow">
-          <div class="card-body">
-            <h5 class="card-title">Landing Page / One-Page</h5>
-            <p class="card-text">
-              Custom Design, Hero Section, CTA, Animations, SEO Ready, Fast Loading, Social Media Links, Conversion Tracking
-            </p>
-            <p class="mb-1"><strong>WordPress Price (Local):</strong> ₦100,000 </p>
-            <p><strong>WordPress Price (International):</strong> $150 </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Real Estate / Property Portal -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm hover-shadow">
-          <div class="card-body">
-            <h5 class="card-title">Real Estate / Property Portal</h5>
-            <p class="card-text">
-              Property Listings, Search Filters, Agent Dashboard, Payment Integration, Analytics, SEO, Map Integration
-            </p>
-            <p class="mb-1"><strong>WordPress Price (Local):</strong> ₦200,000</p>
-            <p><strong>WordPress Price (International):</strong> $300 </p>
-          </div>
-        </div>
-      </div>
-
-      
 
     </div>
   </div>
 </section>
+
+
+<!-- Website Management Pricing Section -->
+<section class="py-5" style="background-color:#f8f9fa; font-family:'Segoe UI', sans-serif;">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">Website Management Plans</h2>
+      <p class="text-muted">Monthly management for smooth operation, growth, and AI integration.</p>
+    </div>
+
+    <!-- Naira Table (NG users) -->
+    <div id="naira-pricing" class="d-none d-lg-block">
+      <div class="row g-4 justify-content-center">
+        <!-- Basic -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm border rounded-4 text-center">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Basic</h5>
+              <p class="text-muted mb-3">Personal sites & blogs</p>
+              <h3 class="text-success mb-3">₦50,000 / mo</h3>
+              <ul class="list-unstyled mb-4 text-start">
+                <li>✅ Monthly Backups</li>
+                <li>✅ Security Updates</li>
+                <li>✅ Basic Support</li>
+                <li>✅ Website Monitoring</li>
+              </ul>
+              <a href="#" class="btn btn-outline-success w-100">Choose Basic</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Standard -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm border rounded-4 text-center">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Standard</h5>
+              <p class="text-muted mb-3">Small businesses & growing websites</p>
+              <h3 class="text-success mb-3">₦100,000 / mo</h3>
+              <ul class="list-unstyled mb-4 text-start">
+                <li>✅ Weekly Backups</li>
+                <li>✅ Security & Performance Monitoring</li>
+                <li>✅ Priority Support</li>
+                <li>✅ Monthly Analytics Report</li>
+              </ul>
+              <a href="#" class="btn btn-outline-success w-100">Choose Standard</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Premium (Recommended) -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-lg border-primary rounded-4 text-center">
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-primary">Premium <span class="badge bg-primary">Recommended</span></h5>
+              <p class="text-muted mb-3">AI-powered e-commerce & enterprise websites</p>
+              <h3 class="text-primary mb-3">₦200,000 / mo</h3>
+              <ul class="list-unstyled mb-4 text-start">
+                <li>✅ Daily Backups & Full Restore</li>
+                <li>✅ Security Hardening & 24/7 Monitoring</li>
+                <li>✅ Priority 24/7 Support</li>
+                <li>✅ Performance & SEO Optimization</li>
+                <li>✅ Monthly Analytics & AI Insights</li>
+                <li>✅ AI Tools Maintenance & Feature Updates</li>
+                <li>✅ Dedicated AI Chatbot Assistant</li>
+              </ul>
+              <a href="#" class="btn btn-primary w-100">Choose Premium</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dollar Table (International users) -->
+    <div id="dollar-pricing" class="d-none">
+      <div class="row g-4 justify-content-center">
+        <!-- Basic -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm border rounded-4 text-center">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Basic</h5>
+              <p class="text-muted mb-3">Personal sites & blogs</p>
+              <h3 class="text-success mb-3">$100 / mo</h3>
+              <ul class="list-unstyled mb-4 text-start">
+                <li>✅ Monthly Backups</li>
+                <li>✅ Security Updates</li>
+                <li>✅ Basic Support</li>
+                <li>✅ Website Monitoring</li>
+              </ul>
+              <a href="#" class="btn btn-outline-success w-100">Choose Basic</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Standard -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm border rounded-4 text-center">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Standard</h5>
+              <p class="text-muted mb-3">Small businesses & growing websites</p>
+              <h3 class="text-success mb-3">$200 / mo</h3>
+              <ul class="list-unstyled mb-4 text-start">
+                <li>✅ Weekly Backups</li>
+                <li>✅ Security & Performance Monitoring</li>
+                <li>✅ Priority Support</li>
+                <li>✅ Monthly Analytics Report</li>
+              </ul>
+              <a href="#" class="btn btn-outline-success w-100">Choose Standard</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Premium (Recommended) -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-lg border-primary rounded-4 text-center">
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-primary">Premium <span class="badge bg-primary">Recommended</span></h5>
+              <p class="text-muted mb-3">AI-powered e-commerce & enterprise websites</p>
+              <h3 class="text-primary mb-3">$400 / mo</h3>
+              <ul class="list-unstyled mb-4 text-start">
+                <li>✅ Daily Backups & Full Restore</li>
+                <li>✅ Security Hardening & 24/7 Monitoring</li>
+                <li>✅ Priority 24/7 Support</li>
+                <li>✅ Performance & SEO Optimization</li>
+                <li>✅ Monthly Analytics & AI Insights</li>
+                <li>✅ AI Tools Maintenance & Feature Updates</li>
+                <li>✅ Dedicated AI Chatbot Assistant</li>
+              </ul>
+              <a href="#" class="btn btn-primary w-100">Choose Premium</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Script to detect location and show correct currency -->
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    const userCountry = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if(userCountry.includes("Africa") || userCountry.includes("Nigeria")){
+      document.getElementById("naira-pricing").classList.remove("d-none");
+    } else {
+      document.getElementById("dollar-pricing").classList.remove("d-none");
+    }
+  });
+</script>
 
 <style>
 .hover-shadow {

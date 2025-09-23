@@ -36,15 +36,17 @@ SOCIALACCOUNT_PROVIDERS = {
 ZHIPU_API_KEY = os.getenv("ZHIPU_API_KEY")
 
 
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
-OPENROUTER_KEY = os.getenv("OPENROUTER_KEY_NOTEGEN")
+# Flutterwave Keys
+FLW_PUBLIC_KEY = env("FLW_PUBLIC_KEY")
+FLW_SECRET_KEY = env("FLW_SECRET_KEY")
+FLW_ENCRYPTION_KEY = env("FLW_ENCRYPTION_KEY")
+FLW_BASE_URL = "https://api.flutterwave.com/v3"  # same for test & live
 
-# OpenRouter / math
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-OCRSPACE_API_KEY = os.getenv("OCRSPACE_API_KEY")
 
 
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 
 
@@ -116,9 +118,6 @@ INSTALLED_APPS = [
 
 
 
-
-# Add African languages
-
 LOCALE_PATHS = [
     BASE_DIR / 'locale',  # where translation files will be stored
 ]
@@ -154,7 +153,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'new_project.wsgi.application'
-
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "[Eduprompt] "
+DEFAULT_FROM_EMAIL = "no-reply@Eduprompt.com.ng"
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -225,17 +225,26 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'
 
-ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
 
-ACCOUNT_EMAIL_VERIFICATION = "optional"  
+# ✅ Modern allauth settings
+ACCOUNT_SIGNUP_FIELDS = ["email", "password1", "password2"]
+ACCOUNT_LOGIN_METHODS = {"email"}  # must be a set, not a list
+
+# Email verification (optional, adjust to your needs)
+ACCOUNT_EMAIL_VERIFICATION = "optional"   # "none" | "optional" | "mandatory"
 SOCIALACCOUNT_AUTO_SIGNUP = True
-
 SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
+
+# Redirect after login/signup
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_SIGNUP_REDIRECT_URL = "/"
+
+
+# 🚀 Silence old warnings (safety, though not needed after cleanup)
+SILENCED_SYSTEM_CHECKS = ["account.W001"]
+
 
 
 

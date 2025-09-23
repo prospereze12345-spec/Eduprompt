@@ -78,10 +78,7 @@ def send_message(request):
 
 
 def flyer_design(request):
-    return render(request, 'flyer_design.html',
- {
-     'AFRICAN_LANGUAGES': settings.AFRICAN_LANGUAGES
-   })
+    return render(request, 'flyer_design.html',)
 
 
 

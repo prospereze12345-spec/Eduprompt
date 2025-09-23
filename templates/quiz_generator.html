@@ -1,5 +1,7 @@
 {% load static %}
 {% load i18n %}
+{% load socialaccount %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -301,16 +303,166 @@
     <li class="nav-item"><a class="nav-link" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
     <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
 
-    {% if not user.is_authenticated %}
-      <li class="nav-item ms-lg-3">
-        <a class="btn btn-success btn-sm" href="{% url 'register' %}">{% trans "Get Started" %}</a>
-      </li>
-      <li class="nav-item ms-lg-3">
-        <a class="btn btn-success btn-sm" href="{% url 'login' %}">{% trans "Login" %}</a>
-      </li>
-    {% endif %}
-  </ul>
+<!-- Trigger Buttons -->
+{% if not user.is_authenticated %}
+  <li class="nav-item ms-lg-3">
+    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#registerModal">
+      {% trans "Get Started" %}
+    </button>
+  </li>
+  <li class="nav-item ms-lg-3">
+    <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+      {% trans "Login" %}
+    </button>
+  </li>
+{% endif %}
+
+<!-- Message Container -->
+<div id="auth-messages" class="position-fixed top-0 end-0 p-3" style="z-index:1055;"></div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" data-bs-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">{% trans "Login" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <form id="loginForm" method="post" action="{% url 'ajax_login' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="{% trans 'Email' %}" required>
+          </div>
+          <div class="mb-3 position-relative">
+            <input type="password" name="password" class="form-control" placeholder="{% trans 'Password' %}" required>
+            <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 toggle-password">
+              👁
+            </button>
+          </div>
+          <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Login" %}</button>
+        </form>
+        <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center">
+          <img src="{% static 'assets/img/svg.jpg' %}" alt="Google" width="20" class="me-2">
+          {% trans "Continue with Google" %}
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" data-bs-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">{% trans "Register" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <form id="signupForm" method="post" action="{% url 'ajax_signup' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="{% trans 'Email' %}" required>
+          </div>
+          <div class="mb-3 position-relative">
+            <input type="password" name="password1" class="form-control" placeholder="{% trans 'Password' %}" required>
+            <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 toggle-password">
+              👁
+            </button>
+          </div>
+          <div class="mb-3 position-relative">
+            <input type="password" name="password2" class="form-control" placeholder="{% trans 'Confirm Password' %}" required>
+            <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 toggle-password">
+              👁
+            </button>
+          </div>
+          <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Create Account" %}</button>
+        </form>
+        <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center">
+          <img src="{% static 'assets/img/svg.jpg' %}" alt="Google" width="20" class="me-2">
+          {% trans "Continue with Google" %}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AJAX + Password Toggle Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+
+  function getCSRFToken() {
+    return document.querySelector('[name=csrfmiddlewaretoken]').value;
+  }
+
+  function showMessage(msg, type="success") {
+    $("#auth-messages").html(
+      `<div class="alert alert-${type} alert-dismissible fade show" role="alert">
+         ${msg}
+         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+       </div>`
+    );
+  }
+
+  // Login AJAX
+  $("#loginForm").submit(function(e){
+    e.preventDefault();
+    $.ajax({
+      url: $(this).attr('action'),
+      method: "POST",
+      data: $(this).serialize(),
+      headers: {'X-CSRFToken': getCSRFToken()},
+      success: function(data){
+        if(data.user_authenticated) {
+          showMessage("Login successful!");
+          $("#loginModal").modal('hide');
+          window.location.href = "{% url 'index' %}";
+        } else {
+          showMessage(data.errors || "Login failed.", "danger");
+        }
+      },
+      error: function(xhr){
+        showMessage("Login failed. Check inputs.", "danger");
+      }
+    });
+  });
+
+  // Signup AJAX
+  $("#signupForm").submit(function(e){
+    e.preventDefault();
+    $.ajax({
+      url: $(this).attr('action'),
+      method: "POST",
+      data: $(this).serialize(),
+      headers: {'X-CSRFToken': getCSRFToken()},
+      success: function(data){
+        if(data.user_authenticated) {
+          showMessage("Signup successful!");
+          $("#registerModal").modal('hide');
+          window.location.href = "{% url 'index' %}";
+        } else {
+          showMessage(data.errors || "Signup failed.", "danger");
+        }
+      },
+      error: function(xhr){
+        showMessage("Signup failed. Check inputs.", "danger");
+      }
+    });
+  });
+
+  // Password toggle
+  $(".toggle-password").click(function(){
+    const input = $(this).siblings("input");
+    const type = input.attr("type") === "password" ? "text" : "password";
+    input.attr("type", type);
+    $(this).text(type === "password" ? "👁" : "👁‍🗨"); // clean toggle icon
+  });
+
+});
+</script>
+
 
 
     </div>
@@ -328,13 +480,12 @@
     Simple, accurate, and free to use anytime.
   </p>
 </div>
-
 <!-- AI Quiz Generator Form & Output Side by Side -->
 <div class="container-fluid py-2" style="max-width: 1200px;">
   <div class="row justify-content-center">
 
     <!-- Input Form (Left) -->
-    <div class="col-lg-6 col-md-12">
+    <div class="col-lg-6 col-md-12 d-flex flex-column">
       <form id="quizForm" class="p-4 rounded shadow-sm bg-white h-100 d-flex flex-column">
         {% csrf_token %}
 
@@ -377,12 +528,8 @@
           </div>
         </div>
 
-        <!-- Extra Controls: Question Count + Language -->
+        <!-- Extra Controls: Language -->
         <div class="row g-2 mb-3">
-          <!-- Number of Questions -->
-          
-
-          <!-- Language Selection -->
           <div class="col-md-6">
             <label for="language" class="form-label small fw-semibold">Language</label>
             <select class="form-select form-select-sm" id="language" required>
@@ -393,7 +540,7 @@
               <option value="hausa">Hausa</option>
               <option value="swahili">Swahili</option>
               <option value="zulu">Zulu</option>
-               <option value="arabic">Arabic</option>
+              <option value="arabic">Arabic</option>
             </select>
           </div>
         </div>
@@ -405,6 +552,26 @@
           </button>
         </div>
       </form>
+
+      <!-- Status Section -->
+      <div id="userStatusQuiz" class="mt-3 text-center small fw-semibold text-dark"></div>
+
+      <!-- Go Pro Upgrade Banner -->
+      <div id="goProBannerQuiz" class="mt-3" style="display:none;">
+        <div class="d-flex align-items-center justify-content-between p-2 rounded-3 shadow-sm" 
+             style="background-color: #FFD700; color: #000;">
+          <div class="d-flex align-items-center">
+            <i class="fas fa-crown fa-lg me-2" style="color: #000;"></i>
+            <div>
+              <h6 class="mb-0 fw-bold small">{% trans "Go Pro" %}</h6>
+              <small class="text-dark">{% trans "Go Pro for unlimited quizzes & faster generation" %}</small>
+            </div>
+          </div>
+          <a href="#pricing-naira" class="btn btn-dark btn-sm rounded-pill fw-semibold">
+            {% trans "Upgrade" %}
+          </a>
+        </div>
+      </div>
     </div>
 
     <!-- Output Box (Right) -->
@@ -961,11 +1128,11 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="col-md-4">
         <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
           <h5 class="card-title mb-3">Basic</h5>
-          <p class="mb-2 text-muted"><s>₦1,200</s></p>
-          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦900</p>
+          <p class="mb-2 text-muted"></s>₦1,600</p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦1,200</p>
           <span class="badge bg-success mb-4">Save 25%</span>
           <ul class="list-unstyled text-start mb-4">
-            <li>✔ Generate up to 2 quizzes / month</li>
+            <li>✔ Generate up to 20 quizzes / month</li>
             <li>✔ Multiple-choice or short answer</li>
             <li>✔ Supports African languages</li>
             <li>✔ Friendly for students and teachers</li>
@@ -979,11 +1146,11 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="card h-100 p-4 shadow border-primary border-2 rounded-3 position-relative">
           <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3">Most Popular</span>
           <h5 class="card-title mb-3">Standard</h5>
-          <p class="mb-2 text-muted"><s>₦3,000</s></p>
-          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦2,200</p>
-          <span class="badge bg-success mb-4">Save 27%</span>
+          <p class="mb-2 text-muted"><s>₦4,000</s></p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦2,800</p>
+          <span class="badge bg-success mb-4">Save 30%</span>
           <ul class="list-unstyled text-start mb-4">
-            <li>✔ Generate up to 5 quizzes / month</li>
+            <li>✔ Generate up to 50 quizzes / month</li>
             <li>✔ Multiple-choice or short answer</li>
             <li>✔ African language support</li>
             <li>✔ Detailed answer keys included</li>
@@ -997,11 +1164,11 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="col-md-4">
         <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
           <h5 class="card-title mb-3">Unlimited</h5>
-          <p class="mb-2 text-muted"><s>₦6,000</s></p>
-          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦4,500</p>
+          <p class="mb-2 text-muted"><s>₦10,000</s></p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦7,500</p>
           <span class="badge bg-success mb-4">Save 25%</span>
           <ul class="list-unstyled text-start mb-4">
-            <li>✔ Generate up to 10 quizzes / month</li>
+            <li>✔ Generate unlimited quiz / month</li>
             <li>✔ Multiple-choice, short answer & mixed types</li>
             <li>✔ Supports African languages</li>
             <li>✔ Detailed answer keys & explanations</li>
@@ -1030,7 +1197,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <h5 class="card-title mb-3">Basic</h5>
           <p class="price mb-4" style="font-size:2rem; font-weight:bold;">$2</p>
           <ul class="list-unstyled text-start mb-4">
-            <li>✔ Generate up to 2 quizzes / month</li>
+            <li>✔ Generate up to 20 quizzes / month</li>
             <li>✔ Multiple-choice or short answer</li>
             <li>✔ Supports African languages</li>
             <li>✔ Friendly for students and teachers</li>
@@ -1046,7 +1213,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <h5 class="card-title mb-3">Standard</h5>
           <p class="price mb-4" style="font-size:2rem; font-weight:bold;">$5</p>
           <ul class="list-unstyled text-start mb-4">
-            <li>✔ Generate up to 5 quizzes / month</li>
+            <li>✔ Generate up to 50 quizzes / month</li>
             <li>✔ Multiple-choice or short answer</li>
             <li>✔ African language support</li>
             <li>✔ Detailed answer keys included</li>
@@ -1062,7 +1229,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <h5 class="card-title mb-3">Unlimited</h5>
           <p class="price mb-4" style="font-size:2rem; font-weight:bold;">$10</p>
           <ul class="list-unstyled text-start mb-4">
-            <li>✔ Generate up to 10 quizzes / month</li>
+            <li>✔ Generate unlimited quizzes / month</li>
             <li>✔ Multiple-choice, short answer & mixed types</li>
             <li>✔ Supports African languages</li>
             <li>✔ Detailed answer keys & explanations</li>

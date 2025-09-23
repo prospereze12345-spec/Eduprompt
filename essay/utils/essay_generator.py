@@ -25,6 +25,16 @@ def generate_polished_essay(topic: str, essay_type: str, lang: str):
 
     lang_name, lt_code = LANGUAGE_MAP.get(lang, ("English", "en-US"))
 
+    # --- Tailored instructions by essay type ---
+    type_instructions = {
+        "narrative": "Write like a storyteller, in first-person or third-person, with vivid scenes and emotions.",
+        "descriptive": "Use sensory details (sight, sound, touch, taste, smell) to paint a vivid picture.",
+        "expository": "Be clear, logical, and informative, explaining the topic step by step.",
+        "persuasive": "Take a clear position, provide strong arguments, counterarguments, and end with a call to action.",
+        "analytical": "Break down the topic into parts, analyze causes and effects, and provide critical insights.",
+    }
+    type_style = type_instructions.get(essay_type, "Be clear, structured, and academic.")
+
     url = "https://open.bigmodel.cn/api/paas/v4/chat/completions"
     headers = {
         "Authorization": f"Bearer {settings.ZHIPU_API_KEY}",
@@ -32,11 +42,17 @@ def generate_polished_essay(topic: str, essay_type: str, lang: str):
     }
 
     system_prompt = (
-        f"You are an expert college student writing a highly engaging, human-like essay in {lang_name}. "
-        f"Essay type: {essay_type}. Topic: {topic}. "
-        f"Write approximately {FIXED_WORD_COUNT} words including {FIXED_CITATIONS} realistic references at the end. "
-        "Use natural, emotional, easy-to-read language. Avoid bullet points, headings, and symbols like */#@. "
-        "Make it feel like a real student wrote it."
+        f"You are an expert essay writer. "
+        f"Write a plagiarism-free, highly original {essay_type} essay in {lang_name}. "
+        f"Topic: '{topic}'. "
+        f"Target length: about {FIXED_WORD_COUNT} words. "
+        f"Style guide: {type_style} "
+        "Organize the essay into multiple clear paragraphs (4–7). "
+        "Do not use bullet points, numbered lists, or symbols like #, *, /. "
+        "The essay must read naturally, as if written by a real student. "
+        "Avoid repeating the same sentence to increase word count. "
+        f"At the end, include exactly {FIXED_CITATIONS} scholarly references under a section titled 'References:'. "
+        "References should look realistic (books, academic journals, or articles)."
     )
 
     payload = {
@@ -46,7 +62,10 @@ def generate_polished_essay(topic: str, essay_type: str, lang: str):
             {
                 "role": "user",
                 "content": (
-                    f"Write the essay in {lang_name}, ~{FIXED_WORD_COUNT} words, human-like, ending with {FIXED_CITATIONS} references."
+                    f"Please write a {essay_type} essay in {lang_name} on '{topic}'. "
+                    f"It must be about {FIXED_WORD_COUNT} words, structured into good paragraphs, "
+                    f"and end with exactly {FIXED_CITATIONS} references under 'References:'. "
+                    "Avoid strange characters or formatting."
                 ),
             },
         ],
@@ -61,9 +80,8 @@ def generate_polished_essay(topic: str, essay_type: str, lang: str):
         data = response.json()
         draft_essay = data["choices"][0]["message"]["content"]
     except Exception as e:
-        # Fallback: return a simple essay if API fails
         print(f"Zhipu API failed: {e}")
-        return f"⚠ Essay generation failed. Topic: {topic}. Please try again."
+        return f"This is a fallback essay on '{topic}'.\n\n(Unable to reach essay API. Please retry later.)"
 
     # --- Optional: LanguageTool polishing ---
     polished_text = draft_essay
@@ -83,16 +101,35 @@ def generate_polished_essay(topic: str, essay_type: str, lang: str):
                     polished_text = polished_text[:offset] + replacement + polished_text[offset + length:]
     except Exception as e:
         print(f"LanguageTool skipped for {lt_code}: {e}")
-        polished_text = draft_essay  # fallback to unpolished draft
+        polished_text = draft_essay
 
-    # --- Minimal validation ---
-    words_in_essay = len(polished_text.split())
-    if words_in_essay < int(FIXED_WORD_COUNT * 0.5):
-        polished_text += "\n\n[Content may be incomplete due to API limits]"
+    # --- Post-processing cleanup ---
+    # Remove repeated filler lines
+    lines = polished_text.splitlines()
+    seen = set()
+    cleaned_lines = []
+    for line in lines:
+        if line.strip() not in seen:
+            cleaned_lines.append(line)
+            seen.add(line.strip())
+    polished_text = "\n".join(cleaned_lines)
 
-    # Ensure citations exist
-    refs_found = polished_text.lower().count("http") + polished_text.lower().count("ref")
-    if refs_found < FIXED_CITATIONS:
-        polished_text += f"\n\n[Expected {FIXED_CITATIONS} references missing]"
+    # Fix references heading
+    polished_text = polished_text.replace("## References", "References").replace("# References", "References")
+
+    # Auto paragraph split if text is too blocky
+    if polished_text.count("\n\n") < 3:  # less than 3 breaks
+        sentences = polished_text.split(". ")
+        chunk_size = max(4, len(sentences) // 5)  # about 5–6 paragraphs
+        paragraphs = []
+        for i in range(0, len(sentences), chunk_size):
+            paragraphs.append(". ".join(sentences[i:i+chunk_size]))
+        polished_text = "\n\n".join(paragraphs)
+
+    # Ensure references section exists
+    if "references:" not in polished_text.lower():
+        polished_text += "\n\nReferences:\n"
+        for i in range(1, FIXED_CITATIONS + 1):
+            polished_text += f"{i}. [Reference placeholder]\n"
 
     return polished_text

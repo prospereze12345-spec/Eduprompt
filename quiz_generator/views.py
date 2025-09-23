@@ -9,6 +9,252 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 
+from django.shortcuts import redirect
+from django.http import JsonResponse, HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.urls import reverse
+from django.utils import timezone
+from datetime import timedelta
+import requests, logging
+
+from .models import QuizSubscription
+
+logger = logging.getLogger(__name__)
+
+# -------------------------
+# Simple Status (legacy/free trial only)
+# -------------------------
+@login_required
+def quiz_status(request):
+    user = request.user
+    sub, _ = QuizSubscription.objects.get_or_create(
+        user=user,
+        defaults={"plan": "trial", "quizzes_limit": 3, "quizzes_used": 0}
+    )
+
+    if sub.quizzes_limit is None:
+        limit = "Unlimited"
+        remaining = "Unlimited"
+    else:
+        limit = sub.quizzes_limit
+        remaining = max(0, limit - sub.quizzes_used)
+
+    return JsonResponse({
+        "success": True,
+        "free_trial_used": (sub.plan == "trial" and remaining == 0),
+        "subscribed": sub.is_active(),
+        "quiz_left": remaining,
+        "quizzes_used": sub.quizzes_used,
+        "limit": limit
+    })
+
+
+# -------------------------
+# Subscription Status (main)
+# -------------------------
+@login_required
+def quiz_subscription_status(request):
+    user = request.user
+    sub, _ = QuizSubscription.objects.get_or_create(
+        user=user,
+        defaults={"plan": "trial", "quizzes_limit": 3, "quizzes_used": 0}
+    )
+
+    if sub.quizzes_limit is None or sub.quizzes_limit >= 999999999:
+        limit = "Unlimited"
+        remaining = "Unlimited"
+    else:
+        limit = sub.quizzes_limit
+        remaining = max(0, limit - sub.quizzes_used)
+
+    trial_reached = (sub.plan == "trial" and remaining == 0)
+
+    if trial_reached:
+        message = "❌ Free trial reached. Upgrade to Pro to continue."
+    elif remaining == "Unlimited":
+        message = "✅ Unlimited plan active"
+    else:
+        message = f"✅ You have {remaining} quiz{'zes' if remaining != 1 else ''} left"
+
+    return JsonResponse({
+        "plan": sub.plan.upper() if sub.plan else "FREE",
+        "quizzes_used": sub.quizzes_used,
+        "limit": "Unlimited" if limit == "Unlimited" else int(limit),
+        "subscribed": sub.is_active(),
+        "quiz_left": "Unlimited" if remaining == "Unlimited" else int(remaining),
+        "expiry_date": sub.expiry_date,
+        "trial_reached": trial_reached,
+        "message": message,
+    })
+
+
+# -------------------------
+# Access Check Helper
+# -------------------------
+def _check_quiz_access(user):
+    if not user.is_authenticated:
+        return False, None, "⚠️ You must log in to access the Quiz Generator."
+
+    sub, _ = QuizSubscription.objects.get_or_create(
+        user=user,
+        defaults={"plan": "trial", "quizzes_limit": 3, "quizzes_used": 0}
+    )
+
+    if not sub.is_active():
+        return False, sub, "⚠️ Subscription expired. Please upgrade."
+
+    if sub.plan == "trial":
+        if sub.quizzes_used >= sub.quizzes_limit:
+            return False, sub, "⚠️ Free trial used up. Please upgrade to continue."
+        return True, sub, f"✅ Free trial active ({sub.quizzes_limit - sub.quizzes_used} quizzes left)"
+
+    if sub.quizzes_limit is None or sub.quizzes_limit > 999999:
+        return True, sub, "✅ Unlimited plan active"
+
+    if sub.quizzes_used < sub.quizzes_limit:
+        remaining = sub.quizzes_limit - sub.quizzes_used
+        return True, sub, f"✅ Subscription active ({remaining} quizzes left)"
+
+    return False, sub, "⚠️ Quiz limit reached. Please upgrade."
+
+
+# -------------------------
+# Start Subscription (Flutterwave Payment Init)
+# -------------------------
+def quiz_start_subscription(request):
+    plan = request.GET.get("plan")
+    if not plan:
+        return HttpResponse("No plan selected", status=400)
+
+    if not request.user.is_authenticated:
+        return HttpResponse(
+            "<script>alert('⚠ Please sign up or log in before subscribing.'); window.history.back();</script>"
+        )
+
+    plans = {
+        "basic_ng": {"amount": 1200, "currency": "NGN", "limit": 20},
+        "standard_ng": {"amount": 2800, "currency": "NGN", "limit": 70},
+        "unlimited_ng": {"amount": 7500, "currency": "NGN", "limit": None},
+        "basic_usd": {"amount": 2, "currency": "USD", "limit": 20},
+        "standard_usd": {"amount": 5, "currency": "USD", "limit": 70},
+        "unlimited_usd": {"amount": 10, "currency": "USD", "limit": None},
+    }
+
+    plan_aliases = {
+        "basic_ngn": "basic_ng",
+        "standard_ngn": "standard_ng",
+        "unlimited_ngn": "unlimited_ng",
+        "basic_usdollar": "basic_usd",
+        "standard_usdollar": "standard_usd",
+        "unlimited_usdollar": "unlimited_usd",
+    }
+    plan = plan_aliases.get(plan, plan)
+
+    if plan not in plans:
+        return HttpResponse("Invalid plan", status=400)
+
+    selected = plans[plan]
+    tx_ref = f"quiz_{request.user.id}_{plan}_{int(timezone.now().timestamp())}"
+
+    payload = {
+        "tx_ref": tx_ref,
+        "amount": selected["amount"],
+        "currency": selected["currency"],
+        "payment_options": "card",
+        "redirect_url": request.build_absolute_uri(reverse("quiz_verify_subscription")),
+        "customer": {
+            "email": request.user.email or f"user{request.user.id}@example.com",
+            "name": request.user.get_full_name() or request.user.username,
+            "phone_number": "08000000000",
+        },
+        "customizations": {
+            "title": f"Quiz Generator - {plan.replace('_', ' ').title()}",
+            "description": f"{plan.replace('_', ' ').title()} plan subscription (Quiz Generator)",
+        },
+        "meta": {
+            "user_id": request.user.id,
+            "product": "quiz_generator",
+            "plan_key": plan,
+        },
+    }
+
+    headers = {"Authorization": f"Bearer {settings.FLW_SECRET_KEY}"}
+
+    try:
+        r = requests.post(
+            "https://api.flutterwave.com/v3/payments",
+            json=payload,
+            headers=headers,
+            timeout=15,
+        )
+        data = r.json()
+        logger.info(f"Flutterwave init response: {data}")
+
+        link = data.get("data", {}).get("link")
+        if data.get("status") == "success" and link:
+            return redirect(link)
+        return HttpResponse(
+            "Payment initialization failed: " + data.get("message", "Unknown error"), status=500
+        )
+
+    except requests.RequestException as e:
+        logger.exception("Flutterwave request failed")
+        return HttpResponse(f"Payment request failed: {str(e)}", status=500)
+
+
+# -------------------------
+# Verify Subscription
+# -------------------------
+@login_required
+def quiz_verify_subscription(request):
+    status = request.GET.get("status")
+    tx_ref = request.GET.get("tx_ref")
+    transaction_id = request.GET.get("transaction_id")
+
+    if status != "successful" or not transaction_id:
+        return redirect("/quiz/?payment=failed")
+
+    headers = {"Authorization": f"Bearer {settings.FLW_SECRET_KEY}"}
+    url = f"https://api.flutterwave.com/v3/transactions/{transaction_id}/verify"
+
+    try:
+        r = requests.get(url, headers=headers, timeout=15)
+        data = r.json()
+    except requests.RequestException:
+        return redirect("/quiz/?payment=failed")
+
+    if data.get("status") != "success":
+        return redirect("/quiz/?payment=failed")
+
+    tx_parts = tx_ref.split("_")
+    if len(tx_parts) < 3:
+        return redirect("/quiz/?payment=failed")
+
+    plan_code = tx_parts[2]
+    currency_code = plan_code.split("_")[-1] if "_" in plan_code else "ng"
+    full_plan_key = plan_code if "_" in plan_code else f"{plan_code}_{currency_code}"
+
+    PLAN_LIMITS = {
+        "basic_ng": 20,
+        "standard_ng": 50,
+        "unlimited_ng": 999999999,
+        "basic_usd": 20,
+        "standard_usd": 50,
+        "unlimited_usd": 999999999,
+    }
+    quizzes_limit = PLAN_LIMITS.get(full_plan_key, 0)
+
+    sub, _ = QuizSubscription.objects.get_or_create(user=request.user)
+    sub.plan = "paid"
+    sub.plan_code = full_plan_key
+    sub.quizzes_used = 0
+    sub.quizzes_limit = quizzes_limit
+    sub.start_date = timezone.now()
+    sub.expiry_date = timezone.now() + timedelta(days=30)
+    sub.save()
+
+    return redirect("/quiz/?payment=success")
 
 def quiz_generator(request):
     """Render the quiz generator UI page."""
