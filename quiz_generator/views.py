@@ -22,9 +22,6 @@ from .models import QuizSubscription
 
 logger = logging.getLogger(__name__)
 
-# -------------------------
-# Simple Status (legacy/free trial only)
-# -------------------------
 @login_required
 def quiz_status(request):
     user = request.user
@@ -33,7 +30,7 @@ def quiz_status(request):
         defaults={"plan": "trial", "quizzes_limit": 3, "quizzes_used": 0}
     )
 
-    if sub.quizzes_limit is None:
+    if sub.quizzes_limit is None or sub.quizzes_limit >= 999999:  # ✅ handle unlimited
         limit = "Unlimited"
         remaining = "Unlimited"
     else:
@@ -49,10 +46,6 @@ def quiz_status(request):
         "limit": limit
     })
 
-
-# -------------------------
-# Subscription Status (main)
-# -------------------------
 @login_required
 def quiz_subscription_status(request):
     user = request.user
@@ -61,11 +54,12 @@ def quiz_subscription_status(request):
         defaults={"plan": "trial", "quizzes_limit": 3, "quizzes_used": 0}
     )
 
+    # Detect Unlimited properly
     if sub.quizzes_limit is None or sub.quizzes_limit >= 999999999:
         limit = "Unlimited"
         remaining = "Unlimited"
     else:
-        limit = sub.quizzes_limit
+        limit = int(sub.quizzes_limit)
         remaining = max(0, limit - sub.quizzes_used)
 
     trial_reached = (sub.plan == "trial" and remaining == 0)
@@ -80,16 +74,15 @@ def quiz_subscription_status(request):
     return JsonResponse({
         "plan": sub.plan.upper() if sub.plan else "FREE",
         "quizzes_used": sub.quizzes_used,
-        "limit": "Unlimited" if limit == "Unlimited" else int(limit),
+        "limit": limit,                # ✅ string if unlimited
         "subscribed": sub.is_active(),
-        "quiz_left": "Unlimited" if remaining == "Unlimited" else int(remaining),
+        "quiz_left": remaining,        # ✅ string if unlimited
         "expiry_date": sub.expiry_date,
         "trial_reached": trial_reached,
         "message": message,
     })
 
-
-# -------------------------
+# # -------------------------
 # Access Check Helper
 # -------------------------
 def _check_quiz_access(user):
@@ -104,40 +97,39 @@ def _check_quiz_access(user):
     if not sub.is_active():
         return False, sub, "⚠️ Subscription expired. Please upgrade."
 
+    # ✅ Trial plan
     if sub.plan == "trial":
         if sub.quizzes_used >= sub.quizzes_limit:
             return False, sub, "⚠️ Free trial used up. Please upgrade to continue."
-        return True, sub, f"✅ Free trial active ({sub.quizzes_limit - sub.quizzes_used} quizzes left)"
+        remaining = sub.quizzes_limit - sub.quizzes_used
+        return True, sub, f"✅ Free trial active ({remaining} quizzes left)"
 
-    if sub.quizzes_limit is None or sub.quizzes_limit > 999999:
-        return True, sub, "✅ Unlimited plan active"
+    # ✅ Unlimited plan
+    if sub.quizzes_limit is None or sub.quizzes_limit >= 999999:
+        return True, sub, "✅ Unlimited plan active (Unlimited quizzes left)"
 
+    # ✅ Limited paid plan
     if sub.quizzes_used < sub.quizzes_limit:
         remaining = sub.quizzes_limit - sub.quizzes_used
         return True, sub, f"✅ Subscription active ({remaining} quizzes left)"
 
+    # ✅ Limit reached
     return False, sub, "⚠️ Quiz limit reached. Please upgrade."
-
-
 # -------------------------
 # Start Subscription (Flutterwave Payment Init)
 # -------------------------
+@login_required
 def quiz_start_subscription(request):
     plan = request.GET.get("plan")
     if not plan:
         return HttpResponse("No plan selected", status=400)
 
-    if not request.user.is_authenticated:
-        return HttpResponse(
-            "<script>alert('⚠ Please sign up or log in before subscribing.'); window.history.back();</script>"
-        )
-
     plans = {
         "basic_ng": {"amount": 1200, "currency": "NGN", "limit": 20},
-        "standard_ng": {"amount": 2800, "currency": "NGN", "limit": 70},
+        "standard_ng": {"amount": 2800, "currency": "NGN", "limit": 50},
         "unlimited_ng": {"amount": 7500, "currency": "NGN", "limit": None},
         "basic_usd": {"amount": 2, "currency": "USD", "limit": 20},
-        "standard_usd": {"amount": 5, "currency": "USD", "limit": 70},
+        "standard_usd": {"amount": 5, "currency": "USD", "limit": 50},
         "unlimited_usd": {"amount": 10, "currency": "USD", "limit": None},
     }
 
@@ -161,7 +153,8 @@ def quiz_start_subscription(request):
         "tx_ref": tx_ref,
         "amount": selected["amount"],
         "currency": selected["currency"],
-        "payment_options": "card",
+        # ✅ allow card + bank transfer
+        "payment_options": "card,banktransfer",
         "redirect_url": request.build_absolute_uri(reverse("quiz_verify_subscription")),
         "customer": {
             "email": request.user.email or f"user{request.user.id}@example.com",
@@ -188,20 +181,31 @@ def quiz_start_subscription(request):
             headers=headers,
             timeout=15,
         )
-        data = r.json()
+
+        # ✅ Handle non-JSON safely
+        try:
+            data = r.json()
+        except ValueError:
+            logger.error(f"Flutterwave non-JSON response: {r.text}")
+            return HttpResponse(
+                f"Payment request failed (non-JSON): {r.text}",
+                status=r.status_code
+            )
+
         logger.info(f"Flutterwave init response: {data}")
 
         link = data.get("data", {}).get("link")
         if data.get("status") == "success" and link:
             return redirect(link)
+
         return HttpResponse(
-            "Payment initialization failed: " + data.get("message", "Unknown error"), status=500
+            "Payment initialization failed: " + data.get("message", "Unknown error"),
+            status=500,
         )
 
     except requests.RequestException as e:
         logger.exception("Flutterwave request failed")
         return HttpResponse(f"Payment request failed: {str(e)}", status=500)
-
 
 # -------------------------
 # Verify Subscription
@@ -256,14 +260,33 @@ def quiz_verify_subscription(request):
 
     return redirect("/quiz/?payment=success")
 
+
 def quiz_generator(request):
     """Render the quiz generator UI page."""
     return render(request, "quiz_generator.html")
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+import json
 
-
+def login_required_json(view_func):
+    """Custom login_required that returns JSON instead of redirecting."""
+    def _wrapped_view(request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return JsonResponse({
+                "quiz": None,
+                "error": "⚠️ Please sign up before you generate quiz.",
+                "subscribed": False,
+                "free_trial_used": False,
+                "quizzes_used": 0
+            }, status=200)
+        return view_func(request, *args, **kwargs)
+    return _wrapped_view
 @csrf_exempt
+@login_required_json   # 👈 replaces @login_required safely
 def generate_quiz(request):
-    """API endpoint to generate quiz questions using Zhipu API."""
+    """API endpoint to generate quiz questions using Zhipu API with subscription checks."""
     if request.method != "POST":
         return JsonResponse({"quiz": None, "error": "Invalid request method. Use POST."}, status=405)
 
@@ -277,28 +300,57 @@ def generate_quiz(request):
         study_text = body.get("quiz_text", "").strip()
         quiz_type = body.get("quiz_type", "mixed").lower()
         difficulty = body.get("difficulty", "medium").lower()
-        language = body.get("language", "English").strip()  # 🌍 NEW
-        max_questions = int(body.get("max_questions", 10))   # 🔢 NEW
+        language = body.get("language", "English").strip()
+        max_questions = int(body.get("max_questions", 10))
 
         # Validate input
         if not study_text:
             return JsonResponse({"quiz": None, "error": "No study material provided."}, status=400)
 
-        # Call quiz generator util
+        # --- Subscription / Trial Access Check ---
+        allowed, sub, access_msg = _check_quiz_access(request.user)
+        if not allowed:
+            quiz_left = None
+            if sub:
+                raw_left = sub.quizzes_left()
+                quiz_left = "Unlimited" if (raw_left is None or raw_left >= 999999) else raw_left
+
+            return JsonResponse({
+                "quiz": None,
+                "error": access_msg,
+                "subscribed": sub.is_active() if sub else False,
+                "quiz_left": quiz_left if sub else 0,
+                "free_trial_used": True,
+                "quizzes_used": sub.quizzes_used if sub else 0
+            }, status=200)
+
+        # --- Generate Quiz using util ---
         result = generate_quiz_from_text(
             study_text=study_text,
             quiz_type=quiz_type,
             difficulty=difficulty,
             language=language,
-            max_questions=max_questions  # ✅ pass here
+            max_questions=max_questions
         )
 
         if result.startswith("⚠️"):
-            # API or validation error
             return JsonResponse({"quiz": None, "error": result}, status=200)
 
+        # --- Deduct 1 quiz attempt ---
+        if sub:
+            sub.use_quiz()
+
         # Success
-        return JsonResponse({"quiz": result, "error": None}, status=200)
+        raw_left = sub.quizzes_left() if sub else 0
+        quiz_left = "Unlimited" if (raw_left is None or raw_left >= 999999) else raw_left
+
+        return JsonResponse({
+            "quiz": result,
+            "error": None,
+            "subscribed": sub.is_active(),
+            "quiz_left": quiz_left,   # ✅ shows "Unlimited" instead of 999999
+            "quizzes_used": sub.quizzes_used
+        }, status=200)
 
     except Exception as e:
         return JsonResponse({"quiz": None, "error": f"Server error: {e}"}, status=500)

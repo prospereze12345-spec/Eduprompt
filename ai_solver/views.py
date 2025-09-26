@@ -151,7 +151,6 @@ def _check_solver_access(user):
 
     # If none of the above, limit reached
     return False, sub, "⚠️ Solve limit reached. Please upgrade."
-
 def start_subscription(request):
     plan = request.GET.get("plan")
     if not plan:
@@ -194,7 +193,8 @@ def start_subscription(request):
         "tx_ref": tx_ref,
         "amount": selected["amount"],
         "currency": selected["currency"],
-        "payment_options": "card",
+        # ✅ Allow card + bank transfer
+        "payment_options": "card,banktransfer",
         "redirect_url": request.build_absolute_uri(reverse("solver_verify_subscription")),
         "customer": {
             "email": request.user.email or f"user{request.user.id}@example.com",

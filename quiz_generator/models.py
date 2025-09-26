@@ -1,8 +1,4 @@
 from django.db import models
-
-# Create your models here.
-# Create your models here.
-from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from datetime import timedelta
@@ -11,9 +7,9 @@ from datetime import timedelta
 class QuizSubscription(models.Model):
     PLAN_CHOICES = [
         ("trial", "Free Trial (3 quizzes)"),
-        ("basic_naira", "Basic (₦1,200 / 20 quizzes / 30 days)"),
-        ("standard_naira", "Standard (₦2,800 / 50 quizzes / 30 days)"),
-        ("unlimited_naira", "Unlimited (₦7,500 / 30 days)"),
+        ("basic_ng", "Basic (₦1,200 / 20 quizzes / 30 days)"),
+        ("standard_ng", "Standard (₦2,800 / 50 quizzes / 30 days)"),
+        ("unlimited_ng", "Unlimited (₦7,500 / 30 days)"),
         ("basic_usd", "Basic ($2 / 20 quizzes / 30 days)"),
         ("standard_usd", "Standard ($5 / 50 quizzes / 30 days)"),
         ("unlimited_usd", "Unlimited ($10 / 30 days)"),
@@ -23,7 +19,7 @@ class QuizSubscription(models.Model):
     plan = models.CharField(max_length=50, choices=PLAN_CHOICES, default="trial")
 
     quizzes_used = models.IntegerField(default=0)
-    quizzes_limit = models.IntegerField(default=3)  # default = free trial
+    quizzes_limit = models.IntegerField(default=3)  # free trial limit
 
     start_date = models.DateTimeField(blank=True, null=True)
     expiry_date = models.DateTimeField(blank=True, null=True)
@@ -32,7 +28,7 @@ class QuizSubscription(models.Model):
 
     def activate_plan(self, plan_code, duration_days=30):
         """
-        Activate or upgrade to a paid plan.
+        Activate or upgrade to a plan.
         Resets usage and sets quizzes_limit based on plan.
         """
         self.plan = plan_code
@@ -67,10 +63,10 @@ class QuizSubscription(models.Model):
     def quizzes_left(self):
         """
         Remaining quizzes attempts.
-        Returns ∞ for unlimited plans.
+        Returns "Unlimited" for unlimited plans.
         """
         if self.quizzes_limit is None:
-            return "∞"
+            return "Unlimited"
         return max(0, self.quizzes_limit - self.quizzes_used)
 
     def use_quiz(self):
@@ -85,4 +81,4 @@ class QuizSubscription(models.Model):
         return True
 
     def __str__(self):
-        return f"{self.user} - {self.plan} ({self.quizzes_used}/{self.quizzes_limit or '∞'})"
+        return f"{self.user} - {self.plan} ({self.quizzes_used}/{self.quizzes_limit or 'Unlimited'})"

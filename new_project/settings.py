@@ -49,7 +49,6 @@ FLW_BASE_URL = "https://api.flutterwave.com/v3"  # same for test & live
 
 
 
-
 EXCHANGE_API_KEY = os.getenv("EXCHANGE_API_KEY")
 EXCHANGE_API_URL = "https://v6.exchangerate-api.com/v6"
 DEFAULT_CURRENCY = "NGN"  
@@ -105,14 +104,15 @@ INSTALLED_APPS = [
     'ai_solver',
     'project_writer',
     'grammar_checker',
-     'django.contrib.sites',   
     'allauth',
+    'widget_tweaks',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'users.apps.UsersConfig',
     'blog',
     'django_quill', 
+
     
 ]
 
@@ -256,8 +256,15 @@ CKEDITOR_CONFIGS = {
         "extraPlugins": "uploadimage",  # allow image uploads
     }
 }
+from django.urls import reverse_lazy
 
+# 👇 Add these here
+LOGIN_URL = reverse_lazy("login")        # Where Django redirects when login is required
+LOGIN_REDIRECT_URL = "/"                 # After login
+LOGOUT_REDIRECT_URL = "/"                # After logout
 
+# 👇 Custom domain for password reset emails
+DEFAULT_DOMAIN = "127.0.0.1:8000"
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

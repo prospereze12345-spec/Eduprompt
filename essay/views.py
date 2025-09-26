@@ -86,6 +86,7 @@ from django.conf import settings
 
 logger = logging.getLogger(__name__)
 # Remove @login_required because we handle auth manually
+@login_required
 def start_subscription(request):
     plan = request.GET.get("plan")
     if not plan:
@@ -119,7 +120,8 @@ def start_subscription(request):
         "tx_ref": tx_ref,
         "amount": selected["amount"],
         "currency": selected["currency"],
-        "payment_options": "card",
+        # ✅ Allow card + bank transfer
+        "payment_options": "card,banktransfer",
         "redirect_url": request.build_absolute_uri("/essay/verify-subscription/"),
         "customer": {
             "email": request.user.email or f"user{request.user.id}@example.com",
@@ -156,6 +158,7 @@ def start_subscription(request):
     except requests.RequestException as e:
         logger.exception("Flutterwave request failed")
         return HttpResponse(f"Payment request failed: {str(e)}", status=500)
+
 
 @login_required
 def verify_subscription(request):

@@ -611,7 +611,7 @@ $(document).ready(function(){
 
 
 
-<section class="py-6" style="background-color: #f9f9f9; padding-top: 200px;">
+<section class="py-6" style="background-color: #f9f9f9; padding-top: 180px;">
   <div class="container">
 
     <div class="text-center mb-4">
@@ -624,43 +624,101 @@ $(document).ready(function(){
     </div>
 
   </div>
+</section><section class="py-4" style="background-color:white; font-family:'Segoe UI', sans-serif;">
+  <div class="container">
+    <div class="row g-3">
+
+      <!-- Left Column: Text Input -->
+      <div class="col-lg-7 col-md-12 d-flex flex-column">
+        <div class="editor-box mb-3 p-3" 
+             style="background:#fff; border:2px solid #e0e0e0; border-radius:12px; 
+                    box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+          <textarea id="userText" class="form-control border-0" rows="12" 
+                    placeholder="Type or paste your text here..."></textarea>
+
+          <!-- Free Limit Notice -->
+          <p class="text-muted small mt-2" 
+             style="font-weight:500; color:#444 !important;">
+            ✅ Check up to 
+            <span id="wordLimitNotice" 
+                  style="color:darkgoldenrod; font-weight:600;">2,000 words</span> 
+            for free
+          </p>
+        </div>
+<!-- Upload + Drive + Check + Go Pro + Stats (One Line) -->
+<div class="d-flex align-items-center flex-wrap gap-2 mb-2">
+  <button id="uploadBtn" class="btn btn-light btn-sm">Upload</button>
+  <input type="file" id="fileInput" hidden accept=".docx,.pdf,.txt,.jpg,.jpeg,.png" />
+
+  
+  <button id="checkBtn" class="btn btn-sm" 
+          style="background:#b8860b; color:#fff; border-radius:8px; 
+                 padding:8px 18px; border:none;">
+    Check Grammar
+  </button>
+  
+  <a href="#" data-bs-toggle="modal" data-bs-target="#proModal" 
+     class="text-decoration-none" 
+     style="font-size:0.9rem; color:#0d6efd; font-weight:500;">
+     🚀 Go Pro
+  </a>
+
+  <!-- Stats inline -->
+  <div class="stats ms-auto" id="textStats" 
+       style="font-size:0.9rem; color:#666;">
+    Words: 0 | Characters: 0
+  </div>
+</div>
+
+<!-- Upload Result (still below) -->
+<div id="uploadResult" class="mt-3"></div>
+
+
+        <!-- Download Button -->
+        <div id="downloadContainer" class="mt-2" style="display:none;">
+          <a id="downloadBtn" href="#" class="btn btn-success btn-sm">
+            Download Corrected Text
+          </a>
+        </div>
+      </div> <!-- ✅ closes left column properly -->
+
+      <!-- Right Column: Suggestions -->
+      <div class="col-lg-5 col-md-12 ms-auto">
+        <div class="suggestion-box p-3" 
+             style="background:#fff; border:2px solid #e0e0e0; border-radius:12px; 
+                    height:100%; max-height:600px; overflow-y:auto; 
+                    box-shadow:0 2px 8px rgba(0,0,0,0.05);" 
+             id="suggestions">
+         
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h6 class="fw-bold mb-0">
+              All Suggestions 
+              <span class="badge bg-secondary" id="suggestionCount">0</span>
+            </h6>
+            <button id="correctAll" class="btn btn-sm" 
+                    style="background:#b8860b; color:#fff; border-radius:8px;">
+              Correct All
+            </button>
+          </div>
+
+          <div id="suggestionList">
+            <p class="text-muted small" style="font-style:italic;">
+              Note: Grammar suggestions are AI-assisted and may not be 100% accurate. 
+              Please review before submitting.
+            </p>
+            <p class="text-muted">
+              Suggestions will appear here after clicking 
+              <strong>Check Grammar</strong>...
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 
-<section class="py-4" style="background-color:white; font-family:'Segoe UI', sans-serif;">
-  <div class="container">
-    <div class="row g-3">
-      
-      <div class="col-lg-7 col-md-12">
-  <div class="editor-box mb-3 p-3" style="background:#fff; border:2px solid #e0e0e0; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-    <textarea id="userText" class="form-control border-0" rows="12" placeholder="Type or paste your text here..."></textarea>
-    
-    <!-- Free Limit Notice -->
-    <p class="text-muted small mt-2" style="font-weight:500; color:#444 !important;">
-      ✅ Check up to <span style="color:darkgoldenrod; font-weight:600;">2,000 words</span> for free
-    </p>
-  </div>
-
-  <div class="d-flex justify-content-between align-items-center flex-wrap">
-    <div class="mb-2">
-      <button class="btn btn-light btn-sm">Upload</button>
-      <button class="btn btn-light btn-sm">Google Drive</button>
-    </div>
-
-    <div class="stats mb-2" id="textStats" style="font-size:0.9rem; color:#666;">
-      Words: 0 | Characters: 0
-    </div>
-
-    <!-- Go Pro Link beside Check Grammar -->
-<button id="checkBtn" class="btn btn-sm" 
-        style="background:#b8860b; color:#fff; border-radius:8px; padding:8px 18px; border:none;">
-  Check Grammar
-</button>
-<a href="#" data-bs-toggle="modal" data-bs-target="#proModal" 
-   class="ms-2 text-decoration-none" 
-   style="font-size:0.9rem; color:#0d6efd; font-weight:500;">
-   🚀 Go Pro
-</a>
 
 <!-- Pro Plan Modal -->
 <div class="modal fade" id="proModal" tabindex="-1" aria-hidden="true">
@@ -683,7 +741,10 @@ $(document).ready(function(){
             <li>✔ Supports African languages</li>
             <li>✔ Spelling & punctuation corrections</li>
           </ul>
-          <button class="btn btn-primary w-100 mt-3 rounded-pill">Pay Now</button>
+<a href="{% url 'grammar_start_subscription' %}?currency=NGN" 
+   class="btn btn-primary w-100 mt-3 rounded-pill">
+              Pay Now
+          </a>
         </div>
 
         <!-- Pricing Dollar -->
@@ -696,7 +757,10 @@ $(document).ready(function(){
             <li>✔ Supports African languages</li>
             <li>✔ Spelling & punctuation corrections</li>
           </ul>
-          <button class="btn btn-primary w-100 mt-3 rounded-pill">Pay Now</button>
+<a href="{% url 'grammar_start_subscription' %}?currency=USD" 
+   class="btn btn-primary w-100 mt-3 rounded-pill">
+               Pay Now
+          </a>
         </div>
       </div>
     </div>
@@ -722,178 +786,342 @@ fetch("https://ipapi.co/json/")
   });
 </script>
 
-  </div>
-</div>
-
-
-
-
-      <!-- Right Side Suggestions -->
-      <div class="col-lg-5 col-md-12">
-        <div class="suggestion-box p-3" style="background:#fff; border:2px solid #e0e0e0; border-radius:12px; height:100%; overflow-y:auto; box-shadow:0 2px 8px rgba(0,0,0,0.05);" id="suggestions">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <h6 class="fw-bold mb-0">All Suggestions <span class="badge bg-secondary" id="suggestionCount">0</span></h6>
-            <button id="correctAll" class="btn btn-sm" style="background:#b8860b; color:#fff; border-radius:8px;">Correct All</button>
-          </div>
-          <div id="suggestionList">
-          <p class="text-muted small" style="font-style:italic;">
-  Note: Grammar suggestions are AI-assisted and may not be 100% accurate. Please review before submitting.
-</p>
-
-            <p class="text-muted">Suggestions will appear here after clicking <strong>Check Grammar</strong>...</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
 <script>
-const textarea = document.getElementById('userText');
-const stats = document.getElementById('textStats');
-const checkBtn = document.getElementById('checkBtn');
+  document.addEventListener("DOMContentLoaded", () => {
+    const uploadBtn = document.getElementById("uploadBtn");
+    const fileInput = document.getElementById("fileInput");
+    const uploadResult = document.getElementById("uploadResult");
+    const downloadContainer = document.getElementById("downloadContainer");
+    const downloadBtn = document.getElementById("downloadBtn");
+    const suggestionList = document.getElementById("suggestionList");
+    const textStats = document.getElementById("textStats");
+    const userText = document.getElementById("userText");
 
-const WORD_LIMIT_FREE = 2000;
+    // Update word/character count dynamically
+    userText.addEventListener("input", () => {
+      const text = userText.value.trim();
+      const words = text ? text.split(/\s+/).length : 0;
+      const chars = text.length;
+      textStats.innerHTML = `Words: ${words} | Characters: ${chars}`;
+    });
 
-textarea.addEventListener('input', () => {
-  const text = textarea.value;
-  const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
-  const charCount = text.length;
-  
-  stats.textContent = `Words: ${wordCount} | Characters: ${charCount}`;
+    // Open file picker
+    uploadBtn.addEventListener("click", () => fileInput.click());
 
-  // Disable button if exceeding free limit
-  if (wordCount > WORD_LIMIT_FREE) {
-    checkBtn.disabled = true;
-    checkBtn.style.background = '#ccc';
-    checkBtn.textContent = 'Upgrade to Pro for 15k+ words';
-  } else {
-    checkBtn.disabled = false;
-    checkBtn.style.background = '#b8860b';
-    checkBtn.textContent = 'Check Grammar';
-  }
-});
+    // Upload file
+    fileInput.addEventListener("change", async () => {
+      if (!fileInput.files.length) return;
+      const file = fileInput.files[0];
 
-// Optional: Clicking Check Grammar triggers an alert
-checkBtn.addEventListener('click', () => {
-  if (!checkBtn.disabled) {
-    alert('Grammar check in progress...');
-    // Here you can integrate your grammar check API
-  }
-});
+      const formData = new FormData();
+      formData.append("file", file);
 
-const textArea = document.getElementById("userText");
-const suggestionList = document.getElementById("suggestionList");
-const suggestionCount = document.getElementById("suggestionCount");
-const correctAllBtn = document.getElementById("correctAll");
+      uploadResult.innerHTML = `<p>⏳ Uploading & checking grammar...</p>`;
+      downloadContainer.style.display = "none";
+      suggestionList.innerHTML = "";
 
-// Live word/character stats
-textArea.addEventListener("input", () => {
-  const text = textArea.value;
-  const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
-  stats.innerText = `Words: ${words} | Characters: ${text.length}`;
-});
+      try {
+        const res = await fetch("/grammar-upload/", {
+          method: "POST",
+          body: formData,
+          headers: {
+            "X-CSRFToken": getCookie("csrftoken")
+          }
+        });
 
-// CSRF helper
-function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    document.cookie.split(";").forEach(cookie => {
-      cookie = cookie.trim();
-      if (cookie.startsWith(name + "=")) {
-        cookieValue = decodeURIComponent(cookie.split("=")[1]);
+        const text = await res.text();
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch {
+          throw new Error(`Server returned invalid response:\n${text}`);
+        }
+
+        if (data.success) {
+          userText.value = data.fixed_text;
+          uploadResult.innerHTML = `<p><b>✅ Upload Success</b></p>
+                                    <p><b>Word Count:</b> ${data.words}</p>`;
+          suggestionList.innerHTML = data.suggestions_html;
+
+          // Update stats
+          const words = data.words;
+          const chars = data.fixed_text.length;
+          textStats.innerHTML = `Words: ${words} | Characters: ${chars}`;
+
+          // Prepare download
+          const blob = new Blob([data.fixed_text], { type: "text/plain" });
+          downloadBtn.href = URL.createObjectURL(blob);
+          downloadBtn.download = `corrected_text.txt`;
+          downloadContainer.style.display = "block";
+
+        } else {
+          uploadResult.innerHTML = `<p style="color:red;">${data.message}</p>`;
+        }
+
+      } catch (err) {
+        uploadResult.innerHTML = `<p style="color:red;">Upload failed. ${err}</p>`;
       }
     });
-  }
-  return cookieValue;
-}
 
-// Check Grammar button
-checkBtn.addEventListener("click", () => {
-  const text = textArea.value;
-  suggestionList.innerHTML = "";
-  suggestionCount.innerText = 0;
-
-  fetch("/grammar-checker/", {
-    method: "POST",
-    headers: { "X-CSRFToken": getCookie("csrftoken") },
-    body: new URLSearchParams({ text: text })
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.error) {
-      sugges;
+    // Helper to get CSRF token
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== "") {
+        const cookies = document.cookie.split(";");
+        for (let cookie of cookies) {
+          cookie = cookie.trim();
+          if (cookie.startsWith(name + "=")) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
     }
+  });
 
-    const matches = data.matches || [];
-    suggestiotionList.innerHTML = `<p class="text-danger">${data.error}</p>`;
-      returnnCount.innerText = matches.length;
+  document.addEventListener("DOMContentLoaded", () => {
+    const uploadBtn = document.getElementById("uploadBtn");
+    const fileInput = document.getElementById("fileInput");
+    const uploadResult = document.getElementById("uploadResult");
 
-    if (matches.length === 0 && !data.corrected_text) {
-      suggestionList.innerHTML = `<p class="text-muted">No issues found ✅ (Source: ${data.source || "lt"})</p>`;
-      return;
-    }
+    // Click "Upload" → open file dialog
+    uploadBtn.addEventListener("click", () => fileInput.click());
 
-    // Inline highlighting for detected issues
-    let highlighted = "";
-    let lastIndex = 0;
-    matches.forEach(match => {
-      highlighted += text.substring(lastIndex, match.offset);
-      highlighted += `<mark title="${match.message}" style="background-color:#ffdddd;">${text.substring(match.offset, match.offset + match.length)}</mark>`;
-      lastIndex = match.offset + match.length;
+    // When file selected
+    fileInput.addEventListener("change", () => {
+      if (!fileInput.files.length) return;
+      const file = fileInput.files[0];
+
+      let formData = new FormData();
+      formData.append("file", file);
+
+      uploadResult.innerHTML = `<p>⏳ Uploading & checking grammar...</p>`;
+
+      fetch("/grammar-upload/", {
+        method: "POST",
+        body: formData,
+        headers: {
+          "X-CSRFToken": getCookie("csrftoken") // important for Django
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          uploadResult.innerHTML = `
+            <p><b>✅ Success</b></p>
+            <p><b>Word Count:</b> ${data.words}</p>
+            <pre style="max-height:200px; overflow:auto;">${data.fixed_text}</pre>
+          `;
+        } else {
+          uploadResult.innerHTML = `<p style="color:red;">${data.message}</p>`;
+        }
+      })
+      .catch(err => {
+        uploadResult.innerHTML = `<p style="color:red;">Upload failed. ${err}</p>`;
+      });
     });
-    highlighted += text.substring(lastIndex);
 
-    suggestionList.innerHTML = `
-      <div style="white-space: pre-wrap;">${highlighted}</div>
-      ${data.corrected_text ? `<p class="text-success small">Rewritten text available (Source: ${data.source || "openrouter+lt"})</p>` : ""}
-      ${data.warning ? `<p class="text-warning small">⚠ ${data.warning}</p>` : ""}
-    `;
-  })
-  .catch(err => {
-    console.error(err);
-    suggestionList.innerHTML = `<p class="text-danger">Error checking grammar. Try again.</p>`;
-  });
-});
-
-// Correct All button
-correctAllBtn.addEventListener("click", () => {
-  const text = textArea.value;
-  suggestionList.innerHTML = `<p class="text-muted">Applying corrections...</p>`;
-
-  fetch("/grammar-checker/", {
-    method: "POST",
-    headers: { "X-CSRFToken": getCookie("csrftoken") },
-    body: new URLSearchParams({ text: text, auto_correct: "true" })
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.error) {
-      suggestionList.innerHTML = `<p class="text-danger">${data.error}</p>`;
-      return;
+    // Helper: Get CSRF token
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== "") {
+        const cookies = document.cookie.split(";");
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.startsWith(name + "=")) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
     }
-
-    // Replace textarea with corrected/re-written text
-    textArea.value = data.corrected_text || textArea.value;
-    textArea.dispatchEvent(new Event("input")); // update stats
-
-    suggestionList.innerHTML = `
-      <p class="text-success">✅ Corrections applied </p>
-      ${data.warning ? `<p class="text-warning small">⚠ ${data.warning}</p>` : ""}
-    `;
-    suggestionCount.innerText = 0;
-  })
-  .catch(err => {
-    console.error(err);
-    suggestionList.innerHTML = `<p class="text-danger">Error applying corrections.</p>`;
   });
-});
+
+  const stats = document.getElementById('textStats');
+  const checkBtn = document.getElementById('checkBtn');
+  const textarea = document.getElementById("userText");   // ✅ Fix added
+
+  const WORD_LIMIT_FREE = 2000;
+  const WORD_LIMIT_PRO = 15000;
+
+  // Backend injects this dynamically as a string "true"/"false"
+  let userIsPro = "{{ request.user.userprofile.is_subscribed|yesno:'true,false' }}" === "true";
+  let userIsLoggedIn = "{{ request.user.is_authenticated|yesno:'true,false' }}" === "true";
+
+  // Container for download button
+  let downloadBtnContainer = document.getElementById('downloadBtnContainer');
+  if(!downloadBtnContainer){
+      downloadBtnContainer = document.createElement('div');
+      downloadBtnContainer.id = 'downloadBtnContainer';
+      downloadBtnContainer.classList.add('mt-2');
+      textarea.parentNode.appendChild(downloadBtnContainer);
+  }
+
+  // Live stats update
+  textarea.addEventListener('input', () => {
+      const text = textarea.value;
+      const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+      const charCount = text.length;
+
+      stats.textContent = `Words: ${wordCount} | Characters: ${charCount}`;
+
+      const limit = userIsPro ? WORD_LIMIT_PRO : WORD_LIMIT_FREE;
+
+      if(!userIsLoggedIn){
+          checkBtn.disabled = true;
+          checkBtn.style.background = '#ccc';
+          checkBtn.textContent = 'Please login or sign up';
+      }
+      else if(wordCount > limit){
+          checkBtn.disabled = true;
+          checkBtn.style.background = '#ccc';
+          checkBtn.textContent = userIsPro ? `Limit ${WORD_LIMIT_PRO.toLocaleString()} words` : 'Upgrade to Pro for 15k+ words';
+      } else {
+          checkBtn.disabled = false;
+          checkBtn.style.background = '#b8860b';
+          checkBtn.textContent = 'Check Grammar';
+      }
+  });
+
+  // CSRF helper
+  function getCookie(name){
+      let cookieValue = null;
+      if(document.cookie && document.cookie !== ""){
+          document.cookie.split(";").forEach(cookie => {
+              cookie = cookie.trim();
+              if(cookie.startsWith(name + "=")){
+                  cookieValue = decodeURIComponent(cookie.split("=")[1]);
+              }
+          });
+      }
+      return cookieValue;
+  }
+
+  // Elements
+  const suggestionList = document.getElementById("suggestionList");
+  const suggestionCount = document.getElementById("suggestionCount");
+  const correctAllBtn = document.getElementById("correctAll");
+
+  // Check Grammar button
+  checkBtn.addEventListener("click", () => {
+      if(!userIsLoggedIn){
+          suggestionList.innerHTML = `<p class="text-danger">⚠ Please login or sign up to check grammar.</p>`;
+          return;
+      }
+
+      const text = textarea.value;
+      suggestionList.innerHTML = "";
+      suggestionCount.innerText = 0;
+      downloadBtnContainer.innerHTML = "";
+
+      fetch("/grammar-checker/", {
+          method: "POST",
+          headers: { "X-CSRFToken": getCookie("csrftoken") },
+          body: new URLSearchParams({ text: text })
+      })
+      .then(res => res.json())
+      .then(data => {
+          if(data.error){
+              suggestionList.innerHTML = `<p class="text-danger">${data.error}</p>`;
+              return;
+          }
+
+          const matches = data.matches || [];
+          suggestionCount.innerText = matches.length;
+
+          if(matches.length === 0 && !data.corrected_text){
+              suggestionList.innerHTML = `<p class="text-muted">No issues found ✅ (Source: ${data.source || "lt"})</p>`;
+              return;
+          }
+
+          let highlighted = "";
+          let lastIndex = 0;
+          matches.forEach(match => {
+              highlighted += text.substring(lastIndex, match.offset);
+              highlighted += `<mark title="${match.message}" style="background-color:#ffdddd;">${text.substring(match.offset, match.offset + match.length)}</mark>`;
+              lastIndex = match.offset + match.length;
+          });
+          highlighted += text.substring(lastIndex);
+
+          suggestionList.innerHTML = `
+              <div style="white-space: pre-wrap;">${highlighted}</div>
+              ${data.corrected_text ? `<p class="text-success small">Rewritten text available (Source: ${data.source || "openrouter+lt"})</p>` : ""}
+              ${data.warning ? `<p class="text-warning small">⚠ ${data.warning}</p>` : ""}
+          `;
+      })
+      .catch(err => {
+          console.error(err);
+          suggestionList.innerHTML = `<p class="text-danger">Error checking grammar. Try again.</p>`;
+      });
+  });
+
+  // Correct All button
+  correctAllBtn.addEventListener("click", () => {
+      if(!userIsLoggedIn){
+          suggestionList.innerHTML = `<p class="text-danger">⚠ Please login or sign up to correct grammar.</p>`;
+          return;
+      }
+
+      const text = textarea.value;
+      suggestionList.innerHTML = `<p class="text-muted">Applying corrections...</p>`;
+      downloadBtnContainer.innerHTML = "";
+
+      fetch("/grammar-checker/", {
+          method: "POST",
+          headers: { "X-CSRFToken": getCookie("csrftoken") },
+          body: new URLSearchParams({ text: text, auto_correct: "true" })
+      })
+      .then(res => res.json())
+      .then(data => {
+          if(data.error){
+              suggestionList.innerHTML = `<p class="text-danger">${data.error}</p>`;
+              return;
+          }
+
+          textarea.value = data.corrected_text || textarea.value;
+          textarea.dispatchEvent(new Event("input"));
+
+          suggestionList.innerHTML = `<p class="text-success">✅ Corrections applied</p>`;
+          suggestionCount.innerText = 0;
+
+          if(data.corrected_text){
+              const downloadBtn = document.createElement('button');
+              downloadBtn.classList.add('btn','btn-sm','btn-primary','mt-2');
+              downloadBtn.textContent = "Download Corrected Text";
+              downloadBtn.onclick = () => {
+                  const blob = new Blob([data.corrected_text], {type: "text/plain;charset=utf-8"});
+                  const link = document.createElement("a");
+                  link.href = URL.createObjectURL(blob);
+                  link.download = "corrected_text.txt";
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+              };
+              downloadBtnContainer.appendChild(downloadBtn);
+          }
+      })
+      .catch(err => {
+          console.error(err);
+          suggestionList.innerHTML = `<p class="text-danger">Error applying corrections.</p>`;
+      });
+  });
+
+  // --- New: Pay Now buttons redirect ---
+  document.querySelectorAll('.pro-plan-pay-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+          if(!userIsLoggedIn){
+              alert("Please login or sign up to subscribe.");
+              e.preventDefault();
+              return;
+          }
+          // Redirect to start_subscription view using the button's data-currency
+          const currency = btn.getAttribute('data-currency') || 'NGN';
+          window.location.href = `/start-subscription/?currency=${currency}`;
+      });
+  });
 </script>
-
-
-
 
 
  <!-- How to Use Section -->

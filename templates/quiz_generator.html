@@ -479,8 +479,7 @@ $(document).ready(function(){
     Perfect for students preparing for exams and teachers creating classroom materials. 
     Simple, accurate, and free to use anytime.
   </p>
-</div>
-<!-- AI Quiz Generator Form & Output Side by Side -->
+</div><!-- AI Quiz Generator Form & Output Side by Side -->
 <div class="container-fluid py-2" style="max-width: 1200px;">
   <div class="row justify-content-center">
 
@@ -553,10 +552,12 @@ $(document).ready(function(){
         </div>
       </form>
 
-      <!-- Status Section -->
-      <div id="userStatusQuiz" class="mt-3 text-center small fw-semibold text-dark"></div>
+      <!-- ✅ Free Trial / Status Section -->
+      <div id="userStatusQuiz" class="mt-3 text-center small fw-semibold text-dark">
+        <!-- Dynamically updated with free trial info -->
+      </div>
 
-      <!-- Go Pro Upgrade Banner -->
+      <!-- ✅ Go Pro Upgrade Banner -->
       <div id="goProBannerQuiz" class="mt-3" style="display:none;">
         <div class="d-flex align-items-center justify-content-between p-2 rounded-3 shadow-sm" 
              style="background-color: #FFD700; color: #000;">
@@ -607,19 +608,7 @@ $(document).ready(function(){
   </div>
 </div>
 
-
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
+<script>document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("quizForm");
     const quizSource = document.getElementById("quizSource");
     const fileUpload = document.getElementById("fileUpload");
@@ -633,6 +622,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const downloadInput = document.getElementById("quizTextInput");
     const downloadForm = document.getElementById("downloadForm");
     const copyBtn = document.getElementById("copyQuizBtn");
+
+    // ✅ Free trial + Pro banner
+    const userStatusQuiz = document.getElementById("userStatusQuiz");
+    const goProBannerQuiz = document.getElementById("goProBannerQuiz");
 
     // ✅ Helper: read file content
     const readFileContent = (file) =>
@@ -693,6 +686,21 @@ document.addEventListener("DOMContentLoaded", () => {
             if (response.ok && data.quiz) {
                 quizOutput.value = data.quiz;
                 downloadInput.value = data.quiz;
+
+                // ✅ Update user status
+                if (data.subscribed) {
+                    if (String(data.quiz_left).toLowerCase() === "unlimited") {
+                        userStatusQuiz.innerHTML = "✅ Pro User: Unlimited quizzes";
+                    } else {
+                        userStatusQuiz.innerHTML = `✅ You have ${data.quiz_left} quiz${data.quiz_left == 1 ? "" : "zes"} left`;
+                    }
+                    goProBannerQuiz.style.display = "none";
+                } else {
+                    userStatusQuiz.innerHTML = `🎯 Free Trial Used: ${data.quizzes_used || 0}/3`;
+                    if (data.free_trial_used) {
+                        goProBannerQuiz.style.display = "block";
+                    }
+                }
             } else {
                 const backendError = data.error || data.detail || "Quiz generation failed.";
                 quizOutput.value = "❌ " + backendError;
@@ -729,9 +737,31 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    fetch("/quiz/subscription/status/")
+        .then(res => res.json())
+        .then(data => {
+            const statusEl = document.getElementById("userStatusQuiz");
+            const proBanner = document.getElementById("goProBannerQuiz");
+
+            if (!data.subscribed) {
+                statusEl.innerHTML = `⚠️ ${data.message || "You are on free trial."}`;
+                proBanner.style.display = "block";
+            } else {
+                const quizLeft = String(data.quiz_left).toLowerCase();
+                if (quizLeft === "unlimited") {
+                    statusEl.innerHTML = `<span style="color:#FFD700; font-weight:bold;">👑 Unlimited quizzes available</span>`;
+                } else {
+                    statusEl.innerHTML = `✅ You have ${data.quiz_left} quiz${data.quiz_left == 1 ? "" : "zes"} left`;
+                }
+                proBanner.style.display = "none";
+            }
+        })
+        .catch(err => console.error("Error loading quiz status:", err));
+});
+
 </script>
-
-
 
 
 <!-- How to Use Section -->
@@ -1137,7 +1167,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <li>✔ Supports African languages</li>
             <li>✔ Friendly for students and teachers</li>
           </ul>
-          <a href="#" class="btn btn-primary w-100 rounded-pill">Generate My Quiz Now</a>
+<a href="{% url 'quiz_start_subscription' %}?plan=basic_ng"
+   class="btn btn-primary w-100 rounded-pill">
+   Generate My Quiz Now
+</a>
         </div>
       </div>
 
@@ -1156,7 +1189,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <li>✔ Detailed answer keys included</li>
             <li>✔ Ideal for teachers and students</li>
           </ul>
-          <a href="#" class="btn btn-primary w-100 rounded-pill">Generate My Quiz Now</a>
+<a href="{% url 'quiz_start_subscription' %}?plan=standard_ng"
+   class="btn btn-primary w-100 rounded-pill">
+   Generate My Quiz Now
+</a>
         </div>
       </div>
 
@@ -1175,7 +1211,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <li>✔ Best for teachers, tutors, and students</li>
             <li>✔ Unlimited usage for heavy users</li>
           </ul>
-          <a href="#" class="btn btn-primary w-100 rounded-pill">Generate My Quiz Now</a>
+<a href="{% url 'quiz_start_subscription' %}?plan=unlimited_ng"
+   class="btn btn-primary w-100 rounded-pill">
+   Generate My Quiz Now
+</a>
         </div>
       </div>
 
@@ -1202,7 +1241,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <li>✔ Supports African languages</li>
             <li>✔ Friendly for students and teachers</li>
           </ul>
-          <a href="#" class="btn btn-primary w-100 rounded-pill">Generate My Quiz Now</a>
+<a href="{% url 'quiz_start_subscription' %}?plan=basic_ng"
+   class="btn btn-primary w-100 rounded-pill">
+   Generate My Quiz Now
+</a>
         </div>
       </div>
 
@@ -1219,7 +1261,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <li>✔ Detailed answer keys included</li>
             <li>✔ Ideal for teachers and students</li>
           </ul>
-          <a href="#" class="btn btn-primary w-100 rounded-pill">Generate My Quiz Now</a>
+<a href="{% url 'quiz_start_subscription' %}?plan=standard_ng"
+   class="btn btn-primary w-100 rounded-pill">
+   Generate My Quiz Now
+</a>
         </div>
       </div>
 
@@ -1236,7 +1281,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <li>✔ Best for teachers, tutors, and students</li>
             <li>✔ Unlimited usage for heavy users</li>
           </ul>
-          <a href="#" class="btn btn-primary w-100 rounded-pill">Generate My Quiz Now</a>
+<a href="{% url 'quiz_start_subscription' %}?plan=unlimited_ng"
+   class="btn btn-primary w-100 rounded-pill">
+   Generate My Quiz Now
+</a>
         </div>
       </div>
 
