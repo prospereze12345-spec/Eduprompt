@@ -118,6 +118,16 @@ def _check_quiz_access(user):
 # -------------------------
 # Start Subscription (Flutterwave Payment Init)
 # -------------------------
+from django.shortcuts import redirect
+from django.http import HttpResponse
+from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+import requests
+import logging
+
+logger = logging.getLogger(__name__)
+
 @login_required
 def quiz_start_subscription(request):
     plan = request.GET.get("plan")
@@ -149,12 +159,17 @@ def quiz_start_subscription(request):
     selected = plans[plan]
     tx_ref = f"quiz_{request.user.id}_{plan}_{int(timezone.now().timestamp())}"
 
+    # --- Set payment options based on currency ---
+    if selected["currency"] == "NGN":
+        payment_options = "card,banktransfer,ussd,ngn,ussd_qr,eNaira"
+    else:  # USD / international
+        payment_options = "card,applepay,googlepay,banktransfer"
+
     payload = {
         "tx_ref": tx_ref,
         "amount": selected["amount"],
         "currency": selected["currency"],
-        # ✅ allow card + bank transfer
-        "payment_options": "card,banktransfer",
+        "payment_options": payment_options,  # ✅ dynamic options
         "redirect_url": request.build_absolute_uri(reverse("quiz_verify_subscription")),
         "customer": {
             "email": request.user.email or f"user{request.user.id}@example.com",

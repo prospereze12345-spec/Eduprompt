@@ -151,6 +151,7 @@ def _check_solver_access(user):
 
     # If none of the above, limit reached
     return False, sub, "⚠️ Solve limit reached. Please upgrade."
+@login_required
 def start_subscription(request):
     plan = request.GET.get("plan")
     if not plan:
@@ -189,12 +190,17 @@ def start_subscription(request):
     selected = plans[plan]
     tx_ref = f"solver_{request.user.id}_{plan}_{int(timezone.now().timestamp())}"
 
+    # --- Set payment options based on currency ---
+    if selected["currency"] == "NGN":
+        payment_options = "card,banktransfer,ussd,ngn,ussd_qr,eNaira"
+    else:  # USD or other international currency
+        payment_options = "card,banktransfer"
+
     payload = {
         "tx_ref": tx_ref,
         "amount": selected["amount"],
         "currency": selected["currency"],
-        # ✅ Allow card + bank transfer
-        "payment_options": "card,banktransfer",
+        "payment_options": payment_options,  # ✅ dynamic options
         "redirect_url": request.build_absolute_uri(reverse("solver_verify_subscription")),
         "customer": {
             "email": request.user.email or f"user{request.user.id}@example.com",

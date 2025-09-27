@@ -1333,7 +1333,7 @@ document.addEventListener("DOMContentLoaded", fetchUserStatus);
   </div>
 </section>
 
-<section id="pricing-naira" class="pricing-section py-5" style="background-color:#f9f9f9; display:none;">
+<section id="pricing-naira" class="pricing-section py-5" style="background-color:#f9f9f9; display:true;">
   <div class="container text-center">
     <h2 class="mb-4">Simple and Affordable Pricing</h2>
     <p class="mb-5 text-muted">Perfect plans for your essay generation needs</p>
@@ -1345,7 +1345,7 @@ document.addEventListener("DOMContentLoaded", fetchUserStatus);
         <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
           <h5 class="card-title mb-3">Basic</h5>
           <p class="mb-2 text-muted"><s>₦2,500</s></p>
-          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦1,800</p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦1,800/$4</p>
           <span class="badge bg-success mb-4">Save 28%</span>
           <ul class="list-unstyled text-start mb-4">
             <li>✔ 5 Requests | 30 days</li>
@@ -1353,7 +1353,25 @@ document.addEventListener("DOMContentLoaded", fetchUserStatus);
             <li>✔ Up to 3 citations</li>
             <li>✔ Any language</li>
           </ul>
-<a href="{% url 'start_subscription' %}?plan=basic_ng" class="btn btn-primary w-100 rounded-pill">Subscribe Now</a>
+<!-- Essay Payment Buttons -->
+<div class="d-flex flex-column gap-2">
+
+  <!-- Pay in NGN -->
+  <a href="{% url 'start_subscription' %}?plan=basic_ng" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: darkblue; color: #ffffff; font-weight: 500;">
+    Pay in NGN
+  </a>
+
+  <!-- Pay in USD -->
+  <a href="{% url 'start_subscription' %}?plan=basic_usd" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: #ffffff; color: #001a4d; border: 1px solid #001a4d; font-weight: 500;">
+    Pay in USD
+  </a>
+
+</div>
+
         </div>
       </div>
 
@@ -1363,7 +1381,7 @@ document.addEventListener("DOMContentLoaded", fetchUserStatus);
           <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3">Most Popular</span>
           <h5 class="card-title mb-3">Standard</h5>
           <p class="mb-2 text-muted"><s>₦7,000</s></p>
-          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦5,000</p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦5,000/$10</p>
           <span class="badge bg-success mb-4">Save 29%</span>
           <ul class="list-unstyled text-start mb-4">
             <li>✔ 15 Requests | 30 days</li>
@@ -1371,7 +1389,25 @@ document.addEventListener("DOMContentLoaded", fetchUserStatus);
             <li>✔ Up to 3 citations</li>
             <li>✔ Multilingual support</li>
           </ul>
-<a href="{% url 'start_subscription' %}?plan=standard_ng" class="btn btn-primary w-100 rounded-pill">Subscribe Now</a>
+<!-- Standard Essay Payment Buttons -->
+<div class="d-flex flex-column gap-2">
+
+  <!-- Pay in NGN -->
+  <a href="{% url 'start_subscription' %}?plan=standard_ng" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: darkblue; color: #ffffff; font-weight: 500;">
+    Pay in NGN
+  </a>
+
+  <!-- Pay in USD -->
+  <a href="{% url 'start_subscription' %}?plan=standard_usd" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: #ffffff; color: #001a4d; border: 1px solid #001a4d; font-weight: 500;">
+    Pay in USD
+  </a>
+
+</div>
+
         </div>
       </div>
 
@@ -1380,7 +1416,7 @@ document.addEventListener("DOMContentLoaded", fetchUserStatus);
         <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
           <h5 class="card-title mb-3">Unlimited</h5>
           <p class="mb-2 text-muted"><s>₦20,000</s></p>
-          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦17,000</p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦17,000/$25</p>
           <span class="badge bg-success mb-4">Save 20%</span>
           <ul class="list-unstyled text-start mb-4">
             <li>✔ Unlimited Requests | 30 days</li>
@@ -1388,8 +1424,25 @@ document.addEventListener("DOMContentLoaded", fetchUserStatus);
             <li>✔ Up to 3 citations</li>
             <li>✔ Multilingual support</li>
             <li>✔ Best value for heavy users</li>
-          </ul>
-<a href="{% url 'start_subscription' %}?plan=unlimited_ng" class="btn btn-primary w-100 rounded-pill">Subscribe Now</a>
+          </ul><!-- Unlimited Essay Payment Buttons -->
+<div class="d-flex flex-column gap-2">
+
+  <!-- Pay in NGN -->
+  <a href="{% url 'start_subscription' %}?plan=unlimited_ng" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: darkblue; color: #ffffff; font-weight: 500;">
+    Pay in NGN
+  </a>
+
+  <!-- Pay in USD -->
+  <a href="{% url 'start_subscription' %}?plan=unlimited_usd" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: #ffffff; color: #001a4d; border: 1px solid #001a4d; font-weight: 500;">
+    Pay in USD
+  </a>
+
+</div>
+
         </div>
       </div>
 
@@ -1398,117 +1451,13 @@ document.addEventListener("DOMContentLoaded", fetchUserStatus);
 </section>
 
 
-<section id="pricing-dollar" class="pricing-section py-5" style="background-color:#f9f9f9; display:true;">
-  <div class="container text-center">
-    <h2 class="mb-4">Simple and Affordable Pricing</h2>
-    <p class="mb-5 text-muted">Perfect plans for your essay generation needs</p>
 
-    <div class="row justify-content-center g-4">
 
-      <!-- Basic Plan -->
-      <div class="col-md-4">
-        <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
-          <h5 class="card-title mb-3">Basic</h5>
-          <p class="price mb-4" style="font-size:2rem; font-weight:bold;">$4</p>
-          <ul class="list-unstyled text-start mb-4">
-            <li>✔ 5 Requests | 30 days</li>
-            <li>✔ 800-word essays</li>
-            <li>✔ Up to 3 citations</li>
-            <li>✔ Any language</li>
-          </ul>
-<a href="{% url 'start_subscription' %}?plan=basic_usd" class="btn btn-primary w-100 rounded-pill">Subscribe Now</a>
-        </div>
-      </div>
 
-      <!-- Standard Plan -->
-      <div class="col-md-4">
-        <div class="card h-100 p-4 shadow border-primary border-2 rounded-3 position-relative">
-          <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3">Most Popular</span>
-          <h5 class="card-title mb-3">Standard</h5>
-          <p class="price mb-4" style="font-size:2rem; font-weight:bold;">$10</p>
-          <ul class="list-unstyled text-start mb-4">
-            <li>✔ 15 Requests | 30 days</li>
-            <li>✔ 800-word essays</li>
-            <li>✔ Up to 3 citations</li>
-            <li>✔ Multilingual support</li>
-          </ul>
-<a href="{% url 'start_subscription' %}?plan=standard_usd" class="btn btn-primary w-100 rounded-pill">Subscribe Now</a>
-        </div>
-      </div>
+      
+    
 
-      <!-- Unlimited Plan -->
-      <div class="col-md-4">
-        <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
-          <h5 class="card-title mb-3">Unlimited</h5>
-          <p class="price mb-4" style="font-size:2rem; font-weight:bold;">$25</p>
-          <ul class="list-unstyled text-start mb-4">
-            <li>✔ Unlimited Requests | 30 days</li>
-            <li>✔ 800-word essays</li>
-            <li>✔ Up to 3 citations</li>
-            <li>✔ Multilingual support</li>
-            <li>✔ Best value for heavy users</li>
-          </ul>
-<a href="{% url 'start_subscription' %}?plan=unlimited_usd" class="btn btn-primary w-100 rounded-pill">Subscribe Now</a>
-        </div>
-      </div>
 
-    </div>
-  </div>
-</section>
-
-<script>
-fetch("https://ipapi.co/json/")
-  .then(res => res.json())
-  .then(data => {
-    // force NG when testing locally
-    if (["127.0.0.1", "localhost"].includes(window.location.hostname)) {
-      data.country_code = "NG";
-    }
-
-    if (data.country_code === "NG") {
-      document.getElementById("pricing-naira").style.display = "block";
-    } else {
-      document.getElementById("pricing-dollar").style.display = "block";
-    }
-  })
-  .catch(() => {
-    document.getElementById("pricing-dollar").style.display = "block";
-  });
-  document.addEventListener("DOMContentLoaded", () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get("payment") === "success") {
-    alert("✅ Subscription activated! You can now generate essays.");
-  }
-  if (urlParams.get("payment") === "failed") {
-    alert("❌ Payment failed. Please try again.");
-  }
-});
-
-</script>
-
-<footer id="footer" class="footer">
-
-  <style>
-    /* Remove underline from all <h4> headings */
-    footer h4 {
-      text-decoration: none !important;  /* Remove underline */
-      border-bottom: none !important;    /* Remove any border lines */
-      color: #000;                       /* Ensure text color is black */
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    /* Remove underline from links inside footer-links */
-    footer .footer-links a {
-      text-decoration: none !important;
-      color: #000;
-      transition: color 0.3s ease;
-    }
-    footer .footer-links a:hover {
-      color: green; /* Bootstrap primary color on hover */
-      text-decoration: none;
-    }
-  </style>
 
   
 

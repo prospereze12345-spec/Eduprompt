@@ -172,13 +172,19 @@ def grammar_start_subscription(request):
     user_profile.flutterwave_tx_ref = tx_ref
     user_profile.save()
 
+    # --- Set payment options based on currency ---
+    if currency == "NGN":
+        payment_options = "card,banktransfer,ussd,ngn,ussd_qr,eNaira"
+    else:  # USD / international
+        payment_options = "card,applepay,googlepay,banktransfer"
+
     # Flutterwave payment payload
     payload = {
         "tx_ref": tx_ref,
         "amount": amount,
         "currency": currency,
         "redirect_url": request.build_absolute_uri("/grammar-verify-subscription/"),
-        "payment_options": "card,banktransfer",
+        "payment_options": payment_options,  # ✅ dynamic options
         "customer": {
             "email": request.user.email,
             "name": request.user.username,
@@ -190,13 +196,23 @@ def grammar_start_subscription(request):
     }
 
     headers = {"Authorization": f"Bearer {settings.FLW_SECRET_KEY}"}
-    res = requests.post("https://api.flutterwave.com/v3/payments", json=payload, headers=headers)
-    res_data = res.json()
 
-    if res_data.get("status") == "success":
+    try:
+        res = requests.post(
+            "https://api.flutterwave.com/v3/payments",
+            json=payload,
+            headers=headers,
+            timeout=15
+        )
+        res_data = res.json()
+    except requests.RequestException as e:
+        return JsonResponse({"error": f"Failed to initiate payment: {str(e)}"}, status=500)
+
+    if res_data.get("status") == "success" and "link" in res_data.get("data", {}):
         return redirect(res_data["data"]["link"])
 
     return JsonResponse({"error": "Failed to initiate payment"}, status=400)
+
 from datetime import timedelta
 from django.utils import timezone
 import requests

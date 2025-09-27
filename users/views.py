@@ -5,38 +5,187 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from threading import Timer
 from .utils import send_welcome_email
+# views.py
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.http import require_POST
+from threading import Timer
+from django.utils.crypto import get_random_string
+from django.core.mail import send_mail
+from django.urls import reverse
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.contrib.auth.tokens import default_token_generator
 
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.http import require_POST
+from threading import Timer
+from django.core.mail import send_mail
+
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
+# -------------------------------
+# Welcome email function with template
+# -------------------------------
+def send_welcome_email(user):
+    # Render HTML template
+    html_content = render_to_string('emails/welcome_email.html', {'user': user})
+    # Fallback plain text
+    text_content = strip_tags(html_content)
+
+    email = EmailMultiAlternatives(
+        subject="Welcome to Eduprompt!",  # You can also customize the subject
+        body=text_content,
+        from_email="prospereze12345@gmail.com",
+        to=[user.email]
+    )
+    email.attach_alternative(html_content, "text/html")
+    email.send(fail_silently=True)
+
+@csrf_protect
 @require_POST
 def ajax_signup(request):
-    email = request.POST.get('email')
-    password1 = request.POST.get('password1')
-    password2 = request.POST.get('password2')
+    username = request.POST.get('username', '').strip()
+    email = request.POST.get('email', '').strip().lower()
+    password = request.POST.get('password', '').strip()
 
-    if not all([email, password1, password2]):
+    # -------------------------------
+    # Validate inputs
+    # -------------------------------
+    if not all([username, email, password]):
         return JsonResponse({'user_authenticated': False, 'errors': 'All fields are required.'})
 
-    if password1 != password2:
-        return JsonResponse({'user_authenticated': False, 'errors': 'Passwords do not match.'})
-
+    # -------------------------------
+    # Check uniqueness
+    # -------------------------------
+    if User.objects.filter(username=username).exists():
+        return JsonResponse({'user_authenticated': False, 'errors': 'Username already taken.'})
     if User.objects.filter(email=email).exists():
         return JsonResponse({'user_authenticated': False, 'errors': 'Email already registered.'})
 
-    user = User.objects.create_user(username=email, email=email, password=password1)
+    # -------------------------------
+    # Create user and login
+    # -------------------------------
+    user = User.objects.create_user(username=username, email=email, password=password)
     login(request, user)
 
-    # Send welcome email after 3 seconds
+    # -------------------------------
+    # Send welcome email asynchronously
+    # -------------------------------
     Timer(3.0, send_welcome_email, args=[user]).start()
 
+    # -------------------------------
+    # Return success JSON
+    # -------------------------------
     return JsonResponse({'user_authenticated': True})
 
-@require_POST
+# -------------------------------
+# AJAX Login (email + optional password)
+# -------------------------------
+@csrf_protect
 def ajax_login(request):
-    email = request.POST.get('email')
-    password = request.POST.get('password')
+    if request.method == "POST" and request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        email = request.POST.get("email", "").strip()
+        password = request.POST.get("password", "").strip()  # optional
 
-    user = authenticate(request, username=email, password=password)
-    if user is not None:
+        if not email:
+            return JsonResponse({"user_authenticated": False, "errors": "Email is required."})
+
+        try:
+            user = User.objects.get(email__iexact=email, is_active=True)
+        except User.DoesNotExist:
+            return JsonResponse({"user_authenticated": False, "errors": "Invalid credentials."})
+
+        if password:
+            # Authenticate using password if provided
+            user_auth = authenticate(request, username=user.username, password=password)
+            if not user_auth:
+                return JsonResponse({"user_authenticated": False, "errors": "Invalid credentials."})
+            login(request, user_auth)
+        else:
+            # Optional: just allow magic link login flow
+            pass  # magic link handled separately
+
+        return JsonResponse({"user_authenticated": True})
+
+    return JsonResponse({"user_authenticated": False, "errors": "Invalid request."})
+
+
+# -------------------------------
+# Send Magic Link
+# -------------------------------
+@require_POST
+@csrf_protect
+def send_magic_link(request):
+    email = request.POST.get("email", "").strip().lower()
+    if not email:
+        return JsonResponse({"ok": False, "errors": "Email is required."})
+
+    try:
+        user = User.objects.get(email__iexact=email, is_active=True)
+    except User.DoesNotExist:
+        # avoid leaking existence
+        return JsonResponse({"ok": True})
+
+    token = default_token_generator.make_token(user)
+    uid = urlsafe_base64_encode(force_bytes(user.pk))
+    magic_path = reverse("magic_login")  # create URL in urls.py
+    link = request.build_absolute_uri(f"{magic_path}?uid={uid}&token={token}")
+
+    # Send email
+    send_mail(
+        "Your Magic Login Link",
+        f"Click the link to sign in: {link}\n\nThis link expires in 15 minutes.",
+        "no-reply@myapp.com",
+        [email],
+        fail_silently=True
+    )
+
+    return JsonResponse({"ok": True})
+
+
+# -------------------------------
+# Magic Login
+# -------------------------------
+from django.shortcuts import redirect
+from django.utils.http import urlsafe_base64_decode
+
+@csrf_protect
+def magic_login(request):
+    uidb64 = request.GET.get("uid")
+    token = request.GET.get("token")
+
+    if not uidb64 or not token:
+        return JsonResponse({"error": "Invalid link"}, status=400)
+
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = User.objects.get(pk=uid, is_active=True)
+    except Exception:
+        return JsonResponse({"error": "Invalid link"}, status=400)
+
+    if default_token_generator.check_token(user, token):
         login(request, user)
-        return JsonResponse({'user_authenticated': True})
-    return JsonResponse({'user_authenticated': False, 'errors': 'Invalid credentials.'})
+        return redirect("/")  # or wherever your dashboard is
+    else:
+        return JsonResponse({"error": "Link expired or invalid"}, status=400)
 
+
+from django.contrib.auth.views import PasswordResetCompleteView
+
+class ModalPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = "password_reset_complete.html"  
+
+    # override get_context_data to avoid reversing LOGIN_URL
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Instead of relying on LOGIN_URL, just pass a flag for modal login
+        context['use_modal_login'] = True
+        return context

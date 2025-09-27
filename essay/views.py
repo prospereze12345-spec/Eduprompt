@@ -86,6 +86,16 @@ from django.conf import settings
 
 logger = logging.getLogger(__name__)
 # Remove @login_required because we handle auth manually
+import requests
+from django.conf import settings
+from django.shortcuts import redirect
+from django.http import HttpResponse
+from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+import logging
+
+logger = logging.getLogger(__name__)
+
 @login_required
 def start_subscription(request):
     plan = request.GET.get("plan")
@@ -116,12 +126,18 @@ def start_subscription(request):
     # Use a unique tx_ref per transaction
     tx_ref = f"sub_{request.user.id}_{plan}_{int(timezone.now().timestamp())}"
 
+    # --- Set payment options based on currency ---
+    if selected["currency"] == "NGN":
+        payment_options = "card,banktransfer,ussd,ngn,ussd_qr,eNaira"
+    else:  # USD or other international currency
+      payment_options = "card,banktransfer"
+
+
     payload = {
         "tx_ref": tx_ref,
         "amount": selected["amount"],
         "currency": selected["currency"],
-        # ✅ Allow card + bank transfer
-        "payment_options": "card,banktransfer",
+        "payment_options": payment_options,  # ✅ dynamic options
         "redirect_url": request.build_absolute_uri("/essay/verify-subscription/"),
         "customer": {
             "email": request.user.email or f"user{request.user.id}@example.com",
@@ -158,7 +174,6 @@ def start_subscription(request):
     except requests.RequestException as e:
         logger.exception("Flutterwave request failed")
         return HttpResponse(f"Payment request failed: {str(e)}", status=500)
-
 
 @login_required
 def verify_subscription(request):

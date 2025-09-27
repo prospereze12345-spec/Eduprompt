@@ -258,13 +258,22 @@ CKEDITOR_CONFIGS = {
 }
 from django.urls import reverse_lazy
 
-# 👇 Add these here
-LOGIN_URL = reverse_lazy("login")        # Where Django redirects when login is required
-LOGIN_REDIRECT_URL = "/"                 # After login
-LOGOUT_REDIRECT_URL = "/"                # After logout
+LOGIN_URL = 'login'               # must match the name of a URL
+LOGIN_REDIRECT_URL = "/"          # After login
+LOGOUT_REDIRECT_URL = "/"         # After logout
+
+# Example email backend for testing in dev
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'noreply@example.com'
+               # After logout
 
 # 👇 Custom domain for password reset emails
 DEFAULT_DOMAIN = "127.0.0.1:8000"
+
+
+# For development: emails printed in console
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

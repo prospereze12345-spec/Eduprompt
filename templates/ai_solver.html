@@ -1294,7 +1294,7 @@ function downloadSolutionPDF() {
         <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
           <h5 class="card-title mb-3">Basic</h5>
           <p class="mb-2 text-muted"><s>₦2000</s></p>
-          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦1,500</p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦1,500/$3</p>
           <span class="badge bg-success mb-4">Save 30%</span>
           <ul class="list-unstyled text-start mb-4">
             <li>✔ Solve up to 20 problems / 30 days</li>
@@ -1302,10 +1302,25 @@ function downloadSolutionPDF() {
             <li>✔ Multi-subject support</li>
             <li>✔ Solve in your preferred language (including African languages)</li>
           </ul>
-<a href="{% url 'solver_start_subscription' %}?plan=basic_ng"
-   class="btn btn-primary w-100 rounded-pill">
-   Get Instant Solutions
-</a>
+<!-- AI Solver Basic Payment Buttons -->
+<div class="d-flex flex-column gap-2">
+
+  <!-- Pay in NGN -->
+  <a href="{% url 'solver_start_subscription' %}?plan=basic_ng" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: darkblue; color: #ffffff; font-weight: 500;">
+    Pay in NGN
+  </a>
+
+  <!-- Pay in USD -->
+  <a href="{% url 'solver_start_subscription' %}?plan=basic_usd" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: #ffffff; color: #001a4d; border: 1px solid #001a4d; font-weight: 500;">
+    Pay in USD
+  </a>
+
+</div>
+
         </div>
       </div>
 
@@ -1315,7 +1330,7 @@ function downloadSolutionPDF() {
           <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3">Most Popular</span>
           <h5 class="card-title mb-3">Standard</h5>
           <p class="mb-2 text-muted"><s>₦6,000</s></p>
-          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦4,500</p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦4,500/$8</p>
           <span class="badge bg-success mb-4">Save 25%</span>
           <ul class="list-unstyled text-start mb-4">
             <li>✔ Solve up to 70 problems / 30 days</li>
@@ -1323,10 +1338,25 @@ function downloadSolutionPDF() {
             <li>✔ Multi-subject support (Math, Physics, Chemistry)</li>
             <li>✔ Solve in your preferred language (including African languages)</li>
           </ul>
-<a href="{% url 'solver_start_subscription' %}?plan=standard_ng"
-   class="btn btn-primary w-100 rounded-pill">
-   Get Instant Solutions
-</a>
+<!-- AI Solver Standard Payment Buttons -->
+<div class="d-flex flex-column gap-2">
+
+  <!-- Pay in NGN -->
+  <a href="{% url 'solver_start_subscription' %}?plan=standard_ng" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: darkblue; color: #ffffff; font-weight: 500;">
+    Get Instant Solutions
+  </a>
+
+  <!-- Pay in USD -->
+  <a href="{% url 'solver_start_subscription' %}?plan=standard_usd" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: #ffffff; color: #001a4d; border: 1px solid #001a4d; font-weight: 500;">
+    Get Instant Solutions
+  </a>
+
+</div>
+
         </div>
       </div>
 
@@ -1335,7 +1365,7 @@ function downloadSolutionPDF() {
         <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
           <h5 class="card-title mb-3">Unlimited</h5>
           <p class="mb-2 text-muted"><s>₦15,000</s></p>
-          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦12,000</p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦12,000/$20</p>
           <span class="badge bg-success mb-4">Save 20%</span>
           <ul class="list-unstyled text-start mb-4">
             <li>✔ Unlimited problem-solving / 30 days</li>
@@ -1343,108 +1373,31 @@ function downloadSolutionPDF() {
             <li>✔ Multi-subject support (Math, Physics, Chemistry)</li>
             <li>✔ Best value for heavy users</li>
           </ul>
-<a href="{% url 'solver_start_subscription' %}?plan=unlimited_ng"
-   class="btn btn-primary w-100 rounded-pill">
-   Get Instant Solutions
-</a>
+<!-- AI Solver Unlimited Payment Buttons -->
+<div class="d-flex flex-column gap-2">
+
+  <!-- Pay in NGN -->
+  <a href="{% url 'solver_start_subscription' %}?plan=unlimited_ng" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: darkblue; color: #ffffff; font-weight: 500;">
+    Get Instant Solutions
+  </a>
+
+  <!-- Pay in USD -->
+  <a href="{% url 'solver_start_subscription' %}?plan=unlimited_usd" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: #ffffff; color: #001a4d; border: 1px solid #001a4d; font-weight: 500;">
+    Get Instant Solutions
+  </a>
+
+</div>
+
         </div>
       </div>
 
-    </div>
-  </div>
+ 
 </section>
 
-<!-- Dollar Pricing -->
-<section id="pricing-dollar" class="pricing-section py-5" 
-         style="background-color:#f9f9f9; display:true; min-height:100vh; width:100%;">
-  <div class="container-fluid text-center px-5">
-    <h2 class="mb-4">AI Solver Pricing Plans</h2>
-    <p class="mb-5 text-muted">Solve problems faster and smarter — now in your preferred language, including African languages!</p>
-
-    <div class="row justify-content-center g-4">
-
-      <!-- Basic Plan -->
-      <div class="col-md-4">
-        <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
-          <h5 class="card-title mb-3">Basic</h5>
-          <p class="price mb-4" style="font-size:2rem; font-weight:bold;">$3</p>
-          <ul class="list-unstyled text-start mb-4">
-            <li>✔ Solve up to 20 problems / 30 days</li>
-            <li>✔ Step-by-step solutions</li>
-            <li>✔ Multi-subject support</li>
-            <li>✔ Solve in your preferred language (including African languages)</li>
-          </ul>
-
-<a href="{% url 'solver_start_subscription' %}?plan=basic_usd"
-   class="btn btn-primary w-100 rounded-pill">
-   Get Instant Solutions
-</a>        </div>
-      </div>
-
-      <!-- Standard Plan -->
-      <div class="col-md-4">
-        <div class="card h-100 p-4 shadow border-primary border-2 rounded-3 position-relative">
-          <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3">Most Popular</span>
-          <h5 class="card-title mb-3">Standard</h5>
-          <p class="price mb-4" style="font-size:2rem; font-weight:bold;">$8</p>
-          <ul class="list-unstyled text-start mb-4">
-            <li>✔ Solve up to 70 problems / 30 days</li>
-            <li>✔ Detailed step-by-step solutions</li>
-            <li>✔ Multi-subject support</li>
-            <li>✔ Solve in your preferred language (including African languages)</li>
-          </ul>
-
-<a href="{% url 'solver_start_subscription' %}?plan=standard_usd"
-   class="btn btn-primary w-100 rounded-pill">
-   Get Instant Solutions
-</a>        </div>
-      </div>
-
-      <!-- Unlimited Plan -->
-      <div class="col-md-4">
-        <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
-          <h5 class="card-title mb-3">Unlimited</h5>
-          <p class="price mb-4" style="font-size:2rem; font-weight:bold;">$20</p>
-          <ul class="list-unstyled text-start mb-4">
-            <li>✔ Unlimited problem-solving / 30 days</li>
-            <li>✔ Advanced step-by-step solutions</li>
-            <li>✔ Multi-subject & complex problems</li>
-            <li>✔ Solve in your preferred language (including African languages)</li>
-            <li>✔ Best value for heavy users</li>
-          </ul>
-
-<a href="{% url 'solver_start_subscription' %}?plan=unlimited_usd"
-   class="btn btn-primary w-100 rounded-pill">
-   Get Instant Solutions
-</a>        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  fetch("https://ipapi.co/json/")
-    .then(res => res.json())
-    .then(data => {
-      if (["127.0.0.1", "localhost"].includes(window.location.hostname)) {
-        data.country_code = "NG"; // force NG for local dev
-      }
-      if (data.country_code === "NG") {
-        document.getElementById("pricing-naira").style.display = "block";
-        document.getElementById("pricing-dollar").style.display = "none";
-      } else {
-        document.getElementById("pricing-naira").style.display = "none";
-        document.getElementById("pricing-dollar").style.display = "block";
-      }
-    })
-    .catch(() => {
-      document.getElementById("pricing-naira").style.display = "none";
-      document.getElementById("pricing-dollar").style.display = "block";
-    });
-});
-</script>
 
 
 <!-- Main Footer -->

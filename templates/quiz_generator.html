@@ -1147,7 +1147,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </section>
 
 <section id="pricing-naira" class="pricing-section py-5" 
-         style="background-color:#f9f9f9; display:none; min-height:100vh; width:100%;">
+         style="background-color:#f9f9f9; display:true; min-height:100vh; width:100%;">
   <div class="container-fluid text-center px-5">
     <h2 class="mb-4">Quiz Generator Pricing Plans</h2>
     <p class="mb-5 text-muted">Create up to 10 quizzes with ease — now in your preferred language, including African languages!</p>
@@ -1159,7 +1159,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
           <h5 class="card-title mb-3">Basic</h5>
           <p class="mb-2 text-muted"></s>₦1,600</p>
-          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦1,200</p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦1,200/$2</p>
           <span class="badge bg-success mb-4">Save 25%</span>
           <ul class="list-unstyled text-start mb-4">
             <li>✔ Generate up to 20 quizzes / month</li>
@@ -1167,10 +1167,18 @@ document.addEventListener("DOMContentLoaded", () => {
             <li>✔ Supports African languages</li>
             <li>✔ Friendly for students and teachers</li>
           </ul>
+<!-- NGN Payment Button -->
 <a href="{% url 'quiz_start_subscription' %}?plan=basic_ng"
-   class="btn btn-primary w-100 rounded-pill">
-   Generate My Quiz Now
+   class="btn w-100 rounded-pill mb-2"
+   style="background-color: #001f5b; color: #ffffff; padding: 10px 0;">
+   Pay in NGN
 </a>
+<a href="{% url 'quiz_start_subscription' %}?plan=basic_usd"
+   class="btn w-100 rounded-pill mb-2"
+   style="background-color: #ffffff; color: #001f5b; border: 2px solid #001f5b; padding: 10px 0;">
+   Pay in USD
+</a>
+
         </div>
       </div>
 
@@ -1180,7 +1188,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3">Most Popular</span>
           <h5 class="card-title mb-3">Standard</h5>
           <p class="mb-2 text-muted"><s>₦4,000</s></p>
-          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦2,800</p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦2,800/$5</p>
           <span class="badge bg-success mb-4">Save 30%</span>
           <ul class="list-unstyled text-start mb-4">
             <li>✔ Generate up to 50 quizzes / month</li>
@@ -1189,10 +1197,20 @@ document.addEventListener("DOMContentLoaded", () => {
             <li>✔ Detailed answer keys included</li>
             <li>✔ Ideal for teachers and students</li>
           </ul>
+<!-- Standard NGN Payment Button -->
 <a href="{% url 'quiz_start_subscription' %}?plan=standard_ng"
-   class="btn btn-primary w-100 rounded-pill">
-   Generate My Quiz Now
+   class="btn w-100 rounded-pill mb-2"
+   style="background-color: #001f5b; color: #ffffff; padding: 10px 0;">
+   Pay in NGN
 </a>
+
+<!-- Standard USD Payment Button -->
+<a href="{% url 'quiz_start_subscription' %}?plan=standard_usd"
+   class="btn w-100 rounded-pill mb-2"
+   style="background-color: #ffffff; color: #001f5b; border: 2px solid #001f5b; padding: 10px 0;">
+   Pay in USD
+</a>
+
         </div>
       </div>
 
@@ -1201,7 +1219,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
           <h5 class="card-title mb-3">Unlimited</h5>
           <p class="mb-2 text-muted"><s>₦10,000</s></p>
-          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦7,500</p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦7,500/$10</p>
           <span class="badge bg-success mb-4">Save 25%</span>
           <ul class="list-unstyled text-start mb-4">
             <li>✔ Generate unlimited quiz / month</li>
@@ -1211,10 +1229,20 @@ document.addEventListener("DOMContentLoaded", () => {
             <li>✔ Best for teachers, tutors, and students</li>
             <li>✔ Unlimited usage for heavy users</li>
           </ul>
+<!-- Unlimited NGN Payment Button -->
 <a href="{% url 'quiz_start_subscription' %}?plan=unlimited_ng"
-   class="btn btn-primary w-100 rounded-pill">
-   Generate My Quiz Now
+   class="btn w-100 rounded-pill mb-2"
+   style="background-color: #001f5b; color: #ffffff; padding: 10px 0;">
+   Pay in NGN
 </a>
+
+<!-- Unlimited USD Payment Button -->
+<a href="{% url 'quiz_start_subscription' %}?plan=unlimited_usd"
+   class="btn w-100 rounded-pill mb-2"
+   style="background-color: #ffffff; color: #001f5b; border: 2px solid #001f5b; padding: 10px 0;">
+   Pay in USD
+</a>
+
         </div>
       </div>
 
@@ -1222,121 +1250,19 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 </section>
 
-<section id="pricing-dollar" class="pricing-section py-5" 
-         style="background-color:#f9f9f9; display:none; min-height:100vh; width:100%;">
-  <div class="container-fluid text-center px-5">
-    <h2 class="mb-4">Quiz Generator Pricing Plans</h2>
-    <p class="mb-5 text-muted">Create up to 10 quizzes with ease — now in your preferred language, including African languages!</p>
 
-    <div class="row justify-content-center g-4">
 
-      <!-- Basic Plan -->
-      <div class="col-md-4">
-        <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
-          <h5 class="card-title mb-3">Basic</h5>
-          <p class="price mb-4" style="font-size:2rem; font-weight:bold;">$2</p>
-          <ul class="list-unstyled text-start mb-4">
-            <li>✔ Generate up to 20 quizzes / month</li>
-            <li>✔ Multiple-choice or short answer</li>
-            <li>✔ Supports African languages</li>
-            <li>✔ Friendly for students and teachers</li>
-          </ul>
-<a href="{% url 'quiz_start_subscription' %}?plan=basic_ng"
-   class="btn btn-primary w-100 rounded-pill">
-   Generate My Quiz Now
-</a>
-        </div>
-      </div>
-
-      <!-- Standard Plan -->
-      <div class="col-md-4">
-        <div class="card h-100 p-4 shadow border-primary border-2 rounded-3 position-relative">
-          <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3">Most Popular</span>
-          <h5 class="card-title mb-3">Standard</h5>
-          <p class="price mb-4" style="font-size:2rem; font-weight:bold;">$5</p>
-          <ul class="list-unstyled text-start mb-4">
-            <li>✔ Generate up to 50 quizzes / month</li>
-            <li>✔ Multiple-choice or short answer</li>
-            <li>✔ African language support</li>
-            <li>✔ Detailed answer keys included</li>
-            <li>✔ Ideal for teachers and students</li>
-          </ul>
-<a href="{% url 'quiz_start_subscription' %}?plan=standard_ng"
-   class="btn btn-primary w-100 rounded-pill">
-   Generate My Quiz Now
-</a>
-        </div>
-      </div>
-
-      <!-- Unlimited Plan -->
-      <div class="col-md-4">
-        <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
-          <h5 class="card-title mb-3">Unlimited</h5>
-          <p class="price mb-4" style="font-size:2rem; font-weight:bold;">$10</p>
-          <ul class="list-unstyled text-start mb-4">
-            <li>✔ Generate unlimited quizzes / month</li>
-            <li>✔ Multiple-choice, short answer & mixed types</li>
-            <li>✔ Supports African languages</li>
-            <li>✔ Detailed answer keys & explanations</li>
-            <li>✔ Best for teachers, tutors, and students</li>
-            <li>✔ Unlimited usage for heavy users</li>
-          </ul>
-<a href="{% url 'quiz_start_subscription' %}?plan=unlimited_ng"
-   class="btn btn-primary w-100 rounded-pill">
-   Generate My Quiz Now
-</a>
-        </div>
-      </div>
+      
 
     </div>
   </div>
 </section>
 
-<script>
-fetch("https://ipapi.co/json/")
-  .then(res => res.json())
-  .then(data => {
-    if (["127.0.0.1", "localhost"].includes(window.location.hostname)) {
-      data.country_code = "NG";
-    }
-    if (data.country_code === "NG") {
-      document.getElementById("pricing-naira").style.display = "block";
-    } else {
-      document.getElementById("pricing-dollar").style.display = "block";
-    }
-  })
-  .catch(() => {
-    document.getElementById("pricing-dollar").style.display = "block";
-  });
-</script>
 
 
 
-<footer id="footer" class="footer">
 
-  <style>
-    /* Remove underline from all <h4> headings */
-    footer h4 {
-      text-decoration: none !important;  /* Remove underline */
-      border-bottom: none !important;    /* Remove any border lines */
-      color: #000;                       /* Ensure text color is black */
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
 
-    /* Remove underline from links inside footer-links */
-    footer .footer-links a {
-      text-decoration: none !important;
-      color: #000;
-      transition: color 0.3s ease;
-    }
-    footer .footer-links a:hover {
-      color: green; /* Bootstrap primary color on hover */
-      text-decoration: none;
-    }
-  </style>
-
-</main>
 
 
 <!-- Main Footer -->
