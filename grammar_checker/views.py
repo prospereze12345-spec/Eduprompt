@@ -24,7 +24,6 @@ from django.conf import settings
 import requests
 
 @csrf_exempt
-@login_required
 def grammar_checker(request):
     """
     Grammar checker using self-hosted LanguageTool only.

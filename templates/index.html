@@ -723,9 +723,7 @@ $(document).ready(function(){
   <!-- Call-to-Action Buttons -->
   <div class="mt-4 d-flex gap-3 flex-wrap justify-content-center">
   <!-- Go Pro Button -->
-  <a href="#go-pro" class="btn btn-warning btn-lg d-flex align-items-center" style="color: #fff; font-weight: 600;">
-    <i class="fas fa-crown me-2" style="color: gold;"></i> {% trans "Go Pro" %}
-  </a>
+  
 
   <!-- Secondary CTA -->
   <a href="#features" class="btn btn-outline-secondary btn-lg">{% trans "Explore Features" %}</a>
@@ -1037,10 +1035,7 @@ $(document).ready(function(){
   </style>
 </section>
 
-<!-- FAQ Section End -->
 
-
-<!-- FAQ Section End -->
 
 
             </div>
@@ -1154,10 +1149,71 @@ $(document).ready(function(){
 
 <!-- Bootstrap Icons CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+{% load static %}
+
+<!-- Supported Languages Section -->
+<section id="supported-languages" class="py-5" style="background-color: #ffffff;">
+  <div class="container text-center">
+    <h2 class="mb-4 fw-bold text-dark">Languages We Support</h2>
+    <p class="mb-5 text-secondary" style="font-size: 1rem;">
+      Explore the 7 African languages and English currently supported by our tools
+    </p>
+
+    <div class="d-flex flex-wrap justify-content-center gap-3">
+      <!-- Igbo -->
+      <div class="btn btn-outline-dark rounded-pill d-flex align-items-center px-3 py-2 gap-2">
+        <img src="{% static 'assets/img/country_13053949 (1).png' %}" alt="Nigeria Flag" style="width:20px; height:14px;">
+        Igbo (IG)
+      </div>
+
+      <!-- Yoruba -->
+      <div class="btn btn-outline-dark rounded-pill d-flex align-items-center px-3 py-2 gap-2">
+        <img src="{% static 'assets/img/country_13053949 (1).png' %}" alt="Nigeria Flag" style="width:20px; height:14px;">
+        Yoruba (YO)
+      </div>
+
+      <!-- Hausa -->
+      <div class="btn btn-outline-dark rounded-pill d-flex align-items-center px-3 py-2 gap-2">
+        <img src="{% static 'assets/img/country_13053949 (1).png' %}" alt="Nigeria Flag" style="width:20px; height:14px;">
+        Hausa (HA)
+      </div>
+
+      <!-- Arabic -->
+      <div class="btn btn-outline-dark rounded-pill d-flex align-items-center px-3 py-2 gap-2">
+        <img src="{% static 'assets/img/egypt_321226.png' %}" alt="Egypt Flag" style="width:20px; height:14px;">
+        Arabic (AR)
+      </div>
+
+      <!-- French -->
+      <div class="btn btn-outline-dark rounded-pill d-flex align-items-center px-3 py-2 gap-2">
+        <img src="{% static 'assets/img/flag_10600219.png' %}" alt="France Flag" style="width:20px; height:14px;">
+        French (FR)
+      </div>
+
+      <!-- Swahili -->
+      <div class="btn btn-outline-dark rounded-pill d-flex align-items-center px-3 py-2 gap-2">
+        <img src="{% static 'assets/img/flag_11848921.png' %}" alt="Kenya Flag" style="width:20px; height:14px;">
+        Swahili (SW)
+      </div>
+
+      <!-- Zulu -->
+      <div class="btn btn-outline-dark rounded-pill d-flex align-items-center px-3 py-2 gap-2">
+        <img src="{% static 'assets/img/portfolio/south-africa_11699660.png' %}" alt="South Africa Flag" style="width:20px; height:14px;">
+        Zulu (ZU)
+      </div>
+
+      <!-- English -->
+      <div class="btn btn-outline-dark rounded-pill d-flex align-items-center px-3 py-2 gap-2">
+        <img src="{% static 'assets/img/united-kingdom_6737832.png' %}" alt="UK Flag" style="width:20px; height:14px;">
+        English (EN)
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <!-- AI Accuracy & Reliability Section -->
-<section class="py-5" style="background-color: #ffffff; color: #0d1b2a;">
+<section class="py-2" style="background-color: #ffffff; color: #0d1b2a;">
   <div class="container">
     <h2 class="text-center mb-5" style="color: #0d1b2a;">{% trans "AI Accuracy & Reliability" %}</h2>
     <p class="text-center mb-5">
@@ -1226,114 +1282,6 @@ $(document).ready(function(){
 <!-- Bootstrap Icons CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials section">
-
-      <br></p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="swiper init-swiper">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 1,
-                  "spaceBetween": 40
-                },
-                "1200": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 1
-                }
-              }
-            }
-          </script>
-          <div class="swiper-wrapper">
-
-           
-
-    
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="swiper init-swiper">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 2,
-                  "spaceBetween": 40
-                },
-                "480": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 60
-                },
-                "640": {
-                  "slidesPerView": 4,
-                  "spaceBetween": 80
-                },
-                "992": {
-                  "slidesPerView": 6,
-                  "spaceBetween": 120
-                }
-              }
-            }
-          </script>
-
-
-      </div>
-
-    </section><!-- /Clients Section -->
-
-
-
-<footer id="footer" class="footer">
-
-  <style>
-    /* Remove underline from all <h4> headings */
-    footer h4 {
-      text-decoration: none !important;  /* Remove underline */
-      border-bottom: none !important;    /* Remove any border lines */
-      color: #000;                       /* Ensure text color is black */
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    /* Remove underline from links inside footer-links */
-    footer .footer-links a {
-      text-decoration: none !important;
-      color: #000;
-      transition: color 0.3s ease;
-    }
-    footer .footer-links a:hover {
-      color: #0d6efd; /* Bootstrap primary color on hover */
-      text-decoration: none;
-    }
-  </style>
-  
   <section id="faq" class="faq section py-2" style="background-color: white;">
   <div class="container">
     <div class="row justify-content-center">
@@ -1462,6 +1410,95 @@ $(document).ready(function(){
     });
   </script>
 
+<!-- Testimonial Section -->
+<section class="testimonial-section container py-5">
+  <div class="text-center mb-5">
+    <h1>What <strong>our users</strong> are <strong>saying about EduPrompt tools</strong></h1>
+    <p class="text-muted">From writing essays to solving problems, see how our AI tools are changing learning for students and teachers.</p>
+  </div>
+
+  <div class="row g-4">
+
+    <!-- Testimonial 1 - Essay Writer -->
+    <div class="col-md-6">
+      <div class="testimonial-card d-flex align-items-start p-3 shadow-sm rounded-3" style="background:#f8f9fa;">
+        <div class="me-3 text-center">
+          <div class="testimonial-number bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">01</div>
+          <i class="bi bi-journal-text mt-2" style="font-size:1.5rem; color:#003366;"></i>
+        </div>
+        <p class="mb-0" style="color:#333;">
+          "I struggled to finish essays on time. The Essay Writer has been a lifesaver! It generates clear, structured essays and helps me polish my ideas fast." 
+        </p>
+      </div>
+    </div>
+
+    <!-- Testimonial 2 - AI Solver -->
+    <div class="col-md-6">
+      <div class="testimonial-card d-flex align-items-start p-3 shadow-sm rounded-3" style="background:#f8f9fa;">
+        <div class="me-3 text-center">
+          <div class="testimonial-number bg-success text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">02</div>
+          <i class="bi bi-calculator-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
+        </div>
+        <p class="mb-0" style="color:#333;">
+          "The AI Solver makes homework and problem-solving so much easier. It explains step by step, which makes me understand concepts faster." 
+        </p>
+      </div>
+    </div>
+
+    <!-- Testimonial 3 - Quiz Generator -->
+    <div class="col-md-6">
+      <div class="testimonial-card d-flex align-items-start p-3 shadow-sm rounded-3" style="background:#f8f9fa;">
+        <div class="me-3 text-center">
+          <div class="testimonial-number bg-warning text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">03</div>
+          <i class="bi bi-mortarboard-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
+        </div>
+        <p class="mb-0" style="color:#333;">
+          "Creating quizzes used to take hours. Now, with the Quiz Generator, I can turn lecture notes into interactive quizzes in seconds. Students love it!" 
+        </p>
+      </div>
+    </div>
+
+    <!-- Testimonial 4 - Grammar Checker -->
+    <div class="col-md-6">
+      <div class="testimonial-card d-flex align-items-start p-3 shadow-sm rounded-3" style="background:#f8f9fa;">
+        <div class="me-3 text-center">
+          <div class="testimonial-number bg-danger text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">04</div>
+          <i class="bi bi-pen-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
+        </div>
+        <p class="mb-0" style="color:#333;">
+          "I’m not confident with grammar, but the Grammar Checker makes my writing shine. It corrects errors and suggests improvements in a clear way." 
+        </p>
+      </div>
+    </div>
+
+    <!-- Testimonial 5 - Mixed Use -->
+    <div class="col-md-6">
+      <div class="testimonial-card d-flex align-items-start p-3 shadow-sm rounded-3" style="background:#f8f9fa;">
+        <div class="me-3 text-center">
+          <div class="testimonial-number bg-info text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">05</div>
+          <i class="bi bi-lightning-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
+        </div>
+        <p class="mb-0" style="color:#333;">
+          "I use all four tools daily—Essay, AI Solver, Quiz, and Grammar Checker. They make studying, teaching, and homework so much faster and stress-free." 
+        </p>
+      </div>
+    </div>
+
+    <!-- Testimonial 6 - Emotional/Impact -->
+    <div class="col-md-6">
+      <div class="testimonial-card d-flex align-items-start p-3 shadow-sm rounded-3" style="background:#f8f9fa;">
+        <div class="me-3 text-center">
+          <div class="testimonial-number bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">06</div>
+          <i class="bi bi-heart-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
+        </div>
+        <p class="mb-0" style="color:#333;">
+          "EduPrompt has truly changed how I study and teach. The AI tools are reliable, fast, and give me confidence in my work. I can’t imagine going back to old methods." 
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 <!-- Main Footer -->
 <footer class="footer pt-5" style="background-color: darkblue;">
@@ -1570,10 +1607,6 @@ $(document).ready(function(){
     © {% now "Y" %} <strong>EduPrompt</strong>. All Rights Reserved.
   </p>
 </footer>
-
-
-
-
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

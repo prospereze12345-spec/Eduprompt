@@ -49,6 +49,7 @@ def send_welcome_email(user):
     email.attach_alternative(html_content, "text/html")
     email.send(fail_silently=True)
 
+
 @csrf_protect
 @require_POST
 def ajax_signup(request):
@@ -60,15 +61,15 @@ def ajax_signup(request):
     # Validate inputs
     # -------------------------------
     if not all([username, email, password]):
-        return JsonResponse({'user_authenticated': False, 'errors': 'All fields are required.'})
+        return redirect("index")  # homepage
 
     # -------------------------------
     # Check uniqueness
     # -------------------------------
     if User.objects.filter(username=username).exists():
-        return JsonResponse({'user_authenticated': False, 'errors': 'Username already taken.'})
+        return redirect("index")
     if User.objects.filter(email=email).exists():
-        return JsonResponse({'user_authenticated': False, 'errors': 'Email already registered.'})
+        return redirect("index")
 
     # -------------------------------
     # Create user and login
@@ -82,9 +83,10 @@ def ajax_signup(request):
     Timer(3.0, send_welcome_email, args=[user]).start()
 
     # -------------------------------
-    # Return success JSON
+    # ✅ Redirect to homepage
     # -------------------------------
-    return JsonResponse({'user_authenticated': True})
+    return redirect("index")  # make sure 'index' is the name of your homepage URL pattern
+
 
 # -------------------------------
 # AJAX Login (email + optional password)
