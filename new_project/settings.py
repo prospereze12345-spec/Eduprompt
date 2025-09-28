@@ -97,6 +97,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'Eduprompt',
     'note',
     'quiz_generator',
@@ -115,6 +116,7 @@ INSTALLED_APPS = [
 
     
 ]
+SITE_ID = 1
 
 
 

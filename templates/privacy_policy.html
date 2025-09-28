@@ -202,46 +202,78 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-</head>
-
-<body class="index-page">
-
 <header id="header" class="header fixed-top bg-white shadow-sm">
-  <nav class="navbar navbar-expand-lg navbar-light container-xl">
-    
-    <!-- Logo + Sitename -->
-    <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
-      <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 50px;">
-      <span class="ms-2 fw-bold sitename">Eduprompt</span>
-    </a>
+  <nav class="container-xl py-2">
 
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-  <span class="navbar-toggler-icon"></span>
-</button>
+    <!-- Desktop: Logo + Tools + Login/Register in one row -->
+    <div class="d-none d-lg-flex justify-content-between align-items-center">
+      <!-- Logo + Name -->
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <span class="ms-2 fw-bold sitename">Eduprompt</span>
+      </a>
 
-<!-- Menu items -->
-<div class="collapse navbar-collapse" id="mainNavbar">
-  <ul class="navbar-nav ms-auto align-items-lg-center">
-    <li class="nav-item"><a class="nav-link" href="/ai-solver/">{% trans "AI Solver" %}</a></li>
-    <li class="nav-item"><a class="nav-link" href="/essay/">{% trans "Essay Generator" %}</a></li>
-    <li class="nav-item"><a class="nav-link" href="/quiz/">{% trans "Quiz Generator" %}</a></li>
-    <li class="nav-item"><a class="nav-link" href="/blog/">{% trans "Blog" %}</a></li>
-    <li class="nav-item"><a class="nav-link" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
-    <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
-<!-- Trigger Buttons -->
-{% if not user.is_authenticated %}
-  <li class="nav-item ms-lg-3">
-    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#registerModal">
-      {% trans "Get Started" %}
-    </button>
-  </li>
-  <li class="nav-item ms-lg-3">
-    <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
-      {% trans "Login" %}
-    </button>
-  </li>
-{% endif %}
+      <!-- Tools -->
+      <div class="d-flex align-items-center">
+        <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
+        <span class="text-muted me-2">|</span>
+
+        <a href="/ai-solver/" class="nav-link d-inline px-2">{% trans "AI Solver" %}</a>
+        <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
+        <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
+        <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
+        <a href="/blog/" class="nav-link d-inline px-2">{% trans "Blog" %}</a>
+        <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+      </div>
+
+      <!-- Login/Register -->
+      <div class="d-flex align-items-center">
+        {% if not user.is_authenticated %}
+          <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+            {% trans "Register" %}
+          </button>
+          <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+            {% trans "Login" %}
+          </button>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Mobile: Logo + Login/Register -->
+    <div class="d-flex d-lg-none justify-content-between align-items-center mb-2">
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <span class="ms-2 fw-bold sitename">Eduprompt</span>
+      </a>
+
+      <div class="d-flex align-items-center">
+        {% if not user.is_authenticated %}
+          <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+            {% trans "Register" %}
+          </button>
+          <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+            {% trans "Login" %}
+          </button>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Mobile: Scrollable Tools Section -->
+    <div class="d-flex d-lg-none overflow-auto pb-2" style="white-space: nowrap;">
+      <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
+      <span class="text-muted me-2">|</span>
+      <a href="/ai-solver/" class="nav-link d-inline px-2">{% trans "AI Solver" %}</a>
+      <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
+      <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
+      <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
+      <a href="/blog/" class="nav-link d-inline px-2">{% trans "Blog" %}</a>
+      <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+    </div>
+
+  </nav>
+</header>
+
+
 <!-- Message Container -->
 <div id="auth-messages" class="position-fixed top-0 end-0 p-3" style="z-index:1055;"></div>
 <!-- Login Modal -->

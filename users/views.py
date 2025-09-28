@@ -91,64 +91,82 @@ def ajax_signup(request):
 # -------------------------------
 # AJAX Login (email + optional password)
 # -------------------------------
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+from django.shortcuts import redirect
+from django.views.decorators.csrf import csrf_protect
+
 @csrf_protect
 def ajax_login(request):
     if request.method == "POST" and request.headers.get("X-Requested-With") == "XMLHttpRequest":
         email = request.POST.get("email", "").strip()
-        password = request.POST.get("password", "").strip()  # optional
+        password = request.POST.get("password", "").strip()
 
         if not email:
-            return JsonResponse({"user_authenticated": False, "errors": "Email is required."})
+            return redirect("index")  # homepage if email missing
 
         try:
             user = User.objects.get(email__iexact=email, is_active=True)
         except User.DoesNotExist:
-            return JsonResponse({"user_authenticated": False, "errors": "Invalid credentials."})
+            return redirect("index")  # homepage on invalid login
 
         if password:
-            # Authenticate using password if provided
+            # Authenticate with password
             user_auth = authenticate(request, username=user.username, password=password)
             if not user_auth:
-                return JsonResponse({"user_authenticated": False, "errors": "Invalid credentials."})
+                return redirect("index")  # homepage if invalid credentials
             login(request, user_auth)
         else:
-            # Optional: just allow magic link login flow
-            pass  # magic link handled separately
+            pass
 
-        return JsonResponse({"user_authenticated": True})
+        return redirect("index")
 
-    return JsonResponse({"user_authenticated": False, "errors": "Invalid request."})
+    return redirect("index")
 
 
-# -------------------------------
-# Send Magic Link
-# -------------------------------
 @require_POST
 @csrf_protect
 def send_magic_link(request):
     email = request.POST.get("email", "").strip().lower()
+
     if not email:
-        return JsonResponse({"ok": False, "errors": "Email is required."})
+        return JsonResponse({"ok": False, "errors": "Email is required."}, status=400)
 
     try:
         user = User.objects.get(email__iexact=email, is_active=True)
     except User.DoesNotExist:
-        # avoid leaking existence
+        # ✅ avoid leaking user existence, always return ok
         return JsonResponse({"ok": True})
 
+    # ✅ generate secure token
     token = default_token_generator.make_token(user)
     uid = urlsafe_base64_encode(force_bytes(user.pk))
-    magic_path = reverse("magic_login")  # create URL in urls.py
+
+    # ✅ build link (magic_login must exist in urls.py)
+    magic_path = reverse("magic_login")
     link = request.build_absolute_uri(f"{magic_path}?uid={uid}&token={token}")
 
-    # Send email
-    send_mail(
-        "Your Magic Login Link",
-        f"Click the link to sign in: {link}\n\nThis link expires in 15 minutes.",
-        "no-reply@myapp.com",
-        [email],
-        fail_silently=True
-    )
+    # ✅ send email
+    try:
+        send_mail(
+            subject="Your Magic Login Link",
+            message=f"""
+Hello {user.username},
+
+Click the link below to sign in securely:
+
+{link}
+
+⚠️ This link will expire in 15 minutes for your security.
+
+If you didn’t request this login, please ignore this email.
+            """,
+            from_email="prospereze12345@gmail.com",  # ✅ your email
+            recipient_list=[email],
+            fail_silently=False,  # ❌ make it loud so you know if config fails
+        )
+    except Exception as e:
+        return JsonResponse({"ok": False, "errors": f"Failed to send email: {str(e)}"}, status=500)
 
     return JsonResponse({"ok": True})
 

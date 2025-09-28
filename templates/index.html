@@ -30,141 +30,192 @@
 </head>
 
 
-  <!-- Favicons -->
-  <link href="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" rel="icon">
-  <link href="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" rel="apple-touch-icon">
+  <!-- Favicon -->
+  <link rel="icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon" />
+</head>
 
-  <!-- Fonts -->
-  <link href="{% static 'https://fonts.googleapis.com' %}" rel="preconnect">
-  <link href="{% static 'https://fonts.gstatic.com' %}" rel="preconnect" crossorigin>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  <link href="{% static 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap' %}" rel="stylesheet">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon" />
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon" />
+
+  <!-- Fonts and Icons -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
 
   <!-- Vendor CSS Files -->
-  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/aos/aos.css" rel="stylesheet' %}">
-  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet" />
 
   <!-- Main CSS File -->
-  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
-
-
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet" />
 
   <style>
-  .faq-section {
-    text-align: center; /* Center all content */
-  }
+    body {
+      background-color: white !important;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-  .faq-item {
-    border-bottom: 1px solid #ddd;
-    padding: 15px 0;
-    max-width: 700px;
-    margin: 0 auto; /* Center the FAQ box itself */
-    text-align: left; /* Keep answer and question aligned left inside centered block */
-  }
+    /* Navbar sitename styling */
+    .sitename {
+      font-family: 'Poppins', sans-serif;
+      text-decoration: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      color: inherit;
+    }
 
-  .faq-question {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    font-weight: 600; /* Make it bold */
-    font-size: 1.1rem;
-  }
+    /* Remove underline and borders from links in navmenu */
+    #navmenu a {
+      text-decoration: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      color: inherit;
+      transition: color 0.3s ease;
+    }
 
-  .faq-question h5 {
-    margin: 0;
-    font-weight: 700; /* Bold text */
-  }
+    #navmenu a:hover,
+    #navmenu a:focus {
+      text-decoration: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      color: #007bff; /* Hover color */
+    }
 
-  .faq-answer {
-    display: none;
-    padding-top: 10px;
-    color: #444;
-    font-size: 1rem;
-  }
+    /* Button style */
+    .btn-getstarted {
+      background-color: #28a745;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 0.3rem;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
 
-  .faq-item.active .faq-answer {
-    display: block;
-  }
+    .btn-getstarted:hover,
+    .btn-getstarted:focus {
+      background-color: #218838;
+      color: white;
+      text-decoration: none;
+      border: none;
+      outline: none;
+      box-shadow: none;
+    }
 
-  .faq-toggle {
-    font-size: 1.2rem;
-    color: #666;
-    transition: transform 0.3s ease;
-  }
+    /* FAQ Section styling */
+    .faq-section {
+      text-align: center;
+    }
 
-  .faq-item.active .faq-toggle {
-    transform: rotate(180deg);
-  }
+    .faq-item {
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: left;
+    }
 
-  /* Remove underline and border line from all links inside navmenu */
-#navmenu a {
-  text-decoration: none !important; /* no underline */
-  border: none !important;           /* no border */
-  box-shadow: none !important;       /* remove any shadow */
-  outline: none !important;          /* remove outline */
-  color: inherit;                    /* keep inherited color */
-  transition: color 0.3s ease;       /* optional smooth hover color */
-}
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
 
-/* Remove any border or underline on hover/focus */
-#navmenu a:hover,
-#navmenu a:focus {
-  text-decoration: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  outline: none !important;
-  color: #007bff; /* Optional: set your hover color */
-}
+    .faq-question h5 {
+      margin: 0;
+      font-weight: 700;
+    }
 
-/* Remove any border or underline on sitename if any */
-.sitename {
-  font-family: 'Poppins', sans-serif;
-  text-decoration: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  outline: none !important;
-}
-/* Base button style */
-.btn-getstarted {
-  background-color: #28a745; /* Bootstrap green or your custom green */
-  color: white;
-  padding: 0.5rem 1.5rem;
-  border-radius: 0.3rem;
-  border: none;
-  text-decoration: none;
-  display: inline-block;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-}
+    .faq-answer {
+      display: none;
+      padding-top: 10px;
+      color: #444;
+      font-size: 1rem;
+    }
 
-/* Remove white line / underline on hover or focus */
-.btn-getstarted:hover,
-.btn-getstarted:focus {
-  background-color: #218838; /* darker green on hover */
-  color: white;
-  text-decoration: none;     /* removes underline */
-  border: none;
-  outline: none;
-  box-shadow: none;
-}
+    .faq-item.active .faq-answer {
+      display: block;
+    }
 
-.navbar-nav .nav-link.dropdown-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-  .navbar-nav .nav-link.dropdown-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem; /* space between emoji and text */
-  }
+    .faq-toggle {
+      font-size: 1.2rem;
+      color: #666;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-toggle {
+      transform: rotate(180deg);
+    }
+
+    /* Footer links style - no underline */
+    .footer-links a {
+      text-decoration: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      color: inherit;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus {
+      color: #007bff;
+      text-decoration: none !important;
+      border: none !important;
+    }
+
+    /* Container padding after navbar */
+    main.container {
+      padding-top: 100px; /* space after fixed navbar */
+      padding-bottom: 60px; /* space before footer */
+      flex-grow: 1;
+    }
+
+    /* Assignment generator styles */
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    #result {
+      white-space: pre-wrap;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      min-height: 150px;
+      margin-top: 1rem;
+    }
   /* Dark blue variables */
   :root {
     --eduprompt-blue: #003366; /* Dark blue shade */
@@ -194,70 +245,93 @@
     background-color: var(--eduprompt-blue);
     border-color: var(--eduprompt-blue);
   }
-
-
-</style>
-
-
-
-
-
   
-  <!-- =======================================================
-  * Template Name: FlexStart
-  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
-  * Updated: Nov 01 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
 
-<body class="index-page">
 
+  </style>
 <header id="header" class="header fixed-top bg-white shadow-sm">
-  <nav class="navbar navbar-expand-lg navbar-light container-xl">
-    
-    <!-- Logo + Sitename -->
-    <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
-    <img src="{% static 'assets\img\logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height:50px;">
+  <nav class="container-xl py-2">
 
-      <span class="ms-2 fw-bold sitename">{% trans "Eduprompt" %}</span>
-    </a>
+    <!-- Desktop: Logo + Tools + Login/Register in one row -->
+    <div class="d-none d-lg-flex justify-content-between align-items-center">
+      <!-- Logo + Name -->
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <span class="ms-2 fw-bold sitename">Eduprompt</span>
+      </a>
 
-    <!-- Mobile toggle -->
+      <!-- Tools -->
+      <div class="d-flex align-items-center">
+        <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
+        <span class="text-muted me-2">|</span>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-  <span class="navbar-toggler-icon"></span>
-</button>
+        <a href="/ai-solver/" class="nav-link d-inline px-2">{% trans "AI Solver" %}</a>
+        <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
+        <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
+        <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
+        <a href="/blog/" class="nav-link d-inline px-2">{% trans "Blog" %}</a>
+        <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+      </div>
 
-<!-- Menu items -->
-<div class="collapse navbar-collapse" id="mainNavbar">
-  <ul class="navbar-nav ms-auto align-items-lg-center">
-    <li class="nav-item"><a class="nav-link" href="/ai-solver/">{% trans "AI Solver" %}</a></li>
-    <li class="nav-item"><a class="nav-link" href="/essay/">{% trans "Essay Generator" %}</a></li>
-    <li class="nav-item"><a class="nav-link" href="/quiz/">{% trans "Quiz Generator" %}</a></li>
-    <li class="nav-item"><a class="nav-link" href="/blog/">{% trans "Blog" %}</a></li>
-    <li class="nav-item"><a class="nav-link" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
-    <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
-<!-- Trigger Buttons -->
-{% if not user.is_authenticated %}
-  <li class="nav-item ms-lg-3">
-    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#registerModal">
-      {% trans "Get Started" %}
-    </button>
-  </li>
-  <li class="nav-item ms-lg-3">
-    <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
-      {% trans "Login" %}
-    </button>
-  </li>
-{% endif %}
+      <!-- Login/Register -->
+      <div class="d-flex align-items-center">
+        {% if not user.is_authenticated %}
+          <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+            {% trans "Register" %}
+          </button>
+          <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+            {% trans "Login" %}
+          </button>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Mobile: Logo + Login/Register -->
+    <div class="d-flex d-lg-none justify-content-between align-items-center mb-2">
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <span class="ms-2 fw-bold sitename">Eduprompt</span>
+      </a>
+
+      <div class="d-flex align-items-center">
+        {% if not user.is_authenticated %}
+          <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+            {% trans "Register" %}
+          </button>
+          <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+            {% trans "Login" %}
+          </button>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Mobile: Scrollable Tools Section -->
+    <div class="d-flex d-lg-none overflow-auto pb-2" style="white-space: nowrap;">
+      <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
+      <span class="text-muted me-2">|</span>
+      <a href="/ai-solver/" class="nav-link d-inline px-2">{% trans "AI Solver" %}</a>
+      <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
+      <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
+      <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
+      <a href="/blog/" class="nav-link d-inline px-2">{% trans "Blog" %}</a>
+      <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+    </div>
+
+  </nav>
+</header>
+
+
+
+<!-- Bootstrap JS -->
+
 <!-- Message Container -->
-<div id="auth-messages" class="position-fixed top-0 end-0 p-3" style="z-index:1055;"></div>
+<div id="auth-messages" class="position-fixed top-0 end-0 p-3" style="z-index:1055"></div>
+
 <!-- Login Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" data-bs-backdrop="false">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content rounded-4 shadow">
+      
       <div class="modal-header border-0">
         <h5 class="modal-title">{% trans "Login" %}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -265,7 +339,8 @@
 
       <!-- Modal body -->
       <div class="modal-body p-4">
-        <!-- Login Form -->
+
+        <!-- Normal Login Form -->
         <form id="loginForm" method="post" action="{% url 'ajax_login' %}">
           {% csrf_token %}
           <div class="mb-3">
@@ -281,18 +356,55 @@
           <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Login" %}</button>
         </form>
 
-        <!-- Magic Link -->
-        <button id="magicLinkBtn" class="btn btn-outline-primary w-100 mb-3">
-          {% trans "Send me a magic link" %}
-        </button>
+        <!-- OR Separator -->
+        <div class="d-flex align-items-center my-3">
+          <hr class="flex-grow-1">
+          <span class="mx-2 text-muted small">OR</span>
+          <hr class="flex-grow-1">
+        </div>
 
-        <!-- Social login -->
-        <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center">
-          <img src="{% static 'assets/img/svg.jpg' %}" alt="Google" width="20" class="me-2">
-          {% trans "Continue with Google" %}
-        </a>
+        <!-- Magic Link Form -->
+        <form id="magicLinkForm">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="email" id="magicEmail" name="email" class="form-control" placeholder="Enter your email" required>
+          </div>
+          <button id="magicLinkBtn" class="btn btn-outline-primary w-100">
+            Send me a magic link
+          </button>
+        </form>
 
-        <div id="magicMsg" class="mt-2 text-center text-success"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+document.getElementById("magicLinkBtn").addEventListener("click", async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("email").value.trim();
+  if (!email) {
+    alert("Please enter your email");
+    return;
+  }
+  const response = await fetch("{% url 'send_magic_link' %}", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value
+    },
+    body: new URLSearchParams({ email })
+  });
+  const data = await response.json();
+  if (data.ok) {
+    alert("✅ Check your email for the login link!");
+  } else {
+    alert("❌ " + (data.errors || "Something went wrong."));
+  }
+});
+</script>
+
       </div>
     </div>
   </div>
@@ -323,10 +435,7 @@
           <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Create Account" %}</button>
         </form>
 
-        <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center">
-          <img src="{% static 'assets/img/svg.jpg' %}" alt="Google" width="20" class="me-2">
-          {% trans "Continue with Google" %}
-        </a>
+
       </div>
     </div>
   </div>
