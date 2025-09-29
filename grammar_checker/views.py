@@ -15,12 +15,12 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.utils import timezone
 import requests
-
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
+from django.utils import timezone
 import requests
 
 @csrf_exempt
@@ -65,17 +65,11 @@ def grammar_checker(request):
 
         # --- Supported languages ---
         supported_languages = [
-            # African languages
             "af", "sw", "ar",
-            # English
             "en-US", "en-GB", "en-AU", "en-CA", "en-NZ", "en-ZA",
-            # French
             "fr", "fr-FR", "fr-CA", "fr-BE", "fr-CH",
-            # German
             "de", "de-DE", "de-AT", "de-CH",
-            # Spanish
             "es", "es-ES", "es-MX", "es-AR", "es-CO", "es-CL",
-            # Other languages
             "it", "it-IT", "pt", "pt-PT", "pt-BR", "nl", "nl-NL", "nl-BE",
             "sv", "fi", "da", "no", "pl", "ru", "ro", "hu", "cs", "sk",
             "uk", "sl", "hr", "bg", "ja", "zh", "tr", "id"
@@ -85,8 +79,10 @@ def grammar_checker(request):
 
         try:
             # --- Call self-hosted LanguageTool ---
+            # Ensure LANGUAGETOOL_API is set, e.g., "http://localhost:8010/v2/check"
+            lt_url = getattr(settings, "LANGUAGETOOL_API", "http://localhost:8010/v2/check")
             lt_response = requests.post(
-                settings.LANGUAGETOOL_API,
+                lt_url,
                 data={"text": text, "language": language},
                 timeout=30
             )
@@ -115,7 +111,11 @@ def grammar_checker(request):
             })
 
         except requests.exceptions.RequestException as e:
+            # Connection error or timeout
             return JsonResponse({"error": f"LanguageTool API request failed: {e}"}, status=500)
+        except ValueError as e:
+            # JSON decode error
+            return JsonResponse({"error": f"Invalid response from LanguageTool: {e}"}, status=500)
 
     # --- GET request: render HTML ---
     return render(request, "grammar_checker.html")

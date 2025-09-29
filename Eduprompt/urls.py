@@ -11,6 +11,7 @@ urlpatterns = [
     path("send-message", views.send_message, name="send_message"),
     path("flyer-design/", views.flyer_design, name="flyer_design"),
     path('contact-ajax/', views.contact_ajax, name='contact_ajax'),
+    path("contact/ajax/", views.contact_ajax, name="contact_ajax"),
 
 
 

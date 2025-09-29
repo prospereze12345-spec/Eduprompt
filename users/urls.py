@@ -9,4 +9,6 @@ urlpatterns = [
 
     # Magic login URL (clicked from email)
     path('magic-login/', views.magic_login, name='magic_login'),
+    path("send-magic-link/", views.send_magic_link, name="send_magic_link"),
+
 ]

@@ -19,6 +19,16 @@
         border-radius: 12px; 
         box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
       }
+      .banner {
+        background: linear-gradient(90deg, #1e40af, #2563eb);
+        color: #ffffff;
+        text-align: center;
+        padding: 12px 18px;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 25px;
+      }
       .logo { text-align: center; margin-bottom: 25px; }
       .logo img { width: 100px; height: auto; }
       h2 { color: #1e40af; font-size: 24px; margin-bottom: 15px; text-align: center; }
@@ -32,18 +42,25 @@
         .container { padding: 20px; }
         h2 { font-size: 20px; }
         li { font-size: 14px; }
+        .banner { font-size: 14px; padding: 10px 15px; }
       }
     </style>
   </head>
   <body>
     <div class="container">
+      
+      <!-- Promo Banner -->
+      <div class="banner">
+        🎉 Founders Special: Enjoy 20–30% OFF for our first users!
+      </div>
+
       <div class="logo">
         <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Welcome Icon">
       </div>
 
       <h2>Welcome to <span class="highlight">EduPrompt</span>!</h2>
 
-<p>Hi {{ user.username }},</p>
+      <p>Hi {{ user.username }},</p>
       <p>We’re thrilled to have you join the <span class="highlight">EduPrompt</span> community! You now have access to our 4 MVP tools:</p>
 
       <ul>
@@ -63,3 +80,4 @@
     </div>
   </body>
 </html>
+

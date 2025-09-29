@@ -653,98 +653,126 @@ $(document).ready(function(){
 
   }
 </style>
-
-
-<section id="contact" class="contact section" style="padding-top: 150px;">
+<section id="contact" class="contact section" style="padding-top: 120px; padding-bottom: 80px; background-color: white;">
   <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Contact Us</h2>
-    <p>Get in touch with us</p>
+  <div class="container section-title text-center mb-5" data-aos="fade-up">
+    <h2 class="fw-bold">Contact Us</h2>
+    <p class="text-muted">We’d love to hear from you! Whether you have questions, feedback, or partnership ideas — our team is here to help.</p>
   </div>
-</section>
-
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">
     <div class="row gy-4">
 
-      <!-- Contact Info -->
-      <div class="col-lg-6">
-        <div class="info-item" data-aos="fade" data-aos-delay="200">
-          <i class="bi bi-geo-alt"></i>
-          <div>
-            <h3>Address</h3>
-            <p>
-              Nigeria, West Africa
-              <img src="{% static 'assets/img/country_13053949 (1).png' %}" alt="Nigeria Flag" class="flag-icon" />
-            </p>
-            <p>Lagos, Eko-102003</p>
-          </div>
-        </div>
+<!-- Contact Info (Left) -->
+<div class="col-lg-4">
+  <div class="bg-white p-4 p-md-5 shadow-sm rounded-3">
 
-        <div class="info-item" data-aos="fade" data-aos-delay="300">
-          <i class="bi bi-telephone"></i>
-          <div>
-            <h3>Call Us/whatsapp message</h3>
-            <p>+234-901-836-7110</p>
-          </div>
-        </div>
-
-        
-
-        <div class="info-item" data-aos="fade" data-aos-delay="500">
-          <i class="bi bi-clock"></i>
-          <div>
-            <h3>Active Hours</h3>
-            <p>Sunday - Saturday</p>
-            <p>24 Hours</p>
-          </div>
-        </div>
+    <div class="info-item mb-4 d-flex align-items-start" data-aos="fade" data-aos-delay="200">
+      <i class="bi bi-geo-alt fs-3 text-primary me-3"></i>
+      <div>
+        <h5 class="fw-bold">Address</h5>
+        <p class="mb-1">
+          Nigeria, West Africa 
+          <img src="{% static 'assets/img/country_13053949 (1).png' %}" 
+               alt="Nigeria Flag" class="flag-icon" style="height:18px; margin-left:6px;" />
+        </p>
+        <p class="text-muted">Lagos, Eko-102003</p>
       </div>
+    </div>
 
-      <!-- Contact Form -->
-      <div class="col-lg-6">
-        <div class="contact-form" data-aos="fade-up" data-aos-delay="600">
+    <div class="info-item mb-4 d-flex align-items-start" data-aos="fade" data-aos-delay="300">
+      <i class="bi bi-envelope fs-3 text-success me-3"></i>
+      <div>
+        <h5 class="fw-bold">Email</h5>
+        <p class="text-muted">prospereze12345@gmail.com</p>
+      </div>
+    </div>
+
+    <div class="info-item mb-0 d-flex align-items-start" data-aos="fade" data-aos-delay="400">
+      <i class="bi bi-clock fs-3 text-warning me-3"></i>
+      <div>
+        <h5 class="fw-bold">Active Hours</h5>
+        <p class="text-muted mb-0">Sunday - Saturday</p>
+        <p class="text-muted">24/7 Support</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+      <!-- Contact Form (Right) -->
+      <div class="col-lg-8">
+        <div class="contact-form bg-white p-4 p-md-5 shadow-sm rounded-3" data-aos="fade-up" data-aos-delay="300">
 
           {% if success_message %}
-          <div class="alert-success">{{ success_message }}</div>
+            <div class="alert alert-success mb-4">{{ success_message }}</div>
           {% endif %}
           {% if error_message %}
-          <div class="alert-error">{{ error_message }}</div>
+            <div class="alert alert-danger mb-4">{{ error_message }}</div>
           {% endif %}
 
-          <form method="post" novalidate>
+          <form method="post" novalidate class="row g-3">
             {% csrf_token %}
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              required
-              value="{{ request.POST.name|default_if_none:'' }}"
-              aria-label="Your Name"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              required
-              value="{{ request.POST.email|default_if_none:'' }}"
-              aria-label="Your Email"
-            />
-            <input
-              type="text"
-              name="subject"
-              placeholder="Subject"
-              required
-              value="{{ request.POST.subject|default_if_none:'' }}"
-              aria-label="Subject"
-            />
-            <textarea
-              name="message"
-              placeholder="Message"
-              required
-              aria-label="Message"
-            >{{ request.POST.message|default_if_none:'' }}</textarea>
-            <button type="submit">Send Message</button>
+
+            <!-- Name -->
+            <div class="col-md-6">
+              <input type="text" name="name" class="form-control form-control-lg"
+                     placeholder="Your Full Name" required
+                     value="{{ request.POST.name|default_if_none:'' }}">
+            </div>
+
+            <!-- Email -->
+            <div class="col-md-6">
+              <input type="email" name="email" class="form-control form-control-lg"
+                     placeholder="Your Email Address" required
+                     value="{{ request.POST.email|default_if_none:'' }}">
+            </div>
+
+            <!-- Phone (Optional) -->
+            <div class="col-md-6">
+              <input type="text" name="phone" class="form-control form-control-lg"
+                     placeholder="Phone (Optional)"
+                     value="{{ request.POST.phone|default_if_none:'' }}">
+            </div>
+
+            <!-- Company / Organization -->
+            <div class="col-md-6">
+              <input type="text" name="company" class="form-control form-control-lg"
+                     placeholder="Company / Organization"
+                     value="{{ request.POST.company|default_if_none:'' }}">
+            </div>
+
+            <!-- Subject -->
+            <div class="col-12">
+              <input type="text" name="subject" class="form-control form-control-lg"
+                     placeholder="Subject" required
+                     value="{{ request.POST.subject|default_if_none:'' }}">
+            </div>
+
+            <!-- Inquiry Type -->
+            <div class="col-12">
+              <select name="inquiry_type" class="form-select form-select-lg" required>
+                <option value="" disabled selected>Select Inquiry Type</option>
+                <option value="support">Support</option>
+                <option value="partnership">Partnership</option>
+                <option value="feedback">Feedback</option>
+                <option value="general">General Inquiry</option>
+              </select>
+            </div>
+
+            <!-- Message -->
+            <div class="col-12">
+              <textarea name="message" class="form-control form-control-lg" rows="6"
+                        placeholder="Your Message" required>{{ request.POST.message|default_if_none:'' }}</textarea>
+            </div>
+
+            <!-- Submit -->
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary w-100 btn-lg fw-bold">
+                ✉️ Send Message
+              </button>
+            </div>
           </form>
         </div>
       </div>
@@ -752,7 +780,96 @@ $(document).ready(function(){
     </div>
   </div>
 </section>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector(".contact-form form");
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
+    let formData = new FormData(form);
+    const response = await fetch("{% url 'contact_ajax' %}", {
+      method: "POST",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRFToken": "{{ csrf_token }}",
+      },
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    // Show message
+    let alertBox = document.createElement("div");
+    alertBox.className = `alert mt-3 ${data.status === "success" ? "alert-success" : "alert-danger"}`;
+    alertBox.textContent = data.message;
+
+    form.prepend(alertBox);
+
+    // Reset form if successful
+    if (data.status === "success") {
+      form.reset();
+    }
+
+    // Auto remove alert after 5s
+    setTimeout(() => alertBox.remove(), 5000);
+  });
+});
+</script>
+
+
+<!-- CTA + Social Section -->
+<div class="row mt-5 mb-5 pb-5">
+  <div class="col text-center">
+    <h4 class="fw-bold mb-3">Shape the Future of Learning & AI With Us 🚀</h4>
+    <p class="text-muted mb-4">
+      Whether you’re an educator, student, partner, or innovator — we’d love to connect. 
+      Our team is building tools across multiple MVPs to transform education, and your ideas 
+      can make a real impact. Let’s collaborate and grow together.
+    </p>
+    <a href="#contact" class="btn btn-success btn-lg px-5 fw-bold">
+      Get in Touch Today
+    </a>
+  </div>
+</div>
+
+
+<!-- Social Media Section -->
+<div class="row mt-4 mb-5">
+  <div class="col text-center">
+    <h5 class="fw-bold mb-3">Follow Us</h5>
+    <div class="d-flex justify-content-center gap-3">
+
+      <!-- Facebook -->
+      <a href="https://facebook.com" target="_blank" 
+         class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center"
+         style="width:45px; height:45px;">
+        <i class="bi bi-facebook fs-5"></i>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://instagram.com" target="_blank" 
+         class="btn btn-outline-danger rounded-circle d-flex align-items-center justify-content-center"
+         style="width:45px; height:45px;">
+        <i class="bi bi-instagram fs-5"></i>
+      </a>
+
+      <!-- TikTok -->
+      <a href="https://tiktok.com" target="_blank" 
+         class="btn btn-outline-dark rounded-circle d-flex align-items-center justify-content-center"
+         style="width:45px; height:45px;">
+        <i class="bi bi-tiktok fs-5"></i>
+      </a>
+
+      <!-- Twitter / X -->
+      <a href="https://twitter.com" target="_blank" 
+         class="btn btn-outline-info rounded-circle d-flex align-items-center justify-content-center"
+         style="width:45px; height:45px;">
+        <i class="bi bi-twitter-x fs-5"></i>
+      </a>
+
+    </div>
+  </div>
+</div>
 
 
 <!-- Main Footer -->

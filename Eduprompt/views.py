@@ -114,3 +114,48 @@ def contact_ajax(request):
             return JsonResponse({'success': False}, status=500)
 
 
+# views.py
+from django.core.mail import send_mail
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_protect
+
+@csrf_exempt  # Or use @csrf_protect if you're including CSRF in AJAX
+def contact_ajax(request):
+    if request.method == "POST" and request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        phone = request.POST.get("phone", "")
+        company = request.POST.get("company", "")
+        subject = request.POST.get("subject")
+        inquiry_type = request.POST.get("inquiry_type")
+        message = request.POST.get("message")
+
+        # Email content
+        full_message = f"""
+        📩 New Contact Form Submission
+
+        Name: {name}
+        Email: {email}
+        Phone: {phone}
+        Company: {company}
+        Subject: {subject}
+        Inquiry Type: {inquiry_type}
+        
+        Message:
+        {message}
+        """
+
+        try:
+            send_mail(
+                subject=f"Contact Form: {subject}",
+                message=full_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[settings.DEFAULT_FROM_EMAIL],  # Your inbox
+                fail_silently=False,
+            )
+            return JsonResponse({"status": "success", "message": "✅ Message sent successfully!"})
+        except Exception as e:
+            return JsonResponse({"status": "error", "message": f"❌ Failed: {str(e)}"})
+
+    return JsonResponse({"status": "error", "message": "Invalid request."})
