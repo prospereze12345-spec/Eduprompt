@@ -29,8 +29,15 @@ def privacy_policy(request):
 
 def website(request):
     return render(request, 'website.html')
+from django.core.mail import send_mail
+from django.http import JsonResponse
+from django.conf import settings
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
-
+# -----------------------------
+# Project request form
+# -----------------------------
 @csrf_exempt  # disable CSRF only for AJAX test; better to use CSRF token later
 def send_message(request):
     if request.method == "POST":
@@ -61,12 +68,12 @@ def send_message(request):
         """
 
         try:
-            # Replace with your email + configured DEFAULT_FROM_EMAIL in settings.py
+            # Use settings.DEFAULT_FROM_EMAIL for consistency on Render
             send_mail(
                 subject,
                 body,
-                "prospereze12345@email.com",  # FROM
-                ["prospereze12345@gmail.com"],  # TO (your email)
+                settings.DEFAULT_FROM_EMAIL,  # FROM
+                [settings.DEFAULT_FROM_EMAIL],  # TO
                 fail_silently=False,
             )
             return JsonResponse({"success": True, "message": "Message sent successfully"})
@@ -76,12 +83,16 @@ def send_message(request):
     return JsonResponse({"success": False, "error": "Invalid request"})
 
 
-
+# -----------------------------
+# Flyer design page
+# -----------------------------
 def flyer_design(request):
     return render(request, 'flyer_design.html',)
 
 
-
+# -----------------------------
+# Flyer design request AJAX
+# -----------------------------
 @csrf_exempt
 def contact_ajax(request):
     if request.method == 'POST':
@@ -108,18 +119,16 @@ def contact_ajax(request):
                 message=message,
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[settings.DEFAULT_FROM_EMAIL],  # your email
+                fail_silently=False,
             )
             return JsonResponse({'success': True})
-        except:
-            return JsonResponse({'success': False}, status=500)
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=500)
 
 
-# views.py
-from django.core.mail import send_mail
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.csrf import csrf_protect
-
+# -----------------------------
+# Contact form AJAX
+# -----------------------------
 @csrf_exempt  # Or use @csrf_protect if you're including CSRF in AJAX
 def contact_ajax(request):
     if request.method == "POST" and request.headers.get("X-Requested-With") == "XMLHttpRequest":
