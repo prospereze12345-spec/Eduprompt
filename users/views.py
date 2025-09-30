@@ -49,26 +49,39 @@ def send_welcome_email(user):
     email.attach_alternative(html_content, "text/html")
     email.send(fail_silently=True)
 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.http import require_POST
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+from threading import Timer
 
 @csrf_protect
 @require_POST
 def ajax_signup(request):
-    username = request.POST.get('username', '').strip()
-    email = request.POST.get('email', '').strip().lower()
-    password = request.POST.get('password', '').strip()
+    username = request.POST.get("username", "").strip()
+    email = request.POST.get("email", "").strip().lower()
+    password = request.POST.get("password", "").strip()
 
     # -------------------------------
     # Validate inputs
     # -------------------------------
     if not all([username, email, password]):
-        return redirect("index")  # homepage
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
+            return JsonResponse({"success": False, "message": "All fields are required."}, status=400)
+        return redirect("index")
 
     # -------------------------------
     # Check uniqueness
     # -------------------------------
     if User.objects.filter(username=username).exists():
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
+            return JsonResponse({"success": False, "message": "Username already taken."}, status=400)
         return redirect("index")
+
     if User.objects.filter(email=email).exists():
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
+            return JsonResponse({"success": False, "message": "Email already registered."}, status=400)
         return redirect("index")
 
     # -------------------------------
@@ -83,10 +96,11 @@ def ajax_signup(request):
     Timer(3.0, send_welcome_email, args=[user]).start()
 
     # -------------------------------
-    # ✅ Redirect to homepage
+    # ✅ Return JSON if AJAX, else redirect
     # -------------------------------
-    return redirect("index")  # make sure 'index' is the name of your homepage URL pattern
-
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return JsonResponse({"success": True, "message": "🎉 Registration successful! Welcome aboard."})
+    return redirect("index")
 
 # -------------------------------
 # AJAX Login (email + optional password)
@@ -94,33 +108,45 @@ def ajax_signup(request):
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_protect
 
 @csrf_protect
 def ajax_login(request):
-    if request.method == "POST" and request.headers.get("X-Requested-With") == "XMLHttpRequest":
+    if request.method == "POST":
+        is_ajax = request.headers.get("X-Requested-With") == "XMLHttpRequest"
         email = request.POST.get("email", "").strip()
         password = request.POST.get("password", "").strip()
 
-        if not email:
-            return redirect("index")  # homepage if email missing
+        if not email or not password:
+            message = "Email and password are required."
+            if is_ajax:
+                return JsonResponse({"success": False, "message": message}, status=400)
+            return redirect("index")
 
         try:
             user = User.objects.get(email__iexact=email, is_active=True)
         except User.DoesNotExist:
-            return redirect("index")  # homepage on invalid login
+            message = "No account found with this email."
+            if is_ajax:
+                return JsonResponse({"success": False, "message": message}, status=400)
+            return redirect("index")
 
-        if password:
-            # Authenticate with password
-            user_auth = authenticate(request, username=user.username, password=password)
-            if not user_auth:
-                return redirect("index")  # homepage if invalid credentials
-            login(request, user_auth)
-        else:
-            pass
+        user_auth = authenticate(request, username=user.username, password=password)
+        if not user_auth:
+            message = "Invalid credentials."
+            if is_ajax:
+                return JsonResponse({"success": False, "message": message}, status=400)
+            return redirect("index")
 
+        # Successful login
+        login(request, user_auth)
+        message = "🎉 Login successful! Welcome back."
+        if is_ajax:
+            return JsonResponse({"success": True, "message": message})
         return redirect("index")
 
+    # Fallback for non-POST requests
     return redirect("index")
 
 
