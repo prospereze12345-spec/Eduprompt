@@ -127,12 +127,39 @@ import requests
 import logging
 
 logger = logging.getLogger(__name__)
+from django.http import HttpResponse
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.conf import settings
+import requests, logging, time
 
-@login_required
+logger = logging.getLogger(__name__)
+
+# ❌ remove @login_required
 def quiz_start_subscription(request):
     plan = request.GET.get("plan")
     if not plan:
         return HttpResponse("No plan selected", status=400)
+
+    # --- Check if user is logged in ---
+    if not request.user.is_authenticated:
+        return HttpResponse(
+            """
+            <script>
+                alert("⚠ Please sign up or log in before subscribing.");
+                if (window.bootstrap) {
+                    var modalEl = document.getElementById("registerModal");
+                    if (modalEl) {
+                        var modal = new bootstrap.Modal(modalEl);
+                        modal.show();
+                    }
+                } else {
+                    console.warn("Bootstrap not loaded: cannot show modal.");
+                }
+                window.history.back();
+            </script>
+            """
+        )
 
     plans = {
         "basic_ng": {"amount": 1200, "currency": "NGN", "limit": 20},
@@ -157,7 +184,7 @@ def quiz_start_subscription(request):
         return HttpResponse("Invalid plan", status=400)
 
     selected = plans[plan]
-    tx_ref = f"quiz_{request.user.id}_{plan}_{int(timezone.now().timestamp())}"
+    tx_ref = f"quiz_{request.user.id}_{plan}_{int(time.time())}"
 
     # --- Set payment options based on currency ---
     if selected["currency"] == "NGN":
@@ -169,7 +196,7 @@ def quiz_start_subscription(request):
         "tx_ref": tx_ref,
         "amount": selected["amount"],
         "currency": selected["currency"],
-        "payment_options": payment_options,  # ✅ dynamic options
+        "payment_options": payment_options,
         "redirect_url": request.build_absolute_uri(reverse("quiz_verify_subscription")),
         "customer": {
             "email": request.user.email or f"user{request.user.id}@example.com",

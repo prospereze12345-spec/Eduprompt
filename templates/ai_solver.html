@@ -1,7 +1,6 @@
 {% load static %}
 {% load i18n %}
 
-{% load socialaccount %}
 
 
 <!DOCTYPE html>
@@ -911,6 +910,7 @@ function getCookie(name) {
     }
     return null;
 }
+
 // -------------------------
 // Fetch User Status for AI Solver
 // -------------------------
@@ -925,8 +925,17 @@ async function fetchUserStatusSolver() {
         // Authentication check
         if (data.error === "Authentication required") {
             statusDiv.innerHTML = `⚠️ Please <strong>sign up before solving</strong>.`;
-            // Only show goProBanner if it exists
             if (goProBanner) goProBanner.style.display = "none";
+
+            // 🔑 Trigger register/login modal automatically
+            if (typeof openRegisterModal === "function") {
+                openRegisterModal(); // your custom function to open modal
+            } else if (typeof openLoginModal === "function") {
+                openLoginModal();
+            } else {
+                alert("⚠ Please sign up or log in before subscribing.");
+            }
+
             return;
         }
 

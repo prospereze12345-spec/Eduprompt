@@ -95,17 +95,39 @@ from django.contrib.auth.decorators import login_required
 import logging
 
 logger = logging.getLogger(__name__)
+from django.http import HttpResponse
+from django.shortcuts import redirect
+from django.utils import timezone
+from django.conf import settings
+import requests, logging
 
-@login_required
+logger = logging.getLogger(__name__)
+
+# ❌ remove @login_required (we’ll handle login manually)
 def start_subscription(request):
     plan = request.GET.get("plan")
     if not plan:
         return HttpResponse("No plan selected", status=400)
 
-    # --- Prompt non-logged-in users ---
+    # --- Check if user is logged in ---
     if not request.user.is_authenticated:
+        # Instead of redirect, trigger your register/login modal
         return HttpResponse(
-            "<script>alert('⚠ Please sign up or log in before subscribing.'); window.history.back();</script>"
+            """
+            <script>
+                alert("⚠ Please sign up or log in before subscribing.");
+                if (window.bootstrap) {
+                    var modalEl = document.getElementById("registerModal");
+                    if (modalEl) {
+                        var modal = new bootstrap.Modal(modalEl);
+                        modal.show();
+                    }
+                } else {
+                    console.warn("Bootstrap not loaded: cannot show modal.");
+                }
+                window.history.back();
+            </script>
+            """
         )
 
     # Flutterwave plans with correct amounts
@@ -123,21 +145,20 @@ def start_subscription(request):
 
     selected = plans[plan]
 
-    # Use a unique tx_ref per transaction
+    # Unique tx_ref per transaction
     tx_ref = f"sub_{request.user.id}_{plan}_{int(timezone.now().timestamp())}"
 
-    # --- Set payment options based on currency ---
+    # --- Payment options ---
     if selected["currency"] == "NGN":
         payment_options = "card,banktransfer,ussd,ngn,ussd_qr,eNaira"
     else:  # USD or other international currency
-      payment_options = "card,banktransfer"
-
+        payment_options = "card,banktransfer"
 
     payload = {
         "tx_ref": tx_ref,
         "amount": selected["amount"],
         "currency": selected["currency"],
-        "payment_options": payment_options,  # ✅ dynamic options
+        "payment_options": payment_options,
         "redirect_url": request.build_absolute_uri("/essay/verify-subscription/"),
         "customer": {
             "email": request.user.email or f"user{request.user.id}@example.com",
@@ -174,6 +195,7 @@ def start_subscription(request):
     except requests.RequestException as e:
         logger.exception("Flutterwave request failed")
         return HttpResponse(f"Payment request failed: {str(e)}", status=500)
+
 
 @login_required
 def verify_subscription(request):

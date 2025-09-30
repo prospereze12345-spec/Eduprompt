@@ -106,9 +106,6 @@ INSTALLED_APPS = [
     'grammar_checker',
     'allauth',
     'widget_tweaks',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
     'users.apps.UsersConfig',
     'blog',
     'django_quill', 
@@ -128,8 +125,10 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key")
 DEBUG = os.environ.get("DEBUG", "False") == "False"
 
 RENDER_HOST = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
-ALLOWED_HOSTS = [RENDER_HOST] if RENDER_HOST else ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
+if RENDER_HOST:
+    ALLOWED_HOSTS.append(RENDER_HOST)
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -270,23 +269,19 @@ CKEDITOR_CONFIGS = {
         "extraPlugins": "uploadimage",  # allow image uploads
     }
 }
-from django.urls import reverse_lazy
 
-LOGIN_URL = 'login'               # must match the name of a URL
+# settings.py
+LOGIN_URL = "/?show_login=true"
 LOGIN_REDIRECT_URL = "/"          # After login
-LOGOUT_REDIRECT_URL = "/"         # After logout
 
 # Example email backend for testing in dev
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'noreply@example.com'
                # After logout
 
-# 👇 Custom domain for password reset emails
-DEFAULT_DOMAIN = "127.0.0.1:8000"
 
 
-# For development: emails printed in console
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 
 

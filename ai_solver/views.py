@@ -151,7 +151,7 @@ def _check_solver_access(user):
 
     # If none of the above, limit reached
     return False, sub, "⚠️ Solve limit reached. Please upgrade."
-@login_required
+# ❌ remove @login_required (we’ll handle login manually)
 def start_subscription(request):
     plan = request.GET.get("plan")
     if not plan:
@@ -159,8 +159,23 @@ def start_subscription(request):
 
     # --- Check if user is logged in ---
     if not request.user.is_authenticated:
+        # Instead of redirect, trigger your register/login modal
         return HttpResponse(
-            "<script>alert('⚠ Please sign up or log in before subscribing.'); window.history.back();</script>"
+            """
+            <script>
+                alert("⚠ Please sign up or log in before subscribing.");
+                if (window.bootstrap) {
+                    var modalEl = document.getElementById("registerModal");
+                    if (modalEl) {
+                        var modal = new bootstrap.Modal(modalEl);
+                        modal.show();
+                    }
+                } else {
+                    console.warn("Bootstrap not loaded: cannot show modal.");
+                }
+                window.history.back();
+            </script>
+            """
         )
 
     # AI Solver pricing
@@ -240,7 +255,6 @@ def start_subscription(request):
     except requests.RequestException as e:
         logger.exception("Flutterwave request failed")
         return HttpResponse(f"Payment request failed: {str(e)}", status=500)
-
 
 @login_required
 def verify_subscription(request):

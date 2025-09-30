@@ -154,10 +154,37 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .models import UserProfile
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import redirect
+from django.conf import settings
+import requests, uuid, logging
+from .models import UserProfile
 
-@login_required
+logger = logging.getLogger(__name__)
+
+# ❌ remove @login_required
 def grammar_start_subscription(request):
     """Start Flutterwave payment for Grammar Pro subscription (30 days)."""
+
+    # --- Check if user is logged in ---
+    if not request.user.is_authenticated:
+        return HttpResponse(
+            """
+            <script>
+                alert("⚠ Please sign up or log in before subscribing.");
+                if (window.bootstrap) {
+                    var modalEl = document.getElementById("registerModal");
+                    if (modalEl) {
+                        var modal = new bootstrap.Modal(modalEl);
+                        modal.show();
+                    }
+                } else {
+                    console.warn("Bootstrap not loaded: cannot show modal.");
+                }
+                window.history.back();
+            </script>
+            """
+        )
 
     # ✅ Ensure profile exists for this user
     user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
@@ -183,9 +210,9 @@ def grammar_start_subscription(request):
         "amount": amount,
         "currency": currency,
         "redirect_url": request.build_absolute_uri("/grammar-verify-subscription/"),
-        "payment_options": payment_options,  # ✅ dynamic options
+        "payment_options": payment_options,
         "customer": {
-            "email": request.user.email,
+            "email": request.user.email or f"user{request.user.id}@example.com",
             "name": request.user.username,
         },
         "customizations": {
@@ -204,13 +231,16 @@ def grammar_start_subscription(request):
             timeout=15
         )
         res_data = res.json()
+        logger.info(f"Flutterwave grammar init: {res_data}")
     except requests.RequestException as e:
+        logger.exception("Flutterwave request failed (grammar)")
         return JsonResponse({"error": f"Failed to initiate payment: {str(e)}"}, status=500)
 
     if res_data.get("status") == "success" and "link" in res_data.get("data", {}):
         return redirect(res_data["data"]["link"])
 
     return JsonResponse({"error": "Failed to initiate payment"}, status=400)
+
 
 from datetime import timedelta
 from django.utils import timezone
