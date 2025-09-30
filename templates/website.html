@@ -2250,34 +2250,40 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <!-- jQuery for AJAX -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script>
-  $("#contactForm").submit(function(e) {
+$(document).ready(function () {
+  $("#contactForm").submit(function (e) {
     e.preventDefault();
+
+    // Grab CSRF token from hidden input
+    const csrfToken = $(this).find("[name=csrfmiddlewaretoken]").val();
+
+    // Use FormData to include all fields automatically
+    const formData = new FormData(this);
 
     $.ajax({
       type: "POST",
       url: "/send-message", // backend endpoint
-      data: {
-        fullName: $("#fullName").val(),
-        email: $("#email").val(),
-        phone: $("#phone").val(),
-        developmentType: $("#developmentType").val(),
-        websiteType: $("#websiteType").val(),
-        clientLocation: $("#clientLocation").val(),
-        timeline: $("#timeline").val(),
-        message: $("#message").val(),
-        contactMethod: $("#contactMethod").val(),
+      data: formData,
+      processData: false,  // important for FormData
+      contentType: false,  // important for FormData
+      headers: {
+        "X-CSRFToken": csrfToken
       },
-      success: function() {
+      success: function (response) {
         $("#successMessage").removeClass("d-none"); // show success alert
         $("#contactForm")[0].reset(); // reset form
+
+        // Optionally hide success alert after 5 seconds
+        setTimeout(() => $("#successMessage").addClass("d-none"), 5000);
       },
-      error: function() {
+      error: function (xhr, status, error) {
+        console.error("Contact form error:", xhr.responseText);
         alert("❌ Failed to send. Please try again.");
       }
     });
   });
+});
 </script>
 
 <style>

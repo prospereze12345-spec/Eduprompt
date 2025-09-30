@@ -784,41 +784,62 @@ $(document).ready(function(){
     </div>
   </div>
 </section>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector(".contact-form form");
+
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
+    // Get CSRF token from hidden input in the form
+    const csrfToken = form.querySelector("[name=csrfmiddlewaretoken]").value;
+
     let formData = new FormData(form);
-    const response = await fetch("{% url 'contact_ajax' %}", {
-      method: "POST",
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-        "X-CSRFToken": "{{ csrf_token }}",
-      },
-      body: formData,
-    });
 
-    const data = await response.json();
+    try {
+      const response = await fetch("{% url 'contact_ajax' %}", {
+        method: "POST",
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+          "X-CSRFToken": csrfToken,
+        },
+        body: formData,
+      });
 
-    // Show message
-    let alertBox = document.createElement("div");
-    alertBox.className = `alert mt-3 ${data.status === "success" ? "alert-success" : "alert-danger"}`;
-    alertBox.textContent = data.message;
+      const data = await response.json();
 
-    form.prepend(alertBox);
+      // Show message
+      let alertBox = document.createElement("div");
+      alertBox.className = `alert mt-3 ${data.status === "success" ? "alert-success" : "alert-danger"}`;
+      alertBox.textContent = data.message || "Something went wrong";
 
-    // Reset form if successful
-    if (data.status === "success") {
-      form.reset();
+      // Remove any existing alerts first
+      const existingAlert = form.querySelector(".alert");
+      if (existingAlert) existingAlert.remove();
+
+      form.prepend(alertBox);
+
+      // Reset form if successful
+      if (data.status === "success") {
+        form.reset();
+      }
+
+      // Auto remove alert after 5s
+      setTimeout(() => alertBox.remove(), 5000);
+
+    } catch (err) {
+      console.error("AJAX contact error:", err);
+      let alertBox = document.createElement("div");
+      alertBox.className = "alert alert-danger mt-3";
+      alertBox.textContent = "❌ Error sending request. Please try again.";
+      form.prepend(alertBox);
+      setTimeout(() => alertBox.remove(), 5000);
     }
-
-    // Auto remove alert after 5s
-    setTimeout(() => alertBox.remove(), 5000);
   });
 });
 </script>
+
 
 
 <!-- CTA + Social Section -->
