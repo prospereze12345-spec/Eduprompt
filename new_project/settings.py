@@ -16,7 +16,6 @@ from dotenv import load_dotenv
 
 import os
 
-import dj_database_url
 
 load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,7 +82,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-aga@)uqd^8!kaqswudioc_lr6mh3#2=33qo=b#52a9r3#^np1!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -126,7 +125,7 @@ LOCALE_PATHS = [
 ]
 SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key")
 
-DEBUG = os.environ.get("DEBUG", "True") == "True"
+DEBUG = os.environ.get("DEBUG", "False") == "False"
 
 RENDER_HOST = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
 ALLOWED_HOSTS = [RENDER_HOST] if RENDER_HOST else ["127.0.0.1", "localhost"]
@@ -145,6 +144,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'new_project.urls'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 TEMPLATES = [
     {
@@ -168,6 +168,8 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = "[Eduprompt] "
 DEFAULT_FROM_EMAIL = "no-reply@Eduprompt.com.ng"
 
 
+
+import dj_database_url
 
 DATABASES = {
     "default": dj_database_url.config(
