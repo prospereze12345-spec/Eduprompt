@@ -396,6 +396,99 @@ def generate_quiz(request):
 
     except Exception as e:
         return JsonResponse({"quiz": None, "error": f"Server error: {e}"}, status=500)
+import os
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.decorators import login_required
+
+# ✅ Import directly from utils (not utils.quiz_generator)
+from .utils.quiz_generator import generate_quiz_from_text, _check_quiz_access
+
+
+@csrf_exempt
+@login_required
+def upload_and_generate_quiz(request):
+    """
+    Accepts file upload, extracts text, and generates quiz questions.
+    """
+    if request.method != "POST" or not request.FILES.get("file"):
+        return JsonResponse({"quiz": None, "error": "Upload a file with POST."}, status=400)
+
+    try:
+        uploaded_file = request.FILES["file"]
+        fs = FileSystemStorage()
+        filename = fs.save(uploaded_file.name, uploaded_file)
+        file_path = fs.path(filename)
+
+        # --- Extract text ---
+        ext = os.path.splitext(file_path)[1].lower()
+        text = ""
+        if ext == ".txt":
+            with open(file_path, "r", encoding="utf-8") as f:
+                text = f.read()
+        elif ext == ".docx":
+            from docx import Document
+            doc = Document(file_path)
+            text = "\n".join([p.text for p in doc.paragraphs])
+        elif ext == ".pdf":
+            from pypdf import PdfReader   # ✅ use pypdf instead of PyPDF2
+            reader = PdfReader(file_path)
+            text = "\n".join([page.extract_text() or "" for page in reader.pages])
+
+        if not text.strip():
+            return JsonResponse({"quiz": None, "error": "File is empty or unsupported."}, status=400)
+
+        # --- Subscription check ---
+        allowed, sub, access_msg = _check_quiz_access(request.user)
+        if not allowed:
+            quiz_left = None
+            if sub:
+                raw_left = sub.quizzes_left()
+                quiz_left = "Unlimited" if (raw_left is None or raw_left >= 999999) else raw_left
+            return JsonResponse({
+                "quiz": None,
+                "error": access_msg,
+                "subscribed": sub.is_active() if sub else False,
+                "quiz_left": quiz_left if sub else 0,
+                "free_trial_used": True,
+                "quizzes_used": sub.quizzes_used if sub else 0
+            }, status=200)
+
+        # --- Generate Quiz ---
+        result = generate_quiz_from_text(
+            study_text=text,
+            quiz_type="mixed",
+            difficulty="medium",
+            language="English",
+            max_questions=10
+        )
+
+        # ✅ Always normalize result to string
+        if isinstance(result, list):
+            result = "\n".join(map(str, result))
+
+        # ✅ Handle error messages
+        if isinstance(result, str) and result.startswith("⚠️"):
+            return JsonResponse({"quiz": None, "error": result}, status=200)
+
+        # --- Update subscription ---
+        if sub:
+            sub.use_quiz()
+
+        raw_left = sub.quizzes_left() if sub else 0
+        quiz_left = "Unlimited" if (raw_left is None or raw_left >= 999999) else raw_left
+
+        return JsonResponse({
+            "quiz": result,
+            "error": None,
+            "subscribed": sub.is_active() if sub else False,
+            "quiz_left": quiz_left,
+            "quizzes_used": sub.quizzes_used if sub else 0
+        }, status=200)
+
+    except Exception as e:
+        return JsonResponse({"quiz": None, "error": f"Server error: {e}"}, status=500)
 
 
 @csrf_exempt

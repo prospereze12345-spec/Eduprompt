@@ -22,11 +22,17 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.utils import timezone
 import requests
+import requests
+from django.conf import settings
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def grammar_checker(request):
     """
-    Grammar checker using self-hosted LanguageTool only.
+    Grammar checker using LanguageTool PUBLIC API.
     Supports many languages including African ones (af, sw, ar).
     Integrates with user subscription to allow Pro users to check up to 15k+ words.
     Requires user login before checking grammar.
@@ -78,9 +84,8 @@ def grammar_checker(request):
             return JsonResponse({"error": f"Language '{language}' not supported"}, status=400)
 
         try:
-            # --- Call self-hosted LanguageTool ---
-            # Ensure LANGUAGETOOL_API is set, e.g., "http://localhost:8010/v2/check"
-            lt_url = getattr(settings, "LANGUAGETOOL_API", "http://localhost:8010/v2/check")
+            # --- Call PUBLIC LanguageTool API ---
+            lt_url = "https://api.languagetool.org/v2/check"
             lt_response = requests.post(
                 lt_url,
                 data={"text": text, "language": language},
@@ -107,19 +112,16 @@ def grammar_checker(request):
             return JsonResponse({
                 "matches": matches,
                 "corrected_text": corrected_text if auto_correct else None,
-                "source": "lt"
+                "source": "public_api"
             })
 
         except requests.exceptions.RequestException as e:
-            # Connection error or timeout
             return JsonResponse({"error": f"LanguageTool API request failed: {e}"}, status=500)
         except ValueError as e:
-            # JSON decode error
             return JsonResponse({"error": f"Invalid response from LanguageTool: {e}"}, status=500)
 
     # --- GET request: render HTML ---
     return render(request, "grammar_checker.html")
-
 
 
 import uuid

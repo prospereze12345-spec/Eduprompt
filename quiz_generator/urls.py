@@ -9,5 +9,6 @@ urlpatterns = [
         path("quiz-subscription-status/", views.quiz_subscription_status, name="quiz_subscription_status"),
         path("quiz-start-subscription/", views.quiz_start_subscription, name="quiz_start_subscription"),
         path("quiz-verify-subscription/", views.quiz_verify_subscription, name="quiz_verify_subscription"),
+        path("upload-quiz/", views.upload_and_generate_quiz, name="upload_and_generate_quiz"),
 
 ]

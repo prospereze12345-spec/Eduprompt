@@ -615,28 +615,32 @@ $(document).ready(function(){
 
     <!-- Input Form (Left) -->
     <div class="col-lg-6 col-md-12 d-flex flex-column">
-      <form id="quizForm" class="p-4 rounded shadow-sm bg-white h-100 d-flex flex-column">
+      <form id="quizForm" method="post" action="{% url 'upload_and_generate_quiz' %}" 
+            enctype="multipart/form-data"
+            class="p-4 rounded shadow-sm bg-white h-100 d-flex flex-column">
         {% csrf_token %}
 
         <!-- Quiz Source -->
         <div class="mb-3 flex-grow-1">
           <label for="quizSource" class="form-label fw-semibold">Paste Study Material</label>
-          <textarea class="form-control" id="quizSource" rows="14"
+          <textarea class="form-control" id="quizSource" name="quizSource" rows="14"
                     placeholder="Paste your notes, textbook content, or study material here..." required></textarea>
         </div>
 
         <!-- Small Controls -->
         <div class="row g-2 mb-3">
-          <!-- File Upload -->
+
+          <!-- Upload -->
           <div class="col-md-4">
             <label for="fileUpload" class="form-label small fw-semibold">Upload (Optional)</label>
-            <input type="file" class="form-control form-control-sm" id="fileUpload" accept=".txt,.pdf,.doc,.docx">
+            <input type="file" name="file" class="form-control form-control-sm"
+                   id="fileUpload" accept=".txt,.pdf,.doc,.docx">
           </div>
 
           <!-- Quiz Type -->
           <div class="col-md-4">
             <label for="quizType" class="form-label small fw-semibold">Type</label>
-            <select class="form-select form-select-sm" id="quizType" required>
+            <select class="form-select form-select-sm" id="quizType" name="quizType" required>
               <option value="">Select...</option>
               <option value="mcq">MCQ</option>
               <option value="truefalse">True/False</option>
@@ -648,7 +652,7 @@ $(document).ready(function(){
           <!-- Difficulty Level -->
           <div class="col-md-4">
             <label for="difficulty" class="form-label small fw-semibold">Difficulty</label>
-            <select class="form-select form-select-sm" id="difficulty" required>
+            <select class="form-select form-select-sm" id="difficulty" name="difficulty" required>
               <option value="">Level...</option>
               <option>Easy</option>
               <option>Medium</option>
@@ -661,7 +665,7 @@ $(document).ready(function(){
         <div class="row g-2 mb-3">
           <div class="col-md-6">
             <label for="language" class="form-label small fw-semibold">Language</label>
-            <select class="form-select form-select-sm" id="language" required>
+            <select class="form-select form-select-sm" id="language" name="language" required>
               <option value="english" selected>English</option>
               <option value="french">French</option>
               <option value="igbo">Igbo</option>
@@ -683,9 +687,7 @@ $(document).ready(function(){
       </form>
 
       <!-- ✅ Free Trial / Status Section -->
-      <div id="userStatusQuiz" class="mt-3 text-center small fw-semibold text-dark">
-        <!-- Dynamically updated with free trial info -->
-      </div>
+      <div id="userStatusQuiz" class="mt-3 text-center small fw-semibold text-dark"></div>
 
       <!-- ✅ Go Pro Upgrade Banner -->
       <div id="goProBannerQuiz" class="mt-3" style="display:none;">
@@ -704,8 +706,7 @@ $(document).ready(function(){
         </div>
       </div>
     </div>
-
-    <!-- Output Box (Right) -->
+ <!-- Output Box (Right) -->
     <div class="col-lg-6 col-md-12 mb-3">
       <div id="quizResult" class="p-4 border rounded shadow-sm d-flex flex-column bg-white h-100">
         <h5 class="fw-bold">Generated Quiz</h5>
@@ -734,10 +735,28 @@ $(document).ready(function(){
           </button>
         </div>
       </div>
-    </div>
   </div>
-</div>
 
+<!-- ✅ Auto-fill textarea when uploading a text or pdf -->
+<script>
+document.getElementById("fileUpload").addEventListener("change", function(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  if (file.type === "text/plain") {
+    // Plain text file
+    reader.onload = e => {
+      document.getElementById("quizSource").value = e.target.result;
+    };
+    reader.readAsText(file);
+  } else {
+    // PDF/DOC/DOCX placeholder (backend handles extraction)
+    document.getElementById("quizSource").value = "📂 File uploaded. Content will be extracted automatically after you click Generate.";
+  }
+});
+</script>
 <script>document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("quizForm");
     const quizSource = document.getElementById("quizSource");
