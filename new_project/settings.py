@@ -16,6 +16,8 @@ from dotenv import load_dotenv
 
 import os
 
+import os
+OCRSPACE_API_KEY = os.environ.get("OCRSPACE_API_KEY")
 
 load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -109,6 +111,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'blog',
     'django_quill', 
+    
 
     
 ]

@@ -312,10 +312,11 @@ def verify_subscription(request):
 
 @csrf_exempt
 def ai_solver(request):
-    if request.method == "POST" and request.headers.get("x-requested-with") == "XMLHttpRequest":
-        response = {"success": False, "solution": "", "steps": "", "audio_url": "", "message": ""}
+    response = {"success": False, "solution": "", "steps": "", "audio_url": "", "question": "", "message": ""}
 
-        # --- Handle anonymous users ---
+    # --- Only POST requests for solving ---
+    if request.method == "POST" and request.headers.get("x-requested-with") == "XMLHttpRequest":
+
         if not request.user.is_authenticated:
             response["message"] = "⚠️ Please sign up before you start solving."
             return JsonResponse(response, status=403)
@@ -329,8 +330,34 @@ def ai_solver(request):
             response["message"] = "⚠ Invalid request format."
             return JsonResponse(response, status=400)
 
+        # --- Get question from text input or image ---
         question = (data.get("question") or "").strip()
         language = data.get("lang") or data.get("language", "English")
+        uploaded_file = request.FILES.get("image")
+
+        # --- If an image is uploaded, do OCR ---
+        if uploaded_file:
+            try:
+                ocr_res = requests.post(
+                    "https://api.ocr.space/parse/image",
+                    files={"file": uploaded_file},
+                    data={"apikey": settings.OCRSPACE_API_KEY, "language": "eng"},
+                    timeout=30
+                )
+                result = ocr_res.json()
+                parsed = result.get("ParsedResults")
+                if not parsed or not parsed[0].get("ParsedText"):
+                    response["message"] = "⚠ OCR could not extract text."
+                    return JsonResponse(response, status=500)
+                question = parsed[0]["ParsedText"].strip()
+                response["question"] = question  # populate extracted text in input box
+            except Exception as e:
+                response["message"] = f"OCR API failed: {e}"
+                return JsonResponse(response, status=500)
+
+        if not question:
+            response["message"] = "⚠ Please enter a question or upload an image."
+            return JsonResponse(response, status=400)
 
         # --- Subscription check ---
         allowed, sub, msg = _check_solver_access(request.user)
@@ -338,14 +365,10 @@ def ai_solver(request):
             response["message"] = msg
             return JsonResponse(response, status=403)
 
-        # Customize free trial message
         if sub.plan == "trial":
             msg = f"🎁 Free Trial: {sub.solver_limit - sub.solver_used} solve{'s' if sub.solver_limit - sub.solver_used != 1 else ''} left"
 
-        if not question:
-            response["message"] = "⚠ Please enter a question."
-            return JsonResponse(response, status=400)
-
+        # --- Solve the question ---
         try:
             expr = question.replace("^", "**")
             steps = solve_with_zhipu(expr, max_words=200, mode="explain", language=language)
@@ -355,6 +378,7 @@ def ai_solver(request):
             response["steps"] = steps
             response["solution"] = steps
 
+            # --- Generate TTS audio ---
             try:
                 audio_filename = f"tts_{abs(hash(question + language))}.mp3"
                 audio_path = os.path.join(settings.MEDIA_ROOT, audio_filename)
@@ -378,74 +402,115 @@ def ai_solver(request):
         return JsonResponse(response)
 
     return render(request, "ai_solver.html")
-
-
 @csrf_exempt
 def solve_image_api(request):
-    if request.method == "POST":
-        response = {"success": False, "solution": "", "question": "", "message": ""}
+    if request.method != "POST":
+        return JsonResponse({"success": False, "message": "Invalid request."}, status=400)
 
-        # --- Handle anonymous users ---
-        if not request.user.is_authenticated:
-            response["message"] = "⚠️ Please sign up before you start solving."
-            return JsonResponse(response, status=403)
+    response = {"success": False, "solution": "", "question": "", "message": ""}
 
-        try:
-            if request.content_type == "application/json":
-                data = json.loads(request.body.decode("utf-8"))
-                language = data.get("lang") or data.get("language", "English")
-            else:
-                data = request.POST
-                language = data.get("lang") or data.get("language", "English")
-        except Exception:
-            language = "English"
+    # --- Check if user is authenticated ---
+    if not request.user.is_authenticated:
+        response["message"] = "⚠️ Please sign up before you start solving."
+        return JsonResponse(response, status=403)
 
-        allowed, sub, msg = _check_solver_access(request.user)
-        if not allowed:
-            response["message"] = msg
-            return JsonResponse(response, status=403)
+    # --- Parse language from request ---
+    try:
+        if request.content_type == "application/json":
+            data = json.loads(request.body.decode("utf-8"))
+            language = data.get("lang") or data.get("language", "en")
+        else:
+            data = request.POST
+            language = data.get("lang") or data.get("language", "en")
+    except Exception:
+        language = "en"
 
-        # Customize free trial message
-        if sub.plan == "trial":
-            msg = f"🎁 Free Trial: {sub.solver_limit - sub.solver_used} solve{'s' if sub.solver_limit - sub.solver_used != 1 else ''} left"
+    # --- Map frontend language to OCR.space valid codes ---
+    ocr_lang_map = {
+        "en": "eng",   # English
+        "fr": "fre",   # French
+        "ar": "ara",   # Arabic
+        "sw": "swa",   # Swahili
+        # Unsupported OCR languages -> fallback to English OCR
+        "ig": "eng",   # Igbo
+        "yo": "eng",   # Yoruba
+        "ha": "eng",   # Hausa
+        "zu": "eng",   # Zulu
+    }
+    ocr_lang = ocr_lang_map.get(language, "eng")
 
-        uploaded_file = request.FILES.get("image")
-        if not uploaded_file:
-            response["message"] = "⚠ No image uploaded."
-            return JsonResponse(response, status=400)
+    # --- Check subscription / access ---
+    allowed, sub, msg = _check_solver_access(request.user)
+    if not allowed:
+        response["message"] = msg
+        return JsonResponse(response, status=403)
 
-        try:
-            ocr_res = requests.post(
-                "https://api.ocr.space/parse/image",
-                files={"file": uploaded_file},
-                data={"apikey": settings.OCRSPACE_API_KEY, "language": "eng"},
-                timeout=30
-            )
-            result = ocr_res.json()
-            parsed = result.get("ParsedResults")
-            if not parsed or not parsed[0].get("ParsedText"):
-                response["message"] = "⚠ OCR could not extract text."
-                return JsonResponse(response, status=500)
-            text = parsed[0]["ParsedText"].strip()
-            response["question"] = text
-        except Exception as e:
-            response["message"] = f"OCR API failed: {e}"
+    # Customize free trial message
+    if sub.plan == "trial":
+        msg = f"🎁 Free Trial: {sub.solver_limit - sub.solver_used} solve{'s' if sub.solver_limit - sub.solver_used != 1 else ''} left"
+
+    # --- Check uploaded image ---
+    uploaded_file = request.FILES.get("image")
+    if not uploaded_file:
+        response["message"] = "⚠ No image uploaded."
+        return JsonResponse(response, status=400)
+
+    try:
+        # --- OCR using OCR.space API ---
+        ocr_res = requests.post(
+            "https://api.ocr.space/parse/image",
+            files={"file": uploaded_file},
+            data={
+                "apikey": settings.OCRSPACE_API_KEY,
+                "language": ocr_lang,
+                "isOverlayRequired": False
+            },
+            timeout=30
+        )
+        result = ocr_res.json()
+
+        parsed = result.get("ParsedResults")
+        if not parsed or not parsed[0].get("ParsedText"):
+            err_msg = result.get("ErrorMessage") or ["⚠ could not extract text."]
+            response["message"] = err_msg[0] if isinstance(err_msg, list) else str(err_msg)
             return JsonResponse(response, status=500)
 
-        solution = solve_with_zhipu(text, max_words=200, mode="explain", language=language)
-        if not solution:
-            solution = f"⚠ Could not generate a solution at this time ({language})."
+        text = parsed[0]["ParsedText"].strip()
+        response["question"] = text
 
-        response["solution"] = solution
-        response["success"] = True
-        response["message"] = msg or "✅ Solved successfully."
+    except Exception as e:
+        response["message"] = f"OCR API failed: {e}"
+        return JsonResponse(response, status=500)
 
-        sub.solver_used += 1
-        sub.save(update_fields=["solver_used"])
+    # --- Split OCR text into multiple questions ---
+    questions = [q.strip() for q in text.split("\n") if q.strip()]
+    solutions = []
 
-        return JsonResponse(response)
+    for idx, q in enumerate(questions[:20], start=1):  # limit to 20 questions
+        try:
+            sol = solve_with_zhipu(
+                q,
+                max_words=300,  # cap at 300 words per question
+                mode="explain",
+                language=language  # user-selected language
+            )
+            if not sol:
+                sol = f"⚠ Could not generate a solution for Question {idx}."
+            solutions.append(f"Q{idx}: {q}\nAnswer: {sol}\n")
+        except Exception as e:
+            solutions.append(f"Q{idx}: {q}\nAnswer: ❌ Error: {str(e)}\n")
 
-    return JsonResponse({"success": False, "message": "Invalid request."}, status=400)
+    final_solution = "\n".join(solutions)
+
+    response["solution"] = final_solution
+    response["success"] = True
+    response["message"] = msg or "✅ Solved successfully."
+
+    # --- Update subscription usage ---
+    sub.solver_used += 1
+    sub.save(update_fields=["solver_used"])
+
+    return JsonResponse(response)
 
 @csrf_exempt
 def download_solution_pdf(request):

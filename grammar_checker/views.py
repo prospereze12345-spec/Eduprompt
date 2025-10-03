@@ -280,29 +280,31 @@ def grammar_verify_subscription(request):
             return redirect("/grammar-checker/?subscribed=1")
 
     return redirect("/grammar-checker/?subscribed=0")
-
 import docx
 import pytesseract
 from PIL import Image
 from pypdf import PdfReader
-from django.shortcuts import render
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from .models import UserProfile
 import requests
+
 
 # --- helpers ---
 def count_words(text):
     return len(text.split())
 
+
 def extract_text_from_file(file_obj):
     ext = file_obj.name.split(".")[-1].lower()
 
-    if ext in ["docx"]:
+    if ext == "docx":
         doc = docx.Document(file_obj)
         return " ".join([p.text for p in doc.paragraphs])
 
-    elif ext in ["pdf"]:
+    elif ext == "pdf":
         reader = PdfReader(file_obj)
         return " ".join([page.extract_text() or "" for page in reader.pages])
 
@@ -313,38 +315,42 @@ def extract_text_from_file(file_obj):
     else:
         return file_obj.read().decode(errors="ignore")
 
-def run_languagetool_check(text):
-    """Send text to self-hosted LanguageTool server and return corrected text and suggestions."""
-    LT_URL = "http://127.0.0.1:8010/v2/check"  # adjust port if needed
+
+def run_languagetool_check(text, lang="en-US"):
+    """Send text to LanguageTool public API and return corrected text + suggestions."""
+    LT_URL = "https://api.languagetool.org/v2/check"  # ✅ use public API
     try:
         response = requests.post(
             LT_URL,
             data={
                 "text": text,
-                "language": "en-US"
+                "language": lang
             },
             timeout=15
         )
         result = response.json()
-        # Apply simple replacements for corrected text
         corrected_text = text
         suggestions_html = ""
-        for match in result.get("matches", []):
+
+        # Process matches
+        for match in sorted(result.get("matches", []), key=lambda m: m["offset"], reverse=True):
             message = match.get("message", "")
-            context = match.get("context", {})
-            offset = context.get("offset", 0)
-            length = context.get("length", 0)
+            offset = match.get("offset", 0)
+            length = match.get("length", 0)
             replacement = match.get("replacements")[0]["value"] if match.get("replacements") else None
+
             if replacement:
-                # Replace in corrected_text
                 corrected_text = corrected_text[:offset] + replacement + corrected_text[offset+length:]
+
             suggestions_html += f"<p>• {message}</p>"
 
         return corrected_text, suggestions_html
     except Exception as e:
         return text, f"<p style='color:red;'>Grammar check failed: {e}</p>"
 
+
 # --- view ---
+@csrf_exempt
 @login_required
 def grammar_upload_view(request):
     if request.method == "POST" and request.FILES.get("file"):
@@ -355,22 +361,25 @@ def grammar_upload_view(request):
         # ensure profile
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
 
-        # subscription logic
+        # subscription limits
         limit = 15000 if profile.is_subscribed else 2000
         if word_count > limit:
-            msg = "🚫 Limit exceeded. Max 15,000 words per file." if profile.is_subscribed else \
-                  "⚠ Free trial allows max 2,000 words. Subscribe to unlock 15k words."
+            msg = (
+                "🚫 Limit exceeded. Max 15,000 words per file."
+                if profile.is_subscribed
+                else "⚠ Free trial allows max 2,000 words. Subscribe to unlock 15k words."
+            )
             return JsonResponse({"success": False, "message": msg})
 
-        # run LanguageTool grammar check
+        # run grammar check
         corrected_text, suggestions_html = run_languagetool_check(extracted_text)
 
-        # return JSON
         return JsonResponse({
             "success": True,
             "words": word_count,
             "fixed_text": corrected_text,
-            "suggestions_html": suggestions_html
+            "suggestions_html": suggestions_html,
+            "message": "✅ Grammar check complete."
         })
 
     return JsonResponse({"success": False, "message": "No file uploaded"})

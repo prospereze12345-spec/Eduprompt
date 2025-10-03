@@ -405,12 +405,11 @@ from django.contrib.auth.decorators import login_required
 # ✅ Import directly from utils (not utils.quiz_generator)
 from .utils.quiz_generator import generate_quiz_from_text, _check_quiz_access
 
-
 @csrf_exempt
-@login_required
+@login_required_json   # 👈 make it consistent with your other endpoint
 def upload_and_generate_quiz(request):
     """
-    Accepts file upload, extracts text, and generates quiz questions.
+    Accepts file upload, extracts text, and generates quiz questions with subscription checks.
     """
     if request.method != "POST" or not request.FILES.get("file"):
         return JsonResponse({"quiz": None, "error": "Upload a file with POST."}, status=400)
@@ -421,9 +420,10 @@ def upload_and_generate_quiz(request):
         filename = fs.save(uploaded_file.name, uploaded_file)
         file_path = fs.path(filename)
 
-        # --- Extract text ---
+        # --- Extract text based on extension ---
         ext = os.path.splitext(file_path)[1].lower()
         text = ""
+
         if ext == ".txt":
             with open(file_path, "r", encoding="utf-8") as f:
                 text = f.read()
@@ -432,20 +432,23 @@ def upload_and_generate_quiz(request):
             doc = Document(file_path)
             text = "\n".join([p.text for p in doc.paragraphs])
         elif ext == ".pdf":
-            from pypdf import PdfReader   # ✅ use pypdf instead of PyPDF2
+            from pypdf import PdfReader
             reader = PdfReader(file_path)
             text = "\n".join([page.extract_text() or "" for page in reader.pages])
+        else:
+            return JsonResponse({"quiz": None, "error": "Unsupported file type."}, status=400)
 
         if not text.strip():
-            return JsonResponse({"quiz": None, "error": "File is empty or unsupported."}, status=400)
+            return JsonResponse({"quiz": None, "error": "File is empty or unreadable."}, status=400)
 
-        # --- Subscription check ---
+        # --- Subscription / Trial Access Check ---
         allowed, sub, access_msg = _check_quiz_access(request.user)
         if not allowed:
             quiz_left = None
             if sub:
                 raw_left = sub.quizzes_left()
                 quiz_left = "Unlimited" if (raw_left is None or raw_left >= 999999) else raw_left
+
             return JsonResponse({
                 "quiz": None,
                 "error": access_msg,
@@ -455,7 +458,7 @@ def upload_and_generate_quiz(request):
                 "quizzes_used": sub.quizzes_used if sub else 0
             }, status=200)
 
-        # --- Generate Quiz ---
+        # --- Generate Quiz using util ---
         result = generate_quiz_from_text(
             study_text=text,
             quiz_type="mixed",
@@ -464,7 +467,7 @@ def upload_and_generate_quiz(request):
             max_questions=10
         )
 
-        # ✅ Always normalize result to string
+        # ✅ Normalize result to string
         if isinstance(result, list):
             result = "\n".join(map(str, result))
 
@@ -472,13 +475,14 @@ def upload_and_generate_quiz(request):
         if isinstance(result, str) and result.startswith("⚠️"):
             return JsonResponse({"quiz": None, "error": result}, status=200)
 
-        # --- Update subscription ---
+        # --- Deduct 1 quiz attempt ---
         if sub:
             sub.use_quiz()
 
         raw_left = sub.quizzes_left() if sub else 0
         quiz_left = "Unlimited" if (raw_left is None or raw_left >= 999999) else raw_left
 
+        # ✅ Final response (consistent with generate_quiz)
         return JsonResponse({
             "quiz": result,
             "error": None,

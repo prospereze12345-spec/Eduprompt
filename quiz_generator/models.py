@@ -83,22 +83,30 @@ class QuizSubscription(models.Model):
     def __str__(self):
         return f"{self.user} - {self.plan} ({self.quizzes_used}/{self.quizzes_limit or 'Unlimited'})"
 
+# quiz_generator/models.py
 
 from django.db import models
 from django.contrib.auth.models import User
 
 class Subscription(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    plan = models.CharField(max_length=50, default="free")
     quizzes_used = models.IntegerField(default=0)
-    quizzes_per_month = models.IntegerField(default=1)
-    active_until = models.DateField(null=True, blank=True)
+    quizzes_limit = models.IntegerField(default=10)  # None = Unlimited
+    active = models.BooleanField(default=True)
 
     def is_active(self):
-        from datetime import date
-        return self.active_until is None or self.active_until >= date.today()
+        return self.active
 
     def quizzes_left(self):
-        if self.quizzes_per_month is None:
-            return None  # unlimited
-        return max(self.quizzes_per_month - self.quizzes_used, 0)
+        if self.quizzes_limit is None:
+            return None  # Unlimited
+        return max(0, self.quizzes_limit - self.quizzes_used)
+
+    def use_quiz(self):
+        if self.quizzes_limit is None:
+            return  # Unlimited
+        self.quizzes_used += 1
+        self.save()
+
+    def __str__(self):
+        return f"{self.user.username} Subscription"

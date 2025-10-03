@@ -809,9 +809,8 @@ $(document).ready(function(){
     </div>
   </div>
 </section>
-
 <!-- Custom Solver -->
-<div class="container" style="max-width: 900px; margin:auto;"> <!-- limit width -->
+<div class="container" style="max-width: 900px; margin:auto;">
   <div class="row g-3" style="min-height: 500px;">
 
     <!-- Left Column: Problem Input -->
@@ -867,23 +866,103 @@ $(document).ready(function(){
 
       <hr>
 
-      <!-- Optional: Image Upload Section -->
-      <h5 class="mb-3 fw-bold text-dark">{% trans "Or Upload Image" %}</h5>
-      <input type="file" id="imageInput" class="form-control mb-2" accept="image/*">
-      <button class="btn btn-warning w-100 text-white" id="solveImageBtn">
-        {% trans "Solve Image" %}
-      </button>
+<!-- Optional: Image Upload Section -->
+<h5 class="mb-3 fw-bold text-dark">{% trans "Or Upload Image" %}</h5>
+<input type="file" id="imageInput" class="form-control mb-2" accept="image/*">
+<button class="btn btn-warning w-100 text-white" id="solveImageBtn">
+  {% trans "Solve Image" %}
+</button>
+
+<script>
+// -------------------------
+// CSRF Token Helper
+// -------------------------
+function getCookie(name) {
+    const cookies = document.cookie ? document.cookie.split(';') : [];
+    for (let cookie of cookies) {
+        cookie = cookie.trim();
+        if (cookie.startsWith(name + '=')) {
+            return decodeURIComponent(cookie.substring(name.length + 1));
+        }
+    }
+    return null;
+}
+
+// -------------------------
+// Solve Image Button Logic
+// -------------------------
+document.getElementById('solveImageBtn').addEventListener('click', async () => {
+    const fileInput = document.getElementById('imageInput');
+    const output = document.getElementById('resultArea');
+    const langSelect = document.getElementById('solverLang');
+    const statusEl = document.getElementById('userStatusSolver');
+    const upgradeBanner = document.getElementById('goProBannerSolver');
+
+    if (!fileInput.files[0]) {
+        alert("⚠ Please select an image first.");
+        return;
+    }
+    if (!langSelect.value) {
+        alert("⚠ Please select a language!");
+        return;
+    }
+
+    output.value = "⏳ Solving image question...";
+    output.className = "border bg-light rounded p-3 flex-grow-1 overflow-auto text-muted";
+
+    const formData = new FormData();
+    formData.append("image", fileInput.files[0]);
+    formData.append("lang", langSelect.value);
+
+    try {
+        const response = await fetch("{% url 'solve_image_api' %}", {
+            method: "POST",
+            body: formData,
+            headers: { "X-CSRFToken": getCookie("csrftoken") }
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+            output.value = data.message || "⚠ Could not solve image question.";
+            output.className = "text-danger border bg-light rounded p-3";
+            if (data.show_upgrade && upgradeBanner) upgradeBanner.style.display = "block";
+            return;
+        }
+
+        // Show solution in the output textarea
+        output.value = data.solution || "⚠ No solution returned";
+        output.className = "border bg-light rounded p-3 flex-grow-1 overflow-auto";
+
+        // Update status & subscription banner
+        if (statusEl) statusEl.innerHTML = data.message || "";
+        if (upgradeBanner) {
+            if (data.subscribed === false && data.solver_left === 0) {
+                upgradeBanner.style.display = "block";
+            } else {
+                upgradeBanner.style.display = "none";
+            }
+        }
+
+    } catch (err) {
+        console.error("Image solve error:", err);
+        output.value = `⚠ ${err.message || "Something went wrong with image solving."}`;
+        output.className = "text-danger border bg-light rounded p-3";
+        if (statusEl) statusEl.innerHTML = "❌ Error solving. Try again.";
+    }
+});
+</script>
     </div>
 
-<!-- Right Column: Solution Output -->
-<div class="col-12 col-md-6 d-flex flex-column p-3">
-  <h5 class="fw-bold mb-3">{% trans "AI-Generated Solution" %}</h5>
-  <textarea id="resultArea"
-            class="border bg-light rounded p-3 mb-3"
-            style="white-space: pre-wrap; overflow: visible; resize: vertical; min-height: 300px; height: auto;"
-            placeholder="{% trans 'Your solution will appear here...' %}"
-            spellcheck="true"></textarea>
-</div>
+    <!-- Right Column: Solution Output -->
+    <div class="col-12 col-md-6 d-flex flex-column p-3">
+      <h5 class="fw-bold mb-3">{% trans "AI-Generated Solution" %}</h5>
+      <textarea id="resultArea"
+                class="border bg-light rounded p-3 mb-3"
+                style="white-space: pre-wrap; overflow: visible; resize: vertical; min-height: 300px; height: auto;"
+                placeholder="{% trans 'Your solution will appear here...' %}"
+                spellcheck="true"></textarea>
+
       <!-- Download Button Under Output -->
       <div class="d-flex justify-content-start mt-2">
         <button onclick="downloadSolutionPDF()" 
@@ -896,6 +975,9 @@ $(document).ready(function(){
 
   </div>
 </div>
+
+
+
 <script>
 // -------------------------
 // CSRF Token Helper
