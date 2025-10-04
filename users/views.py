@@ -30,17 +30,17 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from .emails import send_welcome_email_async, send_welcome_email_task
 
-
 import logging
 from django.contrib.auth import login, get_user_model
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
-from .emails import send_welcome_email_async, send_welcome_email_task  # ✅ import from emails.py
+from .emails import send_welcome_email_async, send_welcome_email_task  # ✅ our email helpers
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
+
 
 @csrf_protect
 @require_POST
@@ -49,31 +49,42 @@ def ajax_signup(request):
     email = request.POST.get("email", "").strip().lower()
     password = request.POST.get("password", "").strip()
 
+    # ✅ Validate required fields
     if not all([username, email, password]):
+        msg = "All fields are required."
+        logger.warning("⚠️ Signup failed: missing fields.")
         if request.headers.get("x-requested-with") == "XMLHttpRequest":
-            return JsonResponse({"success": False, "message": "All fields are required."}, status=400)
+            return JsonResponse({"success": False, "message": msg}, status=400)
         return redirect("index")
 
+    # ✅ Check for uniqueness
     if User.objects.filter(username=username).exists():
+        msg = "Username already taken."
+        logger.warning("⚠️ Signup failed: username=%s already exists.", username)
         if request.headers.get("x-requested-with") == "XMLHttpRequest":
-            return JsonResponse({"success": False, "message": "Username already taken."}, status=400)
+            return JsonResponse({"success": False, "message": msg}, status=400)
         return redirect("index")
 
     if User.objects.filter(email=email).exists():
+        msg = "Email already registered."
+        logger.warning("⚠️ Signup failed: email=%s already exists.", email)
         if request.headers.get("x-requested-with") == "XMLHttpRequest":
-            return JsonResponse({"success": False, "message": "Email already registered."}, status=400)
+            return JsonResponse({"success": False, "message": msg}, status=400)
         return redirect("index")
 
-    # Create user + login
+    # ✅ Create user & log in
     user = User.objects.create_user(username=username, email=email, password=password)
     login(request, user)
+    logger.info("✅ New user registered: %s (%s)", username, email)
 
-    # Try async email first, fallback to sync
+    # ✅ Try async email, fallback to sync if fails
     try:
         send_welcome_email_async(user.id)
-    except Exception:
+    except Exception as exc:
+        logger.exception("⚠️ Async email failed, falling back to sync: %s", exc)
         send_welcome_email_task(user.id)
 
+    # ✅ Respond (AJAX vs normal)
     if request.headers.get("x-requested-with") == "XMLHttpRequest":
         return JsonResponse({"success": True, "message": "🎉 Registration successful! Welcome aboard."})
 

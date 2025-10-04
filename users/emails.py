@@ -1,7 +1,7 @@
 # users/emails.py
 import logging
 from threading import Thread
-from django.core.mail import EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives, get_connection
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.contrib.auth import get_user_model
@@ -22,15 +22,20 @@ def send_welcome_email_task(user_id):
         return False
 
     try:
+        # ✅ Render email templates
         html_content = render_to_string("emails/welcome_email.html", {"user": user})
         text_content = strip_tags(html_content)
+
+        # ✅ Force SendGrid backend (works in Render)
+        connection = get_connection("sendgrid_backend.SendgridBackend")
 
         email = EmailMultiAlternatives(
             subject="Welcome to Eduprompt!",
             body=text_content,
-            from_email="eduprompt@outlook.com",  # ✅ verified SendGrid sender
+            from_email="eduprompt@outlook.com",  # must be a verified sender in SendGrid
             to=[user.email],
             reply_to=["eduprompt@outlook.com"],
+            connection=connection,
         )
         email.attach_alternative(html_content, "text/html")
         email.send(fail_silently=False)
@@ -53,5 +58,5 @@ def send_welcome_email_async(user_id):
         logger.info("📨 Email thread started for user_id=%s", user_id)
     except Exception as exc:
         logger.exception("❌ Failed to start email thread for user %s: %s", user_id, exc)
-        raise  # let caller handle fallback
+        raise
 
