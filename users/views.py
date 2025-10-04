@@ -28,6 +28,7 @@ from django.views.decorators.http import require_POST
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from .emails import send_welcome_email_async, send_welcome_email_task
 
 
 
