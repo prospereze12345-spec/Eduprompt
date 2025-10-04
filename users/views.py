@@ -28,7 +28,9 @@ from django.views.decorators.http import require_POST
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-
+# -------------------------------
+# Imports
+# -------------------------------
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.http import JsonResponse
@@ -38,41 +40,32 @@ from django.views.decorators.http import require_POST
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-# -------------------------------
-# Welcome email function with SendGrid
-# -------------------------------
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import render_to_string
-from django.utils.html import strip_tags
+import logging
 
+# -------------------------------
+# Welcome email function
+# -------------------------------
 def send_welcome_email(user):
     try:
-        # Render email template
+        # Render HTML template
         html_content = render_to_string('emails/welcome_email.html', {'user': user})
         text_content = strip_tags(html_content)
 
-        # IMPORTANT: from_email must match your verified SendGrid sender (e.g., Eduprompt@outlook.com)
         email = EmailMultiAlternatives(
             subject="Welcome to Eduprompt!",
             body=text_content,
-            from_email="Eduprompt <Eduprompt@outlook.com>",   # ✅ verified sender
+            from_email="Eduprompt <eduprompt@outlook.com>",  # verified SendGrid sender
             to=[user.email],
-            reply_to=["Eduprompt@outlook.com"],              # ✅ Reply-To
+            reply_to=["eduprompt@outlook.com"],              # optional reply-to
         )
         email.attach_alternative(html_content, "text/html")
-        email.send(fail_silently=True)  # Avoid crashing signup flow
+        email.send(fail_silently=False)  # errors will appear in Render logs
     except Exception as e:
-        print(f"Error sending welcome email: {e}")
-# -------------------------------
-# AJAX Signup view
-# -------------------------------
-from django.contrib.auth import login
-from django.contrib.auth.models import User
-from django.http import JsonResponse
-from django.shortcuts import redirect
-from django.views.decorators.csrf import csrf_protect
-from django.views.decorators.http import require_POST
+        logging.error(f"Error sending welcome email to {user.email}: {e}")
 
+# -------------------------------
+# AJAX Signup View
+# -------------------------------
 @csrf_protect
 @require_POST
 def ajax_signup(request):
@@ -80,17 +73,13 @@ def ajax_signup(request):
     email = request.POST.get("email", "").strip().lower()
     password = request.POST.get("password", "").strip()
 
-    # -------------------------------
     # Validate inputs
-    # -------------------------------
     if not all([username, email, password]):
         if request.headers.get("x-requested-with") == "XMLHttpRequest":
             return JsonResponse({"success": False, "message": "All fields are required."}, status=400)
         return redirect("index")
 
-    # -------------------------------
     # Check uniqueness
-    # -------------------------------
     if User.objects.filter(username=username).exists():
         if request.headers.get("x-requested-with") == "XMLHttpRequest":
             return JsonResponse({"success": False, "message": "Username already taken."}, status=400)
@@ -101,20 +90,14 @@ def ajax_signup(request):
             return JsonResponse({"success": False, "message": "Email already registered."}, status=400)
         return redirect("index")
 
-    # -------------------------------
     # Create user and login
-    # -------------------------------
     user = User.objects.create_user(username=username, email=email, password=password)
     login(request, user)
 
-    # -------------------------------
-    # Send welcome email (SendGrid)
-    # -------------------------------
+    # Send welcome email (production-ready)
     send_welcome_email(user)
 
-    # -------------------------------
-    # Return JSON if AJAX, else redirect
-    # -------------------------------
+    # Return JSON response for AJAX
     if request.headers.get("x-requested-with") == "XMLHttpRequest":
         return JsonResponse({"success": True, "message": "🎉 Registration successful! Welcome aboard."})
 
