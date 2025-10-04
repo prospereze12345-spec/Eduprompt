@@ -18,6 +18,7 @@ from django.urls import reverse
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
+
 import time
 from django.contrib.auth import login
 from django.contrib.auth.models import User
@@ -28,7 +29,6 @@ from django.views.decorators.http import require_POST
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-
 
 # -------------------------------
 # Welcome email function with template
@@ -41,14 +41,15 @@ def send_welcome_email(user):
         text_content = strip_tags(html_content)
 
         email = EmailMultiAlternatives(
-            subject="Welcome to Eduprompt!",
-            body=text_content,
-            from_email="prospereze12345@gmail.com",  # Must match EMAIL_HOST_USER
+            subject="Welcome to Eduprompt!",           # Email subject
+            body=text_content,                         # Plain text fallback
+            from_email="prospereze12345@gmail.com",   # Must match EMAIL_HOST_USER
             to=[user.email]
         )
         email.attach_alternative(html_content, "text/html")
-        email.send(fail_silently=False)  # Fail loudly for debugging
+        email.send(fail_silently=False)              # Fail loudly to catch errors
     except Exception as e:
+        # Log error instead of crashing the view
         print(f"Error sending welcome email: {e}")
 
 # -------------------------------
@@ -90,10 +91,13 @@ def ajax_signup(request):
 
     # -------------------------------
     # Send welcome email synchronously
-    # Optional: 3-second pause to mimic delay
+    # Optional: 3-second delay for UX effect
     # -------------------------------
-    time.sleep(3)
-    send_welcome_email(user)
+    try:
+        time.sleep(3)
+        send_welcome_email(user)
+    except Exception as e:
+        print(f"Error in sending welcome email after signup: {e}")
 
     # -------------------------------
     # Return JSON if AJAX, else redirect
