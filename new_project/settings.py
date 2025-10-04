@@ -277,25 +277,18 @@ CKEDITOR_CONFIGS = {
 LOGIN_URL = "/?show_login=true"
 LOGIN_REDIRECT_URL = "/"          # After login
 
-# Example email backend for testing in dev
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'noreply@example.com'
-               # After logout
 
 
 
 
 
 
-
-import os
-
+# settings.py
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
-# ✅ Read credentials from environment variables
-EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = 587
+EMAIL_HOST_USER ="prospereze12345@gmail.com" # e.g., prospereze12345@gmail.com
+EMAIL_HOST_PASSWORD ="qqkd jwcg enui cxmb"
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+

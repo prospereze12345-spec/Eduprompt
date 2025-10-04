@@ -26,36 +26,41 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
 from threading import Timer
 from django.core.mail import send_mail
-
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-
-# -------------------------------
-# Welcome email function with template
-# -------------------------------
-def send_welcome_email(user):
-    # Render HTML template
-    html_content = render_to_string('emails/welcome_email.html', {'user': user})
-    # Fallback plain text
-    text_content = strip_tags(html_content)
-
-    email = EmailMultiAlternatives(
-        subject="Welcome to Eduprompt!",  # You can also customize the subject
-        body=text_content,
-        from_email="prospereze12345@gmail.com",
-        to=[user.email]
-    )
-    email.attach_alternative(html_content, "text/html")
-    email.send(fail_silently=True)
-
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from threading import Timer
+from django.shortcuts import redirect
 
+# -------------------------------
+# Welcome email function with template
+# -------------------------------
+def send_welcome_email(user):
+    try:
+        # Render HTML template
+        html_content = render_to_string('emails/welcome_email.html', {'user': user})
+        # Fallback plain text
+        text_content = strip_tags(html_content)
+
+        email = EmailMultiAlternatives(
+            subject="Welcome to Eduprompt!",
+            body=text_content,
+            from_email="prospereze12345@gmail.com",
+            to=[user.email]
+        )
+        email.attach_alternative(html_content, "text/html")
+        email.send(fail_silently=False)  # Set to False to catch any SMTP errors
+    except Exception as e:
+        print(f"Error sending welcome email: {e}")
+
+# -------------------------------
+# AJAX Signup View
+# -------------------------------
 @csrf_protect
 @require_POST
 def ajax_signup(request):
@@ -91,17 +96,16 @@ def ajax_signup(request):
     login(request, user)
 
     # -------------------------------
-    # Send welcome email asynchronously
+    # Send welcome email after 3 seconds
     # -------------------------------
     Timer(3.0, send_welcome_email, args=[user]).start()
 
     # -------------------------------
-    # ✅ Return JSON if AJAX, else redirect
+    # Return JSON if AJAX, else redirect
     # -------------------------------
     if request.headers.get("x-requested-with") == "XMLHttpRequest":
         return JsonResponse({"success": True, "message": "🎉 Registration successful! Welcome aboard."})
     return redirect("index")
-
 # -------------------------------
 # AJAX Login (email + optional password)
 # -------------------------------
