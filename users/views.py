@@ -18,24 +18,17 @@ from django.urls import reverse
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
-
+import time
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.http import JsonResponse
+from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
-from threading import Timer
-from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_protect
-from django.views.decorators.http import require_POST
-from django.contrib.auth import login
-from django.contrib.auth.models import User
-from threading import Timer
-from django.shortcuts import redirect
+
 
 # -------------------------------
 # Welcome email function with template
@@ -50,11 +43,11 @@ def send_welcome_email(user):
         email = EmailMultiAlternatives(
             subject="Welcome to Eduprompt!",
             body=text_content,
-            from_email="prospereze12345@gmail.com",
+            from_email="prospereze12345@gmail.com",  # Must match EMAIL_HOST_USER
             to=[user.email]
         )
         email.attach_alternative(html_content, "text/html")
-        email.send(fail_silently=False)  # Set to False to catch any SMTP errors
+        email.send(fail_silently=False)  # Fail loudly for debugging
     except Exception as e:
         print(f"Error sending welcome email: {e}")
 
@@ -96,9 +89,11 @@ def ajax_signup(request):
     login(request, user)
 
     # -------------------------------
-    # Send welcome email after 3 seconds
+    # Send welcome email synchronously
+    # Optional: 3-second pause to mimic delay
     # -------------------------------
-    Timer(3.0, send_welcome_email, args=[user]).start()
+    time.sleep(3)
+    send_welcome_email(user)
 
     # -------------------------------
     # Return JSON if AJAX, else redirect
@@ -106,6 +101,7 @@ def ajax_signup(request):
     if request.headers.get("x-requested-with") == "XMLHttpRequest":
         return JsonResponse({"success": True, "message": "🎉 Registration successful! Welcome aboard."})
     return redirect("index")
+
 # -------------------------------
 # AJAX Login (email + optional password)
 # -------------------------------
