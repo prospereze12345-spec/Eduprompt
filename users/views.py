@@ -31,6 +31,53 @@ from django.utils.html import strip_tags
 from .emails import send_welcome_email_async, send_welcome_email_task
 
 
+import logging
+from django.contrib.auth import login, get_user_model
+from django.http import JsonResponse
+from django.shortcuts import redirect
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.http import require_POST
+from .emails import send_welcome_email_async, send_welcome_email_task  # ✅ import from emails.py
+
+User = get_user_model()
+logger = logging.getLogger(__name__)
+
+@csrf_protect
+@require_POST
+def ajax_signup(request):
+    username = request.POST.get("username", "").strip()
+    email = request.POST.get("email", "").strip().lower()
+    password = request.POST.get("password", "").strip()
+
+    if not all([username, email, password]):
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
+            return JsonResponse({"success": False, "message": "All fields are required."}, status=400)
+        return redirect("index")
+
+    if User.objects.filter(username=username).exists():
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
+            return JsonResponse({"success": False, "message": "Username already taken."}, status=400)
+        return redirect("index")
+
+    if User.objects.filter(email=email).exists():
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
+            return JsonResponse({"success": False, "message": "Email already registered."}, status=400)
+        return redirect("index")
+
+    # Create user + login
+    user = User.objects.create_user(username=username, email=email, password=password)
+    login(request, user)
+
+    # Try async email first, fallback to sync
+    try:
+        send_welcome_email_async(user.id)
+    except Exception:
+        send_welcome_email_task(user.id)
+
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return JsonResponse({"success": True, "message": "🎉 Registration successful! Welcome aboard."})
+
+    return redirect("index")
 
 # -------------------------------
 # AJAX Login (email + optional password)
