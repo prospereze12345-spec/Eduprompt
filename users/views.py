@@ -28,11 +28,13 @@ from django.views.decorators.http import require_POST
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-# -------------------------------
-# Imports
-# -------------------------------
-from django.contrib.auth import login
-from django.contrib.auth.models import User
+
+import logging
+# views.py (or a new file you import from views)
+import logging
+from threading import Thread
+
+from django.contrib.auth import login, get_user_model
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_protect
@@ -40,31 +42,81 @@ from django.views.decorators.http import require_POST
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-import logging
 
-# -------------------------------
-# Welcome email function
-# -------------------------------
-def send_welcome_email(user):
+User = get_user_model()
+logger = logging.getLogger(__name__)
+
+
+
+
+def send_welcome_email_task(user_id):
+    """
+    Fetch user inside the worker and send the email.
+    Can be run in the main thread (for testing) or inside a background thread.
+    Returns True on success, False on failure.
+    """
     try:
-        # Render HTML template
-        html_content = render_to_string('emails/welcome_email.html', {'user': user})
+        user = User.objects.get(pk=user_id)
+    except User.DoesNotExist:
+        logger.error("send_welcome_email_task: user %s not found", user_id)
+        print(f"❌ User with id={user_id} not found.")
+        return False
+
+    try:
+        html_content = render_to_string("emails/welcome_email.html", {"user": user})
         text_content = strip_tags(html_content)
 
         email = EmailMultiAlternatives(
             subject="Welcome to Eduprompt!",
             body=text_content,
-            from_email="Eduprompt <eduprompt@outlook.com>",  # verified SendGrid sender
+            from_email="eduprompt@outlook.com",  # ✅ verified SendGrid sender
             to=[user.email],
-            reply_to=["eduprompt@outlook.com"],              # optional reply-to
+            reply_to=["eduprompt@outlook.com"],
         )
         email.attach_alternative(html_content, "text/html")
-        email.send(fail_silently=False)  # errors will appear in Render logs
-    except Exception as e:
-        logging.error(f"Error sending welcome email to {user.email}: {e}")
+
+        # Send email (fail_silently=False -> raise errors)
+        email.send(fail_silently=False)
+
+        logger.info("✅ Welcome email sent to %s (%s)", user.username, user.email)
+        print(f"✅ Welcome email sent to {user.email}")
+        return True
+
+    except Exception as exc:
+        logger.exception("❌ Error sending welcome email for user %s: %s", getattr(user, "email", user_id), exc)
+        print(f"❌ Error sending welcome email: {exc}")
+        return False
+
 
 # -------------------------------
-# AJAX Signup View
+# Helper to start the thread
+# -------------------------------
+def send_welcome_email_async(user_id):
+    """
+    Spawn a daemon thread to run send_welcome_email_task.
+    Daemon=True means thread won't keep the process alive on shutdown.
+    """
+    try:
+        thread = Thread(target=send_welcome_email_task, args=(user_id,), daemon=True)
+        thread.start()
+        print(f"📨 Email thread started for user_id={user_id}")
+    except Exception as exc:
+        logger.exception("Failed to start email thread for user %s: %s", user_id, exc)
+        print(f"❌ Failed to start email thread: {exc}")
+
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+from django.http import JsonResponse
+from django.shortcuts import redirect
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.http import require_POST
+
+# import your async email sender
+from .views import send_welcome_email_async   # ✅ make sure it's in same app or adjust import
+
+
+# -------------------------------
+# AJAX Signup view
 # -------------------------------
 @csrf_protect
 @require_POST
@@ -94,14 +146,19 @@ def ajax_signup(request):
     user = User.objects.create_user(username=username, email=email, password=password)
     login(request, user)
 
-    # Send welcome email (production-ready)
-    send_welcome_email(user)
+    # ✅ Fire off welcome email in background thread
+    try:
+        send_welcome_email_async(user.id)
+    except Exception as exc:
+        import logging
+        logging.exception("Failed to start welcome email thread for user %s: %s", user.id, exc)
 
     # Return JSON response for AJAX
     if request.headers.get("x-requested-with") == "XMLHttpRequest":
         return JsonResponse({"success": True, "message": "🎉 Registration successful! Welcome aboard."})
 
     return redirect("index")
+
 
 # -------------------------------
 # AJAX Login (email + optional password)
