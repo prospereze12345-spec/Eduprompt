@@ -18,7 +18,6 @@ from django.urls import reverse
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
-
 import time
 from django.contrib.auth import login
 from django.contrib.auth.models import User
@@ -30,30 +29,37 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+from django.http import JsonResponse
+from django.shortcuts import redirect
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.http import require_POST
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
 # -------------------------------
-# Welcome email function with template
+# Welcome email function
 # -------------------------------
 def send_welcome_email(user):
     try:
-        # Render HTML template
         html_content = render_to_string('emails/welcome_email.html', {'user': user})
-        # Fallback plain text
         text_content = strip_tags(html_content)
 
         email = EmailMultiAlternatives(
-            subject="Welcome to Eduprompt!",           # Email subject
-            body=text_content,                         # Plain text fallback
-            from_email="prospereze12345@gmail.com",   # Must match EMAIL_HOST_USER
+            subject="Welcome to Eduprompt!",
+            body=text_content,
+            from_email="prospereze12345@gmail.com",
             to=[user.email]
         )
         email.attach_alternative(html_content, "text/html")
-        email.send(fail_silently=False)              # Fail loudly to catch errors
+        email.send(fail_silently=True)  # Never crash the signup
     except Exception as e:
-        # Log error instead of crashing the view
         print(f"Error sending welcome email: {e}")
 
 # -------------------------------
-# AJAX Signup View
+# AJAX Signup view
 # -------------------------------
 @csrf_protect
 @require_POST
@@ -62,17 +68,11 @@ def ajax_signup(request):
     email = request.POST.get("email", "").strip().lower()
     password = request.POST.get("password", "").strip()
 
-    # -------------------------------
-    # Validate inputs
-    # -------------------------------
     if not all([username, email, password]):
         if request.headers.get("x-requested-with") == "XMLHttpRequest":
             return JsonResponse({"success": False, "message": "All fields are required."}, status=400)
         return redirect("index")
 
-    # -------------------------------
-    # Check uniqueness
-    # -------------------------------
     if User.objects.filter(username=username).exists():
         if request.headers.get("x-requested-with") == "XMLHttpRequest":
             return JsonResponse({"success": False, "message": "Username already taken."}, status=400)
@@ -83,25 +83,14 @@ def ajax_signup(request):
             return JsonResponse({"success": False, "message": "Email already registered."}, status=400)
         return redirect("index")
 
-    # -------------------------------
     # Create user and login
-    # -------------------------------
     user = User.objects.create_user(username=username, email=email, password=password)
     login(request, user)
 
-    # -------------------------------
-    # Send welcome email synchronously
-    # Optional: 3-second delay for UX effect
-    # -------------------------------
-    try:
-        time.sleep(3)
-        send_welcome_email(user)
-    except Exception as e:
-        print(f"Error in sending welcome email after signup: {e}")
+    # Send welcome email immediately (no sleep, no Timer)
+    send_welcome_email(user)
 
-    # -------------------------------
-    # Return JSON if AJAX, else redirect
-    # -------------------------------
+    # Return success immediately for AJAX
     if request.headers.get("x-requested-with") == "XMLHttpRequest":
         return JsonResponse({"success": True, "message": "🎉 Registration successful! Welcome aboard."})
     return redirect("index")
