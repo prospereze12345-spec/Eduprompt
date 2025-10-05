@@ -278,11 +278,25 @@ LOGIN_URL = "/?show_login=true"
 LOGIN_REDIRECT_URL = "/"          # After login
 
 
+import os
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")  
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_HOST_USER")
 
 
-EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
 
-DEFAULT_FROM_EMAIL ="eduprompt@outlook.com"
-SENDGRID_SANDBOX_MODE_IN_DEBUG = False
-SENDGRID_ECHO_TO_STDOUT = False
+# sessions & cookies
+SESSION_ENGINE = "django.contrib.sessions.backends.db"  # store sessions in DB
+
+SESSION_COOKIE_SECURE = False      # ❌ must be False because free Render may serve HTTP internally
+CSRF_COOKIE_SECURE = False         # ❌ same reason
+SESSION_COOKIE_SAMESITE = "Lax"
+
+# domain/trusted origins
+ALLOWED_HOSTS = ["eduprompt-t5x3.onrender.com", "127.0.0.1", "localhost"]
+CSRF_TRUSTED_ORIGINS = ["https://eduprompt-t5x3.onrender.com"]

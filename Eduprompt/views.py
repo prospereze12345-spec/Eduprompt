@@ -33,47 +33,57 @@ from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.conf import settings
 from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.csrf import csrf_exempt
+import json
+from django.core.mail import send_mail
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 
 # -----------------------------
 # Project request form
 # -----------------------------
-@csrf_exempt  # disable CSRF only for AJAX test; better to use CSRF token later
+@csrf_exempt
 def send_message(request):
     if request.method == "POST":
-        full_name = request.POST.get("fullName")
-        email = request.POST.get("email")
-        phone = request.POST.get("phone")
-        development_type = request.POST.get("developmentType")
-        website_type = request.POST.get("websiteType")
-        client_location = request.POST.get("clientLocation")
-        timeline = request.POST.get("timeline")
-        message = request.POST.get("message")
-        contact_method = request.POST.get("contactMethod")
+        # Support both JSON and form-encoded POST
+        if request.content_type == "application/json":
+            data = json.loads(request.body.decode("utf-8"))
+        else:
+            data = request.POST
 
-        # Email content
+        full_name = data.get("fullName")
+        email = data.get("email")
+        phone = data.get("phone")
+        development_type = data.get("developmentType")
+        website_type = data.get("websiteType")
+        client_location = data.get("clientLocation")
+        timeline = data.get("timeline")
+        message = data.get("message")
+        contact_method = data.get("contactMethod")
+
         subject = f"New Project Request from {full_name}"
         body = f"""
-        Name: {full_name}
-        Email: {email}
-        Phone: {phone}
-        Development Type: {development_type}
-        Website Type: {website_type}
-        Location: {client_location}
-        Timeline: {timeline}
-        Contact Method: {contact_method}
+Name: {full_name}
+Email: {email}
+Phone: {phone}
+Development Type: {development_type}
+Website Type: {website_type}
+Location: {client_location}
+Timeline: {timeline}
+Contact Method: {contact_method}
 
-        Message:
-        {message}
+Message:
+{message}
         """
 
         try:
-            # Use settings.DEFAULT_FROM_EMAIL for consistency on Render
             send_mail(
                 subject,
                 body,
-                settings.DEFAULT_FROM_EMAIL,  # FROM
-                [settings.DEFAULT_FROM_EMAIL],  # TO
+                settings.DEFAULT_FROM_EMAIL,
+                [settings.DEFAULT_FROM_EMAIL],
                 fail_silently=False,
             )
             return JsonResponse({"success": True, "message": "Message sent successfully"})
@@ -87,30 +97,34 @@ def send_message(request):
 # Flyer design page
 # -----------------------------
 def flyer_design(request):
-    return render(request, 'flyer_design.html',)
+    return render(request, "flyer_design.html")
 
 
 # -----------------------------
-# Flyer design request AJAX
+# Flyer design request form (AJAX)
 # -----------------------------
 @csrf_exempt
-def contact_ajax(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        subject = request.POST.get('subject')
-        details = request.POST.get('details')
-        budget = request.POST.get('budget', '')
+def flyer_request(request):
+    if request.method == "POST":
+        if request.content_type == "application/json":
+            data = json.loads(request.body.decode("utf-8"))
+        else:
+            data = request.POST
 
-        # Compose email message
+        name = data.get("name")
+        email = data.get("email")
+        subject = data.get("subject")
+        details = data.get("details")
+        budget = data.get("budget", "")
+
         message = f"""
-        You have received a new flyer design request:
+You have received a new flyer design request:
 
-        Name: {name}
-        Email: {email}
-        Subject: {subject}
-        Details: {details}
-        Budget: {budget}
+Name: {name}
+Email: {email}
+Subject: {subject}
+Details: {details}
+Budget: {budget}
         """
 
         try:
@@ -118,41 +132,47 @@ def contact_ajax(request):
                 subject=f"New Flyer Design Request: {subject}",
                 message=message,
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[settings.DEFAULT_FROM_EMAIL],  # your email
+                recipient_list=[settings.DEFAULT_FROM_EMAIL],
                 fail_silently=False,
             )
-            return JsonResponse({'success': True})
+            return JsonResponse({"success": True, "message": "Flyer request sent!"})
         except Exception as e:
-            return JsonResponse({'success': False, 'error': str(e)}, status=500)
+            return JsonResponse({"success": False, "error": str(e)}, status=500)
+
+    return JsonResponse({"success": False, "error": "Invalid request"})
 
 
 # -----------------------------
 # Contact form AJAX
 # -----------------------------
-@csrf_exempt  # Or use @csrf_protect if you're including CSRF in AJAX
-def contact_ajax(request):
-    if request.method == "POST" and request.headers.get("X-Requested-With") == "XMLHttpRequest":
-        name = request.POST.get("name")
-        email = request.POST.get("email")
-        phone = request.POST.get("phone", "")
-        company = request.POST.get("company", "")
-        subject = request.POST.get("subject")
-        inquiry_type = request.POST.get("inquiry_type")
-        message = request.POST.get("message")
+@csrf_exempt
+def contact_form(request):
+    if request.method == "POST":
+        if request.content_type == "application/json":
+            data = json.loads(request.body.decode("utf-8"))
+        else:
+            data = request.POST
 
-        # Email content
+        name = data.get("name")
+        email = data.get("email")
+        phone = data.get("phone", "")
+        company = data.get("company", "")
+        subject = data.get("subject")
+        inquiry_type = data.get("inquiry_type")
+        message = data.get("message")
+
         full_message = f"""
-        📩 New Contact Form Submission
+📩 New Contact Form Submission
 
-        Name: {name}
-        Email: {email}
-        Phone: {phone}
-        Company: {company}
-        Subject: {subject}
-        Inquiry Type: {inquiry_type}
-        
-        Message:
-        {message}
+Name: {name}
+Email: {email}
+Phone: {phone}
+Company: {company}
+Subject: {subject}
+Inquiry Type: {inquiry_type}
+
+Message:
+{message}
         """
 
         try:
@@ -160,11 +180,11 @@ def contact_ajax(request):
                 subject=f"Contact Form: {subject}",
                 message=full_message,
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[settings.DEFAULT_FROM_EMAIL],  # Your inbox
+                recipient_list=[settings.DEFAULT_FROM_EMAIL],
                 fail_silently=False,
             )
-            return JsonResponse({"status": "success", "message": "✅ Message sent successfully!"})
+            return JsonResponse({"success": True, "message": "✅ Message sent successfully!"})
         except Exception as e:
-            return JsonResponse({"status": "error", "message": f"❌ Failed: {str(e)}"})
+            return JsonResponse({"success": False, "message": f"❌ Failed to send: {str(e)}"})
 
-    return JsonResponse({"status": "error", "message": "Invalid request."})
+    return JsonResponse({"success": False, "message": "Invalid request"})

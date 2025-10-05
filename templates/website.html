@@ -2131,7 +2131,6 @@ document.addEventListener("DOMContentLoaded", function() {
   </div>
 </section>
 
-
 <!-- Bootstrap 5 Contact Form -->
 <section id="contact" class="py-5" style="background-color: #ffffff;">
   <div class="container">
@@ -2140,37 +2139,40 @@ document.addEventListener("DOMContentLoaded", function() {
       Fill out the form below to discuss your project. We'll get back to you with the best solution for your website needs.
     </p>
 
-    <!-- Success Message -->
+    <!-- Success / Error Messages -->
     <div id="successMessage" class="alert alert-success text-center d-none" role="alert">
       ✅ Message sent successfully! We will message you within 24 hrs.
     </div>
+    <div id="errorMessage" class="alert alert-danger text-center d-none" role="alert">
+      ❌ Failed to send. Please try again.
+    </div>
 
-    <form id="contactForm">
+    <form id="contactForm" method="POST">
+      {% csrf_token %} <!-- Add CSRF token for future security -->
       <div class="row g-3">
-        <!-- your fields remain unchanged -->
 
         <!-- Full Name -->
         <div class="col-md-6">
           <label for="fullName" class="form-label">Full Name <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" id="fullName" placeholder="John Doe" required>
+          <input type="text" class="form-control" id="fullName" name="fullName" placeholder="John Doe" required>
         </div>
 
         <!-- Email -->
         <div class="col-md-6">
           <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
-          <input type="email" class="form-control" id="email" placeholder="email@example.com" required>
+          <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com" required>
         </div>
 
         <!-- Phone / WhatsApp -->
         <div class="col-md-6">
           <label for="phone" class="form-label">Phone / WhatsApp <span class="text-danger">*</span></label>
-          <input type="tel" class="form-control" id="phone" placeholder="+234 801 234 5678" required>
+          <input type="tel" class="form-control" id="phone" name="phone" placeholder="+234 801 234 5678" required>
         </div>
 
         <!-- Development Type -->
         <div class="col-md-6">
           <label for="developmentType" class="form-label">Development Type <span class="text-danger">*</span></label>
-          <select class="form-select" id="developmentType" required>
+          <select class="form-select" id="developmentType" name="developmentType" required>
             <option value="" selected disabled>Choose...</option>
             <option>WordPress</option>
             <option>Custom Code</option>
@@ -2181,7 +2183,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <!-- Website Type -->
         <div class="col-md-6">
           <label for="websiteType" class="form-label">Website Type <span class="text-danger">*</span></label>
-          <select class="form-select" id="websiteType" required>
+          <select class="form-select" id="websiteType" name="websiteType" required>
             <option value="" selected disabled>Choose...</option>
             <option>Business / Corporate</option>
             <option>Blog / News Site</option>
@@ -2203,7 +2205,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <!-- Client Location -->
         <div class="col-md-6">
           <label for="clientLocation" class="form-label">Client Location <span class="text-danger">*</span></label>
-          <select class="form-select" id="clientLocation" required>
+          <select class="form-select" id="clientLocation" name="clientLocation" required>
             <option value="" selected disabled>Choose...</option>
             <option>Nigeria</option>
             <option>International</option>
@@ -2213,7 +2215,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <!-- Project Timeline -->
         <div class="col-md-6">
           <label for="timeline" class="form-label">Project Timeline</label>
-          <select class="form-select" id="timeline">
+          <select class="form-select" id="timeline" name="timeline">
             <option value="" selected disabled>Select Timeline</option>
             <option>1–2 weeks</option>
             <option>1 month</option>
@@ -2224,13 +2226,13 @@ document.addEventListener("DOMContentLoaded", function() {
         <!-- Message / Project Details -->
         <div class="col-12">
           <label for="message" class="form-label">Message / Project Details</label>
-          <textarea class="form-control" id="message" rows="4" placeholder="Describe your project..."></textarea>
+          <textarea class="form-control" id="message" name="message" rows="4" placeholder="Describe your project..."></textarea>
         </div>
 
         <!-- Preferred Contact Method -->
         <div class="col-md-6">
           <label for="contactMethod" class="form-label">Preferred Contact Method</label>
-          <select class="form-select" id="contactMethod">
+          <select class="form-select" id="contactMethod" name="contactMethod">
             <option value="" selected disabled>Select Method</option>
             <option>WhatsApp</option>
             <option>Phone Call</option>
@@ -2255,36 +2257,38 @@ $(document).ready(function () {
   $("#contactForm").submit(function (e) {
     e.preventDefault();
 
-    // Grab CSRF token from hidden input
+    // Grab CSRF token
     const csrfToken = $(this).find("[name=csrfmiddlewaretoken]").val();
 
-    // Use FormData to include all fields automatically
+    // Use FormData to include all fields
     const formData = new FormData(this);
 
     $.ajax({
       type: "POST",
       url: "/send-message", // backend endpoint
       data: formData,
-      processData: false,  // important for FormData
-      contentType: false,  // important for FormData
+      processData: false,
+      contentType: false,
       headers: {
         "X-CSRFToken": csrfToken
       },
       success: function (response) {
-        $("#successMessage").removeClass("d-none"); // show success alert
-        $("#contactForm")[0].reset(); // reset form
+        $("#successMessage").removeClass("d-none");
+        $("#errorMessage").addClass("d-none"); // hide error if visible
+        $("#contactForm")[0].reset();
 
-        // Optionally hide success alert after 5 seconds
+        // Hide success message after 5 seconds
         setTimeout(() => $("#successMessage").addClass("d-none"), 5000);
       },
-      error: function (xhr, status, error) {
-        console.error("Contact form error:", xhr.responseText);
-        alert("❌ Failed to send. Please try again.");
+      error: function (xhr) {
+        $("#errorMessage").text("❌ Failed to send. Please try again.").removeClass("d-none");
+        setTimeout(() => $("#errorMessage").addClass("d-none"), 5000);
       }
     });
   });
 });
 </script>
+
 
 <style>
   button.btn-primary:hover {
