@@ -280,6 +280,8 @@ def grammar_verify_subscription(request):
             return redirect("/grammar-checker/?subscribed=1")
 
     return redirect("/grammar-checker/?subscribed=0")
+
+
 import docx
 import pytesseract
 from PIL import Image
@@ -314,11 +316,14 @@ def extract_text_from_file(file_obj):
 
     else:
         return file_obj.read().decode(errors="ignore")
-
-
 def run_languagetool_check(text, lang="en-US"):
-    """Send text to LanguageTool public API and return corrected text + suggestions."""
-    LT_URL = "https://api.languagetool.org/v2/check"  # ✅ use public API
+    """
+    Send text to LanguageTool public API and return:
+    1. Highlighted text (errors highlighted)
+    2. Corrected text (full corrected text)
+    3. Suggestions HTML
+    """
+    LT_URL = "https://api.languagetool.org/v2/check"
     try:
         response = requests.post(
             LT_URL,
@@ -330,26 +335,41 @@ def run_languagetool_check(text, lang="en-US"):
         )
         result = response.json()
         corrected_text = text
+        highlighted_text = text
         suggestions_html = ""
 
-        # Process matches
+        # Process matches in **reverse offset order** to avoid shifting
         for match in sorted(result.get("matches", []), key=lambda m: m["offset"], reverse=True):
             message = match.get("message", "")
             offset = match.get("offset", 0)
             length = match.get("length", 0)
-            replacement = match.get("replacements")[0]["value"] if match.get("replacements") else None
+            replacements = match.get("replacements", [])
+            replacement = replacements[0]["value"] if replacements else None
 
+            # Apply replacement for corrected_text
             if replacement:
                 corrected_text = corrected_text[:offset] + replacement + corrected_text[offset+length:]
 
-            suggestions_html += f"<p>• {message}</p>"
+            # Highlight errors in original text
+            highlighted_text = (
+                highlighted_text[:offset] +
+                f"<mark title='{message}'>" +
+                highlighted_text[offset:offset+length] +
+                "</mark>" +
+                highlighted_text[offset+length:]
+            )
 
-        return corrected_text, suggestions_html
+            # Add to suggestions HTML
+            suggestions_html += f"<p>• {message}" + (f" → Suggestion: {replacement}" if replacement else "") + "</p>"
+
+        return corrected_text, highlighted_text, suggestions_html
+
     except Exception as e:
-        return text, f"<p style='color:red;'>Grammar check failed: {e}</p>"
+        error_html = f"<p style='color:red;'>Grammar check failed: {e}</p>"
+        return text, text, error_html
 
 
-# --- view ---
+
 @csrf_exempt
 @login_required
 def grammar_upload_view(request):
@@ -372,12 +392,13 @@ def grammar_upload_view(request):
             return JsonResponse({"success": False, "message": msg})
 
         # run grammar check
-        corrected_text, suggestions_html = run_languagetool_check(extracted_text)
+        corrected_text, highlighted_text, suggestions_html = run_languagetool_check(extracted_text)
 
         return JsonResponse({
             "success": True,
             "words": word_count,
             "fixed_text": corrected_text,
+            "highlighted_text": highlighted_text,
             "suggestions_html": suggestions_html,
             "message": "✅ Grammar check complete."
         })

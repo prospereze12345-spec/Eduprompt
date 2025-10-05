@@ -1373,7 +1373,6 @@ $(document).ready(function(){
   </div>
 </section>
 
-
 <!-- Contact Section -->
 <section id="contact" class="py-5" style="background-color: #ffffff;">
   <div class="container">
@@ -1387,7 +1386,7 @@ $(document).ready(function(){
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div id="formMessage" class="alert alert-success d-none"></div>
-        <form id="contactForm">
+        <form id="contactForm" method="post" action="{% url 'contact_ajax' %}">
           {% csrf_token %}
           <div class="mb-3">
             <label for="name" class="form-label fw-bold">Full Name</label>
@@ -1416,27 +1415,24 @@ $(document).ready(function(){
   </div>
 </section>
 
+<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
 $(document).ready(function () {
-    $('#contactForm').on('submit', function (e) {
+    $('#contactForm').submit(function (e) {
         e.preventDefault();
 
         var form = $(this);
-        // Grab CSRF token from hidden input in the form
-        const csrfToken = form.find("[name=csrfmiddlewaretoken]").val();
-
-        // Use FormData for better handling of form inputs
         var formData = new FormData(this);
 
         $.ajax({
-            type: "POST",
-            url: "{% url 'contact_ajax' %}",  // your backend view
+            type: form.attr('method'),
+            url: form.attr('action'),
             data: formData,
-            processData: false,  // required for FormData
-            contentType: false,  // required for FormData
+            processData: false,
+            contentType: false,
             headers: {
-                "X-CSRFToken": csrfToken,
                 "X-Requested-With": "XMLHttpRequest"
             },
             success: function (response) {
@@ -1445,8 +1441,6 @@ $(document).ready(function () {
                     .addClass('alert-success')
                     .text('✅ Message sent! You will be contacted within 24 hours.');
                 form[0].reset();
-
-                // Optionally hide message after 5 seconds
                 setTimeout(() => $('#formMessage').addClass('d-none'), 5000);
             },
             error: function (xhr, status, error) {
