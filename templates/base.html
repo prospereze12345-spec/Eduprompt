@@ -329,11 +329,7 @@
           {% trans "Send me a magic link" %}
         </button>
 
-        <!-- Social login -->
-        <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center">
-          <img src="{% static 'assets/img/svg.jpg' %}" alt="Google" width="20" class="me-2">
-          {% trans "Continue with Google" %}
-        </a>
+        
 
         <div id="magicMsg" class="mt-2 text-center text-success"></div>
       </div>
@@ -366,10 +362,7 @@
           <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Create Account" %}</button>
         </form>
 
-        <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center">
-          <img src="{% static 'assets/img/svg.jpg' %}" alt="Google" width="20" class="me-2">
-          {% trans "Continue with Google" %}
-        </a>
+       
       </div>
     </div>
   </div>

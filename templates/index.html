@@ -819,25 +819,38 @@ $(document).ready(function(){
 </a>
 
 
+<div class="container mt-5">
+  <div class="row align-items-center">
+    <!-- Text Section -->
+    <div class="col-lg-6 col-md-12 text-start">
+      <!-- Main Header -->
+      <h1 class="fw-bold mt-3 display-4">
+        {% trans "Empower Your Learning with Smart AI Tools" %}
+      </h1>
 
-  <!-- Main Header -->
-  <h1 class="fw-bold mt-3">
-    {% trans "Empower Your Learning with Smart AI Tools" %}
-  </h1>
+      <!-- Subtext -->
+      <p class="mt-3" style="color: black; font-size: 1.3rem; line-height: 1.8;">
+        {% trans "Support your studies with AI tools that help you write, solve problems, and understand lessons—at your own pace and in your language. Built for African students, our platform makes learning easier, flexible, and accessible." %}
+      </p>
 
-  <!-- Subtext -->
-  <p class="mt-3 mx-auto" style="max-width: 600px; color: black; font-size: 1.5rem; line-height: 1.6;">
-    {% trans "Support your studies with AI tools that help you write, solve problems, and understand lessons—at your own pace and in your language. Built for African students, our platform makes learning easier, flexible, and accessible." %}
-  </p>
+      <!-- Call-to-Action Buttons -->
+      <div class="mt-4 d-flex gap-3 flex-wrap justify-content-start">
+        <a href="#features" class="btn btn-outline-secondary btn-lg">
+          {% trans "Explore Features" %}
+        </a>
+      </div>
+    </div>
 
-  <!-- Call-to-Action Buttons -->
-  <div class="mt-4 d-flex gap-3 flex-wrap justify-content-center">
-  <!-- Go Pro Button -->
-  
-
-  <!-- Secondary CTA -->
-  <a href="#features" class="btn btn-outline-secondary btn-lg">{% trans "Explore Features" %}</a>
+    <!-- Image Section -->
+    <div class="col-lg-6 col-md-12 text-start mt-4 mt-lg-0">
+      <img src="{% static 'assets/img/100% UNIQUE.png' %}" alt="Learning Mockup" 
+           class="img-fluid rounded" style="max-width: 90%;">
+    </div>
+  </div>
 </div>
+
+
+
 
 
 </div>
