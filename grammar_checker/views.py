@@ -41,15 +41,15 @@ def grammar_checker(request):
         user = request.user
 
         text = request.POST.get("text", "").strip()
-        language = request.POST.get("language", "en-US")  # default English
+        language = request.POST.get("language", "en-US")  
         auto_correct = request.POST.get("auto_correct", "false") == "true"
 
         if not text:
             return JsonResponse({"error": "No text provided"}, status=400)
 
         # --- Word limits ---
-        WORD_LIMIT_FREE = 2000   # Free trial: 2k words
-        WORD_LIMIT_PRO = 15000   # Pro users: 15k words
+        WORD_LIMIT_FREE = 2000  
+        WORD_LIMIT_PRO = 20000   
 
         # --- Subscription check ---
         word_limit = WORD_LIMIT_FREE
@@ -164,7 +164,7 @@ from .models import UserProfile
 
 logger = logging.getLogger(__name__)
 
-# ❌ remove @login_required
+
 def grammar_start_subscription(request):
     """Start Flutterwave payment for Grammar Pro subscription (30 days)."""
 
@@ -219,7 +219,7 @@ def grammar_start_subscription(request):
         },
         "customizations": {
             "title": "Grammar Pro Subscription",
-            "description": "Unlock 15k+ words for 30 days",
+            "description": "Unlock 20k+ words for 30 days",
         }
     }
 
@@ -263,14 +263,13 @@ def grammar_verify_subscription(request):
 
     # Verify with Flutterwave API
     verify_url = f"https://api.flutterwave.com/v3/transactions/verify_by_reference?tx_ref={tx_ref}"
-    headers = {"Authorization": f"Bearer {settings.FLW_SECRET_KEY}"}  # ✅ use correct key
+    headers = {"Authorization": f"Bearer {settings.FLW_SECRET_KEY}"}  
     res = requests.get(verify_url, headers=headers)
     res_data = res.json()
 
     if res_data.get("status") == "success":
         payment_status = res_data["data"].get("status", "").lower()
         if payment_status == "successful":
-            # ✅ Ensure profile exists
             user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
             user_profile.is_subscribed = True
             user_profile.subscription_start = timezone.now()
@@ -382,12 +381,12 @@ def grammar_upload_view(request):
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
 
         # subscription limits
-        limit = 15000 if profile.is_subscribed else 2000
+        limit = 20000 if profile.is_subscribed else 2000
         if word_count > limit:
             msg = (
-                "🚫 Limit exceeded. Max 15,000 words per file."
+                "🚫 Limit exceeded. Max 20,000 words per file."
                 if profile.is_subscribed
-                else "⚠ Free trial allows max 2,000 words. Subscribe to unlock 15k words."
+                else "⚠ Free trial allows max 2,000 words. Subscribe to unlock 20k words."
             )
             return JsonResponse({"success": False, "message": msg})
 

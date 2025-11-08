@@ -102,7 +102,7 @@
   outline: none !important;          /* remove outline */
   color: inherit;                    /* keep inherited color */
   transition: color 0.3s ease;       /* optional smooth hover color */
-}
+ }
 
 /* Remove any border or underline on hover/focus */
 #navmenu a:hover,
@@ -229,7 +229,7 @@
       <div class="d-flex align-items-center">
         {% if not user.is_authenticated %}
           <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
-            {% trans "Register" %}
+            {% trans "Sign up" %}
           </button>
           <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
             {% trans "Login" %}
@@ -248,7 +248,7 @@
       <div class="d-flex align-items-center">
         {% if not user.is_authenticated %}
           <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
-            {% trans "Register" %}
+            {% trans "Sign up" %}
           </button>
           <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
             {% trans "Login" %}
@@ -1682,10 +1682,7 @@ function downloadSolutionPDF() {
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
       <a href="/website/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Web Design" %}</a>
     </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/flyer-design/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Flyer Design" %}</a>
-    </li>
+   
   </ul>
 </div>
 
