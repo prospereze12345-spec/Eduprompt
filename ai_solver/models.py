@@ -1,7 +1,4 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from datetime import timedelta
@@ -56,7 +53,10 @@ class AISolverSubscription(models.Model):
         """
         Check if subscription is still valid.
         Expired → inactive automatically.
+        Admin/superuser is always active.
         """
+        if self.user.is_superuser:
+            return True
         if not self.active:
             return False
         if self.expiry_date and timezone.now() > self.expiry_date:
@@ -67,7 +67,10 @@ class AISolverSubscription(models.Model):
         """
         Remaining solver attempts.
         Returns ∞ for unlimited plans.
+        Admin/superuser always has unlimited.
         """
+        if self.user.is_superuser:
+            return "∞"
         if self.solver_limit is None:
             return "∞"
         return max(0, self.solver_limit - self.solver_used)
@@ -76,7 +79,10 @@ class AISolverSubscription(models.Model):
         """
         Use one solver attempt.
         Returns False if limit reached.
+        Admin/superuser always allowed.
         """
+        if self.user.is_superuser:
+            return True
         if self.solver_limit is not None and self.solver_used >= self.solver_limit:
             return False
         self.solver_used += 1

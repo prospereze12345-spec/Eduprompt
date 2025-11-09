@@ -103,7 +103,6 @@ INSTALLED_APPS = [
     'note',
     'quiz_generator',
     'essay',
-    'ai_solver',
     'project_writer',
     'grammar_checker',
     'allauth',
@@ -111,6 +110,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'blog',
     'django_quill', 
+    'ai_solver.apps.MathSolverConfig'
     
 
     
@@ -171,15 +171,18 @@ DEFAULT_FROM_EMAIL = "no-reply@Eduprompt.com.ng"
 
 
 
-import dj_database_url
-
 DATABASES = {
-    "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,
-        ssl_require=False
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Eduprompt',
+        'USER': 'postgres',
+        'PASSWORD': 'eduprompt123',  # ← must match what you set in pgAdmin/psql
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
 }
+
+
 
 
 # Password validation

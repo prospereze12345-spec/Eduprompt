@@ -309,7 +309,6 @@ def verify_subscription(request):
     sub.save()
 
     return redirect("/ai-solver/?payment=success")
-
 @csrf_exempt
 def ai_solver(request):
     response = {"success": False, "solution": "", "steps": "", "audio_url": "", "question": "", "message": ""}
@@ -365,7 +364,10 @@ def ai_solver(request):
             response["message"] = msg
             return JsonResponse(response, status=403)
 
-        if sub.plan == "trial":
+        # --- Show remaining solves for trial users ---
+        if request.user.is_superuser:
+            msg = "🎁 Unlimited solves left"
+        elif sub.plan == "trial":
             msg = f"🎁 Free Trial: {sub.solver_limit - sub.solver_used} solve{'s' if sub.solver_limit - sub.solver_used != 1 else ''} left"
 
         # --- Solve the question ---
@@ -390,8 +392,10 @@ def ai_solver(request):
             except Exception as tts_error:
                 logger.warning("⚠ gTTS failed: %s", tts_error)
 
-            sub.solver_used += 1
-            sub.save(update_fields=["solver_used"])
+            # --- Increment solver_used only for normal users ---
+            if not request.user.is_superuser:
+                sub.solver_used += 1
+                sub.save(update_fields=["solver_used"])
 
             response["success"] = True
             response["message"] = msg or "✅ Solved successfully."
@@ -402,6 +406,7 @@ def ai_solver(request):
         return JsonResponse(response)
 
     return render(request, "ai_solver.html")
+
 @csrf_exempt
 def solve_image_api(request):
     if request.method != "POST":
