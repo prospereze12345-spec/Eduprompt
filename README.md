@@ -19,8 +19,6 @@ Python | Django | JavaScript | Bootstrap | PostgreSQL | Git
 
  Featured Projects  
 - EduPrompt – AI-powered platform for essays, quizzes, and grammar checks  
-- AI Note Generator – Create study notes automatically with AI  
-- CaaS Platform – Content-as-a-Service API for multilingual generation  
 
  Contact  
 Email: prospereze12345@gmail.com
