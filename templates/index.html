@@ -266,7 +266,6 @@
         <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
         <span class="text-muted me-2">|</span>
 
-        <a href="/ai-solver/" class="nav-link d-inline px-2">{% trans "AI Solver" %}</a>
         <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
         <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
         <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
@@ -997,21 +996,7 @@ $(document).ready(function(){
         </div>
       </div>
 
-      <!-- AI Solver -->
-      <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="card text-center p-4 rounded-4 feature-card" 
-             style="background: linear-gradient(135deg,#42275a,#734b6d); 
-                    transition: transform 0.3s, box-shadow 0.3s; 
-                    cursor:pointer; 
-                    position:relative;">
-          <i class="bi bi-calculator fs-1 mb-3 text-white"></i>
-          <h5 class="fw-bold text-white">{% trans "AI Solver" %}</h5>
-          <p class="text-light">
-            {% trans "Solve mathematical equations, formulas, and problems step-by-step. Perfect for homework, assignments, and learning complex concepts efficiently." %}
-          </p>
-          <a href="/ai-solver/" class="feature-arrow fw-bold fs-4 text-white text-decoration-none">→</a>
-        </div>
-      </div>
+
 
       <!-- Grammar Checker -->
       <div class="col-lg-3 col-md-6 col-sm-12">
@@ -1098,14 +1083,7 @@ $(document).ready(function(){
             </div>
           </div>
 
-          <!-- AI Solver -->
-          <div class="col-md-6 icon-box">
-            <i class="bi bi-lightbulb"></i>
-            <div>
-              <h4>{% trans "AI Solver" %}</h4>
-              <p>{% trans "Solve complex problems across subjects quickly with AI guidance, explanations, and step-by-step solutions." %}</p>
-            </div>
-          </div>
+
 
           <!-- Grammar Checker -->
           <div class="col-md-6 icon-box">
@@ -1208,7 +1186,7 @@ $(document).ready(function(){
       <div class="tab-pane fade show active" id="students" role="tabpanel">
         <div class="p-4 mb-3 bg-light rounded hover-shadow">
           <p>
-            {% trans "Students can leverage EduPrompt’s AI Essay Writer, Quiz Generator, Grammar Checker, and AI Solver to accelerate learning and improve performance. From creating detailed essays to generating practice quizzes, students can optimize study time, reinforce key concepts, and ensure work is accurate and plagiarism-free." %}
+            {% trans "Students can leverage EduPrompt’s AI Essay Writer, Quiz Generator and Grammar Checker to accelerate learning and improve performance. From creating detailed essays to generating practice quizzes, students can optimize study time, reinforce key concepts, and ensure work is accurate and plagiarism-free." %}
           </p>
           <p>
             {% trans "The platform supports independent study and collaborative projects, helping learners strengthen critical thinking, research skills, and academic writing. It is a comprehensive tool for high school, university, and exam preparation needs." %}
@@ -1421,7 +1399,7 @@ $(document).ready(function(){
               <i class="faq-toggle bi bi-chevron-down"></i>
             </div>
             <div class="faq-answer">
-              <p><strong>{% trans "EduPrompt</strong> is an AI-powered learning platform that simplifies studying. It provides clear explanations, quiz generation, ai solver, grammar checker and essay tools accessible anytime, anywhere." %}</p>
+              <p><strong>{% trans "EduPrompt</strong> is an AI-powered learning platform that simplifies studying. It provides clear explanations, quiz generation, grammar checker and essay tools accessible anytime, anywhere." %}</p>
             </div>
           </div>
 
@@ -1553,24 +1531,13 @@ $(document).ready(function(){
       </div>
     </div>
 
-    <!-- Testimonial 2 - AI Solver -->
-    <div class="col-md-6">
-      <div class="testimonial-card d-flex align-items-start p-3 shadow-sm rounded-3" style="background:#f8f9fa;">
-        <div class="me-3 text-center">
-          <div class="testimonial-number bg-success text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">02</div>
-          <i class="bi bi-calculator-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
-        </div>
-        <p class="mb-0" style="color:#333;">
-          "The AI Solver makes homework and problem-solving so much easier. It explains step by step, which makes me understand concepts faster." 
-        </p>
-      </div>
-    </div>
+    
 
     <!-- Testimonial 3 - Quiz Generator -->
     <div class="col-md-6">
       <div class="testimonial-card d-flex align-items-start p-3 shadow-sm rounded-3" style="background:#f8f9fa;">
         <div class="me-3 text-center">
-          <div class="testimonial-number bg-warning text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">03</div>
+          <div class="testimonial-number bg-warning text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">02</div>
           <i class="bi bi-mortarboard-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
         </div>
         <p class="mb-0" style="color:#333;">
@@ -1583,7 +1550,7 @@ $(document).ready(function(){
     <div class="col-md-6">
       <div class="testimonial-card d-flex align-items-start p-3 shadow-sm rounded-3" style="background:#f8f9fa;">
         <div class="me-3 text-center">
-          <div class="testimonial-number bg-danger text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">04</div>
+          <div class="testimonial-number bg-danger text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">03</div>
           <i class="bi bi-pen-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
         </div>
         <p class="mb-0" style="color:#333;">
@@ -1596,11 +1563,11 @@ $(document).ready(function(){
     <div class="col-md-6">
       <div class="testimonial-card d-flex align-items-start p-3 shadow-sm rounded-3" style="background:#f8f9fa;">
         <div class="me-3 text-center">
-          <div class="testimonial-number bg-info text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">05</div>
+          <div class="testimonial-number bg-info text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">04</div>
           <i class="bi bi-lightning-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
         </div>
         <p class="mb-0" style="color:#333;">
-          "I use all four tools daily—Essay, AI Solver, Quiz, and Grammar Checker. They make studying, teaching, and homework so much faster and stress-free." 
+          "I use all four tools daily—Essay, Quiz, and Grammar Checker. They make studying, teaching, and homework so much faster and stress-free." 
         </p>
       </div>
     </div>
@@ -1609,7 +1576,7 @@ $(document).ready(function(){
     <div class="col-md-6">
       <div class="testimonial-card d-flex align-items-start p-3 shadow-sm rounded-3" style="background:#f8f9fa;">
         <div class="me-3 text-center">
-          <div class="testimonial-number bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">06</div>
+          <div class="testimonial-number bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">05</div>
           <i class="bi bi-heart-fill mt-2" style="font-size:1.5rem; color:#003366;"></i>
         </div>
         <p class="mb-0" style="color:#333;">
@@ -1690,10 +1657,7 @@ $(document).ready(function(){
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
       <a href="/quiz/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Quiz Generator" %}</a>
     </li>
-        <li>
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/ai-solver/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Ai Solver" %}</a>
-    </li>
+
         <li>
       <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
       <a href="/grammar-checker/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>
