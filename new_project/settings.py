@@ -228,7 +228,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'new_project.wsgi.application'
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[Eduprompt] "
 
-import os
+
 import dj_database_url
 
 db_url = os.environ.get("DATABASE_URL")
