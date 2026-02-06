@@ -228,16 +228,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'new_project.wsgi.application'
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[Eduprompt] "
 
-
+import os
 import dj_database_url
 
-db_url = os.environ.get("DATABASE_URL")
-if not db_url:
-    raise ValueError("DATABASE_URL environment variable is not set!")
-
 DATABASES = {
-    "default": dj_database_url.parse(db_url, conn_max_age=600, ssl_require=True)
+    "default": dj_database_url.parse(
+        os.environ.get("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
+
 
 
 
