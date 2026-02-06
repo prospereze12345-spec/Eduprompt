@@ -1,0 +1,2326 @@
+{% load static %}
+{% load i18n %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <!-- SEO Title (Global + Local Appeal) -->
+  <title>Professional Website Design & Development | Nigeria & Global Clients</title>
+
+  <!-- SEO Description (Persuasive & Click-Friendly) -->
+  <meta name="description" content="Get modern, responsive, and SEO-optimized website design and development services in Nigeria and worldwide. I create professional business websites, e-commerce stores, and custom web solutions tailored to your brand. Trusted by clients globally for fast, reliable, and engaging web experiences.">
+
+  <!-- SEO Keywords (Local + Global Coverage) -->
+  <meta name="keywords" content="website design Nigeria, web development Nigeria, professional web designer, custom website development, business website, e-commerce website, responsive website, SEO optimized websites, hire web developer, global web design services, Nigerian web developer, website design USA, website design UK, website design Canada, website design Germany, website design Poland, African web design services">
+
+  <!-- Geo-targeting for Nigeria (primary) -->
+  <meta name="geo.region" content="NG-Lagos">
+  <meta name="geo.placename" content="Lagos, Nigeria">
+  <meta name="geo.position" content="6.5244;3.3792">
+  <meta name="ICBM" content="6.5244,3.3792">
+
+</head>
+
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" rel="icon">
+  <link href="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="{% static 'https://fonts.googleapis.com' %}" rel="preconnect">
+  <link href="{% static 'https://fonts.gstatic.com' %}" rel="preconnect" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="{% static 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap' %}" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css" rel="stylesheet' %}">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+
+
+  <style>
+  .faq-section {
+    text-align: center; /* Center all content */
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    max-width: 700px;
+    margin: 0 auto; /* Center the FAQ box itself */
+    text-align: left; /* Keep answer and question aligned left inside centered block */
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600; /* Make it bold */
+    font-size: 1.1rem;
+  }
+
+  .faq-question h5 {
+    margin: 0;
+    font-weight: 700; /* Bold text */
+  }
+
+  .faq-answer {
+    display: none;
+    padding-top: 10px;
+    color: #444;
+    font-size: 1rem;
+  }
+
+  .faq-item.active .faq-answer {
+    display: block;
+  }
+
+  .faq-toggle {
+    font-size: 1.2rem;
+    color: #666;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.active .faq-toggle {
+    transform: rotate(180deg);
+  }
+
+  /* Remove underline and border line from all links inside navmenu */
+#navmenu a {
+  text-decoration: none !important; /* no underline */
+  border: none !important;           /* no border */
+  box-shadow: none !important;       /* remove any shadow */
+  outline: none !important;          /* remove outline */
+  color: inherit;                    /* keep inherited color */
+  transition: color 0.3s ease;       /* optional smooth hover color */
+}
+
+/* Remove any border or underline on hover/focus */
+#navmenu a:hover,
+#navmenu a:focus {
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #007bff; /* Optional: set your hover color */
+}
+
+/* Remove any border or underline on sitename if any */
+.sitename {
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+/* Base button style */
+.btn-getstarted {
+  background-color: #28a745; /* Bootstrap green or your custom green */
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.3rem;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+/* Remove white line / underline on hover or focus */
+.btn-getstarted:hover,
+.btn-getstarted:focus {
+  background-color: #218838; /* darker green on hover */
+  color: white;
+  text-decoration: none;     /* removes underline */
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-nav .nav-link.dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+  .navbar-nav .nav-link.dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem; /* space between emoji and text */
+  }
+  /* Dark blue variables */
+  :root {
+    --eduprompt-blue: #003366; /* Dark blue shade */
+  }
+
+  /* Sitename color */
+  .sitename {
+    color: var(--eduprompt-blue) !important;
+    font-weight: bold;
+  }
+
+  /* Dashboard icon color */
+  .nav-link i.bi-person-fill {
+    color: var(--eduprompt-blue);
+    transition: color 0.3s ease;
+  }
+
+  /* All nav-links hover effect */
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:focus,
+  .dropdown-menu .dropdown-item:hover {
+    color: var(--eduprompt-blue) !important;
+  }
+
+  /* Optional: Get Started button hover stays nice */
+  .btn-success:hover {
+    background-color: var(--eduprompt-blue);
+    border-color: var(--eduprompt-blue);
+  }
+
+
+</style>
+
+
+
+
+
+  
+  <!-- =======================================================
+  * Template Name: FlexStart
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Updated: Nov 01 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+<header id="header" class="header fixed-top bg-white shadow-sm">
+  <nav class="container-xl py-2">
+
+    <!-- Desktop: Logo + Tools + Login/Register in one row -->
+    <div class="d-none d-lg-flex justify-content-between align-items-center">
+      <!-- Logo + Name -->
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <span class="ms-2 fw-bold sitename">Eduprompt</span>
+      </a>
+
+      <!-- Tools -->
+      <div class="d-flex align-items-center">
+        <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
+        <span class="text-muted me-2">|</span>
+
+        <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
+        <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
+        <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
+        <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+      </div>
+
+      <!-- Login/Register -->
+      <div class="d-flex align-items-center">
+        {% if not user.is_authenticated %}
+          <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+            {% trans "Sign up" %}
+          </button>
+          <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+            {% trans "Login" %}
+          </button>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Mobile: Logo + Login/Register -->
+    <div class="d-flex d-lg-none justify-content-between align-items-center mb-2">
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <span class="ms-2 fw-bold sitename">Eduprompt</span>
+      </a>
+
+      <div class="d-flex align-items-center">
+        {% if not user.is_authenticated %}
+          <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+            {% trans "Register" %}
+          </button>
+          <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+            {% trans "Login" %}
+          </button>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Mobile: Scrollable Tools Section -->
+    <div class="d-flex d-lg-none overflow-auto pb-2" style="white-space: nowrap;">
+      <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
+      <span class="text-muted me-2">|</span>
+      <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
+      <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
+      <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
+      <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+    </div>
+
+  </nav>
+</header>
+<!-- Message Container -->
+<div id="auth-messages" class="position-fixed top-0 end-0 p-3" style="z-index:1055"></div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" data-bs-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow">
+      
+      <div class="modal-header border-0">
+        <h5 class="modal-title">{% trans "Login" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body p-4">
+
+        <!-- Normal Login Form -->
+        <form id="loginForm" method="post" action="{% url 'ajax_login' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="{% trans 'Email' %}" required>
+          </div>
+          <div class="mb-3 position-relative">
+            <input type="password" name="password" class="form-control" placeholder="{% trans 'Password (optional)' %}">
+            <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 toggle-password">
+              👁
+            </button>
+          </div>
+
+          <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Login" %}</button>
+        </form>
+
+        <!-- OR Separator -->
+        <div class="d-flex align-items-center my-3">
+          <hr class="flex-grow-1">
+          <span class="mx-2 text-muted small">OR</span>
+          <hr class="flex-grow-1">
+        </div>
+
+        <!-- Magic Link Form -->
+        <form id="magicLinkForm">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="email" id="magicEmail" name="email" class="form-control" placeholder="Enter your email" required>
+          </div>
+          <button id="magicLinkBtn" class="btn btn-outline-primary w-100">
+            Send me a magic link
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" data-bs-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">{% trans "Register" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <form id="signupForm" method="post" action="{% url 'ajax_signup' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="text" name="username" class="form-control" placeholder="{% trans 'Username' %}" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="{% trans 'Email' %}" required>
+          </div>
+          <div class="mb-3 position-relative">
+            <input type="password" name="password" class="form-control" placeholder="{% trans 'Password' %}" required>
+            <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 toggle-password">
+              👁
+            </button>
+          </div>
+          <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Create Account" %}</button>
+        </form>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JS -->
+<script>
+
+$(document).ready(function(){
+
+  // --------------------------
+  // Password toggle
+  // --------------------------
+  $(document).on("click", ".toggle-password", function(){
+    const $input = $(this).closest(".position-relative").find("input");
+    const type = $input.attr("type") === "password" ? "text" : "password";
+    $input.attr("type", type);
+    $(this).text(type === "password" ? "👁" : "👁‍🗨");
+  });
+
+  // --------------------------
+  // AJAX Signup
+  // --------------------------
+  $("#signupForm").submit(function(e){
+    e.preventDefault();
+
+    const $form = $(this);
+    const data = $form.serialize();
+    const csrfToken = $form.find('input[name="csrfmiddlewaretoken"]').val();
+
+    $.ajax({
+      url: $form.attr('action'),
+      type: "POST",
+      data: data,
+      headers: {'X-CSRFToken': csrfToken},
+      success: function(response){
+        if(response.user_authenticated){
+          // Show success message
+          showMessage("Signup successful!");
+
+          // Close modal
+          $("#registerModal").modal('hide');
+
+          // Redirect to homepage
+          window.location.href = "{% url 'index' %}";
+        } else {
+          // Show backend error(s)
+          if(typeof response.errors === 'string'){
+            showMessage(response.errors, "danger");
+          } else {
+            let errMsg = "";
+            for(const key in response.errors){
+              errMsg += response.errors[key] + "\n";
+            }
+            showMessage(errMsg.trim(), "danger");
+          }
+        }
+      },
+      error: function(xhr){
+        showMessage("Signup failed. Check inputs or refresh page.", "danger");
+      }
+    });
+  });
+
+});
+</script>
+
+
+
+<!-- AJAX + Password Toggle Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+// Login AJAX
+$("#loginForm").submit(function(e){
+    e.preventDefault();
+
+    // Grab CSRF token from the form
+    const csrftoken = $(this).find('input[name="csrfmiddlewaretoken"]').val();
+
+    $.ajax({
+        url: $(this).attr('action'),
+        method: "POST",
+        data: $(this).serialize(),
+        headers: {
+            'X-CSRFToken': csrftoken,      // send CSRF token in header
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        success: function(data){
+            if(data.user_authenticated) {
+                showMessage("Login successful!");
+
+                // Hide modal
+                $("#loginModal").modal('hide');
+
+                // Redirect to index page after successful login
+                window.location.href = "{% url 'index' %}";
+            } else {
+                showMessage(data.errors || "Login failed.", "danger");
+            }
+        },
+        error: function(xhr){
+            showMessage("Login failed. Check inputs.", "danger");
+        }
+    });
+});
+
+// Password toggle
+$(".toggle-password").click(function(){
+  const input = $(this).siblings("input");
+  const type = input.attr("type") === "password" ? "text" : "password";
+  input.attr("type", type);
+  $(this).text(type === "password" ? "👁" : "👁‍🗨");
+});
+
+// Login AJAX (email + optional password)
+$("#loginForm").submit(function(e){
+  e.preventDefault();
+  $.ajax({
+    url: $(this).attr('action'),
+    method: "POST",
+    data: $(this).serialize(),
+    headers: {'X-CSRFToken': getCSRFToken()},
+    success: function(data){
+      if(data.user_authenticated){
+        showMessage("Login successful!");
+        $("#loginModal").modal('hide');
+        window.location.href = "{% url 'index' %}";
+      } else {
+        showMessage(data.errors || "Login failed.", "danger");
+      }
+    },
+    error: function(xhr){
+      showMessage("Login failed. Check inputs.", "danger");
+    }
+  });
+});
+
+// Magic link AJAX
+$("#magicLinkBtn").click(function(){
+  const email = $("#loginForm input[name='email']").val();
+  if(!email){
+    showMessage("Enter your email first.", "danger");
+    return;
+  }
+
+  $.ajax({
+    url: "{% url 'send_magic_link' %}", // backend view to send magic link
+    method: "POST",
+    data: {email: email},
+    headers: {'X-CSRFToken': getCSRFToken()},
+    success: function(data){
+      $("#magicMsg").text("Check your email for the login link!");
+    },
+    error: function(){
+      $("#magicMsg").text("Failed to send magic link. Try again.");
+    }
+  });
+});
+$(document).ready(function(){
+
+});
+
+
+
+</script>
+
+
+
+
+
+
+     
+
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+<!-- Bootstrap CSS & Bootstrap Icons CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+<style>
+  /* Section background white */
+  #contact {
+    background-color: white;
+    color: black;
+    padding: 50px 15px;
+  }
+
+  /* Section Title: Centered */
+  #contact .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  #contact .section-title h2 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #0d3b66; /* dark blue */
+  }
+  #contact .section-title p {
+    font-size: 1.25rem;
+    color: #555;
+  }
+
+  /* Info Items and Form Container background gray */
+  .info-item,
+  .contact-form {
+    background: #f7f7f7;
+    padding: 20px 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.05);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .info-item i {
+    font-size: 2rem;
+    color: #0d3b66; /* dark blue icons */
+    flex-shrink: 0;
+  }
+  .info-item h3 {
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+    color: #0d3b66;
+  }
+  .info-item p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: black;
+  }
+  .info-item img.flag-icon {
+    width: 25px;
+    height: auto;
+    margin-left: 8px;
+    border-radius: 3px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  }
+
+  /* Contact Form inputs */
+  .contact-form input,
+  .contact-form textarea {
+    border: 1.5px solid #0d3b66;
+    border-radius: 6px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+    background-color: white;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: #054a91;
+    box-shadow: 0 0 6px #054a91;
+  }
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  .contact-form button {
+    background-color: #0d3b66;
+    color: white;
+    font-weight: 600;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .contact-form button:hover {
+    background-color: #054a91;
+  }
+
+  /* Success & error messages */
+  .alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-radius: 6px;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #c3e6cb;
+  }
+  .alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-radius: 6px;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #f5c6cb;
+  }
+
+  /* Responsive */
+  @media (max-width: 767px) {
+    #contact .info-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .info-item i {
+      font-size: 2.5rem;
+    }
+
+    #contact {
+  background-color: white;
+  color: black;
+  padding: 80px 15px 50px 15px; /* increased top padding */
+  margin-top: 0;
+}
+
+  }
+</style>
+
+
+
+
+
+
+
+
+<!-- Hero Section -->
+<section id="hero" class="hero-section" style="background-color: #ffffff; padding-top: 120px; padding-bottom: 120px;">
+  <div class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-lg-7 text-center text-lg-start" data-aos="fade-up">
+        <h1 class="display-4 fw-bold mb-3">Professional Website Development</h1>
+        <p class="lead mb-4">
+          We create responsive, SEO-friendly websites that help businesses attract more clients and increase online visibility. 
+          Whether you need a custom-coded site or WordPress design, we make your digital presence impactful and professional.
+        </p>
+        <a href="#contact" class="btn btn-primary text-white px-4 py-2" style="background-color: #0a3d62; border: none;">
+  Get Your Website Today
+</a>
+
+      </div>
+      <div class="col-lg-5 text-center" data-aos="fade-left">
+        <img src="{% static 'assets/img/website.PNG' %}" class="img-fluid" alt="Web Design Illustration">
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Optional extra spacing from navbar */
+  body {
+    scroll-padding-top: 70px; /* adjusts for fixed navbar */
+  }
+
+  #hero {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  #hero p.lead {
+    line-height: 1.6;
+    font-size: 1.1rem;
+  }
+
+  #hero .btn-primary:hover {
+    background-color: #07294d;
+  }
+</style>
+<!-- Pre-Counter / Stats Section -->
+<section id="stats" class="py-5" style="background-color: #ffffff;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color:#0d3b66;">Our Achievements</h2>
+      <p style="color:#333;">Over 5 years, we’ve helped businesses grow with tailored digital solutions.</p>
+    </div>
+
+    <div class="row text-center g-4">
+
+  <!-- Stat 1 -->
+  <div class="col-md-6 col-lg-3">
+    <div class="p-4 bg-white rounded shadow-sm">
+      <h3 class="counter" data-target="15">0</h3>
+      <p class="mb-0">Custom Websites Delivered</p>
+    </div>
+  </div>
+
+  <!-- Stat 2 -->
+  <div class="col-md-6 col-lg-3">
+    <div class="p-4 bg-white rounded shadow-sm">
+      <h3 class="counter" data-target="13">0</h3>
+      <p class="mb-0">Satisfied Clients Worldwide</p>
+    </div>
+  </div>
+
+  <!-- Stat 3 -->
+  <div class="col-md-6 col-lg-3">
+    <div class="p-4 bg-white rounded shadow-sm">
+      <h3 class="counter" data-target="20">0</h3>
+      <p class="mb-0">Successful Projects Completed</p>
+    </div>
+  </div>
+
+  <!-- Stat 4 -->
+  <div class="col-md-6 col-lg-3">
+    <div class="p-4 bg-white rounded shadow-sm">
+      <h3 class="counter" data-target="5">0</h3>
+      <p class="mb-0">Years of Professional Experience</p>
+    </div>
+  </div>
+
+</div>
+
+</section>
+
+<!-- Counter Animation Script -->
+<script>
+  const counters = document.querySelectorAll('.counter');
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+      const speed = 200; // smaller = faster
+
+      const increment = target / speed;
+
+      if(count < target) {
+        counter.innerText = Math.ceil(count + increment);
+        setTimeout(updateCount, 20);
+      } else {
+        counter.innerText = target;
+      }
+    };
+    updateCount();
+  });
+</script>
+
+<style>
+  #stats h3 {
+    font-size: 2.5rem;
+    color: #0d3b66;
+    font-weight: bold;
+  }
+
+  #stats p {
+    font-size: 1.1rem;
+    color: #555;
+  }
+
+  #stats .bg-light:hover {
+    transform: translateY(-5px);
+    transition: 0.3s;
+  }
+</style>
+
+
+<!-- Tech Stack Scrolling Section -->
+<section id="tech-stack" class="py-5" style="background-color: #ffffff;">
+  <div class="container">
+    <h2 class="text-center mb-4 fw-bold" style="color:#0d3b66;">
+      Technologies & Tools I Use
+    </h2>
+
+    <div class="slider">
+      <div class="slide-track">
+        <!-- First set -->
+        <img src="{% static 'assets/img/python_5968350.png' %}" alt="Python Programming for Web Development" class="tech-icon">
+        <img src="{% static 'assets/img/bootsrap.png' %}" alt="Bootstrap Responsive Web Design Framework" class="tech-icon">
+        <img src="{% static 'assets/img/wordpress.png' %}" alt="WordPress Website and Blog Development" class="tech-icon">
+        <img src="{% static 'assets/img/django man.png' %}" alt="Django Python Web Framework" class="tech-icon">
+        <img src="{% static 'assets/img/tailwind.png' %}" alt="Tailwind CSS Utility First Framework" class="tech-icon">
+
+        <!-- Spacer for 3-second pause -->
+        <div class="spacer"></div>
+
+        <!-- Repeat set for infinite loop -->
+        <img src="{% static 'assets/img/python_5968350.png' %}" alt="Python Programming for Web Development" class="tech-icon">
+        <img src="{% static 'assets/img/bootsrap.png' %}" alt="Bootstrap Responsive Web Design Framework" class="tech-icon">
+        <img src="{% static 'assets/img/wordpress.png' %}" alt="WordPress Website and Blog Development" class="tech-icon">
+        <img src="{% static 'assets/img/django man.png' %}" alt="Django Python Web Framework" class="tech-icon">
+        <img src="{% static 'assets/img/tailwind.png' %}" alt="Tailwind CSS Utility First Framework" class="tech-icon">
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .slider {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .slide-track {
+    display: flex;
+    align-items: center;
+    animation: scroll 22s linear infinite; /* timing adjusted for pause effect */
+  }
+
+  .tech-icon {
+    height: 60px;
+    width: auto;
+    margin-right: 80px; /* spacing between icons */
+    flex-shrink: 0;
+  }
+
+  /* Spacer div to create the pause effect */
+  .spacer {
+    width: 300px; /* adjust for ~3 seconds empty gap */
+    flex-shrink: 0;
+  }
+
+  @keyframes scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
+
+
+<style>
+  .tech-slider {
+    display: flex;
+    width: max-content;
+    animation: scroll-tech 60s linear infinite; /* slower continuous scroll */
+  }
+
+  .tech-icon {
+    height: 70px;
+    object-fit: contain;
+    transition: transform 0.3s;
+  }
+
+  .tech-icon:hover {
+    transform: scale(1.2);
+  }
+
+  /* Fading edges for white background */
+  .fade-left, .fade-right {
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .fade-left {
+    background: linear-gradient(to right, #ffffff, transparent);
+  }
+
+  .fade-right {
+    background: linear-gradient(to left, #ffffff, transparent);
+  }
+
+  @keyframes scroll-tech {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .tech-icon {
+      height: 50px;
+      margin: 0 15px;
+    }
+    .tech-slider {
+      animation-duration: 90s; /* slower on mobile for readability */
+    }
+  }
+</style>
+
+
+<section id="why-choose-us" class="py-5" style="background-color: white;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color: black;">Why Choose Us</h2>
+      <p style="color: black;">Solutions designed to solve your business challenges efficiently and professionally</p>
+    </div>
+    <div class="row g-4">
+      <!-- Reason 1 -->
+      <div class="col-md-6 col-lg-4 text-center">
+        <div class="p-4 bg-white rounded shadow h-100">
+          <div class="mb-3">
+            <i class="bi bi-speedometer2 text-primary fs-1"></i>
+          </div>
+          <h5 class="fw-bold">Fast & Efficient Delivery</h5>
+          <p>We understand the value of time. Our streamlined process ensures projects are delivered quickly without compromising quality.</p>
+        </div>
+      </div>
+      <!-- Reason 2 -->
+      <div class="col-md-6 col-lg-4 text-center">
+        <div class="p-4 bg-white rounded shadow h-100">
+          <div class="mb-3">
+            <i class="bi bi-shield-check text-primary fs-1"></i>
+          </div>
+          <h5 class="fw-bold">Reliable & Secure Solutions</h5>
+          <p>Our systems are built with security and reliability in mind, protecting your business and giving you peace of mind.</p>
+        </div>
+      </div>
+      <!-- Reason 3 -->
+      <div class="col-md-6 col-lg-4 text-center">
+        <div class="p-4 bg-white rounded shadow h-100">
+          <div class="mb-3">
+            <i class="bi bi-graph-up text-primary fs-1"></i>
+          </div>
+          <h5 class="fw-bold">SEO & Performance Focused</h5>
+          <p>We design websites and applications optimized for search engines and performance to help your business grow online.</p>
+        </div>
+      </div>
+      <!-- Reason 4 -->
+      <div class="col-md-6 col-lg-4 text-center">
+        <div class="p-4 bg-white rounded shadow h-100">
+          <div class="mb-3">
+            <i class="bi bi-people text-primary fs-1"></i>
+          </div>
+          <h5 class="fw-bold">Dedicated Support</h5>
+          <p>Our team is available to provide guidance, answer questions, and resolve issues promptly to keep your business running smoothly.</p>
+        </div>
+      </div>
+      <!-- Reason 5 -->
+      <div class="col-md-6 col-lg-4 text-center">
+        <div class="p-4 bg-white rounded shadow h-100">
+          <div class="mb-3">
+            <i class="bi bi-lightbulb text-primary fs-1"></i>
+          </div>
+          <h5 class="fw-bold">Innovative Problem Solving</h5>
+          <p>We approach every project creatively, finding smart solutions to complex challenges and helping your business succeed.</p>
+        </div>
+      </div>
+      <!-- Reason 6 -->
+      <div class="col-md-6 col-lg-4 text-center">
+        <div class="p-4 bg-white rounded shadow h-100">
+          <div class="mb-3">
+            <i class="bi bi-award text-primary fs-1"></i>
+          </div>
+          <h5 class="fw-bold">Proven Results</h5>
+          <p>We deliver measurable outcomes that help your business achieve its goals, backed by experience and a track record of success.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Optional: Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+
+
+<!-- Our Services Section (Tabbed Version) -->
+<section class="py-5" style="background-color: #ffffff;">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color: black;">Our Services</h2>
+    <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
+      Explore our core services. Click each service to see how it can help your business grow, attract clients, and solve real challenges.
+    </p>
+
+    <!-- Tabs for services -->
+    <ul class="nav nav-pills justify-content-center mb-4" id="servicesTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="custom-tab" data-bs-toggle="pill" data-bs-target="#custom" type="button" role="tab">
+          <i class="bi bi-code-slash me-2" style="color:#000;"></i> Custom Code
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="wordpress-tab" data-bs-toggle="pill" data-bs-target="#wordpress" type="button" role="tab">
+          <i class="bi bi-wordpress me-2" style="color:#000;"></i> WordPress Design
+        </button>
+      </li>
+      
+    </ul>
+
+    <!-- Tab content -->
+    <div class="tab-content" id="servicesTabsContent">
+      <!-- Custom Code -->
+      <div class="tab-pane fade show active" id="custom" role="tabpanel">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <h5 style="color:black;">Custom Website Development</h5>
+          <p style="color:black;">
+            We build fully customized websites from scratch. Perfect for businesses that need unique functionality, high performance, and full control. Custom-coded sites allow you to implement any feature, optimize for speed, and create a one-of-a-kind online presence tailored to your brand.
+          </p>
+          <p style="color:black;">
+            Choosing custom development is ideal if your business requires advanced integrations, a unique design, or specialized features not available in standard platforms.
+          </p>
+        </div>
+      </div>
+
+      <!-- WordPress Design -->
+      <div class="tab-pane fade" id="wordpress" role="tabpanel">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <h5 style="color:black;">WordPress Website Design</h5>
+          <p style="color:black;">
+            We design professional WordPress websites that are easy to manage and update. This is perfect for businesses that want to maintain their site themselves without technical skills. WordPress offers flexibility, pre-built themes, and plugins to deliver a functional and attractive website quickly.
+          </p>
+          <p style="color:black;">
+            WordPress is ideal for blogs, portfolios, small business websites, and anyone who wants a balance of design, functionality, and ease-of-use.
+          </p>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+<!-- Optional: Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<style>
+  .hover-shadow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+  #servicesTabs .nav-link.active {
+    background-color: darkblue !important;
+    color: #ffffff !important;
+  }
+  #servicesTabs .nav-link {
+    color: black;
+  }
+</style>
+
+
+
+
+<!-- Website Development Packages Section -->
+<section class="py-5" style="background-color: #ffffff;">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color: #0d3b66;">Website Development Packages</h2>
+    <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
+      Explore our website packages. Sites marked <strong>Recommended for Custom Code</strong> are best built with full custom development for performance, scalability, and advanced features.
+    </p>
+
+    <div class="row g-4">
+
+      <!-- Sites Recommended for Custom Code -->
+      <div class="col-12">
+        <h4 style="color:#0d3b66;">Recommended for Custom Code</h4>
+      </div>
+<!-- AI-Powered E-Commerce Website -->
+<div id="naira-ecommerce" class="d-block"> <!-- changed from d-none d-lg-block -->
+  <div class="row g-4 justify-content-center">
+
+    <!-- AI-Powered Store -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">AI-Powered E-Commerce Store</h5>
+          <p class="text-muted mb-3">
+            Next-gen online store with <strong>AI Style Recommender</strong>, 
+            <strong>Instant Price Estimator</strong>, <strong>AI Chatbot Assistant</strong>, 
+            <strong>Smart Inventory Suggestions</strong>, and <strong>AI Sales Insights</strong>.
+          </p>
+          <h3 class="text-success mb-3">₦1,500,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>🛒 Custom Product Management</li>
+            <li>🌍 Multi-Currency Payments</li>
+            <li>🎁 Coupons & Loyalty Programs</li>
+            <li>❤️ Wishlist, Reviews & Ratings</li>
+            <li>🔐 Fast & Secure Checkout</li>
+            <li>📈 Advanced Analytics & AI Sales Insights</li>
+            <li>🤖 AI Chatbot Assistant for Customer Support</li>
+            <li>⚡ Smart Inventory Suggestions</li>
+            <li>📱 Mobile & SEO Optimized</li>
+            <li>🔑 Social Login</li>
+            <li>🖼️ Dynamic Product Recommendations</li>
+            <li>📊 AI-Driven Marketing Insights</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Professional Custom Store -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Professional E-Commerce Store</h5>
+          <p class="text-muted mb-3">
+            Fully custom-built online store with multi-currency payment integration, coupons, loyalty programs, reviews & ratings, product filtering, and analytics.
+          </p>
+          <h3 class="text-success mb-3">₦600,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Custom Product Management</li>
+            <li>✅ Multi-Currency Payments</li>
+            <li>✅ Coupons & Discounts</li>
+            <li>✅ Wishlist & Product Reviews</li>
+            <li>✅ Fast & Secure Checkout</li>
+            <li>✅ Analytics & Reporting</li>
+            <li>✅ Mobile & SEO Optimized</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking / Appointment -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Booking / Appointment</h5>
+          <p class="text-muted mb-3">
+            Multi-service scheduling, notifications, admin dashboard, analytics, calendar sync, payment integration, SMS & email reminders.
+          </p>
+          <h3 class="text-success mb-3">₦500,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Multi-Service Scheduling</li>
+            <li>✅ Notifications & User Accounts</li>
+            <li>✅ Admin Dashboard & Analytics</li>
+            <li>✅ Calendar Sync & Payment Integration</li>
+            <li>✅ SMS & Email Reminders</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Healthcare / Telemedicine -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Healthcare / Telemedicine</h5>
+          <p class="text-muted mb-3">
+            Patient registration, appointment management, secure payments, doctor dashboard, video consultations, notifications, analytics.
+          </p>
+          <h3 class="text-success mb-3">₦500,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Patient Registration & Appointment Management</li>
+            <li>✅ Secure Payments</li>
+            <li>✅ Doctor Dashboard & Video Consultations</li>
+            <li>✅ Notifications & Analytics</li>
+            <li>✅ HIPAA Compliance & Custom Reports</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forum / Community Platform -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Forum / Community Platform</h5>
+          <p class="text-muted mb-3">
+            User accounts, threads & discussions, moderation tools, notifications, analytics, gamification, social media integration, advanced security.
+          </p>
+          <h3 class="text-success mb-3">₦550,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ User Accounts & Threads</li>
+            <li>✅ Moderation Tools & Notifications</li>
+            <li>✅ Analytics & Gamification</li>
+            <li>✅ Social Media Integration & Security</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Dollar Table (International users) -->
+<div id="dollar-ecommerce" class="d-block"> <!-- changed from d-none -->
+
+
+<!-- WordPress-Friendly Sites -->
+<div class="col-12 mt-4">
+  <h4 style="color:#0d3b66;">WordPress-Friendly or Custom-code Sites</h4>
+  <p class="text-muted">Professional WordPress websites built by senior developers with modern features, responsive design, and premium support.</p>
+</div>
+
+<!-- Naira Table (NG users) -->
+<div id="naira-wordpress" class="d-none d-lg-block">
+  <div class="row g-4 justify-content-center">
+
+    <!-- Business / Corporate -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Business / Corporate</h5>
+          <p class="text-muted mb-3">Professional company website with CMS & SEO</p>
+          <h3 class="text-success mb-3">₦350,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Responsive Design</li>
+            <li>✅ About Us, Services, Contact Form</li>
+            <li>✅ Testimonials & Blog Integration</li>
+            <li>✅ Newsletter Signup</li>
+            <li>✅ SEO Ready & Fast Loading</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog / News Site -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Blog / News Site</h5>
+          <p class="text-muted mb-3">Engaging content-driven website with CMS</p>
+          <h3 class="text-success mb-3">₦250,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Categories, Tags & Comments</li>
+            <li>✅ SEO Optimization</li>
+            <li>✅ Analytics & Social Share</li>
+            <li>✅ Newsletter Integration</li>
+            <li>✅ Responsive Design</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio / Personal -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Portfolio / Personal</h5>
+          <p class="text-muted mb-3">Showcase your work or personal brand</p>
+          <h3 class="text-success mb-3">₦180,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Gallery & Project Showcase</li>
+            <li>✅ About Me & Contact Form</li>
+            <li>✅ Animations & SEO Optimized</li>
+            <li>✅ Client Testimonials & Social Integration</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Small E-Commerce Store -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Small E-Commerce Store</h5>
+          <p class="text-muted mb-3">WooCommerce store with payment & product catalog</p>
+          <h3 class="text-success mb-3">₦450,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Product Catalog & Payment Integration</li>
+            <li>✅ Coupons & Promotions</li>
+            <li>✅ Mobile Optimized</li>
+            <li>✅ Product Reviews & Analytics</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Landing Page / One-Page -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Landing Page / One-Page</h5>
+          <p class="text-muted mb-3">High-converting single-page website</p>
+          <h3 class="text-success mb-3">₦220,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Custom Design & Hero Section</li>
+            <li>✅ CTA & Animations</li>
+            <li>✅ SEO Ready & Fast Loading</li>
+            <li>✅ Social Media Links & Conversion Tracking</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real Estate / Property Portal -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Real Estate / Property Portal</h5>
+          <p class="text-muted mb-3">Property listings & agent management</p>
+          <h3 class="text-success mb-3">₦500,000</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Property Listings & Search Filters</li>
+            <li>✅ Agent Dashboard & Payment Integration</li>
+            <li>✅ Analytics & SEO</li>
+            <li>✅ Map Integration</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Dollar Table (International users) -->
+<div id="dollar-wordpress" class="d-none">
+  <div class="row g-4 justify-content-center">
+
+    <!-- Business / Corporate -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Business / Corporate</h5>
+          <p class="text-muted mb-3">Professional company website with CMS & SEO</p>
+          <h3 class="text-success mb-3">$700</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Responsive Design</li>
+            <li>✅ About Us, Services, Contact Form</li>
+            <li>✅ Testimonials & Blog Integration</li>
+            <li>✅ Newsletter Signup</li>
+            <li>✅ SEO Ready & Fast Loading</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog / News Site -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Blog / News Site</h5>
+          <p class="text-muted mb-3">Engaging content-driven website with CMS</p>
+          <h3 class="text-success mb-3">$500</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Categories, Tags & Comments</li>
+            <li>✅ SEO Optimization</li>
+            <li>✅ Analytics & Social Share</li>
+            <li>✅ Newsletter Integration</li>
+            <li>✅ Responsive Design</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio / Personal -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Portfolio / Personal</h5>
+          <p class="text-muted mb-3">Showcase your work or personal brand</p>
+          <h3 class="text-success mb-3">$350</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Gallery & Project Showcase</li>
+            <li>✅ About Me & Contact Form</li>
+            <li>✅ Animations & SEO Optimized</li>
+            <li>✅ Client Testimonials & Social Integration</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Small E-Commerce Store -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Small E-Commerce Store</h5>
+          <p class="text-muted mb-3">WooCommerce store with payment & product catalog</p>
+          <h3 class="text-success mb-3">$900</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Product Catalog & Payment Integration</li>
+            <li>✅ Coupons & Promotions</li>
+            <li>✅ Mobile Optimized</li>
+            <li>✅ Product Reviews & Analytics</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Landing Page / One-Page -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Landing Page / One-Page</h5>
+          <p class="text-muted mb-3">High-converting single-page website</p>
+          <h3 class="text-success mb-3">$450</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Custom Design & Hero Section</li>
+            <li>✅ CTA & Animations</li>
+            <li>✅ SEO Ready & Fast Loading</li>
+            <li>✅ Social Media Links & Conversion Tracking</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real Estate / Property Portal -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border rounded-4 text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Real Estate / Property Portal</h5>
+          <p class="text-muted mb-3">Property listings & agent management</p>
+          <h3 class="text-success mb-3">$800</h3>
+          <ul class="list-unstyled mb-4 text-start">
+            <li>✅ Property Listings & Search Filters</li>
+            <li>✅ Agent Dashboard & Payment Integration</li>
+            <li>✅ Analytics & SEO</li>
+            <li>✅ Map Integration</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline-primary w-100">📩 Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Script to detect location and show correct currency -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Use Intl API to get user's timezone as a simple location proxy
+    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    // Elements for Naira and Dollar pricing
+    const nairaElements = document.getElementById("naira-wordpress");
+    const dollarElements = document.getElementById("dollar-wordpress");
+
+    // Check if the user is in Nigeria / Africa
+    if (userTimeZone.includes("Africa") || userTimeZone.includes("Nigeria")) {
+        if (nairaElements) nairaElements.classList.remove("d-none");
+        if (dollarElements) dollarElements.classList.add("d-none");
+    } else {
+        if (dollarElements) dollarElements.classList.remove("d-none");
+        if (nairaElements) nairaElements.classList.add("d-none");
+    }
+});
+</script>
+
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Website Management Pricing Section -->
+<section class="py-5" style="background-color:#f8f9fa; font-family:'Segoe UI', sans-serif;">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">Website Management Plans</h2>
+      <p class="text-muted">Monthly management for smooth operation, growth, and AI integration.</p>
+    </div>
+
+    <!-- Naira Table (NG users) -->
+    <div id="naira-pricing" class="d-none d-lg-block">
+      <div class="row g-4 justify-content-center">
+        <!-- Basic -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm border rounded-4 text-center">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Basic</h5>
+              <p class="text-muted mb-3">Personal sites & blogs</p>
+              <h3 class="text-success mb-3">₦70,000 / mo</h3>
+              <ul class="list-unstyled mb-4 text-start">
+                <li>✅ Monthly Backups</li>
+                <li>✅ Security Updates</li>
+                <li>✅ Basic Support</li>
+                <li>✅ Website Monitoring</li>
+              </ul>
+              <a href="#" class="btn btn-outline-success w-100">Choose Basic</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Standard -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm border rounded-4 text-center">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Standard</h5>
+              <p class="text-muted mb-3">Small businesses & growing websites</p>
+              <h3 class="text-success mb-3">₦150,000 / mo</h3>
+              <ul class="list-unstyled mb-4 text-start">
+                <li>✅ Weekly Backups</li>
+                <li>✅ Security & Performance Monitoring</li>
+                <li>✅ Priority Support</li>
+                <li>✅ Monthly Analytics Report</li>
+              </ul>
+              <a href="#" class="btn btn-outline-success w-100">Choose Standard</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Premium (Recommended) -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-lg border-primary rounded-4 text-center">
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-primary">Premium <span class="badge bg-primary">Recommended</span></h5>
+              <p class="text-muted mb-3">AI-powered e-commerce & enterprise websites</p>
+              <h3 class="text-primary mb-3">₦250,000 / mo</h3>
+              <ul class="list-unstyled mb-4 text-start">
+                <li>✅ Daily Backups & Full Restore</li>
+                <li>✅ Security Hardening & 24/7 Monitoring</li>
+                <li>✅ Priority 24/7 Support</li>
+                <li>✅ Performance & SEO Optimization</li>
+                <li>✅ Monthly Analytics & AI Insights</li>
+                <li>✅ AI Tools Maintenance & Feature Updates</li>
+                <li>✅ Dedicated AI Chatbot Assistant</li>
+              </ul>
+              <a href="#" class="btn btn-primary w-100">Choose Premium</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dollar Table (International users) -->
+    <div id="dollar-pricing" class="d-none">
+      <div class="row g-4 justify-content-center">
+        <!-- Basic -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm border rounded-4 text-center">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Basic</h5>
+              <p class="text-muted mb-3">Personal sites & blogs</p>
+              <h3 class="text-success mb-3">$100 / mo</h3>
+              <ul class="list-unstyled mb-4 text-start">
+                <li>✅ Monthly Backups</li>
+                <li>✅ Security Updates</li>
+                <li>✅ Basic Support</li>
+                <li>✅ Website Monitoring</li>
+              </ul>
+              <a href="#" class="btn btn-outline-success w-100">Choose Basic</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Standard -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm border rounded-4 text-center">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Standard</h5>
+              <p class="text-muted mb-3">Small businesses & growing websites</p>
+              <h3 class="text-success mb-3">$200 / mo</h3>
+              <ul class="list-unstyled mb-4 text-start">
+                <li>✅ Weekly Backups</li>
+                <li>✅ Security & Performance Monitoring</li>
+                <li>✅ Priority Support</li>
+                <li>✅ Monthly Analytics Report</li>
+              </ul>
+              <a href="#" class="btn btn-outline-success w-100">Choose Standard</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Premium (Recommended) -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-lg border-primary rounded-4 text-center">
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-primary">Premium <span class="badge bg-primary">Recommended</span></h5>
+              <p class="text-muted mb-3">AI-powered e-commerce & enterprise websites</p>
+              <h3 class="text-primary mb-3">$400 / mo</h3>
+              <ul class="list-unstyled mb-4 text-start">
+                <li>✅ Daily Backups & Full Restore</li>
+                <li>✅ Security Hardening & 24/7 Monitoring</li>
+                <li>✅ Priority 24/7 Support</li>
+                <li>✅ Performance & SEO Optimization</li>
+                <li>✅ Monthly Analytics & AI Insights</li>
+                <li>✅ AI Tools Maintenance & Feature Updates</li>
+                <li>✅ Dedicated AI Chatbot Assistant</li>
+              </ul>
+              <a href="#" class="btn btn-primary w-100">Choose Premium</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Script to detect location and show correct currency -->
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    const userCountry = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if(userCountry.includes("Africa") || userCountry.includes("Nigeria")){
+      document.getElementById("naira-pricing").classList.remove("d-none");
+    } else {
+      document.getElementById("dollar-pricing").classList.remove("d-none");
+    }
+  });
+</script>
+
+<style>
+.hover-shadow {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-shadow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.card-title {
+  color: #0d3b66;
+}
+.card-text, p {
+  color: #333;
+}
+.border-custom {
+  border: 2px solid #0d3b66 !important;
+}
+</style>
+
+<!-- How We Work Section -->
+<section class="py-5" style="background-color:#ffffff;">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color:black;">How We Work</h2>
+    <p class="text-center mb-5" style="font-size:1.1rem; color:#555;">
+      Our process is simple, transparent, and designed to deliver high-quality websites efficiently.
+    </p>
+
+    <div class="row g-4">
+      <!-- Step 1 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm hover-shadow text-center p-3">
+          <div class="mb-3">
+            <i class="bi bi-pencil-square" style="font-size:2rem; color:darkblue;"></i>
+          </div>
+          <h5 class="card-title">1. Submit Your Details</h5>
+          <p class="card-text" style="color:#555;">
+            Fill out our contact form with your requirements, website type, and project details.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm hover-shadow text-center p-3">
+          <div class="mb-3">
+            <i class="bi bi-telephone" style="font-size:2rem; color:darkblue;"></i>
+          </div>
+          <h5 class="card-title">2. We Contact You</h5>
+          <p class="card-text" style="color:#555;">
+            Our team will reach out via your preferred contact method to clarify requirements and advise on the best solution.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm hover-shadow text-center p-3">
+          <div class="mb-3">
+            <i class="bi bi-cash-stack" style="font-size:2rem; color:darkblue;"></i>
+          </div>
+          <h5 class="card-title">3. Payment & Confirmation</h5>
+          <p class="card-text" style="color:#555;">
+            We request a 70% upfront payment to secure your project. Once confirmed, we schedule and begin development.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm hover-shadow text-center p-3">
+          <div class="mb-3">
+            <i class="bi bi-laptop" style="font-size:2rem; color:darkblue;"></i>
+          </div>
+          <h5 class="card-title">4. Project Development</h5>
+          <p class="card-text" style="color:#555;">
+            We develop your website with high-quality code, testing, and client feedback until you’re 100% satisfied.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Optional: Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<style>
+  .hover-shadow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+  .card-title {
+    color: darkblue;
+  }
+</style>
+
+<!-- FAQ Section -->
+<section id="faq" class="faq section py-5" style="background-color: white;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color:#0d3b66;">Frequently Asked Questions</h2>
+      <p style="color: #333;">Everything you need to know about our website development services, pricing, and process.</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="accordion" id="faqAccordion">
+
+          <!-- FAQ 1 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq1-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="false" aria-controls="faq1">
+                1. What types of websites can you build?
+              </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse" aria-labelledby="faq1-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                We build Business Websites, Blogs/News Sites, E-Commerce Stores, Portfolio Websites, Educational Platforms (LMS), Booking Websites, Custom Web Applications, Real Estate Portals, Healthcare Platforms, Forums, and more.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq2-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                2. Can WordPress handle all website types?
+              </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" aria-labelledby="faq2-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                WordPress is perfect for blogs, portfolios, small business websites, and basic e-commerce stores. Complex platforms like marketplaces, custom applications, and large booking systems are best built with Custom Code.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq3-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                3. How long does it take to build a website?
+              </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" aria-labelledby="faq3-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                WordPress sites: 1–3 weeks for basic setups. Custom-coded websites: 4–12 weeks depending on complexity and features required.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq4-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                4. How much does a website cost?
+              </button>
+            </h2>
+            <div id="faq4" class="accordion-collapse collapse" aria-labelledby="faq4-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                WordPress websites: ₦80,000 – ₦300,000 (local), $120 – $600 (international). Custom Code websites: ₦300,000 – ₦1,000,000 depends  (local), $1000 – $5,000 (international). Pricing depends on project requirements and features.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq5-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                5. What payment methods do you accept?
+              </button>
+            </h2>
+            <div id="faq5" class="accordion-collapse collapse" aria-labelledby="faq5-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                We accept <strong>Wire Transfer</strong> and <strong>Bitcoin (USDT)</strong> only for secure transactions.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq6-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6" aria-expanded="false" aria-controls="faq6">
+                6. Do you provide website maintenance?
+              </button>
+            </h2>
+            <div id="faq6" class="accordion-collapse collapse" aria-labelledby="faq6-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Yes! We offer ongoing maintenance and support packages to ensure your website stays secure, updated, and optimized.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 7 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq7-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7" aria-expanded="false" aria-controls="faq7">
+                7. Can I request custom features?
+              </button>
+            </h2>
+            <div id="faq7" class="accordion-collapse collapse" aria-labelledby="faq7-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Absolutely. Custom Code projects allow for advanced and unique features tailored to your business needs. WordPress sites can use plugins but may have limitations.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 8 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq8-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8" aria-expanded="false" aria-controls="faq8">
+                8. Will my website be mobile-friendly?
+              </button>
+            </h2>
+            <div id="faq8" class="accordion-collapse collapse" aria-labelledby="faq8-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Yes! All websites we build are responsive and optimized for mobile, tablet, and desktop devices.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 9 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq9-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9" aria-expanded="false" aria-controls="faq9">
+                9. Who owns the website after completion?
+              </button>
+            </h2>
+            <div id="faq9" class="accordion-collapse collapse" aria-labelledby="faq9-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                You own your website completely once payment is completed. All credentials, files, and source code are handed over to you.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 10 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq10-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10" aria-expanded="false" aria-controls="faq10">
+                10. Can you help me grow my website after launch?
+              </button>
+            </h2>
+            <div id="faq10" class="accordion-collapse collapse" aria-labelledby="faq10-heading" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Yes! We provide guidance on SEO, performance optimization, and additional feature integration to help your website attract more traffic and clients.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 11 -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="faq11-heading">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq11" aria-expanded="false" aria-controls="faq11">
+      11. Where is your office located?
+    </button>
+  </h2>
+  <div id="faq11" class="accordion-collapse collapse" aria-labelledby="faq11-heading" data-bs-parent="#faqAccordion">
+    <div class="accordion-body">
+      We operate fully digitally! In today’s connected world, a physical office isn’t necessary to deliver top-quality services. This allows us to work efficiently, reduce costs, and serve clients globally without limitations. You can reach us anytime via email, WhatsApp.
+    </div>
+  </div>
+</div>
+
+
+        </div> <!-- End Accordion -->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Reviews Section -->
+<section id="reviews" class="py-5" style="background-color: #ffffff;">
+  <div class="container">
+    <!-- Section Title -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color:#0d3b66;">What Our Clients Say</h2>
+      <p style="color:#333;">Hear from clients worldwide who trusted us to build their websites and digital solutions.</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+
+      <!-- Review 1 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm p-3">
+          <div class="d-flex align-items-center mb-2">
+            <h6 class="mb-0 fw-bold">John Smith (USA-deleware)</h6>
+            <div class="ms-auto text-warning">
+              &#9733;&#9733;&#9733;&#9733;&#9733;
+            </div>
+          </div>
+          <p style="color:#000;">
+            “The team delivered a fully customized e-commerce website for my store. My sales increased in just two weeks. Communication and professionalism were top-notch.”
+          </p>
+        </div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm p-3">
+          <div class="d-flex align-items-center mb-2">
+            <h6 class="mb-0 fw-bold">Fatima Al-Hassan (UAE)</h6>
+            <div class="ms-auto text-warning">
+              &#9733;&#9733;&#9733;&#9733;&#9733;
+            </div>
+          </div>
+          <p style="color:#000;">
+            “Their custom booking system made managing appointments effortless. Automation and reminders saved hours every week. Highly recommended for busy businesses.”
+          </p>
+        </div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm p-3">
+          <div class="d-flex align-items-center mb-2">
+            <h6 class="mb-0 fw-bold">Emma Johnson (Nigeria)</h6>
+            <div class="ms-auto text-warning">
+              &#9733;&#9733;&#9733;&#9733;&#9734;
+            </div>
+          </div>
+          <p style="color:#000;">
+            “The portfolio website they designed for my photography business is stunning. Clients love its ease of navigation, and the fast loading times help retain visitors.”
+          </p>
+        </div>
+      </div>
+
+      <!-- Review 4 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm p-3">
+          <div class="d-flex align-items-center mb-2">
+            <h6 class="mb-0 fw-bold">Chinedu Okafor (Nigeria-Lagos)</h6>
+            <div class="ms-auto text-warning">
+              &#9733;&#9733;&#9733;&#9733;&#9733;
+            </div>
+          </div>
+          <p style="color:#000;">
+            “They revamped our WordPress blog into a fully optimized news platform. Traffic and engagement increased, and the team guided us through SEO best practices.”
+          </p>
+        </div>
+      </div>
+
+      <!-- Review 5 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm p-3">
+          <div class="d-flex align-items-center mb-2">
+            <h6 class="mb-0 fw-bold">Sofia Martinez (Spain)</h6>
+            <div class="ms-auto text-warning">
+              &#9733;&#9733;&#9733;&#9733;&#9733;
+            </div>
+          </div>
+          <p style="color:#000;">
+            “The custom web application they built for my online tutoring service simplified class scheduling and payments. Their professionalism is unmatched.”
+          </p>
+        </div>
+      </div>
+
+      <!-- Review 6 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm p-3">
+          <div class="d-flex align-items-center mb-2">
+            <h6 class="mb-0 fw-bold">Tunde Adebayo (Nigeria-Oyo)</h6>
+            <div class="ms-auto text-warning">
+              &#9733;&#9733;&#9733;&#9733;&#9734;
+            </div>
+          </div>
+          <p style="color:#000;">
+            “Fast, professional, and exceeded expectations. The website interface is intuitive, and their guidance on content setup made launching much easier.”
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Bootstrap 5 Contact Form -->
+<section id="contact" class="py-5" style="background-color: #ffffff;">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color: #0d3b66;">Get in Touch</h2>
+    <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
+      Fill out the form below to discuss your project. We'll get back to you with the best solution for your website needs.
+    </p>
+
+    <!-- Success / Error Messages -->
+    <div id="successMessage" class="alert alert-success text-center d-none" role="alert">
+      ✅ Message sent successfully! We will message you within 24 hrs.
+    </div>
+    <div id="errorMessage" class="alert alert-danger text-center d-none" role="alert">
+      ❌ Failed to send. Please try again.
+    </div>
+
+    <form id="contactForm" method="POST">
+      {% csrf_token %} <!-- Add CSRF token for future security -->
+      <div class="row g-3">
+
+        <!-- Full Name -->
+        <div class="col-md-6">
+          <label for="fullName" class="form-label">Full Name <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="fullName" name="fullName" placeholder="John Doe" required>
+        </div>
+
+        <!-- Email -->
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com" required>
+        </div>
+
+        <!-- Phone / WhatsApp -->
+        <div class="col-md-6">
+          <label for="phone" class="form-label">Phone / WhatsApp <span class="text-danger">*</span></label>
+          <input type="tel" class="form-control" id="phone" name="phone" placeholder="+234 801 234 5678" required>
+        </div>
+
+        <!-- Development Type -->
+        <div class="col-md-6">
+          <label for="developmentType" class="form-label">Development Type <span class="text-danger">*</span></label>
+          <select class="form-select" id="developmentType" name="developmentType" required>
+            <option value="" selected disabled>Choose...</option>
+            <option>WordPress</option>
+            <option>Custom Code</option>
+            <option>Not Sure (Advise me)</option>
+          </select>
+        </div>
+
+        <!-- Website Type -->
+        <div class="col-md-6">
+          <label for="websiteType" class="form-label">Website Type <span class="text-danger">*</span></label>
+          <select class="form-select" id="websiteType" name="websiteType" required>
+            <option value="" selected disabled>Choose...</option>
+            <option>Business / Corporate</option>
+            <option>Blog / News Site</option>
+            <option>Portfolio / Personal</option>
+            <option>Small E-Commerce Store</option>
+            <option>E-Commerce / Store</option>
+            <option>Marketplace / Multi-Vendor</option>
+            <option>Landing Page / One-Page</option>
+            <option>Real Estate / Property Portal</option>
+            <option>Booking / Appointment</option>
+            <option>Educational / LMS</option>
+            <option>Healthcare / Telemedicine</option>
+            <option>Forum / Community Platform</option>
+            <option>Custom Web Application</option>
+            <option>Non-Profit / NGO Site</option>
+          </select>
+        </div>
+
+        <!-- Client Location -->
+        <div class="col-md-6">
+          <label for="clientLocation" class="form-label">Client Location <span class="text-danger">*</span></label>
+          <select class="form-select" id="clientLocation" name="clientLocation" required>
+            <option value="" selected disabled>Choose...</option>
+            <option>Nigeria</option>
+            <option>International</option>
+          </select>
+        </div>
+
+        <!-- Project Timeline -->
+        <div class="col-md-6">
+          <label for="timeline" class="form-label">Project Timeline</label>
+          <select class="form-select" id="timeline" name="timeline">
+            <option value="" selected disabled>Select Timeline</option>
+            <option>1–2 weeks</option>
+            <option>1 month</option>
+            <option>Flexible / Not sure</option>
+          </select>
+        </div>
+
+        <!-- Message / Project Details -->
+        <div class="col-12">
+          <label for="message" class="form-label">Message / Project Details</label>
+          <textarea class="form-control" id="message" name="message" rows="4" placeholder="Describe your project..."></textarea>
+        </div>
+
+        <!-- Preferred Contact Method -->
+        <div class="col-md-6">
+          <label for="contactMethod" class="form-label">Preferred Contact Method</label>
+          <select class="form-select" id="contactMethod" name="contactMethod">
+            <option value="" selected disabled>Select Method</option>
+            <option>WhatsApp</option>
+            <option>Phone Call</option>
+            <option>Email</option>
+          </select>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="col-12 text-center">
+          <button type="submit" class="btn btn-primary btn-lg mt-3">Submit Project Request</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- jQuery for AJAX -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function () {
+  $("#contactForm").submit(function (e) {
+    e.preventDefault();
+
+    // Grab CSRF token
+    const csrfToken = $(this).find("[name=csrfmiddlewaretoken]").val();
+
+    // Use FormData to include all fields
+    const formData = new FormData(this);
+
+    $.ajax({
+      type: "POST",
+      url: "/send-message", // backend endpoint
+      data: formData,
+      processData: false,
+      contentType: false,
+      headers: {
+        "X-CSRFToken": csrfToken
+      },
+      success: function (response) {
+        $("#successMessage").removeClass("d-none");
+        $("#errorMessage").addClass("d-none"); // hide error if visible
+        $("#contactForm")[0].reset();
+
+        // Hide success message after 5 seconds
+        setTimeout(() => $("#successMessage").addClass("d-none"), 5000);
+      },
+      error: function (xhr) {
+        $("#errorMessage").text("❌ Failed to send. Please try again.").removeClass("d-none");
+        setTimeout(() => $("#errorMessage").addClass("d-none"), 5000);
+      }
+    });
+  });
+});
+</script>
+
+
+<style>
+  button.btn-primary:hover {
+    background-color: #083061;
+    border-color: #083061;
+  }
+</style>
+
+
+<!-- Call To Action Section for Website Design -->
+<section id="cta-website" class="py-5" style="background-color: #0d1b4c;">
+  <div class="container text-center text-white">
+    <h2 class="fw-bold mb-3">Build a Website That Works for Your Business</h2>
+<p class="lead mb-4 text-white">
+  Your website is the face of your brand online. I specialize in 
+  <strong>professional website design and development</strong> that is modern, 
+  mobile-friendly, and optimized for performance.  
+  Whether you need a business website, e-commerce store, or portfolio, I create 
+  <strong>custom web solutions</strong> that attract visitors, engage your audience, 
+  and help you grow online.  
+  Let’s transform your ideas into a responsive, fast, and SEO-ready website today.
+</p>
+
+    <a href="#contact" class="btn btn-light btn-lg fw-bold px-5 py-3">
+      Start Your Website Project Now
+    </a>
+  </div>
+</section>
+
+
+
+<!-- Main Footer -->
+<footer class="footer pt-5" style="background-color: darkblue;">
+  <div class="container footer-top py-5">
+    <div class="row gy-4">
+
+<div class="col-lg-3 col-md-6 footer-about text-center text-lg-start">
+  <!-- Logo -->
+  <div class="mb-3">
+    <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" 
+         alt="EduPrompt Logo" 
+         style="max-width: 140px; height: auto;">
+  </div>
+
+  <!-- Short Tagline -->
+  <p style="font-size: 0.95rem; line-height: 1.6; color: #ffffff;">
+    {% trans "Smarter learning. Faster results. AI-powered tools for students and teachers." %}
+  </p>
+</div>
+
+
+<!-- Useful Links -->
+<div class="col-lg-2 col-md-3 footer-links">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Useful Links" %}</h4>
+  <ul class="list-unstyled">
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="{% url 'index' %}" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Home" %}</a>
+    </li>
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "About Us" %}</a>
+    </li>
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Privacy Policy" %}</a>
+    </li>
+    <li>
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Terms and Conditions" %}</a>
+    </li>
+  </ul>
+</div>
+
+<!-- Our Services -->
+<div class="col-lg-2 col-md-3 footer-links">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Services" %}</h4>
+  <ul class="list-unstyled">
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/website/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Web Design" %}</a>
+    </li>
+    
+  </ul>
+</div>
+
+<!-- Our Services (second block) -->
+<div class="col-lg-2 col-md-3 footer-links">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Tools" %}</h4>
+  <ul class="list-unstyled">
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/essay/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Essay Writer" %}</a>
+    </li>
+ 
+    
+    <li>
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/quiz/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Quiz Generator" %}</a>
+    </li>
+       
+        <li>
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/grammar-checker/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>
+    </li>
+  </ul>
+</div>
+
+
+<!-- Follow Us -->
+<div class="col-lg-3 col-md-6">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Follow Us" %}</h4>
+  <p class="mb-3" style="color: #ffffff;">{% trans "Follow us on all our social media platforms" %}</p>
+  <div class="social-links d-flex gap-3 fs-4">
+    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-facebook"></i></a>
+    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-tiktok"></i></a>
+  </div>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+<!-- Footer -->
+<footer style="background-color: #001a4d; color: #ffffff; padding: 15px 0; text-align: center; border-top: 1px solid darkblue">
+  <p style="margin: 0; font-size: 0.9rem;">
+    © {% now "Y" %} <strong>EduPrompt</strong>. All Rights Reserved.
+  </p>
+</footer>
+
+
+
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+
+
+
+
+
+

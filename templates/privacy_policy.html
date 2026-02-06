@@ -1,0 +1,720 @@
+{% load static %}
+{% load i18n %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <!-- Page Title -->
+  <title>Privacy Policy – EduPrompt</title>
+
+  <!-- Page Description -->
+  <meta name="description" content="Learn how we collect, use, and protect your personal information when you use our website and services. Your privacy and data security are our top priorities.">
+
+  <!-- Page Keywords -->
+  <meta name="keywords" content="privacy policy, data protection, user information, personal data security, website privacy, FlexStart privacy, online privacy policies">
+
+</head>
+
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="{% static 'https://fonts.googleapis.com' %}" rel="preconnect">
+  <link href="{% static 'https://fonts.gstatic.com' %}" rel="preconnect" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="{% static 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap' %}" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css" rel="stylesheet' %}">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+
+
+  <style>
+  .faq-section {
+    text-align: center; /* Center all content */
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    max-width: 700px;
+    margin: 0 auto; /* Center the FAQ box itself */
+    text-align: left; /* Keep answer and question aligned left inside centered block */
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600; /* Make it bold */
+    font-size: 1.1rem;
+  }
+
+  .faq-question h5 {
+    margin: 0;
+    font-weight: 700; /* Bold text */
+  }
+
+  .faq-answer {
+    display: none;
+    padding-top: 10px;
+    color: #444;
+    font-size: 1rem;
+  }
+
+  .faq-item.active .faq-answer {
+    display: block;
+  }
+
+  .faq-toggle {
+    font-size: 1.2rem;
+    color: #666;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.active .faq-toggle {
+    transform: rotate(180deg);
+  }
+
+  /* Remove underline and border line from all links inside navmenu */
+#navmenu a {
+  text-decoration: none !important; /* no underline */
+  border: none !important;           /* no border */
+  box-shadow: none !important;       /* remove any shadow */
+  outline: none !important;          /* remove outline */
+  color: inherit;                    /* keep inherited color */
+  transition: color 0.3s ease;       /* optional smooth hover color */
+}
+
+/* Remove any border or underline on hover/focus */
+#navmenu a:hover,
+#navmenu a:focus {
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #007bff; /* Optional: set your hover color */
+}
+
+/* Remove any border or underline on sitename if any */
+.sitename {
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+/* Base button style */
+.btn-getstarted {
+  background-color: #28a745; /* Bootstrap green or your custom green */
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.3rem;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+/* Remove white line / underline on hover or focus */
+.btn-getstarted:hover,
+.btn-getstarted:focus {
+  background-color: #218838; /* darker green on hover */
+  color: white;
+  text-decoration: none;     /* removes underline */
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-nav .nav-link.dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+  .navbar-nav .nav-link.dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem; /* space between emoji and text */
+  }
+  /* Dark blue variables */
+  :root {
+    --eduprompt-blue: #003366; /* Dark blue shade */
+  }
+
+  /* Sitename color */
+  .sitename {
+    color: var(--eduprompt-blue) !important;
+    font-weight: bold;
+  }
+
+  /* Dashboard icon color */
+  .nav-link i.bi-person-fill {
+    color: var(--eduprompt-blue);
+    transition: color 0.3s ease;
+  }
+
+  /* All nav-links hover effect */
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:focus,
+  .dropdown-menu .dropdown-item:hover {
+    color: var(--eduprompt-blue) !important;
+  }
+
+  /* Optional: Get Started button hover stays nice */
+  .btn-success:hover {
+    background-color: var(--eduprompt-blue);
+    border-color: var(--eduprompt-blue);
+  }
+
+
+</style>
+
+
+
+
+
+  
+  <!-- =======================================================
+  * Template Name: FlexStart
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Updated: Nov 01 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+<header id="header" class="header fixed-top bg-white shadow-sm">
+  <nav class="container-xl py-2">
+
+    <!-- Desktop: Logo + Tools + Login/Register in one row -->
+    <div class="d-none d-lg-flex justify-content-between align-items-center">
+      <!-- Logo + Name -->
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <span class="ms-2 fw-bold sitename">Eduprompt</span>
+      </a>
+
+      <!-- Tools -->
+      <div class="d-flex align-items-center">
+        <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
+        <span class="text-muted me-2">|</span>
+
+        <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
+        <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
+        <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
+        <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+      </div>
+
+      <!-- Login/Register -->
+      <div class="d-flex align-items-center">
+        {% if not user.is_authenticated %}
+          <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+            {% trans "Sign up" %}
+          </button>
+          <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+            {% trans "Login" %}
+          </button>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Mobile: Logo + Login/Register -->
+    <div class="d-flex d-lg-none justify-content-between align-items-center mb-2">
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <span class="ms-2 fw-bold sitename">Eduprompt</span>
+      </a>
+
+      <div class="d-flex align-items-center">
+        {% if not user.is_authenticated %}
+          <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+            {% trans "Sign up" %}
+          </button>
+          <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+            {% trans "Login" %}
+          </button>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Mobile: Scrollable Tools Section -->
+    <div class="d-flex d-lg-none overflow-auto pb-2" style="white-space: nowrap;">
+      <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
+      <span class="text-muted me-2">|</span>
+      <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
+      <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
+      <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
+      <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+    </div>
+
+  </nav>
+</header>
+
+
+<!-- Message Container -->
+<div id="auth-messages" class="position-fixed top-0 end-0 p-3" style="z-index:1055;"></div>
+<!-- Message Container -->
+<div id="auth-messages" class="position-fixed top-0 end-0 p-3" style="z-index:1055"></div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" data-bs-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow">
+      
+      <div class="modal-header border-0">
+        <h5 class="modal-title">{% trans "Login" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body p-4">
+
+        <!-- Normal Login Form -->
+        <form id="loginForm" method="post" action="{% url 'ajax_login' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="{% trans 'Email' %}" required>
+          </div>
+          <div class="mb-3 position-relative">
+            <input type="password" name="password" class="form-control" placeholder="{% trans 'Password (optional)' %}">
+            <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 toggle-password">
+              👁
+            </button>
+          </div>
+
+          <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Login" %}</button>
+        </form>
+
+        <!-- OR Separator -->
+        <div class="d-flex align-items-center my-3">
+          <hr class="flex-grow-1">
+          <span class="mx-2 text-muted small">OR</span>
+          <hr class="flex-grow-1">
+        </div>
+
+        <!-- Magic Link Form -->
+        <form id="magicLinkForm">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="email" id="magicEmail" name="email" class="form-control" placeholder="Enter your email" required>
+          </div>
+          <button id="magicLinkBtn" class="btn btn-outline-primary w-100">
+            Send me a magic link
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" data-bs-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">{% trans "Register" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <form id="signupForm" method="post" action="{% url 'ajax_signup' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="text" name="username" class="form-control" placeholder="{% trans 'Username' %}" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="{% trans 'Email' %}" required>
+          </div>
+          <div class="mb-3 position-relative">
+            <input type="password" name="password" class="form-control" placeholder="{% trans 'Password' %}" required>
+            <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 toggle-password">
+              👁
+            </button>
+          </div>
+          <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Create Account" %}</button>
+        </form>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JS -->
+<script>
+
+$(document).ready(function(){
+
+  // --------------------------
+  // Password toggle
+  // --------------------------
+  $(document).on("click", ".toggle-password", function(){
+    const $input = $(this).closest(".position-relative").find("input");
+    const type = $input.attr("type") === "password" ? "text" : "password";
+    $input.attr("type", type);
+    $(this).text(type === "password" ? "👁" : "👁‍🗨");
+  });
+
+  // --------------------------
+  // AJAX Signup
+  // --------------------------
+  $("#signupForm").submit(function(e){
+    e.preventDefault();
+
+    const $form = $(this);
+    const data = $form.serialize();
+    const csrfToken = $form.find('input[name="csrfmiddlewaretoken"]').val();
+
+    $.ajax({
+      url: $form.attr('action'),
+      type: "POST",
+      data: data,
+      headers: {'X-CSRFToken': csrfToken},
+      success: function(response){
+        if(response.user_authenticated){
+          // Show success message
+          showMessage("Signup successful!");
+
+          // Close modal
+          $("#registerModal").modal('hide');
+
+          // Redirect to homepage
+          window.location.href = "{% url 'index' %}";
+        } else {
+          // Show backend error(s)
+          if(typeof response.errors === 'string'){
+            showMessage(response.errors, "danger");
+          } else {
+            let errMsg = "";
+            for(const key in response.errors){
+              errMsg += response.errors[key] + "\n";
+            }
+            showMessage(errMsg.trim(), "danger");
+          }
+        }
+      },
+      error: function(xhr){
+        showMessage("Signup failed. Check inputs or refresh page.", "danger");
+      }
+    });
+  });
+
+});
+</script>
+
+
+
+<!-- AJAX + Password Toggle Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+// Login AJAX
+$("#loginForm").submit(function(e){
+    e.preventDefault();
+
+    // Grab CSRF token from the form
+    const csrftoken = $(this).find('input[name="csrfmiddlewaretoken"]').val();
+
+    $.ajax({
+        url: $(this).attr('action'),
+        method: "POST",
+        data: $(this).serialize(),
+        headers: {
+            'X-CSRFToken': csrftoken,      // send CSRF token in header
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        success: function(data){
+            if(data.user_authenticated) {
+                showMessage("Login successful!");
+
+                // Hide modal
+                $("#loginModal").modal('hide');
+
+                // Redirect to index page after successful login
+                window.location.href = "{% url 'index' %}";
+            } else {
+                showMessage(data.errors || "Login failed.", "danger");
+            }
+        },
+        error: function(xhr){
+            showMessage("Login failed. Check inputs.", "danger");
+        }
+    });
+});
+
+// Password toggle
+$(".toggle-password").click(function(){
+  const input = $(this).siblings("input");
+  const type = input.attr("type") === "password" ? "text" : "password";
+  input.attr("type", type);
+  $(this).text(type === "password" ? "👁" : "👁‍🗨");
+});
+
+// Login AJAX (email + optional password)
+$("#loginForm").submit(function(e){
+  e.preventDefault();
+  $.ajax({
+    url: $(this).attr('action'),
+    method: "POST",
+    data: $(this).serialize(),
+    headers: {'X-CSRFToken': getCSRFToken()},
+    success: function(data){
+      if(data.user_authenticated){
+        showMessage("Login successful!");
+        $("#loginModal").modal('hide');
+        window.location.href = "{% url 'index' %}";
+      } else {
+        showMessage(data.errors || "Login failed.", "danger");
+      }
+    },
+    error: function(xhr){
+      showMessage("Login failed. Check inputs.", "danger");
+    }
+  });
+});
+
+// Magic link AJAX
+$("#magicLinkBtn").click(function(){
+  const email = $("#loginForm input[name='email']").val();
+  if(!email){
+    showMessage("Enter your email first.", "danger");
+    return;
+  }
+
+  $.ajax({
+    url: "{% url 'send_magic_link' %}", // backend view to send magic link
+    method: "POST",
+    data: {email: email},
+    headers: {'X-CSRFToken': getCSRFToken()},
+    success: function(data){
+      $("#magicMsg").text("Check your email for the login link!");
+    },
+    error: function(){
+      $("#magicMsg").text("Failed to send magic link. Try again.");
+    }
+  });
+});
+$(document).ready(function(){
+
+});
+
+
+
+</script>
+
+
+
+
+        
+    </div>
+  </nav>
+</header>
+
+
+
+    <!-- Page Title -->
+    <div class="page-title">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-left text-left">
+            <div class="col-lg-8">
+
+              <section style="background-color: white; padding: 40px; font-family: Arial, sans-serif;">
+  <h1 style="color: #003366; font-size: 32px; font-weight: bold; margin-bottom: 20px;">Privacy Policy</h1>
+  
+  <p><strong>Effective Date:</strong> July 26, 2025</p>
+
+  <p>At EduPrompt, we value your privacy. This Privacy Policy outlines how we plan to handle your data and protect your information once our platform is fully launched.</p>
+
+  <h3>1. Site Status</h3>
+  <p>Please note: EduPrompt is currently in development. While the website is not yet fully operational, we are committed to building a safe and privacy-respecting environment for all users.</p>
+
+  <h3>2. What We Plan to Collect</h3>
+  <p>Once live, EduPrompt may collect the following information:</p>
+  <ul style="color: #333; font-size: 14px; padding-left: 20px;">
+    <li>Basic contact details (e.g., email address) for account creation</li>
+    <li>Academic preferences (e.g., language, subject area)</li>
+    <li>Usage data (e.g., tools used, time spent) for improvement</li>
+  </ul>
+  <p>We will not sell or share personal information without consent.</p>
+
+  <h3>3. Why We Collect Data</h3>
+  <p>We intend to use your information to:</p>
+  <ul style="color: #333; font-size: 14px; padding-left: 20px;">
+    <li>Improve the quality of our tools and services</li>
+    <li>Personalize your experience</li>
+    <li>Provide customer support</li>
+  </ul>
+
+  <h3>4. Cookies and Tracking</h3>
+  <p>We may use cookies in the future to enhance usability. You will have the option to control or disable cookies via your browser settings.</p>
+
+  <h3>5. Security</h3>
+  <p>We plan to implement modern security practices to keep your information safe, including encryption, authentication, and restricted access controls.</p>
+
+  <h3>6. Future Updates</h3>
+  <p>This privacy policy will be updated before our full launch to reflect our final data practices. By using this site during development, you agree to this placeholder policy.</p>
+
+  <h3>7. Contact Us</h3>
+  <p>For any privacy-related questions, feel free to reach us at:</p>
+  <p>Email: Somtohgist@gmail.com</p>
+  <p>Phone: +234-901-836-7110</p>
+</section>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+
+
+    <main class="main">
+
+          
+
+
+
+<!-- Main Footer -->
+<footer class="footer pt-5" style="background-color: darkblue;">
+  <div class="container footer-top py-5">
+    <div class="row gy-4">
+
+<div class="col-lg-3 col-md-6 footer-about text-center text-lg-start">
+  <!-- Logo -->
+  <div class="mb-3">
+    <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" 
+         alt="EduPrompt Logo" 
+         style="max-width: 140px; height: auto;">
+  </div>
+
+  <!-- Short Tagline -->
+  <p style="font-size: 0.95rem; line-height: 1.6; color: #ffffff;">
+    {% trans "Smarter learning. Faster results. AI-powered tools for students and teachers." %}
+  </p>
+</div>
+
+
+<!-- Useful Links -->
+<div class="col-lg-2 col-md-3 footer-links">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Useful Links" %}</h4>
+  <ul class="list-unstyled">
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="{% url 'index' %}" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Home" %}</a>
+    </li>
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "About Us" %}</a>
+    </li>
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Privacy Policy" %}</a>
+    </li>
+    <li>
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Terms and Conditions" %}</a>
+    </li>
+  </ul>
+</div>
+
+<!-- Our Services -->
+<div class="col-lg-2 col-md-3 footer-links">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Services" %}</h4>
+  <ul class="list-unstyled">
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/website/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Web Design" %}</a>
+    </li>
+   
+  </ul>
+</div>
+
+<!-- Our Services (second block) -->
+<div class="col-lg-2 col-md-3 footer-links">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Tools" %}</h4>
+  <ul class="list-unstyled">
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/essay/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Essay Writer" %}</a>
+    </li>
+ 
+    
+    <li>
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/quiz/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Quiz Generator" %}</a>
+    </li>
+
+        <li>
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/grammar-checker/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>
+    </li>
+  </ul>
+</div>
+
+
+<!-- Follow Us -->
+<div class="col-lg-3 col-md-6">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Follow Us" %}</h4>
+  <p class="mb-3" style="color: #ffffff;">{% trans "Follow us on all our social media platforms" %}</p>
+  <div class="social-links d-flex gap-3 fs-4">
+    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-facebook"></i></a>
+    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-tiktok"></i></a>
+  </div>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+<!-- Footer -->
+<footer style="background-color: #001a4d; color: #ffffff; padding: 15px 0; text-align: center; border-top: 1px solid darkblue">
+  <p style="margin: 0; font-size: 0.9rem;">
+    © {% now "Y" %} <strong>EduPrompt</strong>. All Rights Reserved.
+  </p>
+</footer>
+
+
+
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+
+
+
+
+
+

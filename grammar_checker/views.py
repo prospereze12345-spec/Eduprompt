@@ -1,0 +1,405 @@
+from django.shortcuts import render
+from django.conf import settings
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import requests
+
+
+from django.shortcuts import redirect
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+import requests
+from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.utils import timezone
+import requests
+from django.shortcuts import render, redirect
+from django.http import JsonResponse, HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+from django.utils import timezone
+import requests
+import requests
+from django.conf import settings
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def grammar_checker(request):
+    """
+    Grammar checker using LanguageTool PUBLIC API.
+    Supports many languages including African ones (af, sw, ar).
+    Integrates with user subscription to allow Pro users to check up to 15k+ words.
+    Requires user login before checking grammar.
+    """
+    if request.method == "POST":
+        user = request.user
+
+        text = request.POST.get("text", "").strip()
+        language = request.POST.get("language", "en-US")  
+        auto_correct = request.POST.get("auto_correct", "false") == "true"
+
+        if not text:
+            return JsonResponse({"error": "No text provided"}, status=400)
+
+        # --- Word limits ---
+        WORD_LIMIT_FREE = 2000  
+        WORD_LIMIT_PRO = 20000   
+
+        # --- Subscription check ---
+        word_limit = WORD_LIMIT_FREE
+        if hasattr(user, "userprofile"):
+            profile = user.userprofile
+            if profile.is_subscribed and profile.subscription_end:
+                if profile.subscription_end >= timezone.now():
+                    word_limit = WORD_LIMIT_PRO
+                else:
+                    # Expired → reset subscription
+                    profile.is_subscribed = False
+                    profile.save()
+
+        word_count = len(text.split())
+        if word_count > word_limit:
+            return JsonResponse({
+                "error": f"Word limit exceeded ({word_limit} words). Upgrade to Pro for more."
+            }, status=400)
+
+        # --- Supported languages ---
+        supported_languages = [
+            "af", "sw", "ar",
+            "en-US", "en-GB", "en-AU", "en-CA", "en-NZ", "en-ZA",
+            "fr", "fr-FR", "fr-CA", "fr-BE", "fr-CH",
+            "de", "de-DE", "de-AT", "de-CH",
+            "es", "es-ES", "es-MX", "es-AR", "es-CO", "es-CL",
+            "it", "it-IT", "pt", "pt-PT", "pt-BR", "nl", "nl-NL", "nl-BE",
+            "sv", "fi", "da", "no", "pl", "ru", "ro", "hu", "cs", "sk",
+            "uk", "sl", "hr", "bg", "ja", "zh", "tr", "id"
+        ]
+        if language not in supported_languages:
+            return JsonResponse({"error": f"Language '{language}' not supported"}, status=400)
+
+        try:
+            # --- Call PUBLIC LanguageTool API ---
+            lt_url = "https://api.languagetool.org/v2/check"
+            lt_response = requests.post(
+                lt_url,
+                data={"text": text, "language": language},
+                timeout=30
+            )
+            lt_response.raise_for_status()
+            lt_data = lt_response.json()
+            matches = lt_data.get("matches", [])
+
+            corrected_text = text
+            if auto_correct and matches:
+                corrected_chars = list(text)
+                shift = 0
+                for match in matches:
+                    replacements = match.get("replacements", [])
+                    if replacements:
+                        repl = replacements[0]["value"]
+                        offset = match["offset"] + shift
+                        length = match["length"]
+                        corrected_chars[offset:offset+length] = list(repl)
+                        shift += len(repl) - length
+                corrected_text = "".join(corrected_chars)
+
+            return JsonResponse({
+                "matches": matches,
+                "corrected_text": corrected_text if auto_correct else None,
+                "source": "public_api"
+            })
+
+        except requests.exceptions.RequestException as e:
+            return JsonResponse({"error": f"LanguageTool API request failed: {e}"}, status=500)
+        except ValueError as e:
+            return JsonResponse({"error": f"Invalid response from LanguageTool: {e}"}, status=500)
+
+    # --- GET request: render HTML ---
+    return render(request, "grammar_checker.html")
+
+
+import uuid
+import requests
+from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+
+
+@login_required
+def grammar_status(request):
+    """Render a simple subscription status page (for debugging / display)."""
+    return render(request, "grammar_status.html", {
+        "is_subscribed": getattr(request.user.userprofile, "is_subscribed", False)
+    })
+
+
+@login_required
+def grammar_subscription_status(request):
+    """AJAX endpoint for frontend to check subscription status."""
+    return JsonResponse({
+        "is_subscribed": getattr(request.user.userprofile, "is_subscribed", False)
+    })
+from datetime import timedelta
+from django.utils import timezone
+import uuid
+import requests
+from django.shortcuts import redirect
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from .models import UserProfile
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import redirect
+from django.conf import settings
+import requests, uuid, logging
+from .models import UserProfile
+
+logger = logging.getLogger(__name__)
+
+
+def grammar_start_subscription(request):
+    """Start Flutterwave payment for Grammar Pro subscription (30 days)."""
+
+    # --- Check if user is logged in ---
+    if not request.user.is_authenticated:
+        return HttpResponse(
+            """
+            <script>
+                alert("⚠ Please sign up or log in before subscribing.");
+                if (window.bootstrap) {
+                    var modalEl = document.getElementById("registerModal");
+                    if (modalEl) {
+                        var modal = new bootstrap.Modal(modalEl);
+                        modal.show();
+                    }
+                } else {
+                    console.warn("Bootstrap not loaded: cannot show modal.");
+                }
+                window.history.back();
+            </script>
+            """
+        )
+
+    # ✅ Ensure profile exists for this user
+    user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
+
+    # Detect currency (default = NGN)
+    currency = request.GET.get("currency", "NGN")
+    amount = 3500 if currency == "NGN" else 6  # one flat price plan
+
+    # Generate unique transaction ref
+    tx_ref = f"grammar-{uuid.uuid4().hex[:10]}"
+    user_profile.flutterwave_tx_ref = tx_ref
+    user_profile.save()
+
+    # --- Set payment options based on currency ---
+    if currency == "NGN":
+        payment_options = "card,banktransfer,ussd,ngn,ussd_qr,eNaira"
+    else:  # USD / international
+        payment_options = "card,applepay,googlepay,banktransfer"
+
+    # Flutterwave payment payload
+    payload = {
+        "tx_ref": tx_ref,
+        "amount": amount,
+        "currency": currency,
+        "redirect_url": request.build_absolute_uri("/grammar-verify-subscription/"),
+        "payment_options": payment_options,
+        "customer": {
+            "email": request.user.email or f"user{request.user.id}@example.com",
+            "name": request.user.username,
+        },
+        "customizations": {
+            "title": "Grammar Pro Subscription",
+            "description": "Unlock 20k+ words for 30 days",
+        }
+    }
+
+    headers = {"Authorization": f"Bearer {settings.FLW_SECRET_KEY}"}
+
+    try:
+        res = requests.post(
+            "https://api.flutterwave.com/v3/payments",
+            json=payload,
+            headers=headers,
+            timeout=15
+        )
+        res_data = res.json()
+        logger.info(f"Flutterwave grammar init: {res_data}")
+    except requests.RequestException as e:
+        logger.exception("Flutterwave request failed (grammar)")
+        return JsonResponse({"error": f"Failed to initiate payment: {str(e)}"}, status=500)
+
+    if res_data.get("status") == "success" and "link" in res_data.get("data", {}):
+        return redirect(res_data["data"]["link"])
+
+    return JsonResponse({"error": "Failed to initiate payment"}, status=400)
+
+
+from datetime import timedelta
+from django.utils import timezone
+import requests
+from django.shortcuts import redirect
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from .models import UserProfile
+
+@login_required
+def grammar_verify_subscription(request):
+    """Flutterwave redirects here after payment to verify transaction."""
+    tx_ref = request.GET.get("tx_ref")
+    status = request.GET.get("status")
+
+    if not tx_ref or not status:
+        return redirect("/grammar-checker/")
+
+    # Verify with Flutterwave API
+    verify_url = f"https://api.flutterwave.com/v3/transactions/verify_by_reference?tx_ref={tx_ref}"
+    headers = {"Authorization": f"Bearer {settings.FLW_SECRET_KEY}"}  
+    res = requests.get(verify_url, headers=headers)
+    res_data = res.json()
+
+    if res_data.get("status") == "success":
+        payment_status = res_data["data"].get("status", "").lower()
+        if payment_status == "successful":
+            user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
+            user_profile.is_subscribed = True
+            user_profile.subscription_start = timezone.now()
+            user_profile.subscription_end = timezone.now() + timedelta(days=30)  # expires in 30 days
+            user_profile.flutterwave_tx_ref = tx_ref
+            user_profile.save()
+            return redirect("/grammar-checker/?subscribed=1")
+
+    return redirect("/grammar-checker/?subscribed=0")
+
+
+import docx
+import pytesseract
+from PIL import Image
+from pypdf import PdfReader
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from .models import UserProfile
+import requests
+
+
+# --- helpers ---
+def count_words(text):
+    return len(text.split())
+
+
+def extract_text_from_file(file_obj):
+    ext = file_obj.name.split(".")[-1].lower()
+
+    if ext == "docx":
+        doc = docx.Document(file_obj)
+        return " ".join([p.text for p in doc.paragraphs])
+
+    elif ext == "pdf":
+        reader = PdfReader(file_obj)
+        return " ".join([page.extract_text() or "" for page in reader.pages])
+
+    elif ext in ["jpg", "jpeg", "png"]:
+        img = Image.open(file_obj)
+        return pytesseract.image_to_string(img)
+
+    else:
+        return file_obj.read().decode(errors="ignore")
+def run_languagetool_check(text, lang="en-US"):
+    """
+    Send text to LanguageTool public API and return:
+    1. Highlighted text (errors highlighted)
+    2. Corrected text (full corrected text)
+    3. Suggestions HTML
+    """
+    LT_URL = "https://api.languagetool.org/v2/check"
+    try:
+        response = requests.post(
+            LT_URL,
+            data={
+                "text": text,
+                "language": lang
+            },
+            timeout=15
+        )
+        result = response.json()
+        corrected_text = text
+        highlighted_text = text
+        suggestions_html = ""
+
+        # Process matches in **reverse offset order** to avoid shifting
+        for match in sorted(result.get("matches", []), key=lambda m: m["offset"], reverse=True):
+            message = match.get("message", "")
+            offset = match.get("offset", 0)
+            length = match.get("length", 0)
+            replacements = match.get("replacements", [])
+            replacement = replacements[0]["value"] if replacements else None
+
+            # Apply replacement for corrected_text
+            if replacement:
+                corrected_text = corrected_text[:offset] + replacement + corrected_text[offset+length:]
+
+            # Highlight errors in original text
+            highlighted_text = (
+                highlighted_text[:offset] +
+                f"<mark title='{message}'>" +
+                highlighted_text[offset:offset+length] +
+                "</mark>" +
+                highlighted_text[offset+length:]
+            )
+
+            # Add to suggestions HTML
+            suggestions_html += f"<p>• {message}" + (f" → Suggestion: {replacement}" if replacement else "") + "</p>"
+
+        return corrected_text, highlighted_text, suggestions_html
+
+    except Exception as e:
+        error_html = f"<p style='color:red;'>Grammar check failed: {e}</p>"
+        return text, text, error_html
+
+
+
+@csrf_exempt
+@login_required
+def grammar_upload_view(request):
+    if request.method == "POST" and request.FILES.get("file"):
+        file = request.FILES["file"]
+        extracted_text = extract_text_from_file(file)
+        word_count = count_words(extracted_text)
+
+        # ensure profile
+        profile, _ = UserProfile.objects.get_or_create(user=request.user)
+
+        # subscription limits
+        limit = 20000 if profile.is_subscribed else 2000
+        if word_count > limit:
+            msg = (
+                "🚫 Limit exceeded. Max 20,000 words per file."
+                if profile.is_subscribed
+                else "⚠ Free trial allows max 2,000 words. Subscribe to unlock 20k words."
+            )
+            return JsonResponse({"success": False, "message": msg})
+
+        # run grammar check
+        corrected_text, highlighted_text, suggestions_html = run_languagetool_check(extracted_text)
+
+        return JsonResponse({
+            "success": True,
+            "words": word_count,
+            "fixed_text": corrected_text,
+            "highlighted_text": highlighted_text,
+            "suggestions_html": suggestions_html,
+            "message": "✅ Grammar check complete."
+        })
+
+    return JsonResponse({"success": False, "message": "No file uploaded"})

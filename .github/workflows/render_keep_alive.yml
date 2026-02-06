@@ -1,0 +1,14 @@
+name: Keep Render Awake (13 mins)
+
+on:
+  schedule:
+    - cron: "*/13 * * * *"
+  workflow_dispatch:
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping EduPrompt on Render
+        run: |
+          curl -L -s https://eduprompt.com.ng/health/ > /dev/null
