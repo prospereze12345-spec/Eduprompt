@@ -36,3 +36,21 @@ secrets.json
 # MacOS / Windows files
 .DS_Store
 Thumbs.db
+
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+env/
+.venv/
+*.env
+
+# Django
+db.sqlite3
+media/
+staticfiles/
+*.log
+
+# Render / GitHub Actions
+.github/
