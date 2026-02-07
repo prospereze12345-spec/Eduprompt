@@ -196,7 +196,6 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'blog',
     'django_quill', 
-    'ai_solver.apps.MathSolverConfig'
 ]
 
 SITE_ID = 1
@@ -227,18 +226,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'new_project.wsgi.application'
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[Eduprompt] "
-
 import os
 import dj_database_url
 
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL is not set")
+
 DATABASES = {
     "default": dj_database_url.parse(
-        os.environ.get("DATABASE_URL"),
+        DATABASE_URL,
         conn_max_age=600,
-        ssl_require=True
+        ssl_require=True,
     )
 }
-
 
 
 

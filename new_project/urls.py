@@ -32,7 +32,6 @@ urlpatterns += [
     path('note/', include('note.urls')),
     path('essay/', include('essay.urls')),
     path('', include('quiz_generator.urls')),
-    path('', include('ai_solver.urls')),
     path('', include('project_writer.urls')),
     path('', include('grammar_checker.urls')),
     path('accounts/', include('allauth.urls')),
