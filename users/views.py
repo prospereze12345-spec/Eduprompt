@@ -34,10 +34,12 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
 import traceback
-
 # --------------------------
 # AJAX / NORMAL SIGNUP (Production Ready)
 # --------------------------
+from django.db import IntegrityError
+import traceback
+
 @require_POST
 def ajax_signup(request):
     username = request.POST.get("username", "").strip()
@@ -50,14 +52,27 @@ def ajax_signup(request):
     if User.objects.filter(username=username).exists():
         return JsonResponse({"success": False, "errors": "Username already taken."}, status=400)
 
-    if User.objects.filter(email=email).exists():
-        return JsonResponse({"success": False, "errors": "Email already registered."}, status=400)
+    # --------------------------
+    # Handle duplicate email gracefully
+    # --------------------------
+    existing_user = User.objects.filter(email=email).first()
+    if existing_user:
+        return JsonResponse({
+            "success": False,
+            "errors": "Email already registered. Please log in instead."
+        }, status=400)
 
     try:
         # Create user
         user = User.objects.create_user(username=username, email=email, password=password)
         login(request, user)
 
+    except IntegrityError:
+        # Rare case: race condition / duplicate creation
+        return JsonResponse({
+            "success": False,
+            "errors": "Email already registered. Please log in instead."
+        }, status=400)
     except Exception as e:
         return JsonResponse({
             "success": False,
@@ -91,6 +106,7 @@ def ajax_signup(request):
         return JsonResponse({"success": True, "redirect_url": "/"})
 
     return redirect("/")
+
 
 
 
