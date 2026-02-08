@@ -79,26 +79,6 @@ def ajax_signup(request):
             "errors": f"Failed to create user: {str(e)}"
         }, status=500)
 
-    try:
-        html_content = render_to_string("emails/welcome_email.html", {"user": user})
-        text_content = strip_tags(html_content)
-
-        msg = EmailMultiAlternatives(
-            subject="Welcome to EduPrompt 🎉",
-            body=text_content,
-            from_email="EduPrompt <prospereze12345@gmail.com>",  # Use your SMTP / SendGrid verified email
-            to=[user.email],
-        )
-        msg.attach_alternative(html_content, "text/html")
-
-        # Fail silently in production — signup must succeed regardless of email
-        msg.send(fail_silently=True)
-        print(f"✅ Welcome email sent to {user.email}")
-
-    except Exception as e:
-        # Log exception without breaking signup
-        print(f"❌ Failed to send welcome email to {user.email}: {traceback.format_exc()}")
-
     # --------------------------
     # AJAX response
     # --------------------------

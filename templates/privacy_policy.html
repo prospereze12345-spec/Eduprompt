@@ -294,32 +294,18 @@
             <input type="email" name="email" class="form-control" placeholder="{% trans 'Email' %}" required>
           </div>
           <div class="mb-3 position-relative">
-            <input type="password" name="password" class="form-control" placeholder="{% trans 'Password (optional)' %}">
+            <input type="password" name="password" class="form-control" placeholder="{% trans 'Password' %}">
             <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 toggle-password">
               👁
             </button>
+            
+Forgot your password? Contact <a href="mailto:support@eduprompt.com">somtohgist@gmail.com</a> to reset it.
+</p>
           </div>
 
           <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Login" %}</button>
         </form>
 
-        <!-- OR Separator -->
-        <div class="d-flex align-items-center my-3">
-          <hr class="flex-grow-1">
-          <span class="mx-2 text-muted small">OR</span>
-          <hr class="flex-grow-1">
-        </div>
-
-        <!-- Magic Link Form -->
-        <form id="magicLinkForm">
-          {% csrf_token %}
-          <div class="mb-3">
-            <input type="email" id="magicEmail" name="email" class="form-control" placeholder="Enter your email" required>
-          </div>
-          <button id="magicLinkBtn" class="btn btn-outline-primary w-100">
-            Send me a magic link
-          </button>
-        </form>
 
       </div>
     </div>

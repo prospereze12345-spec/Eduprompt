@@ -282,32 +282,18 @@
             <input type="email" name="email" class="form-control" placeholder="{% trans 'Email' %}" required>
           </div>
           <div class="mb-3 position-relative">
-            <input type="password" name="password" class="form-control" placeholder="{% trans 'Password (optional)' %}">
+            <input type="password" name="password" class="form-control" placeholder="{% trans 'Password ' %}">
             <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 toggle-password">
               👁
             </button>
+            
+Forgot your password? Contact <a href="mailto:support@eduprompt.com">somtohgist@gmail.com</a> to reset it.
+</p>
           </div>
 
           <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Login" %}</button>
         </form>
 
-        <!-- OR Separator -->
-        <div class="d-flex align-items-center my-3">
-          <hr class="flex-grow-1">
-          <span class="mx-2 text-muted small">OR</span>
-          <hr class="flex-grow-1">
-        </div>
-
-        <!-- Magic Link Form -->
-        <form id="magicLinkForm">
-          {% csrf_token %}
-          <div class="mb-3">
-            <input type="email" id="magicEmail" name="email" class="form-control" placeholder="Enter your email" required>
-          </div>
-          <button id="magicLinkBtn" class="btn btn-outline-primary w-100">
-            Send me a magic link
-          </button>
-        </form>
 
       </div>
     </div>
@@ -662,9 +648,8 @@ $(document).ready(function(){
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">
     <div class="row gy-4">
-
-<!-- Contact Info (Left) -->
-<div class="col-lg-4">
+<!-- Contact Info (Left → Now Full Width) -->
+<div class="col-12">
   <div class="bg-white p-4 p-md-5 shadow-sm rounded-3">
 
     <div class="info-item mb-4 d-flex align-items-start" data-aos="fade" data-aos-delay="200">
@@ -701,9 +686,10 @@ $(document).ready(function(){
 </div>
 
 
+
       <!-- Contact Form (Right) -->
       <div class="col-lg-8">
-        <div class="contact-form bg-white p-4 p-md-5 shadow-sm rounded-3" data-aos="fade-up" data-aos-delay="300">
+        <div class="contact-form bg-white p-4 p-md-5 shadow-sm rounded-3" data-aos="fade-up" data-aos-delay="300" style="display:none">
 
           {% if success_message %}
             <div class="alert alert-success mb-4">{{ success_message }}</div>
@@ -847,9 +833,7 @@ document.addEventListener("DOMContentLoaded", function () {
       Our team is building tools across multiple MVPs to transform education, and your ideas 
       can make a real impact. Let’s collaborate and grow together.
     </p>
-    <a href="#contact" class="btn btn-success btn-lg px-5 fw-bold">
-      Get in Touch Today
-    </a>
+    
   </div>
 </div>
 
@@ -867,13 +851,6 @@ document.addEventListener("DOMContentLoaded", function () {
         <i class="bi bi-facebook fs-5"></i>
       </a>
 
-      <!-- Instagram -->
-      <a href="https://instagram.com" target="_blank" 
-         class="btn btn-outline-danger rounded-circle d-flex align-items-center justify-content-center"
-         style="width:45px; height:45px;">
-        <i class="bi bi-instagram fs-5"></i>
-      </a>
-
       <!-- TikTok -->
       <a href="https://tiktok.com" target="_blank" 
          class="btn btn-outline-dark rounded-circle d-flex align-items-center justify-content-center"
@@ -881,12 +858,6 @@ document.addEventListener("DOMContentLoaded", function () {
         <i class="bi bi-tiktok fs-5"></i>
       </a>
 
-      <!-- Twitter / X -->
-      <a href="https://twitter.com" target="_blank" 
-         class="btn btn-outline-info rounded-circle d-flex align-items-center justify-content-center"
-         style="width:45px; height:45px;">
-        <i class="bi bi-twitter-x fs-5"></i>
-      </a>
 
     </div>
   </div>
