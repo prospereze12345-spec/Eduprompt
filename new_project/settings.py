@@ -340,17 +340,13 @@ LOGIN_URL = "/?show_login=true"
 LOGIN_REDIRECT_URL = "/"          # After login
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 EMAIL_HOST_USER = "prospereze12345@gmail.com"
-EMAIL_HOST_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")  # safe in Render env
-
-DEFAULT_FROM_EMAIL = "EduPrompt <prospereze12345@gmail.com>"
-
-
+EMAIL_HOST_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")  # Use environment variable for safety
+DEFAULT_FROM_EMAIL = f"EduPrompt <{EMAIL_HOST_USER}>"
 
 
 # Add your custom domain here:
