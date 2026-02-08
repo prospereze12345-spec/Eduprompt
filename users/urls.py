@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from .views import health_check  # import the view
+
 
 urlpatterns = [
     # AJAX endpoints
@@ -9,5 +11,6 @@ urlpatterns = [
 
     # Magic login URL (clicked from email)
     path('magic-login/', views.magic_login, name='magic_login'),
+    path('health/', health_check, name='health_check'),
 
 ]

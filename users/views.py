@@ -186,3 +186,20 @@ def magic_login(request):
 
     # Token invalid or expired
     return redirect("/")
+
+
+
+
+
+
+
+
+from django.urls import path
+from django.http import JsonResponse
+
+def health_check(request):
+    """
+    Simple health check endpoint.
+    Used for monitoring and warming up the app.
+    """
+    return JsonResponse({"status": "ok", "message": "I'm awake!"})
