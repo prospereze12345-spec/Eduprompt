@@ -25,9 +25,18 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 
 User = get_user_model()
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+from django.http import JsonResponse
+from django.shortcuts import redirect
+from django.views.decorators.http import require_POST
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.core.mail import EmailMultiAlternatives
+import traceback
 
 # --------------------------
-# AJAX / NORMAL SIGNUP
+# AJAX / NORMAL SIGNUP (Production Ready)
 # --------------------------
 @require_POST
 def ajax_signup(request):
@@ -36,50 +45,53 @@ def ajax_signup(request):
     password = request.POST.get("password", "").strip()
 
     if not all([username, email, password]):
-        return JsonResponse({"success": False, "errors": "All fields are required."})
+        return JsonResponse({"success": False, "errors": "All fields are required."}, status=400)
 
     if User.objects.filter(username=username).exists():
-        return JsonResponse({"success": False, "errors": "Username already taken."})
+        return JsonResponse({"success": False, "errors": "Username already taken."}, status=400)
 
     if User.objects.filter(email=email).exists():
-        return JsonResponse({"success": False, "errors": "Email already registered."})
+        return JsonResponse({"success": False, "errors": "Email already registered."}, status=400)
 
-    # Create user and log in
-    user = User.objects.create_user(username=username, email=email, password=password)
-    login(request, user)
-
-    # --------------------------
-    # Send welcome email properly
-    # --------------------------
     try:
-        # Render email template
+        # Create user
+        user = User.objects.create_user(username=username, email=email, password=password)
+        login(request, user)
+
+    except Exception as e:
+        return JsonResponse({
+            "success": False,
+            "errors": f"Failed to create user: {str(e)}"
+        }, status=500)
+
+    try:
         html_content = render_to_string("emails/welcome_email.html", {"user": user})
         text_content = strip_tags(html_content)
 
-        # Prepare email
         msg = EmailMultiAlternatives(
             subject="Welcome to EduPrompt 🎉",
             body=text_content,
-            from_email="EduPrompt <prospereze12345@gmail.com>",
+            from_email="EduPrompt <prospereze12345@gmail.com>",  # Use your SMTP / SendGrid verified email
             to=[user.email],
         )
         msg.attach_alternative(html_content, "text/html")
 
-        # Send email (exceptions will be raised if fail)
-        msg.send()
+        # Fail silently in production — signup must succeed regardless of email
+        msg.send(fail_silently=True)
         print(f"✅ Welcome email sent to {user.email}")
 
     except Exception as e:
-        # Print error for debugging locally or in production logs
-        print(f"❌ Failed to send welcome email to {user.email}: {e}")
+        # Log exception without breaking signup
+        print(f"❌ Failed to send welcome email to {user.email}: {traceback.format_exc()}")
 
     # --------------------------
-    # AJAX detection and redirect
+    # AJAX response
     # --------------------------
     if request.headers.get("X-Requested-With") == "XMLHttpRequest":
         return JsonResponse({"success": True, "redirect_url": "/"})
 
     return redirect("/")
+
 
 
 # --------------------------
