@@ -4,47 +4,63 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO Title -->
-  <title>AI Quiz Generator – Create Custom Quizzes Instantly for Students & Teachers</title>
+  <!-- Primary SEO Title -->
+  <title>AI Quiz Generator – Create Custom Quizzes Instantly | EduPrompt</title>
 
-  <!-- SEO Description -->
-  <meta name="description" content="Generate professional quizzes instantly with our AI Quiz Generator. Perfect for students, teachers, trainers, and educators. Create multiple-choice, true/false, short-answer, or mixed quizzes in seconds from notes or uploaded study material. Optimize learning, save time, and download quizzes as PDF.">
+  <!-- Meta Description -->
+  <meta name="description" content="Create professional quizzes instantly with EduPrompt’s AI Quiz Generator. Generate multiple-choice, true/false, and short-answer quizzes from notes or study materials in seconds. Perfect for students and teachers.">
 
-  <!-- SEO Keywords -->
-  <meta name="keywords" content="AI quiz generator, online quiz maker, free AI quiz creator, student quiz generator, teacher quiz tool, automated quiz generator, create quizzes online, AI multiple-choice quiz, AI true/false quiz, AI short answer quiz, educational quiz generator, training quiz maker, instant quiz creation, quiz PDF download, AI quiz assistant">
+  <!-- Keywords (optional) -->
+  <meta name="keywords" content="AI quiz generator, quiz maker AI, create quizzes online, AI multiple choice quiz, teacher quiz generator, EduPrompt quiz tool">
 
-  <!-- Canonical URL -->
-  <link rel="canonical" href="http://localhost:8000/ai-quiz-generator/" />
+  <meta name="author" content="EduPrompt">
+  <meta name="robots" content="index, follow">
 
-  
-  <!-- Structured Data JSON-LD for SEO -->
+  <!-- Canonical -->
+  <link rel="canonical" href="https://eduprompt.com.ng{{ request.path }}" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI Quiz Generator – Create Quizzes Instantly">
+  <meta property="og:description" content="Generate custom quizzes from notes or study material in seconds using EduPrompt AI.">
+  <meta property="og:url" content="https://eduprompt.com.ng{{ request.path }}">
+  <meta property="og:image" content="https://eduprompt.com.ng/static/assets/img/ai-quiz-generator-preview.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Quiz Generator | EduPrompt">
+  <meta name="twitter:description" content="Instantly generate quizzes for students and teachers with AI.">
+  <meta name="twitter:image" content="https://eduprompt.com.ng/static/assets/img/ai-quiz-generator-preview.png">
+
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "AI Quiz Generator",
-    "url": "http://localhost:8000/ai-quiz-generator/",
-    "description": "Generate professional quizzes instantly from study notes or uploaded materials. Perfect for students, teachers, and trainers.",
+    "@type": "SoftwareApplication",
+    "name": "EduPrompt AI Quiz Generator",
+    "url": "https://eduprompt.com.ng{{ request.path }}",
+    "description": "AI-powered quiz generator that creates multiple-choice, true/false, and short-answer quizzes instantly.",
     "applicationCategory": "EducationalApplication",
     "operatingSystem": "All",
-    "image": "http://localhost:8000/static/assets/img/ai-quiz-generator-preview.png"
+    "image": "https://eduprompt.com.ng/static/assets/img/ai-quiz-generator-preview.png"
   }
   </script>
 
   <!-- Favicon -->
   <link rel="icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon" />
+
 </head>
 
 
-  <!-- Favicons -->
-  <link href="{% static 'assets/img/favicon.png' %}" rel="icon" />
-  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon" />
-
+  
+<!-- Favicon (only one main link) -->
+<link rel="icon" href="{% static 'assets/img/favicon.png' %}" type="image/png" />
+<link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon" />
+<link rel="apple-touch-icon" href="{% static 'assets/img/apple-touch-icon.png' %}">
   <!-- Fonts and Icons -->
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
@@ -262,7 +278,7 @@
     <div class="d-none d-lg-flex justify-content-between align-items-center">
       <!-- Logo + Name -->
       <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
-        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <img src="{% static 'assets/img/favicon.png' %}" alt="Logo" style="height: 40px;">
         <span class="ms-2 fw-bold sitename">Eduprompt</span>
       </a>
 
@@ -293,7 +309,7 @@
     <!-- Mobile: Logo + Login/Register -->
     <div class="d-flex d-lg-none justify-content-between align-items-center mb-2">
       <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
-        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <img src="{% static 'assets/img/favicon.png' %}" alt="Logo" style="height: 40px;">
         <span class="ms-2 fw-bold sitename">Eduprompt</span>
       </a>
 
@@ -1383,7 +1399,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="col-lg-3 col-md-6 footer-about text-center text-lg-start">
   <!-- Logo -->
   <div class="mb-3">
-    <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" 
+    <img src="{% static 'assets/img/favicon.png' %}" 
          alt="EduPrompt Logo" 
          style="max-width: 140px; height: auto;">
   </div>

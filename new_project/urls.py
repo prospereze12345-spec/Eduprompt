@@ -19,6 +19,12 @@ from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+from users.sitemaps import StaticViewSitemap  # adjust to your app
+
+sitemaps = {
+    'static': StaticViewSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,7 +42,8 @@ urlpatterns += [
     path('', include('grammar_checker.urls')),
     path('accounts/', include('allauth.urls')),
     path('blog/', include('blog.urls', namespace='blog')), 
-    
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django-sitemap'),
+
 
 
 ] 

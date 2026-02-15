@@ -4,26 +4,58 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SEO Title -->
-  <title>AI Essay Generator – Create High-Quality Essays Instantly</title>
+  <!-- Primary SEO Title -->
+  <title>AI Essay Generator – Create High-Quality Essays Instantly | EduPrompt</title>
 
-  <!-- SEO Description -->
-  <meta name="description" content="Generate structured, high-quality essays instantly with our free AI-powered essay generator. Perfect for students, researchers, and content creators seeking plagiarism-free, well-formatted essays. Write, learn, and improve your writing with AI assistance.">
+  <!-- Meta Description -->
+  <meta name="description" content="Generate structured, high-quality essays instantly with EduPrompt’s AI Essay Generator. Perfect for students and researchers seeking plagiarism-free, well-formatted academic essays. Fast, intelligent, and easy to use.">
 
-  <!-- SEO Keywords -->
-  <meta name="keywords" content="AI essay generator free, instant essay maker, AI essay writing tool, generate essays online, plagiarism-free essay creator, academic essay AI, AI essay writer for students, research paper AI assistant, free essay writing tool, structured essay generator, AI-powered content creator, GPT essay maker">
+  <!-- Keywords (optional in 2026) -->
+  <meta name="keywords" content="AI essay generator free, instant essay maker, AI essay writing tool, plagiarism-free essay creator, academic essay AI, AI essay writer for students, EduPrompt essay tool">
 
-  
+  <meta name="author" content="EduPrompt">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://eduprompt.com.ng{{ request.path }}">
+
+  <!-- Open Graph (Facebook, WhatsApp, TikTok, LinkedIn) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI Essay Generator – Create High-Quality Essays Instantly">
+  <meta property="og:description" content="Write structured, plagiarism-free essays instantly using EduPrompt AI. Designed for students and academic success.">
+  <meta property="og:url" content="https://eduprompt.com.ng{{ request.path }}">
+  <meta property="og:image" content="https://eduprompt.com.ng/static/images/essay-preview.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Essay Generator | EduPrompt">
+  <meta name="twitter:description" content="Generate high-quality academic essays instantly with AI.">
+  <meta name="twitter:image" content="https://eduprompt.com.ng/static/images/essay-preview.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "EduPrompt AI Essay Generator",
+  "operatingSystem": "All",
+  "applicationCategory": "EducationalApplication",
+  "description": "AI-powered essay generator that creates structured, plagiarism-free academic essays instantly.",
+  "url": "https://eduprompt.com.ng{{ request.path }}"
+}
+</script>
+
 </head>
 
-  <!-- Favicons -->
-  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
-  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  
+<!-- Favicon (only one main link) -->
+<link rel="icon" href="{% static 'assets/img/favicon.png' %}" type="image/png" />
+<link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon" />
+<link rel="apple-touch-icon" href="{% static 'assets/img/apple-touch-icon.png' %}">
+
 
   <!-- Fonts -->
   <link href="{% static 'https://fonts.googleapis.com' %}" rel="preconnect">
@@ -200,7 +232,7 @@
     <div class="d-none d-lg-flex justify-content-between align-items-center">
       <!-- Logo + Name -->
       <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
-        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <img src="{% static 'assets/img/favicon.png' %}" alt="Logo" style="height: 40px;">
         <span class="ms-2 fw-bold sitename">Eduprompt</span>
       </a>
 
@@ -231,7 +263,7 @@
     <!-- Mobile: Logo + Login/Register -->
     <div class="d-flex d-lg-none justify-content-between align-items-center mb-2">
       <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
-        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <img src="{% static 'assets/img/favicon.png' %}" alt="Logo" style="height: 40px;">
         <span class="ms-2 fw-bold sitename">Eduprompt</span>
       </a>
 
@@ -1546,7 +1578,7 @@ document.addEventListener("DOMContentLoaded", fetchUserStatus);
 <div class="col-lg-3 col-md-6 footer-about text-center text-lg-start">
   <!-- Logo -->
   <div class="mb-3">
-    <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" 
+    <img src="{% static 'assets/img/favicon.png' %}" 
          alt="EduPrompt Logo" 
          style="max-width: 140px; height: auto;">
   </div>

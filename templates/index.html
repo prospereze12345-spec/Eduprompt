@@ -2,32 +2,61 @@
 {% load i18n %}
 
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- SEO Title -->
-<title>{% trans "AI Tools Hub – AI Essay, Solver, Grammar, quiz" %}</title>
+  <!-- Primary SEO Title -->
+  <title>{% block title %}EduPrompt – AI Essay Generator, Solver & Academic Tools{% endblock %}</title>
 
-<!-- SEO Description -->
-<meta name="description" content="{% trans "Explore our suite of AI-powered tools including Essay Generator, Math/Physics/Chemistry Solver, Grammar Checker, letter writer, project writer, Flyer Design, Web Development, and more. Instantly create essays, solve academic problems, check grammar, and design professional digital assets. Trusted by students, professionals, and businesses worldwide." %}">
+  <!-- Meta Description -->
+  <meta name="description" content="{% block description %}EduPrompt provides AI-powered tools including essay generation, math/physics/chemistry solvers, grammar checker, project writer, flyer design, and web development solutions. Built for students and professionals worldwide.{% endblock %}">
+
+  <!-- Keywords (less important in 2026 but okay to keep) -->
+  <meta name="keywords" content="AI essay generator Nigeria, AI academic tools, math solver AI, grammar checker, project writer, EduPrompt AI tools">
+
+  <meta name="author" content="EduPrompt">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://eduprompt.com.ng{{ request.path }}">
+
+  <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="EduPrompt – AI Academic Writing & Solver Tools">
+  <meta property="og:description" content="Generate essays, solve academic problems, check grammar and more with EduPrompt AI.">
+  <meta property="og:url" content="https://eduprompt.com.ng{{ request.path }}">
+  <meta property="og:image" content="https://eduprompt.com.ng/static/images/preview.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EduPrompt – AI Essay & Academic Tools">
+  <meta name="twitter:description" content="AI-powered academic tools for students and professionals.">
+  <meta name="twitter:image" content="https://eduprompt.com.ng/static/images/preview.png">
 
 
-  <!-- SEO Keywords -->
-  <meta name="keywords" content="AI tools online, free AI essay generator, AI problem solver, math solver online, physics solver, chemistry solver, grammar checker AI, project writer, flyer design services, web development services, AI homework helper, online academic tools, AI design tools, professional web solutions, AI writing assistant, global AI services">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "EduPrompt",
+  "url": "https://eduprompt.com.ng",
+  "logo": "https://eduprompt.com.ng/static/images/logo.png",
+  "sameAs": [
+    "https://www.facebook.com/YOUR_FACEBOOK_USERNAME",
+    "https://www.tiktok.com/@YOUR_TIKTOK_USERNAME"
+  ]
+}
+</script>
 
 </head>
 
 
-  <!-- Favicon -->
-  <link rel="icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon" />
-</head>
 
-
-  <!-- Favicons -->
-  <link href="{% static 'assets/img/favicon.png' %}" rel="icon" />
-  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon" />
+<!-- Favicon (only one main link) -->
+<link rel="icon" href="{% static 'assets/img/favicon.png' %}" type="image/png" />
+<link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon" />
+<link rel="apple-touch-icon" href="{% static 'assets/img/apple-touch-icon.png' %}">
 
   <!-- Fonts and Icons -->
   <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -248,7 +277,7 @@
     <div class="d-none d-lg-flex justify-content-between align-items-center">
       <!-- Logo + Name -->
       <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
-        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <img src="{% static 'assets/img/favicon.png' %}" alt="Logo" style="height: 40px;">
         <span class="ms-2 fw-bold sitename">Eduprompt</span>
       </a>
 
@@ -279,7 +308,7 @@
     <!-- Mobile: Logo + Login/Register -->
     <div class="d-flex d-lg-none justify-content-between align-items-center mb-2">
       <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
-        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <img src="{% static 'assets/img/favicon.png' %}" alt="Logo" style="height: 40px;">
         <span class="ms-2 fw-bold sitename">Eduprompt</span>
       </a>
 
@@ -1524,7 +1553,7 @@ $(document).ready(function () {
 <div class="col-lg-3 col-md-6 footer-about text-center text-lg-start">
   <!-- Logo -->
   <div class="mb-3">
-    <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" 
+    <img src="{% static 'assets/img/favicon.png' %}" 
          alt="EduPrompt Logo" 
          style="max-width: 140px; height: auto;">
   </div>

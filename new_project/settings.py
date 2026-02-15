@@ -196,6 +196,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'blog',
     'django_quill', 
+    'django.contrib.sitemaps',
+
 ]
 
 SITE_ID = 1

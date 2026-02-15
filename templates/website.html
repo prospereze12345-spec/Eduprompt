@@ -4,32 +4,63 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SEO Title (Global + Local Appeal) -->
-  <title>Professional Website Design & Development | Nigeria & Global Clients</title>
+  <!-- Primary SEO Title -->
+  <title>Professional Website Design & Development in Nigeria | EduPrompt</title>
 
-  <!-- SEO Description (Persuasive & Click-Friendly) -->
-  <meta name="description" content="Get modern, responsive, and SEO-optimized website design and development services in Nigeria and worldwide. I create professional business websites, e-commerce stores, and custom web solutions tailored to your brand. Trusted by clients globally for fast, reliable, and engaging web experiences.">
+  <!-- Meta Description -->
+  <meta name="description" content="Get modern, responsive, and SEO-optimized website design and development services in Nigeria and globally. EduPrompt builds business websites, e-commerce platforms, and custom web solutions tailored to your brand.">
 
-  <!-- SEO Keywords (Local + Global Coverage) -->
-  <meta name="keywords" content="website design Nigeria, web development Nigeria, professional web designer, custom website development, business website, e-commerce website, responsive website, SEO optimized websites, hire web developer, global web design services, Nigerian web developer, website design USA, website design UK, website design Canada, website design Germany, website design Poland, African web design services">
+  <!-- Keywords (light, not stuffed) -->
+  <meta name="keywords" content="website design Nigeria, web development Nigeria, professional web developer, custom website development, e-commerce website design, responsive business website">
 
-  <!-- Geo-targeting for Nigeria (primary) -->
-  <meta name="geo.region" content="NG-Lagos">
-  <meta name="geo.placename" content="Lagos, Nigeria">
-  <meta name="geo.position" content="6.5244;3.3792">
-  <meta name="ICBM" content="6.5244,3.3792">
+  <meta name="author" content="EduPrompt">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://eduprompt.com.ng{{ request.path }}">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Professional Website Design & Development | EduPrompt">
+  <meta property="og:description" content="Custom business websites, e-commerce platforms, and SEO-optimized web solutions for Nigerian and global clients.">
+  <meta property="og:url" content="https://eduprompt.com.ng{{ request.path }}">
+  <meta property="og:image" content="https://eduprompt.com.ng/static/assets/img/web-design-preview.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Website Design & Development | EduPrompt">
+  <meta name="twitter:description" content="Professional web development services for businesses in Nigeria and worldwide.">
+  <meta name="twitter:image" content="https://eduprompt.com.ng/static/assets/img/web-design-preview.png">
+
+  <!-- Structured Data for Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "EduPrompt Web Design & Development",
+    "url": "https://eduprompt.com.ng{{ request.path }}",
+    "description": "Professional website design and development services for businesses in Nigeria and worldwide.",
+    "areaServed": ["Nigeria", "United States", "United Kingdom", "Canada", "Germany", "Poland"],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lagos",
+      "addressCountry": "NG"
+    }
+  }
+  </script>
 
 </head>
 
 
-  <!-- Favicons -->
-  <link href="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" rel="icon">
-  <link href="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" rel="apple-touch-icon">
+
+<!-- Favicon (only one main link) -->
+<link rel="icon" href="{% static 'assets/img/favicon.png' %}" type="image/png" />
+<link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon" />
+<link rel="apple-touch-icon" href="{% static 'assets/img/apple-touch-icon.png' %}">
 
   <!-- Fonts -->
   <link href="{% static 'https://fonts.googleapis.com' %}" rel="preconnect">
@@ -214,7 +245,7 @@
     <div class="d-none d-lg-flex justify-content-between align-items-center">
       <!-- Logo + Name -->
       <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
-        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <img src="{% static 'assets/img/favicon.png' %}" alt="Logo" style="height: 40px;">
         <span class="ms-2 fw-bold sitename">Eduprompt</span>
       </a>
 
@@ -245,7 +276,7 @@
     <!-- Mobile: Logo + Login/Register -->
     <div class="d-flex d-lg-none justify-content-between align-items-center mb-2">
       <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
-        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <img src="{% static 'assets/img/favicon.png' %}" alt="Logo" style="height: 40px;">
         <span class="ms-2 fw-bold sitename">Eduprompt</span>
       </a>
 
@@ -2073,7 +2104,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="col-lg-3 col-md-6 footer-about text-center text-lg-start">
   <!-- Logo -->
   <div class="mb-3">
-    <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" 
+    <img src="{% static 'assets/img/favicon.png' %}" 
          alt="EduPrompt Logo" 
          style="max-width: 140px; height: auto;">
   </div>
