@@ -21,6 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from users.sitemaps import StaticViewSitemap  # adjust to your app
+from django.views.generic import TemplateView
 
 sitemaps = {
     'static': StaticViewSitemap,
@@ -44,12 +45,18 @@ urlpatterns += [
     path('blog/', include('blog.urls', namespace='blog')), 
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django-sitemap'),
 
-
+    path(
+        "robots.txt",
+        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+    ),
 
 ] 
 
 
     
+
+
+
 
 
    
