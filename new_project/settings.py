@@ -14,11 +14,13 @@ from pathlib import Path
 import environ
 from dotenv import load_dotenv
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")  
 import os
 
 import os
 OCRSPACE_API_KEY = os.environ.get("OCRSPACE_API_KEY")
-
+RESEND_API_KEY = os.getenv("RESEND_API_KEY")
 load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -341,19 +343,7 @@ CKEDITOR_CONFIGS = {
 LOGIN_URL = "/?show_login=true"
 LOGIN_REDIRECT_URL = "/"          # After login
 import os
-
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True  # Required for port 587
-
-EMAIL_HOST_USER = "prospereze12345@gmail.com"
-EMAIL_HOST_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")  # Must be a Gmail App Password
-
-DEFAULT_FROM_EMAIL = f"EduPrompt <{EMAIL_HOST_USER}>"
-
-EMAIL_FAIL_SILENTLY = True  # This is custom, use in your send() call
-
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "noreply@eduprompt.com.ng")
 
 # Add your custom domain here:
 ALLOWED_HOSTS = [

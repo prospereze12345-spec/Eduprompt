@@ -34,11 +34,17 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
 import traceback
-# --------------------------
-# AJAX / NORMAL SIGNUP (Production Ready)
+## AJAX / NORMAL SIGNUP (Production Ready)
 # --------------------------
 from django.db import IntegrityError
 import traceback
+from django.http import JsonResponse
+from django.shortcuts import redirect
+from django.views.decorators.http import require_POST
+from django.contrib.auth import login, get_user_model
+from users.emails import send_welcome_email_async  # <-- import your async email
+
+User = get_user_model()
 
 @require_POST
 def ajax_signup(request):
@@ -67,6 +73,12 @@ def ajax_signup(request):
         user = User.objects.create_user(username=username, email=email, password=password)
         login(request, user)
 
+        # --------------------------
+        # Send welcome email asynchronously (production ready)
+        # --------------------------
+        if user.email:  # ensure email exists
+            send_welcome_email_async(user.id)
+
     except IntegrityError:
         # Rare case: race condition / duplicate creation
         return JsonResponse({
@@ -86,9 +98,6 @@ def ajax_signup(request):
         return JsonResponse({"success": True, "redirect_url": "/"})
 
     return redirect("/")
-
-
-
 
 # --------------------------
 # AJAX / NORMAL LOGIN
