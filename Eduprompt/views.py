@@ -41,9 +41,19 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
-# -----------------------------
-# Project request form
-# -----------------------------
+# ---- views.py
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+import os
+import resend  # official Resend Python SDK
+
+# Set your API key from environment variable
+resend.api_key = os.environ.get("RESEND_API_KEY")
+
+# The email address where you actually want to receive project requests
+RECEIVING_EMAIL = "prospereze12345@gmail.com"  # <-- replace with your real inbox
+
 @csrf_exempt
 def send_message(request):
     if request.method == "POST":
@@ -53,45 +63,48 @@ def send_message(request):
         else:
             data = request.POST
 
+        # Map frontend field names correctly
         full_name = data.get("fullName")
         email = data.get("email")
         phone = data.get("phone")
-        development_type = data.get("developmentType")
+        development_type = data.get("devType")      # frontend name
         website_type = data.get("websiteType")
-        client_location = data.get("clientLocation")
+        client_location = data.get("location")
         timeline = data.get("timeline")
         message = data.get("message")
         contact_method = data.get("contactMethod")
 
         subject = f"New Project Request from {full_name}"
-        body = f"""
-Name: {full_name}
-Email: {email}
-Phone: {phone}
-Development Type: {development_type}
-Website Type: {website_type}
-Location: {client_location}
-Timeline: {timeline}
-Contact Method: {contact_method}
 
-Message:
-{message}
+        # HTML email body
+        html_body = f"""
+        <h2>New Project Request</h2>
+        <p><strong>Name:</strong> {full_name}</p>
+        <p><strong>Email:</strong> {email}</p>
+        <p><strong>Phone:</strong> {phone}</p>
+        <p><strong>Development Type:</strong> {development_type}</p>
+        <p><strong>Website Type:</strong> {website_type}</p>
+        <p><strong>Location:</strong> {client_location}</p>
+        <p><strong>Timeline:</strong> {timeline}</p>
+        <p><strong>Preferred Contact:</strong> {contact_method}</p>
+        <p><strong>Message:</strong><br>{message}</p>
         """
 
         try:
-            send_mail(
-                subject,
-                body,
-                settings.DEFAULT_FROM_EMAIL,
-                [settings.DEFAULT_FROM_EMAIL],
-                fail_silently=False,
-            )
+            # Send email using Resend
+            resend.Emails.send({
+                "from": "EduPrompt <noreply@eduprompt.com.ng>",  # sender stays as noreply
+                "to": [RECEIVING_EMAIL],                         # your real inbox
+                "subject": subject,
+                "html": html_body
+            })
             return JsonResponse({"success": True, "message": "Message sent successfully"})
+
         except Exception as e:
+            print("Resend Error:", e)
             return JsonResponse({"success": False, "error": str(e)})
 
     return JsonResponse({"success": False, "error": "Invalid request"})
-
 
 # -----------------------------
 # Flyer design page

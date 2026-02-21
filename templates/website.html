@@ -2026,53 +2026,102 @@ document.addEventListener("DOMContentLoaded", function() {
 </section>
 
 </style>
-<!-- Contact & Project Inquiry Section -->
-<div class="col-12">
-  <div class="bg-white p-4 p-md-5 shadow-sm rounded-3">
-
-    <!-- Header -->
-    <div class="mb-5 text-center">
+<section class="py-5 bg-light" id="contact-section">
+  <div class="container">
+    <div class="text-center mb-5">
       <h3 class="fw-bold">Project & Business Inquiries</h3>
       <p class="text-muted mb-0">
-        For development requests, partnerships, or custom projects, please contact us via email.
+        For development requests, partnerships, or custom projects, please contact us via the form below.
       </p>
     </div>
 
-    <!-- Instructions -->
-    <div class="mb-4">
-      <p class="fw-semibold">
-        To help us respond quickly, include the following details in your email:
-      </p>
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <form id="projectForm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-control" name="fullName" placeholder="John Doe" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-control" name="email" placeholder="email@example.com" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Phone / WhatsApp</label>
+              <input type="text" class="form-control" name="phone" placeholder="+234 801 234 5678" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Development Type</label>
+              <input type="text" class="form-control" name="devType" placeholder="Web App, Website, API, etc." required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Website Type</label>
+              <input type="text" class="form-control" name="websiteType" placeholder="Landing Page, SaaS, Blog, E-commerce, etc." required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Client Location</label>
+              <input type="text" class="form-control" name="location" placeholder="Country & City" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Project Timeline</label>
+              <input type="text" class="form-control" name="timeline" placeholder="Immediate, 1–2 weeks, 1 month, Flexible" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Preferred Contact Method</label>
+              <select class="form-select" name="contactMethod" required>
+                <option value="">Select...</option>
+                <option value="Email">Email</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="Call">Call</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Message / Project Details</label>
+              <textarea class="form-control" name="message" rows="4" placeholder="Brief description of your project" required></textarea>
+            </div>
+          </div>
 
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">✅ <strong>Full Name</strong> (e.g. John Doe)</li>
-        <li class="list-group-item">📧 <strong>Email Address</strong> (e.g. email@example.com)</li>
-        <li class="list-group-item">📞 <strong>Phone / WhatsApp</strong> (e.g. +234 801 234 5678)</li>
-        <li class="list-group-item">🛠 <strong>Development Type</strong> (Web App, Website, API, etc.)</li>
-        <li class="list-group-item">🌐 <strong>Website Type</strong> (Landing Page, SaaS, Blog, E-commerce, etc.)</li>
-        <li class="list-group-item">📍 <strong>Client Location</strong> (Country & City)</li>
-        <li class="list-group-item">⏳ <strong>Project Timeline</strong> (Immediate, 1–2 weeks, 1 month, Flexible)</li>
-        <li class="list-group-item">📝 <strong>Message / Project Details</strong> (Brief description of your project)</li>
-        <li class="list-group-item">💬 <strong>Preferred Contact Method</strong> (Email, WhatsApp, Call)</li>
-      </ul>
+          <div class="mt-4 text-center">
+            <button type="submit" class="btn btn-primary btn-lg w-100">📩 Send Project Email</button>
+          </div>
+        </form>
+      </div>
     </div>
-
-    <!-- Email CTA -->
-    <div class="text-center mt-4">
-      <a href="mailto:prospereze12345@gmail.com?subject=New%20Project%20Inquiry%20-%20EduPrompt"
-         class="btn btn-primary btn-lg">
-        📩 Send Project Email
-      </a>
-    </div>
-
-    <!-- Note -->
-    <div class="text-center mt-4 text-muted small">
-      Please allow up to 24 hours for a response. Serious inquiries only.
-    </div>
-
   </div>
-</div>
+</section>
+<script>
+document.getElementById('projectForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
 
+  // Collect form data
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData.entries());
+
+  try {
+    // NOTE: Trailing slash is REQUIRED for Django
+    const res = await fetch('/send-email/', {  
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+      alert('✅ Your project inquiry has been sent!');
+      e.target.reset();
+    } else {
+      console.error('Server error:', result.error);
+      alert('❌ Something went wrong. Please try again.');
+    }
+
+  } catch (err) {
+    console.error('AJAX error:', err);
+    alert('❌ Error sending email.');
+  }
+});
+</script>
 
 <!-- Call To Action Section for Website Design -->
 <section id="cta-website" class="py-5" style="background-color: #0d1b4c;">
