@@ -45,6 +45,12 @@ from django.contrib.auth import login, get_user_model
 from users.emails import send_welcome_email_async  # <-- import your async email
 
 User = get_user_model()
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib.auth import login
+from django.db import IntegrityError
+from django.views.decorators.http import require_POST
+from .emails import send_welcome_email_async  # your existing email function
 
 @require_POST
 def ajax_signup(request):
@@ -53,20 +59,17 @@ def ajax_signup(request):
     password = request.POST.get("password", "").strip()
 
     if not all([username, email, password]):
-        return JsonResponse({"success": False, "errors": "All fields are required."}, status=400)
+        return render(request, "signup.html", {"error": "All fields are required."})
 
     if User.objects.filter(username=username).exists():
-        return JsonResponse({"success": False, "errors": "Username already taken."}, status=400)
+        return render(request, "signup.html", {"error": "Username already taken."})
 
     # --------------------------
     # Handle duplicate email gracefully
     # --------------------------
     existing_user = User.objects.filter(email=email).first()
     if existing_user:
-        return JsonResponse({
-            "success": False,
-            "errors": "Email already registered. Please log in instead."
-        }, status=400)
+        return render(request, "signup.html", {"error": "Email already registered. Please log in instead."})
 
     try:
         # Create user
@@ -74,131 +77,98 @@ def ajax_signup(request):
         login(request, user)
 
         # --------------------------
-        # Send welcome email asynchronously (production ready)
+        # Send welcome email asynchronously
         # --------------------------
-        if user.email:  # ensure email exists
+        if user.email:
             send_welcome_email_async(user.id)
 
     except IntegrityError:
         # Rare case: race condition / duplicate creation
-        return JsonResponse({
-            "success": False,
-            "errors": "Email already registered. Please log in instead."
-        }, status=400)
+        return render(request, "signup.html", {"error": "Email already registered. Please log in instead."})
     except Exception as e:
-        return JsonResponse({
-            "success": False,
-            "errors": f"Failed to create user: {str(e)}"
-        }, status=500)
+        return render(request, "signup.html", {"error": f"Failed to create user: {str(e)}"})
 
     # --------------------------
-    # AJAX response
+    # AJAX response for successful signup
     # --------------------------
     if request.headers.get("X-Requested-With") == "XMLHttpRequest":
-        return JsonResponse({"success": True, "redirect_url": "/"})
+        return render(request, "signup.html", {"success": "Account created! Redirecting...", "redirect_url": "/"})
 
     return redirect("/")
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.models import User
+from django.urls import reverse
+from django.conf import settings
+from django.contrib.auth import login
+from django.http import JsonResponse
+from .models import MagicLoginToken
+import resend
 
-# --------------------------
-# AJAX / NORMAL LOGIN
-# --------------------------
-@require_POST
-def ajax_login(request):
-    email = request.POST.get("email", "").strip().lower()
-    password = request.POST.get("password", "").strip()
+# Initialize Resend API
+resend.api_key = settings.RESEND_API_KEY
 
-    if not all([email, password]):
-        return JsonResponse({"success": False, "errors": "Email and password are required."})
-
-    try:
-        user = User.objects.get(email__iexact=email, is_active=True)
-    except User.DoesNotExist:
-        return JsonResponse({"success": False, "errors": "Invalid credentials."})
-
-    user_auth = authenticate(request, username=user.username, password=password)
-    if not user_auth:
-        return JsonResponse({"success": False, "errors": "Invalid credentials."})
-
-    login(request, user_auth)
-
-    # AJAX detection and redirect
-    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
-        return JsonResponse({"success": True, "redirect_url": "/"})
-
-    return redirect("/")
-
-
-# --------------------------
-# SEND MAGIC LINK (AJAX + NORMAL)
-# --------------------------
-@require_POST
 def send_magic_link(request):
-    email = request.POST.get("email", "").strip().lower()
-    if not email:
-        return JsonResponse({"ok": False, "errors": "Email is required."}, status=400)
+    if request.method != "POST":
+        return JsonResponse({"error": "Invalid request"}, status=400)
+
+    email = request.POST.get("email")
 
     try:
-        user = User.objects.get(email__iexact=email, is_active=True)
+        user = User.objects.get(email=email)
     except User.DoesNotExist:
-        # Do not reveal user existence
-        return JsonResponse({"ok": True})
+        return JsonResponse({"error": "User not found"}, status=404)
 
-    # Generate token and magic login link
-    token = default_token_generator.make_token(user)
-    uid = urlsafe_base64_encode(force_bytes(user.pk))
-    magic_link = request.build_absolute_uri(f"{reverse('magic_login')}?uid={uid}&token={token}")
+    # Create token
+    token = MagicLoginToken.objects.create(user=user)
 
-    # Send email
+    # Build the magic login URL
+    login_url = request.build_absolute_uri(
+        reverse("magic_login", args=[str(token.token)])
+    )
+
+    # Send magic link via Resend
+    sender_email = settings.DEFAULT_FROM_EMAIL
     try:
-        html_content = render_to_string("welcome_email.html", {"user": user, "magic_link": magic_link})
-        text_content = strip_tags(html_content)
-
-        msg = EmailMultiAlternatives(
-            subject="Your Magic Login Link",
-            body=text_content,
-            from_email="EduPrompt <prospereze12345@gmail.com>",
-            to=[email]
-        )
-        msg.attach_alternative(html_content, "text/html")
-        msg.send(fail_silently=False)
+        resend.Emails.send({
+            "from": sender_email,
+            "to": email,
+            "subject": "Your Smart Login Link",
+            "html": f"""
+                <h2>Smart Login</h2>
+                <p>Click the button below to login:</p>
+                <a href="{login_url}" 
+                   style="padding:10px 20px;background:#2563eb;color:white;
+                          text-decoration:none;border-radius:5px;">
+                   Login Now
+                </a>
+                <p>This link expires in 10 minutes.</p>
+            """
+        })
     except Exception as e:
-        return JsonResponse({"ok": False, "errors": f"Failed to send email: {str(e)}"}, status=500)
+        token.delete()
+        return JsonResponse({"error": f"Failed to send email: {str(e)}"}, status=500)
 
-    return JsonResponse({"ok": True, "magic_link": magic_link})
+    # Return success for AJAX popup
+    return JsonResponse({"success": "Magic link sent! Check your email 🔥"})
 
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth import login
+from .models import MagicLoginToken
 
-# --------------------------
-# MAGIC LOGIN
-# --------------------------
-def magic_login(request):
-    uidb64 = request.GET.get("uid")
-    token = request.GET.get("token")
+def magic_login(request, token):
+    token_obj = get_object_or_404(MagicLoginToken, token=token)
 
-    if not uidb64 or not token:
-        return redirect("/")
+    if token_obj.is_expired():
+        token_obj.delete()
+        # Redirect to login page with query param for popup
+        return redirect(f"/login/?error=Link+expired")
 
-    try:
-        uid = force_str(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid, is_active=True)
-    except Exception:
-        return redirect("/")
+    # Log in the user
+    login(request, token_obj.user)
+    token_obj.delete()  # Prevent reuse
 
-    # Check token validity
-    if default_token_generator.check_token(user, token):
-        login(request, user)
-        # Redirect to homepage or dashboard after successful magic login
-        return redirect("/")
-
-    # Token invalid or expired
-    return redirect("/")
-
-
-
-
-
-
-
-
+    # Redirect to homepage with query param for success popup
+    return redirect(f"/?success=Logged+in+successfully")
 from django.urls import path
 from django.http import JsonResponse
 

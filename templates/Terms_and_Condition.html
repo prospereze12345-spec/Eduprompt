@@ -285,24 +285,23 @@
       <!-- Modal body -->
       <div class="modal-body p-4">
 
-        <!-- Normal Login Form -->
-        <form id="loginForm" method="post" action="{% url 'ajax_login' %}">
-          {% csrf_token %}
-          <div class="mb-3">
-            <input type="email" name="email" class="form-control" placeholder="{% trans 'Email' %}" required>
-          </div>
-          <div class="mb-3 position-relative">
-            <input type="password" name="password" class="form-control" placeholder="{% trans 'Password ' %}">
-            <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 toggle-password">
-              👁
-            </button>
-            
-Forgot your password? Contact <a href="mailto:support@eduprompt.com">somtohgist@gmail.com</a> to reset it.
-</p>
-          </div>
+     <!-- Smart Login Form -->
+<form id="smartLoginForm" method="post" action="{% url 'send_magic_link' %}">
+  {% csrf_token %}
+  
+  <div class="mb-3">
+    <input type="email" name="email" class="form-control" 
+           placeholder="Enter your email to receive login link" required>
+  </div>
 
-          <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Login" %}</button>
-        </form>
+  <button type="submit" class="btn btn-primary w-100">
+    Send Smart Login Link
+  </button>
+
+  <p class="text-muted mt-2" style="font-size:0.9em;">
+    A secure login link will be sent to your email. Link expires in 10 minutes.
+  </p>
+</form>
 
       </div>
     </div>
@@ -339,6 +338,39 @@ Forgot your password? Contact <a href="mailto:support@eduprompt.com">somtohgist@
     </div>
   </div>
 </div>
+
+
+<script>
+document.getElementById("magicLinkForm").addEventListener("submit", async function(e) {
+    e.preventDefault(); // prevent page reload
+
+    const email = this.email.value;
+
+    try {
+        const response = await fetch("{% url 'send_magic_link' %}", {
+            method: "POST",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: new URLSearchParams({ email })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            alert(data.success);  // <-- show popup
+        } else if (data.error) {
+            alert(data.error);    // <-- show popup
+        }
+    } catch (err) {
+        alert("Something went wrong. Try again.");
+        console.error(err);
+    }
+});
+</script>
+
 
 <!-- JS -->
 <script>
@@ -664,15 +696,26 @@ $(document).ready(function(){
     </li>
   </ul>
 </div>
-
-
 <!-- Follow Us -->
 <div class="col-lg-3 col-md-6">
   <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Follow Us" %}</h4>
   <p class="mb-3" style="color: #ffffff;">{% trans "Follow us on all our social media platforms" %}</p>
   <div class="social-links d-flex gap-3 fs-4">
-    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-facebook"></i></a>
-    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-tiktok"></i></a>
+    <a href="https://web.facebook.com/people/Somtohgist/61558875407507/" 
+       class="social-hover" 
+       style="color: #ffffff;" 
+       target="_blank" 
+       rel="noopener noreferrer">
+       <i class="bi bi-facebook"></i>
+    </a>
+
+    <a href="https://www.tiktok.com/@somto_codes?_r=1&_t=ZS-947AD15UarR" 
+       class="social-hover" 
+       style="color: #ffffff;" 
+       target="_blank" 
+       rel="noopener noreferrer">
+       <i class="bi bi-tiktok"></i>
+    </a>
   </div>
 </div>
 
