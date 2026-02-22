@@ -15,6 +15,7 @@ class StaticViewSitemap(Sitemap):
             'privacy_policy',
             'Terms_and_Condition',
             'contact',
+            'website',
         ]
 
     def location(self, item):
