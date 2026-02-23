@@ -247,6 +247,21 @@ def verify_subscription(request):
     sub.save()
 
     return redirect("/essay/?payment=success")
+import json
+from threading import Thread, BoundedSemaphore
+from datetime import timedelta
+
+from django.utils import timezone
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+from .models import UserSubscription, Essay
+from .utils.essay_generator import generate_polished_essay
+
+MAX_CONCURRENT = 20
+semaphore = BoundedSemaphore(MAX_CONCURRENT)
+
+
 @csrf_exempt
 def essay_generate(request):
     try:
@@ -265,7 +280,7 @@ def essay_generate(request):
                 "references": []
             })
 
-        # --- Authenticated user ---
+        # --- Get or create user subscription ---
         sub, _ = UserSubscription.objects.get_or_create(user=user)
 
         # --- Free trial logic ---
@@ -275,10 +290,10 @@ def essay_generate(request):
             sub.start_date = timezone.now()
             sub.expiry_date = timezone.now() + timedelta(days=30)
             sub.save()
-            limit = sub.essays_limit if sub.essays_limit is not None else 1
+            limit = sub.essays_limit if sub.essays_limit else 1
         else:
-            limit = sub.essays_limit if sub.essays_limit is not None else 1
-            if sub.essays_limit is not None and sub.essays_used >= limit:
+            limit = sub.essays_limit if sub.essays_limit else 1
+            if sub.essays_limit and sub.essays_used >= limit:
                 return JsonResponse({
                     "success": False,
                     "essay": "",
@@ -292,11 +307,11 @@ def essay_generate(request):
             sub.essays_used += 1
             sub.save()
 
-        # --- Extract request parameters ---
+        # --- Extract parameters ---
         if request.method == "GET":
             topic = (request.GET.get("topic") or "").strip()
             essay_type = (request.GET.get("type") or request.GET.get("essayType") or "expository").strip().lower()
-            lang = (request.GET.get("lang") or request.GET.get("language") or "").strip().lower()
+            lang = (request.GET.get("lang") or request.GET.get("language") or "en").strip().lower()
         elif request.method == "POST":
             try:
                 data = json.loads(request.body.decode("utf-8"))
@@ -304,83 +319,64 @@ def essay_generate(request):
                 return JsonResponse({"success": False, "error": "Invalid JSON payload"}, status=400)
             topic = str(data.get("topic") or "").strip()
             essay_type = str(data.get("type") or data.get("essayType") or "expository").strip().lower()
-            lang = str(data.get("lang") or data.get("language") or "").strip().lower()
+            lang = str(data.get("lang") or data.get("language") or "en").strip().lower()
         else:
             return JsonResponse({"success": False, "error": "Unsupported HTTP method"}, status=405)
 
         # --- Validate inputs ---
         if not topic:
             return JsonResponse({"success": False, "error": "Missing essay topic"}, status=400)
-        if not lang:
-            return JsonResponse({"success": False, "error": "Please select a language"}, status=400)
-
         valid_types = ["expository", "narrative", "descriptive", "persuasive", "analytical"]
         if essay_type not in valid_types:
             essay_type = "expository"
-
         valid_langs = ["en", "yo", "ig", "ha", "ar", "zu", "sw", "fr"]
         if lang not in valid_langs:
             return JsonResponse({"success": False, "error": f"Invalid language '{lang}'"}, status=400)
 
-        # --- Generate essay ---
-        essay = generate_polished_essay(topic, essay_type, lang)
-        if not essay.strip():
-            return JsonResponse({"success": False, "error": "Generated essay is empty"}, status=500)
-
-        # --- Word count normalization ---
-        words = essay.split()
-        if len(words) > 800:
-            essay = " ".join(words[:800])
-        elif len(words) < 800:
-            # Add natural padding instead of repeating filler
-            closing = (
-                " In conclusion, this discussion highlights the importance of the topic "
-                "and its lasting impact on society. Through reflection and research, "
-                "we can better appreciate its relevance in our world today."
-            )
-            while len(essay.split()) < 800:
-                essay += closing
-            essay = " ".join(essay.split()[:800])  # trim if overshoot
-
-        # --- Extract references from essay ---
-        references = []
-        lower_text = essay.lower()
-        if "references:" in lower_text:
+        # --- Background function for essay generation ---
+        def generate_and_store():
             try:
-                refs_part = essay.split("References:")[-1].strip()
-                refs_lines = [r.strip() for r in refs_part.split("\n") if r.strip()]
-                references = refs_lines[:3]  # take first 3
-            except Exception:
-                references = []
-        if not references:
-            references = [
-                f"{topic} - Journal of Modern Studies (2023)",
-                f"{topic} - International Research Review (2022)",
-                f"{topic} - Academic Insights Publishing (2021)"
-            ]
+                with semaphore:
+                    essay_text = generate_polished_essay(topic, essay_type, lang)
+            except Exception as e:
+                print(f"Essay generation failed: {e}")
+                essay_text = f"Fallback essay for '{topic}'. Please try again later."
 
-        remaining = (sub.essays_limit - sub.essays_used) if sub.essays_limit is not None else "∞"
+            try:
+                Essay.objects.create(
+                    topic=topic,
+                    essay_type=essay_type,
+                    content=essay_text,
+                    language_code=lang
+                )
+            except Exception as e:
+                print(f"Failed to save essay: {e}")
 
+        # --- Start generation in background ---
+        Thread(target=generate_and_store, daemon=True).start()
+
+        # --- Immediate response ---
+        remaining = (sub.essays_limit - sub.essays_used) if sub.essays_limit else "∞"
         return JsonResponse({
             "success": True,
             "topic": topic,
             "type": essay_type,
             "lang": lang,
-            "words": 800,
-            "citations": 3,
-            "essay": essay,
-            "references": references,
+            "words": 0,
+            "citations": 0,
+            "essay": "",
+            "references": [],
             "free_trial_used": sub.free_trial_used,
             "subscribed": sub.is_active(),
             "essays_used": sub.essays_used,
             "limit": limit,
-            "message": f"✅ You have {remaining} essay{'s' if remaining != 1 else ''} left"
+            "message": "⌛ Essay is being generated in the background. Check back shortly.",
+            "remaining": remaining
         })
 
     except Exception as e:
-        logger.error(f"Unexpected error in essay_generate: {e}", exc_info=True)
+        print(f"Unexpected error: {e}")
         return JsonResponse({"success": False, "error": "An unexpected error occurred"}, status=500)
-
 @csrf_exempt
 def download_essay_pdf(request):
     """
@@ -430,19 +426,3 @@ def download_essay_pdf(request):
     response = HttpResponse(buffer, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="essay.pdf"'
     return response
-
-
-LIBRETRANSLATE_URL = "https://libretranslate.com"
-
-@require_POST
-def translate_text(request):
-    data = json.loads(request.body)
-    text = data.get("text", "")
-    target = data.get("target", "")
-    if not text or not target:
-        return JsonResponse({"success": False, "error": "Missing text or target"}, status=400)
-
-    payload = {"q": text, "source": "auto", "target": target}
-    r = requests.post(f"{LIBRETRANSLATE_URL}/translate", data=payload, timeout=10)
-    result = r.json()
-    return JsonResponse({"success": True, "content": result.get("translatedText", "")})

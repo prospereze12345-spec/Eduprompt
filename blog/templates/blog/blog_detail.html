@@ -186,6 +186,7 @@
 
 
   
+  
   <!-- =======================================================
   * Template Name: FlexStart
   * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
@@ -193,56 +194,349 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-</head>
-
-<body class="index-page">
-
 <header id="header" class="header fixed-top bg-white shadow-sm">
-  <nav class="navbar navbar-expand-lg navbar-light container-xl">
-    
-    <!-- Logo + Sitename -->
-    <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
-    <img src="{% static 'assets\img\logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height:50px;">
+  <nav class="container-xl py-2">
 
-      <span class="ms-2 fw-bold sitename">Eduprompt</span>
-    </a>
+    <!-- Desktop: Logo + Tools + Login/Register in one row -->
+    <div class="d-none d-lg-flex justify-content-between align-items-center">
+      <!-- Logo + Name -->
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+        <img src="{% static 'assets/img/favicon.png' %}" alt="Logo" style="height: 40px;">
+        <span class="ms-2 fw-bold sitename">Eduprompt</span>
+      </a>
+
+      <!-- Tools -->
+      <div class="d-flex align-items-center">
+      <a href="/blog/" class="nav-link d-inline px-2">{% trans "Blog" %}</a>
+
+        <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+      </div>
+
+      <!-- Login/Register -->
+      <div class="d-flex align-items-center">
+        {% if not user.is_authenticated %}
+          <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+            {% trans "Sign up" %}
+          </button>
+          <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+            {% trans "Login" %}
+          </button>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Mobile: Logo + Login/Register -->
+    <div class="d-flex d-lg-none justify-content-between align-items-center mb-2">
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+        <img src="{% static 'assets/img/favicon.png' %}" alt="Logo" style="height: 40px;">
+        <span class="ms-2 fw-bold sitename">Eduprompt</span>
+      </a>
+
+      <div class="d-flex align-items-center">
+        {% if not user.is_authenticated %}
+          <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+            {% trans "Sign up" %}
+          </button>
+          <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+            {% trans "Login" %}
+          </button>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Mobile: Scrollable Tools Section -->
+    <div class="d-flex d-lg-none overflow-auto pb-2" style="white-space: nowrap;">
+      <a href="/blog/" class="nav-link d-inline px-2">{% trans "Blog" %}</a>
+
+      <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+    </div>
+
+  </nav>
+</header>
+
+<!-- Message Container -->
+<div id="auth-messages" class="position-fixed top-0 end-0 p-3" style="z-index:1055"></div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" data-bs-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow">
+      
+      <div class="modal-header border-0">
+        <h5 class="modal-title">{% trans "Login" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body p-4">
+
+     <!-- Smart Login Form -->
+<form id="smartLoginForm" method="post" action="{% url 'send_magic_link' %}">
+  {% csrf_token %}
+  
+  <div class="mb-3">
+    <input type="email" name="email" class="form-control" 
+           placeholder="Enter your email to receive login link" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100">
+    Send Smart Login Link
+  </button>
+
+  <p class="text-muted mt-2" style="font-size:0.9em;">
+    A secure login link will be sent to your email. Link expires in 10 minutes.
+  </p>
+</form>
+          
 
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Menu items -->
-    <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li><a class="nav-item"><a class="nav-link" href="/ai-solver/">{% trans "AI Solver" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/essay/">{% trans "Essay Generator" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/quiz/">{% trans "Quiz Generator" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/blog/">{% trans "Blog" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/grammar-checker/">{% trans "Grammar Checker" %}</a></li>
-       <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
-      </ul>
-
-{% if not user.is_authenticated %}
-    <li class="nav-item ms-lg-3">
-        <a class="btn btn-success btn-sm" href="{% url 'register' %}">{% trans "Get Started" %}</a>
-    </li>
-    <li class="nav-item ms-lg-3">
-        <a class="btn btn-success btn-sm" href="{% url 'login' %}">{% trans "Login" %}</a>
-    </li>
-{% endif %}
 
 
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" data-bs-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">{% trans "Register" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <form id="signupForm" method="post" action="{% url 'ajax_signup' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="text" name="username" class="form-control" placeholder="{% trans 'Username' %}" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="{% trans 'Email' %}" required>
+          </div>
+          <div class="mb-3 position-relative">
+            <input type="password" name="password" class="form-control" placeholder="{% trans 'Password' %}" required>
+            <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 toggle-password">
+              👁
+            </button>
+          </div>
+          <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Create Account" %}</button>
+        </form>
+
+      
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
-       
+<script>
+document.getElementById("magicLinkForm").addEventListener("submit", async function(e) {
+    e.preventDefault(); // prevent page reload
+
+    const email = this.email.value;
+
+    try {
+        const response = await fetch("{% url 'send_magic_link' %}", {
+            method: "POST",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: new URLSearchParams({ email })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            alert(data.success);  // <-- show popup
+        } else if (data.error) {
+            alert(data.error);    // <-- show popup
+        }
+    } catch (err) {
+        alert("Something went wrong. Try again.");
+        console.error(err);
+    }
+});
+</script>
+
+<!-- JS -->
+<script>
+
+$(document).ready(function(){
+
+  // --------------------------
+  // Password toggle
+  // --------------------------
+  $(document).on("click", ".toggle-password", function(){
+    const $input = $(this).closest(".position-relative").find("input");
+    const type = $input.attr("type") === "password" ? "text" : "password";
+    $input.attr("type", type);
+    $(this).text(type === "password" ? "👁" : "👁‍🗨");
+  });
+
+  // --------------------------
+  // AJAX Signup
+  // --------------------------
+  $("#signupForm").submit(function(e){
+    e.preventDefault();
+
+    const $form = $(this);
+    const data = $form.serialize();
+    const csrfToken = $form.find('input[name="csrfmiddlewaretoken"]').val();
+
+    $.ajax({
+      url: $form.attr('action'),
+      type: "POST",
+      data: data,
+      headers: {'X-CSRFToken': csrfToken},
+      success: function(response){
+        if(response.user_authenticated){
+          // Show success message
+          showMessage("Signup successful!");
+
+          // Close modal
+          $("#registerModal").modal('hide');
+
+          // Redirect to homepage
+          window.location.href = "{% url 'index' %}";
+        } else {
+          // Show backend error(s)
+          if(typeof response.errors === 'string'){
+            showMessage(response.errors, "danger");
+          } else {
+            let errMsg = "";
+            for(const key in response.errors){
+              errMsg += response.errors[key] + "\n";
+            }
+            showMessage(errMsg.trim(), "danger");
+          }
+        }
+      },
+      error: function(xhr){
+        showMessage("Signup failed. Check inputs or refresh page.", "danger");
+      }
+    });
+  });
+
+});
+</script>
+
+
+
+<!-- AJAX + Password Toggle Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+// Login AJAX
+$("#loginForm").submit(function(e){
+    e.preventDefault();
+
+    // Grab CSRF token from the form
+    const csrftoken = $(this).find('input[name="csrfmiddlewaretoken"]').val();
+
+    $.ajax({
+        url: $(this).attr('action'),
+        method: "POST",
+        data: $(this).serialize(),
+        headers: {
+            'X-CSRFToken': csrftoken,      // send CSRF token in header
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        success: function(data){
+            if(data.user_authenticated) {
+                showMessage("Login successful!");
+
+                // Hide modal
+                $("#loginModal").modal('hide');
+
+                // Redirect to index page after successful login
+                window.location.href = "{% url 'index' %}";
+            } else {
+                showMessage(data.errors || "Login failed.", "danger");
+            }
+        },
+        error: function(xhr){
+            showMessage("Login failed. Check inputs.", "danger");
+        }
+    });
+});
+
+// Password toggle
+$(".toggle-password").click(function(){
+  const input = $(this).siblings("input");
+  const type = input.attr("type") === "password" ? "text" : "password";
+  input.attr("type", type);
+  $(this).text(type === "password" ? "👁" : "👁‍🗨");
+});
+
+// Login AJAX (email + optional password)
+$("#loginForm").submit(function(e){
+  e.preventDefault();
+  $.ajax({
+    url: $(this).attr('action'),
+    method: "POST",
+    data: $(this).serialize(),
+    headers: {'X-CSRFToken': getCSRFToken()},
+    success: function(data){
+      if(data.user_authenticated){
+        showMessage("Login successful!");
+        $("#loginModal").modal('hide');
+        window.location.href = "{% url 'index' %}";
+      } else {
+        showMessage(data.errors || "Login failed.", "danger");
+      }
+    },
+    error: function(xhr){
+      showMessage("Login failed. Check inputs.", "danger");
+    }
+  });
+});
+
+// Magic link AJAX
+$("#magicLinkBtn").click(function(){
+  const email = $("#loginForm input[name='email']").val();
+  if(!email){
+    showMessage("Enter your email first.", "danger");
+    return;
+  }
+
+  $.ajax({
+    url: "{% url 'send_magic_link' %}", // backend view to send magic link
+    method: "POST",
+    data: {email: email},
+    headers: {'X-CSRFToken': getCSRFToken()},
+    success: function(data){
+      $("#magicMsg").text("Check your email for the login link!");
+    },
+    error: function(){
+      $("#magicMsg").text("Failed to send magic link. Try again.");
+    }
+  });
+});
+$(document).ready(function(){
+
+});
+
+
+
+</script>
+
+
+
+
+
+
+
+
+     
+
 
       </ul>
     </div>
   </nav>
 </header>
-
 
 <!-- Bootstrap CSS & Bootstrap Icons CDN -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -485,129 +779,89 @@
 <!-- Main Footer -->
 <footer class="footer pt-5" style="background-color: darkblue;">
   <div class="container footer-top py-5">
-    <div class="row gy-4">
+    <div class="row gy-4 justify-content-between align-items-start">
 
-<div class="col-lg-3 col-md-6 footer-about text-center text-lg-start">
-  <!-- Logo -->
-  <div class="mb-3">
-    <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" 
-         alt="EduPrompt Logo" 
-         style="max-width: 140px; height: auto;">
-  </div>
+      <!-- Logo & Tagline -->
+      <div class="col-lg-4 col-md-6 text-center text-lg-start">
+        <div class="mb-3">
+          <img src="{% static 'assets/img/favicon.png' %}" 
+               alt="EduPrompt Logo" 
+               style="max-width: 140px; height: auto;">
+        </div>
+        <p style="font-size: 0.95rem; line-height: 1.6; color: #ffffff;">
+          {% trans "Smarter learning. Faster results. AI-powered tools for students and teachers." %}
+        </p>
+      </div>
 
-  <!-- Short Tagline -->
-  <p style="font-size: 0.95rem; line-height: 1.6; color: #ffffff;">
-    {% trans "Smarter learning. Faster results. AI-powered tools for students and teachers." %}
-  </p>
-</div>
-
-
-<!-- Useful Links -->
-<div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Useful Links" %}</h4>
-  <ul class="list-unstyled">
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="{% url 'index' %}" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Home" %}</a>
-    </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "About Us" %}</a>
-    </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Privacy Policy" %}</a>
-    </li>
-    <li>
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Terms and Conditions" %}</a>
-    </li>
-  </ul>
-</div>
-
-<!-- Our Services -->
-<div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Services" %}</h4>
-  <ul class="list-unstyled">
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/website/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Web Design" %}</a>
-    </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/flyer-design/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Flyer Design" %}</a>
-    </li>
-  </ul>
-</div>
-
-<!-- Our Services (second block) -->
-<div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Tools" %}</h4>
-  <ul class="list-unstyled">
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/essay/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Essay Writer" %}</a>
-    </li>
- 
-    
-    <li>
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/quiz/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Quiz Generator" %}</a>
-    </li>
-        <li>
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/ai-solver/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Ai Solver" %}</a>
-    </li>
-        <li>
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/grammar-checker/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>
-    </li>
-  </ul>
-</div>
-
+      <!-- Useful Links -->
+      <div class="col-lg-4 col-md-6 text-center text-lg-start">
+        <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Useful Links" %}</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "About Us" %}</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Privacy Policy" %}</a>
+          </li>
+          <li>
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Terms and Conditions" %}</a>
+          </li>
+        </ul>
+      </div>
 
 <!-- Follow Us -->
 <div class="col-lg-3 col-md-6">
   <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Follow Us" %}</h4>
   <p class="mb-3" style="color: #ffffff;">{% trans "Follow us on all our social media platforms" %}</p>
   <div class="social-links d-flex gap-3 fs-4">
-    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-twitter"></i></a>
-    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-facebook"></i></a>
-    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-instagram"></i></a>
-    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-linkedin"></i></a>
+    <a href="https://web.facebook.com/people/Somtohgist/61558875407507/" 
+       class="social-hover" 
+       style="color: #ffffff;" 
+       target="_blank" 
+       rel="noopener noreferrer">
+       <i class="bi bi-facebook"></i>
+    </a>
+
+    <a href="https://www.tiktok.com/@somto_codes?_r=1&_t=ZS-947AD15UarR" 
+       class="social-hover" 
+       style="color: #ffffff;" 
+       target="_blank" 
+       rel="noopener noreferrer">
+       <i class="bi bi-tiktok"></i>
+    </a>
   </div>
 </div>
-
-
-    </div>
-  </div>
 </footer>
 
-<!-- Footer -->
+<!-- Bottom Footer -->
 <footer style="background-color: #001a4d; color: #ffffff; padding: 15px 0; text-align: center; border-top: 1px solid darkblue">
   <p style="margin: 0; font-size: 0.9rem;">
     © {% now "Y" %} <strong>EduPrompt</strong>. All Rights Reserved.
   </p>
 </footer>
 
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+<!-- Vendor JS Files -->
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+<script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+<script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+<script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
 
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
-  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
-  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
-  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
-
-  <!-- Main JS File -->
-  <script src="{% static 'assets/js/main.js' %}"></script>
+<!-- Main JS File -->
+<script src="{% static 'assets/js/main.js' %}"></script>
 
 
 

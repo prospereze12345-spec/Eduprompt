@@ -952,7 +952,6 @@ async function fetchUserStatus() {
         document.getElementById("userStatus").innerHTML = "⚠️ Unable to fetch user status.";
     }
 }
-
 // -------------------------
 // Generate Essay
 // -------------------------
@@ -973,6 +972,7 @@ async function generateEssay() {
         outputTextarea.className = "text-danger border bg-light rounded p-3";
         return;
     }
+
     if (!lang) {
         outputTextarea.value = "⚠ Please select a language!";
         outputTextarea.className = "text-danger border bg-light rounded p-3";
@@ -983,7 +983,7 @@ async function generateEssay() {
     outputTextarea.className = "border bg-light rounded p-3 flex-grow-1 overflow-auto text-muted";
 
     try {
-        const csrfToken = getCookie('csrftoken');
+        const csrfToken = getCookie("csrftoken");
         const payload = { topic: topic, type: essayType, lang: lang };
         const url = "{% url 'essay_generate' %}";
 
@@ -991,9 +991,9 @@ async function generateEssay() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-CSRFToken": csrfToken
+                "X-CSRFToken": csrfToken,
             },
-            body: JSON.stringify(payload)
+            body: JSON.stringify(payload),
         });
 
         const data = await response.json();
@@ -1005,12 +1005,12 @@ async function generateEssay() {
             return;
         }
 
-        // Show generated essay
+        // Display generated essay
         outputTextarea.value = data.essay;
         outputTextarea.className = "border bg-light rounded p-3 flex-grow-1 overflow-auto";
         outputTextarea.scrollIntoView({ behavior: "smooth" });
 
-        // Update status dynamically
+        // Update user status dynamically
         await fetchUserStatus();
 
     } catch (err) {
@@ -1019,7 +1019,6 @@ async function generateEssay() {
         outputTextarea.className = "text-danger border bg-light rounded p-3";
     }
 }
-
 // -------------------------
 // Download Essay as PDF
 // -------------------------

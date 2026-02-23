@@ -192,8 +192,6 @@
 
 
 
-
-
   
   <!-- =======================================================
   * Template Name: FlexStart
@@ -215,20 +213,16 @@
 
       <!-- Tools -->
       <div class="d-flex align-items-center">
-        <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
-        <span class="text-muted me-2">|</span>
-
-        <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
-        <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
-        <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
+      <a href="/blog/" class="nav-link d-inline px-2">{% trans "Blog" %}</a>
         <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+        <a href="/website/" class="nav-link d-inline px-2">{% trans "Web Design" %}</a>
       </div>
 
       <!-- Login/Register -->
       <div class="d-flex align-items-center">
         {% if not user.is_authenticated %}
           <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
-            {% trans "Register" %}
+            {% trans "Sign up" %}
           </button>
           <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
             {% trans "Login" %}
@@ -240,7 +234,7 @@
     <!-- Mobile: Logo + Login/Register -->
     <div class="d-flex d-lg-none justify-content-between align-items-center mb-2">
       <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
-        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <img src="{% static 'assets/img/favicon.png' %}" alt="Logo" style="height: 40px;">
         <span class="ms-2 fw-bold sitename">Eduprompt</span>
       </a>
 
@@ -258,12 +252,9 @@
 
     <!-- Mobile: Scrollable Tools Section -->
     <div class="d-flex d-lg-none overflow-auto pb-2" style="white-space: nowrap;">
-      <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
-      <span class="text-muted me-2">|</span>
-      <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
-      <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
-      <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
+      <a href="/blog/" class="nav-link d-inline px-2">{% trans "Blog" %}</a>
       <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+      <a href="/website/" class="nav-link d-inline px-2">{% trans "Web Design" %}</a>
     </div>
 
   </nav>
@@ -302,6 +293,10 @@
     A secure login link will be sent to your email. Link expires in 10 minutes.
   </p>
 </form>
+          
+
+
+
 
       </div>
     </div>
@@ -333,11 +328,12 @@
           <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Create Account" %}</button>
         </form>
 
-        
+      
       </div>
     </div>
   </div>
 </div>
+
 
 
 <script>
@@ -370,7 +366,6 @@ document.getElementById("magicLinkForm").addEventListener("submit", async functi
     }
 });
 </script>
-
 
 <!-- JS -->
 <script>
@@ -539,82 +534,76 @@ $(document).ready(function(){
 
 
 
+
+
+     
+
+
+      </ul>
     </div>
   </nav>
-</header>
+</header><!-- Terms and Conditions Section -->
+<section style="background-color: white; padding: 50px; font-family: 'Segoe UI', sans-serif; margin-top: 80px; margin-bottom: 80px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+  <div class="container">
+    <h1 style="color: #003366; font-size: 32px; font-weight: bold; margin-bottom: 30px;">Terms and Conditions</h1>
+    <p><strong>Effective Date:</strong> February 23, 2026</p>
 
+    <p>Welcome to <strong>EduPrompt</strong>. By accessing or using our platform, including the AI Grammar Checker, you agree to these Terms and Conditions. Please read them carefully before using any tools.</p>
 
+    <h3 style="color: #003366; margin-top: 30px;">1. Introduction</h3>
+    <p><strong>EduPrompt</strong> is an AI-powered academic support platform developed to assist students with tools such as grammar checking, essay writing, summarization, and more. These tools are designed to aid learning — not replace teachers or academic effort.</p>
 
-<section style="background-color: white; padding: 40px; font-family: Arial, sans-serif; margin: 80px 0;">
-  <h1 style="color: #003366; font-size: 32px; font-weight: bold; margin-bottom: 20px;">
-    Terms and Conditions
-  </h1>
+    <h3 style="color: #003366; margin-top: 30px;">2. User Responsibilities</h3>
+    <p>By using <strong>EduPrompt</strong>, you agree to:</p>
+    <ul style="color: #333; font-size: 14px; padding-left: 20px;">
+      <li>Use the platform for lawful academic purposes only.</li>
+      <li>Avoid misuse of AI tools for unethical activities, including plagiarism or cheating.</li>
+      <li>Provide accurate information when creating accounts or interacting with the platform.</li>
+      <li>Respect intellectual property rights and the platform’s limitations.</li>
+    </ul>
+
+    <h3 style="color: #003366; margin-top: 30px;">3. Account Use (Future Implementation)</h3>
+    <ul style="color: #333; font-size: 14px; padding-left: 20px;">
+      <li>Keep your login credentials secure if you create an account.</li>
+      <li><strong>EduPrompt</strong> is not responsible for unauthorized access caused by negligence.</li>
+      <li>Accounts may be suspended for violating terms or misuse.</li>
+    </ul>
+
+    <h3 style="color: #003366; margin-top: 30px;">4. Intellectual Property</h3>
+    <p>All content, tools, branding, and designs on <strong>EduPrompt</strong> are the intellectual property of the company. No part may be reproduced or distributed without written permission.</p>
+
+    <h3 style="color: #003366; margin-top: 30px;">5. Limitation of Liability</h3>
+    <p>Tools are provided “as-is.” We do not guarantee 100% accuracy of AI-generated content. <strong>EduPrompt</strong> is not liable for academic decisions, losses, or penalties resulting from tool misuse.</p>
+
+    <h3 style="color: #003366; margin-top: 30px;">6. Privacy & Data Protection</h3>
+    <p>We respect user privacy and comply with NDPR and international standards. Personal information (e.g., email, preferences, usage data) is:</p>
+    <ul style="color: #333; font-size: 14px; padding-left: 20px;">
+      <li>Collected only as needed for functionality and personalization.</li>
+      <li>Used for clearly stated purposes such as tool performance and support.</li>
+      <li>Protected using modern security technologies.</li>
+      <li>Never shared with third parties without consent.</li>
+      <li>Available for correction or deletion upon user request.</li>
+    </ul>
+    <p>Learn more in our <a href="/privacy-policy" style="color: #003366;">Privacy Policy</a>.</p>
+
+    <h3 style="color: #003366; margin-top: 30px;">7. Cookies & Analytics</h3>
+    <p>We may use cookies and analytics to improve site performance. Users can control or reject cookies via browser settings.</p>
+
+    <h3 style="color: #003366; margin-top: 30px;">8. Termination</h3>
+    <p>We may limit or terminate access if users violate these terms, misuse tools, or act in ways harmful to the platform or its users.</p>
+
+    <h3 style="color: #003366; margin-top: 30px;">9. Modifications</h3>
+    <p>We may update these Terms at any time. Continued use after updates constitutes acceptance of the revised terms.</p>
+
+    <h3 style="color: #003366; margin-top: 30px;">10. Governing Law</h3>
+    <p>These terms are governed by the laws of the Federal Republic of Nigeria. Any disputes arising from your use of <strong>EduPrompt</strong> will follow Nigerian legal jurisdiction.</p>
+
+    <h3 style="color: #003366; margin-top: 30px;">11. Contact Us</h3>
+    <p>If you have questions about these Terms or your data rights, contact us:</p>
+    <p>Email: somtohgist@gmail.com</p>
+    <p>Address: Lagos, Nigeria</p>
+  </div>
 </section>
-
-
-  <p><strong>Effective Date:</strong> July 26, 2025</p>
-
-  <p>Welcome to EduPrompt. By accessing or using our platform (even during development), you agree to these Terms and Conditions. Please read them carefully.</p>
-
-  <h3>1. Introduction</h3>
-  <p>EduPrompt is an AI-powered academic assistance platform developed to support students by offering tools such as essay generation, summarization, topic explanations, and more. We do not provide direct teaching or tutoring. Our tools are meant to aid learning, not replace it.</p>
-
-  <h3>2. User Responsibility</h3>
-  <p>By using EduPrompt, users agree to:</p>
-  <ul style="color: #333; font-size: 14px; padding-left: 20px;">
-    <li>Use the platform for lawful academic purposes only</li>
-    <li>Avoid misuse of AI tools for unethical activities (e.g., plagiarism or cheating)</li>
-    <li>Provide accurate information when signing up or interacting with features</li>
-    <li>Respect intellectual property rights and the platform's limitations</li>
-  </ul>
-
-  <h3>3. Account Use (Future Implementation)</h3>
-  <p>If you create an account:</p>
-  <ul style="color: #333; font-size: 14px; padding-left: 20px;">
-    <li>You are responsible for keeping your login information secure</li>
-    <li>EduPrompt is not liable for unauthorized access caused by user negligence</li>
-    <li>We reserve the right to suspend accounts for violating these terms</li>
-  </ul>
-
-  <h3>4. Intellectual Property</h3>
-  <p>All content, tools, branding, and designs on EduPrompt are the intellectual property of the company. You may not reproduce, copy, or distribute any part of the platform without written permission.</p>
-
-  <h3>5. Limitation of Liability</h3>
-  <p>EduPrompt provides tools “as-is.” We do not guarantee 100% accuracy of AI-generated content. EduPrompt is not responsible for academic decisions, losses, or penalties resulting from misuse of the platform.</p>
-
-  <h3>6. Privacy & Data Protection (NDPR & AdSense Compliance)</h3>
-  <p>EduPrompt respects user privacy. All personal information collected (such as email, preferences, or usage data) will be processed in accordance with the Nigeria Data Protection Regulation (NDPR) and international standards.</p>
-  <p>We commit to:</p>
-  <ul style="color: #333; font-size: 14px; padding-left: 20px;">
-    <li>Collect only necessary user data</li>
-    <li>Use it for clearly stated purposes (e.g., personalization, support)</li>
-    <li>Protect it with appropriate security technologies</li>
-    <li>Never share user data with third parties without consent</li>
-    <li>Allow users to request data deletion or correction at any time</li>
-  </ul>
-  <p>You can learn more in our <a href="/privacy-policy" style="color: #003366;">Privacy Policy</a>.</p>
-
-  <h3>7. Cookies & Analytics</h3>
-  <p>EduPrompt may use cookies and analytics tools to improve site performance and user experience. Users will be notified and can choose to accept or reject cookies where applicable.</p>
-
-  <h3>8. Termination</h3>
-  <p>We reserve the right to limit or terminate your access to the platform if you violate these terms, misuse our tools, or engage in harmful behavior toward the platform or its users.</p>
-
-  <h3>9. Modifications</h3>
-  <p>EduPrompt may update these Terms and Conditions at any time. Continued use of the platform after changes means you accept the revised terms.</p>
-
-  <h3>10. Governing Law</h3>
-  <p>These terms are governed by the laws of the Federal Republic of Nigeria. Any disputes arising from your use of EduPrompt will be handled under Nigerian legal jurisdiction.</p>
-
-  <h3>11. Contact Us</h3>
-  <p>For questions regarding these Terms or your rights under NDPR, please contact:</p>
-  <p>Email: somtohgist@gmail.com</p>
-  <p>Address: Lagos, Nigeria</p>
-</section>
-
-
-
-
 
 
 
@@ -623,79 +612,43 @@ $(document).ready(function(){
 <!-- Main Footer -->
 <footer class="footer pt-5" style="background-color: darkblue;">
   <div class="container footer-top py-5">
-    <div class="row gy-4">
+    <div class="row gy-4 justify-content-between align-items-start">
 
-<div class="col-lg-3 col-md-6 footer-about text-center text-lg-start">
-  <!-- Logo -->
-  <div class="mb-3">
-    <img src="{% static 'assets/img/favicon.png' %}" 
-         alt="EduPrompt Logo" 
-         style="max-width: 140px; height: auto;">
-  </div>
+      <!-- Logo & Tagline -->
+      <div class="col-lg-4 col-md-6 text-center text-lg-start">
+        <div class="mb-3">
+          <img src="{% static 'assets/img/favicon.png' %}" 
+               alt="EduPrompt Logo" 
+               style="max-width: 140px; height: auto;">
+        </div>
+        <p style="font-size: 0.95rem; line-height: 1.6; color: #ffffff;">
+          {% trans "Smarter learning. Faster results. AI-powered tools for students and teachers." %}
+        </p>
+      </div>
 
-  <!-- Short Tagline -->
-  <p style="font-size: 0.95rem; line-height: 1.6; color: #ffffff;">
-    {% trans "Smarter learning. Faster results. AI-powered tools for students and teachers." %}
-  </p>
-</div>
+      <!-- Useful Links -->
+      <div class="col-lg-4 col-md-6 text-center text-lg-start">
+        <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Useful Links" %}</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "About Us" %}</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Privacy Policy" %}</a>
+          </li>
+          <li>
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Terms and Conditions" %}</a>
+          </li>
+        </ul>
+      </div>
 
-
-<!-- Useful Links -->
-<div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Useful Links" %}</h4>
-  <ul class="list-unstyled">
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="{% url 'index' %}" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Home" %}</a>
-    </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "About Us" %}</a>
-    </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Privacy Policy" %}</a>
-    </li>
-    <li>
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Terms and Conditions" %}</a>
-    </li>
-  </ul>
-</div>
-
-<!-- Our Services -->
-<div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Services" %}</h4>
-  <ul class="list-unstyled">
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/website/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Web Design" %}</a>
-    </li>
-    
-  </ul>
-</div>
-
-<!-- Our Services (second block) -->
-<div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Tools" %}</h4>
-  <ul class="list-unstyled">
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/essay/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Essay Writer" %}</a>
-    </li>
- 
-    
-    <li>
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/quiz/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Quiz Generator" %}</a>
-    </li>
-
-        <li>
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/grammar-checker/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>
-    </li>
-  </ul>
-</div>
 <!-- Follow Us -->
 <div class="col-lg-3 col-md-6">
   <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Follow Us" %}</h4>
@@ -718,42 +671,29 @@ $(document).ready(function(){
     </a>
   </div>
 </div>
-
-
-    </div>
-  </div>
 </footer>
 
-<!-- Footer -->
+<!-- Bottom Footer -->
 <footer style="background-color: #001a4d; color: #ffffff; padding: 15px 0; text-align: center; border-top: 1px solid darkblue">
   <p style="margin: 0; font-size: 0.9rem;">
     © {% now "Y" %} <strong>EduPrompt</strong>. All Rights Reserved.
   </p>
 </footer>
 
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+<!-- Vendor JS Files -->
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+<script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+<script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+<script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
 
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
-  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
-  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
-  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
-
-  <!-- Main JS File -->
-  <script src="{% static 'assets/js/main.js' %}"></script>
-
-
-
-
-
-
+<!-- Main JS File -->
+<script src="{% static 'assets/js/main.js' %}"></script>
 
 

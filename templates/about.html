@@ -184,7 +184,6 @@
 
 
 
-
   
   <!-- =======================================================
   * Template Name: FlexStart
@@ -206,13 +205,9 @@
 
       <!-- Tools -->
       <div class="d-flex align-items-center">
-        <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
-        <span class="text-muted me-2">|</span>
-
-        <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
-        <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
-        <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
+      <a href="/blog/" class="nav-link d-inline px-2">{% trans "Blog" %}</a>
         <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+        <a href="/website/" class="nav-link d-inline px-2">{% trans "Web Design" %}</a>
       </div>
 
       <!-- Login/Register -->
@@ -238,7 +233,7 @@
       <div class="d-flex align-items-center">
         {% if not user.is_authenticated %}
           <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
-            {% trans "Register" %}
+            {% trans "Sign up" %}
           </button>
           <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
             {% trans "Login" %}
@@ -249,16 +244,14 @@
 
     <!-- Mobile: Scrollable Tools Section -->
     <div class="d-flex d-lg-none overflow-auto pb-2" style="white-space: nowrap;">
-      <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
-      <span class="text-muted me-2">|</span>
-      <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
-      <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
-      <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
+      <a href="/blog/" class="nav-link d-inline px-2">{% trans "Blog" %}</a>
       <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+      <a href="/website/" class="nav-link d-inline px-2">{% trans "Web Design" %}</a>
     </div>
 
   </nav>
 </header>
+
 <!-- Message Container -->
 <div id="auth-messages" class="position-fixed top-0 end-0 p-3" style="z-index:1055"></div>
 
@@ -275,7 +268,7 @@
       <!-- Modal body -->
       <div class="modal-body p-4">
 
-            <!-- Smart Login Form -->
+     <!-- Smart Login Form -->
 <form id="smartLoginForm" method="post" action="{% url 'send_magic_link' %}">
   {% csrf_token %}
   
@@ -292,6 +285,9 @@
     A secure login link will be sent to your email. Link expires in 10 minutes.
   </p>
 </form>
+          
+
+
 
 
       </div>
@@ -303,7 +299,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content rounded-4 shadow">
       <div class="modal-header border-0">
-        <h5 class="modal-title">{% trans "Sign up" %}</h5>
+        <h5 class="modal-title">{% trans "Register" %}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body p-4">
@@ -324,13 +320,12 @@
           <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Create Account" %}</button>
         </form>
 
-        
+      
       </div>
     </div>
   </div>
 </div>
 
-<!-- JS -->
 
 
 <script>
@@ -364,6 +359,7 @@ document.getElementById("magicLinkForm").addEventListener("submit", async functi
 });
 </script>
 
+<!-- JS -->
 <script>
 
 $(document).ready(function(){
@@ -528,7 +524,13 @@ $(document).ready(function(){
 
 
 
-       
+
+
+
+
+     
+
+
       </ul>
     </div>
   </nav>
@@ -537,24 +539,23 @@ $(document).ready(function(){
   <main class="main">
 
     
-
 <!-- Page Title -->
 <div class="page-title pt-5 mt-5">
   <div class="heading">
     <div class="container">
       <div class="row d-flex justify-content-center text-center">
         <div class="col-lg-8">
-          <h1 class="fw-bold mb-3">About Us</h1>
+          <h1 class="fw-bold mb-3">About EduPrompt Grammar Checker</h1>
           <p class="mb-0">
-            Welcome to <strong>EduPrompt</strong>, an AI-powered academic support platform designed to help students and lifelong learners achieve more with the power of technology. 
-            Our mission is simple: <em>to make learning smarter, faster, and more accessible for everyone.</em>
+            Welcome to <strong>EduPrompt</strong>, your AI-powered grammar assistant designed to help students, writers, and professionals polish their writing instantly. 
+            Our mission is simple: <em>to make writing smarter, faster, and accurate for everyone.</em>
           </p>
           <p class="mt-3 mb-0">
-            We provide a suite of intelligent tools — including essay writer, math solver, grammar checker, — all created to support students at every stage of their academic journey. 
-            Whether you are preparing for exams, working on projects, or planning your study schedule, <strong>EduPrompt</strong> is here to make the process easier, more effective, and personalized to your needs.
+            The Grammar Checker is designed to detect grammar errors, spelling mistakes, punctuation issues, and sentence structure problems — all in real-time.  
+            Whether you're preparing essays, reports, emails, or creative content, <strong>EduPrompt</strong> ensures your writing is polished, professional, and ready to submit.
           </p>
           <p class="mt-3">
-            At EduPrompt, we don’t replace learning — we enhance it. Our goal is to empower students to learn smarter, not harder, with the right tools at their fingertips.
+            At EduPrompt, we don’t replace learning — we enhance it. Our goal is to empower users to communicate clearly, confidently, and effectively.
           </p>
         </div>
       </div>
@@ -562,69 +563,62 @@ $(document).ready(function(){
   </div>
 </div>
 
-
+<!-- Vision Section -->
 <div class="container mt-5">
-  <div class="row gy-4">
+  <div class="row gy-4 align-items-center">
     <!-- Vision Text -->
     <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
       <h1 class="typed-text">Our Vision</h1>
       <p data-aos="fade-up" data-aos-delay="100">
-        At <strong>Eduprompt</strong>, we see education as a journey that no student should walk alone.  
-        Our vision is to be a trusted companion — offering tools that guide, support, and make learning less stressful,  
-        without replacing the invaluable role of teachers. We aim to stand beside learners and educators,  
-        creating an environment where success feels achievable and enjoyable.  
+        At <strong>EduPrompt</strong>, we envision a world where students and professionals can write confidently without worrying about mistakes.  
+        Our vision is to be a trusted companion — providing intelligent grammar support that enhances clarity, readability, and overall writing quality.
       </p>
       <ul class="mt-3" data-aos="fade-up" data-aos-delay="200">
-        <li>🌍 Making quality learning support accessible to students everywhere.</li>
-        <li>🤝 Assisting learners with tools that are practical, personal, and encouraging.</li>
-        <li>💡 Innovating responsibly while respecting the role of teachers in every classroom.</li>
+        <li>🌍 Making advanced grammar checking accessible to everyone.</li>
+        <li>🤝 Supporting learners with clear, practical, and reliable tools.</li>
+        <li>💡 Empowering effective communication while respecting learning processes.</li>
       </ul>
     </div>
 
-
-
     <!-- Vision Image -->
     <div class="col-lg-6 order-1 order-lg-2 robot-image" data-aos="zoom-out">
-      <img src="{% static 'assets/img/vision.PNG' %}" class="img-fluid animated" alt="Vision section">
+      <img src="{% static 'assets/img/vision.PNG' %}" class="img-fluid animated" alt="Grammar Checker Vision">
     </div>
   </div>
 </div>
 
+<!-- Mission Section -->
 <div class="container mt-5">
   <div class="row gy-4 align-items-center">
     <!-- Mission Image -->
     <div class="col-lg-6 order-1 order-lg-1" data-aos="zoom-out" data-aos-delay="100">
-      <img src="{% static 'assets/img/mission.PNG' %}" class="img-fluid animated" alt="Mission section">
+      <img src="{% static 'assets/img/mission.PNG' %}" class="img-fluid animated" alt="Grammar Checker Mission">
     </div>
 
     <!-- Mission Text -->
-<div class="col-lg-6 order-2 order-lg-2 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
-  <h1 class="typed-text">Our Mission</h1>
-  <p data-aos="fade-up" data-aos-delay="300">
-    Our mission is to make learning easier and more meaningful for students everywhere.  
-    We want to support learners at every stage — from grasping new topics in class,  
-    to completing assignments, preparing for exams, and staying organized.  
-    We believe education should be accessible, supportive, and tailored to each person’s goals.
-  </p>
-  <ul class="mt-3" data-aos="fade-up" data-aos-delay="400">
-    <li>✔️ Providing simple, practical tools that truly help students learn.</li>
-    <li>✔️ Respecting your privacy and keeping your information safe.</li>
-    <li>✔️ Listening to feedback and improving every step of the way.</li>
-    <li>✔️ Creating a space where learning feels enjoyable, personal, and rewarding.</li>
-  </ul>
-</div>
-
+    <div class="col-lg-6 order-2 order-lg-2 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+      <h1 class="typed-text">Our Mission</h1>
+      <p data-aos="fade-up" data-aos-delay="300">
+        Our mission is to help users write clearly, accurately, and efficiently.  
+        From essays and reports to professional emails and blog posts, we provide real-time suggestions to improve grammar, spelling, and style.
+      </p>
+      <ul class="mt-3" data-aos="fade-up" data-aos-delay="400">
+        <li>✔️ Deliver accurate, AI-powered grammar corrections instantly.</li>
+        <li>✔️ Ensure user privacy and secure handling of all text.</li>
+        <li>✔️ Provide a user-friendly experience with actionable suggestions.</li>
+        <li>✔️ Help learners and professionals communicate confidently and effectively.</li>
+      </ul>
+    </div>
   </div>
 </div>
 
-
+<!-- Commitment Section -->
 <div class="container mt-5 mb-5 text-center">
   <div class="row justify-content-center">
     <div class="col-lg-8">
       <h1 class="typed-text mb-4">Our Commitment to Trust & Quality</h1>
       <p class="mb-5" data-aos="fade-up" data-aos-delay="100">
-        We know that <strong>trust</strong> is essential when it comes to education. 
-        That’s why we build every feature with reliability, transparency, and responsibility at the core.
+        At EduPrompt, trust and reliability are essential. Every feature is built with transparency, accuracy, and responsibility at its core.
       </p>
     </div>
   </div>
@@ -633,9 +627,9 @@ $(document).ready(function(){
     <div class="col-md-6 col-lg-3">
       <div class="card h-100 shadow-sm border-0 commitment-box" data-aos="fade-up" data-aos-delay="200">
         <div class="card-body text-center">
-          <i class="bi bi-check-circle-fill text-success fs-1 mb-3"></i>
+          <i class="bi bi-check-circle-fill text-darkgold fs-1 mb-3"></i>
           <h5 class="fw-bold">Accuracy</h5>
-          <p class="small mb-0">Every tool is designed to provide clear, reliable results.</p>
+          <p class="small mb-0">Every suggestion is designed to be precise and reliable.</p>
         </div>
       </div>
     </div>
@@ -643,9 +637,9 @@ $(document).ready(function(){
     <div class="col-md-6 col-lg-3">
       <div class="card h-100 shadow-sm border-0 commitment-box" data-aos="fade-up" data-aos-delay="300">
         <div class="card-body text-center">
-          <i class="bi bi-eye-fill text-primary fs-1 mb-3"></i>
+          <i class="bi bi-eye-fill text-darkgold fs-1 mb-3"></i>
           <h5 class="fw-bold">Transparency</h5>
-          <p class="small mb-0">We share openly how our tools work and how they support learning.</p>
+          <p class="small mb-0">We clearly show suggestions and corrections, keeping users informed.</p>
         </div>
       </div>
     </div>
@@ -653,9 +647,9 @@ $(document).ready(function(){
     <div class="col-md-6 col-lg-3">
       <div class="card h-100 shadow-sm border-0 commitment-box" data-aos="fade-up" data-aos-delay="400">
         <div class="card-body text-center">
-          <i class="bi bi-shield-lock-fill text-warning fs-1 mb-3"></i>
+          <i class="bi bi-shield-lock-fill text-darkgold fs-1 mb-3"></i>
           <h5 class="fw-bold">Privacy</h5>
-          <p class="small mb-0">We respect user data and never misuse personal information.</p>
+          <p class="small mb-0">Your text is never stored or shared; your data stays secure.</p>
         </div>
       </div>
     </div>
@@ -663,19 +657,14 @@ $(document).ready(function(){
     <div class="col-md-6 col-lg-3">
       <div class="card h-100 shadow-sm border-0 commitment-box" data-aos="fade-up" data-aos-delay="500">
         <div class="card-body text-center">
-          <i class="bi bi-cpu-fill text-danger fs-1 mb-3"></i>
+          <i class="bi bi-cpu-fill text-darkgold fs-1 mb-3"></i>
           <h5 class="fw-bold">Ethical AI</h5>
-          <p class="small mb-0">Our tools are built to assist — not replace — human effort and creativity.</p>
+          <p class="small mb-0">We assist users without replacing critical thinking or learning.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-
 
 <!-- Hover effect styling -->
 <style>
@@ -687,87 +676,50 @@ $(document).ready(function(){
     transform: translateY(-6px);
     box-shadow: 0 6px 20px rgba(0,0,0,0.1);
   }
+  .text-darkgold { color: darkgoldenrod !important; }
 </style>
-
 
 
 
 <!-- Main Footer -->
 <footer class="footer pt-5" style="background-color: darkblue;">
   <div class="container footer-top py-5">
-    <div class="row gy-4">
+    <div class="row gy-4 justify-content-between align-items-start">
 
-<div class="col-lg-3 col-md-6 footer-about text-center text-lg-start">
-  <!-- Logo -->
-  <div class="mb-3">
-    <img src="{% static 'assets/img/favicon.png' %}" 
-         alt="EduPrompt Logo" 
-         style="max-width: 140px; height: auto;">
-  </div>
+      <!-- Logo & Tagline -->
+      <div class="col-lg-4 col-md-6 text-center text-lg-start">
+        <div class="mb-3">
+          <img src="{% static 'assets/img/favicon.png' %}" 
+               alt="EduPrompt Logo" 
+               style="max-width: 140px; height: auto;">
+        </div>
+        <p style="font-size: 0.95rem; line-height: 1.6; color: #ffffff;">
+          {% trans "Smarter learning. Faster results. AI-powered tools for students and teachers." %}
+        </p>
+      </div>
 
-  <!-- Short Tagline -->
-  <p style="font-size: 0.95rem; line-height: 1.6; color: #ffffff;">
-    {% trans "Smarter learning. Faster results. AI-powered tools for students and teachers." %}
-  </p>
-</div>
-
-
-<!-- Useful Links -->
-<div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Useful Links" %}</h4>
-  <ul class="list-unstyled">
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="{% url 'index' %}" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Home" %}</a>
-    </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "About Us" %}</a>
-    </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Privacy Policy" %}</a>
-    </li>
-    <li>
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Terms and Conditions" %}</a>
-    </li>
-  </ul>
-</div>
-
-<!-- Our Services -->
-<div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Services" %}</h4>
-  <ul class="list-unstyled">
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/website/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Web Design" %}</a>
-    </li>
-    
-  </ul>
-</div>
-
-<!-- Our Services (second block) -->
-<div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Tools" %}</h4>
-  <ul class="list-unstyled">
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/essay/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Essay Writer" %}</a>
-    </li>
- 
-    
-    <li>
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/quiz/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Quiz Generator" %}</a>
-    </li>
-       
-        <li>
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/grammar-checker/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>
-    </li>
-  </ul>
-</div>
+      <!-- Useful Links -->
+      <div class="col-lg-4 col-md-6 text-center text-lg-start">
+        <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Useful Links" %}</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "About Us" %}</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Privacy Policy" %}</a>
+          </li>
+          <li>
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Terms and Conditions" %}</a>
+          </li>
+        </ul>
+      </div>
 
 <!-- Follow Us -->
 <div class="col-lg-3 col-md-6">
@@ -791,42 +743,30 @@ $(document).ready(function(){
     </a>
   </div>
 </div>
-
-
-    </div>
-  </div>
 </footer>
 
-<!-- Footer -->
+<!-- Bottom Footer -->
 <footer style="background-color: #001a4d; color: #ffffff; padding: 15px 0; text-align: center; border-top: 1px solid darkblue">
   <p style="margin: 0; font-size: 0.9rem;">
     © {% now "Y" %} <strong>EduPrompt</strong>. All Rights Reserved.
   </p>
 </footer>
 
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+<!-- Vendor JS Files -->
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+<script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+<script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+<script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
 
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
-  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
-  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
-  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
-
-  <!-- Main JS File -->
-  <script src="{% static 'assets/js/main.js' %}"></script>
-
-
-
-
-
+<!-- Main JS File -->
+<script src="{% static 'assets/js/main.js' %}"></script>
 
 
 

@@ -11,11 +11,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Primary SEO Title -->
-  <title>AI Grammar Checker – Correct & Improve Writing Instantly | EduPrompt</title>
-
+<title>{% block title %}EduPrompt – AI Grammar Checker | Correct & Improve Writing Instantly{% endblock %}</title>
   <!-- Meta Description -->
-  <meta name="description" content="Improve your writing instantly with EduPrompt’s AI Grammar Checker. Detect grammar errors, spelling mistakes, and sentence structure issues in seconds. Perfect for students, professionals, and content creators.">
-
+<meta name="description" content="EduPrompt AI Grammar Checker instantly detects grammar errors, spelling mistakes, and sentence issues. Perfect for students, professionals, and content creators. Supports English, German, French, Spanish, Portuguese, Dutch, Polish, and Italian.">
   <!-- Keywords (optional in 2026) -->
   <meta name="keywords" content="AI grammar checker, free grammar tool, grammar correction AI, spelling checker online, proofreading tool, EduPrompt grammar checker">
 
@@ -27,7 +25,7 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AI Grammar Checker – Improve Writing Instantly">
+  <meta property="og:title" content=" Eduprompt-AI Grammar Checker |Improve Writing Instantly">
   <meta property="og:description" content="Correct grammar mistakes and enhance your writing using EduPrompt AI. Fast, accurate, and easy to use.">
   <meta property="og:url" content="https://eduprompt.com.ng{{ request.path }}">
   <meta property="og:image" content="https://eduprompt.com.ng/static/images/grammar-preview.png">
@@ -248,13 +246,9 @@
 
       <!-- Tools -->
       <div class="d-flex align-items-center">
-        <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
-        <span class="text-muted me-2">|</span>
-
-        <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
-        <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
-        <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
+      <a href="/blog/" class="nav-link d-inline px-2">{% trans "Blog" %}</a>
         <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+        <a href="/website/" class="nav-link d-inline px-2">{% trans "Web Design" %}</a>
       </div>
 
       <!-- Login/Register -->
@@ -291,12 +285,9 @@
 
     <!-- Mobile: Scrollable Tools Section -->
     <div class="d-flex d-lg-none overflow-auto pb-2" style="white-space: nowrap;">
-      <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
-      <span class="text-muted me-2">|</span>
-      <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
-      <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
-      <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
+      <a href="/blog/" class="nav-link d-inline px-2">{% trans "Blog" %}</a>
       <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+      <a href="/website/" class="nav-link d-inline px-2">{% trans "Web Design" %}</a>
     </div>
 
   </nav>
@@ -785,9 +776,19 @@ $(document).ready(function(){
 
 
 
-<section class="py-6" style="background-color: white; padding-top: 180px;">
+<section class="py-6" style="background-color: white; padding-top: 80px;">
   <div class="container">
+<div class="container d-flex flex-column justify-content-center align-items-center text-center px-3" style="padding-top: 100px; background-color: #ffffff;">
 
+  <a href="/website/" style="text-decoration: none;">
+  <div class="mb-3 p-2 rounded" style="background-color: #e6f7ff; display: inline-flex; align-items: center; gap: 8px; border: 1px solid #b3e0ff;">
+    <span style="font-weight: bold; color: #2d862d;">{% trans "New!" %}</span>
+    <span>{% trans "Empowering Your Business with Expert Website Development. Unlock Your Business Potential Online" %}</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M10.146 4.146a.5.5 0 0 1 .708 0L14 7.293l-.707.707L11 5.707V14.5a.5.5 0 0 1-1 0V5.707L8.707 8l-.708-.707L10.146 4.146z"/>
+    </svg>
+  </div>
+</a>
     <div class="text-center mb-4">
       <h1 class="fw-bold mb-3" style="color: #333;">
         Perfect Your Writing Instantly with Our AI <span style="color: #b8860b;">Grammar Checker</span>
@@ -797,8 +798,8 @@ $(document).ready(function(){
       </p>
     </div>
 
-  </div>
-</section><section class="py-4" style="background-color:white; font-family:'Segoe UI', sans-serif;">
+  </div></section>
+<section class="py-4" style="background-color:white; font-family:'Segoe UI', sans-serif;">
   <div class="container">
     <div class="row g-3">
 
@@ -815,106 +816,118 @@ $(document).ready(function(){
              style="font-weight:500; color:#444 !important;">
             ✅ Check up to 
             <span id="wordLimitNotice" 
-                  style="color:darkgoldenrod; font-weight:600;">2,000 words</span> 
-            for free
+                  style="color:darkgoldenrod; font-weight:600;">1,500 words</span> 
+            for free (3 trials only)
           </p>
         </div>
-<!-- Upload + Drive + Check + Go Pro + Stats (One Line) -->
+
+<!-- Upload + Drive + Check + Go Pro + Stats -->
 <div class="d-flex align-items-center flex-wrap gap-2 mb-2">
   <button id="uploadBtn" class="btn btn-light btn-sm">Upload</button>
   <input type="file" id="fileInput" hidden accept=".docx,.pdf,.txt,.jpg,.jpeg,.png" />
 
-  
   <button id="checkBtn" class="btn btn-sm" 
           style="background:#b8860b; color:#fff; border-radius:8px; 
                  padding:8px 18px; border:none;">
     Check Grammar
   </button>
-  
+
   <a href="#" data-bs-toggle="modal" data-bs-target="#proModal" 
      class="text-decoration-none" 
      style="font-size:0.9rem; color:#0d6efd; font-weight:500;">
      🚀 Go Pro
   </a>
 
-  <!-- Stats inline -->
   <div class="stats ms-auto" id="textStats" 
        style="font-size:0.9rem; color:#666;">
     Words: 0 | Characters: 0
   </div>
 </div>
 
-<!-- Upload Result (still below) -->
+<!-- 5K Upload Notice -->
+<p class="text-muted small" style="font-style:italic;">
+  ⚠ If your document has more than 5,000 words, please upload chapter by chapter.
+</p>
+
 <div id="uploadResult" class="mt-3"></div>
 
+<div id="downloadContainer" class="mt-2" style="display:none;">
+  <a id="downloadBtn" href="#" class="btn btn-success btn-sm">
+    Download Corrected Text
+  </a>
+</div>
+</div>
 
-        <!-- Download Button -->
-        <div id="downloadContainer" class="mt-2" style="display:none;">
-          <a id="downloadBtn" href="#" class="btn btn-success btn-sm">
-            Download Corrected Text
-          </a>
-        </div>
-      </div> <!-- ✅ closes left column properly -->
+<!-- Right Column -->
+<div class="col-lg-5 col-md-12 ms-auto">
+  <div class="suggestion-box p-3" 
+       style="background:#fff; border:2px solid #e0e0e0; border-radius:12px; 
+              height:100%; max-height:600px; overflow-y:auto; 
+              box-shadow:0 2px 8px rgba(0,0,0,0.05);" 
+       id="suggestions">
+       
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <h6 class="fw-bold mb-0">
+        All Suggestions 
+        <span class="badge bg-secondary" id="suggestionCount">0</span>
+      </h6>
+      <button id="correctAll" class="btn btn-sm" 
+              style="background:#b8860b; color:#fff; border-radius:8px;">
+        Correct All
+      </button>
+    </div>
 
-      <!-- Right Column: Suggestions -->
-      <div class="col-lg-5 col-md-12 ms-auto">
-        <div class="suggestion-box p-3" 
-             style="background:#fff; border:2px solid #e0e0e0; border-radius:12px; 
-                    height:100%; max-height:600px; overflow-y:auto; 
-                    box-shadow:0 2px 8px rgba(0,0,0,0.05);" 
-             id="suggestions">
-         
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <h6 class="fw-bold mb-0">
-              All Suggestions 
-              <span class="badge bg-secondary" id="suggestionCount">0</span>
-            </h6>
-            <button id="correctAll" class="btn btn-sm" 
-                    style="background:#b8860b; color:#fff; border-radius:8px;">
-              Correct All
-            </button>
-          </div>
-
-          <div id="suggestionList">
-            <p class="text-muted small" style="font-style:italic;">
-              Note: Grammar suggestions are AI-assisted and may not be 100% accurate. 
-              Please review before submitting.
-            </p>
-            <p class="text-muted">
-              Suggestions will appear here after clicking 
-              <strong>Check Grammar</strong>...
-            </p>
-          </div>
-        </div>
-      </div>
-
+    <div id="suggestionList">
+      <p class="text-muted small" style="font-style:italic;">
+        Note: Grammar suggestions are AI-assisted and may not be 100% accurate. 
+        Please review before submitting.
+      </p>
+      <p class="text-muted">
+        Suggestions will appear here after clicking 
+        <strong>Check Grammar</strong>...
+      </p>
     </div>
   </div>
+</div>
+
+</div>
+</div>
 </section>
 
 
 
-
+<!-- PRO MODAL -->
 <div class="modal fade" id="proModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content border-0 shadow-lg rounded-4">
       <div class="modal-header border-0">
         <h5 class="modal-title">Upgrade to Pro</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body text-center">
-        <p class="text-muted mb-4">Get full access to grammar checking for longer texts.</p>
+        <p class="text-muted mb-4">Get extended grammar checking access.</p>
 
-        <!-- Pricing Naira -->
-        <div id="pricing-naira" class="pricing-card d-true">
+        <div class="pricing-card">
           <h5>Pro Plan</h5>
-          <p class="text-muted"><s>₦5,500</s></p>
-          <h3 style="color:darkgoldenrod;">₦4,500/$6 <span class="badge bg-success">Save 22%</span></h3>
+
+          <h3 style="color:darkgoldenrod;">
+            ₦4,000 / $4
+          </h3>
+
           <ul class="list-unstyled small text-start mt-3">
-            <li>✔ Check grammar for up to 20,000+ words per month</li>
-            <li>✔ Supports African languages</li>
+            <li>✔ Check grammar for up to 5,000 words per month</li>
+            <li>✔ Supports:</li>
+            <li class="ms-3">- English (US, UK, etc.)</li>
+            <li class="ms-3">- German</li>
+            <li class="ms-3">- French</li>
+            <li class="ms-3">- Spanish</li>
+            <li class="ms-3">- Portuguese</li>
+            <li class="ms-3">- Dutch</li>
+            <li class="ms-3">- Polish</li>
+            <li class="ms-3">- Italian</li>
             <li>✔ Spelling & punctuation corrections</li>
           </ul>
+
 <a href="{% url 'grammar_start_subscription' %}?currency=NGN" 
    class="btn w-100 mt-3 rounded-pill" 
    style="background-color: darkblue; color: #ffffff; border: none;">
@@ -928,8 +941,6 @@ $(document).ready(function(){
 </a>
 
         </div>
-
-        
       </div>
     </div>
   </div>
@@ -944,87 +955,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const suggestionList = document.getElementById("suggestionList");
   const textStats = document.getElementById("textStats");
   const userText = document.getElementById("userText");
+  const checkBtn = document.getElementById("checkBtn");
+  const correctAllBtn = document.getElementById("correctAll");
+  const suggestionCount = document.getElementById("suggestionCount");
 
-  // Update word/character count dynamically
-  if (userText) {
-    userText.addEventListener("input", () => {
-      const text = userText.value.trim();
-      const words = text ? text.split(/\s+/).length : 0;
-      const chars = text.length;
-      if (textStats) textStats.innerHTML = `Words: ${words} | Characters: ${chars}`;
-    });
-  }
-
-  // Click "Upload" → open file dialog
-  if (uploadBtn && fileInput) {
-    uploadBtn.addEventListener("click", () => fileInput.click());
-  }
-
-  // Handle file upload
-  if (fileInput) {
-    fileInput.addEventListener("change", async () => {
-      if (!fileInput.files.length) return;
-      const file = fileInput.files[0];
-      const formData = new FormData();
-      formData.append("file", file);
-
-      uploadResult.innerHTML = `<p>⏳ Uploading & checking grammar...</p>`;
-      if (downloadContainer) downloadContainer.style.display = "none";
-      if (suggestionList) suggestionList.innerHTML = "";
-
-      try {
-        const res = await fetch("/grammar-upload/", {
-          method: "POST",
-          body: formData,
-          headers: {
-            "X-CSRFToken": getCookie("csrftoken")
-          }
-        });
-
-        let data;
-        try {
-          data = await res.json();
-        } catch {
-          const fallbackText = await res.text();
-          throw new Error(`Server returned invalid response:\n${fallbackText}`);
-        }
-
-        if (data.success) {
-          // Update textarea if present
-          if (userText) userText.value = data.fixed_text;
-
-          uploadResult.innerHTML = `
-            <p><b>✅ Upload Success</b></p>
-            <p><b>Word Count:</b> ${data.words}</p>
-          `;
-
-          // Show highlighted text
-          if (suggestionList) {
-            suggestionList.innerHTML = `
-              <div style="white-space: pre-wrap;">${data.highlighted_text}</div>
-              <hr>
-              ${data.suggestions_html || ""}
-            `;
-          }
-
-          // Update stats
-          if (textStats) textStats.innerHTML = `Words: ${data.words} | Characters: ${data.fixed_text.length}`;
-
-          // Prepare download
-          if (downloadBtn && downloadContainer) {
-            const blob = new Blob([data.fixed_text], { type: "text/plain" });
-            downloadBtn.href = URL.createObjectURL(blob);
-            downloadBtn.download = `corrected_text.txt`;
-            downloadContainer.style.display = "block";
-          }
-        } else {
-          uploadResult.innerHTML = `<p style="color:red;">${data.message}</p>`;
-        }
-      } catch (err) {
-        uploadResult.innerHTML = `<p style="color:red;">Upload failed. ${err}</p>`;
-      }
-    });
-  }
+  const WORD_LIMIT_FREE = 2000;
+  const WORD_LIMIT_PRO = 15000;
+  let userIsPro = "{{ request.user.userprofile.is_subscribed|yesno:'true,false' }}" === "true";
+  let userIsLoggedIn = "{{ request.user.is_authenticated|yesno:'true,false' }}" === "true";
 
   // CSRF helper
   function getCookie(name) {
@@ -1042,45 +980,89 @@ document.addEventListener("DOMContentLoaded", () => {
     return cookieValue;
   }
 
-  // Grammar check button
-  const checkBtn = document.getElementById("checkBtn");
-  const correctAllBtn = document.getElementById("correctAll");
-  const suggestionCount = document.getElementById("suggestionCount");
+  // Update word/char count & grammar check button state
+  function updateStats() {
+    if (!userText) return;
+    const text = userText.value.trim();
+    const words = text ? text.split(/\s+/).length : 0;
+    const chars = text.length;
+    if (textStats) textStats.innerHTML = `Words: ${words} | Characters: ${chars}`;
 
-  const WORD_LIMIT_FREE = 2000;
-  const WORD_LIMIT_PRO = 15000;
-  let userIsPro = "{{ request.user.userprofile.is_subscribed|yesno:'true,false' }}" === "true";
-  let userIsLoggedIn = "{{ request.user.is_authenticated|yesno:'true,false' }}" === "true";
+    const limit = userIsPro ? WORD_LIMIT_PRO : WORD_LIMIT_FREE;
 
-  // Live stats update
-  if (userText) {
-    userText.addEventListener("input", () => {
-      const text = userText.value;
-      const wordCount = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
-      const charCount = text.length;
-      if (textStats) textStats.textContent = `Words: ${wordCount} | Characters: ${charCount}`;
+    if (!userIsLoggedIn) {
+      checkBtn.disabled = true;
+      checkBtn.style.background = "#ccc";
+      checkBtn.textContent = "Please login or sign up";
+    } else if (words > limit) {
+      checkBtn.disabled = true;
+      checkBtn.style.background = "#ccc";
+      checkBtn.textContent = userIsPro
+        ? `Limit ${WORD_LIMIT_PRO.toLocaleString()} words`
+        : "Upgrade to Pro for 15k+ words";
+    } else {
+      checkBtn.disabled = false;
+      checkBtn.style.background = "#b8860b";
+      checkBtn.textContent = "Check Grammar";
+    }
+  }
 
-      const limit = userIsPro ? WORD_LIMIT_PRO : WORD_LIMIT_FREE;
+  if (userText) userText.addEventListener("input", updateStats);
 
-      if (!userIsLoggedIn) {
-        checkBtn.disabled = true;
-        checkBtn.style.background = "#ccc";
-        checkBtn.textContent = "Please login or sign up";
-      } else if (wordCount > limit) {
-        checkBtn.disabled = true;
-        checkBtn.style.background = "#ccc";
-        checkBtn.textContent = userIsPro
-          ? `Limit ${WORD_LIMIT_PRO.toLocaleString()} words`
-          : "Upgrade to Pro for 15k+ words";
-      } else {
-        checkBtn.disabled = false;
-        checkBtn.style.background = "#b8860b";
-        checkBtn.textContent = "Check Grammar";
+  // File upload
+  if (uploadBtn && fileInput) uploadBtn.addEventListener("click", () => fileInput.click());
+  if (fileInput) {
+    fileInput.addEventListener("change", async () => {
+      if (!fileInput.files.length) return;
+      const file = fileInput.files[0];
+      const formData = new FormData();
+      formData.append("file", file);
+
+      uploadResult.innerHTML = `<p>⏳ Uploading & checking grammar...</p>`;
+      if (downloadContainer) downloadContainer.style.display = "none";
+      if (suggestionList) suggestionList.innerHTML = "";
+
+      try {
+        const res = await fetch("/grammar-upload/", {
+          method: "POST",
+          body: formData,
+          headers: { "X-CSRFToken": getCookie("csrftoken") },
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          if (userText) userText.value = data.fixed_text;
+          updateStats();
+
+          uploadResult.innerHTML = `
+            <p><b>✅ Upload Success</b></p>
+            <p><b>Word Count:</b> ${data.words}</p>
+          `;
+
+          if (suggestionList) {
+            suggestionList.innerHTML = `
+              <div style="white-space: pre-wrap;">${data.highlighted_text || ""}</div>
+              <hr>
+              ${data.suggestions_html || ""}
+            `;
+          }
+
+          if (downloadBtn && downloadContainer) {
+            const blob = new Blob([data.fixed_text], { type: "text/plain" });
+            downloadBtn.href = URL.createObjectURL(blob);
+            downloadBtn.download = `corrected_text.txt`;
+            downloadContainer.style.display = "block";
+          }
+        } else {
+          uploadResult.innerHTML = `<p style="color:red;">${data.message}</p>`;
+        }
+      } catch (err) {
+        uploadResult.innerHTML = `<p style="color:red;">Upload failed. ${err}</p>`;
       }
     });
   }
 
-  // Check Grammar button
+  // Grammar check
   if (checkBtn && userText) {
     checkBtn.addEventListener("click", async () => {
       if (!userIsLoggedIn) {
@@ -1107,16 +1089,13 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        // Update highlighted text
-        if (data.highlighted_text) {
-          suggestionList.innerHTML = `
-            <div style="white-space: pre-wrap;">${data.highlighted_text}</div>
-            <hr>
-            ${data.suggestions_html || ""}
-          `;
-        }
+        // Display results
+        let html = '';
+        if (data.highlighted_text) html += `<div style="white-space: pre-wrap;">${data.highlighted_text}</div><hr>`;
+        if (data.suggestions_html) html += data.suggestions_html;
+        suggestionList.innerHTML = html || `<p>No suggestions found ✅</p>`;
 
-        if (suggestionCount) suggestionCount.innerText = (data.matches || []).length;
+        if (suggestionCount) suggestionCount.innerText = (data.matches || []).length || 0;
 
       } catch (err) {
         console.error(err);
@@ -1125,7 +1104,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Correct All button
+  // Correct All
   if (correctAllBtn && userText) {
     correctAllBtn.addEventListener("click", async () => {
       if (!userIsLoggedIn) {
@@ -1138,7 +1117,10 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const res = await fetch("/grammar-checker/", {
           method: "POST",
-          headers: { "X-CSRFToken": getCookie("csrftoken") },
+          headers: {
+            "X-CSRFToken": getCookie("csrftoken"),
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
           body: new URLSearchParams({ text: userText.value, auto_correct: "true" })
         });
         const data = await res.json();
@@ -1151,21 +1133,14 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.fixed_text) {
           userText.value = data.fixed_text;
           userText.dispatchEvent(new Event("input"));
-
           suggestionList.innerHTML = `<p class="text-success">✅ Corrections applied</p>`;
 
-          // Prepare download
-          if (!downloadContainer) {
-            const container = document.createElement("div");
-            container.id = "downloadContainer";
-            container.classList.add("mt-2");
-            userText.parentNode.appendChild(container);
+          if (downloadBtn && downloadContainer) {
+            const blob = new Blob([data.fixed_text], { type: "text/plain;charset=utf-8" });
+            downloadBtn.href = URL.createObjectURL(blob);
+            downloadBtn.download = "corrected_text.txt";
+            downloadContainer.style.display = "block";
           }
-
-          const blob = new Blob([data.fixed_text], { type: "text/plain;charset=utf-8" });
-          downloadBtn.href = URL.createObjectURL(blob);
-          downloadBtn.download = "corrected_text.txt";
-          downloadContainer.style.display = "block";
         }
       } catch (err) {
         console.error(err);
@@ -1438,8 +1413,79 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   </div>
 </section>
+<!-- Grammar Checker Accuracy & Reliability Section -->
+<section class="py-5" style="background-color: #ffffff; color: #0d1b2a;">
+  <div class="container">
+    <h2 class="text-center mb-5" style="color: #0d1b2a;">{% trans "AI Accuracy & Reliability" %}</h2>
+    <p class="text-center mb-5" style="max-width: 800px; margin: 0 auto;">
+      "EduPrompt’s AI Grammar Checker ensures your writing is polished, professional, and error-free. Detect grammar mistakes, spelling errors, and punctuation issues instantly. Every suggestion is reliable, secure, and designed to help students, professionals, and content creators write with confidence."
+    </p>
 
+    <div class="row g-4 text-center">
+      <!-- Accuracy Stats -->
+      <div class="col-md-4">
+        <div class="p-4 rounded hover-shadow" style="background-color: darkgold; color: black">
+          <i class="bi bi-check-circle-fill display-4 mb-3"></i>
+          <h4 class="mb-2">{% trans "99% Accuracy" %}</h4>
+          <p>
+            {% trans "Our AI provides highly accurate grammar, spelling, and punctuation suggestions, helping you submit flawless essays, reports, and content every time." %}
+          </p>
+        </div>
+      </div>
 
+      <!-- Verified Results / Testimonials -->
+      <div class="col-md-4">
+        <div class="p-4 rounded hover-shadow" style="background-color: darkgold; color: black">
+          <i class="bi bi-journal-check display-4 mb-3"></i>
+          <h4 class="mb-2">{% trans "Verified & Trusted" %}</h4>
+          <p>
+            {% trans "See testimonials from students, professionals, and content creators who trust EduPrompt to improve clarity, readability, and writing quality." %}
+          </p>
+        </div>
+      </div>
+
+      <!-- Security & Privacy -->
+      <div class="col-md-4">
+        <div class="p-4 rounded hover-shadow" style="background-color: darkgold; color:black">
+          <i class="bi bi-shield-lock-fill display-4 mb-3"></i>
+          <h4 class="mb-2">{% trans "Secure & Private" %}</h4>
+          <p>
+            {% trans "Your text is never stored or shared. EduPrompt provides a safe environment for students, writers, and professionals to check grammar and improve writing with complete privacy." %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Custom CSS -->
+<style>
+  .hover-shadow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .display-4 {
+    font-size: 4rem;
+    color: darkgoldenrod !important; /* icons black inside darkgold boxes */
+  }
+
+  h4 {
+    color: #0d1b2a !important;
+  }
+
+  @media (max-width: 768px) {
+    .display-4 {
+      font-size: 3rem !important;
+    }
+    h4 {
+      font-size: 1.25rem !important;
+    }
+  }
+</style>
 <!-- FAQ Section -->
 <section class="py-5" style="background-color: #ffffff;">
   <div class="container">
@@ -1453,19 +1499,18 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="accordion" id="faqAccordion">
 
           <!-- FAQ 1 -->
-<div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
-  <h2 class="accordion-header" id="faq1">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1" style="color:#b8860b; font-weight:600;">
-      Is the Grammar Checker free to use?
-    </button>
-  </h2>
-  <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
-    <div class="accordion-body" style="color:#555;">
-      The grammar checker is available for free, but you need to <strong>sign in to use it</strong>. 
-      Each user gets <strong>2,000 words for free</strong>. To check more text, you can upgrade to the Pro plan, which allows up to <strong>15,000 words</strong> per month.
-    </div>
-  </div>
-</div>
+          <div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
+            <h2 class="accordion-header" id="faq1">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1" style="color:#b8860b; font-weight:600;">
+                Is the Grammar Checker free to use?
+              </button>
+            </h2>
+            <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+              <div class="accordion-body" style="color:#555;">
+                Yes! You can use the Grammar Checker for free. Each user gets <strong>1,500 words per check</strong> and up to <strong>3 free trials</strong>. To check more text, upgrade to Pro, which allows up to <strong>5,000 words</strong> per month.
+              </div>
+            </div>
+          </div>
 
           <!-- FAQ 2 -->
           <div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
@@ -1476,7 +1521,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </h2>
             <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
               <div class="accordion-body" style="color:#555;">
-                Our tool corrects grammar errors, spelling mistakes, punctuation issues, and even suggests improvements for sentence structure and readability.
+                Our AI checks grammar errors, spelling mistakes, punctuation issues, and also suggests improvements for sentence structure, clarity, and readability.
               </div>
             </div>
           </div>
@@ -1490,7 +1535,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </h2>
             <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
               <div class="accordion-body" style="color:#555;">
-                Absolutely! Our grammar checker is fully mobile-friendly and works smoothly on smartphones, tablets, and desktops.
+                Absolutely! EduPrompt Grammar Checker is fully mobile-friendly and works seamlessly on smartphones, tablets, and desktops.
               </div>
             </div>
           </div>
@@ -1504,7 +1549,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </h2>
             <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4" data-bs-parent="#faqAccordion">
               <div class="accordion-body" style="color:#555;">
-                Yes, your privacy is our priority. We do not store or share your text — everything is processed securely in real-time.
+                Yes, your privacy is our priority. Text is processed securely in real-time, and we never store or share your documents.
               </div>
             </div>
           </div>
@@ -1518,7 +1563,35 @@ document.addEventListener("DOMContentLoaded", () => {
             </h2>
             <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5" data-bs-parent="#faqAccordion">
               <div class="accordion-body" style="color:#555;">
-                Yes, you can check both short texts and long documents. For larger files, the tool scans in sections to ensure accuracy.
+                Yes! For longer files over 5,000 words, we recommend uploading chapter by chapter to ensure accurate grammar checking.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 6: Student Concerns -->
+          <div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
+            <h2 class="accordion-header" id="faq6">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6" style="color:#b8860b; font-weight:600;">
+                Does using this count as plagiarism?
+              </button>
+            </h2>
+            <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="faq6" data-bs-parent="#faqAccordion">
+              <div class="accordion-body" style="color:#555;">
+                No, using EduPrompt Grammar Checker does not count as plagiarism. It only corrects grammar, spelling, and style without copying content.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 7: University & Dissertation -->
+          <div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
+            <h2 class="accordion-header" id="faq7">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7" style="color:#b8860b; font-weight:600;">
+                Will my university accept it? Can I use it for dissertation submissions?
+              </button>
+            </h2>
+            <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="faq7" data-bs-parent="#faqAccordion">
+              <div class="accordion-body" style="color:#555;">
+                Yes! EduPrompt Grammar Checker is designed to improve your writing quality. Universities accept grammatically correct and polished submissions. For dissertations, we recommend reviewing suggestions manually to ensure academic standards are met.
               </div>
             </div>
           </div>
@@ -1587,85 +1660,45 @@ document.addEventListener("DOMContentLoaded", () => {
 </section>
 
 
-
-
 <!-- Main Footer -->
 <footer class="footer pt-5" style="background-color: darkblue;">
   <div class="container footer-top py-5">
-    <div class="row gy-4">
+    <div class="row gy-4 justify-content-between align-items-start">
 
-<div class="col-lg-3 col-md-6 footer-about text-center text-lg-start">
-  <!-- Logo -->
-  <div class="mb-3">
-    <img src="{% static 'assets/img/favicon.png' %}" 
-         alt="EduPrompt Logo" 
-         style="max-width: 140px; height: auto;">
-  </div>
+      <!-- Logo & Tagline -->
+      <div class="col-lg-4 col-md-6 text-center text-lg-start">
+        <div class="mb-3">
+          <img src="{% static 'assets/img/favicon.png' %}" 
+               alt="EduPrompt Logo" 
+               style="max-width: 140px; height: auto;">
+        </div>
+        <p style="font-size: 0.95rem; line-height: 1.6; color: #ffffff;">
+          {% trans "Smarter learning. Faster results. AI-powered tools for students and teachers." %}
+        </p>
+      </div>
 
-  <!-- Short Tagline -->
-  <p style="font-size: 0.95rem; line-height: 1.6; color: #ffffff;">
-    {% trans "Smarter learning. Faster results. AI-powered tools for students and teachers." %}
-  </p>
-</div>
-
-
-<!-- Useful Links -->
-<div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Useful Links" %}</h4>
-  <ul class="list-unstyled">
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="{% url 'index' %}" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Home" %}</a>
-    </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "About Us" %}</a>
-    </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Privacy Policy" %}</a>
-    </li>
-    <li>
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Terms and Conditions" %}</a>
-    </li>
-  </ul>
-</div>
-
-<!-- Our Services -->
-<div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Services" %}</h4>
-  <ul class="list-unstyled">
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/website/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Web Design" %}</a>
-    </li>
-
-  </ul>
-</div>
-
-<!-- Our Services (second block) -->
-<div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Tools" %}</h4>
-  <ul class="list-unstyled">
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/essay/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Essay Writer" %}</a>
-    </li>
- 
-    
-    <li>
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/quiz/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Quiz Generator" %}</a>
-    </li>
-        <li>
-      
-        <li>
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/grammar-checker/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>
-    </li>
-  </ul>
-</div>
+      <!-- Useful Links -->
+      <div class="col-lg-4 col-md-6 text-center text-lg-start">
+        <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Useful Links" %}</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "About Us" %}</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Privacy Policy" %}</a>
+          </li>
+          <li>
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Terms and Conditions" %}</a>
+          </li>
+        </ul>
+      </div>
 
 <!-- Follow Us -->
 <div class="col-lg-3 col-md-6">
@@ -1689,46 +1722,27 @@ document.addEventListener("DOMContentLoaded", () => {
     </a>
   </div>
 </div>
-
-
-    </div>
-  </div>
 </footer>
 
-<!-- Footer -->
+<!-- Bottom Footer -->
 <footer style="background-color: #001a4d; color: #ffffff; padding: 15px 0; text-align: center; border-top: 1px solid darkblue">
   <p style="margin: 0; font-size: 0.9rem;">
     © {% now "Y" %} <strong>EduPrompt</strong>. All Rights Reserved.
   </p>
 </footer>
 
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+<!-- Vendor JS Files -->
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+<script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+<script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+<script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
 
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
-  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
-  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
-  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
-
-  <!-- Main JS File -->
-  <script src="{% static 'assets/js/main.js' %}"></script>
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- Main JS File -->
+<script src="{% static 'assets/js/main.js' %}"></script>

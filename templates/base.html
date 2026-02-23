@@ -230,19 +230,14 @@
     <div class="d-none d-lg-flex justify-content-between align-items-center">
       <!-- Logo + Name -->
       <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
-        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <img src="{% static 'assets/img/favicon.png' %}" alt="Logo" style="height: 40px;">
         <span class="ms-2 fw-bold sitename">Eduprompt</span>
       </a>
 
       <!-- Tools -->
       <div class="d-flex align-items-center">
-        <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
-        <span class="text-muted me-2">|</span>
+      <a href="/blog/" class="nav-link d-inline px-2">{% trans "Blog" %}</a>
 
-        <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
-        <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
-        <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
-        <a href="/blog/" class="nav-link d-inline px-2">{% trans "Blog" %}</a>
         <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
       </div>
 
@@ -262,14 +257,14 @@
     <!-- Mobile: Logo + Login/Register -->
     <div class="d-flex d-lg-none justify-content-between align-items-center mb-2">
       <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
-        <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" alt="Logo" style="height: 40px;">
+        <img src="{% static 'assets/img/favicon.png' %}" alt="Logo" style="height: 40px;">
         <span class="ms-2 fw-bold sitename">Eduprompt</span>
       </a>
 
       <div class="d-flex align-items-center">
         {% if not user.is_authenticated %}
           <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
-            {% trans "Register" %}
+            {% trans "Sign up" %}
           </button>
           <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
             {% trans "Login" %}
@@ -280,25 +275,22 @@
 
     <!-- Mobile: Scrollable Tools Section -->
     <div class="d-flex d-lg-none overflow-auto pb-2" style="white-space: nowrap;">
-      <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
-      <span class="text-muted me-2">|</span>
-      <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
-      <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
-      <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
       <a href="/blog/" class="nav-link d-inline px-2">{% trans "Blog" %}</a>
+
       <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
     </div>
 
   </nav>
 </header>
 
-
 <!-- Message Container -->
-<div id="auth-messages" class="position-fixed top-0 end-0 p-3" style="z-index:1055;"></div>
+<div id="auth-messages" class="position-fixed top-0 end-0 p-3" style="z-index:1055"></div>
+
 <!-- Login Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" data-bs-backdrop="false">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content rounded-4 shadow">
+      
       <div class="modal-header border-0">
         <h5 class="modal-title">{% trans "Login" %}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -306,30 +298,29 @@
 
       <!-- Modal body -->
       <div class="modal-body p-4">
-        <!-- Login Form -->
-        <form id="loginForm" method="post" action="{% url 'ajax_login' %}">
-          {% csrf_token %}
-          <div class="mb-3">
-            <input type="email" name="email" class="form-control" placeholder="{% trans 'Email' %}" required>
-          </div>
-          <div class="mb-3 position-relative">
-            <input type="password" name="password" class="form-control" placeholder="{% trans 'Password (optional)' %}">
-            <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 toggle-password">
-              👁
-            </button>
-          </div>
 
-          <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Login" %}</button>
-        </form>
+     <!-- Smart Login Form -->
+<form id="smartLoginForm" method="post" action="{% url 'send_magic_link' %}">
+  {% csrf_token %}
+  
+  <div class="mb-3">
+    <input type="email" name="email" class="form-control" 
+           placeholder="Enter your email to receive login link" required>
+  </div>
 
-        <!-- Magic Link -->
-        <button id="magicLinkBtn" class="btn btn-outline-primary w-100 mb-3">
-          {% trans "Send me a magic link" %}
-        </button>
+  <button type="submit" class="btn btn-primary w-100">
+    Send Smart Login Link
+  </button>
 
-        
+  <p class="text-muted mt-2" style="font-size:0.9em;">
+    A secure login link will be sent to your email. Link expires in 10 minutes.
+  </p>
+</form>
+          
 
-        <div id="magicMsg" class="mt-2 text-center text-success"></div>
+
+
+
       </div>
     </div>
   </div>
@@ -360,11 +351,44 @@
           <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Create Account" %}</button>
         </form>
 
-       
+      
       </div>
     </div>
   </div>
 </div>
+
+
+
+<script>
+document.getElementById("magicLinkForm").addEventListener("submit", async function(e) {
+    e.preventDefault(); // prevent page reload
+
+    const email = this.email.value;
+
+    try {
+        const response = await fetch("{% url 'send_magic_link' %}", {
+            method: "POST",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: new URLSearchParams({ email })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            alert(data.success);  // <-- show popup
+        } else if (data.error) {
+            alert(data.error);    // <-- show popup
+        }
+    } catch (err) {
+        alert("Something went wrong. Try again.");
+        console.error(err);
+    }
+});
+</script>
 
 <!-- JS -->
 <script>
@@ -534,7 +558,9 @@ $(document).ready(function(){
 
 
 
-        
+
+     
+
 
       </ul>
     </div>
@@ -829,131 +855,89 @@ $(document).ready(function(){
 
 
 
-
-
 <!-- Main Footer -->
 <footer class="footer pt-5" style="background-color: darkblue;">
   <div class="container footer-top py-5">
-    <div class="row gy-4">
+    <div class="row gy-4 justify-content-between align-items-start">
 
-<div class="col-lg-3 col-md-6 footer-about text-center text-lg-start">
-  <!-- Logo -->
-  <div class="mb-3">
-    <img src="{% static 'assets/img/logo 2-fotor-bg-remover-2025072515136.png' %}" 
-         alt="EduPrompt Logo" 
-         style="max-width: 140px; height: auto;">
-  </div>
+      <!-- Logo & Tagline -->
+      <div class="col-lg-4 col-md-6 text-center text-lg-start">
+        <div class="mb-3">
+          <img src="{% static 'assets/img/favicon.png' %}" 
+               alt="EduPrompt Logo" 
+               style="max-width: 140px; height: auto;">
+        </div>
+        <p style="font-size: 0.95rem; line-height: 1.6; color: #ffffff;">
+          {% trans "Smarter learning. Faster results. AI-powered tools for students and teachers." %}
+        </p>
+      </div>
 
-  <!-- Short Tagline -->
-  <p style="font-size: 0.95rem; line-height: 1.6; color: #ffffff;">
-    {% trans "Smarter learning. Faster results. AI-powered tools for students and teachers." %}
-  </p>
-</div>
-
-
-<!-- Useful Links -->
-<div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Useful Links" %}</h4>
-  <ul class="list-unstyled">
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="{% url 'index' %}" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Home" %}</a>
-    </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "About Us" %}</a>
-    </li>
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Privacy Policy" %}</a>
-    </li>
-    <li>
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Terms and Conditions" %}</a>
-    </li>
-  </ul>
-</div>
-
-<!-- Our Services -->
-<div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Services" %}</h4>
-  <ul class="list-unstyled">
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/website/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Web Design" %}</a>
-    </li>
-    
-  </ul>
-</div>
-
-<!-- Our Services (second block) -->
-<div class="col-lg-2 col-md-3 footer-links">
-  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Tools" %}</h4>
-  <ul class="list-unstyled">
-    <li class="mb-2">
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/essay/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Essay Writer" %}</a>
-    </li>
- 
-    
-    <li>
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/quiz/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Quiz Generator" %}</a>
-    </li>
-       
-        <li>
-      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
-      <a href="/grammar-checker/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>
-    </li>
-  </ul>
-</div>
-
+      <!-- Useful Links -->
+      <div class="col-lg-4 col-md-6 text-center text-lg-start">
+        <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Useful Links" %}</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "About Us" %}</a>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Privacy Policy" %}</a>
+          </li>
+          <li>
+            <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+            <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Terms and Conditions" %}</a>
+          </li>
+        </ul>
+      </div>
 
 <!-- Follow Us -->
 <div class="col-lg-3 col-md-6">
   <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Follow Us" %}</h4>
   <p class="mb-3" style="color: #ffffff;">{% trans "Follow us on all our social media platforms" %}</p>
   <div class="social-links d-flex gap-3 fs-4">
-        <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-facebook"></i></a>
-    <a href="#" class="social-hover" style="color: #ffffff;"><i class="bi bi-tiktok"></i></a>
+    <a href="https://web.facebook.com/people/Somtohgist/61558875407507/" 
+       class="social-hover" 
+       style="color: #ffffff;" 
+       target="_blank" 
+       rel="noopener noreferrer">
+       <i class="bi bi-facebook"></i>
+    </a>
+
+    <a href="https://www.tiktok.com/@somto_codes?_r=1&_t=ZS-947AD15UarR" 
+       class="social-hover" 
+       style="color: #ffffff;" 
+       target="_blank" 
+       rel="noopener noreferrer">
+       <i class="bi bi-tiktok"></i>
+    </a>
   </div>
 </div>
-
-
-    </div>
-  </div>
 </footer>
 
-<!-- Footer -->
+<!-- Bottom Footer -->
 <footer style="background-color: #001a4d; color: #ffffff; padding: 15px 0; text-align: center; border-top: 1px solid darkblue">
   <p style="margin: 0; font-size: 0.9rem;">
     © {% now "Y" %} <strong>EduPrompt</strong>. All Rights Reserved.
   </p>
 </footer>
 
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+<!-- Vendor JS Files -->
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+<script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+<script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+<script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
 
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
-  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
-  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
-  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
-
-  <!-- Main JS File -->
-  <script src="{% static 'assets/js/main.js' %}"></script>
-
-
-
-
-
-
-
-
+<!-- Main JS File -->
+<script src="{% static 'assets/js/main.js' %}"></script>

@@ -2,7 +2,6 @@ import requests
 from django.conf import settings
 
 VALID_TYPES = ["narrative", "descriptive", "expository", "persuasive", "analytical"]
-
 LANGUAGE_MAP = {
     "en": ("English", "en-US"),
     "yo": ("Yoruba", "yo"),
@@ -18,16 +17,32 @@ FIXED_WORD_COUNT = 800
 FIXED_CITATIONS = 3
 
 
-def generate_polished_essay(topic: str, essay_type: str, lang: str):
+def clean_repeated_sentences(text: str) -> str:
+    """Remove duplicate sentences while keeping order."""
+    sentences = text.split(". ")
+    seen = set()
+    cleaned = []
+    for s in sentences:
+        s_clean = s.strip()
+        if s_clean and s_clean not in seen:
+            cleaned.append(s_clean)
+            seen.add(s_clean)
+    return ". ".join(cleaned)
+
+
+def generate_polished_essay(topic: str, essay_type: str, lang: str) -> str:
+    """
+    Generate a high-quality 800-word essay without caching.
+    """
+
     essay_type = essay_type.lower()
     if essay_type not in VALID_TYPES:
         essay_type = "expository"
 
     lang_name, lt_code = LANGUAGE_MAP.get(lang, ("English", "en-US"))
 
-    # --- Tailored instructions by essay type ---
     type_instructions = {
-        "narrative": "Write like a storyteller, in first-person or third-person, with vivid scenes and emotions.",
+        "narrative": "Write like a storyteller with vivid scenes and emotions.",
         "descriptive": "Use sensory details (sight, sound, touch, taste, smell) to paint a vivid picture.",
         "expository": "Be clear, logical, and informative, explaining the topic step by step.",
         "persuasive": "Take a clear position, provide strong arguments, counterarguments, and end with a call to action.",
@@ -35,98 +50,55 @@ def generate_polished_essay(topic: str, essay_type: str, lang: str):
     }
     type_style = type_instructions.get(essay_type, "Be clear, structured, and academic.")
 
-    url = "https://open.bigmodel.cn/api/paas/v4/chat/completions"
-    headers = {
-        "Authorization": f"Bearer {settings.ZHIPU_API_KEY}",
-        "Content-Type": "application/json",
-    }
-
+    # --- System prompt ---
     system_prompt = (
-        f"You are an expert essay writer. "
-        f"Write a plagiarism-free, highly original {essay_type} essay in {lang_name}. "
-        f"Topic: '{topic}'. "
-        f"Target length: about {FIXED_WORD_COUNT} words. "
-        f"Style guide: {type_style} "
-        "Organize the essay into multiple clear paragraphs (4–7). "
-        "Do not use bullet points, numbered lists, or symbols like #, *, /. "
-        "The essay must read naturally, as if written by a real student. "
-        "Avoid repeating the same sentence to increase word count. "
-        f"At the end, include exactly {FIXED_CITATIONS} scholarly references under a section titled 'References:'. "
-        "References should look realistic (books, academic journals, or articles)."
+        f"You are a world-class academic essay writer. Your task is to write a "
+        f"flawless, highly original {essay_type} essay in {lang_name} on '{topic}'. "
+        f"Target length: ~{FIXED_WORD_COUNT} words. Style: {type_style}\n\n"
+        "Instructions:\n"
+        "1. Use professional, mature, and engaging academic tone.\n"
+        "2. Avoid plagiarism and repeated phrases or sentences.\n"
+        "3. Structure essay into 5–7 paragraphs: intro, body, conclusion.\n"
+        "4. Each body paragraph presents a unique idea with examples or citations.\n"
+        "5. Smooth transitions between paragraphs.\n"
+        "6. Avoid bullet points, lists, or special symbols.\n"
+        f"7. Include exactly {FIXED_CITATIONS} realistic references under 'References:' at the end.\n"
+        "8. Vary vocabulary and sentence structures.\n"
+        "9. Ensure essay reads naturally and professionally.\n"
+        "10. Correct grammar, punctuation, and spelling.\n"
+        "Now generate the essay."
     )
 
     payload = {
         "model": "glm-4.5",
         "messages": [
             {"role": "system", "content": system_prompt},
-            {
-                "role": "user",
-                "content": (
-                    f"Please write a {essay_type} essay in {lang_name} on '{topic}'. "
-                    f"It must be about {FIXED_WORD_COUNT} words, structured into good paragraphs, "
-                    f"and end with exactly {FIXED_CITATIONS} references under 'References:'. "
-                    "Avoid strange characters or formatting."
-                ),
-            },
+            {"role": "user", "content": f"Write the essay on '{topic}' in {lang_name}."},
         ],
         "max_tokens": min(8000, FIXED_WORD_COUNT * 4),
         "temperature": 0.9,
     }
 
-    # --- Call Zhipu API ---
     try:
-        response = requests.post(url, headers=headers, json=payload, timeout=60)
+        response = requests.post(
+            "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+            headers={
+                "Authorization": f"Bearer {settings.ZHIPU_API_KEY}",
+                "Content-Type": "application/json",
+            },
+            json=payload,
+            timeout=25,
+        )
         response.raise_for_status()
-        data = response.json()
-        draft_essay = data["choices"][0]["message"]["content"]
+        draft_essay = response.json()["choices"][0]["message"]["content"]
     except Exception as e:
-        print(f"Zhipu API failed: {e}")
-        return f"This is a fallback essay on '{topic}'.\n\n(Unable to reach essay API. Please retry later.)"
+        print(f"ZHAPI API failed: {e}")
+        return f"This is a fallback essay on '{topic}'.\n(Unable to reach essay API. Please try again later.)"
 
-    # --- Optional: LanguageTool polishing ---
-    polished_text = draft_essay
-    lt_url = "http://localhost:8081/v2/check"
-    lt_payload = {"language": lt_code, "text": draft_essay}
+    # --- Remove repeated sentences ---
+    polished_text = clean_repeated_sentences(draft_essay)
 
-    try:
-        lt_response = requests.post(lt_url, data=lt_payload, timeout=10)
-        lt_data = lt_response.json()
-        if "matches" in lt_data:
-            for match in reversed(lt_data["matches"]):
-                replacements = match.get("replacements", [])
-                if replacements:
-                    offset = match["offset"]
-                    length = match["length"]
-                    replacement = replacements[0]["value"]
-                    polished_text = polished_text[:offset] + replacement + polished_text[offset + length:]
-    except Exception as e:
-        print(f"LanguageTool skipped for {lt_code}: {e}")
-        polished_text = draft_essay
-
-    # --- Post-processing cleanup ---
-    # Remove repeated filler lines
-    lines = polished_text.splitlines()
-    seen = set()
-    cleaned_lines = []
-    for line in lines:
-        if line.strip() not in seen:
-            cleaned_lines.append(line)
-            seen.add(line.strip())
-    polished_text = "\n".join(cleaned_lines)
-
-    # Fix references heading
-    polished_text = polished_text.replace("## References", "References").replace("# References", "References")
-
-    # Auto paragraph split if text is too blocky
-    if polished_text.count("\n\n") < 3:  # less than 3 breaks
-        sentences = polished_text.split(". ")
-        chunk_size = max(4, len(sentences) // 5)  # about 5–6 paragraphs
-        paragraphs = []
-        for i in range(0, len(sentences), chunk_size):
-            paragraphs.append(". ".join(sentences[i:i+chunk_size]))
-        polished_text = "\n\n".join(paragraphs)
-
-    # Ensure references section exists
+    # --- Ensure references section ---
     if "references:" not in polished_text.lower():
         polished_text += "\n\nReferences:\n"
         for i in range(1, FIXED_CITATIONS + 1):

@@ -7,8 +7,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
-def index(request):
-    return render(request, 'index.html')
+def grammar_checker(request):
+    return render(request, 'grammar_checker.html')
 
 
 def contact(request):

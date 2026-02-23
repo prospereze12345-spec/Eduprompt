@@ -3,7 +3,6 @@ from . import views
 
 urlpatterns = [
     # Grammar checker page
-    path('grammar-checker/', views.grammar_checker, name='grammar_checker'),
     path('grammar-upload/', views.grammar_upload_view, name='grammar-upload'),
 
  # # Grammar subscription routes
