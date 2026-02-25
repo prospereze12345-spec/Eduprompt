@@ -92,7 +92,7 @@ def ajax_signup(request):
     # AJAX response for successful signup
     # --------------------------
     if request.headers.get("X-Requested-With") == "XMLHttpRequest":
-        return render(request, "signup.html", {"success": "Account created! Redirecting...", "redirect_url": "/"})
+        return render(request,  {"success": "Account created! Redirecting...", "redirect_url": "/"})
 
     return redirect("/")
 from django.shortcuts import get_object_or_404, redirect

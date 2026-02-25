@@ -9,16 +9,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Primary SEO Title -->
+<title>{% block title %}EduPrompt – AI Grammar Checker & Text Improver | Correct, Refine & Upgrade Writing Online{% endblock %}</title>
 
-  <!-- Primary SEO Title -->
-<title>{% block title %}EduPrompt – AI Grammar Checker | Correct & Improve Writing Instantly{% endblock %}</title>
-  <!-- Meta Description -->
-<meta name="description" content="EduPrompt AI Grammar Checker instantly detects grammar errors, spelling mistakes, and sentence issues. Perfect for students, professionals, and content creators. Supports English, German, French, Spanish, Portuguese, Dutch, Polish, and Italian.">
-  <!-- Keywords (optional in 2026) -->
-  <meta name="keywords" content="AI grammar checker, free grammar tool, grammar correction AI, spelling checker online, proofreading tool, EduPrompt grammar checker">
+<!-- Meta Description -->
+<meta name="description" content="EduPrompt is an AI-powered grammar checker and text improver that detects grammar errors, fixes spelling and punctuation, and upgrades your writing for academic, CV, and professional use. Fast, accurate, and easy to use online.">
 
-  <meta name="author" content="EduPrompt">
-  <meta name="robots" content="index, follow">
+<!-- Keywords (Optional) -->
+<meta name="keywords" content="AI grammar checker, text improver, writing assistant, online proofreading tool, spelling and punctuation checker, academic
+<meta name="author" content="EduPrompt">
+<meta name="robots" content="index, follow">
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://eduprompt.com.ng{{ request.path }}">
@@ -776,6 +776,7 @@ $(document).ready(function(){
 
 
 
+
 <section class="py-6" style="background-color: white; padding-top: 80px;">
   <div class="container">
 <div class="container d-flex flex-column justify-content-center align-items-center text-center px-3" style="padding-top: 100px; background-color: #ffffff;">
@@ -788,17 +789,17 @@ $(document).ready(function(){
       <path fill-rule="evenodd" d="M10.146 4.146a.5.5 0 0 1 .708 0L14 7.293l-.707.707L11 5.707V14.5a.5.5 0 0 1-1 0V5.707L8.707 8l-.708-.707L10.146 4.146z"/>
     </svg>
   </div>
-</a>
-    <div class="text-center mb-4">
-      <h1 class="fw-bold mb-3" style="color: #333;">
-        Perfect Your Writing Instantly with Our AI <span style="color: #b8860b;">Grammar Checker</span>
-      </h1>
-      <p class="text-muted" style="font-size: 1.1rem;">
-        Detect spelling errors, grammar mistakes, and punctuation issues instantly. Enhance clarity and polish your text effortlessly—perfect for students, bloggers, and professionals.
-      </p>
-    </div>
+</a><div class="text-center mb-4">
+  <h1 class="fw-bold mb-3" style="color: #333;">
+    AI Grammar Checker & Text Improver – <span style="color: darkblue;">Write Better, Instantly</span>
+  </h1>
 
-  </div></section>
+  <p class="text-muted" style="font-size: 1.1rem;">
+    Instantly check grammar, correct spelling mistakes, and fix punctuation errors with our advanced AI-powered grammar checker. 
+    Upgrade your writing with our smart text improver—perfect for academic writing, CV enhancement, professional emails, blog posts, and business communication.
+  </p>
+</div></section>
+
 <section class="py-4" style="background-color:white; font-family:'Segoe UI', sans-serif;">
   <div class="container">
     <div class="row g-3">
@@ -816,7 +817,7 @@ $(document).ready(function(){
              style="font-weight:500; color:#444 !important;">
             ✅ Check up to 
             <span id="wordLimitNotice" 
-                  style="color:darkgoldenrod; font-weight:600;">1,500 words</span> 
+                  style="color:darkblue; font-weight:600;">1,500 words</span> 
             for free (3 trials only)
           </p>
         </div>
@@ -827,19 +828,19 @@ $(document).ready(function(){
   <input type="file" id="fileInput" hidden accept=".docx,.pdf,.txt,.jpg,.jpeg,.png" />
 
   <button id="checkBtn" class="btn btn-sm" 
-          style="background:#b8860b; color:#fff; border-radius:8px; 
+          style="background:darkblue; color:#fff; border-radius:8px; 
                  padding:8px 18px; border:none;">
     Check Grammar
   </button>
 
   <a href="#" data-bs-toggle="modal" data-bs-target="#proModal" 
      class="text-decoration-none" 
-     style="font-size:0.9rem; color:#0d6efd; font-weight:500;">
+     style="font-size:0.9rem; color:darkgoldenrod; font-weight:500;">
      🚀 Go Pro
   </a>
 
   <div class="stats ms-auto" id="textStats" 
-       style="font-size:0.9rem; color:#666;">
+       style="font-size:0.9rem; color:black;">
     Words: 0 | Characters: 0
   </div>
 </div>
@@ -872,7 +873,7 @@ $(document).ready(function(){
         <span class="badge bg-secondary" id="suggestionCount">0</span>
       </h6>
       <button id="correctAll" class="btn btn-sm" 
-              style="background:#b8860b; color:#fff; border-radius:8px;">
+              style="background:darkblue; color:#fff; border-radius:8px;">
         Correct All
       </button>
     </div>
@@ -945,6 +946,95 @@ $(document).ready(function(){
     </div>
   </div>
 </div>
+
+
+
+
+
+<script>
+const improvedText = document.getElementById("improvedText");
+const applyTopBtn = document.getElementById("applyTopBtn");
+const checkBtn = document.getElementById("checkBtn");
+const wordCountDisplay = document.getElementById("wordCount");
+const suggestionList = document.getElementById("suggestionList");
+const overallScoreEl = document.getElementById("overallScore");
+const grammarScoreEl = document.getElementById("grammarScore");
+const clarityScoreEl = document.getElementById("clarityScore");
+const toneScoreEl = document.getElementById("toneScore");
+const confidenceBar = document.getElementById("confidenceBar");
+const freeTrialNotice = document.getElementById("freeTrialNotice");
+const goProBtn = document.getElementById("goProBtn");
+
+const MAX_FREE_WORDS = 1500;
+
+// Word count update
+function updateWordCount() {
+  const text = originalText.value.trim();
+  const count = text ? text.split(/\s+/).length : 0;
+  wordCountDisplay.innerText = count;
+  freeTrialNotice.innerText = count > MAX_FREE_WORDS ? "Free trial limit reached! Upgrade to Pro." : `Free Trial: Up to ${MAX_FREE_WORDS} words (3 tries)`;
+}
+originalText.addEventListener("input", updateWordCount);
+
+// Apply suggestion
+function applyCorrections() {
+  if (improvedText.value.trim()) {
+    originalText.value = improvedText.value;
+    improvedText.style.display = "none";
+    updateWordCount();
+  }
+}
+applyTopBtn.addEventListener("click", applyCorrections);
+
+// Check Writing Button
+checkBtn.addEventListener("click", () => {
+  const text = originalText.value.trim();
+  if(!text) return alert("Please enter some text!");
+  const words = text.split(/\s+/).length;
+
+  if(words > MAX_FREE_WORDS){
+    const proModal = new bootstrap.Modal(document.getElementById("proModal"));
+    proModal.show();
+    return;
+  }
+
+  // Dummy improvements
+  improvedText.value = text.toUpperCase();
+  suggestionList.innerHTML = "<ul><li>Changed sentence structure</li><li>Corrected grammar</li></ul>";
+
+  animateScore(overallScoreEl, 85);
+  animateScore(grammarScoreEl, 90);
+  animateScore(clarityScoreEl, 80);
+  animateScore(toneScoreEl, 85);
+  confidenceBar.style.width = "85%";
+});
+
+// Score animation
+function animateScore(el, target){
+  let count = 0;
+  el.innerText = "0%";
+  const interval = setInterval(()=>{
+    if(count>=target) clearInterval(interval);
+    el.innerText = count + "%";
+    count++;
+  },15);
+}
+
+// Go Pro button opens modal
+goProBtn?.addEventListener("click", ()=> {
+  const proModal = new bootstrap.Modal(document.getElementById("proModal"));
+  proModal.show();
+});
+
+// Payment buttons logic
+document.getElementById("payNGN").addEventListener("click", ()=>alert("Redirecting to NGN payment gateway..."));
+document.getElementById("payUSD").addEventListener("click", ()=>alert("Redirecting to USD payment gateway..."));
+
+// Initialize word count
+updateWordCount();
+</script>
+
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const uploadBtn = document.getElementById("uploadBtn");
@@ -961,8 +1051,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const WORD_LIMIT_FREE = 2000;
   const WORD_LIMIT_PRO = 15000;
-  let userIsPro = "{{ request.user.userprofile.is_subscribed|yesno:'true,false' }}" === "true";
-  let userIsLoggedIn = "{{ request.user.is_authenticated|yesno:'true,false' }}" === "true";
 
   // CSRF helper
   function getCookie(name) {
@@ -1151,8 +1239,629 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<!-- ================= IMPROVE TEXT CTA CARD ================= -->
+<div class="container my-5">
+  <div class="card border-0 shadow-lg p-4"
+       style="background-color:darkblue; border-radius:20px;">
+    
+    <div class="row align-items-center">
+      
+      <div class="col-md-8">
+        <h4 class="fw-bold text-white mb-2">
+          Upgrade Your Writing Instantly
+        </h4>
+        <p class="text-white mb-0" style="opacity:0.9;">
+          Improve tone, clarity, and professionalism for academic, CV, and email writing.
+        </p>
+      </div>
 
+      <div class="col-md-4 text-md-end mt-3 mt-md-0">
+        <button class="btn px-4 py-2 fw-semibold"
+                style="background-color:darkgoldenrod; color:white; border-radius:12px;"
+                data-bs-toggle="modal"
+                data-bs-target="#improveModal">
+          Improve Text
+        </button>
+      </div>
 
+    </div>
+  </div>
+</div>
+<!-- ================= IMPROVE TEXT MODAL ================= -->
+<div class="modal fade" id="improveModal" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg" style="border-radius:20px;">
+      
+      <!-- Header -->
+      <div class="modal-header border-0 px-4 pt-4">
+        <h5 class="modal-title fw-bold">AI Text Improvement</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body px-4 pb-4">
+
+        <div class="row g-4">
+
+          <!-- LEFT BOX -->
+          <div class="col-md-6">
+            <div class="card border-0 shadow-sm p-3 h-100" style="border-radius:16px;">
+              
+              <label class="fw-semibold mb-2">Enter Your Text</label>
+              <textarea id="inputText"
+                        class="form-control mb-3"
+                        rows="12"
+                        placeholder="Paste your text here..."
+                        style="border-radius:12px;"
+                        required></textarea>
+
+              <label class="fw-semibold mb-2">Select Goal</label>
+              <select id="goalSelect"
+                      class="form-select mb-3"
+                      style="border-radius:12px;"
+                      onchange="toggleGoalOptions()">
+                <option value="academic">🎓 Academic Tone</option>
+                <option value="cv">📄 Upgrade CV/Resume</option>
+                <option value="email">📧 Professional Email</option>
+              </select>
+
+              <!-- Dynamic options based on goal selection -->
+              <div id="cvOptions" style="display: none;">
+                <label class="fw-semibold mb-2">Select Industry</label>
+                <select id="industrySelect"
+                        class="form-select mb-3"
+                        style="border-radius:12px;">
+                  <option value="general">General</option>
+                  <option value="tech">Technology</option>
+                  <option value="business">Business</option>
+                  <option value="sales">Sales</option>
+                  <option value="marketing">Marketing</option>
+                  <option value="finance">Finance</option>
+                  <option value="healthcare">Healthcare</option>
+                  <option value="education">Education</option>
+                  <option value="hr">Human Resources</option>
+                </select>
+              </div>
+
+              <div id="emailOptions" style="display: none;">
+                <label class="fw-semibold mb-2">Email Type</label>
+                <select id="emailTypeSelect"
+                        class="form-select mb-3"
+                        style="border-radius:12px;">
+                  <option value="general">General</option>
+                  <option value="job_application">Job Application</option>
+                  <option value="follow_up">Follow Up</option>
+                  <option value="meeting_request">Meeting Request</option>
+                  <option value="introduction">Introduction/Networking</option>
+                  <option value="thank_you">Thank You</option>
+                  <option value="proposal">Proposal</option>
+                  <option value="problem_resolution">Problem Resolution</option>
+                </select>
+
+                <label class="fw-semibold mb-2">Email Tone</label>
+                <select id="emailToneSelect"
+                        class="form-select mb-3"
+                        style="border-radius:12px;">
+                  <option value="formal">Formal</option>
+                  <option value="semi_formal" selected>Semi-Formal</option>
+                  <option value="friendly">Friendly</option>
+                  <option value="persuasive">Persuasive</option>
+                  <option value="apologetic">Apologetic</option>
+                </select>
+              </div>
+
+              <button type="button"
+                      id="improveBtn"
+                      onclick="improveText()"
+                      class="btn w-100 fw-semibold"
+                      style="background-color:#0d1b2a; color:white; border-radius:12px;">
+                ✨ Improve Text
+              </button>
+
+              <!-- Sample button for testing -->
+              <button type="button"
+                      onclick="loadSample()"
+                      class="btn w-100 fw-semibold mt-2"
+                      style="background-color:#6c757d; color:white; border-radius:12px;">
+                📝 Load Sample
+              </button>
+
+            </div>
+          </div>
+
+          <!-- RIGHT BOX -->
+          <div class="col-md-6">
+            <div class="card border-0 shadow-sm p-3 h-100" style="border-radius:16px;">
+              
+              <label class="fw-semibold mb-2">Improved Result</label>
+
+              <textarea id="outputText"
+                        class="form-control mb-3"
+                        rows="14"
+                        placeholder="Improved text will appear here..."
+                        style="border-radius:12px; overflow-y:auto;"
+                        readonly></textarea>
+
+              <div class="d-flex gap-2 mb-2">
+                
+                <button type="button"
+                        onclick="copyText()"
+                        id="copyBtn"
+                        class="btn flex-fill"
+                        style="background-color:#0d1b2a; color:white; border-radius:12px;">
+                  📋 Copy
+                </button>
+
+                <button type="button"
+                        onclick="downloadText()"
+                        id="downloadBtn"
+                        class="btn btn-outline-dark flex-fill"
+                        style="border-radius:12px;">
+                  📥 Download
+                </button>
+
+                <button type="button"
+                        onclick="clearAll()"
+                        class="btn btn-outline-danger flex-fill"
+                        style="border-radius:12px;">
+                  🗑️ Clear
+                </button>
+
+              </div>
+
+              <div class="d-flex gap-2">
+                
+                <button type="button"
+                        onclick="swapText()"
+                        class="btn btn-outline-secondary flex-fill"
+                        style="border-radius:12px;">
+                  🔄 Swap
+                </button>
+
+                <button type="button"
+                        onclick="compareVersions()"
+                        class="btn btn-outline-info flex-fill"
+                        style="border-radius:12px;">
+                  👁️ Compare
+                </button>
+
+              </div>
+
+              <!-- Metrics Panel (hidden by default) -->
+              <div id="metricsPanel" style="display: none; margin-top: 20px;">
+                <hr>
+                <h6 class="fw-bold">📊 Improvement Metrics</h6>
+                <div id="metricsGrid" class="row g-2 mb-3"></div>
+                
+                <div id="changesSection" style="display: none;">
+                  <h6 class="fw-bold">📝 Changes Made</h6>
+                  <div id="changesList" class="mb-3" style="max-height: 150px; overflow-y: auto; background: #f8f9fa; padding: 10px; border-radius: 8px;"></div>
+                </div>
+                
+                <div id="suggestionsSection" style="display: none;">
+                  <h6 class="fw-bold">💡 Suggestions</h6>
+                  <div id="suggestionsList" style="max-height: 150px; overflow-y: auto; background: #f8f9fa; padding: 10px; border-radius: 8px;"></div>
+                </div>
+                
+                <div id="accomplishmentNotes" style="display: none; background: #e7f3ff; padding: 10px; border-radius: 8px; margin-top: 10px;"></div>
+                <div id="missingElements" style="display: none; background: #fff3cd; padding: 10px; border-radius: 8px; margin-top: 10px;"></div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Comparison Modal -->
+<div class="modal fade" id="compareModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Original vs Improved</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <h6>Original Text:</h6>
+            <div id="originalCompare" style="background: #f8f9fa; padding: 15px; border-radius: 8px; max-height: 300px; overflow-y: auto;"></div>
+          </div>
+          <div class="col-md-6">
+            <h6>Improved Text:</h6>
+            <div id="improvedCompare" style="background: #f8f9fa; padding: 15px; border-radius: 8px; max-height: 300px; overflow-y: auto;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ================= STATE MANAGEMENT =================
+let currentResult = null;
+let originalText = '';
+let selectedGoal = 'academic';
+let selectedIndustry = 'general';
+let selectedEmailType = 'general';
+let selectedEmailTone = 'semi_formal';
+
+// API Configuration - Update this with your backend URL
+const API_URL = 'http://localhost:5000/improve-text'; // Change this to your backend URL
+
+// ================= TOGGLE GOAL OPTIONS =================
+function toggleGoalOptions() {
+    const goalSelect = document.getElementById('goalSelect');
+    const cvOptions = document.getElementById('cvOptions');
+    const emailOptions = document.getElementById('emailOptions');
+    
+    selectedGoal = goalSelect.value;
+    
+    if (selectedGoal === 'cv') {
+        cvOptions.style.display = 'block';
+        emailOptions.style.display = 'none';
+    } else if (selectedGoal === 'email') {
+        cvOptions.style.display = 'none';
+        emailOptions.style.display = 'block';
+    } else {
+        cvOptions.style.display = 'none';
+        emailOptions.style.display = 'none';
+    }
+    
+    // Hide metrics panel when changing goal
+    document.getElementById('metricsPanel').style.display = 'none';
+}
+
+// ================= MAIN IMPROVE FUNCTION =================
+async function improveText() {
+    const inputText = document.getElementById('inputText');
+    const outputText = document.getElementById('outputText');
+    const improveBtn = document.getElementById('improveBtn');
+    const metricsPanel = document.getElementById('metricsPanel');
+    
+    if (!inputText.value.trim()) {
+        alert('Please enter some text to improve');
+        return;
+    }
+    
+    // Show loading state
+    const originalBtnText = improveBtn.innerHTML;
+    improveBtn.innerHTML = '⏳ Processing...';
+    improveBtn.disabled = true;
+    outputText.value = 'Improving your text...';
+    
+    originalText = inputText.value;
+    selectedGoal = document.getElementById('goalSelect').value;
+    
+    // Get additional options
+    if (selectedGoal === 'cv') {
+        selectedIndustry = document.getElementById('industrySelect').value;
+    } else if (selectedGoal === 'email') {
+        selectedEmailType = document.getElementById('emailTypeSelect').value;
+        selectedEmailTone = document.getElementById('emailToneSelect').value;
+    }
+    
+    try {
+        // Prepare request body
+        const requestBody = {
+            text: originalText,
+            tone: selectedGoal
+        };
+        
+        // Add CV-specific params
+        if (selectedGoal === 'cv') {
+            requestBody.industry = selectedIndustry;
+        }
+        
+        // Add Email-specific params
+        if (selectedGoal === 'email') {
+            requestBody.email_type = selectedEmailType;
+            requestBody.email_tone = selectedEmailTone;
+        }
+        
+        console.log('Sending request:', requestBody); // For debugging
+        
+        // Call your backend API
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        console.log('Received response:', result); // For debugging
+        
+        // Handle different response structures
+        currentResult = result.data || result;
+        
+        // Display improved text
+        if (currentResult.improved) {
+            outputText.value = currentResult.improved;
+        } else if (currentResult.text) {
+            outputText.value = currentResult.text;
+        } else {
+            outputText.value = 'Unexpected response format';
+        }
+        
+        // Display metrics and changes
+        displayMetrics(currentResult);
+        displayChanges(currentResult.changes || []);
+        displaySuggestions(currentResult.suggestions || []);
+        
+        // Display CV-specific accomplishment notes
+        if (selectedGoal === 'cv' && currentResult.accomplishment_notes) {
+            displayAccomplishmentNotes(currentResult.accomplishment_notes);
+        }
+        
+        // Display Email-specific missing elements
+        if (selectedGoal === 'email' && currentResult.missing_elements) {
+            displayMissingElements(currentResult.missing_elements);
+        }
+        
+        // Show metrics panel
+        metricsPanel.style.display = 'block';
+        
+    } catch (error) {
+        console.error('Error:', error);
+        outputText.value = 'Error improving text. Please check if backend is running.';
+    } finally {
+        // Restore button state
+        improveBtn.innerHTML = originalBtnText;
+        improveBtn.disabled = false;
+    }
+}
+
+// ================= DISPLAY FUNCTIONS =================
+function displayMetrics(result) {
+    const metricsGrid = document.getElementById('metricsGrid');
+    const changesSection = document.getElementById('changesSection');
+    const suggestionsSection = document.getElementById('suggestionsSection');
+    
+    if (!metricsGrid) return;
+    
+    const metrics = result.metrics || {};
+    let metricCards = [];
+    
+    if (selectedGoal === 'cv') {
+        metricCards = [
+            { label: 'Bullet Points', value: metrics.bullet_points || 0 },
+            { label: 'Action Verbs', value: metrics.action_verbs_used || 0 },
+            { label: 'Weak Phrases Left', value: metrics.weak_phrases_remaining || 0 },
+            { label: 'Quantifiable', value: metrics.quantifiable_achievements || 0 }
+        ];
+    } else if (selectedGoal === 'email') {
+        metricCards = [
+            { label: 'Word Count', value: metrics.word_count || 0 },
+            { label: 'Weak Phrases Removed', value: metrics.weak_phrases_removed || 0 },
+            { label: 'Has Greeting', value: metrics.has_greeting ? '✅' : '❌' },
+            { label: 'Has Closing', value: metrics.has_closing ? '✅' : '❌' }
+        ];
+    } else {
+        metricCards = [
+            { label: 'Academic Score', value: (metrics.academic_score || 0) + '%' },
+            { label: 'Words Added', value: metrics.word_count_change || 0 },
+            { label: 'Weak Phrases Fixed', value: metrics.weak_phrases_reduced || 0 },
+            { label: 'Readability', value: metrics.readability_level || 'Standard' }
+        ];
+    }
+    
+    metricsGrid.innerHTML = metricCards.map(card => `
+        <div class="col-6 col-md-3">
+            <div class="metric-card" style="background: #f8f9fa; padding: 10px; border-radius: 8px; text-align: center;">
+                <div style="font-size: 20px; font-weight: bold; color: #0d1b2a;">${card.value}</div>
+                <div style="font-size: 12px; color: #6c757d;">${card.label}</div>
+            </div>
+        </div>
+    `).join('');
+    
+    // Show sections if there are changes/suggestions
+    if (result.changes && result.changes.length > 0) {
+        changesSection.style.display = 'block';
+    } else {
+        changesSection.style.display = 'none';
+    }
+    
+    if (result.suggestions && result.suggestions.length > 0) {
+        suggestionsSection.style.display = 'block';
+    } else {
+        suggestionsSection.style.display = 'none';
+    }
+}
+
+function displayChanges(changes) {
+    const changesList = document.getElementById('changesList');
+    if (!changesList) return;
+    
+    if (!changes || changes.length === 0) {
+        changesList.innerHTML = '<div style="color: #6c757d;">No changes needed</div>';
+        return;
+    }
+    
+    changesList.innerHTML = changes.slice(0, 10).map(change => `
+        <div style="padding: 5px; border-bottom: 1px solid #dee2e6; font-size: 13px;">✓ ${change}</div>
+    `).join('');
+    
+    if (changes.length > 10) {
+        changesList.innerHTML += `<div style="padding: 5px; color: #6c757d; font-size: 12px;">... and ${changes.length - 10} more changes</div>`;
+    }
+}
+
+function displaySuggestions(suggestions) {
+    const suggestionsList = document.getElementById('suggestionsList');
+    if (!suggestionsList) return;
+    
+    if (!suggestions || suggestions.length === 0) {
+        suggestionsList.innerHTML = '<div style="color: #6c757d;">No suggestions</div>';
+        return;
+    }
+    
+    suggestionsList.innerHTML = suggestions.map(suggestion => `
+        <div style="padding: 8px; margin-bottom: 5px; background: #e7f3ff; border-radius: 6px; font-size: 13px;">💡 ${suggestion}</div>
+    `).join('');
+}
+
+function displayAccomplishmentNotes(notes) {
+    const accomplishmentsDiv = document.getElementById('accomplishmentNotes');
+    if (!accomplishmentsDiv) return;
+    
+    if (!notes || notes.length === 0) {
+        accomplishmentsDiv.style.display = 'none';
+        return;
+    }
+    
+    accomplishmentsDiv.style.display = 'block';
+    accomplishmentsDiv.innerHTML = `
+        <strong>📋 Turn These Into Accomplishments:</strong>
+        ${notes.map(note => `<div style="margin-top: 5px; font-size: 13px;">📌 ${note}</div>`).join('')}
+    `;
+}
+
+function displayMissingElements(elements) {
+    const missingDiv = document.getElementById('missingElements');
+    if (!missingDiv) return;
+    
+    if (!elements || elements.length === 0) {
+        missingDiv.style.display = 'none';
+        return;
+    }
+    
+    missingDiv.style.display = 'block';
+    missingDiv.innerHTML = `
+        <strong>⚠️ Missing Elements:</strong>
+        ${elements.map(element => `<div style="margin-top: 5px; font-size: 13px;">📧 ${element}</div>`).join('')}
+    `;
+}
+
+// ================= YOUR EXISTING FUNCTIONS (PRESERVED) =================
+function copyText() {
+    const textArea = document.getElementById("outputText");
+    textArea.select();
+    document.execCommand("copy");
+    
+    // Show feedback
+    const copyBtn = document.getElementById("copyBtn");
+    const originalText = copyBtn.innerHTML;
+    copyBtn.innerHTML = "✅ Copied!";
+    setTimeout(() => {
+        copyBtn.innerHTML = originalText;
+    }, 2000);
+}
+
+function downloadText() {
+    const text = document.getElementById("outputText").value;
+    if (!text || text === 'Improved text will appear here...' || text === 'Improving your text...') {
+        alert("No text to download");
+        return;
+    }
+    
+    const blob = new Blob([text], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    
+    // Set filename based on goal
+    let filename = "improved-text";
+    if (selectedGoal === 'cv') {
+        filename = "improved-cv";
+    } else if (selectedGoal === 'email') {
+        filename = "improved-email";
+    }
+    
+    link.download = filename + ".txt";
+    link.click();
+    URL.revokeObjectURL(link.href);
+}
+
+// ================= NEW HELPER FUNCTIONS =================
+function clearAll() {
+    document.getElementById('inputText').value = '';
+    document.getElementById('outputText').value = '';
+    document.getElementById('metricsPanel').style.display = 'none';
+    document.getElementById('accomplishmentNotes').style.display = 'none';
+    document.getElementById('missingElements').style.display = 'none';
+}
+
+function swapText() {
+    const inputText = document.getElementById('inputText');
+    const outputText = document.getElementById('outputText');
+    
+    const temp = inputText.value;
+    inputText.value = outputText.value;
+    outputText.value = temp;
+}
+
+function compareVersions() {
+    const inputText = document.getElementById('inputText').value;
+    const outputText = document.getElementById('outputText').value;
+    
+    if (!inputText || !outputText || outputText === 'Improved text will appear here...' || outputText === 'Improving your text...') {
+        alert('No text to compare');
+        return;
+    }
+    
+    document.getElementById('originalCompare').innerHTML = inputText.replace(/\n/g, '<br>');
+    document.getElementById('improvedCompare').innerHTML = outputText.replace(/\n/g, '<br>');
+    
+    // Show modal using Bootstrap
+    const compareModal = new bootstrap.Modal(document.getElementById('compareModal'));
+    compareModal.show();
+}
+
+function loadSample() {
+    const goalSelect = document.getElementById('goalSelect');
+    const inputText = document.getElementById('inputText');
+    
+    const samples = {
+        'academic': "I think this research is good and we got lots of interesting data. The results show that our method works better than others. This is important because it could help many people.",
+        
+        'cv': "Worked as a manager at ABC Company from 2020-2023.\n\nResponsibilities:\n- Was responsible for managing a team\n- Helped with various projects\n- Did a good job with customer service\n- Worked on improving processes\n\nSkills:\nGood communication, team player, hard worker",
+        
+        'email': "hey, just wanted to check in about the job application i sent last week. let me know if you need anything else from me. thanks!"
+    };
+    
+    inputText.value = samples[goalSelect.value];
+    
+    // Auto-resize textarea (optional)
+    inputText.style.height = 'auto';
+    inputText.style.height = (inputText.scrollHeight) + 'px';
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Set initial state
+    toggleGoalOptions();
+    
+    // Add enter key shortcut
+    document.getElementById('inputText').addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'Enter') {
+            e.preventDefault();
+            improveText();
+        }
+    });
+});
+
+// Export functions to global scope (ensures buttons work)
+window.improveText = improveText;
+window.copyText = copyText;
+window.downloadText = downloadText;
+window.clearAll = clearAll;
+window.swapText = swapText;
+window.compareVersions = compareVersions;
+window.loadSample = loadSample;
+window.toggleGoalOptions = toggleGoalOptions;
+</script>
+
+<!-- Add Bootstrap JS if not already included -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
  <!-- How to Use Section -->
 <section class="py-5" style="background-color: #ffffff; color: #000;">
   <div class="container">
@@ -1165,8 +1874,8 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-upload" style="font-size: 2.5rem; color: black;"></i>
-          <h5 class="mt-3" style="color: #b8860b;">Upload Your Text</h5>
-          <p style="color: #555; font-size: 0.95rem;">
+          <h5 class="mt-3" style="color: darkblue;">Upload Your Text</h5>
+          <p style="color: black; font-size: 0.95rem;">
             Paste your text directly or upload a file from your device. Our tool accepts multiple formats for your convenience.
           </p>
         </div>
@@ -1175,8 +1884,8 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-check2-square" style="font-size: 2.5rem; color: black;"></i>
-          <h5 class="mt-3" style="color: #b8860b;">Start the Check</h5>
-          <p style="color: #555; font-size: 0.95rem;">
+          <h5 class="mt-3" style="color: darkblue;">Start the Check</h5>
+          <p style="color: black; font-size: 0.95rem;">
             Click the <strong>“Check Grammar”</strong> button and let our system scan your writing for grammar, spelling, and style issues.
           </p>
         </div>
@@ -1185,8 +1894,8 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-pencil-square" style="font-size: 2.5rem; color: black;"></i>
-          <h5 class="mt-3" style="color: #b8860b;">Review Suggestions</h5>
-          <p style="color: #555; font-size: 0.95rem;">
+          <h5 class="mt-3" style="color: darkblue;">Review Suggestions</h5>
+          <p style="color: black; font-size: 0.95rem;">
             Mistakes will be highlighted with clear suggestions. Review and apply corrections in just a few clicks.
           </p>
         </div>
@@ -1195,8 +1904,8 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-download" style="font-size: 2.5rem; color: black;"></i>
-          <h5 class="mt-3" style="color: #b8860b;">Save & Download</h5>
-          <p style="color: #555; font-size: 0.95rem;">
+          <h5 class="mt-3" style="color: darkblue;">Save & Download</h5>
+          <p style="color: black; font-size: 0.95rem;">
             Once satisfied, save the final version or download it instantly to your device—ready to share or submit.
           </p>
         </div>
@@ -1255,18 +1964,18 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="col-lg-7 col-md-12">
         <h1 class="fw-bold mb-4" style="font-size:2rem; color:#000;">
           Free Grammar Checker: <br>
-          <span style="color:#b8860b;">Your Ultimate Writing Assistant!</span>
+          <span style="color:darkblue;">Your Ultimate Writing Assistant!</span>
         </h1>
         <p style="color:#333; font-size:1rem; line-height:1.7;">
           Our grammar checker goes beyond fixing mistakes — it elevates your writing. 
           Powered by advanced AI, it ensures your text is error-free, polished, and easy to read.  
           Whether you’re drafting essays, reports, or creative content, our tool helps you express ideas with confidence.
         </p>
-        <p style="color:#333; font-size:1rem; line-height:1.7;">
+        <p style="color:black; font-size:1rem; line-height:1.7;">
           Get real-time suggestions, multilingual support, and unlimited grammar checks — all in one simple, user-friendly platform.  
           Write smarter, faster, and more effectively with your personal AI-powered writing assistant.
         </p>
-        <button class="btn mt-3" style="background:#b8860b; color:#fff; border-radius:8px; padding:12px 25px; border:none; font-weight:600;">
+        <button class="btn mt-3" style="background:darkblue; color:#fff; border-radius:8px; padding:12px 25px; border:none; font-weight:600;">
           Try Grammar Checker
         </button>
       </div>
@@ -1279,95 +1988,118 @@ document.addEventListener("DOMContentLoaded", () => {
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 
-
 <!-- Why Choose Us Section -->
 <section class="py-5" style="background-color: white;">
   <div class="container">
-    <h2 class="text-center mb-4" style="color: black;">Why Choose Our Grammar Checker?</h2>
+    
+    <h2 class="text-center mb-4" style="color: black;">
+      Why Choose Our AI Grammar Checker & Text Improver?
+    </h2>
+
     <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
-      With so many grammar tools online, here’s why our solution stands out and why thousands of users trust it daily:
+      Writing clearly and professionally shouldn’t be difficult. Our AI-powered grammar checker and text improver help you correct mistakes, refine your tone, and present your ideas with confidence — whether you’re writing for school, work, or business.
     </p>
 
     <div class="row g-4">
+
       <!-- Point 1 -->
       <div class="col-md-4">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
-          <i class="bi bi-lightning-charge-fill" style="font-size: 2.5rem; color: #b8860b;"></i>
-          <h5 class="mt-3" style="color:black;">Fast & Reliable</h5>
-          <p style="color:black;">Get instant grammar checks with accurate suggestions, saving you valuable time.</p>
+          <i class="bi bi-lightning-charge-fill" style="font-size: 2.5rem; color: darkblue;"></i>
+          <h5 class="mt-3" style="color:black;">Fast & Accurate Corrections</h5>
+          <p style="color:black;">
+            Instantly detect grammar errors, spelling mistakes, and punctuation issues with precise suggestions that save you time and effort.
+          </p>
         </div>
       </div>
+
       <!-- Point 2 -->
       <div class="col-md-4">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
-          <i class="bi bi-hand-thumbs-up-fill" style="font-size: 2.5rem; color: #b8860b;"></i>
-          <h5 class="mt-3" style="color:black;">User-Friendly</h5>
-          <p style="color:black;">No complicated setup. Just paste your text, click check, and get results instantly.</p>
+          <i class="bi bi-pencil-square" style="font-size: 2.5rem; color: darkblue;"></i>
+          <h5 class="mt-3" style="color:black;">Smart Text Improvement</h5>
+          <p style="color:black;">
+            Go beyond basic corrections. Upgrade your writing style for academic papers, CVs, professional emails, and business communication.
+          </p>
         </div>
       </div>
+
       <!-- Point 3 -->
       <div class="col-md-4">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
-          <i class="bi bi-shield-lock-fill" style="font-size: 2.5rem; color: #b8860b;"></i>
-          <h5 class="mt-3" style="color:black;">Secure & Private</h5>
-          <p style="color:black;">Your content stays yours. We don’t store, sell, or share your text with anyone.</p>
+          <i class="bi bi-hand-thumbs-up-fill" style="font-size: 2.5rem; color: darkblue;"></i>
+          <h5 class="mt-3" style="color:black;">Simple & Easy to Use</h5>
+          <p style="color:black;">
+            No complicated setup. Paste your text, check grammar, or improve your content in seconds with a clean and intuitive interface.
+          </p>
         </div>
       </div>
+
     </div>
 
     <div class="row g-4 mt-4">
+
       <!-- Point 4 -->
       <div class="col-md-4">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
-          <i class="bi bi-people-fill" style="font-size: 2.5rem; color: #b8860b;"></i>
-          <h5 class="mt-3" style="color:black;">For Everyone</h5>
-          <p style="color:black;">Perfect for students, professionals, writers, and anyone who wants to write better.</p>
+          <i class="bi bi-shield-lock-fill" style="font-size: 2.5rem; color: darkblue;"></i>
+          <h5 class="mt-3" style="color:black;">Secure & Private</h5>
+          <p style="color:black;">
+            Your writing remains yours. We respect your privacy and do not store, sell, or share your content.
+          </p>
         </div>
       </div>
+
       <!-- Point 5 -->
       <div class="col-md-4">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
-          <i class="bi bi-award-fill" style="font-size: 2.5rem; color: #b8860b;"></i>
-          <h5 class="mt-3" style="color:black;">Professional Quality</h5>
-          <p style="color:black;">Our tool is built with advanced grammar rules to help you produce top-quality writing.</p>
+          <i class="bi bi-people-fill" style="font-size: 2.5rem; color: darkblue;"></i>
+          <h5 class="mt-3" style="color:black;">Built for Students & Professionals</h5>
+          <p style="color:black;">
+            Whether you’re a student, job seeker, blogger, or business professional, our writing assistant helps you communicate with clarity and confidence.
+          </p>
         </div>
       </div>
+
       <!-- Point 6 -->
       <div class="col-md-4">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
-          <i class="bi bi-cloud-check-fill" style="font-size: 2.5rem; color: #b8860b;"></i>
-          <h5 class="mt-3" style="color:black;">Works Anywhere</h5>
-          <p style="color:black;">Use it on desktop, tablet, or mobile. Our grammar checker fits into your workflow seamlessly.</p>
+          <i class="bi bi-cloud-check-fill" style="font-size: 2.5rem; color: darkblue;"></i>
+          <h5 class="mt-3" style="color:black;">Works on Any Device</h5>
+          <p style="color:black;">
+            Access your grammar checker and text improver anytime on desktop, tablet, or mobile — seamlessly integrated into your workflow.
+          </p>
         </div>
       </div>
+
     </div>
+
   </div>
 </section>
-
 
 <!-- Who Can Benefit Section -->
 <section class="py-5" style="background-color: #ffffff; color: #000000;">
   <div class="container">
-    <h2 class="text-center mb-4" style="color: black;">Who Can Benefit from Our Grammar Checker?</h2>
-    <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
-      Our Grammar Checker is more than just a correction tool — it’s a writing assistant that empowers you to express your ideas clearly, confidently, and professionally. Whether you are a student, professional, or creator, this tool adapts to your needs.
+    <h2 class="text-center mb-4" style="color: black;">Who Can Benefit from Our Grammar Checker & AI Improver?</h2>
+    <p class="text-center mb-5" style="font-size: 1.1rem; color: black;">
+      Our Grammar Checker & AI Improver is more than just a correction tool — it’s a smart writing assistant that helps you express ideas clearly, confidently, and professionally. Whether you are a student, professional, or content creator, this tool adapts to your needs.
     </p>
 
     <!-- Tabs -->
     <ul class="nav nav-tabs justify-content-center mb-4" id="userTabs" role="tablist" style="border-bottom: 2px solid #b8860b;">
       <li class="nav-item" role="presentation">
         <button class="nav-link active d-flex align-items-center" id="students-tab" data-bs-toggle="tab" data-bs-target="#students" type="button" role="tab" aria-controls="students" aria-selected="true" style="color: black;">
-          <i class="bi bi-mortarboard-fill me-2" style="color:#b8860b;"></i> Students
+          <i class="bi bi-mortarboard-fill me-2" style="color:darkblue;"></i> Students
         </button>
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link d-flex align-items-center" id="professionals-tab" data-bs-toggle="tab" data-bs-target="#professionals" type="button" role="tab" aria-controls="professionals" aria-selected="false" style="color: black;">
-          <i class="bi bi-briefcase-fill me-2" style="color:#b8860b;"></i> Professionals
+          <i class="bi bi-briefcase-fill me-2" style="color:darkblue;"></i> Professionals
         </button>
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link d-flex align-items-center" id="creators-tab" data-bs-toggle="tab" data-bs-target="#creators" type="button" role="tab" aria-controls="creators" aria-selected="false" style="color: black;">
-          <i class="bi bi-pencil-fill me-2" style="color:#b8860b;"></i> Content Creators
+          <i class="bi bi-pencil-fill me-2" style="color:darkblue;"></i> Content Creators
         </button>
       </li>
     </ul>
@@ -1379,10 +2111,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="tab-pane fade show active" id="students" role="tabpanel" aria-labelledby="students-tab">
         <div class="p-4 mb-3 bg-light rounded hover-shadow">
           <p>
-            Students benefit greatly from our Grammar Checker by ensuring their academic writing is polished, credible, and free of distracting mistakes. From essays and term papers to dissertations and research reports, the tool helps refine arguments, improve readability, and boost confidence in submission-ready work.
+            Students benefit from our Grammar Checker & AI Improver by ensuring their academic writing is polished, credible, and free of distracting errors. From essays and term papers to dissertations and research reports, the tool refines arguments, improves readability, and boosts confidence for submission-ready work.
           </p>
           <p>
-            It also acts as a learning companion by highlighting grammar errors, offering style suggestions, and helping students develop stronger writing skills over time — not just fixing mistakes, but teaching better communication.
+            It also serves as a learning companion by highlighting grammar mistakes, suggesting style improvements, and helping students build stronger writing skills over time — not just fixing errors, but teaching better communication.
           </p>
         </div>
       </div>
@@ -1391,10 +2123,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="tab-pane fade" id="professionals" role="tabpanel" aria-labelledby="professionals-tab">
         <div class="p-4 mb-3 bg-light rounded hover-shadow">
           <p>
-            For professionals, first impressions matter. Our Grammar Checker ensures that every email, proposal, report, or presentation is not only error-free but also clear, concise, and persuasive. This boosts credibility in workplace communication and helps establish authority in your field.
+            For professionals, first impressions matter. Our Grammar Checker & AI Improver ensures every email, proposal, report, or presentation is error-free, clear, concise, and persuasive. This enhances credibility and establishes authority in your field.
           </p>
           <p>
-            Whether you are in business, law, medicine, or research, the tool saves time on proofreading, reduces communication risks, and projects a polished professional image to colleagues, clients, and stakeholders.
+            Whether in business, law, medicine, or research, the tool saves time on proofreading, reduces communication risks, and projects a polished professional image to colleagues, clients, and stakeholders.
           </p>
         </div>
       </div>
@@ -1403,22 +2135,23 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="tab-pane fade" id="creators" role="tabpanel" aria-labelledby="creators-tab">
         <div class="p-4 mb-3 bg-light rounded hover-shadow">
           <p>
-            Content creators — bloggers, writers, journalists, marketers, and social media influencers — can use the Grammar Checker to maintain credibility and produce content that resonates with audiences. Clear, mistake-free writing enhances trust, engagement, and the overall impact of your message.
+            Content creators — bloggers, writers, journalists, marketers, and social media influencers — can use the Grammar Checker & AI Improver to maintain credibility and produce content that engages audiences. Clear, mistake-free writing builds trust and enhances the impact of your message.
           </p>
           <p>
-            Beyond grammar corrections, it helps refine tone, improve readability, and optimize style for different platforms — ensuring that your content stands out, attracts more readers, and leaves a lasting impression.
+            Beyond grammar corrections, it refines tone, improves readability, and optimizes style for various platforms — ensuring your content stands out, attracts more readers, and leaves a lasting impression.
           </p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 <!-- Grammar Checker Accuracy & Reliability Section -->
 <section class="py-5" style="background-color: #ffffff; color: #0d1b2a;">
   <div class="container">
     <h2 class="text-center mb-5" style="color: #0d1b2a;">{% trans "AI Accuracy & Reliability" %}</h2>
     <p class="text-center mb-5" style="max-width: 800px; margin: 0 auto;">
-      "EduPrompt’s AI Grammar Checker ensures your writing is polished, professional, and error-free. Detect grammar mistakes, spelling errors, and punctuation issues instantly. Every suggestion is reliable, secure, and designed to help students, professionals, and content creators write with confidence."
+      "EduPrompt’s AI Grammar Checker & Improver ensures your writing is polished, professional, and error-free. Detect grammar mistakes, spelling errors, and punctuation issues instantly. Every suggestion is reliable, secure, and designed to help students, professionals, and content creators write with confidence."
     </p>
 
     <div class="row g-4 text-center">
@@ -1470,7 +2203,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   .display-4 {
     font-size: 4rem;
-    color: darkgoldenrod !important; /* icons black inside darkgold boxes */
+    color: darkblue !important;
   }
 
   h4 {
@@ -1486,12 +2219,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 </style>
+
 <!-- FAQ Section -->
 <section class="py-5" style="background-color: #ffffff;">
   <div class="container">
     <h2 class="text-center mb-4" style="color: black;">Frequently Asked Questions</h2>
-    <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
-      Here are the most common questions our users ask before using the Grammar Checker:
+    <p class="text-center mb-5" style="font-size: 1.1rem; color: black;">
+      Here are the most common questions our users ask before using the Grammar Checker & AI Improver:
     </p>
 
     <div class="row justify-content-center">
@@ -1507,7 +2241,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </h2>
             <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
               <div class="accordion-body" style="color:#555;">
-                Yes! You can use the Grammar Checker for free. Each user gets <strong>1,500 words per check</strong> and up to <strong>3 free trials</strong>. To check more text, upgrade to Pro, which allows up to <strong>5,000 words</strong> per month.
+                Yes! You can use the Grammar Checker & AI Improver for free. Each user gets <strong>1,500 words per check</strong> and up to <strong>3 free trials</strong>. To check more text, upgrade to Pro, which allows up to <strong>5,000 words</strong> per month.
               </div>
             </div>
           </div>
@@ -1535,7 +2269,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </h2>
             <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
               <div class="accordion-body" style="color:#555;">
-                Absolutely! EduPrompt Grammar Checker is fully mobile-friendly and works seamlessly on smartphones, tablets, and desktops.
+                Absolutely! EduPrompt Grammar Checker & AI Improver is fully mobile-friendly and works seamlessly on smartphones, tablets, and desktops.
               </div>
             </div>
           </div>
@@ -1548,7 +2282,7 @@ document.addEventListener("DOMContentLoaded", () => {
               </button>
             </h2>
             <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4" data-bs-parent="#faqAccordion">
-              <div class="accordion-body" style="color:#555;">
+              <div class="accordion-body" style="color:black;">
                 Yes, your privacy is our priority. Text is processed securely in real-time, and we never store or share your documents.
               </div>
             </div>
@@ -1563,7 +2297,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </h2>
             <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5" data-bs-parent="#faqAccordion">
               <div class="accordion-body" style="color:#555;">
-                Yes! For longer files over 5,000 words, we recommend uploading chapter by chapter to ensure accurate grammar checking.
+                Yes! For longer files over 5,000 words, we recommend uploading chapter by chapter to ensure accurate grammar checking and content improvement.
               </div>
             </div>
           </div>
@@ -1576,8 +2310,8 @@ document.addEventListener("DOMContentLoaded", () => {
               </button>
             </h2>
             <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="faq6" data-bs-parent="#faqAccordion">
-              <div class="accordion-body" style="color:#555;">
-                No, using EduPrompt Grammar Checker does not count as plagiarism. It only corrects grammar, spelling, and style without copying content.
+              <div class="accordion-body" style="color:black;">
+                No, using EduPrompt Grammar Checker & AI Improver does not count as plagiarism. It only corrects grammar, spelling, and style without copying content.
               </div>
             </div>
           </div>
@@ -1585,13 +2319,13 @@ document.addEventListener("DOMContentLoaded", () => {
           <!-- FAQ 7: University & Dissertation -->
           <div class="accordion-item mb-3 border-0 shadow-sm" style="border-radius: 12px;">
             <h2 class="accordion-header" id="faq7">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7" style="color:#b8860b; font-weight:600;">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7" style="color:black; font-weight:600;">
                 Will my university accept it? Can I use it for dissertation submissions?
               </button>
             </h2>
             <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="faq7" data-bs-parent="#faqAccordion">
-              <div class="accordion-body" style="color:#555;">
-                Yes! EduPrompt Grammar Checker is designed to improve your writing quality. Universities accept grammatically correct and polished submissions. For dissertations, we recommend reviewing suggestions manually to ensure academic standards are met.
+              <div class="accordion-body" style="color:black;">
+                Yes! EduPrompt Grammar Checker & AI Improver is designed to enhance writing quality. Universities accept grammatically correct and polished submissions. For dissertations, we recommend reviewing suggestions manually to ensure academic standards are met.
               </div>
             </div>
           </div>
@@ -1601,7 +2335,6 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   </div>
 </section>
-
 <!-- Testimonial Section -->
 <section class="testimonial-section container">
   <div class="row align-items-center">
@@ -1612,10 +2345,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="testimonial-card d-flex align-items-start mb-4 shadow-sm p-3" style="border-radius:12px;">
         <div class="me-3 text-center">
           <div class="testimonial-number bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">01</div>
-          <i class="bi bi-pencil-square mt-2" style="font-size:1.5rem; color:#b8860b;"></i>
+          <i class="bi bi-pencil-square mt-2" style="font-size:1.5rem; color:darkblue;"></i>
         </div>
-        <p class="mb-0" style="color:#444;">
-          "The Grammar Checker has made my essays look polished and professional. It highlights mistakes I usually overlook and makes corrections simple."
+        <p class="mb-0" style="color:black;">
+          "The Grammar Checker & AI Improver has made my essays look polished and professional. It highlights mistakes I usually overlook and makes corrections simple and accurate."
         </p>
       </div>
 
@@ -1623,10 +2356,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="testimonial-card d-flex align-items-start mb-4 shadow-sm p-3" style="border-radius:12px;">
         <div class="me-3 text-center">
           <div class="testimonial-number bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">02</div>
-          <i class="bi bi-mortarboard-fill mt-2" style="font-size:1.5rem; color:#b8860b;"></i>
+          <i class="bi bi-mortarboard-fill mt-2" style="font-size:1.5rem; color:darkblue;"></i>
         </div>
-        <p class="mb-0" style="color:#444;">
-          "As a student, I use it for assignments and reports. It’s accurate, fast, and helps me avoid grammar mistakes that cost me marks."
+        <p class="mb-0" style="color:black;">
+          "As a student, I rely on it for assignments and reports. It’s fast, accurate, and helps me avoid grammar errors that could affect my grades."
         </p>
       </div>
 
@@ -1634,10 +2367,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="testimonial-card d-flex align-items-start mb-4 shadow-sm p-3" style="border-radius:12px;">
         <div class="me-3 text-center">
           <div class="testimonial-number bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">03</div>
-          <i class="bi bi-megaphone-fill mt-2" style="font-size:1.5rem; color:#b8860b;"></i>
+          <i class="bi bi-megaphone-fill mt-2" style="font-size:1.5rem; color:darkblue;"></i>
         </div>
-        <p class="mb-0" style="color:#444;">
-          "For my blog posts, this tool is a game-changer. It makes my writing clear and professional, which keeps readers engaged."
+        <p class="mb-0" style="color:black;">
+          "For my blog posts, this tool is a game-changer. It makes my writing clear, professional, and engaging, keeping my readers interested and returning for more."
         </p>
       </div>
 
@@ -1645,10 +2378,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="testimonial-card d-flex align-items-start mb-4 shadow-sm p-3" style="border-radius:12px;">
         <div class="me-3 text-center">
           <div class="testimonial-number bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">04</div>
-          <i class="bi bi-envelope-fill mt-2" style="font-size:1.5rem; color:#b8860b;"></i>
+          <i class="bi bi-envelope-fill mt-2" style="font-size:1.5rem; color:darkblue;"></i>
         </div>
-        <p class="mb-0" style="color:#444;">
-          "I use it for professional emails and proposals. The suggestions are spot on and make my communication more polished and confident."
+        <p class="mb-0" style="color:black">
+          "I use it for professional emails and proposals. The suggestions are precise and make my communication polished, confident, and effective."
         </p>
       </div>
     </div>
@@ -1658,7 +2391,6 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   </div>
 </section>
-
 
 <!-- Main Footer -->
 <footer class="footer pt-5" style="background-color: darkblue;">
@@ -1725,7 +2457,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </footer>
 
 <!-- Bottom Footer -->
-<footer style="background-color: #001a4d; color: #ffffff; padding: 15px 0; text-align: center; border-top: 1px solid darkblue">
+<footer style="background-color: darkblue; color: #ffffff; padding: 15px 0; text-align: center; border-top: 1px solid darkblue">
   <p style="margin: 0; font-size: 0.9rem;">
     © {% now "Y" %} <strong>EduPrompt</strong>. All Rights Reserved.
   </p>
