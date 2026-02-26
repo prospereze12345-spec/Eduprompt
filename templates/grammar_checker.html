@@ -1266,8 +1266,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     </div>
   </div>
-</div>
-<!-- ================= IMPROVE TEXT MODAL ================= -->
+</div><!-- ================= IMPROVE TEXT MODAL ================= -->
 <div class="modal fade" id="improveModal" tabindex="-1">
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content border-0 shadow-lg" style="border-radius:20px;">
@@ -1280,18 +1279,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <!-- Body -->
       <div class="modal-body px-4 pb-4">
-
         <div class="row g-4">
 
           <!-- LEFT BOX -->
           <div class="col-md-6">
             <div class="card border-0 shadow-sm p-3 h-100" style="border-radius:16px;">
               
+             
+
               <label class="fw-semibold mb-2">Enter Your Text</label>
               <textarea id="inputText"
                         class="form-control mb-3"
-                        rows="12"
-                        placeholder="Paste your text here..."
+                        rows="10"
+                        placeholder="Paste your text here or upload a file..."
                         style="border-radius:12px;"
                         required></textarea>
 
@@ -1305,7 +1305,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <option value="email">📧 Professional Email</option>
               </select>
 
-              <!-- Dynamic options based on goal selection -->
+              <!-- CV Options -->
               <div id="cvOptions" style="display: none;">
                 <label class="fw-semibold mb-2">Select Industry</label>
                 <select id="industrySelect"
@@ -1323,6 +1323,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </select>
               </div>
 
+              <!-- Email Options -->
               <div id="emailOptions" style="display: none;">
                 <label class="fw-semibold mb-2">Email Type</label>
                 <select id="emailTypeSelect"
@@ -1332,7 +1333,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   <option value="job_application">Job Application</option>
                   <option value="follow_up">Follow Up</option>
                   <option value="meeting_request">Meeting Request</option>
-                  <option value="introduction">Introduction/Networking</option>
+                  <option value="introduction">Introduction</option>
                   <option value="thank_you">Thank You</option>
                   <option value="proposal">Proposal</option>
                   <option value="problem_resolution">Problem Resolution</option>
@@ -1357,15 +1358,74 @@ document.addEventListener("DOMContentLoaded", () => {
                       style="background-color:#0d1b2a; color:white; border-radius:12px;">
                 ✨ Improve Text
               </button>
+ <label class="fw-semibold mb-2">Upload File (TXT or PDF)</label>
+<input type="file"
+       id="fileInput"
+       class="form-control mb-3"
+       accept=".txt,.pdf"
+       onchange="handleFileUpload(event)"
+       style="border-radius:12px;">
 
-              <!-- Sample button for testing -->
-              <button type="button"
-                      onclick="loadSample()"
-                      class="btn w-100 fw-semibold mt-2"
-                      style="background-color:#6c757d; color:white; border-radius:12px;">
-                📝 Load Sample
-              </button>
 
+<!-- PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.314/pdf.min.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.314/pdf.worker.min.js';
+
+async function handleFileUpload(event) {
+    const file = event.target.files[0];
+    const textarea = document.getElementById("inputText");
+    if (!file) return;
+
+    const fileName = file.name.toLowerCase();
+
+    // ===== TXT FILE =====
+    if (fileName.endsWith(".txt")) {
+        try {
+            const text = await file.text();
+            textarea.value = text;
+        } catch (err) {
+            console.error("TXT file read error:", err);
+            alert("Failed to read TXT file.");
+        }
+    } 
+    // ===== PDF FILE =====
+    else if (fileName.endsWith(".pdf")) {
+        try {
+            const arrayBuffer = await file.arrayBuffer();
+            const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
+            const pdf = await loadingTask.promise;
+
+            let fullText = "";
+
+            // Process each page
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const content = await page.getTextContent();
+                const pageText = content.items.map(item => item.str).join(" ");
+                fullText += pageText + "\n\n";
+            }
+
+            if (!fullText.trim()) {
+                alert("PDF has no readable text. It might be scanned or image-based.");
+            }
+
+            textarea.value = fullText.trim();
+        } catch (err) {
+            console.error("PDF parsing error:", err);
+            alert("Failed to read PDF. Make sure it is not password-protected.");
+        }
+    } 
+    else {
+        alert("Unsupported file type. Please upload a TXT or PDF file.");
+    }
+}
+
+// Optional: clear file input after processing
+function clearFileInput() {
+    document.getElementById("fileInput").value = "";
+}
+</script>
             </div>
           </div>
 
@@ -1373,20 +1433,19 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="col-md-6">
             <div class="card border-0 shadow-sm p-3 h-100" style="border-radius:16px;">
               
-              <label class="fw-semibold mb-2">Improved Result</label>
+              <label class="fw-semibold mb-2">Result</label>
 
               <textarea id="outputText"
                         class="form-control mb-3"
                         rows="14"
-                        placeholder="Improved text will appear here..."
+                        placeholder="Processed text will appear here..."
                         style="border-radius:12px; overflow-y:auto;"
                         readonly></textarea>
 
-              <div class="d-flex gap-2 mb-2">
+              <div class="d-flex gap-2">
                 
                 <button type="button"
                         onclick="copyText()"
-                        id="copyBtn"
                         class="btn flex-fill"
                         style="background-color:#0d1b2a; color:white; border-radius:12px;">
                   📋 Copy
@@ -1394,7 +1453,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <button type="button"
                         onclick="downloadText()"
-                        id="downloadBtn"
                         class="btn btn-outline-dark flex-fill"
                         style="border-radius:12px;">
                   📥 Download
@@ -1409,454 +1467,152 @@ document.addEventListener("DOMContentLoaded", () => {
 
               </div>
 
-              <div class="d-flex gap-2">
-                
-                <button type="button"
-                        onclick="swapText()"
-                        class="btn btn-outline-secondary flex-fill"
-                        style="border-radius:12px;">
-                  🔄 Swap
-                </button>
-
-                <button type="button"
-                        onclick="compareVersions()"
-                        class="btn btn-outline-info flex-fill"
-                        style="border-radius:12px;">
-                  👁️ Compare
-                </button>
-
-              </div>
-
-              <!-- Metrics Panel (hidden by default) -->
-              <div id="metricsPanel" style="display: none; margin-top: 20px;">
-                <hr>
-                <h6 class="fw-bold">📊 Improvement Metrics</h6>
-                <div id="metricsGrid" class="row g-2 mb-3"></div>
-                
-                <div id="changesSection" style="display: none;">
-                  <h6 class="fw-bold">📝 Changes Made</h6>
-                  <div id="changesList" class="mb-3" style="max-height: 150px; overflow-y: auto; background: #f8f9fa; padding: 10px; border-radius: 8px;"></div>
-                </div>
-                
-                <div id="suggestionsSection" style="display: none;">
-                  <h6 class="fw-bold">💡 Suggestions</h6>
-                  <div id="suggestionsList" style="max-height: 150px; overflow-y: auto; background: #f8f9fa; padding: 10px; border-radius: 8px;"></div>
-                </div>
-                
-                <div id="accomplishmentNotes" style="display: none; background: #e7f3ff; padding: 10px; border-radius: 8px; margin-top: 10px;"></div>
-                <div id="missingElements" style="display: none; background: #fff3cd; padding: 10px; border-radius: 8px; margin-top: 10px;"></div>
-              </div>
-
             </div>
           </div>
 
         </div>
-
       </div>
     </div>
   </div>
-</div>
+</div><script>
+// ================= CONFIG =================
+const API_URL = "/improve-text/";  // Django endpoint
 
-<!-- Comparison Modal -->
-<div class="modal fade" id="compareModal" tabindex="-1">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Original vs Improved</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-6">
-            <h6>Original Text:</h6>
-            <div id="originalCompare" style="background: #f8f9fa; padding: 15px; border-radius: 8px; max-height: 300px; overflow-y: auto;"></div>
-          </div>
-          <div class="col-md-6">
-            <h6>Improved Text:</h6>
-            <div id="improvedCompare" style="background: #f8f9fa; padding: 15px; border-radius: 8px; max-height: 300px; overflow-y: auto;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-// ================= STATE MANAGEMENT =================
-let currentResult = null;
-let originalText = '';
-let selectedGoal = 'academic';
-let selectedIndustry = 'general';
-let selectedEmailType = 'general';
-let selectedEmailTone = 'semi_formal';
-
-// API Configuration - Update this with your backend URL
-const API_URL = 'http://localhost:5000/improve-text'; // Change this to your backend URL
+// ================= STATE =================
+let selectedGoal = "academic";
 
 // ================= TOGGLE GOAL OPTIONS =================
 function toggleGoalOptions() {
-    const goalSelect = document.getElementById('goalSelect');
-    const cvOptions = document.getElementById('cvOptions');
-    const emailOptions = document.getElementById('emailOptions');
-    
-    selectedGoal = goalSelect.value;
-    
-    if (selectedGoal === 'cv') {
-        cvOptions.style.display = 'block';
-        emailOptions.style.display = 'none';
-    } else if (selectedGoal === 'email') {
-        cvOptions.style.display = 'none';
-        emailOptions.style.display = 'block';
-    } else {
-        cvOptions.style.display = 'none';
-        emailOptions.style.display = 'none';
-    }
-    
-    // Hide metrics panel when changing goal
-    document.getElementById('metricsPanel').style.display = 'none';
+    const goal = document.getElementById("goalSelect").value;
+    selectedGoal = goal;
+
+    const cvOptions = document.getElementById("cvOptions");
+    const emailOptions = document.getElementById("emailOptions");
+
+    cvOptions.style.display = goal === "cv" ? "block" : "none";
+    emailOptions.style.display = goal === "email" ? "block" : "none";
 }
 
-// ================= MAIN IMPROVE FUNCTION =================
+// ================= MAIN FUNCTION =================
 async function improveText() {
-    const inputText = document.getElementById('inputText');
-    const outputText = document.getElementById('outputText');
-    const improveBtn = document.getElementById('improveBtn');
-    const metricsPanel = document.getElementById('metricsPanel');
-    
-    if (!inputText.value.trim()) {
-        alert('Please enter some text to improve');
+    const inputText = document.getElementById("inputText").value.trim();
+    const outputText = document.getElementById("outputText");
+    const improveBtn = document.getElementById("improveBtn");
+
+    if (!inputText) {
+        alert("Please enter text first.");
         return;
     }
-    
-    // Show loading state
-    const originalBtnText = improveBtn.innerHTML;
-    improveBtn.innerHTML = '⏳ Processing...';
+
+    // Loading state
+    const originalBtn = improveBtn.innerHTML;
+    improveBtn.innerHTML = "⏳ Processing...";
     improveBtn.disabled = true;
-    outputText.value = 'Improving your text...';
-    
-    originalText = inputText.value;
-    selectedGoal = document.getElementById('goalSelect').value;
-    
-    // Get additional options
-    if (selectedGoal === 'cv') {
-        selectedIndustry = document.getElementById('industrySelect').value;
-    } else if (selectedGoal === 'email') {
-        selectedEmailType = document.getElementById('emailTypeSelect').value;
-        selectedEmailTone = document.getElementById('emailToneSelect').value;
+    outputText.value = "Processing...";
+
+    const goal = document.getElementById("goalSelect").value;
+
+    // Build request body
+    let requestBody = { text: inputText, goal: goal };
+
+    if (goal === "cv") {
+        requestBody.industry = document.getElementById("industrySelect").value;
     }
-    
+    if (goal === "email") {
+        requestBody.email_type = document.getElementById("emailTypeSelect").value;
+        requestBody.email_tone = document.getElementById("emailToneSelect").value;
+    }
+
     try {
-        // Prepare request body
-        const requestBody = {
-            text: originalText,
-            tone: selectedGoal
-        };
-        
-        // Add CV-specific params
-        if (selectedGoal === 'cv') {
-            requestBody.industry = selectedIndustry;
-        }
-        
-        // Add Email-specific params
-        if (selectedGoal === 'email') {
-            requestBody.email_type = selectedEmailType;
-            requestBody.email_tone = selectedEmailTone;
-        }
-        
-        console.log('Sending request:', requestBody); // For debugging
-        
-        // Call your backend API
         const response = await fetch(API_URL, {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(requestBody)
         });
-        
+
+        const data = await response.json();
+
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(data.error || "Server error");
         }
-        
-        const result = await response.json();
-        console.log('Received response:', result); // For debugging
-        
-        // Handle different response structures
-        currentResult = result.data || result;
-        
-        // Display improved text
-        if (currentResult.improved) {
-            outputText.value = currentResult.improved;
-        } else if (currentResult.text) {
-            outputText.value = currentResult.text;
+
+        // ================= SHOW ONLY IMPROVED TEXT =================
+        // If backend returns object, pick .improved field
+        if (data.result && typeof data.result === "object" && data.result.improved) {
+            outputText.value = data.result.improved;
         } else {
-            outputText.value = 'Unexpected response format';
+            // fallback if backend returns just a string
+            outputText.value = data.result || "";
         }
-        
-        // Display metrics and changes
-        displayMetrics(currentResult);
-        displayChanges(currentResult.changes || []);
-        displaySuggestions(currentResult.suggestions || []);
-        
-        // Display CV-specific accomplishment notes
-        if (selectedGoal === 'cv' && currentResult.accomplishment_notes) {
-            displayAccomplishmentNotes(currentResult.accomplishment_notes);
-        }
-        
-        // Display Email-specific missing elements
-        if (selectedGoal === 'email' && currentResult.missing_elements) {
-            displayMissingElements(currentResult.missing_elements);
-        }
-        
-        // Show metrics panel
-        metricsPanel.style.display = 'block';
-        
+
     } catch (error) {
-        console.error('Error:', error);
-        outputText.value = 'Error improving text. Please check if backend is running.';
+        console.error("Error:", error);
+        outputText.value = "⚠ Error: " + error.message;
     } finally {
-        // Restore button state
-        improveBtn.innerHTML = originalBtnText;
+        improveBtn.innerHTML = originalBtn;
         improveBtn.disabled = false;
     }
 }
 
-// ================= DISPLAY FUNCTIONS =================
-function displayMetrics(result) {
-    const metricsGrid = document.getElementById('metricsGrid');
-    const changesSection = document.getElementById('changesSection');
-    const suggestionsSection = document.getElementById('suggestionsSection');
-    
-    if (!metricsGrid) return;
-    
-    const metrics = result.metrics || {};
-    let metricCards = [];
-    
-    if (selectedGoal === 'cv') {
-        metricCards = [
-            { label: 'Bullet Points', value: metrics.bullet_points || 0 },
-            { label: 'Action Verbs', value: metrics.action_verbs_used || 0 },
-            { label: 'Weak Phrases Left', value: metrics.weak_phrases_remaining || 0 },
-            { label: 'Quantifiable', value: metrics.quantifiable_achievements || 0 }
-        ];
-    } else if (selectedGoal === 'email') {
-        metricCards = [
-            { label: 'Word Count', value: metrics.word_count || 0 },
-            { label: 'Weak Phrases Removed', value: metrics.weak_phrases_removed || 0 },
-            { label: 'Has Greeting', value: metrics.has_greeting ? '✅' : '❌' },
-            { label: 'Has Closing', value: metrics.has_closing ? '✅' : '❌' }
-        ];
-    } else {
-        metricCards = [
-            { label: 'Academic Score', value: (metrics.academic_score || 0) + '%' },
-            { label: 'Words Added', value: metrics.word_count_change || 0 },
-            { label: 'Weak Phrases Fixed', value: metrics.weak_phrases_reduced || 0 },
-            { label: 'Readability', value: metrics.readability_level || 'Standard' }
-        ];
-    }
-    
-    metricsGrid.innerHTML = metricCards.map(card => `
-        <div class="col-6 col-md-3">
-            <div class="metric-card" style="background: #f8f9fa; padding: 10px; border-radius: 8px; text-align: center;">
-                <div style="font-size: 20px; font-weight: bold; color: #0d1b2a;">${card.value}</div>
-                <div style="font-size: 12px; color: #6c757d;">${card.label}</div>
-            </div>
-        </div>
-    `).join('');
-    
-    // Show sections if there are changes/suggestions
-    if (result.changes && result.changes.length > 0) {
-        changesSection.style.display = 'block';
-    } else {
-        changesSection.style.display = 'none';
-    }
-    
-    if (result.suggestions && result.suggestions.length > 0) {
-        suggestionsSection.style.display = 'block';
-    } else {
-        suggestionsSection.style.display = 'none';
-    }
-}
-
-function displayChanges(changes) {
-    const changesList = document.getElementById('changesList');
-    if (!changesList) return;
-    
-    if (!changes || changes.length === 0) {
-        changesList.innerHTML = '<div style="color: #6c757d;">No changes needed</div>';
-        return;
-    }
-    
-    changesList.innerHTML = changes.slice(0, 10).map(change => `
-        <div style="padding: 5px; border-bottom: 1px solid #dee2e6; font-size: 13px;">✓ ${change}</div>
-    `).join('');
-    
-    if (changes.length > 10) {
-        changesList.innerHTML += `<div style="padding: 5px; color: #6c757d; font-size: 12px;">... and ${changes.length - 10} more changes</div>`;
-    }
-}
-
-function displaySuggestions(suggestions) {
-    const suggestionsList = document.getElementById('suggestionsList');
-    if (!suggestionsList) return;
-    
-    if (!suggestions || suggestions.length === 0) {
-        suggestionsList.innerHTML = '<div style="color: #6c757d;">No suggestions</div>';
-        return;
-    }
-    
-    suggestionsList.innerHTML = suggestions.map(suggestion => `
-        <div style="padding: 8px; margin-bottom: 5px; background: #e7f3ff; border-radius: 6px; font-size: 13px;">💡 ${suggestion}</div>
-    `).join('');
-}
-
-function displayAccomplishmentNotes(notes) {
-    const accomplishmentsDiv = document.getElementById('accomplishmentNotes');
-    if (!accomplishmentsDiv) return;
-    
-    if (!notes || notes.length === 0) {
-        accomplishmentsDiv.style.display = 'none';
-        return;
-    }
-    
-    accomplishmentsDiv.style.display = 'block';
-    accomplishmentsDiv.innerHTML = `
-        <strong>📋 Turn These Into Accomplishments:</strong>
-        ${notes.map(note => `<div style="margin-top: 5px; font-size: 13px;">📌 ${note}</div>`).join('')}
-    `;
-}
-
-function displayMissingElements(elements) {
-    const missingDiv = document.getElementById('missingElements');
-    if (!missingDiv) return;
-    
-    if (!elements || elements.length === 0) {
-        missingDiv.style.display = 'none';
-        return;
-    }
-    
-    missingDiv.style.display = 'block';
-    missingDiv.innerHTML = `
-        <strong>⚠️ Missing Elements:</strong>
-        ${elements.map(element => `<div style="margin-top: 5px; font-size: 13px;">📧 ${element}</div>`).join('')}
-    `;
-}
-
-// ================= YOUR EXISTING FUNCTIONS (PRESERVED) =================
-function copyText() {
+// ================= COPY FUNCTION =================
+function copyText(btn) {
     const textArea = document.getElementById("outputText");
-    textArea.select();
-    document.execCommand("copy");
-    
-    // Show feedback
-    const copyBtn = document.getElementById("copyBtn");
-    const originalText = copyBtn.innerHTML;
-    copyBtn.innerHTML = "✅ Copied!";
-    setTimeout(() => {
-        copyBtn.innerHTML = originalText;
-    }, 2000);
+    if (!textArea.value.trim()) return;
+    navigator.clipboard.writeText(textArea.value);
+
+    const original = btn.innerHTML;
+    btn.innerHTML = "✅ Copied!";
+    setTimeout(() => btn.innerHTML = original, 2000);
 }
 
+// ================= DOWNLOAD FUNCTION =================
 function downloadText() {
-    const text = document.getElementById("outputText").value;
-    if (!text || text === 'Improved text will appear here...' || text === 'Improving your text...') {
-        alert("No text to download");
+    const text = document.getElementById("outputText").value.trim();
+    if (!text) {
+        alert("No text to download.");
         return;
     }
-    
+
+    let filename = "processed-text";
+    switch (selectedGoal) {
+        case "cv": filename = "improved-cv"; break;
+        case "email": filename = "professional-email"; break;
+        case "academic": filename = "academic-version"; break;
+        case "summarize": filename = "summary"; break;
+    }
+
     const blob = new Blob([text], { type: "text/plain" });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    
-    // Set filename based on goal
-    let filename = "improved-text";
-    if (selectedGoal === 'cv') {
-        filename = "improved-cv";
-    } else if (selectedGoal === 'email') {
-        filename = "improved-email";
-    }
-    
     link.download = filename + ".txt";
     link.click();
-    URL.revokeObjectURL(link.href);
 }
 
-// ================= NEW HELPER FUNCTIONS =================
+// ================= CLEAR =================
 function clearAll() {
-    document.getElementById('inputText').value = '';
-    document.getElementById('outputText').value = '';
-    document.getElementById('metricsPanel').style.display = 'none';
-    document.getElementById('accomplishmentNotes').style.display = 'none';
-    document.getElementById('missingElements').style.display = 'none';
+    document.getElementById("inputText").value = "";
+    document.getElementById("outputText").value = "";
 }
 
-function swapText() {
-    const inputText = document.getElementById('inputText');
-    const outputText = document.getElementById('outputText');
-    
-    const temp = inputText.value;
-    inputText.value = outputText.value;
-    outputText.value = temp;
-}
-
-function compareVersions() {
-    const inputText = document.getElementById('inputText').value;
-    const outputText = document.getElementById('outputText').value;
-    
-    if (!inputText || !outputText || outputText === 'Improved text will appear here...' || outputText === 'Improving your text...') {
-        alert('No text to compare');
-        return;
-    }
-    
-    document.getElementById('originalCompare').innerHTML = inputText.replace(/\n/g, '<br>');
-    document.getElementById('improvedCompare').innerHTML = outputText.replace(/\n/g, '<br>');
-    
-    // Show modal using Bootstrap
-    const compareModal = new bootstrap.Modal(document.getElementById('compareModal'));
-    compareModal.show();
-}
-
-function loadSample() {
-    const goalSelect = document.getElementById('goalSelect');
-    const inputText = document.getElementById('inputText');
-    
-    const samples = {
-        'academic': "I think this research is good and we got lots of interesting data. The results show that our method works better than others. This is important because it could help many people.",
-        
-        'cv': "Worked as a manager at ABC Company from 2020-2023.\n\nResponsibilities:\n- Was responsible for managing a team\n- Helped with various projects\n- Did a good job with customer service\n- Worked on improving processes\n\nSkills:\nGood communication, team player, hard worker",
-        
-        'email': "hey, just wanted to check in about the job application i sent last week. let me know if you need anything else from me. thanks!"
-    };
-    
-    inputText.value = samples[goalSelect.value];
-    
-    // Auto-resize textarea (optional)
-    inputText.style.height = 'auto';
-    inputText.style.height = (inputText.scrollHeight) + 'px';
-}
-
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-    // Set initial state
+// ================= INIT =================
+document.addEventListener("DOMContentLoaded", () => {
     toggleGoalOptions();
-    
-    // Add enter key shortcut
-    document.getElementById('inputText').addEventListener('keydown', function(e) {
-        if (e.ctrlKey && e.key === 'Enter') {
+
+    document.getElementById("inputText").addEventListener("keydown", function(e){
+        if (e.ctrlKey && e.key === "Enter") {
             e.preventDefault();
             improveText();
         }
     });
 });
 
-// Export functions to global scope (ensures buttons work)
+// ================= GLOBAL =================
 window.improveText = improveText;
 window.copyText = copyText;
 window.downloadText = downloadText;
 window.clearAll = clearAll;
-window.swapText = swapText;
-window.compareVersions = compareVersions;
-window.loadSample = loadSample;
 window.toggleGoalOptions = toggleGoalOptions;
 </script>
 

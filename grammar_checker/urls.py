@@ -1,9 +1,12 @@
 from django.urls import path
 from . import views
+from .views import improve_text
+
 
 urlpatterns = [
     # Grammar checker page
     path('grammar-upload/', views.grammar_upload_view, name='grammar-upload'),
+    path("improve-text/", improve_text, name="improve_text"),
 
  # # Grammar subscription routes
 path("grammar/subscription/status/", views.grammar_status, name="grammar_status"),

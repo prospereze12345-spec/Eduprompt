@@ -403,3 +403,119 @@ def grammar_upload_view(request):
         })
 
     return JsonResponse({"success": False, "message": "No file uploaded"})
+import json
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+from .improve import (
+    AcademicToneImprover,
+    CVImprover,
+    ProfessionalEmailImprover,
+    TextSummarizer
+)
+
+
+@csrf_exempt
+def improve_text(request):
+    if request.method != "POST":
+        return JsonResponse({"error": "Only POST allowed"}, status=405)
+
+    try:
+        data = json.loads(request.body)
+        text = data.get("text", "").strip()
+        goal = data.get("goal", "academic").lower()
+
+        if not text:
+            return JsonResponse({"error": "No text provided"}, status=400)
+
+        # ================= ROUTING BASED ON GOAL =================
+        result_obj = None
+
+        if goal == "academic":
+            improver = AcademicToneImprover()
+            result_obj = improver.improve(text)
+
+        elif goal == "cv":
+            industry = data.get("industry", "general")
+            improver = CVImprover()
+            result_obj = improver.improve(text, industry)
+
+        elif goal == "email":
+            email_type = data.get("email_type", "general")
+            email_tone = data.get("email_tone", "semi_formal")
+            improver = ProfessionalEmailImprover()
+            result_obj = improver.improve(text, email_type, email_tone)
+
+        # Accept both spellings: "summarize" (US) or "summarise" (UK)
+        elif goal in ["summarize", "summarise"]:
+            improver = TextSummarizer()
+            result_obj = improver.improve(text)
+
+        else:
+            return JsonResponse({"error": f"Invalid goal: {goal}"}, status=400)
+
+        # ================= PICK THE IMPROVED TEXT =================
+        if isinstance(result_obj, dict) and "improved" in result_obj:
+            result_text = result_obj["improved"]
+        elif isinstance(result_obj, str):
+            result_text = result_obj
+        else:
+            result_text = str(result_obj)
+
+        return JsonResponse({
+            "success": True,
+            "result": result_text  # just the improved text
+        })
+
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
+    
+
+
+
+import io
+import json
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def extract_file_text(request):
+    if request.method != "POST":
+        return JsonResponse({"error": "Only POST allowed"}, status=405)
+
+    uploaded_file = request.FILES.get("file")
+    if not uploaded_file:
+        return JsonResponse({"error": "No file uploaded"}, status=400)
+
+    file_name = uploaded_file.name.lower()
+
+    try:
+        if file_name.endswith(".txt"):
+            # Read text file
+            text = uploaded_file.read().decode("utf-8", errors="ignore")
+
+        elif file_name.endswith(".pdf"):
+            # Wrap uploaded_file in BytesIO to make PdfReader happy
+            pdf_bytes = uploaded_file.read()
+            pdf_file = io.BytesIO(pdf_bytes)
+
+            reader = PdfReader(pdf_file)
+            text = ""
+            for page in reader.pages:
+                page_text = page.extract_text()
+                if page_text:
+                    text += page_text + "\n"
+
+            if not text.strip():
+                return JsonResponse({
+                    "error": "PDF has no readable text. Maybe it's scanned or image-based."
+                }, status=400)
+        else:
+            return JsonResponse({"error": "Unsupported file type"}, status=400)
+
+        return JsonResponse({"success": True, "text": text})
+
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)

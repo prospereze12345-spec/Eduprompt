@@ -4,8 +4,9 @@ Transforms casual/conversational text into academic/professional writing
 """
 
 import re
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Tuple, Optional, Any
 import json
+from collections import Counter
 
 class AcademicToneImprover:
     """
@@ -21,6 +22,297 @@ class AcademicToneImprover:
         self.hedging_language = self._load_hedging_language()
         self.strong_verbs = self._load_strong_verbs()
         
+        # NEW: Context-aware patterns
+        self.context_patterns = self._load_context_patterns()
+        
+        # NEW: Part-of-speech patterns (simplified)
+        self.pos_patterns = self._load_pos_patterns()
+    
+    def improve(self, text: str) -> Dict:
+        """
+        Main method to improve text to academic tone
+        """
+        # Track changes for reporting
+        changes = []
+        original = text
+        
+        # Apply grammar fixes first
+        text, grammar_changes = self._fix_grammar(text)
+        changes.extend(grammar_changes)
+        
+        # NEW: Apply context-aware replacements (more intelligent than blind word swap)
+        text, context_changes = self._apply_context_replacements(text)
+        changes.extend(context_changes)
+        
+        # Replace weak phrases (enhanced with context awareness)
+        text, phrase_changes = self._replace_weak_phrases(text)
+        changes.extend(phrase_changes)
+        
+        # Apply vocabulary upgrades (enhanced with context awareness)
+        text, vocab_changes = self._upgrade_vocabulary(text)
+        changes.extend(vocab_changes)
+        
+        # Improve sentence structure
+        text, structure_changes = self._improve_structure(text)
+        changes.extend(structure_changes)
+        
+        # Add appropriate transitions
+        text, transition_changes = self._add_transitions(text)
+        changes.extend(transition_changes)
+        
+        # Apply hedging where appropriate
+        text, hedging_changes = self._apply_hedging(text)
+        changes.extend(hedging_changes)
+        
+        # NEW: Apply section formatting if detected
+        text = self._format_sections(text)
+        
+        # Final formatting
+        text = self._final_formatting(text)
+        
+        # Generate metrics
+        metrics = self._calculate_metrics(original, text)
+        
+        return {
+            'original': original,
+            'improved': text,
+            'changes': changes,
+            'metrics': metrics,
+            'suggestions': self._generate_suggestions(metrics)
+        }
+    
+    # ================= NEW METHODS =================
+    
+    def _load_context_patterns(self) -> Dict[str, Dict]:
+        """
+        Context-aware replacement patterns
+        Only replace when grammatical context is appropriate
+        """
+        return {
+            # Verb + noun patterns
+            r'\b(do|did|doing)\s+(some|a lot of)\s+work\b': {
+                'pattern': r'\b(do|did|doing)\s+(some|a lot of)\s+work\b',
+                'replacement': lambda m: f"{self._get_tense(m.group(1))} significant work",
+                'context': 'work_verb_noun'
+            },
+            r'\b(have|has|had)\s+(done|made)\s+(some|a lot of)\s+(\w+)\b': {
+                'pattern': r'\b(have|has|had)\s+(done|made)\s+(some|a lot of)\s+(\w+)\b',
+                'replacement': lambda m: f"{m.group(1)} completed multiple {m.group(4)} projects",
+                'context': 'completed_projects'
+            },
+            
+            # I am a [role] who has done [work] patterns
+            r'\bI am a (?:an )?(\w+)(?:,)? who has done (?:some |a lot of )?work in (\w+)\b': {
+                'pattern': r'\bI am a (?:an )?(\w+)(?:,)? who has done (?:some |a lot of )?work in (\w+)\b',
+                'replacement': lambda m: f"Results-driven {m.group(1)} with extensive experience in {m.group(2)}",
+                'context': 'role_experience'
+            },
+            r'\bI am an? (\w+) with experience in (\w+)\b': {
+                'pattern': r'\bI am an? (\w+) with experience in (\w+)\b',
+                'replacement': lambda m: f"Accomplished {m.group(1)} specializing in {m.group(2)}",
+                'context': 'role_specialization'
+            },
+            
+            # I like doing [activity] patterns
+            r'\bI (?:really )?like (?:doing|to do) (\w+)\b': {
+                'pattern': r'\bI (?:really )?like (?:doing|to do) (\w+)\b',
+                'replacement': lambda m: f"Skilled at {m.group(1)}",
+                'context': 'skill_statement'
+            },
+            r'\bI enjoy (?:working on|doing) (\w+)\b': {
+                'pattern': r'\bI enjoy (?:working on|doing) (\w+)\b',
+                'replacement': lambda m: f"Proficient in {m.group(1)}",
+                'context': 'proficiency'
+            },
+            
+            # I have done X for Y years patterns
+            r'\bI have (?:been )?(?:working|doing) (\w+) for (\d+) years?\b': {
+                'pattern': r'\bI have (?:been )?(?:working|doing) (\w+) for (\d+) years?\b',
+                'replacement': lambda m: f"Demonstrated {m.group(2)}+ years of experience in {m.group(1)}",
+                'context': 'years_experience'
+            },
+            
+            # This shows that patterns
+            r'\bThis shows? that\b': {
+                'pattern': r'\bThis shows? that\b',
+                'replacement': 'This demonstrates that',
+                'context': 'demonstration'
+            },
+            r'\bThis means? that\b': {
+                'pattern': r'\bThis means? that\b',
+                'replacement': 'This indicates that',
+                'context': 'indication'
+            },
+            
+            # A lot of [noun] patterns
+            r'\b(a lot of|lots of)\s+(\w+)\b': {
+                'pattern': r'\b(a lot of|lots of)\s+(\w+)\b',
+                'replacement': lambda m: f"numerous {m.group(2)}s" if self._is_countable(m.group(2)) else f"a substantial amount of {m.group(2)}",
+                'context': 'quantity'
+            },
+            
+            # Good at [something] patterns
+            r'\b(?:I am|I\'m) (?:very )?good at (\w+)\b': {
+                'pattern': r'\b(?:I am|I\'m) (?:very )?good at (\w+)\b',
+                'replacement': lambda m: f"Demonstrated proficiency in {m.group(1)}",
+                'context': 'proficiency'
+            }
+        }
+    
+    def _load_pos_patterns(self) -> Dict[str, List[str]]:
+        """
+        Simplified part-of-speech patterns for context awareness
+        """
+        return {
+            'countable_nouns': [
+                'project', 'task', 'assignment', 'report', 'analysis',
+                'study', 'experiment', 'survey', 'interview', 'meeting',
+                'presentation', 'document', 'paper', 'article', 'book'
+            ],
+            'uncountable_nouns': [
+                'work', 'research', 'information', 'data', 'knowledge',
+                'experience', 'progress', 'development', 'feedback', 'advice',
+                'equipment', 'software', 'hardware', 'time', 'money'
+            ],
+            'academic_verbs': [
+                'analyze', 'examine', 'investigate', 'explore', 'evaluate',
+                'assess', 'determine', 'establish', 'demonstrate', 'illustrate'
+            ],
+            'professional_verbs': [
+                'lead', 'manage', 'coordinate', 'facilitate', 'implement',
+                'develop', 'create', 'design', 'execute', 'deliver'
+            ]
+        }
+    
+    def _is_countable(self, noun: str) -> bool:
+        """Check if a noun is likely countable"""
+        countable_patterns = [
+            r'project', r'task', r'job', r'role', r'position',
+            r'report', r'document', r'file', r'paper',
+            r'student', r'teacher', r'person', r'individual'
+        ]
+        for pattern in countable_patterns:
+            if re.search(pattern, noun, re.IGNORECASE):
+                return True
+        return noun.endswith('s') or noun in self.pos_patterns['countable_nouns']
+    
+    def _get_tense(self, verb: str) -> str:
+        """Get appropriate tense for replacement"""
+        tense_map = {
+            'do': 'completed',
+            'did': 'completed',
+            'doing': 'completing',
+            'have': 'have completed',
+            'has': 'has completed',
+            'had': 'had completed'
+        }
+        return tense_map.get(verb.lower(), 'completed')
+    
+    def _apply_context_replacements(self, text: str) -> Tuple[str, List[str]]:
+        """
+        Apply context-aware replacements (phrase-level, not word-level)
+        """
+        changes = []
+        
+        for key, pattern_info in self.context_patterns.items():
+            pattern = pattern_info['pattern']
+            replacement_func = pattern_info['replacement']
+            
+            # Find all matches
+            matches = re.finditer(pattern, text, re.IGNORECASE)
+            for match in matches:
+                full_match = match.group(0)
+                
+                # Generate replacement
+                if callable(replacement_func):
+                    replacement = replacement_func(match)
+                else:
+                    replacement = replacement_func
+                
+                # Only replace if it makes grammatical sense
+                if self._check_grammatical_context(text, match.start(), replacement):
+                    text = text[:match.start()] + replacement + text[match.end():]
+                    changes.append(f"Context: '{full_match}' → '{replacement}'")
+                    break  # Re-start to avoid overlapping matches
+        
+        return text, changes
+    
+    def _check_grammatical_context(self, text: str, position: int, replacement: str) -> bool:
+        """
+        Check if replacement makes grammatical sense in context
+        Simplified version - checks surrounding words
+        """
+        # Get surrounding context (10 chars before and after)
+        start = max(0, position - 10)
+        end = min(len(text), position + 10)
+        context = text[start:end]
+        
+        # Basic checks - avoid replacing if it creates double spaces or awkward punctuation
+        if replacement.endswith(' ') and context.endswith(' '):
+            return False
+        if replacement.startswith(' ') and context.startswith(' '):
+            return False
+        
+        return True
+    
+    def _format_sections(self, text: str) -> str:
+        """
+        Detect and format common sections with proper styling
+        """
+        # Common section headers
+        section_patterns = {
+            'professional_summary': r'(?i)(professional\s+summary|summary|profile|about\s+me)',
+            'education': r'(?i)(education|academic\s+background|qualifications)',
+            'experience': r'(?i)(experience|work\s+experience|employment|professional\s+experience)',
+            'skills': r'(?i)(skills|technical\s+skills|competencies|expertise)',
+            'projects': r'(?i)(projects|key\s+projects|personal\s+projects)',
+            'certifications': r'(?i)(certifications|certificates|licenses)',
+            'languages': r'(?i)(languages|language\s+proficiency)',
+            'publications': r'(?i)(publications|papers|research)',
+            'awards': r'(?i)(awards|honors|achievements)',
+            'references': r'(?i)(references|referees)'
+        }
+        
+        lines = text.split('\n')
+        formatted_lines = []
+        in_section = False
+        current_section = ""
+        
+        for line in lines:
+            line_stripped = line.strip()
+            
+            # Check if this line is a section header
+            is_header = False
+            for section_name, pattern in section_patterns.items():
+                if re.match(pattern, line_stripped, re.IGNORECASE):
+                    # Format header
+                    formatted_header = f"\n**{line_stripped.title()}**\n"
+                    formatted_lines.append(formatted_header)
+                    is_header = True
+                    current_section = section_name
+                    in_section = True
+                    break
+            
+            if not is_header:
+                if in_section and line_stripped:
+                    # Format bullet points for experience/skills sections
+                    if current_section in ['experience', 'skills', 'projects']:
+                        if not line_stripped.startswith(('•', '-', '*', '·')):
+                            # Add bullet if it's content
+                            formatted_lines.append(f"• {line_stripped}")
+                        else:
+                            formatted_lines.append(line)
+                    else:
+                        formatted_lines.append(line)
+                elif line_stripped:
+                    formatted_lines.append(line)
+                else:
+                    formatted_lines.append('')  # Keep empty lines
+        
+        return '\n'.join(formatted_lines)
+    
+    # ================= EXISTING METHODS (PRESERVED EXACTLY) =================
+    
     def _load_weak_phrases(self) -> Dict[str, List[str]]:
         """
         Comprehensive dictionary of weak phrases and their academic alternatives
@@ -40,7 +332,7 @@ class AcademicToneImprover:
             "i believe": [
                 "it is evident that",
                 "it appears that",
-            "the research indicates that",
+                "the research indicates that",
                 "scholars have noted that",
                 "it is widely accepted that",
                 "the literature suggests that",
@@ -546,6 +838,273 @@ class AcademicToneImprover:
                 "in essence",
                 "in brief",
                 "to recapitulate"
+            ],
+            
+            # NEW WEAK PHRASES ADDED
+            "i am a quick learner": [
+                "Rapidly acquire new competencies",
+                "Demonstrated ability to master complex concepts quickly",
+                "Accelerated learning curve in new environments"
+            ],
+            "i work well in a team": [
+                "Proven collaborator in cross-functional teams",
+                "Effective team player with strong interpersonal skills",
+                "Skilled at fostering collaborative environments"
+            ],
+            "i am hardworking": [
+                "Demonstrated strong work ethic",
+                "Consistently deliver high-quality results",
+                "Dedicated to achieving organizational objectives"
+            ],
+            "i have good communication skills": [
+                "Excellent verbal and written communication abilities",
+                "Skilled at articulating complex ideas clearly",
+                "Proven ability to communicate effectively with diverse stakeholders"
+            ],
+            "i am passionate about": [
+                "Deeply committed to",
+                "Dedicated to advancing",
+                "Strong interest in advancing"
+            ],
+            "i have experience in": [
+                "Demonstrated expertise in",
+                "Proven track record in",
+                "Extensive background in"
+            ],
+            "i am responsible for": [
+                "Accountable for",
+                "Tasked with overseeing",
+                "Charged with managing"
+            ],
+            "i helped with": [
+                "Contributed significantly to",
+                "Played a key role in",
+                "Facilitated the successful completion of"
+            ],
+            "i worked on": [
+                "Spearheaded the development of",
+                "Led the implementation of",
+                "Executed strategic initiatives in"
+            ],
+            "i made": [
+                "Developed and implemented",
+                "Conceptualized and created",
+                "Designed and delivered"
+            ],
+            "i did": [
+                "Executed",
+                "Performed",
+                "Accomplished"
+            ],
+            "i want": [
+                "Seek to",
+                "Aim to",
+                "Aspire to"
+            ],
+            "i need": [
+                "Require",
+                "Must obtain",
+                "Seek to acquire"
+            ],
+            "i can": [
+                "Am capable of",
+                "Possess the ability to",
+                "Am proficient in"
+            ],
+            "i will": [
+                "Intend to",
+                "Am committed to",
+                "Will proceed to"
+            ],
+            "a lot": [
+                "Substantially",
+                "Considerably",
+                "Significantly"
+            ],
+            "very good": [
+                "Exceptional",
+                "Outstanding",
+                "Exemplary"
+            ],
+            "very bad": [
+                "Highly problematic",
+                "Severely detrimental",
+                "Extremely unfavorable"
+            ],
+            "very important": [
+                "Critical",
+                "Paramount",
+                "Of utmost importance"
+            ],
+            "very interesting": [
+                "Highly compelling",
+                "Extremely noteworthy",
+                "Particularly salient"
+            ],
+            "very difficult": [
+                "Extremely challenging",
+                "Highly complex",
+                "Particularly demanding"
+            ],
+            "very easy": [
+                "Remarkably straightforward",
+                "Exceptionally simple",
+                "Particularly uncomplicated"
+            ],
+            "a long time": [
+                "An extended period",
+                "Considerable duration",
+                "Prolonged interval"
+            ],
+            "a short time": [
+                "A brief period",
+                "Limited duration",
+                "Concentrated timeframe"
+            ],
+            "a lot of people": [
+                "Numerous individuals",
+                "A substantial population",
+                "A significant number of people"
+            ],
+            "a lot of work": [
+                "Considerable effort",
+                "Substantial undertaking",
+                "Extensive labor"
+            ],
+            "a lot of problems": [
+                "Numerous challenges",
+                "Multiple issues",
+                "Various complications"
+            ],
+            "a lot of opportunities": [
+                "Numerous prospects",
+                "Multiple avenues",
+                "Various possibilities"
+            ],
+            "in the future": [
+                "Subsequently",
+                "In subsequent phases",
+                "At a later juncture"
+            ],
+            "in the past": [
+                "Historically",
+                "Previously",
+                "In prior instances"
+            ],
+            "right now": [
+                "At present",
+                "Currently",
+                "In the current moment"
+            ],
+            "at the same time": [
+                "Concurrently",
+                "Simultaneously",
+                "In parallel"
+            ],
+            "on the other hand": [
+                "Conversely",
+                "In contrast",
+                "Alternatively"
+            ],
+            "in addition to": [
+                "Furthermore",
+                "Moreover",
+                "Additionally"
+            ],
+            "as well as": [
+                "In conjunction with",
+                "Alongside",
+                "Coupled with"
+            ],
+            "such as": [
+                "Including but not limited to",
+                "For example",
+                "As exemplified by"
+            ],
+            "for example": [
+                "For instance",
+                "As an illustration",
+                "To exemplify"
+            ],
+            "that is": [
+                "In other words",
+                "Specifically",
+                "Namely"
+            ],
+            "in other words": [
+                "To clarify",
+                "More precisely",
+                "To restate"
+            ],
+            "the main point is": [
+                "The central argument is",
+                "The key takeaway is",
+                "The fundamental premise is"
+            ],
+            "what i mean is": [
+                "To elaborate",
+                "More specifically",
+                "To clarify further"
+            ],
+            "the thing is": [
+                "The critical issue is",
+                "The fundamental challenge is",
+                "The key consideration is"
+            ],
+            "the problem is": [
+                "The central challenge is",
+                "The primary obstacle is",
+                "The key difficulty is"
+            ],
+            "the solution is": [
+                "The resolution lies in",
+                "The optimal approach is",
+                "The most effective strategy is"
+            ],
+            "the answer is": [
+                "The resolution is",
+                "The conclusion is",
+                "The determination is"
+            ],
+            "the reason is": [
+                "The rationale is",
+                "The justification is",
+                "The underlying cause is"
+            ],
+            "because of this": [
+                "Consequently",
+                "As a result",
+                "Due to this factor"
+            ],
+            "this leads to": [
+                "This results in",
+                "This culminates in",
+                "This precipitates"
+            ],
+            "this causes": [
+                "This engenders",
+                "This produces",
+                "This generates"
+            ],
+            "this shows": [
+                "This demonstrates",
+                "This illustrates",
+                "This evidences"
+            ],
+            "this proves": [
+                "This substantiates",
+                "This confirms",
+                "This validates"
+            ],
+            "this suggests": [
+                "This implies",
+                "This indicates",
+                "This points to"
+            ],
+            "this means": [
+                "This signifies",
+                "This denotes",
+                "This implies"
             ]
         }
     
@@ -566,7 +1125,6 @@ class AcademicToneImprover:
             "ideas": "concepts",
             "guess": "hypothesize",
             "maybe": "perhaps",
-            "maybe": "possibly",
             "like": "such as",
             "etc": "et cetera",
             "ok": "acceptable",
@@ -614,7 +1172,6 @@ class AcademicToneImprover:
             "question": "interrogate",
             "problem": "issue",
             "solution": "resolution",
-            "answer": "solution",
             "fix": "rectify",
             "break": "compromise",
             "stop": "cease",
@@ -639,38 +1196,20 @@ class AcademicToneImprover:
             "stay": "remain",
             "wait": "anticipate",
             "meet": "encounter",
-            "see": "witness",
             "watch": "observe",
-            "look": "examine",
-            "show": "demonstrate",
-            "tell": "inform",
             "say": "state",
-            "speak": "verbalize",
-            "talk": "converse",
-            "listen": "attend",
-            "hear": "perceive",
             "feel": "experience",
-            "touch": "contact",
-            "smell": "odor",
-            "taste": "flavor",
-            "eat": "consume",
-            "drink": "imbibe",
-            "sleep": "rest",
-            "wake": "arise",
-            "dream": "aspire",
             "think": "cogitate",
             "believe": "hold",
             "know": "comprehend",
             "understand": "grasp",
             "learn": "acquire knowledge",
             "teach": "instruct",
-            "study": "examine",
             "read": "peruse",
             "write": "compose",
             "draw": "illustrate",
             "paint": "depict",
             "sing": "vocalize",
-            "dance": "move rhythmically",
             "play": "engage",
             "work": "labor",
             "rest": "repose",
@@ -697,18 +1236,12 @@ class AcademicToneImprover:
             "build": "construct",
             "destroy": "demolish",
             "create": "generate",
-            "make": "fabricate",
-            "do": "perform",
-            "undo": "reverse",
-            "redo": "repeat",
-            "use": "utilize",
             "need": "require",
             "want": "desire",
             "like": "prefer",
             "love": "cherish",
             "hate": "detest",
             "enjoy": "appreciate",
-            "dislike": "disapprove",
             "care": "attend",
             "ignore": "disregard",
             "help": "assist",
@@ -724,8 +1257,6 @@ class AcademicToneImprover:
             "choose": "select",
             "pick": "opt",
             "prefer": "favor",
-            "want": "desire",
-            "need": "require",
             "must": "must necessarily",
             "should": "ought to",
             "can": "is capable of",
@@ -734,7 +1265,6 @@ class AcademicToneImprover:
             "will": "shall",
             "may": "might",
             "might": "could potentially",
-            "maybe": "perhaps",
             "perhaps": "possibly",
             "probably": "likely",
             "certainly": "undoubtedly",
@@ -752,11 +1282,7 @@ class AcademicToneImprover:
             "usually": "commonly",
             "often": "frequently",
             "sometimes": "occasionally",
-            "rarely": "infrequently",
-            "never": "never",
-            "always": "invariably",
-            "constantly": "perpetually",
-            "continuously": "incessantly"
+            "rarely": "infrequently"
         }
     
     def _load_grammar_fixes(self) -> Dict[str, str]:
@@ -1386,52 +1912,6 @@ class AcademicToneImprover:
             ]
         }
     
-    def improve_text(self, text: str) -> Dict:
-        """
-        Main method to improve text to academic tone
-        """
-        # Track changes for reporting
-        changes = []
-        original = text
-        
-        # Apply grammar fixes first
-        text, grammar_changes = self._fix_grammar(text)
-        changes.extend(grammar_changes)
-        
-        # Replace weak phrases
-        text, phrase_changes = self._replace_weak_phrases(text)
-        changes.extend(phrase_changes)
-        
-        # Apply vocabulary upgrades
-        text, vocab_changes = self._upgrade_vocabulary(text)
-        changes.extend(vocab_changes)
-        
-        # Improve sentence structure
-        text, structure_changes = self._improve_structure(text)
-        changes.extend(structure_changes)
-        
-        # Add appropriate transitions
-        text, transition_changes = self._add_transitions(text)
-        changes.extend(transition_changes)
-        
-        # Apply hedging where appropriate
-        text, hedging_changes = self._apply_hedging(text)
-        changes.extend(hedging_changes)
-        
-        # Final formatting
-        text = self._final_formatting(text)
-        
-        # Generate metrics
-        metrics = self._calculate_metrics(original, text)
-        
-        return {
-            'original': original,
-            'improved': text,
-            'changes': changes,
-            'metrics': metrics,
-            'suggestions': self._generate_suggestions(metrics)
-        }
-    
     def _fix_grammar(self, text: str) -> Tuple[str, List[str]]:
         """
         Fix common grammar mistakes
@@ -1454,20 +1934,82 @@ class AcademicToneImprover:
         """
         changes = []
         
-        for weak_phrase, alternatives in self.weak_phrases.items():
+        # Sort by length (longest first) to avoid partial replacements
+        sorted_phrases = sorted(self.weak_phrases.keys(), key=len, reverse=True)
+        
+        for weak_phrase in sorted_phrases:
+            alternatives = self.weak_phrases[weak_phrase]
+            
+            # Use word boundaries for exact phrase matching
             pattern = r'\b' + re.escape(weak_phrase) + r'\b'
-            if re.search(pattern, text.lower()):
-                # Choose appropriate alternative (can be randomized or context-based)
-                alternative = alternatives[0]  # Simple approach - use first
+            
+            # Find all matches
+            matches = re.finditer(pattern, text, re.IGNORECASE)
+            for match in matches:
+                full_match = match.group(0)
                 
-                # Preserve case
-                if weak_phrase[0].isupper():
-                    alternative = alternative.capitalize()
+                # Choose appropriate alternative based on context
+                alternative = self._select_alternative_by_context(text, match.start(), alternatives)
                 
-                text = re.sub(pattern, alternative, text, flags=re.IGNORECASE)
-                changes.append(f"Phrase: '{weak_phrase}' → '{alternative}'")
+                # Check if replacement makes sense in context
+                if self._validate_replacement_context(text, match.start(), match.end(), alternative):
+                    # Preserve case
+                    if full_match[0].isupper():
+                        alternative = alternative[0].upper() + alternative[1:]
+                    
+                    text = text[:match.start()] + alternative + text[match.end():]
+                    changes.append(f"Phrase: '{full_match}' → '{alternative}'")
+                    break  # Re-start to avoid overlapping
         
         return text, changes
+    
+    def _select_alternative_by_context(self, text: str, position: int, alternatives: List[str]) -> str:
+        """
+        Select the most appropriate alternative based on context
+        """
+        # Default to first alternative
+        if not alternatives:
+            return ""
+        
+        # Get surrounding words for context
+        words = text[:position].split()
+        prev_word = words[-1].lower() if words else ""
+        
+        # Context-based selection
+        if prev_word in ['a', 'an', 'the', 'this', 'that']:
+            # Choose alternatives that work after articles
+            for alt in alternatives:
+                if not alt[0].isupper() and not alt.startswith(('a ', 'an ', 'the ')):
+                    return alt
+        
+        # Check for sentence starters
+        if position == 0 or text[position-2:position] in ['. ', '! ', '? ']:
+            for alt in alternatives:
+                if alt[0].isupper() or alt[0].isalpha():
+                    return alt
+        
+        return alternatives[0]
+    
+    def _validate_replacement_context(self, text: str, start: int, end: int, replacement: str) -> bool:
+        """
+        Validate that replacement makes sense in context
+        """
+        # Get preceding and following words
+        preceding = text[:start].strip().split()
+        following = text[end:].strip().split()
+        
+        prev_word = preceding[-1].lower() if preceding else ""
+        next_word = following[0].lower() if following else ""
+        
+        # Avoid double articles
+        if prev_word in ['a', 'an', 'the'] and replacement.lower().startswith(('a ', 'an ', 'the ')):
+            return False
+        
+        # Avoid double prepositions
+        if prev_word in ['in', 'on', 'at', 'for', 'with', 'by'] and replacement.lower().startswith(('in ', 'on ', 'at ')):
+            return False
+        
+        return True
     
     def _upgrade_vocabulary(self, text: str) -> Tuple[str, List[str]]:
         """
@@ -1477,22 +2019,67 @@ class AcademicToneImprover:
         words = text.split()
         upgraded_words = []
         
-        for word in words:
+        for i, word in enumerate(words):
             word_lower = word.lower().strip('.,!?;:()[]{}"\'')
             punctuation = word[len(word_lower):] if len(word) > len(word_lower) else ''
             
             if word_lower in self.academic_replacements:
                 replacement = self.academic_replacements[word_lower]
-                # Preserve capitalization
-                if word[0].isupper():
-                    replacement = replacement.capitalize()
                 
-                upgraded_words.append(replacement + punctuation)
-                changes.append(f"Vocab: '{word_lower}' → '{replacement}'")
+                # Check if replacement makes sense in this context
+                if self._should_upgrade_in_context(words, i, word_lower, replacement):
+                    # Preserve capitalization
+                    if word[0].isupper():
+                        replacement = replacement.capitalize()
+                    
+                    upgraded_words.append(replacement + punctuation)
+                    changes.append(f"Vocab: '{word_lower}' → '{replacement}'")
+                else:
+                    upgraded_words.append(word)
             else:
                 upgraded_words.append(word)
         
         return ' '.join(upgraded_words), changes
+    
+    def _should_upgrade_in_context(self, words: List[str], index: int, original: str, replacement: str) -> bool:
+        """
+        Determine if vocabulary upgrade makes sense in this context
+        """
+        # Get surrounding words
+        prev_word = words[index-1].lower() if index > 0 else ""
+        next_word = words[index+1].lower() if index < len(words)-1 else ""
+        
+        # Don't upgrade if it's part of a common phrase
+        common_phrases = [
+            'good morning', 'good afternoon', 'good evening',
+            'thank you', 'thanks for', 'please let'
+        ]
+        
+        phrase_start = ' '.join(words[max(0, index-2):index+2]).lower()
+        for phrase in common_phrases:
+            if phrase in phrase_start:
+                return False
+        
+        # Don't upgrade proper nouns or names
+        if words[index][0].isupper() and index > 0 and not prev_word:
+            return False
+        
+        # Don't upgrade technical terms that might be correct
+        technical_terms = ['api', 'json', 'xml', 'html', 'css', 'sql']
+        if original in technical_terms:
+            return False
+        
+        # Check if replacement would create awkward phrasing
+        awkward_combinations = [
+            ('is', 'utilize'), ('are', 'utilize'), ('was', 'utilize'),
+            ('the', 'numerous'), ('a', 'numerous'), ('an', 'numerous')
+        ]
+        
+        for awkward in awkward_combinations:
+            if prev_word == awkward[0] and replacement.startswith(awkward[1]):
+                return False
+        
+        return True
     
     def _improve_structure(self, text: str) -> Tuple[str, List[str]]:
         """
@@ -1679,59 +2266,6 @@ class AcademicToneImprover:
         return suggestions
 
 
-# Example usage function
-def improve_to_academic(text: str) -> Dict:
-    """
-    Convenience function to improve text to academic tone
-    """
-    improver = AcademicToneImprover()
-    return improver.improve_text(text)
-
-
-# Test the improver
-if __name__ == "__main__":
-    # Example usage
-    sample_text = """
-    I think this is a good idea. There's a lot of things to consider. 
-    The project was really important and we got good results. 
-    But we need to think about some problems that came up.
-    """
-    
-    result = improve_to_academic(sample_text)
-    
-    print("ORIGINAL TEXT:")
-    print(result['original'])
-    print("\n" + "="*50)
-    print("IMPROVED TEXT:")
-    print(result['improved'])
-    print("\n" + "="*50)
-    print("CHANGES MADE:")
-    for change in result['changes'][:10]:  # Show first 10 changes
-        print(f"  • {change}")
-    print("\n" + "="*50)
-    print("METRICS:")
-    for key, value in result['metrics'].items():
-        print(f"  • {key}: {value}")
-    print("\n" + "="*50)
-    print("SUGGESTIONS:")
-    for suggestion in result['suggestions']:
-        print(f"  • {suggestion}")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class CVImprover(AcademicToneImprover):
     """
     Specialized CV/Resume text improver
@@ -1746,7 +2280,56 @@ class CVImprover(AcademicToneImprover):
         self.cv_grammar_fixes = self._load_cv_grammar_fixes()
         self.bullet_point_starters = self._load_bullet_point_starters()
         self.industry_keywords = self._load_industry_keywords()
+    
+    def improve(self, text: str, industry: str = "general") -> Dict:
+        """
+        Main method to improve CV text
         
+        Args:
+            text: The CV text to improve
+            industry: Optional industry for keyword optimization
+        """
+        changes = []
+        original = text
+        
+        # Step 1: Fix CV-specific grammar and typos
+        text, grammar_changes = self._fix_cv_grammar(text)
+        changes.extend(grammar_changes)
+        
+        # Step 2: Replace weak CV phrases
+        text, phrase_changes = self._replace_cv_weak_phrases(text)
+        changes.extend(phrase_changes)
+        
+        # Step 3: Add powerful action verbs to bullet points
+        text, verb_changes = self._add_action_verbs_to_bullets(text)
+        changes.extend(verb_changes)
+        
+        # Step 4: Identify duties that should be accomplishments
+        text, accomplishment_notes = self._flag_duties_for_conversion(text)
+        
+        # Step 5: Format CV properly
+        text = self._format_cv_text(text)
+        
+        # Step 6: Add industry keywords if specified
+        if industry != "general":
+            text, keyword_changes = self._add_industry_keywords(text, industry)
+            changes.extend(keyword_changes)
+        
+        # Calculate CV metrics
+        metrics = self._calculate_cv_metrics(original, text)
+        
+        # Generate CV-specific suggestions
+        suggestions = self._generate_cv_suggestions(text, metrics)
+        
+        return {
+            'original': original,
+            'improved': text,
+            'changes': changes,
+            'metrics': metrics,
+            'suggestions': suggestions,
+            'accomplishment_notes': accomplishment_notes
+        }
+    
     def _load_cv_weak_phrases(self) -> Dict[str, List[str]]:
         """
         Weak CV phrases that kill resumes and their powerful alternatives
@@ -2426,55 +3009,6 @@ class CVImprover(AcademicToneImprover):
             ]
         }
     
-    def improve_cv(self, text: str, industry: str = "general") -> Dict:
-        """
-        Main method to improve CV text
-        
-        Args:
-            text: The CV text to improve
-            industry: Optional industry for keyword optimization
-        """
-        changes = []
-        original = text
-        
-        # Step 1: Fix CV-specific grammar and typos
-        text, grammar_changes = self._fix_cv_grammar(text)
-        changes.extend(grammar_changes)
-        
-        # Step 2: Replace weak CV phrases
-        text, phrase_changes = self._replace_cv_weak_phrases(text)
-        changes.extend(phrase_changes)
-        
-        # Step 3: Add powerful action verbs to bullet points
-        text, verb_changes = self._add_action_verbs_to_bullets(text)
-        changes.extend(verb_changes)
-        
-        # Step 4: Identify duties that should be accomplishments
-        text, accomplishment_notes = self._flag_duties_for_conversion(text)
-        
-        # Step 5: Format CV properly
-        text = self._format_cv_text(text)
-        
-        # Step 6: Add industry keywords if specified
-        if industry != "general":
-            text, keyword_changes = self._add_industry_keywords(text, industry)
-            changes.extend(keyword_changes)
-        
-        # Calculate CV metrics
-        metrics = self._calculate_cv_metrics(original, text)
-        
-        # Generate CV-specific suggestions
-        suggestions = self._generate_cv_suggestions(text, metrics)
-        
-        return {
-            'original': original,
-            'improved': text,
-            'changes': changes,
-            'metrics': metrics,
-            'suggestions': suggestions,
-            'accomplishment_notes': accomplishment_notes
-        }
-    
     def _fix_cv_grammar(self, text: str) -> Tuple[str, List[str]]:
         """
         Fix CV-specific grammar issues and typos
@@ -2745,21 +3279,6 @@ class CVImprover(AcademicToneImprover):
         return suggestions
 
 
-# Convenience function for easy use
-def improve_cv_text(text: str, industry: str = "general") -> Dict:
-    """
-    Quickly improve CV text
-    
-    Args:
-        text: The CV text to improve
-        industry: Optional industry for keyword optimization
-    """
-    improver = CVImprover()
-    return improver.improve_cv(text, industry)
-
-
-
-
 class ProfessionalEmailImprover(AcademicToneImprover):
     """
     Specialized Email text improver
@@ -2775,7 +3294,64 @@ class ProfessionalEmailImprover(AcademicToneImprover):
         self.email_grammar_fixes = self._load_email_grammar_fixes()
         self.professional_tone_guides = self._load_professional_tone_guides()
         self.email_purposes = self._load_email_purposes()
+    
+    def improve(self, text: str, email_type: str = "general", tone: str = "semi_formal") -> Dict:
+        """
+        Main method to improve email text
         
+        Args:
+            text: The email text to improve
+            email_type: Type of email (job_application, follow_up, meeting_request, etc.)
+            tone: Desired tone (formal, semi_formal, friendly, persuasive, apologetic)
+        """
+        changes = []
+        original = text
+        
+        # Step 1: Fix email-specific grammar and typos
+        text, grammar_changes = self._fix_email_grammar(text)
+        changes.extend(grammar_changes)
+        
+        # Step 2: Replace weak email phrases
+        text, phrase_changes = self._replace_weak_email_phrases(text)
+        changes.extend(phrase_changes)
+        
+        # Step 3: Improve subject line if present
+        text, subject_changes = self._improve_subject_line(text, email_type)
+        changes.extend(subject_changes)
+        
+        # Step 4: Improve opening line
+        text, opening_changes = self._improve_opening(text, tone)
+        changes.extend(opening_changes)
+        
+        # Step 5: Improve closing line
+        text, closing_changes = self._improve_closing(text, tone)
+        changes.extend(closing_changes)
+        
+        # Step 6: Apply tone guidelines
+        text, tone_changes = self._apply_tone_guidelines(text, tone)
+        changes.extend(tone_changes)
+        
+        # Step 7: Format email properly
+        text = self._format_email(text)
+        
+        # Calculate email metrics
+        metrics = self._calculate_email_metrics(original, text)
+        
+        # Generate email-specific suggestions
+        suggestions = self._generate_email_suggestions(text, metrics, tone)
+        
+        # Check for missing elements
+        missing_elements = self._check_missing_elements(text)
+        
+        return {
+            'original': original,
+            'improved': text,
+            'changes': changes,
+            'metrics': metrics,
+            'suggestions': suggestions,
+            'missing_elements': missing_elements
+        }
+    
     def _load_email_openings(self) -> Dict[str, List[str]]:
         """
         Professional email opening lines for different contexts
@@ -3512,63 +4088,6 @@ Looking forward to your perspective,
             }
         }
     
-    def improve_email(self, text: str, email_type: str = "general", tone: str = "semi_formal") -> Dict:
-        """
-        Main method to improve email text
-        
-        Args:
-            text: The email text to improve
-            email_type: Type of email (job_application, follow_up, meeting_request, etc.)
-            tone: Desired tone (formal, semi_formal, friendly, persuasive, apologetic)
-        """
-        changes = []
-        original = text
-        
-        # Step 1: Fix email-specific grammar and typos
-        text, grammar_changes = self._fix_email_grammar(text)
-        changes.extend(grammar_changes)
-        
-        # Step 2: Replace weak email phrases
-        text, phrase_changes = self._replace_weak_email_phrases(text)
-        changes.extend(phrase_changes)
-        
-        # Step 3: Improve subject line if present
-        text, subject_changes = self._improve_subject_line(text, email_type)
-        changes.extend(subject_changes)
-        
-        # Step 4: Improve opening line
-        text, opening_changes = self._improve_opening(text, tone)
-        changes.extend(opening_changes)
-        
-        # Step 5: Improve closing line
-        text, closing_changes = self._improve_closing(text, tone)
-        changes.extend(closing_changes)
-        
-        # Step 6: Apply tone guidelines
-        text, tone_changes = self._apply_tone_guidelines(text, tone)
-        changes.extend(tone_changes)
-        
-        # Step 7: Format email properly
-        text = self._format_email(text)
-        
-        # Calculate email metrics
-        metrics = self._calculate_email_metrics(original, text)
-        
-        # Generate email-specific suggestions
-        suggestions = self._generate_email_suggestions(text, metrics, tone)
-        
-        # Check for missing elements
-        missing_elements = self._check_missing_elements(text)
-        
-        return {
-            'original': original,
-            'improved': text,
-            'changes': changes,
-            'metrics': metrics,
-            'suggestions': suggestions,
-            'missing_elements': missing_elements
-        }
-    
     def _fix_email_grammar(self, text: str) -> Tuple[str, List[str]]:
         """
         Fix email-specific grammar issues and typos
@@ -3961,15 +4480,540 @@ Looking forward to your perspective,
         return missing
 
 
-# Convenience function for easy use
-def improve_email_text(text: str, email_type: str = "general", tone: str = "semi_formal") -> Dict:
+class TextSummarizer:
     """
-    Quickly improve email text
+    Text Summarizer - Condenses long text while preserving key information
+    """
+    
+    def __init__(self):
+        self.summary_types = self._load_summary_types()
+        self.stop_words = self._load_stop_words()
+        self.importance_markers = self._load_importance_markers()
+    
+    def improve(self, text: str, summary_type: str = "balanced", max_sentences: int = None) -> Dict:
+        """
+        Main method to summarize text
+        
+        Args:
+            text: The long text to summarize
+            summary_type: Type of summary (concise, balanced, detailed, bullet_points, executive)
+            max_sentences: Maximum number of sentences in summary (overrides summary_type)
+        """
+        return self.summarize(text, summary_type, max_sentences)
+    
+    def _load_summary_types(self) -> Dict[str, Dict]:
+        """
+        Different types of summaries
+        """
+        return {
+            "concise": {
+                "description": "Very brief, key points only",
+                "target_ratio": 0.2,  # 20% of original
+                "sentence_count_ratio": 0.15
+            },
+            "balanced": {
+                "description": "Balanced summary with main ideas",
+                "target_ratio": 0.3,  # 30% of original
+                "sentence_count_ratio": 0.25
+            },
+            "detailed": {
+                "description": "Detailed summary with supporting points",
+                "target_ratio": 0.4,  # 40% of original
+                "sentence_count_ratio": 0.35
+            },
+            "bullet_points": {
+                "description": "Key points as bullet list",
+                "target_ratio": 0.25,
+                "sentence_count_ratio": 0.2,
+                "format": "bullets"
+            },
+            "executive": {
+                "description": "Executive summary format",
+                "target_ratio": 0.15,
+                "sentence_count_ratio": 0.1,
+                "format": "executive"
+            }
+        }
+    
+    def _load_stop_words(self) -> set:
+        """
+        Common words to ignore in importance calculation
+        """
+        return set([
+            'a', 'an', 'the', 'and', 'or', 'but', 'if', 'then', 'else', 'when',
+            'at', 'from', 'by', 'on', 'off', 'for', 'in', 'out', 'over', 'under',
+            'to', 'into', 'with', 'without', 'is', 'are', 'was', 'were', 'be',
+            'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will',
+            'would', 'shall', 'should', 'may', 'might', 'must', 'can', 'could',
+            'this', 'that', 'these', 'those', 'i', 'you', 'he', 'she', 'it',
+            'we', 'they', 'me', 'him', 'her', 'us', 'them', 'my', 'your', 'his',
+            'its', 'our', 'their', 'what', 'which', 'who', 'whom', 'whose'
+        ])
+    
+    def _load_importance_markers(self) -> Dict[str, float]:
+        """
+        Words and phrases that indicate important sentences with weight multipliers
+        """
+        return {
+            # Strong importance markers
+            'important': 2.0,
+            'significant': 2.0,
+            'critical': 2.0,
+            'essential': 2.0,
+            'key': 2.0,
+            'major': 1.8,
+            'primary': 1.8,
+            'fundamental': 1.8,
+            
+            # Conclusion markers
+            'conclusion': 1.8,
+            'therefore': 1.6,
+            'thus': 1.6,
+            'hence': 1.6,
+            'consequently': 1.6,
+            'as a result': 1.6,
+            
+            # Emphasis markers
+            'notably': 1.5,
+            'importantly': 1.8,
+            'significantly': 1.8,
+            'especially': 1.4,
+            'particularly': 1.4,
+            
+            # Findings/Results
+            'found': 1.5,
+            'discovered': 1.5,
+            'revealed': 1.5,
+            'showed': 1.5,
+            'demonstrated': 1.5,
+            'indicates': 1.5,
+            
+            # Recommendations
+            'recommend': 1.6,
+            'suggest': 1.4,
+            'propose': 1.4,
+            'advise': 1.4,
+            
+            # Problem/Solution
+            'problem': 1.3,
+            'solution': 1.3,
+            'challenge': 1.3,
+            'opportunity': 1.3,
+            
+            # First/last sentences (handled separately in code)
+            'first_sentence': 1.3,
+            'last_sentence': 1.4
+        }
+    
+    def summarize(self, text: str, summary_type: str = "balanced", max_sentences: int = None) -> Dict:
+        """
+        Main method to summarize text
+        
+        Args:
+            text: The long text to summarize
+            summary_type: Type of summary (concise, balanced, detailed, bullet_points, executive)
+            max_sentences: Maximum number of sentences in summary (overrides summary_type)
+        """
+        if not text or len(text.strip()) == 0:
+            return {
+                'original': text,
+                'summary': '',
+                'summary_type': summary_type,
+                'stats': {
+                    'original_length': 0,
+                    'summary_length': 0,
+                    'original_sentences': 0,
+                    'summary_sentences': 0,
+                    'compression_ratio': 0
+                }
+            }
+        
+        original = text
+        
+        # Step 1: Clean and preprocess text
+        cleaned_text = self._clean_text(text)
+        
+        # Step 2: Split into sentences
+        sentences = self._split_sentences(cleaned_text)
+        
+        if len(sentences) <= 3:
+            # Text is already short, return as is with note
+            return {
+                'original': original,
+                'summary': original,
+                'summary_type': summary_type,
+                'stats': {
+                    'original_length': len(original),
+                    'summary_length': len(original),
+                    'original_sentences': len(sentences),
+                    'summary_sentences': len(sentences),
+                    'compression_ratio': 1.0
+                },
+                'note': 'Text is already brief, no summarization needed'
+            }
+        
+        # Step 3: Score each sentence
+        sentence_scores = self._score_sentences(sentences)
+        
+        # Step 4: Select top sentences based on summary type
+        if max_sentences:
+            num_sentences = min(max_sentences, len(sentences))
+        else:
+            num_sentences = self._determine_sentence_count(sentences, summary_type)
+        
+        selected_indices = self._select_top_sentences(sentence_scores, num_sentences)
+        
+        # Step 5: Generate summary
+        if summary_type == "bullet_points":
+            summary = self._format_as_bullets([sentences[i] for i in sorted(selected_indices)])
+        elif summary_type == "executive":
+            summary = self._format_as_executive([sentences[i] for i in sorted(selected_indices)])
+        else:
+            # Preserve original order
+            selected_sentences = [sentences[i] for i in sorted(selected_indices)]
+            summary = ' '.join(selected_sentences)
+        
+        # Step 6: Calculate statistics
+        stats = self._calculate_stats(original, summary, sentences, selected_indices)
+        
+        # Step 7: Generate keywords
+        keywords = self._extract_keywords(text, num_keywords=5)
+        
+        return {
+            'original': original,
+            'summary': summary,
+            'summary_type': summary_type,
+            'stats': stats,
+            'keywords': keywords,
+            'selected_sentences': len(selected_indices),
+            'total_sentences': len(sentences)
+        }
+    
+    def _clean_text(self, text: str) -> str:
+        """
+        Clean and normalize text
+        """
+        # Remove extra whitespace
+        text = re.sub(r'\s+', ' ', text.strip())
+        
+        # Fix common issues
+        text = re.sub(r'\.\.+', '.', text)  # Multiple periods
+        text = re.sub(r'\s+\.', '.', text)  # Space before period
+        
+        return text
+    
+    def _split_sentences(self, text: str) -> List[str]:
+        """
+        Split text into sentences
+        """
+        # Simple sentence splitting - can be enhanced with NLTK
+        sentences = re.split(r'(?<=[.!?])\s+', text)
+        
+        # Filter out empty sentences
+        sentences = [s.strip() for s in sentences if s.strip()]
+        
+        return sentences
+    
+    def _score_sentences(self, sentences: List[str]) -> List[float]:
+        """
+        Score each sentence based on importance
+        """
+        scores = []
+        total_words = sum(len(s.split()) for s in sentences)
+        
+        for i, sentence in enumerate(sentences):
+            score = 0.0
+            
+            # 1. Word frequency score (TF-IDF style)
+            words = sentence.lower().split()
+            for word in words:
+                if word not in self.stop_words:
+                    # Word importance based on length and rarity
+                    word_score = len(word) / 10  # Longer words often more important
+                    
+                    # Check if word is in importance markers
+                    for marker, multiplier in self.importance_markers.items():
+                        if marker in sentence.lower():
+                            score += multiplier
+                            break
+                    
+                    score += word_score
+            
+            # 2. Position score (first and last sentences often important)
+            if i == 0:  # First sentence
+                score *= 1.3
+            elif i == len(sentences) - 1:  # Last sentence
+                score *= 1.4
+            elif i < len(sentences) * 0.2:  # First 20% of sentences
+                score *= 1.1
+            
+            # 3. Length score (neither too short nor too long)
+            word_count = len(sentence.split())
+            avg_words = total_words / len(sentences)
+            
+            if word_count < 5:
+                score *= 0.5  # Too short, probably not important
+            elif word_count > avg_words * 1.5:
+                score *= 1.2  # Longer sentences might contain more info
+            elif word_count < avg_words * 0.5:
+                score *= 0.8  # Shorter than average
+            
+            # 4. Numerical data score (sentences with numbers often important)
+            if re.search(r'\d+', sentence):
+                score *= 1.2
+            
+            # 5. Proper noun score (capitalized words often important)
+            proper_nouns = len(re.findall(r'\b[A-Z][a-z]+\b', sentence))
+            score += proper_nouns * 0.5
+            
+            # 6. Quote score (sentences with quotes might be important)
+            if '"' in sentence or "'" in sentence:
+                score *= 1.1
+            
+            scores.append(score)
+        
+        # Normalize scores to 0-100 range
+        if scores:
+            max_score = max(scores)
+            if max_score > 0:
+                scores = [s / max_score * 100 for s in scores]
+        
+        return scores
+    
+    def _determine_sentence_count(self, sentences: List[str], summary_type: str) -> int:
+        """
+        Determine how many sentences to include based on summary type
+        """
+        if summary_type not in self.summary_types:
+            summary_type = "balanced"
+        
+        config = self.summary_types[summary_type]
+        
+        # Calculate target sentence count
+        target_count = max(1, int(len(sentences) * config['sentence_count_ratio']))
+        
+        # Ensure minimum sentences based on length
+        if len(sentences) > 10:
+            target_count = max(3, target_count)
+        elif len(sentences) > 5:
+            target_count = max(2, target_count)
+        
+        return target_count
+    
+    def _select_top_sentences(self, scores: List[float], num_sentences: int) -> List[int]:
+        """
+        Select top scoring sentences while maintaining diversity
+        """
+        # Get indices sorted by score
+        sorted_indices = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)
+        
+        # Select top N
+        selected = sorted_indices[:num_sentences]
+        
+        # Add diversity check - if two sentences are too similar, replace one
+        # This is a simplified version - can be enhanced with cosine similarity
+        selected = self._ensure_diversity(selected, num_sentences)
+        
+        return selected
+    
+    def _ensure_diversity(self, selected: List[int], num_sentences: int) -> List[int]:
+        """
+        Ensure selected sentences are diverse (not too similar)
+        """
+        # Simple implementation - can be enhanced with actual similarity metrics
+        return selected[:num_sentences]
+    
+    def _format_as_bullets(self, sentences: List[str]) -> str:
+        """
+        Format summary as bullet points
+        """
+        bullets = []
+        for i, sentence in enumerate(sentences):
+            # Clean up sentence
+            sentence = sentence.strip()
+            if not sentence.endswith(('.', '!', '?')):
+                sentence += '.'
+            
+            # Add bullet
+            bullets.append(f"• {sentence}")
+        
+        return '\n'.join(bullets)
+    
+    def _format_as_executive(self, sentences: List[str]) -> str:
+        """
+        Format as executive summary
+        """
+        if not sentences:
+            return ""
+        
+        # Start with "Executive Summary" header
+        summary = ["EXECUTIVE SUMMARY", "=" * 50, ""]
+        
+        # Add sentences
+        for i, sentence in enumerate(sentences):
+            summary.append(sentence)
+        
+        # Add recommendation section if there are enough sentences
+        if len(sentences) >= 3:
+            summary.extend(["", "Key Recommendations:", "- " + sentences[-1]])
+        
+        return '\n'.join(summary)
+    
+    def _calculate_stats(self, original: str, summary: str, sentences: List[str], selected_indices: List[int]) -> Dict:
+        """
+        Calculate summary statistics
+        """
+        original_words = len(original.split())
+        summary_words = len(summary.split())
+        
+        # Readability scores (simplified)
+        original_avg_sentence = original_words / len(sentences) if sentences else 0
+        summary_avg_sentence = summary_words / len(selected_indices) if selected_indices else 0
+        
+        return {
+            'original_length': len(original),
+            'summary_length': len(summary),
+            'original_words': original_words,
+            'summary_words': summary_words,
+            'original_sentences': len(sentences),
+            'summary_sentences': len(selected_indices),
+            'compression_ratio': round(summary_words / original_words, 2) if original_words > 0 else 0,
+            'word_reduction': original_words - summary_words,
+            'sentence_reduction': len(sentences) - len(selected_indices),
+            'original_avg_sentence_length': round(original_avg_sentence, 1),
+            'summary_avg_sentence_length': round(summary_avg_sentence, 1)
+        }
+    
+    def _extract_keywords(self, text: str, num_keywords: int = 5) -> List[str]:
+        """
+        Extract key keywords from text
+        """
+        # Simple keyword extraction based on frequency
+        words = re.findall(r'\b[a-zA-Z]{4,}\b', text.lower())
+        
+        # Remove stop words
+        words = [w for w in words if w not in self.stop_words]
+        
+        # Count frequencies
+        word_counts = Counter(words)
+        
+        # Get top keywords
+        keywords = [word for word, count in word_counts.most_common(num_keywords)]
+        
+        return keywords
+    
+    def summarize_by_percentage(self, text: str, percentage: float = 30) -> Dict:
+        """
+        Summarize to a specific percentage of original
+        """
+        sentences = self._split_sentences(text)
+        target_sentences = max(1, int(len(sentences) * percentage / 100))
+        
+        return self.summarize(text, max_sentences=target_sentences)
+    
+    def summarize_by_word_count(self, text: str, target_words: int) -> Dict:
+        """
+        Summarize to approximate word count
+        """
+        sentences = self._split_sentences(text)
+        words_per_sentence = [len(s.split()) for s in sentences]
+        
+        # Estimate how many sentences needed
+        avg_words = sum(words_per_sentence) / len(sentences)
+        target_sentences = max(1, int(target_words / avg_words))
+        
+        return self.summarize(text, max_sentences=target_sentences)
+    
+    def extractive_summary(self, text: str, num_sentences: int = 5) -> Dict:
+        """
+        Pure extractive summary (no reformatting)
+        """
+        result = self.summarize(text, max_sentences=num_sentences)
+        return result
+    
+    def highlight_key_points(self, text: str) -> Dict:
+        """
+        Return original text with key points highlighted
+        """
+        sentences = self._split_sentences(text)
+        scores = self._score_sentences(sentences)
+        
+        # Mark top 30% as key points
+        threshold = sorted(scores, reverse=True)[max(1, int(len(scores) * 0.3))]
+        
+        highlighted = []
+        key_points = []
+        
+        for i, (sentence, score) in enumerate(zip(sentences, scores)):
+            if score >= threshold:
+                highlighted.append(f"**[KEY]** {sentence}")
+                key_points.append(sentence)
+            else:
+                highlighted.append(sentence)
+        
+        return {
+            'original': text,
+            'highlighted': ' '.join(highlighted),
+            'key_points': key_points,
+            'num_key_points': len(key_points)
+        }
+
+
+# ================= CONVENIENCE FUNCTIONS =================
+
+def improve_academic_text(text: str) -> Dict:
+    """Convenience function for academic text improvement"""
+    improver = AcademicToneImprover()
+    return improver.improve(text)
+
+
+def improve_cv_text(text: str, industry: str = "general") -> Dict:
+    """Convenience function for CV text improvement"""
+    improver = CVImprover()
+    return improver.improve(text, industry)
+
+
+def improve_email_text(text: str, email_type: str = "general", tone: str = "semi_formal") -> Dict:
+    """Convenience function for email text improvement"""
+    improver = ProfessionalEmailImprover()
+    return improver.improve(text, email_type, tone)
+
+
+def summarize_long_text(text: str, summary_type: str = "balanced", max_sentences: int = None) -> Dict:
+    """Convenience function for text summarization"""
+    summarizer = TextSummarizer()
+    return summarizer.improve(text, summary_type, max_sentences)
+
+
+# ================= MAIN FUNCTION FOR BACKEND INTEGRATION =================
+
+def improve_text(text: str, goal: str = "academic", **kwargs) -> Dict:
+    """
+    Unified function to improve text based on goal
     
     Args:
-        text: The email text to improve
-        email_type: Type of email (job_application, follow_up, meeting_request, etc.)
-        tone: Desired tone (formal, semi_formal, friendly, persuasive, apologetic)
+        text: The text to improve
+        goal: The improvement goal (academic, cv, email, summarize)
+        **kwargs: Additional arguments for specific improvers
+            - For cv: industry (str)
+            - For email: email_type (str), tone (str)
+            - For summarize: summary_type (str), max_sentences (int)
+    
+    Returns:
+        Dict containing original, improved, and metadata
     """
-    improver = ProfessionalEmailImprover()
-    return improver.improve_email(text, email_type, tone)
+    if goal == "academic":
+        return improve_academic_text(text)
+    elif goal == "cv":
+        industry = kwargs.get('industry', 'general')
+        return improve_cv_text(text, industry)
+    elif goal == "email":
+        email_type = kwargs.get('email_type', 'general')
+        tone = kwargs.get('tone', 'semi_formal')
+        return improve_email_text(text, email_type, tone)
+    elif goal == "summarize":
+        summary_type = kwargs.get('summary_type', 'balanced')
+        max_sentences = kwargs.get('max_sentences', None)
+        return summarize_long_text(text, summary_type, max_sentences)
+    else:
+        raise ValueError(f"Unknown goal: {goal}. Must be one of: academic, cv, email, summarize")
