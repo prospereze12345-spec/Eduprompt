@@ -8,9 +8,7 @@ class StaticViewSitemap(Sitemap):
     def items(self):
         return [
             'index',
-            'quiz_generator',
-            'essay_page',
-            'grammar_checker',
+            'blog:blog',                # blog list page (with namespace)
             'about',
             'privacy_policy',
             'Terms_and_Condition',

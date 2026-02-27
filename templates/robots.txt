@@ -1,8 +1,7 @@
 User-agent: *
 Allow: /
 
-Allow: /quiz/
-Allow: /essay/
+
 Allow: /grammar-checker/
 Allow: /about/
 Allow: /privacy_policy/
@@ -13,11 +12,7 @@ Disallow: /admin/
 Disallow: /accounts/
 Disallow: /ajax/
 Disallow: /health/
-Disallow: /quiz/generate/
-Disallow: /quiz/download/
-Disallow: /grammar-upload/
-Disallow: /generate-project/
-Disallow: /download-pdf/
+
 
 Allow: /static/
 Allow: /media/
