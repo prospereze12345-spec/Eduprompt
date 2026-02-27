@@ -799,7 +799,6 @@ $(document).ready(function(){
     Upgrade your writing with our smart text improver—perfect for academic writing, CV enhancement, professional emails, blog posts, and business communication.
   </p>
 </div></section>
-
 <section class="py-4" style="background-color:white; font-family:'Segoe UI', sans-serif;">
   <div class="container">
     <div class="row g-3">
@@ -809,43 +808,54 @@ $(document).ready(function(){
         <div class="editor-box mb-3 p-3" 
              style="background:#fff; border:2px solid #e0e0e0; border-radius:12px; 
                     box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-          <textarea id="userText" class="form-control border-0" rows="12" 
+
+          {% csrf_token %}
+
+          <textarea id="userText" class="form-control border-0" rows="12"
                     placeholder="Type or paste your text here..."></textarea>
 
-          <!-- Free Limit Notice -->
-          <p class="text-muted small mt-2" 
+          <!-- Dynamic Plan Notice -->
+          <p class="text-muted small mt-2"
              style="font-weight:500; color:#444 !important;">
-            ✅ Check up to 
-            <span id="wordLimitNotice" 
-                  style="color:darkblue; font-weight:600;">1,500 words</span> 
-            for free (3 trials only)
+            ✅ Check up to
+            <span id="wordLimitNotice"
+                  style="color:darkblue; font-weight:600;">
+                {% if request.user.userprofile.is_active_subscriber %}
+                    5,000 words (Pro Plan – 50 checks/day)
+                {% else %}
+                    1,500 words (Free – 3 trials/day)
+                {% endif %}
+            </span>
           </p>
+
         </div>
 
-<!-- Upload + Drive + Check + Go Pro + Stats -->
+<!-- Upload + Check + Go Pro + Stats -->
 <div class="d-flex align-items-center flex-wrap gap-2 mb-2">
   <button id="uploadBtn" class="btn btn-light btn-sm">Upload</button>
   <input type="file" id="fileInput" hidden accept=".docx,.pdf,.txt,.jpg,.jpeg,.png" />
+<button type="button"
+        id="checkBtn"
+        class="btn btn-sm"
+        style="background:darkblue; color:#fff; border-radius:8px;
+               padding:8px 18px; border:none; cursor:pointer;">
+  Check Grammar
+</button>
 
-  <button id="checkBtn" class="btn btn-sm" 
-          style="background:darkblue; color:#fff; border-radius:8px; 
-                 padding:8px 18px; border:none;">
-    Check Grammar
-  </button>
-
-  <a href="#" data-bs-toggle="modal" data-bs-target="#proModal" 
-     class="text-decoration-none" 
+  {% if not request.user.userprofile.is_active_subscriber %}
+  <a href="#" data-bs-toggle="modal" data-bs-target="#proModal"
+     class="text-decoration-none"
      style="font-size:0.9rem; color:darkgoldenrod; font-weight:500;">
      🚀 Go Pro
   </a>
+  {% endif %}
 
-  <div class="stats ms-auto" id="textStats" 
+  <div class="stats ms-auto" id="textStats"
        style="font-size:0.9rem; color:black;">
     Words: 0 | Characters: 0
   </div>
 </div>
 
-<!-- 5K Upload Notice -->
 <p class="text-muted small" style="font-style:italic;">
   ⚠ If your document has more than 5,000 words, please upload chapter by chapter.
 </p>
@@ -861,18 +871,18 @@ $(document).ready(function(){
 
 <!-- Right Column -->
 <div class="col-lg-5 col-md-12 ms-auto">
-  <div class="suggestion-box p-3" 
-       style="background:#fff; border:2px solid #e0e0e0; border-radius:12px; 
-              height:100%; max-height:600px; overflow-y:auto; 
-              box-shadow:0 2px 8px rgba(0,0,0,0.05);" 
+  <div class="suggestion-box p-3"
+       style="background:#fff; border:2px solid #e0e0e0; border-radius:12px;
+              height:100%; max-height:600px; overflow-y:auto;
+              box-shadow:0 2px 8px rgba(0,0,0,0.05);"
        id="suggestions">
-       
+
     <div class="d-flex justify-content-between align-items-center mb-2">
       <h6 class="fw-bold mb-0">
-        All Suggestions 
+        All Suggestions
         <span class="badge bg-secondary" id="suggestionCount">0</span>
       </h6>
-      <button id="correctAll" class="btn btn-sm" 
+      <button id="correctAll" class="btn btn-sm"
               style="background:darkblue; color:#fff; border-radius:8px;">
         Correct All
       </button>
@@ -880,21 +890,21 @@ $(document).ready(function(){
 
     <div id="suggestionList">
       <p class="text-muted small" style="font-style:italic;">
-        Note: Grammar suggestions are AI-assisted and may not be 100% accurate. 
+        Note: Grammar suggestions are AI-assisted and may not be 100% accurate.
         Please review before submitting.
       </p>
       <p class="text-muted">
-        Suggestions will appear here after clicking 
+        Suggestions will appear here after clicking
         <strong>Check Grammar</strong>...
       </p>
     </div>
+
   </div>
 </div>
 
 </div>
 </div>
 </section>
-
 
 
 <!-- PRO MODAL -->
@@ -947,112 +957,31 @@ $(document).ready(function(){
   </div>
 </div>
 
-
-
-
-
-<script>
-const improvedText = document.getElementById("improvedText");
-const applyTopBtn = document.getElementById("applyTopBtn");
-const checkBtn = document.getElementById("checkBtn");
-const wordCountDisplay = document.getElementById("wordCount");
-const suggestionList = document.getElementById("suggestionList");
-const overallScoreEl = document.getElementById("overallScore");
-const grammarScoreEl = document.getElementById("grammarScore");
-const clarityScoreEl = document.getElementById("clarityScore");
-const toneScoreEl = document.getElementById("toneScore");
-const confidenceBar = document.getElementById("confidenceBar");
-const freeTrialNotice = document.getElementById("freeTrialNotice");
-const goProBtn = document.getElementById("goProBtn");
-
-const MAX_FREE_WORDS = 1500;
-
-// Word count update
-function updateWordCount() {
-  const text = originalText.value.trim();
-  const count = text ? text.split(/\s+/).length : 0;
-  wordCountDisplay.innerText = count;
-  freeTrialNotice.innerText = count > MAX_FREE_WORDS ? "Free trial limit reached! Upgrade to Pro." : `Free Trial: Up to ${MAX_FREE_WORDS} words (3 tries)`;
-}
-originalText.addEventListener("input", updateWordCount);
-
-// Apply suggestion
-function applyCorrections() {
-  if (improvedText.value.trim()) {
-    originalText.value = improvedText.value;
-    improvedText.style.display = "none";
-    updateWordCount();
-  }
-}
-applyTopBtn.addEventListener("click", applyCorrections);
-
-// Check Writing Button
-checkBtn.addEventListener("click", () => {
-  const text = originalText.value.trim();
-  if(!text) return alert("Please enter some text!");
-  const words = text.split(/\s+/).length;
-
-  if(words > MAX_FREE_WORDS){
-    const proModal = new bootstrap.Modal(document.getElementById("proModal"));
-    proModal.show();
-    return;
-  }
-
-  // Dummy improvements
-  improvedText.value = text.toUpperCase();
-  suggestionList.innerHTML = "<ul><li>Changed sentence structure</li><li>Corrected grammar</li></ul>";
-
-  animateScore(overallScoreEl, 85);
-  animateScore(grammarScoreEl, 90);
-  animateScore(clarityScoreEl, 80);
-  animateScore(toneScoreEl, 85);
-  confidenceBar.style.width = "85%";
-});
-
-// Score animation
-function animateScore(el, target){
-  let count = 0;
-  el.innerText = "0%";
-  const interval = setInterval(()=>{
-    if(count>=target) clearInterval(interval);
-    el.innerText = count + "%";
-    count++;
-  },15);
-}
-
-// Go Pro button opens modal
-goProBtn?.addEventListener("click", ()=> {
-  const proModal = new bootstrap.Modal(document.getElementById("proModal"));
-  proModal.show();
-});
-
-// Payment buttons logic
-document.getElementById("payNGN").addEventListener("click", ()=>alert("Redirecting to NGN payment gateway..."));
-document.getElementById("payUSD").addEventListener("click", ()=>alert("Redirecting to USD payment gateway..."));
-
-// Initialize word count
-updateWordCount();
-</script>
-
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
+  // Backend already restricts access
+  const userIsLoggedIn = true;
+
+  const userText = document.getElementById("userText");
+  const checkBtn = document.getElementById("checkBtn");
   const uploadBtn = document.getElementById("uploadBtn");
   const fileInput = document.getElementById("fileInput");
   const uploadResult = document.getElementById("uploadResult");
   const downloadContainer = document.getElementById("downloadContainer");
   const downloadBtn = document.getElementById("downloadBtn");
   const suggestionList = document.getElementById("suggestionList");
-  const textStats = document.getElementById("textStats");
-  const userText = document.getElementById("userText");
-  const checkBtn = document.getElementById("checkBtn");
-  const correctAllBtn = document.getElementById("correctAll");
   const suggestionCount = document.getElementById("suggestionCount");
+  const correctAllBtn = document.getElementById("correctAll");
+  const textStats = document.getElementById("textStats");
+  const wordLimitNotice = document.getElementById("wordLimitNotice");
 
-  const WORD_LIMIT_FREE = 2000;
-  const WORD_LIMIT_PRO = 15000;
+  const WORD_LIMIT_FREE = 1500;
+  const WORD_LIMIT_PRO = 5000;
 
-  // CSRF helper
+  /* -------------------------
+     CSRF HELPER (unchanged)
+  --------------------------*/
   function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== "") {
@@ -1068,177 +997,236 @@ document.addEventListener("DOMContentLoaded", () => {
     return cookieValue;
   }
 
-  // Update word/char count & grammar check button state
-  function updateStats() {
-    if (!userText) return;
-    const text = userText.value.trim();
-    const words = text ? text.split(/\s+/).length : 0;
-    const chars = text.length;
-    if (textStats) textStats.innerHTML = `Words: ${words} | Characters: ${chars}`;
+  /* -------------------------
+     SAFE FETCH (handles unauthenticated users)
+  --------------------------*/
+  async function safeFetch(url, options) {
+    try {
+      const res = await fetch(url, options);
 
-    const limit = userIsPro ? WORD_LIMIT_PRO : WORD_LIMIT_FREE;
+      // Detect redirect to login page
+      if (res.redirected && res.url.includes("show_login=true")) {
+        return { error: "⚠ Please login or sign up to use Eduprompt." };
+      }
 
-    if (!userIsLoggedIn) {
-      checkBtn.disabled = true;
-      checkBtn.style.background = "#ccc";
-      checkBtn.textContent = "Please login or sign up";
-    } else if (words > limit) {
-      checkBtn.disabled = true;
-      checkBtn.style.background = "#ccc";
-      checkBtn.textContent = userIsPro
-        ? `Limit ${WORD_LIMIT_PRO.toLocaleString()} words`
-        : "Upgrade to Pro for 15k+ words";
-    } else {
-      checkBtn.disabled = false;
-      checkBtn.style.background = "#b8860b";
-      checkBtn.textContent = "Check Grammar";
+      if (res.status === 401 || res.status === 403) {
+        return { error: "⚠ Please login or sign up to use Eduprompt." };
+      }
+
+      return await res.json();
+    } catch (err) {
+      return { error: "Error connecting to server. Try again." };
     }
   }
 
-  if (userText) userText.addEventListener("input", updateStats);
+  /* -------------------------
+     WORD + CHARACTER COUNT
+  --------------------------*/
+  function updateStats() {
+    if (!userText) return;
 
-  // File upload
-  if (uploadBtn && fileInput) uploadBtn.addEventListener("click", () => fileInput.click());
+    const text = userText.value.trim();
+    const words = text ? text.split(/\s+/).length : 0;
+    const chars = text.length;
+
+    if (textStats) {
+      textStats.innerHTML = `Words: ${words} | Characters: ${chars}`;
+    }
+
+    if (wordLimitNotice) {
+      wordLimitNotice.innerText = userIsPro
+        ? "5,000 words (Pro – 50 checks/day)"
+        : "1,500 words (Free – 3 trials/day)";
+    }
+
+    const limit = userIsPro ? WORD_LIMIT_PRO : WORD_LIMIT_FREE;
+
+    if (words > limit) {
+      checkBtn.disabled = true;
+      checkBtn.style.background = "#ccc";
+      checkBtn.style.cursor = "not-allowed";
+    } else {
+      checkBtn.disabled = false;
+      checkBtn.style.background = "darkblue";
+      checkBtn.style.cursor = "pointer";
+    }
+  }
+
+  if (userText) {
+    userText.addEventListener("input", updateStats);
+  }
+
+  /* -------------------------
+     FILE UPLOAD LOGIC (unchanged, added safe fetch)
+  --------------------------*/
+  if (uploadBtn && fileInput) {
+    uploadBtn.addEventListener("click", () => fileInput.click());
+  }
+
   if (fileInput) {
     fileInput.addEventListener("change", async () => {
+
       if (!fileInput.files.length) return;
+
       const file = fileInput.files[0];
       const formData = new FormData();
       formData.append("file", file);
 
       uploadResult.innerHTML = `<p>⏳ Uploading & checking grammar...</p>`;
-      if (downloadContainer) downloadContainer.style.display = "none";
-      if (suggestionList) suggestionList.innerHTML = "";
+      suggestionList.innerHTML = "";
+      downloadContainer.style.display = "none";
 
-      try {
-        const res = await fetch("/grammar-upload/", {
-          method: "POST",
-          body: formData,
-          headers: { "X-CSRFToken": getCookie("csrftoken") },
-        });
-        const data = await res.json();
+      const data = await safeFetch("/grammar-upload/", {
+        method: "POST",
+        body: formData,
+        headers: { "X-CSRFToken": getCookie("csrftoken") }
+      });
 
-        if (data.success) {
-          if (userText) userText.value = data.fixed_text;
-          updateStats();
-
-          uploadResult.innerHTML = `
-            <p><b>✅ Upload Success</b></p>
-            <p><b>Word Count:</b> ${data.words}</p>
-          `;
-
-          if (suggestionList) {
-            suggestionList.innerHTML = `
-              <div style="white-space: pre-wrap;">${data.highlighted_text || ""}</div>
-              <hr>
-              ${data.suggestions_html || ""}
-            `;
-          }
-
-          if (downloadBtn && downloadContainer) {
-            const blob = new Blob([data.fixed_text], { type: "text/plain" });
-            downloadBtn.href = URL.createObjectURL(blob);
-            downloadBtn.download = `corrected_text.txt`;
-            downloadContainer.style.display = "block";
-          }
-        } else {
-          uploadResult.innerHTML = `<p style="color:red;">${data.message}</p>`;
-        }
-      } catch (err) {
-        uploadResult.innerHTML = `<p style="color:red;">Upload failed. ${err}</p>`;
+      if (data.error) {
+        uploadResult.innerHTML = `<p style="color:red;">${data.error}</p>`;
+        return;
       }
+
+      if (data.success) {
+
+        userText.value = data.fixed_text || "";
+        userText.dispatchEvent(new Event("input"));
+
+        uploadResult.innerHTML = `
+          <p><b>✅ Upload Success</b></p>
+          <p><b>Word Count:</b> ${data.words || 0}</p>
+        `;
+
+        suggestionList.innerHTML = `
+          <div style="white-space: pre-wrap;">${data.highlighted_text || ""}</div>
+          <hr>
+          ${data.suggestions_html || ""}
+        `;
+
+        suggestionCount.innerText =
+          (data.suggestions_html && data.suggestions_html.match(/<p>/g)?.length) || 0;
+
+        const blob = new Blob([data.fixed_text || ""], { type: "text/plain" });
+        downloadBtn.href = URL.createObjectURL(blob);
+        downloadBtn.download = "corrected_text.txt";
+        downloadContainer.style.display = "block";
+
+      } else {
+        uploadResult.innerHTML = `<p style="color:red;">${data.message}</p>`;
+      }
+
     });
   }
 
-  // Grammar check
+  /* -------------------------
+     CHECK GRAMMAR BUTTON
+  --------------------------*/
   if (checkBtn && userText) {
+
     checkBtn.addEventListener("click", async () => {
+
       if (!userIsLoggedIn) {
-        suggestionList.innerHTML = `<p class="text-danger">⚠ Please login or sign up to check grammar.</p>`;
+        suggestionList.innerHTML =
+          `<p class="text-danger">⚠ Please login or sign up to check grammar.</p>`;
         return;
       }
 
       suggestionList.innerHTML = `<p>⏳ Checking grammar...</p>`;
-      if (suggestionCount) suggestionCount.innerText = 0;
+      suggestionCount.innerText = 0;
 
-      try {
-        const res = await fetch("/grammar-checker/", {
-          method: "POST",
-          headers: {
-            "X-CSRFToken": getCookie("csrftoken"),
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          body: new URLSearchParams({ text: userText.value })
-        });
-        const data = await res.json();
+      const data = await safeFetch("/grammar-checker/", {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": getCookie("csrftoken"),
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams({
+          text: userText.value
+        })
+      });
 
-        if (data.error) {
-          suggestionList.innerHTML = `<p class="text-danger">${data.error}</p>`;
-          return;
-        }
-
-        // Display results
-        let html = '';
-        if (data.highlighted_text) html += `<div style="white-space: pre-wrap;">${data.highlighted_text}</div><hr>`;
-        if (data.suggestions_html) html += data.suggestions_html;
-        suggestionList.innerHTML = html || `<p>No suggestions found ✅</p>`;
-
-        if (suggestionCount) suggestionCount.innerText = (data.matches || []).length || 0;
-
-      } catch (err) {
-        console.error(err);
-        suggestionList.innerHTML = `<p class="text-danger">Error checking grammar. Try again.</p>`;
-      }
-    });
-  }
-
-  // Correct All
-  if (correctAllBtn && userText) {
-    correctAllBtn.addEventListener("click", async () => {
-      if (!userIsLoggedIn) {
-        suggestionList.innerHTML = `<p class="text-danger">⚠ Please login or sign up to correct grammar.</p>`;
+      if (data.error) {
+        suggestionList.innerHTML =
+          `<p class="text-danger">${data.error}</p>`;
         return;
       }
 
-      suggestionList.innerHTML = `<p class="text-muted">Applying corrections...</p>`;
+      let html = "";
 
-      try {
-        const res = await fetch("/grammar-checker/", {
-          method: "POST",
-          headers: {
-            "X-CSRFToken": getCookie("csrftoken"),
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          body: new URLSearchParams({ text: userText.value, auto_correct: "true" })
-        });
-        const data = await res.json();
-
-        if (data.error) {
-          suggestionList.innerHTML = `<p class="text-danger">${data.error}</p>`;
-          return;
-        }
-
-        if (data.fixed_text) {
-          userText.value = data.fixed_text;
-          userText.dispatchEvent(new Event("input"));
-          suggestionList.innerHTML = `<p class="text-success">✅ Corrections applied</p>`;
-
-          if (downloadBtn && downloadContainer) {
-            const blob = new Blob([data.fixed_text], { type: "text/plain;charset=utf-8" });
-            downloadBtn.href = URL.createObjectURL(blob);
-            downloadBtn.download = "corrected_text.txt";
-            downloadContainer.style.display = "block";
-          }
-        }
-      } catch (err) {
-        console.error(err);
-        suggestionList.innerHTML = `<p class="text-danger">Error applying corrections.</p>`;
+      if (data.highlighted_text) {
+        html += `<div style="white-space: pre-wrap;">${data.highlighted_text}</div><hr>`;
       }
+
+      if (data.suggestions_html) {
+        html += data.suggestions_html;
+      }
+
+      suggestionList.innerHTML = html || `<p>No suggestions found ✅</p>`;
+
+      suggestionCount.innerText =
+        (data.suggestions_html && data.suggestions_html.match(/<p>/g)?.length) || 0;
+
     });
   }
+
+  /* -------------------------
+     CORRECT ALL BUTTON
+  --------------------------*/
+  if (correctAllBtn && userText) {
+
+    correctAllBtn.addEventListener("click", async () => {
+
+      if (!userIsLoggedIn) {
+        suggestionList.innerHTML =
+          `<p class="text-danger">⚠ Please login or sign up to correct grammar.</p>`;
+        return;
+      }
+
+      suggestionList.innerHTML =
+        `<p class="text-muted">Applying corrections...</p>`;
+
+      const data = await safeFetch("/grammar-checker/", {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": getCookie("csrftoken"),
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams({
+          text: userText.value,
+          auto_correct: "true"
+        })
+      });
+
+      if (data.error) {
+        suggestionList.innerHTML =
+          `<p class="text-danger">${data.error}</p>`;
+        return;
+      }
+
+      if (data.corrected_text) {
+
+        userText.value = data.corrected_text;
+        userText.dispatchEvent(new Event("input"));
+
+        suggestionList.innerHTML =
+          `<p class="text-success">✅ Corrections applied</p>`;
+
+        const blob = new Blob([data.corrected_text], {
+          type: "text/plain;charset=utf-8"
+        });
+
+        downloadBtn.href = URL.createObjectURL(blob);
+        downloadBtn.download = "corrected_text.txt";
+        downloadContainer.style.display = "block";
+      }
+
+    });
+  }
+
+  updateStats();
+
 });
 </script>
-
 <!-- ================= IMPROVE TEXT CTA CARD ================= -->
 <div class="container my-5">
   <div class="card border-0 shadow-lg p-4"
@@ -1369,6 +1357,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <!-- PDF.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.314/pdf.min.js"></script>
+
 <script>
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.314/pdf.worker.min.js';
 
@@ -1381,33 +1370,22 @@ async function handleFileUpload(event) {
 
     // ===== TXT FILE =====
     if (fileName.endsWith(".txt")) {
-        try {
-            const text = await file.text();
-            textarea.value = text;
-        } catch (err) {
-            console.error("TXT file read error:", err);
-            alert("Failed to read TXT file.");
-        }
+        const text = await file.text();
+        textarea.value = text;
     } 
     // ===== PDF FILE =====
     else if (fileName.endsWith(".pdf")) {
         try {
             const arrayBuffer = await file.arrayBuffer();
-            const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
+            const loadingTask = pdfjsLib.getDocument({data: arrayBuffer});
             const pdf = await loadingTask.promise;
-
             let fullText = "";
 
-            // Process each page
             for (let i = 1; i <= pdf.numPages; i++) {
                 const page = await pdf.getPage(i);
                 const content = await page.getTextContent();
                 const pageText = content.items.map(item => item.str).join(" ");
                 fullText += pageText + "\n\n";
-            }
-
-            if (!fullText.trim()) {
-                alert("PDF has no readable text. It might be scanned or image-based.");
             }
 
             textarea.value = fullText.trim();
@@ -1419,11 +1397,6 @@ async function handleFileUpload(event) {
     else {
         alert("Unsupported file type. Please upload a TXT or PDF file.");
     }
-}
-
-// Optional: clear file input after processing
-function clearFileInput() {
-    document.getElementById("fileInput").value = "";
 }
 </script>
             </div>
@@ -1457,7 +1430,42 @@ function clearFileInput() {
                         style="border-radius:12px;">
                   📥 Download
                 </button>
+<script>
+async function downloadText() {
+    const text = document.getElementById("outputText").value.trim();
+    if (!text) {
+        alert("No text to download.");
+        return;
+    }
 
+    let filename = "processed-text";
+
+    switch (selectedGoal) {
+        case "cv":
+            filename = "improved-cv";
+            break;
+        case "email":
+            filename = "professional-email";
+            break;
+        case "academic":
+            filename = "academic-version";
+            break;
+        case "summarize":
+            filename = "summary";
+            break;
+    }
+
+    // ===== Generate PDF =====
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Split text into lines for jsPDF
+    const lines = doc.splitTextToSize(text, 180); // 180 = page width margin
+    doc.text(lines, 10, 10); // 10mm padding from top & left
+
+    doc.save(filename + ".pdf");
+}
+</script>
                 <button type="button"
                         onclick="clearAll()"
                         class="btn btn-outline-danger flex-fill"
