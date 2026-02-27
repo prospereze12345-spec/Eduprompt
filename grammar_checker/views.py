@@ -112,7 +112,7 @@ def grammar_checker(request):
 
         max_checks = 50 if is_pro else 3
         if profile.daily_check_count >= max_checks:
-            msg = f"⚠ Your daily limit of {max_checks} checks has been reached. Try again in 24 hours."
+            msg = f"⚠ Your daily limit of {max_checks} checks has been reached. Try again next day."
             return JsonResponse({"error": msg}, status=400)
 
         profile.daily_check_count += 1

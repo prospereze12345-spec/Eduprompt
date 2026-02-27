@@ -84,9 +84,9 @@ def ajax_signup(request):
 
     except IntegrityError:
         # Rare case: race condition / duplicate creation
-        return render(request, "signup.html", {"error": "Email already registered. Please log in instead."})
+        return render(request, {"error": "Email already registered. Please log in instead."})
     except Exception as e:
-        return render(request, "signup.html", {"error": f"Failed to create user: {str(e)}"})
+        return render(request, {"error": f"Failed to create user: {str(e)}"})
 
     # --------------------------
     # AJAX response for successful signup
