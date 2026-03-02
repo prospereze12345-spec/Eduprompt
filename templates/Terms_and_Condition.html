@@ -301,8 +301,7 @@
       </div>
     </div>
   </div>
-</div>
-<!-- Register Modal -->
+</div><!-- Register Modal -->
 <div class="modal fade" id="registerModal" tabindex="-1" data-bs-backdrop="false">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content rounded-4 shadow">
@@ -313,6 +312,10 @@
       <div class="modal-body p-4">
         <form id="signupForm" method="post" action="{% url 'ajax_signup' %}">
           {% csrf_token %}
+          
+          <!-- Honeypot Field (hidden) -->
+          <input type="text" name="honeypot" style="display:none">
+
           <div class="mb-3">
             <input type="text" name="username" class="form-control" placeholder="{% trans 'Username' %}" required>
           </div>
@@ -327,8 +330,6 @@
           </div>
           <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Create Account" %}</button>
         </form>
-
-      
       </div>
     </div>
   </div>

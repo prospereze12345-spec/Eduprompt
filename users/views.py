@@ -52,11 +52,19 @@ from django.db import IntegrityError
 from django.views.decorators.http import require_POST
 from .emails import send_welcome_email_async  # your existing email function
 
+
 @require_POST
 def ajax_signup(request):
     username = request.POST.get("username", "").strip()
     email = request.POST.get("email", "").strip().lower()
     password = request.POST.get("password", "").strip()
+
+    # --------------------------
+    # Honeypot check to block bots
+    # --------------------------
+    honeypot = request.POST.get("honeypot", "")
+    if honeypot:  # If field is filled, likely a bot
+        return render(request, "signup.html", {"error": "Bot detected!"})
 
     if not all([username, email, password]):
         return render(request, "signup.html", {"error": "All fields are required."})
@@ -95,6 +103,8 @@ def ajax_signup(request):
         return render(request,  {"success": "Account created! Redirecting...", "redirect_url": "/"})
 
     return redirect("/")
+
+
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.urls import reverse

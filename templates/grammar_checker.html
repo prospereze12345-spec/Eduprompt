@@ -10,10 +10,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Primary SEO Title -->
-<title>{% block title %}EduPrompt – AI Grammar Checker & Text Improver | Correct, Refine & Upgrade Writing Online{% endblock %}</title>
+<title>{% block title %}EduPrompt – AI Grammar Checker & Writing Improver{% endblock %}</title>
 
 <!-- Meta Description -->
-<meta name="description" content="EduPrompt is an AI-powered grammar checker and text improver that detects grammar errors, fixes spelling and punctuation, and upgrades your writing for academic, CV, and professional use. Fast, accurate, and easy to use online.">
+<meta name="description" content="EduPrompt is an AI-powered grammar checker and text improver that fixes spelling, punctuation, and grammar errors. Upgrade your writing for academic, CV, and professional use easily online.">
 
 <!-- Keywords (Optional) -->
 <meta name="keywords" content="AI grammar checker, text improver, writing assistant, online proofreading tool, spelling and punctuation checker, academic
@@ -334,8 +334,7 @@
       </div>
     </div>
   </div>
-</div>
-<!-- Register Modal -->
+</div><!-- Register Modal -->
 <div class="modal fade" id="registerModal" tabindex="-1" data-bs-backdrop="false">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content rounded-4 shadow">
@@ -346,6 +345,10 @@
       <div class="modal-body p-4">
         <form id="signupForm" method="post" action="{% url 'ajax_signup' %}">
           {% csrf_token %}
+          
+          <!-- Honeypot Field (hidden) -->
+          <input type="text" name="honeypot" style="display:none">
+
           <div class="mb-3">
             <input type="text" name="username" class="form-control" placeholder="{% trans 'Username' %}" required>
           </div>
@@ -360,14 +363,10 @@
           </div>
           <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Create Account" %}</button>
         </form>
-
-      
       </div>
     </div>
   </div>
 </div>
-
-
 
 <script>
 document.getElementById("magicLinkForm").addEventListener("submit", async function(e) {
@@ -789,14 +788,15 @@ $(document).ready(function(){
       <path fill-rule="evenodd" d="M10.146 4.146a.5.5 0 0 1 .708 0L14 7.293l-.707.707L11 5.707V14.5a.5.5 0 0 1-1 0V5.707L8.707 8l-.708-.707L10.146 4.146z"/>
     </svg>
   </div>
-</a><div class="text-center mb-4">
+</a>
+<div class="text-center mb-4">
   <h1 class="fw-bold mb-3" style="color: #333;">
     AI Grammar Checker & Text Improver – <span style="color: darkblue;">Write Better, Instantly</span>
   </h1>
 
   <p class="text-muted" style="font-size: 1.1rem;">
-    Instantly check grammar, correct spelling mistakes, and fix punctuation errors with our advanced AI-powered grammar checker. 
-    Upgrade your writing with our smart text improver—perfect for academic writing, CV enhancement, professional emails, blog posts, and business communication.
+    Instantly check grammar, correct spelling and punctuation errors with our advanced AI-powered grammar checker. 
+    Upgrade your writing with our smart text improver—ideal for academic papers, CVs, professional emails, blogs, and business communication.
   </p>
 </div></section>
 <section class="py-4" style="background-color:white; font-family:'Segoe UI', sans-serif;">
@@ -1235,11 +1235,11 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="row align-items-center">
       
       <div class="col-md-8">
-        <h4 class="fw-bold text-white mb-2">
+        <h2 class="fw-bold text-white mb-2">
           Upgrade Your Writing Instantly
-        </h4>
+        </h2>
         <p class="text-white mb-0" style="opacity:0.9;">
-          Improve tone, clarity, and professionalism for academic, CV, and email writing.
+          Improve tone, clarity, and professionalism for academic papers, CVs, emails, blogs, and business communication.
         </p>
       </div>
 
@@ -1254,6 +1254,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     </div>
   </div>
+</div>
 </div><!-- ================= IMPROVE TEXT MODAL ================= -->
 <div class="modal fade" id="improveModal" tabindex="-1">
   <div class="modal-dialog modal-xl modal-dialog-centered">
@@ -1627,20 +1628,20 @@ window.toggleGoalOptions = toggleGoalOptions;
 <!-- Add Bootstrap JS if not already included -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
  <!-- How to Use Section -->
-<section class="py-5" style="background-color: #ffffff; color: #000;">
+  <section class="py-5" style="background-color: #ffffff; color: #000;">
   <div class="container">
     <h2 class="text-center mb-4" style="color: black;">How to Use Our Grammar Checker</h2>
     <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
-      Checking your text has never been easier. Follow these simple steps to polish your writing and make it error-free:
+      Easily polish your writing and make it error-free by following these simple steps:
     </p>
     <div class="row g-4">
       <!-- Step 1 -->
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-upload" style="font-size: 2.5rem; color: black;"></i>
-          <h5 class="mt-3" style="color: darkblue;">Upload Your Text</h5>
+          <h4 class="mt-3" style="color: darkblue;">Upload Text</h4>
           <p style="color: black; font-size: 0.95rem;">
-            Paste your text directly or upload a file from your device. Our tool accepts multiple formats for your convenience.
+            Paste content or upload a file. Multiple formats are supported for convenience.
           </p>
         </div>
       </div>
@@ -1648,9 +1649,9 @@ window.toggleGoalOptions = toggleGoalOptions;
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-check2-square" style="font-size: 2.5rem; color: black;"></i>
-          <h5 class="mt-3" style="color: darkblue;">Start the Check</h5>
+          <h4 class="mt-3" style="color: darkblue;">Run the Check</h4>
           <p style="color: black; font-size: 0.95rem;">
-            Click the <strong>“Check Grammar”</strong> button and let our system scan your writing for grammar, spelling, and style issues.
+            Click <strong>“Check Grammar”</strong> and let our AI scan for grammar, spelling, and style issues.
           </p>
         </div>
       </div>
@@ -1658,9 +1659,9 @@ window.toggleGoalOptions = toggleGoalOptions;
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-pencil-square" style="font-size: 2.5rem; color: black;"></i>
-          <h5 class="mt-3" style="color: darkblue;">Review Suggestions</h5>
+          <h4 class="mt-3" style="color: darkblue;">Review Suggestions</h4>
           <p style="color: black; font-size: 0.95rem;">
-            Mistakes will be highlighted with clear suggestions. Review and apply corrections in just a few clicks.
+            Highlighted errors show corrections and improvements—apply them in a few clicks.
           </p>
         </div>
       </div>
@@ -1668,18 +1669,15 @@ window.toggleGoalOptions = toggleGoalOptions;
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-download" style="font-size: 2.5rem; color: black;"></i>
-          <h5 class="mt-3" style="color: darkblue;">Save & Download</h5>
+          <h4 class="mt-3" style="color: darkblue;">Save & Download</h4>
           <p style="color: black; font-size: 0.95rem;">
-            Once satisfied, save the final version or download it instantly to your device—ready to share or submit.
+            Save the final version or download instantly—ready to submit or share.
           </p>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-
-
 
 
 <!-- ✨ Grammar Checker Section -->
@@ -1696,21 +1694,21 @@ window.toggleGoalOptions = toggleGoalOptions;
             <div class="d-flex align-items-center p-3 border-bottom">
               <i class="bi bi-check-circle-fill me-3 fs-5"></i>
               <strong>Checks</strong>
-              <span class="ms-auto">Grammar,Punctuation, &  spellings</span>
+              <span class="ms-auto">Grammar, Punctuation & Spelling</span>
             </div>
             
             <!-- Feature Item -->
             <div class="d-flex align-items-center p-3 border-bottom">
               <i class="bi bi-cpu-fill me-3 fs-5 text-dark"></i>
-              <strong>AI-Based</strong>
+              <strong>AI-Powered</strong>
               <span class="ms-auto text-dark">Smart Algorithms</span>
             </div>
             
             <!-- Feature Item -->
             <div class="d-flex align-items-center p-3 border-bottom">
               <i class="bi bi-translate me-3 fs-5 text-dark"></i>
-              <strong>Language</strong>
-              <span class="ms-auto text-dark">Multilingual</span>
+              <strong>Languages</strong>
+              <span class="ms-auto text-dark">Multilingual Support</span>
             </div>
             
             <!-- Feature Item -->
@@ -1731,13 +1729,10 @@ window.toggleGoalOptions = toggleGoalOptions;
           <span style="color:darkblue;">Your Ultimate Writing Assistant!</span>
         </h1>
         <p style="color:#333; font-size:1rem; line-height:1.7;">
-          Our grammar checker goes beyond fixing mistakes — it elevates your writing. 
-          Powered by advanced AI, it ensures your text is error-free, polished, and easy to read.  
-          Whether you’re drafting essays, reports, or creative content, our tool helps you express ideas with confidence.
+          Go beyond simple corrections — enhance your writing effortlessly. Powered by advanced AI, your text will be polished, clear, and professional. Whether creating essays, reports, or creative content, communicate ideas confidently.
         </p>
         <p style="color:black; font-size:1rem; line-height:1.7;">
-          Get real-time suggestions, multilingual support, and unlimited grammar checks — all in one simple, user-friendly platform.  
-          Write smarter, faster, and more effectively with your personal AI-powered writing assistant.
+          Real-time suggestions, multilingual support, and unlimited checks in a user-friendly platform. Write smarter, faster, and more effectively with your AI writing assistant.
         </p>
         <button class="btn mt-3" style="background:darkblue; color:#fff; border-radius:8px; padding:12px 25px; border:none; font-weight:600;">
           Try Grammar Checker
@@ -1751,17 +1746,16 @@ window.toggleGoalOptions = toggleGoalOptions;
 <!-- Bootstrap Icons -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-
 <!-- Why Choose Us Section -->
 <section class="py-5" style="background-color: white;">
   <div class="container">
     
     <h2 class="text-center mb-4" style="color: black;">
-      Why Choose Our AI Grammar Checker & Text Improver?
+      Why Choose Our AI Writing Assistant?
     </h2>
 
     <p class="text-center mb-5" style="font-size: 1.1rem; color: #333;">
-      Writing clearly and professionally shouldn’t be difficult. Our AI-powered grammar checker and text improver help you correct mistakes, refine your tone, and present your ideas with confidence — whether you’re writing for school, work, or business.
+      Improve clarity, tone, and professionalism in every piece you write. Our AI tool corrects mistakes, enhances style, and helps you present ideas confidently.
     </p>
 
     <div class="row g-4">
@@ -1770,9 +1764,9 @@ window.toggleGoalOptions = toggleGoalOptions;
       <div class="col-md-4">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-lightning-charge-fill" style="font-size: 2.5rem; color: darkblue;"></i>
-          <h5 class="mt-3" style="color:black;">Fast & Accurate Corrections</h5>
+          <h4 class="mt-3" style="color:black;">Fast & Accurate</h4>
           <p style="color:black;">
-            Instantly detect grammar errors, spelling mistakes, and punctuation issues with precise suggestions that save you time and effort.
+            Detect grammar, spelling, and punctuation issues instantly with precise suggestions that save time.
           </p>
         </div>
       </div>
@@ -1781,9 +1775,9 @@ window.toggleGoalOptions = toggleGoalOptions;
       <div class="col-md-4">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-pencil-square" style="font-size: 2.5rem; color: darkblue;"></i>
-          <h5 class="mt-3" style="color:black;">Smart Text Improvement</h5>
+          <h4 class="mt-3" style="color:black;">Smart Style Enhancement</h4>
           <p style="color:black;">
-            Go beyond basic corrections. Upgrade your writing style for academic papers, CVs, professional emails, and business communication.
+            Upgrade your writing for academic papers, CVs, professional emails, and business communication.
           </p>
         </div>
       </div>
@@ -1792,9 +1786,9 @@ window.toggleGoalOptions = toggleGoalOptions;
       <div class="col-md-4">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-hand-thumbs-up-fill" style="font-size: 2.5rem; color: darkblue;"></i>
-          <h5 class="mt-3" style="color:black;">Simple & Easy to Use</h5>
+          <h4 class="mt-3" style="color:black;">Simple & Intuitive</h4>
           <p style="color:black;">
-            No complicated setup. Paste your text, check grammar, or improve your content in seconds with a clean and intuitive interface.
+            No setup required. Paste your text, check, and improve in seconds with a clean interface.
           </p>
         </div>
       </div>
@@ -1807,9 +1801,9 @@ window.toggleGoalOptions = toggleGoalOptions;
       <div class="col-md-4">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-shield-lock-fill" style="font-size: 2.5rem; color: darkblue;"></i>
-          <h5 class="mt-3" style="color:black;">Secure & Private</h5>
+          <h4 class="mt-3" style="color:black;">Secure & Private</h4>
           <p style="color:black;">
-            Your writing remains yours. We respect your privacy and do not store, sell, or share your content.
+            Your content stays private. We never store, sell, or share your text.
           </p>
         </div>
       </div>
@@ -1818,9 +1812,9 @@ window.toggleGoalOptions = toggleGoalOptions;
       <div class="col-md-4">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-people-fill" style="font-size: 2.5rem; color: darkblue;"></i>
-          <h5 class="mt-3" style="color:black;">Built for Students & Professionals</h5>
+          <h4 class="mt-3" style="color:black;">For Students & Professionals</h4>
           <p style="color:black;">
-            Whether you’re a student, job seeker, blogger, or business professional, our writing assistant helps you communicate with clarity and confidence.
+            Helps students, job seekers, bloggers, and professionals communicate clearly and confidently.
           </p>
         </div>
       </div>
@@ -1829,9 +1823,9 @@ window.toggleGoalOptions = toggleGoalOptions;
       <div class="col-md-4">
         <div class="card h-100 shadow-sm border-0 text-center p-4" style="border-radius: 14px;">
           <i class="bi bi-cloud-check-fill" style="font-size: 2.5rem; color: darkblue;"></i>
-          <h5 class="mt-3" style="color:black;">Works on Any Device</h5>
+          <h4 class="mt-3" style="color:black;">Works on Any Device</h4>
           <p style="color:black;">
-            Access your grammar checker and text improver anytime on desktop, tablet, or mobile — seamlessly integrated into your workflow.
+            Access the writing assistant on desktop, tablet, or mobile — fully integrated into your workflow.
           </p>
         </div>
       </div>
@@ -1840,13 +1834,12 @@ window.toggleGoalOptions = toggleGoalOptions;
 
   </div>
 </section>
-
 <!-- Who Can Benefit Section -->
 <section class="py-5" style="background-color: #ffffff; color: #000000;">
   <div class="container">
-    <h2 class="text-center mb-4" style="color: black;">Who Can Benefit from Our Grammar Checker & AI Improver?</h2>
+    <h2 class="text-center mb-4" style="color: black;">Who Can Benefit from EduPrompt?</h2>
     <p class="text-center mb-5" style="font-size: 1.1rem; color: black;">
-      Our Grammar Checker & AI Improver is more than just a correction tool — it’s a smart writing assistant that helps you express ideas clearly, confidently, and professionally. Whether you are a student, professional, or content creator, this tool adapts to your needs.
+      EduPrompt is more than a grammar tool — it’s a smart writing assistant that helps you communicate clearly, confidently, and professionally. Whether you are a student, professional, or content creator, it adapts to your needs.
     </p>
 
     <!-- Tabs -->
@@ -1863,7 +1856,7 @@ window.toggleGoalOptions = toggleGoalOptions;
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link d-flex align-items-center" id="creators-tab" data-bs-toggle="tab" data-bs-target="#creators" type="button" role="tab" aria-controls="creators" aria-selected="false" style="color: black;">
-          <i class="bi bi-pencil-fill me-2" style="color:darkblue;"></i> Content Creators
+          <i class="bi bi-pencil-fill me-2" style="color:darkblue;"></i> Creators
         </button>
       </li>
     </ul>
@@ -1875,10 +1868,10 @@ window.toggleGoalOptions = toggleGoalOptions;
       <div class="tab-pane fade show active" id="students" role="tabpanel" aria-labelledby="students-tab">
         <div class="p-4 mb-3 bg-light rounded hover-shadow">
           <p>
-            Students benefit from our Grammar Checker & AI Improver by ensuring their academic writing is polished, credible, and free of distracting errors. From essays and term papers to dissertations and research reports, the tool refines arguments, improves readability, and boosts confidence for submission-ready work.
+            Students can polish essays, term papers, and research reports. EduPrompt refines arguments, improves readability, and boosts confidence for submission-ready work.
           </p>
           <p>
-            It also serves as a learning companion by highlighting grammar mistakes, suggesting style improvements, and helping students build stronger writing skills over time — not just fixing errors, but teaching better communication.
+            It also highlights mistakes, suggests style improvements, and helps build stronger writing skills over time.
           </p>
         </div>
       </div>
@@ -1887,10 +1880,10 @@ window.toggleGoalOptions = toggleGoalOptions;
       <div class="tab-pane fade" id="professionals" role="tabpanel" aria-labelledby="professionals-tab">
         <div class="p-4 mb-3 bg-light rounded hover-shadow">
           <p>
-            For professionals, first impressions matter. Our Grammar Checker & AI Improver ensures every email, proposal, report, or presentation is error-free, clear, concise, and persuasive. This enhances credibility and establishes authority in your field.
+            Professionals can ensure emails, proposals, reports, and presentations are clear, concise, and persuasive, enhancing credibility and authority.
           </p>
           <p>
-            Whether in business, law, medicine, or research, the tool saves time on proofreading, reduces communication risks, and projects a polished professional image to colleagues, clients, and stakeholders.
+            The tool saves proofreading time, reduces communication risks, and projects a polished professional image to colleagues, clients, and stakeholders.
           </p>
         </div>
       </div>
@@ -1899,10 +1892,10 @@ window.toggleGoalOptions = toggleGoalOptions;
       <div class="tab-pane fade" id="creators" role="tabpanel" aria-labelledby="creators-tab">
         <div class="p-4 mb-3 bg-light rounded hover-shadow">
           <p>
-            Content creators — bloggers, writers, journalists, marketers, and social media influencers — can use the Grammar Checker & AI Improver to maintain credibility and produce content that engages audiences. Clear, mistake-free writing builds trust and enhances the impact of your message.
+            Creators — bloggers, writers, marketers, and influencers — can maintain credibility and engage audiences with clear, mistake-free writing.
           </p>
           <p>
-            Beyond grammar corrections, it refines tone, improves readability, and optimizes style for various platforms — ensuring your content stands out, attracts more readers, and leaves a lasting impression.
+            Beyond grammar, it improves tone, readability, and style for various platforms, helping your content stand out and leave a lasting impression.
           </p>
         </div>
       </div>
@@ -1910,12 +1903,12 @@ window.toggleGoalOptions = toggleGoalOptions;
   </div>
 </section>
 
-<!-- Grammar Checker Accuracy & Reliability Section -->
+<!-- AI Accuracy & Reliability Section -->
 <section class="py-5" style="background-color: #ffffff; color: #0d1b2a;">
   <div class="container">
-    <h2 class="text-center mb-5" style="color: #0d1b2a;">{% trans "AI Accuracy & Reliability" %}</h2>
+    <h2 class="text-center mb-5" style="color: #0d1b2a;">AI Accuracy & Reliability</h2>
     <p class="text-center mb-5" style="max-width: 800px; margin: 0 auto;">
-      "EduPrompt’s AI Grammar Checker & Improver ensures your writing is polished, professional, and error-free. Detect grammar mistakes, spelling errors, and punctuation issues instantly. Every suggestion is reliable, secure, and designed to help students, professionals, and content creators write with confidence."
+      EduPrompt ensures your writing is polished, professional, and error-free. Detect grammar, spelling, and punctuation issues instantly with reliable and secure suggestions, helping students, professionals, and creators write with confidence.
     </p>
 
     <div class="row g-4 text-center">
@@ -1923,9 +1916,9 @@ window.toggleGoalOptions = toggleGoalOptions;
       <div class="col-md-4">
         <div class="p-4 rounded hover-shadow" style="background-color: darkgold; color: black">
           <i class="bi bi-check-circle-fill display-4 mb-3"></i>
-          <h4 class="mb-2">{% trans "99% Accuracy" %}</h4>
+          <h4 class="mb-2">99% Accuracy</h4>
           <p>
-            {% trans "Our AI provides highly accurate grammar, spelling, and punctuation suggestions, helping you submit flawless essays, reports, and content every time." %}
+            Highly accurate grammar, spelling, and punctuation suggestions for flawless essays, reports, and content.
           </p>
         </div>
       </div>
@@ -1934,9 +1927,9 @@ window.toggleGoalOptions = toggleGoalOptions;
       <div class="col-md-4">
         <div class="p-4 rounded hover-shadow" style="background-color: darkgold; color: black">
           <i class="bi bi-journal-check display-4 mb-3"></i>
-          <h4 class="mb-2">{% trans "Verified & Trusted" %}</h4>
+          <h4 class="mb-2">Verified & Trusted</h4>
           <p>
-            {% trans "See testimonials from students, professionals, and content creators who trust EduPrompt to improve clarity, readability, and writing quality." %}
+            Trusted by students, professionals, and creators to improve clarity, readability, and overall writing quality.
           </p>
         </div>
       </div>
@@ -1945,16 +1938,15 @@ window.toggleGoalOptions = toggleGoalOptions;
       <div class="col-md-4">
         <div class="p-4 rounded hover-shadow" style="background-color: darkgold; color:black">
           <i class="bi bi-shield-lock-fill display-4 mb-3"></i>
-          <h4 class="mb-2">{% trans "Secure & Private" %}</h4>
+          <h4 class="mb-2">Secure & Private</h4>
           <p>
-            {% trans "Your text is never stored or shared. EduPrompt provides a safe environment for students, writers, and professionals to check grammar and improve writing with complete privacy." %}
+            Your text is never stored or shared. EduPrompt provides a safe environment to check grammar and improve writing with full privacy.
           </p>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 <!-- Custom CSS -->
 <style>
   .hover-shadow {
@@ -2100,10 +2092,12 @@ window.toggleGoalOptions = toggleGoalOptions;
   </div>
 </section>
 <!-- Testimonial Section -->
-<section class="testimonial-section container">
+<section class="testimonial-section container py-5">
   <div class="row align-items-center">
     <div class="col-md-6">
-      <h1 class="mb-3">What <strong>users</strong> are <strong>saying about us.</strong></h1>
+      <h2 class="mb-4" style="color: black;">
+        What <strong>users</strong> are saying
+      </h2>
 
       <!-- Testimonial 1 -->
       <div class="testimonial-card d-flex align-items-start mb-4 shadow-sm p-3" style="border-radius:12px;">
@@ -2112,7 +2106,7 @@ window.toggleGoalOptions = toggleGoalOptions;
           <i class="bi bi-pencil-square mt-2" style="font-size:1.5rem; color:darkblue;"></i>
         </div>
         <p class="mb-0" style="color:black;">
-          "The Grammar Checker & AI Improver has made my essays look polished and professional. It highlights mistakes I usually overlook and makes corrections simple and accurate."
+          "This tool has made my essays polished and professional. It highlights mistakes I often overlook and provides simple, accurate corrections."
         </p>
       </div>
 
@@ -2134,7 +2128,7 @@ window.toggleGoalOptions = toggleGoalOptions;
           <i class="bi bi-megaphone-fill mt-2" style="font-size:1.5rem; color:darkblue;"></i>
         </div>
         <p class="mb-0" style="color:black;">
-          "For my blog posts, this tool is a game-changer. It makes my writing clear, professional, and engaging, keeping my readers interested and returning for more."
+          "For blog posts, this tool is a game-changer. It makes my writing clear, professional, and engaging, keeping readers interested and returning for more."
         </p>
       </div>
 
@@ -2144,11 +2138,12 @@ window.toggleGoalOptions = toggleGoalOptions;
           <div class="testimonial-number bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;">04</div>
           <i class="bi bi-envelope-fill mt-2" style="font-size:1.5rem; color:darkblue;"></i>
         </div>
-        <p class="mb-0" style="color:black">
-          "I use it for professional emails and proposals. The suggestions are precise and make my communication polished, confident, and effective."
+        <p class="mb-0" style="color:black;">
+          "I use it for professional emails and proposals. The suggestions are precise and make my communication polished and confident."
         </p>
       </div>
     </div>
+
 
     <div class="col-md-6 testimonial-image text-center">
       <img src="{% static 'assets/img/man smile.PNG' %}" alt="Happy user">

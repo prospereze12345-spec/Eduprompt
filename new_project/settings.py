@@ -208,6 +208,9 @@ LOCALE_PATHS = [
     BASE_DIR / 'locale',
 ]
 
+
+
+
 ROOT_URLCONF = 'new_project.urls'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
