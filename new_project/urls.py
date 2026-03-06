@@ -19,14 +19,19 @@ from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.sitemaps.views import sitemap
-from users.sitemaps import StaticViewSitemap  # adjust to your app
 from django.views.generic import TemplateView
+
+from django.contrib.sitemaps.views import sitemap
+from blog.sitemaps import StaticViewSitemap, BlogPostSitemap
 
 sitemaps = {
     'static': StaticViewSitemap,
+    'blog': BlogPostSitemap,
 }
 
+urlpatterns = [
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
+]
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),

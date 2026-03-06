@@ -196,11 +196,12 @@ INSTALLED_APPS = [
     'allauth',
     'widget_tweaks',
     'users.apps.UsersConfig',
-    'blog',
     'django_quill', 
     'django.contrib.sitemaps',
     'cloudinary',
     'cloudinary_storage',
+    'blog',
+
 
 ]
 
@@ -299,8 +300,8 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-MEDIA_ROOT = BASE_DIR / "media"
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 LOGIN_URL = 'login'
