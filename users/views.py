@@ -51,8 +51,10 @@ from django.contrib.auth import login
 from django.db import IntegrityError
 from django.views.decorators.http import require_POST
 from .emails import send_welcome_email_async  # your existing email function
-
-
+from django.http import JsonResponse
+from django.db import IntegrityError
+from django.contrib.auth import login
+from django.views.decorators.http import require_POST
 @require_POST
 def ajax_signup(request):
     username = request.POST.get("username", "").strip()
@@ -64,20 +66,20 @@ def ajax_signup(request):
     # --------------------------
     honeypot = request.POST.get("honeypot", "")
     if honeypot:  # If field is filled, likely a bot
-        return render(request, "signup.html", {"error": "Bot detected!"})
+        return JsonResponse({"error": "Bot detected!"}, status=400)
 
     if not all([username, email, password]):
-        return render(request, "signup.html", {"error": "All fields are required."})
+        return JsonResponse({"error": "All fields are required."}, status=400)
 
     if User.objects.filter(username=username).exists():
-        return render(request, "signup.html", {"error": "Username already taken."})
+        return JsonResponse({"error": "Username already taken."}, status=400)
 
     # --------------------------
     # Handle duplicate email gracefully
     # --------------------------
     existing_user = User.objects.filter(email=email).first()
     if existing_user:
-        return render(request, "signup.html", {"error": "Email already registered. Please log in instead."})
+        return JsonResponse({"error": "Email already registered. Please log in instead."}, status=400)
 
     try:
         # Create user
@@ -92,16 +94,13 @@ def ajax_signup(request):
 
     except IntegrityError:
         # Rare case: race condition / duplicate creation
-        return render(request, {"error": "Email already registered. Please log in instead."})
+        return JsonResponse({"error": "Email already registered. Please log in instead."}, status=400)
     except Exception as e:
-        return render(request, {"error": f"Failed to create user: {str(e)}"})
+        return JsonResponse({"error": f"Failed to create user: {str(e)}"}, status=500)
 
     # --------------------------
-    # AJAX response for successful signup
+    # Redirect to homepage after successful signup
     # --------------------------
-    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
-        return render(request,  {"success": "Account created! Redirecting...", "redirect_url": "/"})
-
     return redirect("/")
 
 
