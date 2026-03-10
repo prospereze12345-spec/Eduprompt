@@ -15,6 +15,22 @@ from pypdf import PdfReader
 from .models import UserProfile
 
 logger = logging.getLogger(__name__)
+# -------------------------
+# Imports
+# -------------------------
+import re
+import requests
+import docx
+import pytesseract
+from PIL import Image
+from PyPDF2 import PdfReader
+
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+
 
 # -------------------------
 # Helpers
@@ -22,54 +38,251 @@ logger = logging.getLogger(__name__)
 def count_words(text):
     return len(text.split())
 
+
+def normalize_text(text):
+    """
+    Clean common formatting problems before grammar analysis.
+    Reduces quote-related warnings from LanguageTool.
+    """
+
+    text = text.replace("''", '"')
+    text = text.replace("‘", "'").replace("’", "'")
+    text = text.replace("“", '"').replace("”", '"')
+
+    text = re.sub(r"\s+", " ", text)
+
+    return text.strip()
+
+
 def extract_text_from_file(file_obj):
     ext = file_obj.name.split(".")[-1].lower()
+
     if ext == "docx":
         doc = docx.Document(file_obj)
-        return " ".join([p.text for p in doc.paragraphs])
+        return " ".join(p.text for p in doc.paragraphs)
+
     elif ext == "pdf":
         reader = PdfReader(file_obj)
-        return " ".join([page.extract_text() or "" for page in reader.pages])
+        return " ".join(page.extract_text() or "" for page in reader.pages)
+
     elif ext in ["jpg", "jpeg", "png"]:
         img = Image.open(file_obj)
         return pytesseract.image_to_string(img)
+
     else:
         return file_obj.read().decode(errors="ignore")
 
+
+# -------------------------
+# NLP RULES (Lightweight)
+# -------------------------
+def detect_repeated_words(text):
+    issues = []
+
+    for m in re.finditer(r"\b(\w+)\s+\1\b", text, re.IGNORECASE):
+
+        issues.append({
+            "start": m.start(),
+            "end": m.end(),
+            "message": "Repeated word detected"
+        })
+
+    return issues
+
+
+def detect_passive_voice(text):
+    """
+    Detect clearer passive constructions only
+    to avoid excessive warnings.
+    """
+
+    issues = []
+
+    pattern = r"\b(is|was|were|are|been|being)\s+\w+ed\s+by\b"
+
+    for m in re.finditer(pattern, text, re.IGNORECASE):
+
+        issues.append({
+            "start": m.start(),
+            "end": m.end(),
+            "message": "Possible passive voice. Consider using active voice."
+        })
+
+    return issues
+
+
+def detect_weak_words(text):
+
+    issues = []
+
+    weak_words = [
+        "very",
+        "really",
+        "things",
+        "stuff",
+        "a lot",
+        "kind of",
+        "sort of",
+        "basically",
+        "actually",
+        "quite",
+        "somewhat",
+        "maybe"
+    ]
+
+    pattern = r"\b(" + "|".join(map(re.escape, weak_words)) + r")\b"
+
+    for m in re.finditer(pattern, text, re.IGNORECASE):
+
+        issues.append({
+            "start": m.start(),
+            "end": m.end(),
+            "message": f"Weak word '{m.group()}' detected. Consider a stronger word."
+        })
+
+    return issues
+
+
+def detect_long_sentences(text):
+
+    issues = []
+
+    for m in re.finditer(r"[^.!?]+[.!?]", text):
+
+        sentence = m.group()
+
+        if len(sentence.split()) > 30:
+
+            issues.append({
+                "start": m.start(),
+                "end": m.end(),
+                "message": "Sentence too long. Consider splitting."
+            })
+
+    return issues
+
+
+def run_extra_nlp_checks(text):
+
+    issues = []
+
+    issues += detect_repeated_words(text)
+    issues += detect_passive_voice(text)
+    issues += detect_weak_words(text)
+    issues += detect_long_sentences(text)
+
+    # keep highlights consistent
+    issues = sorted(issues, key=lambda x: x["start"])
+
+    return issues
+
+
+# -------------------------
+# Duplicate Detection
+# -------------------------
+def overlaps(new_issue, existing_issues):
+
+    for issue in existing_issues:
+
+        overlap = not (
+            new_issue["end"] <= issue["start"] or
+            new_issue["start"] >= issue["end"]
+        )
+
+        if overlap:
+            return True
+
+    return False
+
+
+# -------------------------
+# LanguageTool + NLP Engine
+# -------------------------
 def run_languagetool_check(text, lang="en-US"):
+
+    text = normalize_text(text)
+
     LT_URL = "https://api.languagetool.org/v2/check"
+
     try:
-        response = requests.post(LT_URL, data={"text": text, "language": lang}, timeout=15)
+
+        response = requests.post(
+            LT_URL,
+            data={"text": text, "language": lang},
+            timeout=15
+        )
+
         result = response.json()
+
         corrected_text = text
         highlighted_text = text
         suggestions_html = ""
 
+        lt_issues = []
+
+        # -------------------------
+        # Process LanguageTool results
+        # -------------------------
         for match in sorted(result.get("matches", []), key=lambda m: m["offset"], reverse=True):
+
             message = match.get("message", "")
             offset = match.get("offset", 0)
             length = match.get("length", 0)
+
             replacements = match.get("replacements", [])
             replacement = replacements[0]["value"] if replacements else None
 
+            start = offset
+            end = offset + length
+
+            lt_issues.append({"start": start, "end": end})
+
             if replacement:
-                corrected_text = corrected_text[:offset] + replacement + corrected_text[offset+length:]
+                corrected_text = corrected_text[:start] + replacement + corrected_text[end:]
 
             highlighted_text = (
-                highlighted_text[:offset] +
-                f"<mark title='{message}'>" +
-                highlighted_text[offset:offset+length] +
-                "</mark>" +
-                highlighted_text[offset+length:]
+                highlighted_text[:start]
+                + f"<mark title='{message}'>"
+                + highlighted_text[start:end]
+                + "</mark>"
+                + highlighted_text[end:]
             )
 
-            suggestions_html += f"<p>• {message}" + (f" → Suggestion: {replacement}" if replacement else "") + "</p>"
+            suggestions_html += f"<p>• {message}"
+            if replacement:
+                suggestions_html += f" → Suggestion: {replacement}"
+            suggestions_html += "</p>"
+
+        # -------------------------
+        # Run extra NLP rules
+        # -------------------------
+        nlp_issues = run_extra_nlp_checks(text)
+
+        for issue in nlp_issues:
+
+            if not overlaps(issue, lt_issues):
+
+                start = issue["start"]
+                end = issue["end"]
+                message = issue["message"]
+
+                highlighted_text = (
+                    highlighted_text[:start]
+                    + f"<mark style='background:#ffeaa7' title='{message}'>"
+                    + highlighted_text[start:end]
+                    + "</mark>"
+                    + highlighted_text[end:]
+                )
+
+                suggestions_html += f"<p>• {message}</p>"
 
         return corrected_text, highlighted_text, suggestions_html
 
     except Exception as e:
+
         error_html = f"<p style='color:red;'>Grammar check failed: {e}</p>"
         return text, text, error_html
+
 
 # -------------------------
 # Grammar Checker View
@@ -77,10 +290,12 @@ def run_languagetool_check(text, lang="en-US"):
 @csrf_exempt
 @login_required
 def grammar_checker(request):
+
     user = request.user
     profile, _ = UserProfile.objects.get_or_create(user=user)
 
     if request.method == "POST":
+
         text = request.POST.get("text", "").strip()
         language = request.POST.get("language", "en-US")
         auto_correct = request.POST.get("auto_correct", "false") == "true"
@@ -88,55 +303,37 @@ def grammar_checker(request):
         if not text:
             return JsonResponse({"error": "No text provided"}, status=400)
 
-        # -------------------------
-        # Word limits
-        # -------------------------
         WORD_LIMIT_FREE = 1500
         WORD_LIMIT_PRO = 5000
+
         is_pro = profile.is_subscribed and profile.subscription_end >= timezone.now()
+
         word_limit = WORD_LIMIT_PRO if is_pro else WORD_LIMIT_FREE
         word_count = count_words(text)
 
         if word_count > word_limit:
-            msg = f"🚫 Word limit exceeded ({word_limit} words). Upgrade to Pro."
-            return JsonResponse({"error": msg}, status=400)
+            return JsonResponse(
+                {"error": f"🚫 Word limit exceeded ({word_limit}). Upgrade to Pro."},
+                status=400
+            )
 
-        # -------------------------
-        # Daily checks limits
-        # -------------------------
         now = timezone.now()
+
         if not profile.last_check_date or profile.last_check_date.date() != now.date():
             profile.daily_check_count = 0
             profile.last_check_date = now
 
         max_checks = 50 if is_pro else 3
+
         if profile.daily_check_count >= max_checks:
-            msg = f"⚠ Your daily limit of {max_checks} checks has been reached. Try again next day."
-            return JsonResponse({"error": msg}, status=400)
+            return JsonResponse(
+                {"error": f"⚠ Daily limit of {max_checks} checks reached."},
+                status=400
+            )
 
         profile.daily_check_count += 1
-        profile.last_check_date = now
         profile.save()
 
-        # -------------------------
-        # Supported languages
-        # -------------------------
-        supported_languages = [
-            "af", "sw", "ar",
-            "en-US", "en-GB", "en-AU", "en-CA", "en-NZ", "en-ZA",
-            "fr", "fr-FR", "fr-CA", "fr-BE", "fr-CH",
-            "de", "de-DE", "de-AT", "de-CH",
-            "es", "es-ES", "es-MX", "es-AR", "es-CO", "es-CL",
-            "it", "it-IT", "pt", "pt-PT", "pt-BR", "nl", "nl-NL", "nl-BE",
-            "sv", "fi", "da", "no", "pl", "ru", "ro", "hu", "cs", "sk",
-            "uk", "sl", "hr", "bg", "ja", "zh", "tr", "id"
-        ]
-        if language not in supported_languages:
-            return JsonResponse({"error": f"Language '{language}' not supported"}, status=400)
-
-        # -------------------------
-        # Run LanguageTool
-        # -------------------------
         corrected_text, highlighted_text, suggestions_html = run_languagetool_check(text, language)
 
         return JsonResponse({
@@ -144,8 +341,7 @@ def grammar_checker(request):
             "highlighted_text": highlighted_text,
             "suggestions_html": suggestions_html,
             "word_count": word_count,
-            "daily_limit_remaining": max_checks - profile.daily_check_count,
-            "source": "public_api"
+            "daily_limit_remaining": max_checks - profile.daily_check_count
         })
 
     return render(request, "grammar_checker.html")
@@ -157,34 +353,24 @@ def grammar_checker(request):
 @csrf_exempt
 @login_required
 def grammar_upload_view(request):
+
     if request.method == "POST" and request.FILES.get("file"):
+
         file = request.FILES["file"]
+
         extracted_text = extract_text_from_file(file)
         word_count = count_words(extracted_text)
 
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
+
         is_pro = profile.is_subscribed and profile.subscription_end >= timezone.now()
         word_limit = 5000 if is_pro else 1500
+
         if word_count > word_limit:
-            msg = "🚫 Limit exceeded. Max 5,000 words for Pro." if is_pro else "⚠ Free trial allows max 1,500 words. Upgrade to Pro."
+
+            msg = "🚫 Max 5,000 words for Pro." if is_pro else "⚠ Free limit 1,500 words."
+
             return JsonResponse({"success": False, "message": msg})
-
-        # -------------------------
-        # Daily check limits
-        # -------------------------
-        now = timezone.now()
-        if not profile.last_check_date or profile.last_check_date.date() != now.date():
-            profile.daily_check_count = 0
-            profile.last_check_date = now
-
-        max_checks = 50 if is_pro else 3
-        if profile.daily_check_count >= max_checks:
-            msg = f"⚠ Your daily limit of {max_checks} checks has been reached. Try again in 24 hours."
-            return JsonResponse({"success": False, "message": msg}, status=400)
-
-        profile.daily_check_count += 1
-        profile.last_check_date = now
-        profile.save()
 
         corrected_text, highlighted_text, suggestions_html = run_languagetool_check(extracted_text)
 
@@ -194,8 +380,7 @@ def grammar_upload_view(request):
             "fixed_text": corrected_text,
             "highlighted_text": highlighted_text,
             "suggestions_html": suggestions_html,
-            "message": "✅ Grammar check complete.",
-            "daily_limit_remaining": max_checks - profile.daily_check_count
+            "message": "✅ Grammar check complete."
         })
 
     return JsonResponse({"success": False, "message": "No file uploaded"})

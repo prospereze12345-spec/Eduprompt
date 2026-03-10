@@ -990,41 +990,53 @@ background:rgba(229,57,53,0.1);
     </div>
   </div>
 </div>
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-  const userIsLoggedIn = true;
+  /* -------------------------
+     DOM ELEMENTS
+  ------------------------- */
 
   const userText = document.getElementById("userText");
   const checkBtn = document.getElementById("checkBtn");
+
   const uploadBtn = document.getElementById("uploadBtn");
   const fileInput = document.getElementById("fileInput");
   const uploadResult = document.getElementById("uploadResult");
-  const downloadContainer = document.getElementById("downloadContainer");
-  const downloadBtn = document.getElementById("downloadBtn");
+
   const suggestionList = document.getElementById("suggestionList");
   const suggestionCount = document.getElementById("suggestionCount");
+
+  const downloadContainer = document.getElementById("downloadContainer");
+  const downloadBtn = document.getElementById("downloadBtn");
+
   const textStats = document.getElementById("textStats");
-  const wordLimitNotice = document.getElementById("wordLimitNotice");
 
   const WORD_LIMIT_FREE = 1500;
-  const WORD_LIMIT_PRO = 5000;
+
 
   /* -------------------------
      CSRF HELPER
-  --------------------------*/
+  ------------------------- */
+
   function getCookie(name) {
+
     let cookieValue = null;
 
     if (document.cookie && document.cookie !== "") {
+
       const cookies = document.cookie.split(";");
 
       for (let cookie of cookies) {
+
         cookie = cookie.trim();
 
         if (cookie.startsWith(name + "=")) {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+
+          cookieValue = decodeURIComponent(
+            cookie.substring(name.length + 1)
+          );
+
           break;
         }
       }
@@ -1033,45 +1045,47 @@ document.addEventListener("DOMContentLoaded", () => {
     return cookieValue;
   }
 
+
   /* -------------------------
      SAFE FETCH
-  --------------------------*/
+  ------------------------- */
+
   async function safeFetch(url, options) {
 
     try {
 
       const res = await fetch(url, options);
 
-      if (res.redirected && res.url.includes("show_login=true")) {
-        return { error: "⚠ Please login or sign up to use Eduprompt." };
+      const data = await res.json();
+
+      if (!res.ok) {
+        return { error: data.error || "❌ Request failed." };
       }
 
-      if (res.status === 401 || res.status === 403) {
-        return { error: "⚠ Please login or sign up to use Eduprompt." };
-      }
+      return data;
 
-      return await res.json();
+    } catch (err) {
 
-    } catch {
-      return { error: "Error connecting to server. Try again." };
+      return { error: "❌ Network error. Try again." };
+
     }
-
   }
 
+
   /* -------------------------
-     WORD + CHARACTER COUNT
-  --------------------------*/
+     TEXT STATISTICS
+  ------------------------- */
+
   function updateStats() {
 
     const text = userText.value.trim();
+
     const words = text ? text.split(/\s+/).length : 0;
     const chars = text.length;
 
     textStats.innerHTML = `Words: ${words} | Characters: ${chars}`;
 
-    const limit = WORD_LIMIT_FREE;
-
-    if (words > limit) {
+    if (words > WORD_LIMIT_FREE) {
 
       checkBtn.disabled = true;
       checkBtn.style.background = "#ccc";
@@ -1084,15 +1098,117 @@ document.addEventListener("DOMContentLoaded", () => {
       checkBtn.style.cursor = "pointer";
 
     }
-
   }
 
   userText.addEventListener("input", updateStats);
 
 
   /* -------------------------
+     RENDER RESULTS
+  ------------------------- */
+
+  function renderResults(data) {
+
+    let html = "";
+
+    if (data.highlighted_text) {
+
+      html += `
+        <div class="grammar-preview">
+          ${data.highlighted_text}
+        </div>
+        <hr>
+      `;
+
+    }
+
+    if (data.suggestions_html) {
+      html += data.suggestions_html;
+    }
+
+    suggestionList.innerHTML = html || "<p>No suggestions found ✅</p>";
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+
+    const count = doc.querySelectorAll("p").length;
+
+    suggestionCount.innerText = count;
+  }
+
+
+  /* -------------------------
+     DOWNLOAD HELPER
+  ------------------------- */
+
+  function prepareDownload(text) {
+
+    const blob = new Blob([text], { type: "text/plain" });
+
+    downloadBtn.href = URL.createObjectURL(blob);
+    downloadBtn.download = "corrected_text.txt";
+
+    downloadContainer.style.display = "block";
+  }
+
+
+  /* -------------------------
+     GRAMMAR CHECK
+  ------------------------- */
+
+  checkBtn.addEventListener("click", async () => {
+
+    const text = userText.value.trim();
+
+    if (!text) {
+
+      suggestionList.innerHTML =
+        "<p style='color:red;'>⚠ Please enter text first.</p>";
+
+      return;
+    }
+
+    suggestionList.innerHTML = "<p>⏳ Checking grammar...</p>";
+    suggestionCount.innerText = 0;
+
+    const data = await safeFetch("/grammar-checker/", {
+
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-CSRFToken": getCookie("csrftoken")
+      },
+
+      body: new URLSearchParams({
+        text: text,
+        language: "en-US",
+        auto_correct: "true"
+      })
+
+    });
+
+    if (data.error) {
+
+      suggestionList.innerHTML =
+        `<p class="text-danger">${data.error}</p>`;
+
+      return;
+    }
+
+    renderResults(data);
+
+    if (data.corrected_text) {
+      prepareDownload(data.corrected_text);
+    }
+
+  });
+
+
+  /* -------------------------
      FILE UPLOAD
-  --------------------------*/
+  ------------------------- */
+
   uploadBtn.addEventListener("click", () => fileInput.click());
 
   fileInput.addEventListener("change", async () => {
@@ -1104,104 +1220,57 @@ document.addEventListener("DOMContentLoaded", () => {
     const formData = new FormData();
     formData.append("file", file);
 
-    uploadResult.innerHTML = `<p>⏳ Uploading & checking grammar...</p>`;
+    uploadResult.innerHTML =
+      "<p>⏳ Uploading & checking grammar...</p>";
+
     suggestionList.innerHTML = "";
     downloadContainer.style.display = "none";
 
     const data = await safeFetch("/grammar-upload/", {
+
       method: "POST",
+
       body: formData,
-      headers: { "X-CSRFToken": getCookie("csrftoken") }
+
+      headers: {
+        "X-CSRFToken": getCookie("csrftoken")
+      }
+
     });
 
-    if (data.error) {
-      uploadResult.innerHTML = `<p style="color:red;">${data.error}</p>`;
+    if (!data.success) {
+
+      uploadResult.innerHTML =
+        `<p style="color:red;">${data.message}</p>`;
+
       return;
     }
+
+    uploadResult.innerHTML = `
+      <p><b>✅ Upload Success</b></p>
+      <p><b>Word Count:</b> ${data.words}</p>
+    `;
 
     userText.value = data.fixed_text || "";
     userText.dispatchEvent(new Event("input"));
 
-    uploadResult.innerHTML = `
-      <p><b>✅ Upload Success</b></p>
-      <p><b>Word Count:</b> ${data.words || 0}</p>
-    `;
+    renderResults(data);
 
-    let html = "";
-
-    if (data.highlighted_text) {
-      html += `<div class="grammar-preview">${data.highlighted_text}</div><hr>`;
+    if (data.fixed_text) {
+      prepareDownload(data.fixed_text);
     }
-
-    if (data.suggestions_html) {
-      html += data.suggestions_html;
-    }
-
-    suggestionList.innerHTML = html;
-
-    suggestionCount.innerText =
-      (data.suggestions_html?.match(/<p>/g) || []).length;
-
-    const blob = new Blob([data.fixed_text || ""], { type: "text/plain" });
-
-    downloadBtn.href = URL.createObjectURL(blob);
-    downloadBtn.download = "corrected_text.txt";
-    downloadContainer.style.display = "block";
 
   });
 
 
   /* -------------------------
-     CHECK GRAMMAR
-  --------------------------*/
-  checkBtn.addEventListener("click", async () => {
-
-    suggestionList.innerHTML = `<p>⏳ Checking grammar...</p>`;
-    suggestionCount.innerText = 0;
-
-    const data = await safeFetch("/grammar-checker/", {
-
-      method: "POST",
-
-      headers: {
-        "X-CSRFToken": getCookie("csrftoken"),
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-
-      body: new URLSearchParams({
-        text: userText.value
-      })
-
-    });
-
-    if (data.error) {
-      suggestionList.innerHTML = `<p class="text-danger">${data.error}</p>`;
-      return;
-    }
-
-    let html = "";
-
-    if (data.highlighted_text) {
-      html += `<div class="grammar-preview">${data.highlighted_text}</div><hr>`;
-    }
-
-    if (data.suggestions_html) {
-      html += data.suggestions_html;
-    }
-
-    suggestionList.innerHTML = html || `<p>No suggestions found ✅</p>`;
-
-    suggestionCount.innerText =
-      (data.suggestions_html?.match(/<p>/g) || []).length;
-
-  });
+     INIT
+  ------------------------- */
 
   updateStats();
 
 });
 </script>
-
-
 <!-- ================= IMPROVE TEXT CTA CARD ================= -->
 <div class="container my-5">
   <div class="card border-0 shadow-lg p-4"
