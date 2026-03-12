@@ -103,7 +103,6 @@ def ajax_signup(request):
     # --------------------------
     return redirect("/")
 
-
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -157,9 +156,11 @@ def send_magic_link(request):
         token.delete()
         return JsonResponse({"error": f"Failed to send email: {str(e)}"}, status=500)
 
-    # Return success for AJAX popup
-    return JsonResponse({"success": "Magic link sent! Check your email 🔥"})
-
+    # ✅ Return success for AJAX popup with emoji correctly
+    return JsonResponse(
+        {"success": "Magic link sent! Check your email 🔥"},
+        json_dumps_params={'ensure_ascii': False}
+    )
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth import login
 from .models import MagicLoginToken

@@ -335,42 +335,43 @@
   </div>
 </div>
 
-
-
-<script>
-document.getElementById("magicLinkForm").addEventListener("submit", async function(e) {
-    e.preventDefault(); // prevent page reload
-
-    const email = this.email.value;
-
-    try {
-        const response = await fetch("{% url 'send_magic_link' %}", {
-            method: "POST",
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "Content-Type": "application/x-www-form-urlencoded",
-                "X-CSRFToken": "{{ csrf_token }}"
-            },
-            body: new URLSearchParams({ email })
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-            alert(data.success);  // <-- show popup
-        } else if (data.error) {
-            alert(data.error);    // <-- show popup
-        }
-    } catch (err) {
-        alert("Something went wrong. Try again.");
-        console.error(err);
-    }
-});
-</script>
-
 <!-- JS -->
-<script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- SweetAlert2 for professional popups -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script>
+// --------------------------
+// Utility: show popup with SweetAlert2
+// --------------------------
+function showMessage(msg, type="success"){
+  // Decode Unicode escapes like \ud83d\udd25 into actual emoji
+  msg = msg.replace(/\\u[\dA-F]{4}/gi, function(match){
+    return String.fromCharCode(parseInt(match.replace("\\u",""),16));
+  });
+
+  let icon = type === "danger" ? "error" : "success";
+  Swal.fire({
+    icon: icon,
+    title: msg,
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 2500,
+    timerProgressBar: true
+  });
+}
+
+// --------------------------
+// Utility: get CSRF token
+// --------------------------
+function getCSRFToken(){
+  return $('input[name="csrfmiddlewaretoken"]').val();
+}
+
+// --------------------------
+// DOM ready
+// --------------------------
 $(document).ready(function(){
 
   // --------------------------
@@ -386,147 +387,128 @@ $(document).ready(function(){
   // --------------------------
   // AJAX Signup
   // --------------------------
-  $("#signupForm").submit(function(e){
+  $("#signupForm").on("submit", function(e){
     e.preventDefault();
-
     const $form = $(this);
     const data = $form.serialize();
-    const csrfToken = $form.find('input[name="csrfmiddlewaretoken"]').val();
+
+    $.ajax({
+      url: $form.attr("action"),
+      method: "POST",
+      data: data,
+      dataType: "json",
+
+      success: function(response){
+        if(response.success){
+          showMessage(response.success, "success");
+          $("#registerModal").modal("hide");
+          setTimeout(function(){
+            window.location.href = "{% url 'index' %}";
+          }, 1200);
+        } else if(response.error){
+          showMessage(response.error, "danger");
+        }
+      },
+
+      error: function(xhr){
+        const response = xhr.responseJSON;
+        if(response && response.error){
+          showMessage(response.error, "danger");
+        } else {
+          showMessage("Signup failed. Please try again.", "danger");
+        }
+      }
+    });
+  });
+
+  // --------------------------
+  // AJAX Login
+  // --------------------------
+  $("#loginForm").on("submit", function(e){
+    e.preventDefault();
+    const $form = $(this);
 
     $.ajax({
       url: $form.attr('action'),
-      type: "POST",
-      data: data,
-      headers: {'X-CSRFToken': csrfToken},
-      success: function(response){
-        if(response.user_authenticated){
-          // Show success message
-          showMessage("Signup successful!");
+      method: "POST",
+      data: $form.serialize(),
+      headers: {
+        'X-CSRFToken': getCSRFToken(),
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      dataType: "json",
 
-          // Close modal
-          $("#registerModal").modal('hide');
-
-          // Redirect to homepage
+      success: function(data){
+        if(data.user_authenticated){
+          showMessage("Login successful! 🔥", "success");
+          $("#loginModal").modal("hide");
           window.location.href = "{% url 'index' %}";
         } else {
-          // Show backend error(s)
-          if(typeof response.errors === 'string'){
-            showMessage(response.errors, "danger");
-          } else {
-            let errMsg = "";
-            for(const key in response.errors){
-              errMsg += response.errors[key] + "\n";
-            }
-            showMessage(errMsg.trim(), "danger");
-          }
+          showMessage(data.errors || "Login failed.", "danger");
         }
       },
+
       error: function(xhr){
-        showMessage("Signup failed. Check inputs or refresh page.", "danger");
-      }
-    });
-  });
-
-});
-</script>
-
-
-
-<!-- AJAX + Password Toggle Script -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-
-// Login AJAX
-$("#loginForm").submit(function(e){
-    e.preventDefault();
-
-    // Grab CSRF token from the form
-    const csrftoken = $(this).find('input[name="csrfmiddlewaretoken"]').val();
-
-    $.ajax({
-        url: $(this).attr('action'),
-        method: "POST",
-        data: $(this).serialize(),
-        headers: {
-            'X-CSRFToken': csrftoken,      // send CSRF token in header
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        success: function(data){
-            if(data.user_authenticated) {
-                showMessage("Login successful!");
-
-                // Hide modal
-                $("#loginModal").modal('hide');
-
-                // Redirect to index page after successful login
-                window.location.href = "{% url 'index' %}";
-            } else {
-                showMessage(data.errors || "Login failed.", "danger");
-            }
-        },
-        error: function(xhr){
-            showMessage("Login failed. Check inputs.", "danger");
+        const response = xhr.responseJSON;
+        if(response && response.error){
+          showMessage(response.error, "danger");
+        } else {
+          showMessage("Login failed. Check inputs.", "danger");
         }
-    });
-});
-
-// Password toggle
-$(".toggle-password").click(function(){
-  const input = $(this).siblings("input");
-  const type = input.attr("type") === "password" ? "text" : "password";
-  input.attr("type", type);
-  $(this).text(type === "password" ? "👁" : "👁‍🗨");
-});
-
-// Login AJAX (email + optional password)
-$("#loginForm").submit(function(e){
-  e.preventDefault();
-  $.ajax({
-    url: $(this).attr('action'),
-    method: "POST",
-    data: $(this).serialize(),
-    headers: {'X-CSRFToken': getCSRFToken()},
-    success: function(data){
-      if(data.user_authenticated){
-        showMessage("Login successful!");
-        $("#loginModal").modal('hide');
-        window.location.href = "{% url 'index' %}";
-      } else {
-        showMessage(data.errors || "Login failed.", "danger");
       }
-    },
-    error: function(xhr){
-      showMessage("Login failed. Check inputs.", "danger");
-    }
+    });
   });
-});
-
-// Magic link AJAX
-$("#magicLinkBtn").click(function(){
-  const email = $("#loginForm input[name='email']").val();
-  if(!email){
-    showMessage("Enter your email first.", "danger");
-    return;
-  }
-
-  $.ajax({
-    url: "{% url 'send_magic_link' %}", // backend view to send magic link
-    method: "POST",
-    data: {email: email},
-    headers: {'X-CSRFToken': getCSRFToken()},
-    success: function(data){
-      $("#magicMsg").text("Check your email for the login link!");
-    },
-    error: function(){
-      $("#magicMsg").text("Failed to send magic link. Try again.");
-    }
-  });
-});
 $(document).ready(function(){
 
-});
+  // --------------------------
+  // Magic Link AJAX (like signup)
+  // --------------------------
+  $("#magicLinkForm").on("submit", function(e){
+    e.preventDefault(); // stop page reload
+
+    const $form = $(this);
+    const email = $form.find("input[name='email']").val();
+
+    if(!email){
+      showMessage("Enter your email first.", "danger");
+      return;
+    }
+
+    const data = $form.serialize(); // serialize form data
+
+    $.ajax({
+      url: $form.attr("action"),    // use form's action attribute
+      method: "POST",
+      data: data,
+      dataType: "json",
+      headers: { 'X-CSRFToken': getCSRFToken() },
+
+      success: function(response){
+        if(response.success){
+          showMessage(response.success, "success"); // popup
+          $form[0].reset(); // clear input after success
+        } else if(response.error){
+          showMessage(response.error, "danger");    // popup
+        }
+      },
+
+      error: function(xhr){
+        const response = xhr.responseJSON;
+        if(response && response.error){
+          showMessage(response.error, "danger");
+        } else {
+          showMessage("Failed to send magic link. Try again.", "danger");
+        }
+      }
+
+    }); // <-- closes $.ajax
+
+  }); // <-- closes .on("submit", ...)
+  
+}); // <-- closes $(document).ready()
 
 
+}); 
 
 </script>
 
