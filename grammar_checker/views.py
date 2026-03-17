@@ -283,21 +283,24 @@ def run_languagetool_check(text, lang="en-US"):
         error_html = f"<p style='color:red;'>Grammar check failed: {e}</p>"
         return text, text, error_html
 
-
+from datetime import date
+from django.utils import timezone
 # -------------------------
 # Grammar Checker View
 # -------------------------
 @csrf_exempt
-@login_required
 def grammar_checker(request):
 
     user = request.user
-    profile, _ = UserProfile.objects.get_or_create(user=user)
+    profile = None
+    is_guest = not user.is_authenticated
+
+    if not is_guest:
+        profile, _ = UserProfile.objects.get_or_create(user=user)
 
     if request.method == "POST":
 
         text = request.POST.get("text", "").strip()
-        language = request.POST.get("language", "en-US")
         auto_correct = request.POST.get("auto_correct", "false") == "true"
 
         if not text:
@@ -306,7 +309,13 @@ def grammar_checker(request):
         WORD_LIMIT_FREE = 1500
         WORD_LIMIT_PRO = 5000
 
-        is_pro = profile.is_subscribed and profile.subscription_end >= timezone.now()
+        # -------------------------
+        # Determine Pro status
+        # -------------------------
+        if is_guest:
+            is_pro = False
+        else:
+            is_pro = profile.is_subscribed and profile.subscription_end >= timezone.now()
 
         word_limit = WORD_LIMIT_PRO if is_pro else WORD_LIMIT_FREE
         word_count = count_words(text)
@@ -317,22 +326,70 @@ def grammar_checker(request):
                 status=400
             )
 
-        now = timezone.now()
+        # -------------------------
+        # DAILY LIMIT LOGIC
+        # -------------------------
+        if is_guest:
 
-        if not profile.last_check_date or profile.last_check_date.date() != now.date():
-            profile.daily_check_count = 0
-            profile.last_check_date = now
+            today = str(date.today())
+            last_trial_date = request.session.get("grammar_trial_date")
+            trials = request.session.get("grammar_trials", 0)
 
-        max_checks = 50 if is_pro else 3
+            ip = request.META.get('HTTP_X_FORWARDED_FOR')
+            if ip:
+                ip = ip.split(',')[0]
+            else:
+                ip = request.META.get('REMOTE_ADDR')
 
-        if profile.daily_check_count >= max_checks:
-            return JsonResponse(
-                {"error": f"⚠ Daily limit of {max_checks} checks reached."},
-                status=400
-            )
+            ip_trial_key = f"grammar_ip_trials_{ip}"
+            ip_date_key = f"grammar_ip_date_{ip}"
 
-        profile.daily_check_count += 1
-        profile.save()
+            ip_trials = request.session.get(ip_trial_key, 0)
+            ip_date = request.session.get(ip_date_key)
+
+            if last_trial_date != today:
+                trials = 0
+                request.session["grammar_trials"] = 0
+                request.session["grammar_trial_date"] = today
+
+            if ip_date != today:
+                ip_trials = 0
+                request.session[ip_trial_key] = 0
+                request.session[ip_date_key] = today
+
+            if trials >= 3 or ip_trials >= 3:
+                return JsonResponse(
+                    {"error": "⚠ Free daily limit reached. Sign up for more checks."},
+                    status=400
+                )
+
+            request.session["grammar_trials"] = trials + 1
+            request.session[ip_trial_key] = ip_trials + 1
+
+            remaining = 3 - request.session["grammar_trials"]
+
+        else:
+
+            now = timezone.now()
+            if not profile.last_check_date or profile.last_check_date.date() != now.date():
+                profile.daily_check_count = 0
+                profile.last_check_date = now
+
+            max_checks = 50 if is_pro else 3
+            if profile.daily_check_count >= max_checks:
+                return JsonResponse(
+                    {"error": f"⚠ Daily limit of {max_checks} checks reached."},
+                    status=400
+                )
+
+            profile.daily_check_count += 1
+            profile.save()
+            remaining = max_checks - profile.daily_check_count
+
+        # -------------------------
+        # Auto-detect language in backend
+        # -------------------------
+        language = "auto"  # LanguageTool will detect the language automatically
 
         corrected_text, highlighted_text, suggestions_html = run_languagetool_check(text, language)
 
@@ -341,7 +398,7 @@ def grammar_checker(request):
             "highlighted_text": highlighted_text,
             "suggestions_html": suggestions_html,
             "word_count": word_count,
-            "daily_limit_remaining": max_checks - profile.daily_check_count
+            "daily_limit_remaining": remaining
         })
 
     return render(request, "grammar_checker.html")
@@ -351,28 +408,97 @@ def grammar_checker(request):
 # File Upload Checker
 # -------------------------
 @csrf_exempt
-@login_required
 def grammar_upload_view(request):
 
     if request.method == "POST" and request.FILES.get("file"):
 
         file = request.FILES["file"]
-
         extracted_text = extract_text_from_file(file)
         word_count = count_words(extracted_text)
 
-        profile, _ = UserProfile.objects.get_or_create(user=request.user)
+        user = request.user
+        profile = None
+        is_guest = not user.is_authenticated
 
-        is_pro = profile.is_subscribed and profile.subscription_end >= timezone.now()
-        word_limit = 5000 if is_pro else 1500
+        if not is_guest:
+            profile, _ = UserProfile.objects.get_or_create(user=user)
+
+        WORD_LIMIT_FREE = 1500
+        WORD_LIMIT_PRO = 5000
+
+        if is_guest:
+            is_pro = False
+        else:
+            is_pro = profile.is_subscribed and profile.subscription_end >= timezone.now()
+
+        word_limit = WORD_LIMIT_PRO if is_pro else WORD_LIMIT_FREE
 
         if word_count > word_limit:
-
             msg = "🚫 Max 5,000 words for Pro." if is_pro else "⚠ Free limit 1,500 words."
-
             return JsonResponse({"success": False, "message": msg})
 
-        corrected_text, highlighted_text, suggestions_html = run_languagetool_check(extracted_text)
+        # -------------------------
+        # Apply same daily limit logic as normal checker
+        # -------------------------
+        if is_guest:
+
+            today = str(date.today())
+            last_trial_date = request.session.get("grammar_trial_date")
+            trials = request.session.get("grammar_trials", 0)
+
+            ip = request.META.get('HTTP_X_FORWARDED_FOR')
+            if ip:
+                ip = ip.split(',')[0]
+            else:
+                ip = request.META.get('REMOTE_ADDR')
+
+            ip_trial_key = f"grammar_ip_trials_{ip}"
+            ip_date_key = f"grammar_ip_date_{ip}"
+
+            ip_trials = request.session.get(ip_trial_key, 0)
+            ip_date = request.session.get(ip_date_key)
+
+            if last_trial_date != today:
+                trials = 0
+                request.session["grammar_trials"] = 0
+                request.session["grammar_trial_date"] = today
+
+            if ip_date != today:
+                ip_trials = 0
+                request.session[ip_trial_key] = 0
+                request.session[ip_date_key] = today
+
+            if trials >= 3 or ip_trials >= 3:
+                return JsonResponse({
+                    "success": False,
+                    "message": "⚠ Free daily limit reached. Sign up for more checks."
+                })
+
+            request.session["grammar_trials"] = trials + 1
+            request.session[ip_trial_key] = ip_trials + 1
+
+        else:
+
+            now = timezone.now()
+            if not profile.last_check_date or profile.last_check_date.date() != now.date():
+                profile.daily_check_count = 0
+                profile.last_check_date = now
+
+            max_checks = 50 if is_pro else 3
+            if profile.daily_check_count >= max_checks:
+                return JsonResponse({
+                    "success": False,
+                    "message": f"⚠ Daily limit of {max_checks} checks reached."
+                })
+
+            profile.daily_check_count += 1
+            profile.save()
+
+        # -------------------------
+        # Auto-detect language for uploaded file
+        # -------------------------
+        language = "auto"
+        corrected_text, highlighted_text, suggestions_html = run_languagetool_check(extracted_text, language)
 
         return JsonResponse({
             "success": True,
@@ -384,8 +510,6 @@ def grammar_upload_view(request):
         })
 
     return JsonResponse({"success": False, "message": "No file uploaded"})
-
-
 # -------------------------
 # Subscription / Payment
 # -------------------------
