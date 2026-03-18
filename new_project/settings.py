@@ -13,11 +13,20 @@ import os
 from pathlib import Path
 import environ
 from dotenv import load_dotenv
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / ".env")  
+from upstash_redis import Redis
 import os
 
+redis = Redis(
+    url=os.getenv("UPSTASH_REDIS_REST_URL"),
+    token=os.getenv("UPSTASH_REDIS_REST_TOKEN"),
+)
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")  
+
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # loads variables from .env file
 import os
 OCRSPACE_API_KEY = os.environ.get("OCRSPACE_API_KEY")
 RESEND_API_KEY = os.getenv("RESEND_API_KEY")

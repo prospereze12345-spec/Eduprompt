@@ -282,24 +282,72 @@ def run_languagetool_check(text, lang="en-US"):
 
         error_html = f"<p style='color:red;'>Grammar check failed: {e}</p>"
         return text, text, error_html
-
+# top of your views.py
+import os
+import redis as redis_lib
+import hashlib
+import json
 from datetime import date
 from django.utils import timezone
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from upstash_redis import Redis
+import os
+
+redis = Redis(
+    url=os.getenv("UPSTASH_REDIS_REST_URL"),
+    token=os.getenv("UPSTASH_REDIS_REST_TOKEN"),
+)
+# -------------------------
+# HELPER: SAFE CACHE
+# -------------------------
+def get_cache(key):
+    try:
+        data = redis.get(key)
+        return json.loads(data) if data else None
+    except Exception:
+        return None  # fallback
+
+
+def set_cache(key, value, expiry=3600):
+    try:
+        redis.set(key, json.dumps(value), ex=expiry)
+    except Exception:
+        pass  # never break app
+
+
+# -------------------------
+# HELPER: TRACK ANALYTICS
+# -------------------------
+def track_analytics(user_part, text):
+    try:
+        # Total requests
+        redis.incr("stats:total_requests")
+        # Requests per user/IP
+        redis.incr(f"stats:user:{user_part}")
+        # Popular queries (sorted set)
+        query_hash = hashlib.md5(text.encode()).hexdigest()
+        redis.zincrby("stats:popular_queries", 1, query_hash)
+        # Map hash → actual text (expires in 1 day)
+        redis.set(f"query_map:{query_hash}", text, ex=86400)
+    except Exception:
+        pass  # fallback
+
+
 # -------------------------
 # Grammar Checker View
 # -------------------------
 @csrf_exempt
 def grammar_checker(request):
-
     user = request.user
-    profile = None
     is_guest = not user.is_authenticated
+    profile = None
 
     if not is_guest:
         profile, _ = UserProfile.objects.get_or_create(user=user)
 
     if request.method == "POST":
-
         text = request.POST.get("text", "").strip()
         auto_correct = request.POST.get("auto_correct", "false") == "true"
 
@@ -308,15 +356,9 @@ def grammar_checker(request):
 
         WORD_LIMIT_FREE = 1500
         WORD_LIMIT_PRO = 5000
-
-        # -------------------------
-        # Determine Pro status
-        # -------------------------
-        if is_guest:
-            is_pro = False
-        else:
-            is_pro = profile.is_subscribed and profile.subscription_end >= timezone.now()
-
+        is_pro = False if is_guest else (
+            profile.is_subscribed and profile.subscription_end >= timezone.now()
+        )
         word_limit = WORD_LIMIT_PRO if is_pro else WORD_LIMIT_FREE
         word_count = count_words(text)
 
@@ -327,19 +369,15 @@ def grammar_checker(request):
             )
 
         # -------------------------
-        # DAILY LIMIT LOGIC
+        # DAILY LIMIT LOGIC (UNCHANGED)
         # -------------------------
         if is_guest:
-
             today = str(date.today())
             last_trial_date = request.session.get("grammar_trial_date")
             trials = request.session.get("grammar_trials", 0)
 
             ip = request.META.get('HTTP_X_FORWARDED_FOR')
-            if ip:
-                ip = ip.split(',')[0]
-            else:
-                ip = request.META.get('REMOTE_ADDR')
+            ip = ip.split(',')[0] if ip else request.META.get('REMOTE_ADDR')
 
             ip_trial_key = f"grammar_ip_trials_{ip}"
             ip_date_key = f"grammar_ip_date_{ip}"
@@ -365,17 +403,18 @@ def grammar_checker(request):
 
             request.session["grammar_trials"] = trials + 1
             request.session[ip_trial_key] = ip_trials + 1
-
             remaining = 3 - request.session["grammar_trials"]
 
-        else:
+            user_part = ip
 
+        else:
             now = timezone.now()
             if not profile.last_check_date or profile.last_check_date.date() != now.date():
                 profile.daily_check_count = 0
                 profile.last_check_date = now
 
             max_checks = 50 if is_pro else 3
+
             if profile.daily_check_count >= max_checks:
                 return JsonResponse(
                     {"error": f"⚠ Daily limit of {max_checks} checks reached."},
@@ -386,19 +425,54 @@ def grammar_checker(request):
             profile.save()
             remaining = max_checks - profile.daily_check_count
 
-        # -------------------------
-        # Auto-detect language in backend
-        # -------------------------
-        language = "auto"  # LanguageTool will detect the language automatically
+            user_part = str(user.id)
 
+        # -------------------------
+        # CACHE KEY
+        # -------------------------
+        language = "auto"
+        cache_key = "grammar:" + hashlib.md5((text + str(auto_correct) + user_part).encode()).hexdigest()
+
+        # -------------------------
+        # TRY CACHE
+        # -------------------------
+        cached = get_cache(cache_key)
+        if cached:
+            return JsonResponse({
+                "corrected_text": cached.get("corrected_text") if auto_correct else None,
+                "highlighted_text": cached.get("highlighted_text"),
+                "suggestions_html": cached.get("suggestions_html"),
+                "word_count": word_count,
+                "daily_limit_remaining": remaining,
+                "cached": True
+            })
+
+        # -------------------------
+        # FALLBACK → LANGUAGE TOOL
+        # -------------------------
         corrected_text, highlighted_text, suggestions_html = run_languagetool_check(text, language)
+
+        # -------------------------
+        # SAVE CACHE
+        # -------------------------
+        set_cache(cache_key, {
+            "corrected_text": corrected_text,
+            "highlighted_text": highlighted_text,
+            "suggestions_html": suggestions_html
+        })
+
+        # -------------------------
+        # TRACK ANALYTICS
+        # -------------------------
+        track_analytics(user_part, text)
 
         return JsonResponse({
             "corrected_text": corrected_text if auto_correct else None,
             "highlighted_text": highlighted_text,
             "suggestions_html": suggestions_html,
             "word_count": word_count,
-            "daily_limit_remaining": remaining
+            "daily_limit_remaining": remaining,
+            "cached": False
         })
 
     return render(request, "grammar_checker.html")
@@ -409,7 +483,6 @@ def grammar_checker(request):
 # -------------------------
 @csrf_exempt
 def grammar_upload_view(request):
-
     if request.method == "POST" and request.FILES.get("file"):
 
         file = request.FILES["file"]
@@ -417,40 +490,32 @@ def grammar_upload_view(request):
         word_count = count_words(extracted_text)
 
         user = request.user
-        profile = None
         is_guest = not user.is_authenticated
-
+        profile = None
         if not is_guest:
             profile, _ = UserProfile.objects.get_or_create(user=user)
 
         WORD_LIMIT_FREE = 1500
         WORD_LIMIT_PRO = 5000
-
-        if is_guest:
-            is_pro = False
-        else:
-            is_pro = profile.is_subscribed and profile.subscription_end >= timezone.now()
-
+        is_pro = False if is_guest else (
+            profile.is_subscribed and profile.subscription_end >= timezone.now()
+        )
         word_limit = WORD_LIMIT_PRO if is_pro else WORD_LIMIT_FREE
 
         if word_count > word_limit:
-            msg = "🚫 Max 5,000 words for Pro." if is_pro else "⚠ Free limit 1,500 words."
-            return JsonResponse({"success": False, "message": msg})
+            return JsonResponse({
+                "success": False,
+                "message": "🚫 Max 5,000 words for Pro." if is_pro else "⚠ Free limit 1,500 words."
+            })
 
-        # -------------------------
-        # Apply same daily limit logic as normal checker
-        # -------------------------
+        # DAILY LIMIT LOGIC SAME AS ABOVE
         if is_guest:
-
             today = str(date.today())
             last_trial_date = request.session.get("grammar_trial_date")
             trials = request.session.get("grammar_trials", 0)
 
             ip = request.META.get('HTTP_X_FORWARDED_FOR')
-            if ip:
-                ip = ip.split(',')[0]
-            else:
-                ip = request.META.get('REMOTE_ADDR')
+            ip = ip.split(',')[0] if ip else request.META.get('REMOTE_ADDR')
 
             ip_trial_key = f"grammar_ip_trials_{ip}"
             ip_date_key = f"grammar_ip_date_{ip}"
@@ -476,9 +541,9 @@ def grammar_upload_view(request):
 
             request.session["grammar_trials"] = trials + 1
             request.session[ip_trial_key] = ip_trials + 1
+            user_part = ip
 
         else:
-
             now = timezone.now()
             if not profile.last_check_date or profile.last_check_date.date() != now.date():
                 profile.daily_check_count = 0
@@ -493,12 +558,34 @@ def grammar_upload_view(request):
 
             profile.daily_check_count += 1
             profile.save()
+            user_part = str(user.id)
 
-        # -------------------------
-        # Auto-detect language for uploaded file
-        # -------------------------
+        # CACHE
         language = "auto"
+        cache_key = "upload:" + hashlib.md5((extracted_text + user_part).encode()).hexdigest()
+        cached = get_cache(cache_key)
+        if cached:
+            return JsonResponse({
+                "success": True,
+                "words": word_count,
+                "fixed_text": cached.get("corrected_text"),
+                "highlighted_text": cached.get("highlighted_text"),
+                "suggestions_html": cached.get("suggestions_html"),
+                "cached": True
+            })
+
+        # FALLBACK
         corrected_text, highlighted_text, suggestions_html = run_languagetool_check(extracted_text, language)
+
+        # SAVE CACHE
+        set_cache(cache_key, {
+            "corrected_text": corrected_text,
+            "highlighted_text": highlighted_text,
+            "suggestions_html": suggestions_html
+        })
+
+        # TRACK ANALYTICS
+        track_analytics(user_part, extracted_text)
 
         return JsonResponse({
             "success": True,
@@ -506,7 +593,7 @@ def grammar_upload_view(request):
             "fixed_text": corrected_text,
             "highlighted_text": highlighted_text,
             "suggestions_html": suggestions_html,
-            "message": "✅ Grammar check complete."
+            "cached": False
         })
 
     return JsonResponse({"success": False, "message": "No file uploaded"})
