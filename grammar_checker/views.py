@@ -72,10 +72,6 @@ def extract_text_from_file(file_obj):
     else:
         return file_obj.read().decode(errors="ignore")
 
-
-# -------------------------
-# NLP RULES (Lightweight)
-# -------------------------
 def detect_repeated_words(text):
     issues = []
 
@@ -584,7 +580,6 @@ def grammar_upload_view(request):
             "suggestions_html": suggestions_html
         })
 
-        # TRACK ANALYTICS
         track_analytics(user_part, extracted_text)
 
         return JsonResponse({
@@ -597,37 +592,84 @@ def grammar_upload_view(request):
         })
 
     return JsonResponse({"success": False, "message": "No file uploaded"})
-# -------------------------
-# Subscription / Payment
-# -------------------------
+
 @login_required
 def grammar_status(request):
     return render(request, "grammar_status.html", {"is_subscribed": getattr(request.user.userprofile, "is_subscribed", False)})
+import uuid
+import requests
+import logging
+from datetime import timedelta
+from django.utils import timezone
+from django.db import transaction
+from django.shortcuts import redirect
+from django.http import JsonResponse, HttpResponse
+from django.contrib.auth.decorators import login_required
+from upstash_redis import Redis
+from django.conf import settings
 
-@login_required
-def grammar_subscription_status(request):
-    return JsonResponse({"is_subscribed": getattr(request.user.userprofile, "is_subscribed", False)})
+logger = logging.getLogger(__name__)
 
+# -------------------------
+# Redis setup for locks/rate limiting
+# -------------------------
+
+redis = Redis(
+    url=os.getenv("UPSTASH_REDIS_REST_URL"),
+    token=os.getenv("UPSTASH_REDIS_REST_TOKEN"),
+)
+
+MAX_SUBS_PER_SECOND = 50  # concurrency limit
+
+def acquire_lock(user_id, timeout=5):
+    key = f"grammar_sub_lock:{user_id}"
+    return redis.set(key, "1", nx=True, ex=timeout)
+
+def release_lock(user_id):
+    key = f"grammar_sub_lock:{user_id}"
+    redis.delete(key)
+
+def rate_limit():
+    now_sec = int(timezone.now().timestamp())
+    key = f"grammar_sub_rate:{now_sec}"
+    count = redis.incr(key)
+    redis.expire(key, 2)
+    return count <= MAX_SUBS_PER_SECOND
+
+# -------------------------
+# Initiate subscription payment
+# -------------------------
 def grammar_start_subscription(request):
     if not request.user.is_authenticated:
         return HttpResponse("""
             <script>
                 alert("⚠ Please sign up or log in before subscribing.");
-                if (window.bootstrap) {
-                    var modalEl = document.getElementById("registerModal");
-                    if (modalEl) { var modal = new bootstrap.Modal(modalEl); modal.show(); }
-                }
                 window.history.back();
             </script>
         """)
 
+    if not rate_limit():
+        return JsonResponse({"error": "Too many subscription attempts. Try again in a second."}, status=429)
+
+    # Fetch or create profile
     user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
-    currency = request.GET.get("currency", "NGN")
+
+    # Currency and amount
+    currency = request.GET.get("currency", "NGN").upper()
+    if currency not in ["NGN", "USD"]:
+        return JsonResponse({"error": "Invalid currency"}, status=400)
+
     amount = 4000 if currency == "NGN" else 4
     tx_ref = f"grammar-{uuid.uuid4().hex[:10]}"
+
     user_profile.flutterwave_tx_ref = tx_ref
     user_profile.save()
-    payment_options = "card,banktransfer,ussd,ngn,ussd_qr,eNaira" if currency == "NGN" else "card,applepay,googlepay,banktransfer"
+
+    payment_options = (
+        "card,banktransfer,ussd,ngn,ussd_qr,eNaira"
+        if currency == "NGN"
+        else "card,applepay,googlepay,banktransfer"
+    )
 
     payload = {
         "tx_ref": tx_ref,
@@ -635,46 +677,126 @@ def grammar_start_subscription(request):
         "currency": currency,
         "redirect_url": request.build_absolute_uri("/grammar-verify-subscription/"),
         "payment_options": payment_options,
-        "customer": {"email": request.user.email or f"user{request.user.id}@example.com", "name": request.user.username},
-        "customizations": {"title": "Grammar Pro Subscription", "description": "Unlock 50 checks per day and 5,000 words"}
+        "customer": {
+            "email": request.user.email or f"user{request.user.id}@example.com",
+            "name": request.user.username
+        },
+        "customizations": {
+            "title": "Grammar Pro Subscription",
+            "description": "Unlock 50 checks/day and 5,000 words"
+        }
     }
+
     headers = {"Authorization": f"Bearer {settings.FLW_SECRET_KEY}"}
+
     try:
         res = requests.post("https://api.flutterwave.com/v3/payments", json=payload, headers=headers, timeout=15)
         res_data = res.json()
-        logger.info(f"Flutterwave grammar init: {res_data}")
+        logger.info(f"Flutterwave init payment: {res_data}")
     except requests.RequestException as e:
         logger.exception("Flutterwave request failed (grammar)")
         return JsonResponse({"error": f"Failed to initiate payment: {str(e)}"}, status=500)
 
     if res_data.get("status") == "success" and "link" in res_data.get("data", {}):
         return redirect(res_data["data"]["link"])
+
     return JsonResponse({"error": "Failed to initiate payment"}, status=400)
 
+# -------------------------
+# Verify payment & handle subscription
+# -------------------------
 @login_required
 def grammar_verify_subscription(request):
     tx_ref = request.GET.get("tx_ref")
-    status = request.GET.get("status")
-    if not tx_ref or not status:
+    if not tx_ref:
         return redirect("/grammar-checker/")
-    verify_url = f"https://api.flutterwave.com/v3/transactions/verify_by_reference?tx_ref={tx_ref}"
-    headers = {"Authorization": f"Bearer {settings.FLW_SECRET_KEY}"}
-    res = requests.get(verify_url, headers=headers)
-    res_data = res.json()
-    if res_data.get("status") == "success":
+
+    user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
+
+    # Ensure tx_ref matches user's last initiated payment
+    if tx_ref != user_profile.flutterwave_tx_ref:
+        logger.warning(f"TX_REF mismatch for user {request.user.id}: {tx_ref} vs {user_profile.flutterwave_tx_ref}")
+        return redirect("/grammar-checker/?subscribed=0")
+
+    # Acquire lock
+    if not acquire_lock(user_profile.user.id):
+        return JsonResponse({"error": "Another subscription update in progress. Try again."}, status=429)
+
+    try:
+        # Verify payment
+        verify_url = f"https://api.flutterwave.com/v3/transactions/verify_by_reference?tx_ref={tx_ref}"
+        headers = {"Authorization": f"Bearer {settings.FLW_SECRET_KEY}"}
+        res = requests.get(verify_url, headers=headers, timeout=15)
+        res_data = res.json()
+
+        if res_data.get("status") != "success":
+            logger.error(f"Payment verification failed: {res_data}")
+            return redirect("/grammar-checker/?subscribed=0")
+
         payment_status = res_data["data"].get("status", "").lower()
+        payment_currency = res_data["data"].get("currency")
+        payment_amount = float(res_data["data"].get("amount", 0))
+
+        expected_amount = 4000 if payment_currency == "NGN" else 4
+        if payment_amount != expected_amount:
+            logger.error(f"Payment amount mismatch: expected {expected_amount}, got {payment_amount}")
+            refund_payment(tx_ref, payment_amount, payment_currency)
+            return redirect("/grammar-checker/?subscribed=0")
+
         if payment_status == "successful":
-            user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
-            user_profile.is_subscribed = True
-            user_profile.subscription_start = timezone.now()
-            user_profile.subscription_end = timezone.now() + timedelta(days=30)
-            user_profile.flutterwave_tx_ref = tx_ref
-            user_profile.save()
+            with transaction.atomic():
+                user_profile.is_subscribed = True
+                user_profile.subscription_start = timezone.now()
+                user_profile.subscription_end = timezone.now() + timedelta(days=30)
+                user_profile.flutterwave_tx_ref = tx_ref
+                user_profile.save()
             return redirect("/grammar-checker/?subscribed=1")
-    return redirect("/grammar-checker/?subscribed=0")
+
+        else:
+            # Payment failed, auto-refund if captured
+            logger.warning(f"Payment failed for user {request.user.id}: {res_data['data']}")
+            refund_payment(tx_ref, payment_amount, payment_currency)
+            return redirect("/grammar-checker/?subscribed=0")
+
+    finally:
+        release_lock(user_profile.user.id)
+
+# -------------------------
+# Refund helper
+# -------------------------
+def refund_payment(tx_ref, amount, currency):
+    """
+    Calls Flutterwave refund API for failed or mismatched payments.
+    """
+    refund_url = "https://api.flutterwave.com/v3/transactions/refund"
+    payload = {
+        "tx_ref": tx_ref,
+        "amount": amount,
+        "currency": currency,
+        "narration": "Grammar subscription failed, automatic refund"
+    }
+    headers = {"Authorization": f"Bearer {settings.FLW_SECRET_KEY}"}
+    try:
+        res = requests.post(refund_url, json=payload, headers=headers, timeout=15)
+        res_data = res.json()
+        logger.info(f"Refund requested for {tx_ref}: {res_data}")
+    except requests.RequestException as e:
+        logger.exception(f"Refund failed for {tx_ref}: {str(e)}")
 
 
-
+@login_required
+def grammar_subscription_status(request):
+    """
+    Returns current user's subscription status as JSON.
+    """
+    user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
+    
+    return JsonResponse({
+        "is_subscribed": user_profile.is_subscribed,
+        "subscription_start": user_profile.subscription_start,
+        "subscription_end": user_profile.subscription_end,
+        "remaining_days": (user_profile.subscription_end - timezone.now()).days if user_profile.subscription_end else 0
+    })
 
 
 
