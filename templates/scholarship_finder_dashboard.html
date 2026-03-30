@@ -1,0 +1,90 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<form id="plagiarism-form" class="mb-3">
+    <textarea id="text-input" class="form-control mb-2" placeholder="Enter text to check" rows="6"></textarea>
+    <button type="submit" class="btn btn-primary">Check Plagiarism</button>
+</form>
+
+<!-- Loader -->
+<div id="loader" class="mb-3" style="display:none;">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Checking...</span>
+    </div>
+    <span class="ms-2">Checking plagiarism...</span>
+</div>
+
+<!-- Overall Percentage -->
+<div class="progress mb-3" style="height: 25px; display:none;" id="overall-progress">
+    <div class="progress-bar bg-danger" role="progressbar" style="width:0%;" id="progress-bar"></div>
+</div>
+
+<!-- Results -->
+<div id="plagiarism-report"></div>
+
+<script>
+document.getElementById('plagiarism-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    const text = document.getElementById('text-input').value;
+    if(!text.trim()) return alert("Please enter text!");
+
+    document.getElementById('loader').style.display = 'block';
+    document.getElementById('plagiarism-report').innerHTML = '';
+    document.getElementById('overall-progress').style.display = 'none';
+
+    fetch('/check-plagiarism/', {
+        method: 'POST',
+        body: new URLSearchParams({'text': text}),
+        headers: {'X-CSRFToken': csrf_token}
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById('loader').style.display = 'none';
+        if(data.error){
+            alert(data.error);
+            return;
+        }
+        displayReport(data.plagiarism_report);
+    })
+    .catch(err => {
+        document.getElementById('loader').style.display = 'none';
+        alert("Error checking plagiarism.");
+    });
+});
+
+function displayReport(report){
+    // Overall percentage
+    const overall = report.overall_percentage || 0;
+    document.getElementById('overall-progress').style.display = 'block';
+    const bar = document.getElementById('progress-bar');
+    bar.style.width = overall + '%';
+    bar.innerText = overall + '% plagiarized';
+
+    // Matches
+    let html = '<h4>Plagiarized Matches:</h4><ul class="list-group">';
+    report.matches.forEach(match=>{
+        html += `<li class="list-group-item">
+            <strong>Source:</strong> <a href="${match.source}" target="_blank">${match.source}</a><br>
+            <strong>Similarity:</strong> ${match.similarity}%<br>
+            <span class="bg-warning">${match.matched_text}</span>
+        </li>`;
+    });
+    html += '</ul><button id="export-pdf" class="btn btn-success mt-3">Export as PDF</button>';
+    document.getElementById('plagiarism-report').innerHTML = html;
+
+    // PDF Export
+    document.getElementById('export-pdf').addEventListener('click', function(){
+        exportToPDF(report);
+    });
+}
+
+// Export as PDF
+function exportToPDF(report){
+    const content = document.getElementById('plagiarism-report').innerHTML;
+    const win = window.open('', '', 'height=700,width=700');
+    win.document.write('<html><head><title>Plagiarism Report</title></head><body>');
+    win.document.write(content);
+    win.document.write('</body></html>');
+    win.document.close();
+    win.print();
+}
+</script>

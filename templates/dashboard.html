@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPrompt Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+
+    <style>
+        body { background-color: #f8f9fa; }
+        .sidebar {
+            min-height: 100vh;
+            background-color: #001f4d; /* Dark Blue */
+            color: white;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            display: block;
+transition: background 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #003080;
+        }
+        .dashboard-content {
+            padding: 30px;
+        }
+        .dashboard-content h1,
+        .dashboard-content h5 {
+            color: #001f4d; /* Dark blue headings */
+        }
+        body, h1, h2, h3, h4, h5, h6, p, a, button {
+    font-family: 'Poppins', sans-serif;
+}
+            section {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+
+
+    </style>
+</head>
+<body>            
+
+<!-- ======= Dashboard Navbar Section ======= -->
+<section class="dashboard-navbar py-3" style="background-color: #003366;">
+  <div class="container d-flex align-items-center justify-content-start">
+
+    <!-- Back arrow linking to home -->
+    <a href="{% url 'index' %}" class="me-3 text-white text-decoration-none d-flex align-items-center">
+      <i class="fas fa-arrow-left fa-2x"></i> <!-- bigger arrow -->
+    </a>
+
+    <!-- Dashboard title -->
+    <h2 class="text-white flex-grow-1 text-center mb-0" style="font-size: 2rem;"> My Dashboard</h2>
+
+  </div>
+</section>
+
+<!-- Responsive adjustments for smaller screens -->
+<style>
+  @media (max-width: 576px) {
+    .dashboard-navbar h2 {
+      font-size: 1.8rem;  /* slightly smaller on mobile */
+    }
+    .dashboard-navbar a i {
+      font-size: 1.8rem;  /* arrow slightly smaller on mobile */
+    }
+  }
+</style>
+
+    
+<div class="col-md-9 col-lg-10 dashboard-content">
+    <h1 class="mb-4">Welcome, 👋 {{ user.username }}</h1>
+
+    <!-- Sign-Up & Wallet Row -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Sign-Up Details</h5>
+                    <p><b>Name:</b> {{ user.get_full_name }}</p>
+                    <p><b>Email:</b> {{ user.email }}</p>
+                    <p><b>Joined:</b> {{ user.date_joined|date:"F d, Y" }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Wallet</h5>
+                    <h2 class="fw-bold text-success" id="wallet-balance">{{ wallet_balance|default:"₦0.00" }}</h2>
+                    <p class="mb-0 text-muted">Total Funded</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subscription -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Current Subscription</h5>
+            <p><b>Plan:</b> {{ subscription_plan|default:"Free" }}</p>
+            <p><b>Expires on:</b> {{ subscription_expiry|default:"No expiry" }}</p>
+        </div>
+    </div>
+</div>
+
+<!-- JS to dynamically fetch user currency -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    fetch("{% url 'get_currency' %}")
+    .then(response => response.json())
+    .then(data => {
+        const balanceElement = document.getElementById("wallet-balance");
+        if(balanceElement) {
+            // Extract numeric value
+            const currentBalance = balanceElement.textContent.replace(/[^0-9.]/g, '');
+            balanceElement.textContent = data.currency_symbol + currentBalance;
+        }
+    })
+    .catch(error => console.error("Currency fetch error:", error));
+});
+</script>
+
+
+
+                          

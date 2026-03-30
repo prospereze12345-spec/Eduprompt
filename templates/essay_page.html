@@ -1,0 +1,1738 @@
+{% load static %}
+{% load i18n %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO Title -->
+  <title>AI Essay Generator – Create High-Quality Essays Instantly | EduPrompt</title>
+
+  <!-- Meta Description -->
+  <meta name="description" content="Generate structured, high-quality essays instantly with EduPrompt’s AI Essay Generator. Perfect for students and researchers seeking plagiarism-free, well-formatted academic essays. Fast, intelligent, and easy to use.">
+
+  <!-- Keywords (optional in 2026) -->
+  <meta name="keywords" content="AI essay generator free, instant essay maker, AI essay writing tool, plagiarism-free essay creator, academic essay AI, AI essay writer for students, EduPrompt essay tool">
+
+  <meta name="author" content="EduPrompt">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://eduprompt.com.ng{{ request.path }}">
+
+  <!-- Open Graph (Facebook, WhatsApp, TikTok, LinkedIn) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI Essay Generator – Create High-Quality Essays Instantly">
+  <meta property="og:description" content="Write structured, plagiarism-free essays instantly using EduPrompt AI. Designed for students and academic success.">
+  <meta property="og:url" content="https://eduprompt.com.ng{{ request.path }}">
+  <meta property="og:image" content="https://eduprompt.com.ng/static/images/essay-preview.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Essay Generator | EduPrompt">
+  <meta name="twitter:description" content="Generate high-quality academic essays instantly with AI.">
+  <meta name="twitter:image" content="https://eduprompt.com.ng/static/images/essay-preview.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "EduPrompt AI Essay Generator",
+  "operatingSystem": "All",
+  "applicationCategory": "EducationalApplication",
+  "description": "AI-powered essay generator that creates structured, plagiarism-free academic essays instantly.",
+  "url": "https://eduprompt.com.ng{{ request.path }}"
+}
+</script>
+
+</head>
+
+
+  
+<!-- Favicon (only one main link) -->
+<link rel="icon" href="{% static 'assets/img/favicon.png' %}" type="image/png" />
+<link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon" />
+<link rel="apple-touch-icon" href="{% static 'assets/img/apple-touch-icon.png' %}">
+
+
+  <!-- Fonts -->
+  <link href="{% static 'https://fonts.googleapis.com' %}" rel="preconnect">
+  <link href="{% static 'https://fonts.gstatic.com' %}" rel="preconnect" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="{% static 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap' %}" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css" rel="stylesheet' %}">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+
+
+  <style>
+  .faq-section {
+    text-align: center; /* Center all content */
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    max-width: 700px;
+    margin: 0 auto; /* Center the FAQ box itself */
+    text-align: left; /* Keep answer and question aligned left inside centered block */
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600; /* Make it bold */
+    font-size: 1.1rem;
+  }
+
+  .faq-question h5 {
+    margin: 0;
+    font-weight: 700; /* Bold text */
+  }
+
+  .faq-answer {
+    display: none;
+    padding-top: 10px;
+    color: #444;
+    font-size: 1rem;
+  }
+
+  .faq-item.active .faq-answer {
+    display: block;
+  }
+
+  .faq-toggle {
+    font-size: 1.2rem;
+    color: #666;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.active .faq-toggle {
+    transform: rotate(180deg);
+  }
+
+  /* Remove underline and border line from all links inside navmenu */
+#navmenu a {
+  text-decoration: none !important; /* no underline */
+  border: none !important;           /* no border */
+  box-shadow: none !important;       /* remove any shadow */
+  outline: none !important;          /* remove outline */
+  color: inherit;                    /* keep inherited color */
+  transition: color 0.3s ease;       /* optional smooth hover color */
+}
+
+/* Remove any border or underline on hover/focus */
+#navmenu a:hover,
+#navmenu a:focus {
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #007bff; /* Optional: set your hover color */
+}
+
+/* Remove any border or underline on sitename if any */
+.sitename {
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+/* Base button style */
+.btn-getstarted {
+  background-color: #28a745; /* Bootstrap green or your custom green */
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.3rem;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+/* Remove white line / underline on hover or focus */
+.btn-getstarted:hover,
+.btn-getstarted:focus {
+  background-color: #218838; /* darker green on hover */
+  color: white;
+  text-decoration: none;     /* removes underline */
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+  /* Dark blue variables */
+  :root {
+    --eduprompt-blue: #003366; /* Dark blue shade */
+  }
+
+  /* Sitename color */
+  .sitename {
+    color: var(--eduprompt-blue) !important;
+    font-weight: bold;
+  }
+
+  /* Dashboard icon color */
+  .nav-link i.bi-person-fill {
+    color: var(--eduprompt-blue);
+    transition: color 0.3s ease;
+  }
+
+  /* All nav-links hover effect */
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:focus,
+  .dropdown-menu .dropdown-item:hover {
+    color: var(--eduprompt-blue) !important;
+  }
+
+  /* Optional: Get Started button hover stays nice */
+  .btn-success:hover {
+    background-color: var(--eduprompt-blue);
+    border-color: var(--eduprompt-blue);
+  }
+  
+  
+
+</style>
+
+
+
+
+
+  
+  <!-- =======================================================
+  * Template Name: FlexStart
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Updated: Nov 01 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+  
+<header id="header" class="header fixed-top bg-white shadow-sm">
+  <nav class="container-xl py-2">
+
+    <!-- Desktop: Logo + Tools + Login/Register in one row -->
+    <div class="d-none d-lg-flex justify-content-between align-items-center">
+      <!-- Logo + Name -->
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+        <img src="{% static 'assets/img/favicon.png' %}" alt="Logo" style="height: 40px;">
+        <span class="ms-2 fw-bold sitename">Eduprompt</span>
+      </a>
+
+      <!-- Tools -->
+      <div class="d-flex align-items-center">
+        <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
+        <span class="text-muted me-2">|</span>
+
+        <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
+        <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
+        <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
+        <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+      </div>
+
+      <!-- Login/Register -->
+      <div class="d-flex align-items-center">
+        {% if not user.is_authenticated %}
+          <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+            {% trans "Sign up" %}
+          </button>
+          <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+            {% trans "Login" %}
+          </button>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Mobile: Logo + Login/Register -->
+    <div class="d-flex d-lg-none justify-content-between align-items-center mb-2">
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+        <img src="{% static 'assets/img/favicon.png' %}" alt="Logo" style="height: 40px;">
+        <span class="ms-2 fw-bold sitename">Eduprompt</span>
+      </a>
+
+      <div class="d-flex align-items-center">
+        {% if not user.is_authenticated %}
+          <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+            {% trans "Sign up" %}
+          </button>
+          <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+            {% trans "Login" %}
+          </button>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Mobile: Scrollable Tools Section -->
+    <div class="d-flex d-lg-none overflow-auto pb-2" style="white-space: nowrap;">
+      <span class="fw-bold me-2" style="color: darkblue;">Tools</span>
+      <span class="text-muted me-2">|</span>
+      <a href="/grammar-checker/" class="nav-link d-inline px-2">{% trans "Grammar Checker" %}</a>
+      <a href="/essay/" class="nav-link d-inline px-2">{% trans "Essay Generator" %}</a>
+      <a href="/quiz/" class="nav-link d-inline px-2">{% trans "Quiz Generator" %}</a>
+      <a href="/contact/" class="nav-link d-inline px-2">{% trans "Contact" %}</a>
+    </div>
+
+  </nav>
+</header>
+<!-- Message Container -->
+<div id="auth-messages" class="position-fixed top-0 end-0 p-3" style="z-index:1055"></div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" data-bs-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow">
+      
+      <div class="modal-header border-0">
+        <h5 class="modal-title">{% trans "Login" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body p-4">
+
+             <!-- Smart Login Form -->
+<form id="smartLoginForm" method="post" action="{% url 'send_magic_link' %}">
+  {% csrf_token %}
+  
+  <div class="mb-3">
+    <input type="email" name="email" class="form-control" 
+           placeholder="Enter your email to receive login link" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100">
+    Send Smart Login Link
+  </button>
+
+  <p class="text-muted mt-2" style="font-size:0.9em;">
+    A secure login link will be sent to your email. Link expires in 10 minutes.
+  </p>
+</form>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" data-bs-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">{% trans "Sign up" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <form id="signupForm" method="post" action="{% url 'ajax_signup' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="text" name="username" class="form-control" placeholder="{% trans 'Username' %}" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="{% trans 'Email' %}" required>
+          </div>
+          <div class="mb-3 position-relative">
+            <input type="password" name="password" class="form-control" placeholder="{% trans 'Password' %}" required>
+            <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 toggle-password">
+              👁
+            </button>
+          </div>
+          <button type="submit" class="btn btn-success w-100 mb-3">{% trans "Create Account" %}</button>
+        </form>
+
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+document.getElementById("magicLinkForm").addEventListener("submit", async function(e) {
+    e.preventDefault(); // prevent page reload
+
+    const email = this.email.value;
+
+    try {
+        const response = await fetch("{% url 'send_magic_link' %}", {
+            method: "POST",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: new URLSearchParams({ email })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            alert(data.success);  // <-- show popup
+        } else if (data.error) {
+            alert(data.error);    // <-- show popup
+        }
+    } catch (err) {
+        alert("Something went wrong. Try again.");
+        console.error(err);
+    }
+});
+</script>
+<script>
+
+$(document).ready(function(){
+
+  // --------------------------
+  // Password toggle
+  // --------------------------
+  $(document).on("click", ".toggle-password", function(){
+    const $input = $(this).closest(".position-relative").find("input");
+    const type = $input.attr("type") === "password" ? "text" : "password";
+    $input.attr("type", type);
+    $(this).text(type === "password" ? "👁" : "👁‍🗨");
+  });
+
+  // --------------------------
+  // AJAX Signup
+  // --------------------------
+  $("#signupForm").submit(function(e){
+    e.preventDefault();
+
+    const $form = $(this);
+    const data = $form.serialize();
+    const csrfToken = $form.find('input[name="csrfmiddlewaretoken"]').val();
+
+    $.ajax({
+      url: $form.attr('action'),
+      type: "POST",
+      data: data,
+      headers: {'X-CSRFToken': csrfToken},
+      success: function(response){
+        if(response.user_authenticated){
+          // Show success message
+          showMessage("Signup successful!");
+
+          // Close modal
+          $("#registerModal").modal('hide');
+
+          // Redirect to homepage
+          window.location.href = "{% url 'index' %}";
+        } else {
+          // Show backend error(s)
+          if(typeof response.errors === 'string'){
+            showMessage(response.errors, "danger");
+          } else {
+            let errMsg = "";
+            for(const key in response.errors){
+              errMsg += response.errors[key] + "\n";
+            }
+            showMessage(errMsg.trim(), "danger");
+          }
+        }
+      },
+      error: function(xhr){
+        showMessage("Signup failed. Check inputs or refresh page.", "danger");
+      }
+    });
+  });
+
+});
+</script>
+
+
+
+<!-- AJAX + Password Toggle Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+// Login AJAX
+$("#loginForm").submit(function(e){
+    e.preventDefault();
+
+    // Grab CSRF token from the form
+    const csrftoken = $(this).find('input[name="csrfmiddlewaretoken"]').val();
+
+    $.ajax({
+        url: $(this).attr('action'),
+        method: "POST",
+        data: $(this).serialize(),
+        headers: {
+            'X-CSRFToken': csrftoken,      // send CSRF token in header
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        success: function(data){
+            if(data.user_authenticated) {
+                showMessage("Login successful!");
+
+                // Hide modal
+                $("#loginModal").modal('hide');
+
+                // Redirect to index page after successful login
+                window.location.href = "{% url 'index' %}";
+            } else {
+                showMessage(data.errors || "Login failed.", "danger");
+            }
+        },
+        error: function(xhr){
+            showMessage("Login failed. Check inputs.", "danger");
+        }
+    });
+});
+
+// Password toggle
+$(".toggle-password").click(function(){
+  const input = $(this).siblings("input");
+  const type = input.attr("type") === "password" ? "text" : "password";
+  input.attr("type", type);
+  $(this).text(type === "password" ? "👁" : "👁‍🗨");
+});
+
+// Login AJAX (email + optional password)
+$("#loginForm").submit(function(e){
+  e.preventDefault();
+  $.ajax({
+    url: $(this).attr('action'),
+    method: "POST",
+    data: $(this).serialize(),
+    headers: {'X-CSRFToken': getCSRFToken()},
+    success: function(data){
+      if(data.user_authenticated){
+        showMessage("Login successful!");
+        $("#loginModal").modal('hide');
+        window.location.href = "{% url 'index' %}";
+      } else {
+        showMessage(data.errors || "Login failed.", "danger");
+      }
+    },
+    error: function(xhr){
+      showMessage("Login failed. Check inputs.", "danger");
+    }
+  });
+});
+
+// Magic link AJAX
+$("#magicLinkBtn").click(function(){
+  const email = $("#loginForm input[name='email']").val();
+  if(!email){
+    showMessage("Enter your email first.", "danger");
+    return;
+  }
+
+  $.ajax({
+    url: "{% url 'send_magic_link' %}", // backend view to send magic link
+    method: "POST",
+    data: {email: email},
+    headers: {'X-CSRFToken': getCSRFToken()},
+    success: function(data){
+      $("#magicMsg").text("Check your email for the login link!");
+    },
+    error: function(){
+      $("#magicMsg").text("Failed to send magic link. Try again.");
+    }
+  });
+});
+$(document).ready(function(){
+
+});
+
+
+
+</script>
+
+
+       
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+<!-- Bootstrap CSS & Bootstrap Icons CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+  /* Section background white */
+  #contact {
+    background-color: white;
+    color: black;
+    padding: 50px 15px;
+  }
+
+  /* Section Title: Centered */
+  #contact .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  #contact .section-title h2 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #0d3b66; /* dark blue */
+  }
+  #contact .section-title p {
+    font-size: 1.25rem;
+    color: #555;
+  }
+
+  /* Info Items and Form Container background gray */
+  .info-item,
+  .contact-form {
+    background: #f7f7f7;
+    padding: 20px 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.05);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .info-item i {
+    font-size: 2rem;
+    color: #0d3b66; /* dark blue icons */
+    flex-shrink: 0;
+  }
+  .info-item h3 {
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+    color: #0d3b66;
+  }
+  .info-item p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: black;
+  }
+  .info-item img.flag-icon {
+    width: 25px;
+    height: auto;
+    margin-left: 8px;
+    border-radius: 3px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  }
+
+  /* Contact Form inputs */
+  .contact-form input,
+  .contact-form textarea {
+    border: 1.5px solid #0d3b66;
+    border-radius: 6px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+    background-color: white;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: #054a91;
+    box-shadow: 0 0 6px #054a91;
+  }
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  .contact-form button {
+    background-color: #0d3b66;
+    color: white;
+    font-weight: 600;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .contact-form button:hover {
+    background-color: #054a91;
+  }
+
+  /* Success & error messages */
+  .alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-radius: 6px;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #c3e6cb;
+  }
+  .alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-radius: 6px;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #f5c6cb;
+  }
+
+  /* Responsive */
+  @media (max-width: 767px) {
+    #contact .info-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .info-item i {
+      font-size: 2.5rem;
+    }
+
+    #contact {
+  background-color: white;
+  color: black;
+  padding: 80px 15px 50px 15px; /* increased top padding */
+  margin-top: 0;
+}
+
+  }
+</style>
+
+  <main class="main">
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bootstrap Center with Animation</title>
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    /* Full height container and flex center */
+    .vh-100 {
+      height: 100vh !important;
+    }
+
+    .typing-animation {
+      overflow: hidden; /* ensures the text is hidden at first */
+      white-space: nowrap;
+      border-right: .15em solid white; /* caret */
+      width: 0;
+      animation: typing 3.5s steps(40, end) forwards, blink-caret .75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      0%, 100% { border-color: transparent }
+      50% { border-color: white }
+    }
+  </style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% trans "Essay Writer" %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body class="bg-light">
+
+  <!-- Hero Section -->
+  <div class="container vh-100 d-flex flex-column justify-content-center align-items-center text-center px-7">
+    <h1 class="" style="color: darkblue;">
+      {% trans "AI Essay Generator for Professional Writing" %}
+    </h1>
+    <p class="lead text-muted mt-3">
+      {% trans "Easily generate well-structured, high-quality essays on any topic. Our AI-powered essay generator provides polished content ready for academic, research, or professional use." %}
+      {% trans "This service is designed for students, researchers, and content creators who value accuracy, readability, and reliability." %}
+    </p>
+  </div>
+
+  <!-- Call to Action Section -->
+  <div class="container text-center my-5" style="background-color: white;">
+    <div class="p-5 rounded shadow-sm" style="background-color: blue; color: white;">
+      <h2 class="fw-bold">{% trans "Start Generating Essays Instantly" %}</h2>
+      <p class="mb-4">{% trans "Try our AI Essay Generator and create professional essays in seconds." %}</p>
+      <a href="/essay/" class="btn btn-light btn-lg fw-bold">{% trans "Generate Your Essay Now" %}</a>
+    </div>
+  </div>
+
+<!-- Main Container to align sections together -->
+<div class="container my-4" style="max-width: 1000px;">
+
+  <!-- Essay Type Selector -->
+  <div class="text-center py-3 px-3 rounded mb-4" 
+       style="background-color: #0d6efd; color: white;">
+    <h5 class="fw-bold mb-3">{% trans "Choose Your Essay Type" %}</h5>
+
+    <div class="d-flex flex-wrap justify-content-center gap-2" id="essayTypeGroup">
+      <button type="button" class="btn btn-outline-light btn-sm flex-fill" style="min-width: 120px;" data-value="narrative">{% trans "Narrative" %}</button>
+      <button type="button" class="btn btn-outline-light btn-sm flex-fill" style="min-width: 120px;" data-value="descriptive">{% trans "Descriptive" %}</button>
+      <button type="button" class="btn btn-outline-light btn-sm flex-fill" style="min-width: 120px;" data-value="expository">{% trans "Expository" %}</button>
+      <button type="button" class="btn btn-outline-light btn-sm flex-fill" style="min-width: 120px;" data-value="persuasive">{% trans "Persuasive" %}</button>
+      <button type="button" class="btn btn-outline-light btn-sm flex-fill" style="min-width: 120px;" data-value="analytical">{% trans "Analytical" %}</button>
+    </div>
+
+    <p class="mt-2 fst-italic small opacity-75">
+      {% trans "*Note: Select an essay type to customize the style and tone of your AI-generated essay." %}
+    </p>
+  </div>
+
+  <!-- Hidden input for selected essay type -->
+  <input type="hidden" id="selectedEssayType" value="" />
+
+  <!-- Two Columns: Input Left, Output Right -->
+  <div class="row g-3" style="min-height: 500px;">
+
+    <!-- Left Column: Prompt Input -->
+    <div class="col-12 col-md-6 d-flex flex-column p-3 border-end">
+      <h5 class="fw-bold mb-3">Enter Your Essay Topic</h5>
+
+      <!-- Topic Input -->
+      <textarea id="promptInput" class="form-control flex-grow-1 mb-3" 
+                placeholder="Type your essay question or topic here..." rows="8"></textarea>
+
+      <!-- Essay Settings -->
+      <div class="row mb-3 g-2">
+        <!-- Language Dropdown -->
+        <div class="col-12">
+          <label class="fw-semibold small">Language <span class="text-danger">*</span></label>
+          <select id="essayLang" class="form-select" required>
+            <option value="" disabled selected>Select language</option>
+            <option value="en">English</option>
+            <option value="yo">Yoruba</option>
+            <option value="ig">Igbo</option>
+            <option value="ha">Hausa</option>
+            <option value="ar">Arabic</option>
+            <option value="zu">Zulu</option>
+            <option value="sw">Swahili</option>
+            <option value="fr">French</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Generate Button -->
+      <button onclick="generateEssay()" class="btn btn-primary w-100 mt-auto">
+        {% trans "Generate Essay" %}
+      </button>
+
+      <!-- Status Section -->
+      <div id="userStatus" class="mt-3 text-center small fw-semibold text-dark"></div>
+
+      <!-- Go Pro Upgrade Banner -->
+      <div id="goProBanner" class="mt-3" style="display:none;">
+        <div class="d-flex align-items-center justify-content-between p-2 rounded-3 shadow-sm" 
+             style="background-color: #FFD700; color: #000;">
+          <div class="d-flex align-items-center">
+            <i class="fas fa-crown fa-lg me-2" style="color: #000;"></i>
+            <div>
+              <h6 class="mb-0 fw-bold small">Go Pro</h6>
+              <small class="text-dark">Go Pro for unlimited use & faster results</small>
+            </div>
+          </div>
+          <a href="#pricing-naira" class="btn btn-dark btn-sm rounded-pill fw-semibold">
+            Upgrade
+          </a>
+        </div>
+      </div>
+    </div>
+<!-- Right Column: Essay Output -->
+<div class="col-12 col-md-6 d-flex flex-column p-3">
+  <h5 class="fw-bold mb-3">AI-Generated Essay (Editable)</h5>
+  <textarea id="essayOutput"
+            class="border bg-light rounded p-3 mb-3"
+            style="white-space: pre-wrap; overflow: visible; resize: vertical; min-height: 300px; height: auto;"
+            placeholder="Your essay will appear here..."
+            spellcheck="true"></textarea>
+</div>
+
+      <!-- Download Button Under Output -->
+      <div class="d-flex justify-content-start mt-2">
+        <button onclick="downloadEssayPDF()" 
+                class="btn btn-success"
+                style="padding:10px 24px; font-size:14px;">
+          {% trans "📥 Download PDF" %}
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Essay Type Selector JS -->
+<script>
+  const buttons = document.querySelectorAll('#essayTypeGroup .btn');
+  const hiddenInput = document.getElementById('selectedEssayType');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      buttons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      hiddenInput.value = button.getAttribute('data-value');
+    });
+  });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    if (buttons.length > 0) {
+      buttons[0].classList.add('active');
+      hiddenInput.value = buttons[0].getAttribute('data-value');
+    }
+  });
+</script>
+
+
+
+<script>
+// -------------------------
+// CSRF Token Helper
+// -------------------------
+function getCookie(name) {
+    const cookies = document.cookie ? document.cookie.split(';') : [];
+    for (let cookie of cookies) {
+        cookie = cookie.trim();
+        if (cookie.startsWith(name + '=')) {
+            return decodeURIComponent(cookie.substring(name.length + 1));
+        }
+    }
+    return null;
+}
+
+// -------------------------
+// Fetch User Status & Update UI
+// -------------------------
+async function fetchUserStatus() {
+    try {
+        const res = await fetch("/essay/subscription/status/");
+        const data = await res.json();
+
+        const statusDiv = document.getElementById("userStatus");
+        const goProBanner = document.getElementById("goProBanner");
+
+        // Guest user (not logged in)
+        if (data.error === "Authentication required") {
+            statusDiv.innerHTML = `⚠️ Please <strong>sign up and subscribe</strong> to generate essays.`;
+            goProBanner.style.display = "block";
+            return;
+        }
+
+        // Logged-in user, free trial available
+        if (!data.subscribed && !data.free_trial_used) {
+            statusDiv.innerHTML = `🎁 Free Trial Available: 1 essay left`;
+            goProBanner.style.display = "block";
+            return;
+        }
+
+        // Logged-in user, free trial used or limit reached
+        if (!data.subscribed && data.free_trial_used) {
+            statusDiv.innerHTML = `⚠️ Free Trial Used. Please <strong>upgrade to continue</strong>.`;
+            goProBanner.style.display = "block";
+            return;
+        }
+
+        // Subscribed user
+        const remaining = data.limit - data.essays_used;
+        if (remaining > 0) {
+            statusDiv.innerHTML = `✅ Subscribed: ${remaining} essay${remaining !== 1 ? 's' : ''} left`;
+            goProBanner.style.display = "none";
+        } else {
+            statusDiv.innerHTML = `⚠️ Limit Reached. Please <strong>upgrade to higher plan</strong>.`;
+            goProBanner.style.display = "block";
+        }
+
+    } catch (err) {
+        console.error("Failed to load user status:", err);
+        document.getElementById("userStatus").innerHTML = "⚠️ Unable to fetch user status.";
+    }
+}
+// -------------------------
+// Generate Essay
+// -------------------------
+async function generateEssay() {
+    const topicInput = document.getElementById("promptInput");
+    const essayTypeSelect = document.getElementById("selectedEssayType");
+    const langSelect = document.getElementById("essayLang");
+    const outputTextarea = document.getElementById("essayOutput");
+
+    if (!topicInput || !outputTextarea || !langSelect) return;
+
+    const topic = topicInput.value.trim();
+    const essayType = essayTypeSelect ? essayTypeSelect.value : "expository";
+    const lang = langSelect.value;
+
+    if (!topic) {
+        outputTextarea.value = "⚠ Please enter a topic first!";
+        outputTextarea.className = "text-danger border bg-light rounded p-3";
+        return;
+    }
+
+    if (!lang) {
+        outputTextarea.value = "⚠ Please select a language!";
+        outputTextarea.className = "text-danger border bg-light rounded p-3";
+        return;
+    }
+
+    outputTextarea.value = "⏳ Generating essay...";
+    outputTextarea.className = "border bg-light rounded p-3 flex-grow-1 overflow-auto text-muted";
+
+    try {
+        const csrfToken = getCookie("csrftoken");
+        const payload = { topic: topic, type: essayType, lang: lang };
+        const url = "{% url 'essay_generate' %}";
+
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrfToken,
+            },
+            body: JSON.stringify(payload),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+            outputTextarea.value = data.message || data.error || `❌ ${response.status} Error`;
+            outputTextarea.className = "text-danger border bg-light rounded p-3";
+            await fetchUserStatus();
+            return;
+        }
+
+        // Display generated essay
+        outputTextarea.value = data.essay;
+        outputTextarea.className = "border bg-light rounded p-3 flex-grow-1 overflow-auto";
+        outputTextarea.scrollIntoView({ behavior: "smooth" });
+
+        // Update user status dynamically
+        await fetchUserStatus();
+
+    } catch (err) {
+        console.error("Essay generation error:", err);
+        outputTextarea.value = "❌ Something went wrong. Please try again!";
+        outputTextarea.className = "text-danger border bg-light rounded p-3";
+    }
+}
+// -------------------------
+// Download Essay as PDF
+// -------------------------
+function downloadEssayPDF() {
+    const outputTextarea = document.getElementById("essayOutput");
+    if (!outputTextarea) {
+        alert("⚠ Essay output element not found!");
+        return;
+    }
+
+    const essayText = outputTextarea.value.trim();
+    if (!essayText) {
+        alert("⚠ Please generate an essay first!");
+        return;
+    }
+
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "{% url 'download_essay_pdf' %}";
+    form.target = "_blank";
+
+    const csrfInput = document.createElement("input");
+    csrfInput.type = "hidden";
+    csrfInput.name = "csrfmiddlewaretoken";
+    csrfInput.value = getCookie("csrftoken");
+    form.appendChild(csrfInput);
+
+    const contentInput = document.createElement("input");
+    contentInput.type = "hidden";
+    contentInput.name = "content";
+    contentInput.value = essayText;
+    form.appendChild(contentInput);
+
+    document.body.appendChild(form);
+    form.submit();
+    form.remove();
+}
+
+// -------------------------
+// Init on page load
+// -------------------------
+document.addEventListener("DOMContentLoaded", fetchUserStatus);
+</script>
+
+
+
+    </div>
+
+</div>
+
+    
+  </div>
+  
+</div>
+
+
+<!-- Bootstrap & AJAX -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+</body>
+</html>
+<div class="container my-5">
+  <h2 class="text-center fw-bold mb-5">{% trans "How It Works" %}</h2>
+
+  <div class="row g-4">
+    <!-- Step 1 -->
+    <div class="col-12 col-md-4">
+      <div class="card h-100 bg-white border-0 p-4 shadow-sm hover-scale">
+        <div class="card-body text-center">
+          <i class="bi bi-pencil-square fs-1 text-primary mb-3"></i>
+          <h5 class="card-title fw-bold mb-2">{% trans "1. Enter Your Topic" %}</h5>
+          <p class="card-text text-muted small">
+            {% trans "Start by typing your essay question or topic. The clearer your input, the more accurate and tailored the AI-generated essay will be." %}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="col-12 col-md-4">
+      <div class="card h-100 bg-white border-0 p-4 shadow-sm hover-scale">
+        <div class="card-body text-center">
+          <i class="bi bi-cpu fs-1 text-success mb-3"></i>
+          <h5 class="card-title fw-bold mb-2">{% trans "2. AI Generates Your Essay" %}</h5>
+          <p class="card-text text-muted small">
+            {% trans "Our AI instantly crafts a high-quality essay, complete with structured paragraphs, citations, and support for African and global languages." %}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="col-12 col-md-4">
+      <div class="card h-100 bg-white border-0 p-4 shadow-sm hover-scale">
+        <div class="card-body text-center">
+          <i class="bi bi-check2-circle fs-1 text-warning mb-3"></i>
+          <h5 class="card-title fw-bold mb-2">{% trans "3. Review & Download" %}</h5>
+          <p class="card-text text-muted small">
+            {% trans "Review the essay, make edits if needed, and download it instantly as a PDF for assignments, research, or projects." %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hover effect -->
+<style>
+.hover-scale {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.hover-scale:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+</style>
+
+
+
+
+<div class="container my-5">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold">{% trans "Why Choose Our AI Essay Generator" %}</h2>
+    <p class="text-muted fs-5">
+      {% trans "Write smarter, not harder. Our AI generates professional essays with up to 800 words, 3 citations, grammar polishing, and full support for African and global languages — all ready in seconds." %}
+    </p>
+  </div>
+
+  <div class="row g-4">
+    <!-- Reason 1 -->
+    <div class="col-12 col-md-4">
+      <div class="card h-100 border-0 text-center p-4 bg-light hover-scale">
+        <div class="mb-3 text-primary fs-1">
+          <i class="bi bi-alarm"></i>
+        </div>
+        <h5 class="fw-semibold">{% trans "Save Time" %}</h5>
+        <p class="text-muted small">
+          {% trans "Generate full-length essays instantly without spending hours on research or drafting." %}
+        </p>
+      </div>
+    </div>
+
+    <!-- Reason 2 -->
+    <div class="col-12 col-md-4">
+      <div class="card h-100 border-0 text-center p-4 bg-light hover-scale">
+        <div class="mb-3 text-success fs-1">
+          <i class="bi bi-lightning-charge-fill"></i>
+        </div>
+        <h5 class="fw-semibold">{% trans "Boost Productivity" %}</h5>
+        <p class="text-muted small">
+          {% trans "Let AI handle the first draft so you can focus on refining and customizing the final work." %}
+        </p>
+      </div>
+    </div>
+
+    <!-- Reason 3 -->
+    <div class="col-12 col-md-4">
+      <div class="card h-100 border-0 text-center p-4 bg-light hover-scale">
+        <div class="mb-3 text-warning fs-1">
+          <i class="bi bi-translate"></i>
+        </div>
+        <h5 class="fw-semibold">{% trans "African Language Support" %}</h5>
+        <p class="text-muted small">
+          {% trans "Write essays in Yoruba, Igbo, Hausa, Swahili, Zulu, Arabic, French, and more — truly multilingual." %}
+        </p>
+      </div>
+    </div>
+
+    <!-- Reason 4 -->
+    <div class="col-12 col-md-4">
+      <div class="card h-100 border-0 text-center p-4 bg-light hover-scale">
+        <div class="mb-3 text-danger fs-1">
+          <i class="bi bi-shield-check"></i>
+        </div>
+        <h5 class="fw-semibold">{% trans "Grammar Polished" %}</h5>
+        <p class="text-muted small">
+          {% trans "Essays are automatically corrected for grammar and flow, so your work always reads naturally." %}
+        </p>
+      </div>
+    </div>
+
+    <!-- Reason 5 -->
+    <div class="col-12 col-md-4">
+      <div class="card h-100 border-0 text-center p-4 bg-light hover-scale">
+        <div class="mb-3 text-info fs-1">
+          <i class="bi bi-file-earmark-pdf"></i>
+        </div>
+        <h5 class="fw-semibold">{% trans "Instant PDF Download" %}</h5>
+        <p class="text-muted small">
+          {% trans "Download your essay as a ready-to-submit PDF in just one click." %}
+        </p>
+      </div>
+    </div>
+
+    <!-- Reason 6 -->
+    <div class="col-12 col-md-4">
+      <div class="card h-100 border-0 text-center p-4 bg-light hover-scale">
+        <div class="mb-3 text-secondary fs-1">
+          <i class="bi bi-people-fill"></i>
+        </div>
+        <h5 class="fw-semibold">{% trans "For Everyone" %}</h5>
+        <p class="text-muted small">
+          {% trans "Whether you're a student, researcher, or professional, our essays give you a reliable foundation to build on." %}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hover effect -->
+<style>
+.hover-scale {
+  transition: transform 0.25s ease;
+}
+.hover-scale:hover {
+  transform: translateY(-5px);
+}
+</style>
+
+
+<!-- Who Can Benefit Section (Essay Generator) -->
+<section class="py-5" style="background-color: #ffffff; color: #000000;">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color: #003366;">{% trans "Who Can Benefit from Our AI Essay Generator?" %}</h2>
+    <p class="text-center mb-5">
+      {% trans "Our AI-powered essay generator is designed for learners, professionals, and educators who need high-quality essays, reports, or academic writing. With clear, well-structured content, instant topic coverage, and proper formatting, it saves time while ensuring originality and clarity." %}
+    </p>
+
+    <!-- Tabs -->
+    <ul class="nav nav-pills justify-content-center mb-4" id="essayTabs" role="tablist">
+      <li class="nav-item">
+        <button class="nav-link active" id="students-essay-tab" data-bs-toggle="pill" data-bs-target="#students-essay" type="button">
+          <i class="bi bi-mortarboard-fill me-2"></i> {% trans "Students" %}
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" id="educators-essay-tab" data-bs-toggle="pill" data-bs-target="#educators-essay" type="button">
+          <i class="bi bi-person-lines-fill me-2"></i>{% trans " Educators" %}
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" id="professionals-essay-tab" data-bs-toggle="pill" data-bs-target="#professionals-essay" type="button">
+          <i class="bi bi-briefcase-fill me-2"></i> {% trans "Professionals" %}
+        </button>
+      </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="essayTabsContent">
+      <!-- Students -->
+      <div class="tab-pane fade show active" id="students-essay">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>{% trans "Students at all levels can instantly generate essays for assignments, term papers, and projects. With clear arguments, structured paragraphs, and plagiarism-free writing, our tool makes essay writing easier and more effective." %}</p>
+        </div>
+      </div>
+      <!-- Educators -->
+      <div class="tab-pane fade" id="educators-essay">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>{% trans "Teachers and tutors can use the essay generator to create sample essays, model answers, or practice prompts for students. It saves preparation time while ensuring engaging and high-quality teaching materials." %}</p>
+        </div>
+      </div>
+      <!-- Professionals -->
+      <div class="tab-pane fade" id="professionals-essay">
+        <div class="p-4 mb-3 bg-light rounded hover-shadow">
+          <p>{% trans "Professionals needing reports, proposals, or formal write-ups can rely on the generator for well-written drafts. It’s ideal for business communication, research summaries, and professional documentation." %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container my-5">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold">{% trans "Frequently Asked Questions" %}</h2>
+    <p class="text-muted fs-5">
+      {% trans "Everything you need to know about our AI Essay Generator and why it stands out in Africa and beyond." %}
+    </p>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="accordion shadow-sm" id="faqAccordion">
+        
+        <!-- FAQ 1 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqHeading1">
+            <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+             {% trans " 1. What makes this AI Essay Generator unique?" %}
+            </button>
+          </h2>
+          <div id="faq1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              {% trans "Our platform is designed with students, researchers, and content creators in mind." %}
+              {% trans "Unlike generic tools, it supports African languages like <strong> Igbo,Hausa, Yoruba, Swahili, and Zulu" %}</strong>, 
+              {% trans "making it ideal for diverse users across Africa and the world." %}
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqHeading2">
+            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+             {% trans " 2. Is the AI-generated essay plagiarism-free?" %}
+            </button>
+          </h2>
+          <div id="faq2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              {% trans "Yes, our AI generates unique essays for every prompt. " %}
+              {% trans "While we recommend reviewing and editing the draft for personal touches," %}
+              {% trans "the content is <strong>100% original and plagiarism-free" %}</strong>.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqHeading3">
+            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+              {% trans "3. Can I use this tool for school assignments or research?" %}
+            </button>
+          </h2>
+          <div id="faq3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              {% trans "Absolutely! Our AI Essay Generator is perfect for <strong>assignments, research projects," %}
+              {% trans "academic essays, and even blog content" %}</strong>. 
+              {% trans "It saves you hours of writing and helps you start with a high-quality draft." %}
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqHeading4">
+            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+              4. {% trans "Does the AI support multiple African languages?" %}
+            </button>
+          </h2>
+          <div id="faq4" class="accordion-collapse collapse" aria-labelledby="faqHeading4" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              {% trans "Yes! This is where our MVP truly stands out." %}
+              {% trans "We offer support for <strong>Hausa, Yoruba, Igbo, Swahili, Zulu, and Amharic" %}</strong>. 
+              "Students and professionals across Africa can finally generate essays in their preferred languages.
+            </div>
+          </div>
+        </div>
+
+       <!-- FAQ 5 -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="faqHeading5">
+    <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+      {% trans "5. Is the AI Essay Generator free to use?" %}
+    </button>
+  </h2>
+  <div id="faq5" class="accordion-collapse collapse" aria-labelledby="faqHeading5" data-bs-parent="#faqAccordion">
+    <div class="accordion-body">
+      {% trans "No, our AI Essay Generator is not completely free to use." %} 
+      {% trans "However, we do offer a free trial so you can test the tool and experience its features before subscribing." %} 
+      {% trans "To continue using the service after the trial, you will need to choose one of our affordable premium plans." %}
+    </div>
+  </div>
+</div>
+
+<!-- FAQ 6 -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="faqHeading6">
+    <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq6" aria-expanded="false" aria-controls="faq6">
+      {% trans "6. Why are the essays grammar error-free?" %}
+    </button>
+  </h2>
+  <div id="faq6" class="accordion-collapse collapse" aria-labelledby="faqHeading6" data-bs-parent="#faqAccordion">
+    <div class="accordion-body">
+      {% trans "Our AI is trained on high-quality academic and professional text, which allows it to generate essays with correct grammar and natural flow." %}
+      {% trans "We also include built-in grammar checks to ensure your content remains polished and professional." %}
+    </div>
+  </div>
+</div>
+
+<!-- FAQ 7 -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="faqHeading7">
+    <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq7" aria-expanded="false" aria-controls="faq7">
+      {% trans "7. Why should I choose your AI Essay Writer?" %}
+    </button>
+  </h2>
+  <div id="faq7" class="accordion-collapse collapse" aria-labelledby="faqHeading7" data-bs-parent="#faqAccordion">
+    <div class="accordion-body">
+      {% trans "Our AI Essay Writer is designed specifically for students, researchers, and professionals who need fast, reliable, and plagiarism-free essays." %}
+      {% trans "Unlike generic tools, we provide citation support, multilingual options, and high accuracy to give you essays that meet academic and professional standards." %}
+    </div>
+  </div>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Essay Generator Testimonial Section -->
+<section class="testimonial-section container py-5">
+  <div class="row align-items-center">
+    <!-- Textual Testimonials -->
+    <div class="col-md-6">
+      <h1 class="mb-3">{% trans "What <strong>users</strong> are <strong>saying about our Essay Generator." %}</strong></h1>
+
+      <div class="testimonial-card mb-3 p-3 border rounded shadow-sm d-flex">
+        <div class="testimonial-number fw-bold me-3" style="color: #003366;">01</div>
+        <div>
+          <i class="bi bi-journal-text text-primary me-2"></i>
+          {% trans "The essay generator saved me hours on assignments. It creates well-structured essays that I can use as inspiration and reference." %}
+        </div>
+      </div>
+
+      <div class="testimonial-card mb-3 p-3 border rounded shadow-sm d-flex">
+        <div class="testimonial-number fw-bold me-3" style="color: #003366;">02</div>
+        <div>
+          <i class="bi bi-pencil-square text-primary me-2"></i>
+         {% trans "I was struggling with academic writing, but now I can generate clear, plagiarism-free essays in minutes. A real game changer for me." %}
+        </div>
+      </div>
+
+      <div class="testimonial-card mb-3 p-3 border rounded shadow-sm d-flex">
+        <div class="testimonial-number fw-bold me-3" style="color: #003366;">03</div>
+        <div>
+          <i class="bi bi-book text-primary me-2"></i>
+          {% trans "This tool gives me confidence when writing research papers. The arguments are solid and the content flows naturally." %}
+        </div>
+      </div>
+
+      <div class="testimonial-card mb-3 p-3 border rounded shadow-sm d-flex">
+        <div class="testimonial-number fw-bold me-3" style="color: #003366;">04</div>
+        <div>
+          <i class="bi bi-lightbulb text-primary me-2"></i>
+          {% trans "As a professional, I use it for quick reports and drafts. It saves me time and helps me stay productive at work." %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonial Image -->
+    <div class="col-md-6 testimonial-image text-center">
+      <img src="{% static 'assets/img/smiling-young-african-man.jpg' %}" class="img-fluid rounded" alt="Happy student using Essay Generator">
+    </div>
+  </div>
+</section>
+
+<section id="pricing-naira" class="pricing-section py-5" style="background-color:#f9f9f9; display:true;">
+  <div class="container text-center">
+    <h2 class="mb-4">Simple and Affordable Pricing</h2>
+    <p class="mb-5 text-muted">Perfect plans for your essay generation needs</p>
+
+    <div class="row justify-content-center g-4">
+
+      <!-- Basic Plan -->
+      <div class="col-md-4">
+        <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
+          <h5 class="card-title mb-3">Basic</h5>
+          <p class="mb-2 text-muted"><s>₦2,500</s></p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦1,800/$4</p>
+          <span class="badge bg-success mb-4">Save 28%</span>
+          <ul class="list-unstyled text-start mb-4">
+            <li>✔ 5 Requests | 30 days</li>
+            <li>✔ 800-word essays</li>
+            <li>✔ Up to 3 citations</li>
+            <li>✔ Any language</li>
+          </ul>
+<!-- Essay Payment Buttons -->
+<div class="d-flex flex-column gap-2">
+
+  <!-- Pay in NGN -->
+  <a href="{% url 'start_subscription' %}?plan=basic_ng" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: darkblue; color: #ffffff; font-weight: 500;">
+    Pay in NGN
+  </a>
+
+  <!-- Pay in USD -->
+  <a href="{% url 'start_subscription' %}?plan=basic_usd" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: #ffffff; color: #001a4d; border: 1px solid #001a4d; font-weight: 500;">
+    Pay in USD
+  </a>
+
+</div>
+
+        </div>
+      </div>
+
+      <!-- Standard Plan -->
+      <div class="col-md-4">
+        <div class="card h-100 p-4 shadow border-primary border-2 rounded-3 position-relative">
+          <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3">Most Popular</span>
+          <h5 class="card-title mb-3">Standard</h5>
+          <p class="mb-2 text-muted"><s>₦7,000</s></p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦5,000/$10</p>
+          <span class="badge bg-success mb-4">Save 29%</span>
+          <ul class="list-unstyled text-start mb-4">
+            <li>✔ 15 Requests | 30 days</li>
+            <li>✔ 800-word essays</li>
+            <li>✔ Up to 3 citations</li>
+            <li>✔ Multilingual support</li>
+          </ul>
+<!-- Standard Essay Payment Buttons -->
+<div class="d-flex flex-column gap-2">
+
+  <!-- Pay in NGN -->
+  <a href="{% url 'start_subscription' %}?plan=standard_ng" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: darkblue; color: #ffffff; font-weight: 500;">
+    Pay in NGN
+  </a>
+
+  <!-- Pay in USD -->
+  <a href="{% url 'start_subscription' %}?plan=standard_usd" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: #ffffff; color: #001a4d; border: 1px solid #001a4d; font-weight: 500;">
+    Pay in USD
+  </a>
+
+</div>
+
+        </div>
+      </div>
+
+      <!-- Unlimited Plan -->
+      <div class="col-md-4">
+        <div class="card h-100 p-4 shadow-sm border-0 rounded-3">
+          <h5 class="card-title mb-3">Unlimited</h5>
+          <p class="mb-2 text-muted"><s>₦20,000</s></p>
+          <p class="price mb-2" style="font-size:2rem; font-weight:bold; color:#0d6efd;">₦17,000/$25</p>
+          <span class="badge bg-success mb-4">Save 20%</span>
+          <ul class="list-unstyled text-start mb-4">
+            <li>✔ Unlimited Requests | 30 days</li>
+            <li>✔ 800-word essays</li>
+            <li>✔ Up to 3 citations</li>
+            <li>✔ Multilingual support</li>
+            <li>✔ Best value for heavy users</li>
+          </ul><!-- Unlimited Essay Payment Buttons -->
+<div class="d-flex flex-column gap-2">
+
+  <!-- Pay in NGN -->
+  <a href="{% url 'start_subscription' %}?plan=unlimited_ng" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: darkblue; color: #ffffff; font-weight: 500;">
+    Pay in NGN
+  </a>
+
+  <!-- Pay in USD -->
+  <a href="{% url 'start_subscription' %}?plan=unlimited_usd" 
+     class="btn w-100 rounded-pill" 
+     style="background-color: #ffffff; color: #001a4d; border: 1px solid #001a4d; font-weight: 500;">
+    Pay in USD
+  </a>
+
+</div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+      
+    
+
+
+
+  
+
+
+
+<!-- Main Footer -->
+<footer class="footer pt-5" style="background-color: darkblue;">
+  <div class="container footer-top py-5">
+    <div class="row gy-4">
+
+<div class="col-lg-3 col-md-6 footer-about text-center text-lg-start">
+  <!-- Logo -->
+  <div class="mb-3">
+    <img src="{% static 'assets/img/favicon.png' %}" 
+         alt="EduPrompt Logo" 
+         style="max-width: 140px; height: auto;">
+  </div>
+
+  <!-- Short Tagline -->
+  <p style="font-size: 0.95rem; line-height: 1.6; color: #ffffff;">
+    {% trans "Smarter learning. Faster results. AI-powered tools for students and teachers." %}
+  </p>
+</div>
+
+
+<!-- Useful Links -->
+<div class="col-lg-2 col-md-3 footer-links">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Useful Links" %}</h4>
+  <ul class="list-unstyled">
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="{% url 'index' %}" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Home" %}</a>
+    </li>
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/about/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "About Us" %}</a>
+    </li>
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/privacy_policy/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Privacy Policy" %}</a>
+    </li>
+    <li>
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/Terms_and_Condition" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Terms and Conditions" %}</a>
+    </li>
+  </ul>
+</div>
+
+<!-- Our Services -->
+<div class="col-lg-2 col-md-3 footer-links">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Services" %}</h4>
+  <ul class="list-unstyled">
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/website/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Web Design" %}</a>
+    </li>
+  </ul>
+</div>
+
+<!-- Our Services (second block) -->
+<div class="col-lg-2 col-md-3 footer-links">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Our Tools" %}</h4>
+  <ul class="list-unstyled">
+    <li class="mb-2">
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/essay/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Essay Writer" %}</a>
+    </li>
+ 
+    
+    <li>
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/quiz/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Quiz Generator" %}</a>
+    </li>
+        
+        <li>
+      <i class="bi bi-chevron-right" style="color: #ffffff; margin-right: .25rem;"></i>
+      <a href="/grammar-checker/" class="text-decoration-none link-hover-underline" style="color: #ffffff;">{% trans "Grammar Checker" %}</a>
+    </li>
+  </ul>
+</div>
+
+<!-- Follow Us -->
+<div class="col-lg-3 col-md-6">
+  <h4 class="fw-semibold mb-3" style="color: #ffffff;">{% trans "Follow Us" %}</h4>
+  <p class="mb-3" style="color: #ffffff;">{% trans "Follow us on all our social media platforms" %}</p>
+  <div class="social-links d-flex gap-3 fs-4">
+    <a href="https://web.facebook.com/people/Somtohgist/61558875407507/" 
+       class="social-hover" 
+       style="color: #ffffff;" 
+       target="_blank" 
+       rel="noopener noreferrer">
+       <i class="bi bi-facebook"></i>
+    </a>
+
+    <a href="https://www.tiktok.com/@somto_codes?_r=1&_t=ZS-947AD15UarR" 
+       class="social-hover" 
+       style="color: #ffffff;" 
+       target="_blank" 
+       rel="noopener noreferrer">
+       <i class="bi bi-tiktok"></i>
+    </a>
+  </div>
+</div>
+
+    </div>
+  </div>
+</footer>
+
+<!-- Footer -->
+<footer style="background-color: #001a4d; color: #ffffff; padding: 15px 0; text-align: center; border-top: 1px solid darkblue">
+  <p style="margin: 0; font-size: 0.9rem;">
+    © {% now "Y" %} <strong>EduPrompt</strong>. All Rights Reserved.
+  </p>
+</footer>
+
+
+
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+
+
+
+
+
+
+
+
