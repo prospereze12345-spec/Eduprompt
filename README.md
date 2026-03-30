@@ -1,28 +1,37 @@
-# 👋 Hi, I'm Eze Prosper  
+Hi, I'm Ezeh Prosper
+ Backend Engineer | Distributed Systems Specialist | Founder of EduPrompt.com.ng
 
-I’m a full-stack Engineer  passionate about building real solutions that make learning smarter and easier.  
-Right now, I’m focused on EduPrompt — an AI-powered EdTech platform that helps users generate essays, quizzes, solve questions, and check grammar or punctuation automatically.  
+I am a Software Engineer focused on building scalable, fault-tolerant distributed systems and secure payment infrastructures. I specialize in architecting production-grade Python/Django applications that handle failure gracefully.
 
- About EduPrompt  
-EduPrompt is built to support students, teachers, and content creators with AI tools that save time and improve writing.  
-It’s designed to make education more accessible and intelligent for everyone.  
+ I’m currently: Scaling EduPrompt, an AI-powered EdTech platform.
+ Key Interests: Idempotency, Event-Driven Architecture, and NLP Engine Design.
+ Security Focus: Eliminating attack surfaces via Magic Link Auth and OWASP-aligned architecture.
+
+---
+
+ Featured Project: EduPrompt
+
+EduPrompt.com.ng is an AI-powered platform designed to bridge the gap in quality digital education.
+
+ Technical Highlights:
+Custom NLP Engine: Engineered a text rewriting engine in pure Python with zero 3rd-party AI API dependencies.
+Fault-Tolerant Payments: Implemented idempotent transaction reversal logic achieving 0% user financial loss.
+Scalable Task Processing: Utilized Redis and Celery for asynchronous processing and API abuse prevention.
+Passwordless Security: Built a cryptographically signed Magic Link Authentication system.
+
+---
+
+ Tech Stack
+
+Backend: Python, Django, DRF, Celery, Redis, WebSockets |
+Databases: PostgreSQL, SQL, NoSQL, Schema Design |
+DevOps: Docker, Kubernetes, CI/CD, Render, AWS, Prometheus, Grafana |
+Security: JWT, OAuth2, Magic Link, Rate Limiting, OWASP Top 10 |
 
 
- What I Build  
-- Web apps powered by Django and Python  
-- AI tools for education and productivity  
-- APIs and backend systems that scale  
-- Front-end interfaces with Bootstrap and JavaScript  
 
- Tech Stack  
-Python | Django | JavaScript | Bootstrap | PostgreSQL | Git  
-
- Featured Projects  
-- EduPrompt – AI-powered platform for essays, quizzes, and grammar checks  
-
- Contact  
-Email: prospereze12345@gmail.com
-LinkedIn:https://www.linkedin.com/in/somtohgist-tech-21a002228/
+Connect with Me
+website: [eduprompt.com.ng](https://eduprompt.com.ng)
+LinkedIn: [Prosper Ezeh](https://www.linkedin.com/in/prosper-ezeh-21a002228/)
 Twitter: https://x.com/SomtoCodes
-
-⭐ I believe good code should solve real problems and make life easier.
+Email: prospereze12345@gmail.com
