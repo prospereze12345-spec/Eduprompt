@@ -210,6 +210,8 @@ INSTALLED_APPS = [
     'cloudinary',
     'cloudinary_storage',
     'blog',
+    'seo_pages',
+
 
 
 ]

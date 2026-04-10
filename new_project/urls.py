@@ -23,10 +23,12 @@ from django.views.generic import TemplateView
 
 from django.contrib.sitemaps.views import sitemap
 from blog.sitemaps import StaticViewSitemap, BlogPostSitemap
+from seo_pages.sitemaps import SeoPageSitemap
 
 sitemaps = {
-    'static': StaticViewSitemap,
-    'blog': BlogPostSitemap,
+    "static": StaticViewSitemap,
+    "blog": BlogPostSitemap,
+    "seo": SeoPageSitemap,
 }
 
 urlpatterns = [
@@ -49,6 +51,7 @@ urlpatterns += [
     path('accounts/', include('allauth.urls')),
     path('blog/', include('blog.urls', namespace='blog')), 
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django-sitemap'),
+    path('', include('seo_pages.urls')),
 
     path(
         "robots.txt",
