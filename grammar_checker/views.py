@@ -798,15 +798,6 @@ def grammar_subscription_status(request):
         "remaining_days": (user_profile.subscription_end - timezone.now()).days if user_profile.subscription_end else 0
     })
 
-def grammar_checker(request):
-    text = request.session.get("tool_text", "")
-
-    # clear after use
-    request.session["tool_text"] = ""
-
-    return render(request, "tool/grammar_tool.html", {
-        "input_text": text
-    })
 
 
 
