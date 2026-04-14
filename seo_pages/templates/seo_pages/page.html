@@ -370,9 +370,7 @@ function getCSRFToken(){
 // --------------------------
 $(document).ready(function(){
 
-  // --------------------------
-  // Password toggle
-  // --------------------------
+  
   $(document).on("click", ".toggle-password", function(){
     const $input = $(this).closest(".position-relative").find("input");
     const type = $input.attr("type") === "password" ? "text" : "password";
@@ -518,6 +516,12 @@ $(document).ready(function(){
   </nav>
 </header>
 <!-- MAIN CONTENT -->
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="{{ page.meta_description }}">
+{% endblock %}
+
 <main style="margin-top: 0; background-color: #ffffff;">
 
 <!-- HERO -->
@@ -545,7 +549,7 @@ $(document).ready(function(){
 
                 <button class="btn w-100"
                     style="background-color: #0d1b2a; color: #ffffff; border: none;">
-                    {{ page.cta_text|default:" Fix Instantly" }}
+                    {{ page.cta|default:"Fix Instantly" }}
                 </button>
             </form>
         </div>
@@ -558,7 +562,7 @@ $(document).ready(function(){
 </section>
 
 
-<!-- INTRO -->
+<!-- ABOUT / PROBLEM -->
 <section class="py-5">
     <div class="container px-3" style="max-width: 800px;">
         <h2 class="fw-bold mb-3">About This Tool</h2>
@@ -591,23 +595,20 @@ $(document).ready(function(){
 </section>
 
 
-
 <!-- USE CASE -->
-<section class="py-5 bg-light">
+<section class="py-5">
     <div class="container px-3" style="max-width: 800px;">
-
         <h2 class="fw-bold mb-3">Who Is This For?</h2>
         <p class="text-muted" style="line-height:1.8; font-size: 0.95rem;">
             {{ page.use_case }}
         </p>
-
     </div>
 </section>
 
 
 <!-- FAQ -->
 {% if page.faq %}
-<section class="py-5">
+<section class="py-5 bg-light">
     <div class="container px-3" style="max-width: 800px;">
 
         <h2 class="fw-bold mb-4 text-center">FAQs</h2>
@@ -622,6 +623,7 @@ $(document).ready(function(){
     </div>
 </section>
 {% endif %}
+
 
 <!-- CTA -->
 <section class="py-5 text-center text-white"
@@ -639,7 +641,7 @@ $(document).ready(function(){
         <a href="https://eduprompt.com.ng"
            class="btn"
            style="background-color: #0d1b2a; color: #ffffff; border: 1px solid #ffffff;">
-            {{ page.cta_text|default:"Start Now" }}
+            {{ page.cta|default:"Start Now" }}
         </a>
 
     </div>

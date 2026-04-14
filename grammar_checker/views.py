@@ -479,108 +479,115 @@ def grammar_checker(request):
 # -------------------------
 @csrf_exempt
 def grammar_upload_view(request):
-    if request.method == "POST" and request.FILES.get("file"):
+    if request.method != "POST" or not request.FILES.get("file"):
+        return JsonResponse({"success": False, "message": "No file uploaded"})
 
-        file = request.FILES["file"]
+    file = request.FILES["file"]
+
+    # 1. QUICK FILE VALIDATION (IMPORTANT)
+    if file.size > 5 * 1024 * 1024:  # 5MB limit
+        return JsonResponse({
+            "success": False,
+            "message": "File too large. Max 5MB allowed."
+        })
+
+    try:
+        # 2. OCR (SLOW PART)
         extracted_text = extract_text_from_file(file)
+
+        if not extracted_text:
+            return JsonResponse({
+                "success": False,
+                "message": "Could not extract text from file"
+            })
+
         word_count = count_words(extracted_text)
 
         user = request.user
         is_guest = not user.is_authenticated
+
         profile = None
         if not is_guest:
             profile, _ = UserProfile.objects.get_or_create(user=user)
 
         WORD_LIMIT_FREE = 1500
         WORD_LIMIT_PRO = 5000
-        is_pro = False if is_guest else (
-            profile.is_subscribed and profile.subscription_end >= timezone.now()
-        )
+
+        is_pro = False
+        if not is_guest and profile:
+            is_pro = profile.is_subscribed and profile.subscription_end >= timezone.now()
+
         word_limit = WORD_LIMIT_PRO if is_pro else WORD_LIMIT_FREE
 
         if word_count > word_limit:
             return JsonResponse({
                 "success": False,
-                "message": "🚫 Max 5,000 words for Pro." if is_pro else "⚠ Free limit 1,500 words."
+                "message": "🚫 Word limit exceeded."
             })
 
-        # DAILY LIMIT LOGIC SAME AS ABOVE
-        if is_guest:
-            today = str(date.today())
-            last_trial_date = request.session.get("grammar_trial_date")
-            trials = request.session.get("grammar_trials", 0)
+        # 3. CACHE FIRST (MOVE UP FOR SPEED)
+        user_part = str(user.id) if not is_guest else request.META.get('REMOTE_ADDR', 'guest')
+        cache_key = "upload:" + hashlib.md5(
+            (extracted_text + user_part).encode()
+        ).hexdigest()
 
-            ip = request.META.get('HTTP_X_FORWARDED_FOR')
-            ip = ip.split(',')[0] if ip else request.META.get('REMOTE_ADDR')
-
-            ip_trial_key = f"grammar_ip_trials_{ip}"
-            ip_date_key = f"grammar_ip_date_{ip}"
-
-            ip_trials = request.session.get(ip_trial_key, 0)
-            ip_date = request.session.get(ip_date_key)
-
-            if last_trial_date != today:
-                trials = 0
-                request.session["grammar_trials"] = 0
-                request.session["grammar_trial_date"] = today
-
-            if ip_date != today:
-                ip_trials = 0
-                request.session[ip_trial_key] = 0
-                request.session[ip_date_key] = today
-
-            if trials >= 3 or ip_trials >= 3:
-                return JsonResponse({
-                    "success": False,
-                    "message": "⚠ Free daily limit reached. Sign up for more checks."
-                })
-
-            request.session["grammar_trials"] = trials + 1
-            request.session[ip_trial_key] = ip_trials + 1
-            user_part = ip
-
-        else:
-            now = timezone.now()
-            if not profile.last_check_date or profile.last_check_date.date() != now.date():
-                profile.daily_check_count = 0
-                profile.last_check_date = now
-
-            max_checks = 50 if is_pro else 3
-            if profile.daily_check_count >= max_checks:
-                return JsonResponse({
-                    "success": False,
-                    "message": f"⚠ Daily limit of {max_checks} checks reached."
-                })
-
-            profile.daily_check_count += 1
-            profile.save()
-            user_part = str(user.id)
-
-        # CACHE
-        language = "auto"
-        cache_key = "upload:" + hashlib.md5((extracted_text + user_part).encode()).hexdigest()
         cached = get_cache(cache_key)
         if cached:
             return JsonResponse({
                 "success": True,
                 "words": word_count,
-                "fixed_text": cached.get("corrected_text"),
-                "highlighted_text": cached.get("highlighted_text"),
-                "suggestions_html": cached.get("suggestions_html"),
+                "fixed_text": cached["corrected_text"],
+                "highlighted_text": cached["highlighted_text"],
+                "suggestions_html": cached["suggestions_html"],
                 "cached": True
             })
 
-        # FALLBACK
-        corrected_text, highlighted_text, suggestions_html = run_languagetool_check(extracted_text, language)
+        # 4. LIMIT CHECK (RUN AFTER OCR BUT BEFORE AI CALL)
+        if is_guest:
+            today = str(date.today())
 
-        # SAVE CACHE
+            trials = request.session.get("grammar_trials", 0)
+            last_trial_date = request.session.get("grammar_trial_date")
+
+            if last_trial_date != today:
+                trials = 0
+
+            if trials >= 3:
+                return JsonResponse({
+                    "success": False,
+                    "message": "Daily limit reached"
+                })
+
+            request.session["grammar_trials"] = trials + 1
+
+        else:
+            now = timezone.now()
+            if not profile.last_check_date or profile.last_check_date.date() != now.date():
+                profile.daily_check_count = 0
+
+            max_checks = 50 if is_pro else 3
+            if profile.daily_check_count >= max_checks:
+                return JsonResponse({
+                    "success": False,
+                    "message": "Daily limit reached"
+                })
+
+            profile.daily_check_count += 1
+            profile.last_check_date = now
+            profile.save()
+
+        # 5. GRAMMAR CHECK (SLOW)
+        corrected_text, highlighted_text, suggestions_html = run_languagetool_check(
+            extracted_text,
+            "auto"
+        )
+
+        # 6. SAVE CACHE
         set_cache(cache_key, {
             "corrected_text": corrected_text,
             "highlighted_text": highlighted_text,
             "suggestions_html": suggestions_html
         })
-
-        track_analytics(user_part, extracted_text)
 
         return JsonResponse({
             "success": True,
@@ -591,8 +598,12 @@ def grammar_upload_view(request):
             "cached": False
         })
 
-    return JsonResponse({"success": False, "message": "No file uploaded"})
-
+    except Exception as e:
+        return JsonResponse({
+            "success": False,
+            "message": f"Error processing file: {str(e)}"
+        })
+        
 @login_required
 def grammar_status(request):
     return render(request, "grammar_status.html", {"is_subscribed": getattr(request.user.userprofile, "is_subscribed", False)})
