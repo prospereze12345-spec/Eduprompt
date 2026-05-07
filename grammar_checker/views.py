@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.http import JsonResponse, HttpResponse
@@ -818,6 +819,11 @@ def grammar_subscription_status(request):
 
 
 
+
+
+
+
+
     
 import json
 from django.http import JsonResponse
@@ -890,48 +896,3 @@ def improve_text(request):
     
 
 
-
-import io
-import json
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-
-@csrf_exempt
-def extract_file_text(request):
-    if request.method != "POST":
-        return JsonResponse({"error": "Only POST allowed"}, status=405)
-
-    uploaded_file = request.FILES.get("file")
-    if not uploaded_file:
-        return JsonResponse({"error": "No file uploaded"}, status=400)
-
-    file_name = uploaded_file.name.lower()
-
-    try:
-        if file_name.endswith(".txt"):
-            # Read text file
-            text = uploaded_file.read().decode("utf-8", errors="ignore")
-
-        elif file_name.endswith(".pdf"):
-            # Wrap uploaded_file in BytesIO to make PdfReader happy
-            pdf_bytes = uploaded_file.read()
-            pdf_file = io.BytesIO(pdf_bytes)
-
-            reader = PdfReader(pdf_file)
-            text = ""
-            for page in reader.pages:
-                page_text = page.extract_text()
-                if page_text:
-                    text += page_text + "\n"
-
-            if not text.strip():
-                return JsonResponse({
-                    "error": "PDF has no readable text. Maybe it's scanned or image-based."
-                }, status=400)
-        else:
-            return JsonResponse({"error": "Unsupported file type"}, status=400)
-
-        return JsonResponse({"success": True, "text": text})
-
-    except Exception as e:
-        return JsonResponse({"error": str(e)}, status=500)
